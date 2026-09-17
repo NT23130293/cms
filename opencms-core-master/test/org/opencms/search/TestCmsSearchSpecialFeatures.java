@@ -1,0 +1,186 @@
+/*
+ * This library is part of OpenCms -
+ * the Open Source Content Management System
+ *
+ * Copyright (c) Alkacon Software GmbH & Co. KG (https://www.alkacon.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * For further information about Alkacon Software, please see the
+ * company website: https://www.alkacon.com
+ *
+ * For further information about OpenCms, please see the
+ * project website: https://www.opencms.org
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package org.opencms.search;
+
+import org.opencms.file.CmsObject;
+import org.opencms.file.CmsProperty;
+import org.opencms.file.CmsPropertyDefinition;
+import org.opencms.file.types.CmsResourceTypeBinary;
+import org.opencms.file.types.CmsResourceTypeFolder;
+import org.opencms.main.OpenCms;
+import org.opencms.report.CmsShellReport;
+import org.opencms.report.I_CmsReport;
+import org.opencms.search.fields.CmsSearchField;
+import org.opencms.test.OpenCmsTestRunner;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+
+import org.apache.lucene.document.Document;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.TestMethodOrder;
+
+/**
+ * Unit test for special search features added for OpenCms 7.5.<p>
+ */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class TestCmsSearchSpecialFeatures extends OpenCmsTestRunner {
+
+    /** Name of the search index created using API. */
+    public static final String INDEX_SPECIAL = "Special Test Index";
+
+    /**
+     * @see org.opencms.test.OpenCmsTestRunner#$openCmsSetUp(org.junit.jupiter.api.TestInfo)
+     */
+    @Override
+    @BeforeAll
+    public void $openCmsSetUp(TestInfo testInfo) {
+
+        setupOpenCms(testInfo, "simpletest", "/");
+    }
+
+    /**
+     * Tests incremental index updates with the new content blob feature.<p>
+     *
+     * @throws Exception in case the test fails
+     */
+    @Order(2)
+    @Test
+    public void testIncrementalIndexUpdate() throws Exception {
+
+        CmsObject cms = getCmsObject();
+        echo("Testing search incremental index update - new content blob feature");
+
+        // create test folder
+        cms.createResource("/test/", CmsResourceTypeFolder.RESOURCE_TYPE_ID, null, null);
+        cms.unlockResource("/test/");
+
+        String fileName = "/test/master.pdf";
+
+        // create master resource
+        importTestResource(
+            cms,
+            "org/opencms/search/extractors/test1.pdf",
+            fileName,
+            CmsResourceTypeBinary.getStaticTypeId(),
+            Collections.<CmsProperty> emptyList());
+
+        // create 5 siblings
+        for (int i = 0; i < 5; i++) {
+            cms.createSibling(fileName, "/test/sibling" + i + ".pdf", null);
+        }
+
+        // publish the project and update the search index
+        I_CmsReport report = new CmsShellReport(cms.getRequestContext().getLocale());
+        OpenCms.getPublishManager().publishProject(cms, report);
+        OpenCms.getPublishManager().waitWhileRunning();
+
+        cms.lockResource(fileName);
+        cms.writePropertyObject(
+            fileName,
+            new CmsProperty(CmsPropertyDefinition.PROPERTY_TITLE, "Title of the PDF", null));
+
+        // publish the project and update the search index
+        report = new CmsShellReport(cms.getRequestContext().getLocale());
+        OpenCms.getPublishManager().publishProject(cms, report);
+        OpenCms.getPublishManager().waitWhileRunning();
+    }
+
+    /**
+     * Ensures the content and content blob fields are loaded lazy.<p>
+     *
+     * @throws Exception in case the test fails
+     */
+    @Order(3)
+    @Test
+    public void testLazyContentFields() throws Exception {
+
+        echo("Testing lazy status of content fields in search index");
+
+        String fileName = "/sites/default/test/master.pdf";
+
+        CmsSearchIndex searchIndex = (CmsSearchIndex)OpenCms.getSearchManager().getIndex(INDEX_SPECIAL);
+        Document doc = (Document)searchIndex.getDocument(CmsSearchField.FIELD_PATH, fileName).getDocument();
+
+        assertNotNull(doc, "Document '" + fileName + "' not found");
+        assertNotNull(doc.getField(CmsSearchField.FIELD_TITLE), "No 'title' field available");
+        // assertFalse("title must not be lazy loaded", doc.getField(CmsSearchField.FIELD_TITLE). isLazy());
+        assertNotNull(doc.getField(CmsSearchField.FIELD_CONTENT), "No 'content' field available");
+        // assertTrue("Content field not lazy", doc.getField(CmsSearchField.FIELD_CONTENT).isLazy());
+        assertNotNull(doc.getField(CmsSearchField.FIELD_CONTENT_BLOB), "No 'content blob' field available");
+        // assertTrue("Content blob field not lazy", doc.getField(CmsSearchField.FIELD_CONTENT_BLOB).isLazy());
+    }
+
+    /**
+     * Creates a new search index setup for this test.<p>
+     *
+     * @throws Exception in case the test fails
+     */
+    @Order(1)
+    @Test
+    public void testSearchIndexSetup() throws Exception {
+
+        CmsSearchIndex searchIndex = new CmsSearchIndex(INDEX_SPECIAL);
+        searchIndex.setProject("Online");
+        searchIndex.setLocale(Locale.ENGLISH);
+        searchIndex.setRebuildMode(I_CmsSearchIndex.REBUILD_MODE_AUTO);
+        // available pre-configured in the test configuration files opencms-search.xml
+        searchIndex.addSourceName("source1");
+        searchIndex.addConfigurationParameter(CmsSearchIndex.BACKUP_REINDEXING, "true");
+
+        // initialize the new index
+        searchIndex.initialize();
+
+        // add the search index to the manager
+        OpenCms.getSearchManager().addSearchIndex(searchIndex);
+
+        I_CmsReport report = new CmsShellReport(Locale.ENGLISH);
+        // this call does not throws the rebuild index event
+        OpenCms.getSearchManager().rebuildIndex(INDEX_SPECIAL, report);
+        OpenCms.getSearchManager().rebuildIndex(INDEX_SPECIAL, report);
+
+        // perform a search on the newly generated index
+        CmsSearch searchBean = new CmsSearch();
+        List<CmsSearchResult> searchResult;
+
+        searchBean.init(getCmsObject());
+        searchBean.setIndex(INDEX_SPECIAL);
+        searchBean.setQuery(">>SearchEgg1<<");
+
+        // assert one file is found in the default site
+        searchResult = searchBean.getSearchResult();
+        assertEquals(1, searchResult.size());
+        assertEquals("/sites/default/xmlcontent/article_0001.html", (searchResult.get(0)).getPath());
+    }
+}

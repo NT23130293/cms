@@ -1,0 +1,185 @@
+/*
+ * This library is part of OpenCms -
+ * the Open Source Content Management System
+ *
+ * Copyright (c) Alkacon Software GmbH & Co. KG (https://www.alkacon.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * For further information about Alkacon Software GmbH & Co. KG, please see the
+ * company website: https://www.alkacon.com
+ *
+ * For further information about OpenCms, please see the
+ * project website: https://www.opencms.org
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package org.opencms.file;
+
+import org.opencms.file.collectors.CmsDefaultResourceCollector;
+import org.opencms.file.collectors.I_CmsResourceCollector;
+import org.opencms.file.types.CmsResourceTypeFolder;
+import org.opencms.file.types.CmsResourceTypePlain;
+import org.opencms.main.CmsException;
+import org.opencms.test.OpenCmsTestRunner;
+
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.TestMethodOrder;
+
+/**
+ * Tests the default resource collectors.<p>
+ */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class TestDefaultResourceCollectors extends OpenCmsTestRunner {
+
+    /**
+     * Initializes the resources needed for the tests.<p>
+     *
+     * @param cms the cms object
+     * @throws CmsException if something goes wrong
+     */
+    public static void initResources(CmsObject cms) throws CmsException {
+
+        // create a file in the root directory
+        cms.createResource("/file1", CmsResourceTypePlain.getStaticTypeId(), null, null);
+
+        // create a folder in the root directory
+        cms.createResource("/folder1", CmsResourceTypeFolder.getStaticTypeId());
+
+        // create a file in the folder directory
+        cms.createResource("/folder1/file1", CmsResourceTypePlain.getStaticTypeId(), null, null);
+
+        // create a file in the folder directory
+        cms.createResource("/folder1/file2", CmsResourceTypePlain.getStaticTypeId(), null, null);
+    }
+
+    /**
+     * @see org.opencms.test.OpenCmsTestRunner#$openCmsSetUp(org.junit.jupiter.api.TestInfo)
+     */
+    @Override
+    @BeforeAll
+    public void $openCmsSetUp(TestInfo testInfo) {
+
+        CmsObject cms = setupOpenCms(testInfo);
+        try {
+            initResources(cms);
+        } catch (CmsException exc) {
+            fail(exc.getMessage());
+        }
+    }
+
+    /**
+     * Tests the "allInFolder" resource collector.<p>
+     *
+     * @throws Throwable if something goes wrong
+     */
+    @Test
+    @Order(2)
+    public void testCollectAllInFolder() throws Throwable {
+
+        CmsObject cms = getCmsObject();
+        int resTypeIdPlain = CmsResourceTypePlain.getStaticTypeId();
+        echo("Testing allInFolder resource collector");
+
+        I_CmsResourceCollector collector = new CmsDefaultResourceCollector();
+        List resources = collector.getResults(cms, "allInFolder", "/folder1/|" + resTypeIdPlain);
+
+        CmsResource res;
+
+        // order descending determined by root path
+
+        res = (CmsResource)resources.get(0);
+        assertEquals("/sites/default/folder1/file2", res.getRootPath());
+
+        res = (CmsResource)resources.get(1);
+        assertEquals("/sites/default/folder1/file1", res.getRootPath());
+    }
+
+    /**
+     * Tests the "allInFolderDateReleasedDesc" resource collector.<p>
+     *
+     * @throws Throwable if something goes wrong
+     */
+    @Test
+    @Order(3)
+    public void testCollectAllInFolderDateReleasedDesc() throws Throwable {
+
+        CmsObject cms = getCmsObject();
+        int resTypeIdPlain = CmsResourceTypePlain.getStaticTypeId();
+        echo("Testing allInFolderDateReleasedDesc resource collector");
+
+        I_CmsResourceCollector collector = new CmsDefaultResourceCollector();
+        List resources;
+
+        CmsResource res;
+
+        long day = 1000L * 60L * 60L * 24L;
+        long t1 = System.currentTimeMillis() - (2 * day), t2 = t1 + day;
+
+        cms.setDateLastModified("/folder1/file1", t1, false);
+        cms.setDateReleased("/folder1/file1", t1, false);
+        cms.setDateExpired("/folder1/file1", t1 + (3 * day), false);
+        cms.setDateLastModified("/folder1/file2", t2, false);
+        cms.setDateReleased("/folder1/file2", t2, false);
+        cms.setDateExpired("/folder1/file2", t2 + (3 * day), false);
+
+        resources = collector.getResults(cms, "allInFolderDateReleasedDesc", "/folder1/|" + resTypeIdPlain);
+
+        res = (CmsResource)resources.get(0);
+        assertEquals("/sites/default/folder1/file2", res.getRootPath());
+
+        res = (CmsResource)resources.get(1);
+        assertEquals("/sites/default/folder1/file1", res.getRootPath());
+
+        cms.setDateLastModified("/folder1/file1", t2, false);
+        cms.setDateReleased("/folder1/file1", t2, false);
+        cms.setDateExpired("/folder1/file1", t2 + (3 * day), false);
+        cms.setDateLastModified("/folder1/file2", t1, false);
+        cms.setDateReleased("/folder1/file2", t1, false);
+        cms.setDateExpired("/folder1/file2", t1 + (3 * day), false);
+
+        resources = collector.getResults(cms, "allInFolderDateReleasedDesc", "/folder1/|" + resTypeIdPlain);
+
+        res = (CmsResource)resources.get(0);
+        assertEquals("/sites/default/folder1/file1", res.getRootPath());
+
+        res = (CmsResource)resources.get(1);
+        assertEquals("/sites/default/folder1/file2", res.getRootPath());
+    }
+
+    /**
+     * Tests the "singleFile" resource collector.<p>
+     *
+     * @throws Throwable if something goes wrong
+     */
+    @Test
+    @Order(1)
+    public void testCollectSingleFile() throws Throwable {
+
+        CmsObject cms = getCmsObject();
+        echo("Testing singleFile resource collector");
+
+        I_CmsResourceCollector collector = new CmsDefaultResourceCollector();
+        List resources = collector.getResults(cms, "singleFile", "/file1");
+
+        CmsResource res = (CmsResource)resources.get(0);
+        assertEquals("/sites/default/file1", res.getRootPath());
+    }
+}
