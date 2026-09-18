@@ -1,0 +1,234 @@
+:root {
+    --primary-color: #15803D;
+    --primary-hover: #166534;
+    --primary-light: #F0FDF4;
+    --text-main: #1E293B;
+    --text-muted: #64748B;
+    --bg-header: #FFFFFF;
+    --border-color: #E2E8F0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+    --shadow-active: 0 4px 14px rgba(21, 128, 61, 0.25);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: #F8FAFC;
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* Header Container */
+.header,
+.yen-header-bg {
+    background-color: var(--bg-header);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container,
+.yen-header-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo Brand */
+.brand-logo,
+.yen-logo-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+    user-select: none;
+}
+
+.brand-icon,
+.yen-logo-icon {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, #15803D 0%, #166534 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(21, 128, 61, 0.2);
+    transition: var(--transition-fast);
+}
+
+.brand-logo:hover .brand-icon,
+.yen-logo-brand:hover .yen-logo-icon {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(21, 128, 61, 0.3);
+}
+
+.brand-icon svg,
+.yen-logo-svg {
+    width: 22px;
+    height: 22px;
+}
+
+.brand-text,
+.yen-logo-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brand-name,
+.yen-logo-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+}
+
+.brand-sub,
+.yen-logo-tagline {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-top: 1px;
+}
+
+/* Navigation List */
+.nav-list,
+.yen-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+}
+
+.nav-item,
+.yen-nav-item {
+    position: relative;
+}
+
+.nav-link,
+.yen-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    background-color: transparent;
+    text-decoration: none;
+    transition: var(--transition-fast);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nav-link:hover,
+.yen-nav-link:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.nav-icon,
+.yen-nav-link .icon {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link.active,
+.nav-link:active,
+.yen-nav-link.active,
+.yen-nav-link:active {
+    background-color: var(--primary-color) !important;
+    color: #FFFFFF !important;
+    box-shadow: var(--shadow-active);
+}
+
+.nav-link.active .nav-icon,
+.yen-nav-link.active .icon {
+    color: #FFFFFF;
+}
+
+/* Mobile Toggle */
+.mobile-toggle,
+.yen-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .nav-link,
+    .yen-nav-link {
+        padding: 8px 12px;
+        font-size: 13.5px;
+    }
+}
+
+@media (max-width: 868px) {
+    .mobile-toggle,
+    .yen-mobile-toggle {
+        display: block;
+    }
+
+    .header-nav,
+    .yen-header-container nav {
+        width: 100%;
+    }
+
+    .nav-list,
+    .yen-nav-list {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-header);
+        flex-direction: column;
+        padding: 12px 16px;
+        gap: 6px;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-list.show,
+    .yen-nav-list.show {
+        display: flex;
+    }
+
+    .nav-item,
+    .yen-nav-item {
+        width: 100%;
+    }
+
+    .nav-link,
+    .yen-nav-link {
+        width: 100%;
+        padding: 12px 16px;
+    }
+}
