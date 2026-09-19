@@ -83,23 +83,11 @@
             <hr class="my-2 text-secondary opacity-25">
 
             <!-- 7. Đăng xuất -->
-            <a href="#" class="account-nav-item logout-item text-decoration-none">
+            <a href="login.html" class="account-nav-item logout-item text-decoration-none">
               <i class="bi bi-box-arrow-right"></i>
               <span class="text-truncate">Đăng xuất</span>
             </a>
           </nav>
-
-          <!-- Homestay Community Banner Card -->
-          <div class="promo-sidebar-card">
-            <div class="d-flex align-items-center gap-2 mb-1">
-              <i class="bi bi-tree-fill text-success fs-5"></i>
-              <h6>Homestay Việt Nam</h6>
-            </div>
-            <p class="mb-2">Hoàn tất thông tin cá nhân để nhận ngay <strong>100 điểm Eco</strong> đổi quà trải nghiệm văn hóa.</p>
-            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1 rounded-pill text-xs">
-              <i class="bi bi-shield-check me-1"></i>Tài khoản an toàn
-            </span>
-          </div>
         </div>
       </aside>
 
@@ -145,7 +133,7 @@
                     <div class="row align-items-center">
                       <label class="col-sm-3 form-label-custom mb-1 mb-sm-0">Họ &amp; Tên</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-custom" value="Lê Hoàng Mai Chi" placeholder="Nhập họ và tên">
+                        <input type="text" id="profileFullName" class="form-control form-control-custom" value="Lê Hoàng Mai Chi" placeholder="Nhập họ và tên">
                       </div>
                     </div>
                   </div>
@@ -155,7 +143,17 @@
                     <div class="row align-items-center">
                       <label class="col-sm-3 form-label-custom mb-1 mb-sm-0">Nickname</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-custom" value="Mai Chi Homestay" placeholder="Thêm nickname">
+                        <input type="text" id="profileNickname" class="form-control form-control-custom" value="Mai Chi Homestay" placeholder="Thêm nickname">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Số CCCD / CMND -->
+                  <div class="col-12">
+                    <div class="row align-items-center">
+                      <label class="col-sm-3 form-label-custom mb-1 mb-sm-0">Số CCCD / CMND</label>
+                      <div class="col-sm-9">
+                        <input type="text" id="profileCccd" class="form-control form-control-custom" value="001203004005" placeholder="Nhập 12 số CCCD / CMND" maxlength="12" pattern="[0-9]{12}">
                       </div>
                     </div>
                   </div>
@@ -167,7 +165,7 @@
                       <div class="col-sm-9">
                         <div class="row g-2">
                           <div class="col-4">
-                            <select class="form-select form-select-custom">
+                            <select id="dobDay" class="form-select form-select-custom">
                               <option value="">Ngày</option>
                               <option value="1">1</option>
                               <option value="15">15</option>
@@ -177,7 +175,7 @@
                             </select>
                           </div>
                           <div class="col-4">
-                            <select class="form-select form-select-custom">
+                            <select id="dobMonth" class="form-select form-select-custom">
                               <option value="">Tháng</option>
                               <option value="1">Tháng 01</option>
                               <option value="8" selected>Tháng 08</option>
@@ -185,7 +183,7 @@
                             </select>
                           </div>
                           <div class="col-4">
-                            <select class="form-select form-select-custom">
+                            <select id="dobYear" class="form-select form-select-custom">
                               <option value="">Năm</option>
                               <option value="1996">1996</option>
                               <option value="1997">1997</option>
@@ -227,7 +225,7 @@
                     <div class="row align-items-center">
                       <label class="col-sm-3 form-label-custom mb-1 mb-sm-0">Quốc tịch</label>
                       <div class="col-sm-9">
-                        <select class="form-select form-select-custom">
+                        <select id="profileNationality" class="form-select form-select-custom">
                           <option value="vn" selected>🇻🇳 Việt Nam</option>
                           <option value="la">🇱🇦 Lào</option>
                           <option value="kh">🇰🇭 Campuchia</option>
@@ -604,13 +602,6 @@
                   <small class="text-muted">12/08/2026 • Pù Luông Eco Garden</small>
                 </div>
                 <span class="fw-bold text-success">+65.000đ</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                  <h6 class="mb-0 text-sm font-semibold">Thưởng hoàn thành hồ sơ xác minh</h6>
-                  <small class="text-muted">01/08/2026 • Thưởng đăng ký</small>
-                </div>
-                <span class="fw-bold text-success">+50.000đ</span>
               </li>
             </ul>
           </div>
