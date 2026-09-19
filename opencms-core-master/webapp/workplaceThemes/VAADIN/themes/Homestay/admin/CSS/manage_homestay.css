@@ -249,6 +249,26 @@
     color: #FFFFFF;
 }
 
+.btn-suspend {
+    background: #FFF7ED;
+    color: #C2410C;
+    border: 1px solid #FED7AA;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+}
+
+.btn-suspend:hover {
+    background: #EA580C;
+    color: #FFFFFF;
+}
+
 /* Simple Clean Modal */
 .modal-backdrop {
     position: fixed;
