@@ -66,7 +66,7 @@ public class TestPropertyFile extends OpenCmsTestRunner {
     @Order(1)
     public void testEscapedCharacters() throws Throwable {
 
-        String resourcename = "/folder1/subfolder11/index.html";
+        String resourcename = "/folder1/subfolder11/manageRoom.html";
         getCmsObject().lockResource(resourcename);
 
         String propertyValue = "Start \n \t \r \" \' \\ \u2297 \\\" \\\' End";
@@ -101,7 +101,7 @@ public class TestPropertyFile extends OpenCmsTestRunner {
     @Order(2)
     public void testReadUnicodeChars() throws Throwable {
 
-        String resourcename = "/folder1/subfolder11/index.html";
+        String resourcename = "/folder1/subfolder11/manageRoom.html";
         getCmsObject().lockResource(resourcename);
 
         String propertyValue = "\u00E4\u00F6\u00FC \u00C4\u00D6\u00DC \u00DF\u00DF\u00DF \u20AC\u20AC\u20AC";
@@ -135,7 +135,7 @@ public class TestPropertyFile extends OpenCmsTestRunner {
     @Order(3)
     public void testWriteUnicodeChars() throws Throwable {
 
-        String resourcename = "/folder1/subfolder11/index.html";
+        String resourcename = "/folder1/subfolder11/manageRoom.html";
         String propValue = "\u00E4\u00F6\u00FC \u00C4\u00D6\u00DC \u00DF\u00DF\u00DF \u20AC\u20AC\u20AC";
 
         StringBuffer content = new StringBuffer();

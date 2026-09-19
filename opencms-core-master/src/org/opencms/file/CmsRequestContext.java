@@ -329,7 +329,7 @@ public final class CmsRequestContext {
      * Returns the directory name translator this context was initialized with.<p>
      *
      * The directory translator is used to translate old VFS path information
-     * to a new location. Example: <code>/bodys/index.html --> /system/bodies/</code>.<p>
+     * to a new location. Example: <code>/bodys/manageRoom.html --> /system/bodies/</code>.<p>
      *
      * @return the directory name translator this context was initialized with
      */
@@ -724,7 +724,7 @@ public final class CmsRequestContext {
      * If you change this value, better make sure that you change it only temporarily
      * and reset it in a <code>try { // do something // } finally { // reset URI // }</code> statement.<p>
      *
-     * @param value the value to set the Uri to, must be a complete OpenCms path name like /system/workplace/style.css
+     * @param value the value to set the Uri to, must be a complete OpenCms path name like /system/workplace/manageRoom.css
      */
     public void setUri(String value) {
 

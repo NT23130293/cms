@@ -278,12 +278,12 @@ public class TestProperty extends OpenCmsTestRunner {
         echo("Testing proper behaviour for case sensitiveness in property definition names");
         CmsProperty myProperty = new CmsProperty("myProperty", "myValue", "myValue");
         CmsProperty myproperty = new CmsProperty("myproperty", "myvalue", "myvalue");
-        cms.lockResource("/index.html");
-        cms.writePropertyObject("/index.html", myProperty);
-        cms.writePropertyObject("/index.html", myproperty);
-        cms.unlockResource("/index.html");
-        assertEquals("myValue", cms.readPropertyObject("/index.html", "myProperty", false).getResourceValue());
-        assertEquals("myvalue", cms.readPropertyObject("/index.html", "myproperty", false).getResourceValue());
+        cms.lockResource("/manageRoom.html");
+        cms.writePropertyObject("/manageRoom.html", myProperty);
+        cms.writePropertyObject("/manageRoom.html", myproperty);
+        cms.unlockResource("/manageRoom.html");
+        assertEquals("myValue", cms.readPropertyObject("/manageRoom.html", "myProperty", false).getResourceValue());
+        assertEquals("myvalue", cms.readPropertyObject("/manageRoom.html", "myproperty", false).getResourceValue());
     }
 
     /**
@@ -302,7 +302,7 @@ public class TestProperty extends OpenCmsTestRunner {
         List propertyList3 = new ArrayList();
         propertyList3.add(property8);
         propertyList3.add(property9);
-        createProperties(this, cms, "/index.html", propertyList3);
+        createProperties(this, cms, "/manageRoom.html", propertyList3);
     }
 
     /**
@@ -317,7 +317,7 @@ public class TestProperty extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing creating one property on a resource");
         CmsProperty property7 = new CmsProperty("Newproperty", "testvalue1", "testvalue2");
-        createProperty(this, cms, "/folder1/index.html", property7);
+        createProperty(this, cms, "/folder1/manageRoom.html", property7);
     }
 
     /**
@@ -644,7 +644,7 @@ public class TestProperty extends OpenCmsTestRunner {
         propertyList.add(property1deDE);
         propertyList.add(property2);
 
-        String resource = "/index.html";
+        String resource = "/manageRoom.html";
 
         cms.lockResource(resource);
         cms.writePropertyObjects(resource, propertyList);

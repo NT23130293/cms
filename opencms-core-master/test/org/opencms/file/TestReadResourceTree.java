@@ -76,7 +76,7 @@ public class TestReadResourceTree extends OpenCmsTestRunner {
         // store all resources of the expected result
         // storeResources(cms, path, false);
         storeResources(cms, path + "/subsubfolder121", false);
-        storeResources(cms, path + "/index.html", false);
+        storeResources(cms, path + "/manageRoom.html", false);
         storeResources(cms, path + "/page1.html", false);
         storeResources(cms, path + "/page2.html", false);
 
@@ -112,18 +112,18 @@ public class TestReadResourceTree extends OpenCmsTestRunner {
         storeResources(cms, path + "/subfolder21/subsubfolder211/jsp1.jsp", false);
         storeResources(cms, path + "/subfolder21/subsubfolder211/jsp2.jsp", false);
         storeResources(cms, path + "/subfolder21/image1.gif", false);
-        storeResources(cms, path + "/subfolder21/index.html", false);
+        storeResources(cms, path + "/subfolder21/manageRoom.html", false);
         storeResources(cms, path + "/subfolder21/page1.html", false);
-        storeResources(cms, path + "/subfolder22/subsubfolder221/index.html", false);
+        storeResources(cms, path + "/subfolder22/subsubfolder221/manageRoom.html", false);
         storeResources(cms, path + "/subfolder22/subsubfolder221/jsp1.jsp", false);
         storeResources(cms, path + "/subfolder22/subsubfolder221/page1.html", false);
-        storeResources(cms, path + "/subfolder22/index.html", false);
+        storeResources(cms, path + "/subfolder22/manageRoom.html", false);
         storeResources(cms, path + "/subfolder22/page1.html", false);
         storeResources(cms, path + "/subfolder22/page2.html", false);
         storeResources(cms, path + "/subfolder22/page3.html", false);
         storeResources(cms, path + "/image1.gif", false);
         storeResources(cms, path + "/image2.gif", false);
-        storeResources(cms, path + "/index.html", false);
+        storeResources(cms, path + "/manageRoom.html", false);
         storeResources(cms, path + "/page1.html", false);
         storeResources(cms, path + "/page2.html", false);
 
@@ -294,7 +294,7 @@ public class TestReadResourceTree extends OpenCmsTestRunner {
         }
 
         // now touch a resource with a timestamp before timestamp1 and check that it is now modified before timestamp1
-        resourcename = path + "/subfolder12/index.html";
+        resourcename = path + "/subfolder12/manageRoom.html";
         cms.lockResource(resourcename);
         cms.setDateLastModified(resourcename, timestamp1 - 1, false);
 
@@ -359,9 +359,9 @@ public class TestReadResourceTree extends OpenCmsTestRunner {
         // storeResources(cms, path, false);
         storeResources(cms, path + "/subsubfolder121", false);
         storeResources(cms, path + "/subsubfolder121/image1.gif", false);
-        storeResources(cms, path + "/subsubfolder121/index.html", false);
+        storeResources(cms, path + "/subsubfolder121/manageRoom.html", false);
         storeResources(cms, path + "/subsubfolder121/page1.html", false);
-        storeResources(cms, path + "/index.html", false);
+        storeResources(cms, path + "/manageRoom.html", false);
         storeResources(cms, path + "/page1.html", false);
         storeResources(cms, path + "/page2.html", false);
 

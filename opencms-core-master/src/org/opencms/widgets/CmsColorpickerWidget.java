@@ -126,7 +126,7 @@ public class CmsColorpickerWidget extends A_CmsWidget implements I_CmsADEWidget 
         result.append("\";\n");
         result.append("\tcolorPicker.url=\"");
         result.append(CmsWorkplace.getSkinUri());
-        result.append("components/js_colorpicker/index.html\";\n");
+        result.append("components/js_colorpicker/manageRoom.html\";\n");
         result.append("}\n");
         return result.toString();
     }

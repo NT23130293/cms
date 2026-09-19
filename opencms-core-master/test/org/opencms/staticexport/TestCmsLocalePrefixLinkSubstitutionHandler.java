@@ -108,7 +108,7 @@ public class TestCmsLocalePrefixLinkSubstitutionHandler extends OpenCmsTestRunne
         CmsLinkManager lm = OpenCms.getLinkManager();
         I_CmsLinkSubstitutionHandler lh = new CmsLocalePrefixLinkSubstitutionHandler();
         lm.setLinkSubstitutionHandler(cms, lh);
-        testGetRootPath(cms, "/sites/default/index.html");
+        testGetRootPath(cms, "/sites/default/manageRoom.html");
         testGetRootPath(cms, "/shared/sharedFile.txt");
     }
 

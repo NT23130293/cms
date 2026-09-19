@@ -44,7 +44,7 @@ import org.apache.commons.logging.Log;
 import org.apache.http.client.utils.URIBuilder;
 
 /**
- * Does final postprocessing on a link by cutting off specific path suffixes (e.g. index.html).
+ * Does final postprocessing on a link by cutting off specific path suffixes (e.g. manageRoom.html).
  */
 public class CmsLinkFinisher {
 

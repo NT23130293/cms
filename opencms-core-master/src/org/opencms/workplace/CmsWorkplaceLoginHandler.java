@@ -55,7 +55,7 @@ public class CmsWorkplaceLoginHandler implements I_CmsResourceInit {
     public static final String LOGIN_HANDLER = "/system/login";
 
     /** The login form path. */
-    public static final String LOGIN_FORM = "/system/login/index.html";
+    public static final String LOGIN_FORM = "/system/login/manageRoom.html";
 
     /**
      * @see org.opencms.main.I_CmsResourceInit#initResource(org.opencms.file.CmsResource, org.opencms.file.CmsObject, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)

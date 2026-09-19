@@ -1,0 +1,2241 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+
+/* =========================================================
+   COLOR VARIABLES
+   ========================================================= */
+
+:root {
+    --secondary: #1b6d24;
+
+    --on-tertiary-fixed-variant: #6e3900;
+    --on-secondary-fixed: #002204;
+
+    --on-tertiary: #ffffff;
+
+    --surface-dim: #cbdbf5;
+
+    --on-primary-fixed-variant: #224f3d;
+
+    --secondary-fixed-dim: #88d982;
+
+    --primary-fixed: #bdedd5;
+    --primary-fixed-dim: #a1d1ba;
+
+    --inverse-surface: #213145;
+
+    --surface-container-highest: #d3e4fe;
+    --surface-container-high: #dce9ff;
+    --surface-container: #e5edfb;
+    --surface-container-low: #eff4ff;
+    --surface-container-lowest: #ffffff;
+
+    --on-background: #0b1c30;
+
+    --on-tertiary-container: #f38b23;
+
+    --primary-container: #154332;
+
+    --inverse-primary: #a1d1ba;
+
+    --tertiary-container: #5d2f00;
+
+    --secondary-container: #a0f399;
+    --on-secondary-container: #217128;
+
+    --surface-variant: #d3e4fe;
+
+    --background: #f8f9ff;
+    --surface: #f8f9ff;
+    --surface-bright: #f8f9ff;
+
+    --on-surface-variant: #414944;
+
+    --on-error-container: #93000a;
+
+    --on-primary-container: #81b099;
+
+    --outline-variant: #c0c8c2;
+    --outline: #717974;
+
+    --error: #ba1a1a;
+    --error-container: #ffdad6;
+
+    --on-surface: #0b1c30;
+
+    --on-tertiary-fixed: #2f1500;
+
+    --primary: #002c1e;
+
+    --on-secondary: #ffffff;
+
+    --secondary-fixed: #a3f69c;
+
+    --surface-tint: #3b6754;
+
+    --on-primary: #ffffff;
+
+    --on-primary-fixed: #002115;
+
+    --tertiary-fixed: #ffdcc3;
+    --tertiary-fixed-dim: #f5b98c;
+}
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overscroll-behavior: none;
+    background-color: var(--background);
+    color: var(--on-surface);
+}
+
+main > :first-child {
+    margin-top: 0 !important;
+}
+
+main > :last-child {
+    margin-bottom: 0 !important;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.bg-primary-container {
+    background-color: var(--primary-container);
+}
+
+.bg-secondary {
+    background-color: var(--secondary);
+}
+
+.bg-secondary-container {
+    background-color: var(--secondary-container);
+}
+
+.bg-secondary-fixed-dim {
+    background-color: var(--secondary-fixed-dim);
+}
+
+.bg-surface {
+    background-color: var(--surface);
+}
+
+.bg-surface-container {
+    background-color: var(--surface-container);
+}
+
+.bg-surface-container-high {
+    background-color: var(--surface-container-high);
+}
+
+.bg-surface-container-highest {
+    background-color: var(--surface-container-highest);
+}
+
+.bg-surface-container-low {
+    background-color: var(--surface-container-low);
+}
+
+.bg-surface-container-lowest {
+    background-color: var(--surface-container-lowest);
+}
+
+.bg-tertiary-container {
+    background-color: var(--tertiary-container);
+}
+
+.bg-tertiary-fixed {
+    background-color: var(--tertiary-fixed);
+}
+
+.bg-tertiary-fixed-dim {
+    background-color: var(--tertiary-fixed-dim);
+}
+
+.bg-error {
+    background-color: var(--error);
+}
+
+.bg-error-container {
+    background-color: var(--error-container);
+}
+
+
+/* =========================================================
+   TEXT COLORS
+   ========================================================= */
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-primary-fixed {
+    color: var(--primary-fixed);
+}
+
+.text-secondary {
+    color: var(--secondary);
+}
+
+.text-on-primary {
+    color: var(--on-primary);
+}
+
+.text-on-primary-container {
+    color: var(--on-primary-container);
+}
+
+.text-on-secondary {
+    color: var(--on-secondary);
+}
+
+.text-on-secondary-container {
+    color: var(--on-secondary-container);
+}
+
+.text-on-surface {
+    color: var(--on-surface);
+}
+
+.text-on-surface-variant {
+    color: var(--on-surface-variant);
+}
+
+.text-on-tertiary {
+    color: var(--on-tertiary);
+}
+
+.text-on-tertiary-container {
+    color: var(--on-tertiary-container);
+}
+
+.text-on-tertiary-fixed {
+    color: var(--on-tertiary-fixed);
+}
+
+.text-on-tertiary-fixed-variant {
+    color: var(--on-tertiary-fixed-variant);
+}
+
+.text-on-error {
+    color: var(--on-error);
+}
+
+.text-on-error-container {
+    color: var(--on-error-container);
+}
+
+.text-outline {
+    color: var(--outline);
+}
+
+.text-outline-variant {
+    color: var(--outline-variant);
+}
+
+
+/* =========================================================
+   TRANSPARENT COLORS
+   ========================================================= */
+
+.bg-primary-container\/40 {
+    background-color: color-mix(
+            in srgb,
+            var(--primary-container) 40%,
+            transparent
+    );
+}
+
+.bg-primary-container\/80 {
+    background-color: color-mix(
+            in srgb,
+            var(--primary-container) 80%,
+            transparent
+    );
+}
+
+.bg-secondary-container\/20 {
+    background-color: color-mix(
+            in srgb,
+            var(--secondary-container) 20%,
+            transparent
+    );
+}
+
+.bg-secondary-container\/30 {
+    background-color: color-mix(
+            in srgb,
+            var(--secondary-container) 30%,
+            transparent
+    );
+}
+
+.bg-secondary-container\/40 {
+    background-color: color-mix(
+            in srgb,
+            var(--secondary-container) 40%,
+            transparent
+    );
+}
+
+.bg-secondary-container\/95 {
+    background-color: color-mix(
+            in srgb,
+            var(--secondary-container) 95%,
+            transparent
+    );
+}
+
+.bg-tertiary-fixed\/40 {
+    background-color: color-mix(
+            in srgb,
+            var(--tertiary-fixed) 40%,
+            transparent
+    );
+}
+
+.bg-surface-container-lowest\/20 {
+    background-color: color-mix(
+            in srgb,
+            var(--surface-container-lowest) 20%,
+            transparent
+    );
+}
+
+.bg-surface-container-lowest\/90 {
+    background-color: color-mix(
+            in srgb,
+            var(--surface-container-lowest) 90%,
+            transparent
+    );
+}
+
+.text-on-primary-container\/80 {
+    color: color-mix(
+            in srgb,
+            var(--on-primary-container) 80%,
+            transparent
+    );
+}
+
+
+/* =========================================================
+   GRADIENT
+   ========================================================= */
+
+
+
+/* =========================================================
+   FONT
+   ========================================================= */
+
+.font-display-lg,
+.font-headline-lg,
+.font-headline-md,
+.font-headline-sm,
+.font-body-md,
+.font-body-sm {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-label-sm,
+.font-label-md,
+.font-label-lg {
+    font-family: 'Inter', sans-serif;
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+.text-display-lg {
+    font-size: 30px;
+    line-height: 38px;
+    font-weight: 700;
+}
+
+.text-headline-lg {
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 700;
+}
+
+.text-headline-md {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 600;
+}
+
+.text-headline-sm {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.text-body-md {
+    font-size: 13.5px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.text-body-sm {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+}
+
+.text-label-lg {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 600;
+}
+
+.text-label-md {
+    font-size: 11.5px;
+    line-height: 16px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.text-label-sm {
+    font-size: 10.5px;
+    line-height: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+
+/* =========================================================
+   SPACING
+   ========================================================= */
+
+.gap-space-xs {
+    gap: 0.25rem;
+}
+
+.gap-space-sm {
+    gap: 0.5rem;
+}
+
+.gap-space-md {
+    gap: 0.875rem;
+}
+
+.gap-space-lg {
+    gap: 1.25rem;
+}
+
+.ml-space-xs {
+    margin-left: 0.25rem;
+}
+
+.mr-space-xs {
+    margin-right: 0.25rem;
+}
+
+.p-space-xs {
+    padding: 0.25rem;
+}
+
+.p-space-sm {
+    padding: 0.5rem;
+}
+
+.p-space-md {
+    padding: 0.875rem;
+}
+
+.p-space-lg {
+    padding: 1.25rem;
+}
+
+.px-space-xs {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.px-space-sm {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.px-space-md {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+}
+
+.px-space-lg {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+.py-space-xs {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.py-space-sm {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.py-space-md {
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+}
+
+.py-space-lg {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+.pt-space-xs {
+    padding-top: 0.25rem;
+}
+
+.pl-space-xs {
+    padding-left: 0.25rem;
+}
+
+.px-gutter {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+
+/* =========================================================
+   BORDER
+   ========================================================= */
+
+.border-surface-container {
+    border-color: var(--surface-container);
+}
+
+
+/* =========================================================
+   FILTER TAB
+   ========================================================= */
+
+.filter-tab {
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            box-shadow 0.2s ease,
+            transform 0.15s ease;
+}
+
+.filter-tab[aria-pressed="true"] {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.filter-tab[aria-pressed="false"] {
+    background-color: transparent;
+    color: var(--on-surface-variant);
+    box-shadow: none;
+}
+
+.filter-tab:hover {
+    transform: translateY(-1px);
+}
+
+.filter-tab:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   VIEW BUTTON
+   ========================================================= */
+
+#btnViewCard,
+#btnViewTimeline {
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            box-shadow 0.2s ease,
+            transform 0.15s ease;
+}
+
+#btnViewCard[aria-pressed="true"],
+#btnViewTimeline[aria-pressed="true"] {
+    background-color: var(--surface);
+    color: var(--primary);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+#btnViewCard[aria-pressed="false"],
+#btnViewTimeline[aria-pressed="false"] {
+    background-color: transparent;
+    color: var(--on-surface-variant);
+    box-shadow: none;
+}
+
+#btnViewCard:hover,
+#btnViewTimeline:hover {
+    transform: translateY(-1px);
+}
+
+#btnViewCard:active,
+#btnViewTimeline:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   HIDDEN VIEW
+   ========================================================= */
+
+#roomGridView[hidden],
+#timelineSection[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   MODAL OVERLAY
+   ========================================================= */
+
+.room-modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem;
+
+    background: rgba(11, 28, 48, 0.45);
+
+    backdrop-filter: blur(5px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+            opacity 0.2s ease,
+            visibility 0.2s ease;
+}
+
+
+/* Khi có hidden thì hoàn toàn không hiển thị */
+.room-modal[hidden] {
+    display: none !important;
+}
+
+
+/* Modal đang mở */
+
+.room-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+   ========================================================= */
+
+.room-modal-content {
+    width: 100%;
+    max-width: 620px;
+
+    max-height: calc(100vh - 2rem);
+
+    overflow-y: auto;
+
+    /* QUAN TRỌNG:
+       popup phải có nền riêng */
+    background: var(--surface);
+
+    border: 1px solid var(--outline-variant);
+
+    border-radius: 1rem;
+
+    box-shadow:
+            0 20px 60px rgba(0, 0, 0, 0.22);
+
+    transform: translateY(20px) scale(0.97);
+
+    transition:
+            transform 0.2s ease;
+}
+
+
+/* Animation khi mở */
+
+.room-modal.is-open .room-modal-content {
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================================================
+   MODAL HEADER
+   ========================================================= */
+
+.room-modal-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1.25rem;
+
+    border-bottom: 1px solid var(--surface-container);
+}
+
+.room-modal-close {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    color: var(--on-surface-variant);
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.15s ease;
+}
+
+.room-modal-close:hover {
+    background: var(--surface-container-low);
+
+    color: var(--on-surface);
+}
+
+.room-modal-close:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.room-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1rem;
+
+    padding: 1.25rem;
+}
+
+.room-form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 1rem;
+}
+
+.room-form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.4rem;
+}
+
+.room-form-group.full {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   FORM LABEL
+   ========================================================= */
+
+.room-form-label {
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: var(--on-surface);
+}
+
+
+/* =========================================================
+   FORM INPUT
+   ========================================================= */
+
+.room-form-input,
+.room-form-select,
+.room-form-textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 0.7rem 0.8rem;
+
+    border: 1px solid var(--outline-variant);
+
+    border-radius: 0.5rem;
+
+    outline: none;
+
+    /* Không dùng biến bị thiếu */
+    background: var(--surface-container-low);
+
+    color: var(--on-surface);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background-color 0.2s ease;
+}
+
+
+/* Placeholder */
+
+.room-form-input::placeholder,
+.room-form-textarea::placeholder {
+    color: var(--on-surface-variant);
+
+    opacity: 0.65;
+}
+
+
+/* Focus */
+
+.room-form-input:focus,
+.room-form-select:focus,
+.room-form-textarea:focus {
+    border-color: var(--secondary);
+
+    background: var(--surface);
+
+    box-shadow:
+            0 0 0 3px rgba(27, 109, 36, 0.12);
+}
+
+
+/* Select */
+
+.room-form-select {
+    cursor: pointer;
+}
+
+
+/* Textarea */
+
+.room-form-textarea {
+    min-height: 90px;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   MODAL FOOTER
+   ========================================================= */
+
+.room-modal-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    padding: 1rem 1.25rem;
+
+    border-top: 1px solid var(--surface-container);
+}
+
+
+/* =========================================================
+   MODAL BUTTON
+   ========================================================= */
+
+.room-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.4rem;
+
+    padding: 0.65rem 1rem;
+
+    border: none;
+
+    border-radius: 0.5rem;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            transform 0.15s ease,
+            box-shadow 0.2s ease;
+}
+
+.room-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+   ========================================================= */
+
+.room-btn-cancel {
+    background: var(--surface-container);
+
+    color: var(--on-surface);
+}
+
+.room-btn-cancel:hover {
+    background: var(--surface-container-high);
+}
+
+
+/* =========================================================
+   SAVE BUTTON
+   ========================================================= */
+
+.room-btn-save {
+    background: var(--primary);
+
+    color: var(--on-primary);
+
+    box-shadow:
+            0 2px 8px rgba(21, 67, 50, 0.2);
+}
+
+.room-btn-save:hover {
+    background: var(--primary-container);
+
+    box-shadow:
+            0 4px 12px rgba(21, 67, 50, 0.25);
+}
+
+
+/* =========================================================
+   ADD ROOM BUTTON
+   ========================================================= */
+
+#btnAddRoom {
+    transition:
+            background-color 0.2s ease,
+            transform 0.15s ease,
+            box-shadow 0.2s ease;
+}
+
+#btnAddRoom:hover {
+    transform: translateY(-1px);
+}
+
+#btnAddRoom:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   EDIT ROOM BUTTON
+   ========================================================= */
+
+.btn-edit-room {
+    transition:
+            background-color 0.2s ease,
+            transform 0.15s ease,
+            box-shadow 0.2s ease;
+}
+
+.btn-edit-room:hover {
+    transform: translateY(-1px);
+}
+
+.btn-edit-room:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   BODY WHEN MODAL IS OPEN
+   ========================================================= */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MODAL SCROLLBAR
+   ========================================================= */
+
+.room-modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.room-modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.room-modal-content::-webkit-scrollbar-thumb {
+    background: var(--outline-variant);
+
+    border-radius: 10px;
+}
+
+.room-modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--outline);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .room-modal {
+        padding: 0.5rem;
+    }
+
+    .room-modal-content {
+        max-height: calc(100vh - 1rem);
+
+        border-radius: 0.75rem;
+    }
+
+    .room-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .room-form-group.full {
+        grid-column: auto;
+    }
+
+    .room-modal-footer {
+        flex-direction: column-reverse;
+    }
+
+    .room-btn {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREEN
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .room-modal-header {
+        padding: 1rem;
+    }
+
+    .room-form {
+        padding: 1rem;
+    }
+
+    .room-modal-footer {
+        padding: 0.875rem 1rem;
+    }
+
+    .room-modal-content {
+        max-height: calc(100vh - 0.5rem);
+    }
+}
+/* =========================================================
+   LAYOUT - SIDEBAR + MAIN
+   ========================================================= */
+
+main {
+    margin-left: 275px !important;
+    width: calc(100% - 275px) !important;
+    box-sizing: border-box;
+}
+
+/* Màn hình nhỏ */
+@media (max-width: 768px) {
+    main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
+
+/* =========================================================
+   MODAL LỚN
+   ========================================================= */
+
+.room-modal-lg {
+    max-width: 880px;
+}
+
+
+/* =========================================================
+   NÚT PHỤ (GHOST)
+   ========================================================= */
+
+.room-btn-ghost {
+    background: var(--surface-container-low);
+
+    color: var(--on-surface);
+
+    border: 1px solid var(--outline-variant);
+}
+
+.room-btn-ghost:hover {
+    background: var(--surface-container);
+}
+
+
+/* =========================================================
+   CHECKBOX DÒNG
+   ========================================================= */
+
+.room-check {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    font-size: 12.5px;
+
+    color: var(--on-surface);
+
+    cursor: pointer;
+}
+
+.room-check input {
+    width: 16px;
+    height: 16px;
+
+    accent-color: var(--secondary);
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   TIỆN NGHI (TỰ NHẬP)
+   ========================================================= */
+
+.room-amenity-box {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.6rem;
+
+    padding: 0.85rem;
+
+    border: 1px dashed var(--outline-variant);
+
+    border-radius: 0.75rem;
+
+    background: var(--surface-container-low);
+}
+
+.room-amenity-row {
+    display: flex;
+
+    gap: 0.5rem;
+}
+
+.room-amenity-row .room-form-input {
+    background: var(--surface-container-lowest);
+}
+
+.room-amenity-row .room-btn {
+    white-space: nowrap;
+}
+
+.room-amenity-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.4rem;
+}
+
+.room-amenity-tag {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.25rem;
+
+    padding: 0.3rem 0.4rem 0.3rem 0.55rem;
+
+    border-radius: 999px;
+
+    background: var(--secondary-container);
+
+    color: var(--on-secondary-container);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.room-amenity-remove {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: inherit;
+
+    cursor: pointer;
+
+    opacity: 0.7;
+}
+
+.room-amenity-remove:hover {
+    background: rgba(0, 0, 0, 0.1);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   ẢNH & VIDEO
+   ========================================================= */
+
+.room-media-box {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.6rem;
+
+    padding: 0.85rem;
+
+    border: 1px dashed var(--outline-variant);
+
+    border-radius: 0.75rem;
+
+    background: var(--surface-container-low);
+}
+
+.room-media-input {
+    display: none;
+}
+
+.room-media-drop {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.15rem;
+
+    padding: 1.1rem;
+
+    border: 1px dashed var(--outline-variant);
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-lowest);
+
+    color: var(--on-surface-variant);
+
+    cursor: pointer;
+
+    transition:
+            border-color 0.2s ease,
+            background-color 0.2s ease;
+}
+
+.room-media-drop:hover {
+    border-color: var(--secondary);
+
+    background: var(--surface);
+}
+
+.room-media-drop .material-symbols-outlined {
+    font-size: 26px;
+
+    color: var(--secondary);
+}
+
+.room-media-drop-title {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: var(--on-surface);
+}
+
+.room-media-drop-hint {
+    font-size: 11.5px;
+}
+
+.room-media-url-row {
+    display: flex;
+
+    gap: 0.5rem;
+}
+
+.room-media-url-row .room-form-input {
+    background: var(--surface-container-lowest);
+}
+
+.room-media-url-row .room-btn {
+    white-space: nowrap;
+}
+
+.room-media-preview {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+
+    gap: 0.5rem;
+}
+
+.room-media-item {
+    position: relative;
+
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-highest);
+}
+
+.room-media-item img,
+.room-media-item video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.room-media-link {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.2rem;
+
+    height: 100%;
+
+    padding: 0.4rem;
+
+    text-align: center;
+
+    color: var(--on-surface-variant);
+}
+
+.room-media-link-text {
+    font-size: 10.5px;
+
+    word-break: break-all;
+
+    line-height: 14px;
+
+    max-height: 42px;
+
+    overflow: hidden;
+}
+
+.room-media-cover {
+    position: absolute;
+
+    left: 6px;
+    bottom: 6px;
+
+    padding: 2px 6px;
+
+    border-radius: 999px;
+
+    background: var(--secondary);
+
+    color: var(--on-secondary);
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.room-media-remove {
+    position: absolute;
+
+    top: 5px;
+    right: 5px;
+
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    color: #fff;
+
+    cursor: pointer;
+}
+
+.room-media-remove:hover {
+    background: var(--error);
+}
+
+.room-media-empty {
+    margin: 0;
+
+    font-size: 11.5px;
+
+    color: var(--on-surface-variant);
+}
+
+
+/* =========================================================
+   POPUP CHI TIẾT PHÒNG
+   ========================================================= */
+
+.room-detail-body {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1rem;
+
+    padding: 1.25rem;
+}
+
+.room-detail-hero {
+    position: relative;
+
+    height: 220px;
+
+    border-radius: 0.85rem;
+
+    overflow: hidden;
+
+    background: var(--surface-container-highest);
+}
+
+.room-detail-hero img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.room-detail-status {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    padding: 0.3rem 0.7rem;
+
+    border-radius: 999px;
+
+    background: var(--surface-container-highest);
+
+    color: var(--on-surface);
+
+    font-size: 11.5px;
+
+    font-weight: 600;
+
+    backdrop-filter: blur(4px);
+}
+
+.room-detail-status.status-occupied {
+    background: var(--secondary-container);
+
+    color: var(--on-secondary-container);
+}
+
+.room-detail-status.status-booked {
+    background: var(--tertiary-fixed);
+
+    color: var(--on-tertiary-fixed);
+}
+
+.room-detail-status.status-maintenance {
+    background: var(--error-container);
+
+    color: var(--on-error-container);
+}
+
+.room-detail-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 0.6rem;
+}
+
+.room-detail-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.15rem;
+
+    padding: 0.7rem 0.8rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-low);
+}
+
+.room-detail-label {
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+
+    color: var(--on-surface-variant);
+}
+
+.room-detail-value {
+    font-size: 13.5px;
+
+    font-weight: 600;
+
+    color: var(--on-surface);
+}
+
+.room-detail-price {
+    color: var(--secondary);
+}
+
+.room-detail-sub {
+    font-size: 12px;
+
+    color: var(--on-surface-variant);
+}
+
+.room-detail-section {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.4rem;
+}
+
+.room-detail-chips {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.4rem;
+}
+
+.room-detail-chip {
+    padding: 0.3rem 0.6rem;
+
+    border-radius: 0.45rem;
+
+    background: var(--surface-container-low);
+
+    color: var(--on-surface);
+
+    font-size: 12px;
+}
+
+.room-detail-desc {
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 20px;
+
+    color: var(--on-surface-variant);
+}
+
+.room-detail-guest {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    padding: 0.7rem 0.8rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-low);
+
+    color: var(--secondary);
+}
+
+
+/* =========================================================
+   POPUP LỊCH PHÒNG
+   ========================================================= */
+
+.room-calendar-body {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.8rem;
+
+    padding: 1.25rem;
+}
+
+.room-calendar-nav {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 1rem;
+}
+
+.room-calendar-nav-btn {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--outline-variant);
+
+    border-radius: 0.5rem;
+
+    background: var(--surface-container-lowest);
+
+    color: var(--on-surface);
+
+    cursor: pointer;
+}
+
+.room-calendar-nav-btn:hover {
+    background: var(--surface-container);
+}
+
+.room-calendar-month {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: var(--on-surface);
+
+    min-width: 150px;
+
+    text-align: center;
+}
+
+.room-calendar-weekdays,
+.room-calendar-grid {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 0.35rem;
+}
+
+.room-calendar-weekdays span {
+    text-align: center;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: var(--on-surface-variant);
+}
+
+.room-calendar-day {
+    position: relative;
+
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+
+    border-radius: 0.5rem;
+
+    background: var(--surface-container-low);
+
+    color: var(--on-surface);
+
+    font-size: 12.5px;
+
+    font-weight: 600;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+            transform 0.12s ease,
+            box-shadow 0.2s ease;
+}
+
+.room-calendar-day:hover:not(.is-empty) {
+    transform: translateY(-1px);
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.room-calendar-day.is-empty {
+    background: transparent;
+
+    cursor: default;
+}
+
+.room-calendar-day.is-past {
+    opacity: 0.4;
+}
+
+.room-calendar-day.is-today {
+    border-color: var(--secondary);
+}
+
+.room-calendar-day.status-staying {
+    background: var(--secondary);
+
+    color: var(--on-secondary);
+}
+
+.room-calendar-day.status-booked {
+    background: var(--tertiary-fixed-dim);
+
+    color: var(--on-tertiary-fixed);
+}
+
+.room-calendar-day.status-blocked {
+    background: var(--error-container);
+
+    color: var(--on-error-container);
+}
+
+.room-calendar-day.is-selected {
+    outline: 2px solid var(--primary);
+
+    outline-offset: 1px;
+}
+
+.room-calendar-legend {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.8rem;
+
+    font-size: 11.5px;
+
+    color: var(--on-surface-variant);
+}
+
+.room-calendar-legend span {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.3rem;
+}
+
+.room-calendar-legend .dot {
+    width: 11px;
+    height: 11px;
+
+    border-radius: 3px;
+
+    display: inline-block;
+}
+
+.dot-available {
+    background: var(--surface-container-high);
+}
+
+.dot-booked {
+    background: var(--tertiary-fixed-dim);
+}
+
+.dot-staying {
+    background: var(--secondary);
+}
+
+.dot-blocked {
+    background: var(--error-container);
+}
+
+.dot-selected {
+    background: transparent;
+
+    outline: 2px solid var(--primary);
+}
+
+.room-calendar-selection {
+    padding: 0.65rem 0.8rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-low);
+
+    font-size: 12.5px;
+
+    color: var(--on-surface);
+}
+
+
+/* =========================================================
+   POPUP CHẶN NGÀY
+   ========================================================= */
+
+.room-block-summary {
+    padding: 0.7rem 0.85rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--secondary-container);
+
+    color: var(--on-secondary-container);
+
+    font-size: 12.5px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   POPUP CẬP NHẬT GIÁ HÀNG LOẠT
+   ========================================================= */
+
+.room-bulk-head {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 0.45rem;
+}
+
+.room-bulk-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.35rem;
+
+    max-height: 190px;
+
+    overflow-y: auto;
+
+    padding: 0.5rem;
+
+    border: 1px solid var(--outline-variant);
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-low);
+}
+
+.room-bulk-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    padding: 0.5rem 0.6rem;
+
+    border-radius: 0.5rem;
+
+    background: var(--surface-container-lowest);
+
+    cursor: pointer;
+}
+
+.room-bulk-item:hover {
+    background: var(--surface-container);
+}
+
+.room-bulk-item input {
+    width: 16px;
+    height: 16px;
+
+    accent-color: var(--secondary);
+}
+
+.room-bulk-name {
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: var(--on-surface);
+}
+
+.room-bulk-name small {
+    font-size: 11px;
+
+    font-weight: 500;
+
+    color: var(--on-surface-variant);
+}
+
+.room-bulk-price {
+    font-size: 12.5px;
+
+    font-weight: 700;
+
+    color: var(--on-surface-variant);
+}
+
+.room-day-picker {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.4rem;
+}
+
+.room-day {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.3rem;
+
+    padding: 0.35rem 0.6rem;
+
+    border: 1px solid var(--outline-variant);
+
+    border-radius: 999px;
+
+    background: var(--surface-container-lowest);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.room-day input {
+    accent-color: var(--secondary);
+}
+
+.room-bulk-preview {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.3rem;
+
+    max-height: 180px;
+
+    overflow-y: auto;
+
+    padding: 0.5rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-low);
+}
+
+.room-bulk-preview-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    padding: 0.4rem 0.55rem;
+
+    border-radius: 0.45rem;
+
+    background: var(--surface-container-lowest);
+
+    font-size: 12.5px;
+}
+
+.room-bulk-preview-name {
+    flex: 1;
+
+    font-weight: 600;
+
+    color: var(--on-surface);
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.room-bulk-old {
+    color: var(--on-surface-variant);
+
+    text-decoration: line-through;
+}
+
+.room-bulk-new {
+    font-weight: 700;
+
+    color: var(--on-surface);
+}
+
+.room-bulk-diff {
+    min-width: 92px;
+
+    text-align: right;
+
+    font-weight: 600;
+
+    color: var(--on-surface-variant);
+}
+
+.room-bulk-diff.up {
+    color: var(--secondary);
+}
+
+.room-bulk-diff.down {
+    color: var(--error);
+}
+
+.room-bulk-empty {
+    margin: 0;
+
+    padding: 0.4rem;
+
+    font-size: 12px;
+
+    color: var(--on-surface-variant);
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.room-toast-box {
+    position: fixed;
+
+    right: 1rem;
+    bottom: 1rem;
+
+    z-index: 2000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+.room-toast {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    padding: 0.7rem 0.9rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--primary);
+
+    color: var(--on-primary);
+
+    font-size: 12.5px;
+
+    font-weight: 600;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+            opacity 0.2s ease,
+            transform 0.2s ease;
+}
+
+.room-toast.is-show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.room-toast-error {
+    background: var(--error);
+
+    color: #fff;
+}
+
+
+/* =========================================================
+   RESPONSIVE CHO POPUP MỚI
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .room-detail-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .room-media-url-row,
+    .room-amenity-row {
+        flex-direction: column;
+    }
+
+    .room-toast-box {
+        left: 1rem;
+        right: 1rem;
+    }
+}
+
+
+/* =========================================================
+   POPUP ĐỔI PHÒNG / HỦY PHÒNG
+   ========================================================= */
+
+.room-change-current {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    padding: 0.75rem 0.9rem;
+
+    border-radius: 0.65rem;
+
+    background: var(--surface-container-low);
+
+    font-size: 12.5px;
+
+    color: var(--on-surface);
+}
+
+.room-change-current strong {
+    color: var(--on-surface);
+}
+
+.room-change-preview {
+    padding: 0.7rem 0.85rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--secondary-container);
+
+    color: var(--on-secondary-container);
+
+    font-size: 12.5px;
+
+    font-weight: 600;
+}
+
+.room-cancel-warning {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 0.5rem;
+
+    padding: 0.75rem 0.9rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--error-container);
+
+    color: var(--on-error-container);
+
+    font-size: 12px;
+
+    line-height: 17px;
+}
+
+.room-btn-danger {
+    background: var(--error);
+
+    color: #fff;
+}
+
+.room-btn-danger:hover {
+    background: #93000a;
+}

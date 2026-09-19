@@ -265,7 +265,7 @@ public interface I_CmsResource {
     int getLength();
 
     /**
-     * Returns the file name of this resource without parent folders, for example <code>index.html</code>.<p>
+     * Returns the file name of this resource without parent folders, for example <code>manageRoom.html</code>.<p>
      *
      * @return the file name of this resource without parent folders
      */
@@ -287,7 +287,7 @@ public interface I_CmsResource {
 
     /**
      * Returns the name of this resource with it's full path from the top level root folder,
-     * for example <code>/sites/default/myfolder/index.html</code>.<p>
+     * for example <code>/sites/default/myfolder/manageRoom.html</code>.<p>
      *
      * @return name of this resource with it's full path from the top level root folder
      */

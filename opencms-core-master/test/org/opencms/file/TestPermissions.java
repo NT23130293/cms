@@ -568,7 +568,7 @@ public class TestPermissions extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing visible permissions on a file");
 
-        String resource = "index.html";
+        String resource = "manageRoom.html";
         CmsResource res = cms.readResource(resource);
 
         cms.lockResource(resource);

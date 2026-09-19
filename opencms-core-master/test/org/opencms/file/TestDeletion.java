@@ -263,7 +263,7 @@ public class TestDeletion extends OpenCmsTestRunner {
         echo("Testing to delete a folder structure with (from other user) locked resources inside");
 
         String folder = "/mytestfolder3";
-        String file = "/index.html";
+        String file = "/manageRoom.html";
 
         // create folder
         cms.createResource(folder, CmsResourceTypeFolder.RESOURCE_TYPE_ID);
@@ -309,7 +309,7 @@ public class TestDeletion extends OpenCmsTestRunner {
         echo("Testing to delete a folder structure with (from other user) locked siblings inside");
 
         String folder = "/mytestfolder2";
-        String file = "/index.html";
+        String file = "/manageRoom.html";
 
         // create folder
         cms.createResource(folder, CmsResourceTypeFolder.RESOURCE_TYPE_ID);
@@ -355,7 +355,7 @@ public class TestDeletion extends OpenCmsTestRunner {
 
         // Creating paths
         String folder = "/mytestfolder/";
-        String file = "index.html";
+        String file = "manageRoom.html";
 
         // create structure
         cms.createResource(folder, CmsResourceTypeFolder.RESOURCE_TYPE_ID);

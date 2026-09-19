@@ -426,7 +426,7 @@ public class TestSiblings extends OpenCmsTestRunner {
     public void testSiblingsCopy() throws Throwable {
 
         CmsObject cms = getCmsObject();
-        String source = "/index.html";
+        String source = "/manageRoom.html";
         String target = "/index_sibling.html";
         echo("Copying " + source + " as a new sibling to " + target);
         copyResourceAsSibling(this, cms, source, target);

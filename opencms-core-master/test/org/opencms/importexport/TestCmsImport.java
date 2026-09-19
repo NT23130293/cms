@@ -104,7 +104,7 @@ public class TestCmsImport extends OpenCmsTestRunner {
             + "    <masterTemplate>/system/modules/org.opencms.frontend/templates/group_main</masterTemplate>\n"
             + "    <ELEMENTDEF name=\"body\">\n"
             + "        <CLASS>com.opencms.template.CmsXmlTemplate</CLASS>\n"
-            + "        <TEMPLATE>/content/bodys/group/de/index.html</TEMPLATE>\n"
+            + "        <TEMPLATE>/content/bodys/group/de/manageRoom.html</TEMPLATE>\n"
             + "    </ELEMENTDEF>\n"
             + "</PAGE>";
 
@@ -114,7 +114,7 @@ public class TestCmsImport extends OpenCmsTestRunner {
             + "    <masterTemplate>/system/modules/org.opencms.frontend/templates/group_main</masterTemplate>\n"
             + "    <ELEMENTDEF name=\"body\">\n"
             + "        <CLASS>com.opencms.template.CmsXmlTemplate</CLASS>\n"
-            + "        <TEMPLATE>/system/bodies/group/de/index.html</TEMPLATE>\n"
+            + "        <TEMPLATE>/system/bodies/group/de/manageRoom.html</TEMPLATE>\n"
             + "    </ELEMENTDEF>\n"
             + "</PAGE>";
 

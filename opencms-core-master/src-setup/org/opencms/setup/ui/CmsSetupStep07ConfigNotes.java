@@ -85,7 +85,7 @@ public class CmsSetupStep07ConfigNotes extends A_CmsSetupStep {
             // usually a mapping must be in the form "/opencms/*", cut off all slashes
             servletMapping = servletMapping.substring(0, servletMapping.length() - 2);
         }
-        openLink = request.getContextPath() + servletMapping + (bean.hasIndexHtml() ? "/index.html" : "/system/login");
+        openLink = request.getContextPath() + servletMapping + (bean.hasIndexHtml() ? "/manageRoom.html" : "/system/login");
 
         A_CmsUI.get().getPage().setLocation(openLink);
     }

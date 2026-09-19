@@ -633,8 +633,8 @@ public final class CmsStringUtil {
      * The first folder is removed only in case the result still does not fit
      * if all subfolders have been removed.<p>
      *
-     * Example: <code>formatResourceName("/myfolder/subfolder/index.html", 21)</code>
-     * returns <code>/myfolder/.../index.html</code>.<p>
+     * Example: <code>formatResourceName("/myfolder/subfolder/manageRoom.html", 21)</code>
+     * returns <code>/myfolder/.../manageRoom.html</code>.<p>
      *
      * <b>Directly exposed for JSP EL</b>, not through {@link org.opencms.jsp.util.CmsJspElFunctions}.<p>
      *

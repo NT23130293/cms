@@ -118,7 +118,7 @@ public class TestConcurrentOperations extends OpenCmsTestRunner {
         System.out.println("Running doConcurrentPublishResourceOperation() method call - count: " + count.intValue());
         int val = value[0].intValue();
 
-        OpenCms.getPublishManager().publishResource(cms, "index.html");
+        OpenCms.getPublishManager().publishResource(cms, "manageRoom.html");
 
         value[0] = Integer.valueOf(++val);
         System.out.println("++++++++++++++++++ Finished publish resource - count: " + count.intValue());
@@ -143,7 +143,7 @@ public class TestConcurrentOperations extends OpenCmsTestRunner {
         System.out.println("thread " + count + ": getting publish list");
         CmsPublishList publishList = OpenCms.getPublishManager().getPublishList(
             cms,
-            cms.readResource("index.html", CmsResourceFilter.ALL),
+            cms.readResource("manageRoom.html", CmsResourceFilter.ALL),
             false);
         // get the related resources
         System.out.println("thread " + count + ": getting related resources");
@@ -336,7 +336,7 @@ public class TestConcurrentOperations extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing concurrently publish same resource with " + count + " threads");
 
-        String resName = "index.html";
+        String resName = "manageRoom.html";
         cms.lockResource(resName);
         cms.setDateLastModified(resName, System.currentTimeMillis(), true);
 
@@ -393,7 +393,7 @@ public class TestConcurrentOperations extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing concurrently publish same resource with related resources and with " + count + " threads");
 
-        String resName = "index.html";
+        String resName = "manageRoom.html";
 
         // touch everything, so the involved resources can be published
         cms.lockResource("/");

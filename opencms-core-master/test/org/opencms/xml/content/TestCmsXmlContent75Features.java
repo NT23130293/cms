@@ -100,22 +100,22 @@ public class TestCmsXmlContent75Features extends OpenCmsTestRunner {
         CmsJspContentAccessValueWrapper cascade = bean.getValue().get("Cascade");
 
         CmsJspContentAccessValueWrapper link = cascade.getValue().get("VfsLink");
-        assertEquals("/index.html", link.toString());
+        assertEquals("/manageRoom.html", link.toString());
         System.out.println("\n\n-----------------------------");
         System.out.println("<target> : " + link.getXmlText().get("link/target"));
         System.out.println("<uuid>   : " + link.getXmlText().get("link/uuid"));
         System.out.println("-----------------------------\n");
 
-        assertEquals("/sites/default/index.html", link.getXmlText().get("link/target"));
+        assertEquals("/sites/default/manageRoom.html", link.getXmlText().get("link/target"));
         assertEquals("7d6c22cd-4e3a-11db-9016-5bf59c6009b3", link.getXmlText().get("link/uuid"));
-        assertEquals("/sites/default/index.html", link.getXmlText().get("link[1]/target"));
+        assertEquals("/sites/default/manageRoom.html", link.getXmlText().get("link[1]/target"));
         assertEquals("7d6c22cd-4e3a-11db-9016-5bf59c6009b3", link.getXmlText().get("link[1]/uuid"));
 
         CmsJspContentAccessValueWrapper html = cascade.getValue().get("Html");
         assertEquals("a=b&c=d", html.getXmlText().get("links/link/query"));
-        assertEquals("/sites/default/noexist/index.html", html.getXmlText().get("links/link[@name='link1']/target"));
+        assertEquals("/sites/default/noexist/manageRoom.html", html.getXmlText().get("links/link[@name='link1']/target"));
 
-        assertEquals("/sites/default/index.html", cascade.getXmlText().get("VfsLink[1]/link/target"));
+        assertEquals("/sites/default/manageRoom.html", cascade.getXmlText().get("VfsLink[1]/link/target"));
         assertEquals("a=b&c=d", cascade.getXmlText().get("Html/links/link/query"));
     }
 

@@ -62,8 +62,8 @@ public class TestCache extends OpenCmsTestRunner {
         // get the cache
         CmsVfsMemoryObjectCache cache = CmsVfsMemoryObjectCache.getVfsMemoryObjectCache();
 
-        String res1RootPath = "/sites/default/index.html";
-        String res1Path = "/index.html";
+        String res1RootPath = "/sites/default/manageRoom.html";
+        String res1Path = "/manageRoom.html";
         CmsResource res1;
 
         // try to read from cache

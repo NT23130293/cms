@@ -78,8 +78,8 @@ public class TestCmsResourceTranslator extends OpenCmsTestRunner {
         CmsResourceTranslator translator = new CmsResourceTranslator(rules, false);
         String test;
 
-        test = translator.translateResource("/default/vfs/content/bodys/test/index.html");
-        assertEquals("/default/vfs/system/bodies/test/index.html", test);
+        test = translator.translateResource("/default/vfs/content/bodys/test/manageRoom.html");
+        assertEquals("/default/vfs/system/bodies/test/manageRoom.html", test);
 
         test = translator.translateResource("/default/vfs/system/workplace/templates/js/test.js");
         assertEquals("/default/vfs/system/workplace/scripts/test.js", test);

@@ -55,9 +55,9 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class CmsNavModePropertyEditor extends A_CmsPropertyEditor {
 
-    /** The 'split mode' to use for rendering fields. For some property fields, we may want to render two fields, one for the folder and one for the index.html, and this enum is used to tell the rendering function which we are currently rendering. */
+    /** The 'split mode' to use for rendering fields. For some property fields, we may want to render two fields, one for the folder and one for the manageRoom.html, and this enum is used to tell the rendering function which we are currently rendering. */
     enum SplitMode {
-        /** The property is split, and we are rendering the field for the index.html. */
+        /** The property is split, and we are rendering the field for the manageRoom.html. */
         child,
 
         /** The property is not split. */
@@ -235,7 +235,7 @@ public class CmsNavModePropertyEditor extends A_CmsPropertyEditor {
             int slashPos = path.lastIndexOf("/");
             String name = slashPos > -1 ? path.substring(slashPos + 1) : path;
             if (!name.toLowerCase().endsWith(".html")) {
-                name = "index.html";
+                name = "manageRoom.html";
             }
             field.getLayoutData().put(A_CmsFormFieldPanel.LAYOUT_TAG, name);
         }

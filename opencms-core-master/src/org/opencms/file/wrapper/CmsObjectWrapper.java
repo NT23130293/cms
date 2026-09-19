@@ -743,8 +743,8 @@ public class CmsObjectWrapper {
      * <code>CmsObjectWrapper</code>, it is necessary to change the links used in pages
      * as well, so that they point to the changed name of the resource.<p>
      *
-     * For example: <code>/sites/default/index.html</code> becomes to
-     * <code>/sites/default/index.html.jsp</code>, because it is a jsp page, the links
+     * For example: <code>/sites/default/manageRoom.html</code> becomes to
+     * <code>/sites/default/manageRoom.html.jsp</code>, because it is a jsp page, the links
      * in pages where corrected so that they point to the new name (with extension "jsp").<p>
      *
      * Used for the link processing in the class {@link org.opencms.relations.CmsLink}.<p>
