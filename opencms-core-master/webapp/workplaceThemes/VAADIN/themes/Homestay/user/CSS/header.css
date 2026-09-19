@@ -24,9 +24,9 @@ body {
     min-height: 100vh;
 }
 
-/* Header Container */
 .header,
 .yen-header-bg {
+    width: 100%;
     background-color: var(--bg-header);
     border-bottom: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
@@ -37,9 +37,10 @@ body {
 
 .header-container,
 .yen-header-container {
-    max-width: 1360px;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 32px;
     height: 78px;
     display: flex;
     align-items: center;

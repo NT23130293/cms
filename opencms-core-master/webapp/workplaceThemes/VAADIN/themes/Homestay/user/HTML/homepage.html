@@ -12,6 +12,9 @@
   
   <!-- Bootstrap Icons (Sử dụng đồng bộ toàn bộ dự án) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Material Icons (Google) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
   
   <!-- CSS Header dùng chung -->
   <link rel="stylesheet" href="../CSS/header.css">
@@ -346,24 +349,28 @@
       </div>
     </section>
 
-    <!-- 4. COMBO TỐT NHẤT HÔM NAY (Theo đúng mẫu thiết kế trong ảnh) -->
+    <!-- 4. HOMESTAY TỐT NHẤT HÔM NAY (Theo đúng mẫu thiết kế trong ảnh) -->
     <section class="combo-section" id="comboSection">
+      <!-- Tiêu đề nằm trong container 80% -->
       <div class="container">
         <div class="combo-header-wrap">
           <div class="combo-title-area">
-            <!-- Badge đếm khách đặt trong 24h -->
             <div class="combo-hot-badge">
               <i class="bi bi-fire"></i> 522 khách đã đặt phòng trong 24h qua
             </div>
-            <h2 class="section-title">Combo tốt nhất hôm nay</h2>
+            <h2 class="section-title">Homestay tốt nhất hôm nay</h2>
             <p class="section-subtitle">Nhanh tay đặt ngay. Để mai sẽ lỡ</p>
           </div>
         </div>
+      </div>
 
-        <!-- Combo Card Banner (Chuẩn theo hình ảnh Intercontinental Đà Nẵng) -->
+      <!-- Card banner full-width 80% với nút < > nằm trong ảnh -->
+      <div class="combo-fullwidth-wrap">
         <div class="combo-card-banner" id="featuredComboCard">
           <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80" alt="Intercontinental Đà Nẵng" class="combo-bg-img" id="comboBgImg">
           <div class="combo-card-overlay"></div>
+
+          <!-- Nội dung bên trái -->
           <div class="combo-content">
             <div>
               <span class="combo-badge-discount" id="comboDiscount">Combo tiết kiệm đến 34%</span>
@@ -374,13 +381,23 @@
             <div class="combo-price-action">
               <div class="combo-price" id="comboPrice">14.799.000đ <span>/ khách</span></div>
               <button class="btn-combo-arrow" onclick="openComboDetail()" title="Xem chi tiết combo">
-                <i class="bi bi-chevron-right"></i>
+                <span class="material-icons-round">arrow_forward</span>
               </button>
             </div>
           </div>
+
+          <!-- Nút < nằm trong hình bên trái -->
+          <button class="combo-nav-btn combo-prev" id="comboPrevBtn" onclick="prevCombo()" aria-label="Homestay trước">
+            <span class="material-icons-round">chevron_left</span>
+          </button>
+
+          <!-- Nút > nằm trong hình bên phải -->
+          <button class="combo-nav-btn combo-next" id="comboNextBtn" onclick="nextCombo()" aria-label="Homestay tiếp theo">
+            <span class="material-icons-round">chevron_right</span>
+          </button>
         </div>
 
-        <!-- Dots điều hướng giữa các combo hot -->
+        <!-- Dots điều hướng -->
         <div class="combo-pagination">
           <span class="combo-dot active" onclick="switchCombo(0)"></span>
           <span class="combo-dot" onclick="switchCombo(1)"></span>

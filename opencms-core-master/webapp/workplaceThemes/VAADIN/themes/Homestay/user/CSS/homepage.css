@@ -41,7 +41,7 @@
   
   --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --max-width: 1360px; /* Thống nhất cùng độ rộng với header-container */
+  --max-width: 80%; /* Homepage chiếm 80% chiều ngang màn hình */
 }
 
 /* --- Base Reset & Typography --- */
@@ -95,21 +95,36 @@ button {
 }
 
 .container {
-  width: 100%;
-  max-width: var(--max-width);
+  width: 80%;
+  max-width: 80%;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 16px;
 }
 
-/* --- 1. BANNER & HERO SLIDER SECTION --- */
+@media (max-width: 1024px) {
+  .container {
+    width: 95%;
+    max-width: 95%;
+    padding: 0 12px;
+  }
+}
+
+/* --- 1. BANNER & HERO SLIDER SECTION (FULL WIDTH 100%) --- */
 .hero-section {
   position: relative;
-  padding: 24px 0 50px;
+  padding: 0 0 50px;
+  width: 100%;
+}
+
+.hero-section .container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
 }
 
 .hero-slider-wrapper {
   position: relative;
-  border-radius: var(--radius-xl);
+  border-radius: 0;
   overflow: hidden;
   box-shadow: var(--shadow-xl);
   min-height: 590px;
@@ -207,7 +222,7 @@ button {
   width: 100%;
   max-width: 1140px;
   z-index: 25;
-  align-self: flex-start;
+  align-self: center;
 }
 
 /* Slider Controls */
@@ -1064,6 +1079,74 @@ button {
   width: 24px;
   border-radius: var(--radius-full);
   background: var(--primary-color);
+}
+
+/* Wrapper card banner - full width 80% của section */
+.combo-fullwidth-wrap {
+  width: 80%;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.combo-card-banner {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 290px;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-normal);
+  width: 100%;
+}
+
+.combo-card-banner:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+/* Nút điều hướng < > nằm tuyệt đối bên trong card */
+.combo-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.90);
+  color: var(--dark-color);
+  border: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  backdrop-filter: blur(4px);
+}
+
+.combo-nav-btn.combo-prev {
+  left: 18px;
+}
+
+.combo-nav-btn.combo-next {
+  right: 18px;
+}
+
+.combo-nav-btn .material-icons-round {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.combo-nav-btn:hover {
+  background: var(--primary-color);
+  color: var(--white);
+  box-shadow: 0 6px 20px rgba(21,128,61,0.30);
+  transform: translateY(-50%) scale(1.10);
+}
+
+.combo-nav-btn:active {
+  transform: translateY(-50%) scale(0.96);
 }
 
 /* --- 4. HOMESTAY THEO LỄ HỘI --- */

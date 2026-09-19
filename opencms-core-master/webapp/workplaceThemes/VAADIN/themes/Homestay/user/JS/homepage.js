@@ -297,6 +297,37 @@ function openComboDetail() {
   showQuickDetail(current.title, current.img, current.price, "Gói Combo Nghỉ Dưỡng", current.desc, "Đà Nẵng / Sapa / Đà Lạt");
 }
 
+// Chuyển sang homestay trước
+function prevCombo() {
+  const newIndex = (currentComboIndex - 1 + comboData.length) % comboData.length;
+  switchCombo(newIndex);
+  resetComboTimer();
+}
+
+// Chuyển sang homestay tiếp theo
+function nextCombo() {
+  const newIndex = (currentComboIndex + 1) % comboData.length;
+  switchCombo(newIndex);
+  resetComboTimer();
+}
+
+// Auto-slide: tự động chuyển mỗi 4 giây
+let comboAutoInterval = setInterval(nextCombo, 4000);
+
+function resetComboTimer() {
+  clearInterval(comboAutoInterval);
+  comboAutoInterval = setInterval(nextCombo, 4000);
+}
+
+// Tạm dừng auto-slide khi hover vào card
+const comboCard = document.getElementById('featuredComboCard');
+if (comboCard) {
+  comboCard.addEventListener('mouseenter', () => clearInterval(comboAutoInterval));
+  comboCard.addEventListener('mouseleave', () => {
+    comboAutoInterval = setInterval(nextCombo, 4000);
+  });
+}
+
 // --- 3. HOMESTAY THEO LỄ HỘI LOGIC ---
 const festivalData = {
   'diff': {
