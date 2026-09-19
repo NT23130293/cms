@@ -213,7 +213,7 @@ public class TestCmsJspContentAccessBean extends OpenCmsTestRunner {
 
         // positive tests
         Map<String, CmsJspContentAccessValueWrapper> value = bean.getValue();
-        assertEquals("/index.html", value.get("Cascade/VfsLink").getStringValue());
+        assertEquals("/manageRoom.html", value.get("Cascade/VfsLink").getStringValue());
         assertEquals("/test.html", value.get("Cascade[1]/VfsLink[2]").getStringValue());
         assertEquals("/index.jsp", value.get("Cascade[2]/VfsLink").getStringValue());
 

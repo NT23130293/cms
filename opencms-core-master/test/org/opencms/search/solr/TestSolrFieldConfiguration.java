@@ -187,7 +187,7 @@ public class TestSolrFieldConfiguration extends OpenCmsTestRunner {
         fieldValue = res.getField("ahomepage_de");
         assertTrue(fieldValue.equals("Homepage n.a."));
         fieldValue = res.getField("ahomepage_en");
-        assertTrue(fieldValue.contains("/sites/default/index.html"));
+        assertTrue(fieldValue.contains("/sites/default/manageRoom.html"));
 
         ////////////////
         // MAPPING TEST //
@@ -202,7 +202,7 @@ public class TestSolrFieldConfiguration extends OpenCmsTestRunner {
 
         // test the 'item' mapping with default
         fieldValue = res.getField("ateaser_en");
-        assertTrue(fieldValue.contains("/sites/default/index.html"));
+        assertTrue(fieldValue.contains("/sites/default/manageRoom.html"));
         fieldValue = res.getField("ateaser_de");
         assertTrue(fieldValue.contains("Homepage n.a."));
 
@@ -544,7 +544,7 @@ public class TestSolrFieldConfiguration extends OpenCmsTestRunner {
         CmsSolrResultList results = index.search(cms, query);
         for (CmsSearchResource result : results) {
             switch (result.getRootPath()) {
-                case "/sites/default/containerpages/index.html":
+                case "/sites/default/containerpages/manageRoom.html":
                     checkIndexedListSearchFields(
                         result,
                         "Container pages description set via the sitemap editor",
@@ -553,10 +553,10 @@ public class TestSolrFieldConfiguration extends OpenCmsTestRunner {
                 case "/sites/default/containerpages/other.html":
                     checkIndexedListSearchFields(result, null, null);
                     break;
-                case "/sites/default/containerpages/sub-page-without-extra-properties/index.html":
+                case "/sites/default/containerpages/sub-page-without-extra-properties/manageRoom.html":
                     checkIndexedListSearchFields(result, null, null);
                     break;
-                case "/sites/default/containerpages/subpage/index.html":
+                case "/sites/default/containerpages/subpage/manageRoom.html":
                     checkIndexedListSearchFields(
                         result,
                         "Sub page description set via the page editor",
@@ -574,7 +574,7 @@ public class TestSolrFieldConfiguration extends OpenCmsTestRunner {
         cms.unlockResource(folderToAdjust);
         OpenCms.getPublishManager().publishProject(cms, new CmsShellReport(cms.getRequestContext().getLocale()));
         OpenCms.getPublishManager().waitWhileRunning();
-        String queryForChangedResource = "q=*:*&fq=path:\"/sites/default/containerpages/index.html\"&rows=1";
+        String queryForChangedResource = "q=*:*&fq=path:\"/sites/default/containerpages/manageRoom.html\"&rows=1";
         CmsSolrResultList changedResults = index.search(cms, queryForChangedResource);
         assertEquals(1, changedResults.size());
         CmsSearchResource defaultFile = changedResults.get(0);

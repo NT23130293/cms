@@ -138,7 +138,7 @@ public class TestProjects extends OpenCmsTestRunner {
                 OpenCms.getDefaultUsers().getGroupAdministrators(),
                 CmsProject.PROJECT_TYPE_NORMAL);
             cms.getRequestContext().setCurrentProject(project);
-            cms.copyResourceToProject("/sites/default/index.html");
+            cms.copyResourceToProject("/sites/default/manageRoom.html");
             cms.copyResourceToProject("/sites/default/folder1/");
         } finally {
             cms.getRequestContext().setSiteRoot(oldSite);
@@ -153,12 +153,12 @@ public class TestProjects extends OpenCmsTestRunner {
 
         // check the project resources
         List currentResources = cms.readProjectResources(current);
-        assertTrue(CmsProject.isInsideProject(currentResources, "/sites/default/index.html"));
+        assertTrue(CmsProject.isInsideProject(currentResources, "/sites/default/manageRoom.html"));
         assertTrue(CmsProject.isInsideProject(currentResources, "/sites/default/folder1/"));
-        assertTrue(CmsProject.isInsideProject(currentResources, "/sites/default/folder1/subfolder11/index.html"));
+        assertTrue(CmsProject.isInsideProject(currentResources, "/sites/default/folder1/subfolder11/manageRoom.html"));
         assertFalse(CmsProject.isInsideProject(currentResources, "/sites/default/"));
         assertFalse(CmsProject.isInsideProject(currentResources, "/"));
-        assertFalse(CmsProject.isInsideProject(currentResources, "/sites/default/folder2/index.html"));
+        assertFalse(CmsProject.isInsideProject(currentResources, "/sites/default/folder2/manageRoom.html"));
     }
 
     /**
@@ -516,7 +516,7 @@ public class TestProjects extends OpenCmsTestRunner {
                 OpenCms.getDefaultUsers().getGroupAdministrators(),
                 CmsProject.PROJECT_TYPE_NORMAL);
             cms.getRequestContext().setCurrentProject(project);
-            cms.copyResourceToProject("/sites/default/index.html");
+            cms.copyResourceToProject("/sites/default/manageRoom.html");
             cms.copyResourceToProject("/sites/default/folder1/");
         } finally {
             cms.getRequestContext().setSiteRoot(oldSite);
@@ -534,7 +534,7 @@ public class TestProjects extends OpenCmsTestRunner {
 
         // check the project resource list
         assertEquals(2, projectResources.size());
-        assertTrue(projectResources.contains("/sites/default/index.html"));
+        assertTrue(projectResources.contains("/sites/default/manageRoom.html"));
         assertTrue(projectResources.contains("/sites/default/folder1/"));
     }
 }

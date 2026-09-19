@@ -308,7 +308,7 @@ public class OpenCmsTestResourceStorageEntry {
     }
 
     /**
-     * Returns the name of this resource, e.g. <code>index.html</code>.<p>
+     * Returns the name of this resource, e.g. <code>manageRoom.html</code>.<p>
      *
      * @return the name of this resource
      */

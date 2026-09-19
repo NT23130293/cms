@@ -1172,7 +1172,7 @@ public class TestOrganizationalUnits extends OpenCmsTestRunner {
 
         // resource remotion tests
         try {
-            OpenCms.getOrgUnitManager().removeResourceFromOrgUnit(cms, ou2.getName(), "/folder1/index.html");
+            OpenCms.getOrgUnitManager().removeResourceFromOrgUnit(cms, ou2.getName(), "/folder1/manageRoom.html");
             fail("should not be possible to remove an not associated resource from an ou");
         } catch (CmsDataAccessException e) {
             // ok, just be sure

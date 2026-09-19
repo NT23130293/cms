@@ -345,7 +345,7 @@ public class TestCmsGallerySearchBasic extends OpenCmsTestRunner {
         CmsGallerySearchResult result = search.searchById(
             new CmsUUID("7d6c22cd-4e3a-11db-9016-5bf59c6009b3"),
             new Locale("en"));
-        assertTrue(result.getPath().endsWith("/index.html"));
+        assertTrue(result.getPath().endsWith("/manageRoom.html"));
     }
 
     /**

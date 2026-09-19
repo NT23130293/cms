@@ -1313,7 +1313,7 @@ public class TestPublishing extends OpenCmsTestRunner {
         echo("Testing publishing a folder containing resources modified within a distinct project");
 
         String path = "/folder1";
-        String res1 = path + "/index.html";
+        String res1 = path + "/manageRoom.html";
 
         // change first resource in the offline project
         cms.getRequestContext().setCurrentProject(cms.readProject("Offline"));
@@ -1566,7 +1566,7 @@ public class TestPublishing extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing publishing of related files");
 
-        String resName = "index.html";
+        String resName = "manageRoom.html";
 
         // touch the file to publish
         cms.lockResource(resName);
@@ -1809,7 +1809,7 @@ public class TestPublishing extends OpenCmsTestRunner {
         echo("Testing publishing a single resource with an iteration");
 
         // publish directly with a single resource
-        String resourcename = "index.html";
+        String resourcename = "manageRoom.html";
 
         cms.lockResource(resourcename);
         cms.setDateLastModified(resourcename, System.currentTimeMillis(), true);
@@ -1893,7 +1893,7 @@ public class TestPublishing extends OpenCmsTestRunner {
         echo("Testing publishing a resource with related resources with an iteration");
 
         // publish directly with a single resource and related resource
-        String resourcename = "index.html";
+        String resourcename = "manageRoom.html";
 
         // touch everything, so the involved resources can be published
         cms.lockResource("/");

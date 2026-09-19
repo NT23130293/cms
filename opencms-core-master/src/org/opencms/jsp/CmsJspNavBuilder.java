@@ -260,7 +260,7 @@ public class CmsJspNavBuilder {
      *
      * @param cms context provider for the current request
      * @param resource the resource name to get the navigation information for,
-     *              must be a full path name, e.g. "/docs/index.html"
+     *              must be a full path name, e.g. "/docs/manageRoom.html"
      *
      * @return a navigation element for the given resource
      *
@@ -582,7 +582,7 @@ public class CmsJspNavBuilder {
      * Returns a navigation element for the named resource.<p>
      *
      * @param sitePath the resource name to get the navigation information for,
-     *              must be a full path name, e.g. "/docs/index.html"
+     *              must be a full path name, e.g. "/docs/manageRoom.html"
      *
      * @return a navigation element for the given resource
      */
@@ -599,7 +599,7 @@ public class CmsJspNavBuilder {
      * Returns a navigation element for the named resource.<p>
      *
      * @param sitePath the resource name to get the navigation information for,
-     *              must be a full path name, e.g. "/docs/index.html"
+     *              must be a full path name, e.g. "/docs/manageRoom.html"
      * @param reourceFilter the resource filter
      *
      * @return a navigation element for the given resource
@@ -824,7 +824,7 @@ public class CmsJspNavBuilder {
      * Returns a navigation element for the named resource.<p>
      *
      * @param sitePath the resource name to get the navigation information for,
-     *              must be a full path name, e.g. "/docs/index.html"
+     *              must be a full path name, e.g. "/docs/manageRoom.html"
      * @param resourceFilter the filter to use reading the resources
      * @param shallow <code>true</code> for a shallow look up, not regarding next level resources
      *

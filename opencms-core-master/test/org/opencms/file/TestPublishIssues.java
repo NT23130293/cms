@@ -362,11 +362,11 @@ public class TestPublishIssues extends OpenCmsTestRunner {
      * We have two projects, "project1" and "project2".
      * Project "project1" consists of the folder "/".
      * Project "project2" consists of the folder "/folder1/subfolder11/".
-     * User "test2" edits the file "/folder1/subfolder11/index.html".
+     * User "test2" edits the file "/folder1/subfolder11/manageRoom.html".
      * After this, user "test1" locks the folder "/folder1" in "project1", and unlocks it again.
      * User "test2" logs in and now publishes "project2".<p>
      *
-     * Wanted result: the changed resource "/folder1/subfolder11/index.html" is published
+     * Wanted result: the changed resource "/folder1/subfolder11/manageRoom.html" is published
      * with "project2".<p>
      *
      * The test illustrates a change in the logic from OpenCms 5 to OpenCms 6:
@@ -383,7 +383,7 @@ public class TestPublishIssues extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing publish scenario A");
         String projectRes1 = "/folder1/subfolder11/";
-        String resource1 = projectRes1 + "index.html";
+        String resource1 = projectRes1 + "manageRoom.html";
         String resource2 = "/folder1/";
         long timestamp = System.currentTimeMillis();
 
@@ -531,7 +531,7 @@ public class TestPublishIssues extends OpenCmsTestRunner {
      *
      * This scenario is described as follows:
      * Direct publishing of folders containing subfolders skips all changed subfolders e.g. direct publish of /folder1/
-     * publishes /folder1/ and /folder1/index.html/, but not /folder1/subfolder11/.<p>
+     * publishes /folder1/ and /folder1/manageRoom.html/, but not /folder1/subfolder11/.<p>
      *
      * @throws Throwable if something goes wrong
      */
@@ -546,18 +546,18 @@ public class TestPublishIssues extends OpenCmsTestRunner {
 
         cms.lockResource("/folder1/");
         cms.setDateLastModified("/folder1/", touchTime, false);
-        cms.setDateLastModified("/folder1/index.html", touchTime, false);
+        cms.setDateLastModified("/folder1/manageRoom.html", touchTime, false);
         cms.setDateLastModified("/folder1/subfolder11/", touchTime, false);
-        cms.setDateLastModified("/folder1/subfolder11/index.html", touchTime, false);
+        cms.setDateLastModified("/folder1/subfolder11/manageRoom.html", touchTime, false);
 
         cms.unlockResource("/folder1/");
         OpenCms.getPublishManager().publishResource(cms, "/folder1/");
         OpenCms.getPublishManager().waitWhileRunning();
 
         assertState(cms, "/folder1/", CmsResource.STATE_UNCHANGED);
-        assertState(cms, "/folder1/index.html", CmsResource.STATE_UNCHANGED);
+        assertState(cms, "/folder1/manageRoom.html", CmsResource.STATE_UNCHANGED);
         assertState(cms, "/folder1/subfolder11/", CmsResource.STATE_UNCHANGED);
-        assertState(cms, "/folder1/subfolder11/index.html", CmsResource.STATE_UNCHANGED);
+        assertState(cms, "/folder1/subfolder11/manageRoom.html", CmsResource.STATE_UNCHANGED);
 
         cms.createResource("/folder_a/", CmsResourceTypeFolder.getStaticTypeId());
         cms.createResource("/folder_a/file_a.txt", CmsResourceTypePlain.getStaticTypeId());
@@ -584,8 +584,8 @@ public class TestPublishIssues extends OpenCmsTestRunner {
      * resources in subfolders.
      *
      * e.g. direct publish of /folder2/folder1/
-     * publishes /folder2/folder1/ and /folder2/folder1/index.html/,
-     * but not /folder2/folder1/subfolder11/index.html.<p>
+     * publishes /folder2/folder1/ and /folder2/folder1/manageRoom.html/,
+     * but not /folder2/folder1/subfolder11/manageRoom.html.<p>
      *
      * @throws Throwable if something goes wrong
      */

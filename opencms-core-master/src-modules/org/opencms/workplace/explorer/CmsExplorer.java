@@ -641,7 +641,7 @@ public class CmsExplorer extends CmsWorkplace {
         content.append(";\n");
 
         // the help_url
-        content.append("top.head.helpUrl='explorer/index.html';\n");
+        content.append("top.head.helpUrl='explorer/manageRoom.html';\n");
         // the project
         content.append("top.setProject('");
         if (!listView) {

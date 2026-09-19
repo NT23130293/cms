@@ -65,7 +65,7 @@ public class TestExists extends OpenCmsTestRunner {
 
         CmsObject cms = getCmsObject();
         echo("Testing the availability of a file that exists and with proper permissions");
-        String filename = "index.html";
+        String filename = "manageRoom.html";
 
         assertEquals(true, cms.existsResource(filename));
     }
@@ -88,7 +88,7 @@ public class TestExists extends OpenCmsTestRunner {
         cms.createUser("testuser", "test", "A test user", null);
         CmsUser testUser = cms.readUser("testuser");
 
-        String resName = "index.html";
+        String resName = "manageRoom.html";
 
         cms.lockResource(resName);
         cms.chacc(resName, I_CmsPrincipal.PRINCIPAL_GROUP, testGroup.getName(), "-r-w-v-c-i");

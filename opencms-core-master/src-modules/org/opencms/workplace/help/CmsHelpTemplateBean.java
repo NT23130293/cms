@@ -82,7 +82,7 @@ import org.apache.commons.logging.Log;
 public class CmsHelpTemplateBean extends CmsDialog {
 
     /** File name of the default help file to load. */
-    public static final String DEFAULT_HELPFILE = "index.html";
+    public static final String DEFAULT_HELPFILE = "manageRoom.html";
 
     /** File name of the help mappings properties file(s). */
     public static final String HELPMAPPINGS_FILENAME = "mappings_"
@@ -636,7 +636,7 @@ public class CmsHelpTemplateBean extends CmsDialog {
             // calculate level to display
             int level = nav.getNavTreeLevel() - (helpLevel - 1);
             if (nav.getResourceName().equals(currentUri)
-                || (nav.isFolderLink() && currentUri.equals(nav.getResourceName() + "index.html"))) {
+                || (nav.isFolderLink() && currentUri.equals(nav.getResourceName() + "manageRoom.html"))) {
                 result.append("\t\t<span class=\"navhelpcurrent\" style=\"padding-left: ");
                 result.append(level * 10);
                 result.append("px; background-position: ");
@@ -656,7 +656,7 @@ public class CmsHelpTemplateBean extends CmsDialog {
                         getJsp().link(
                             "/system/modules/org.opencms.workplace.help/jsptemplates/help_body.jsp?helpresource="
                                 + nav.getResourceName()
-                                + "index.html&"
+                                + "manageRoom.html&"
                                 + CmsLocaleManager.PARAMETER_LOCALE
                                 + "="
                                 + getLocale()));

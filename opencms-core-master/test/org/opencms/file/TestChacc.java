@@ -288,7 +288,7 @@ public class TestChacc extends OpenCmsTestRunner {
         cms.getRequestContext().setCurrentProject(offline);
         cms.lockResource(resName);
         assertTrue(cms.hasPermissions(cms.readResource(resName), permissions));
-        assertTrue(cms.hasPermissions(cms.readResource("/folder2/index.html"), permissions));
+        assertTrue(cms.hasPermissions(cms.readResource("/folder2/manageRoom.html"), permissions));
         assertFalse(cms.hasPermissions(cms.readResource("/folder1/"), permissions));
         cms.unlockResource(resName);
 
@@ -407,7 +407,7 @@ public class TestChacc extends OpenCmsTestRunner {
         chaccFileGroup(
             this,
             cms,
-            "/index.html",
+            "/manageRoom.html",
             cms.readGroup("Users"),
             CmsPermissionSet.ACCESS_READ,
             CmsAccessControlEntry.ACCESS_FLAGS_OVERWRITE);
@@ -499,7 +499,7 @@ public class TestChacc extends OpenCmsTestRunner {
 
         CmsObject cms = getCmsObject();
         echo("Testing chacc on a file and a user");
-        chaccFileUser(this, cms, "/folder1/index.html", cms.readUser("Guest"), CmsPermissionSet.ACCESS_WRITE, 0);
+        chaccFileUser(this, cms, "/folder1/manageRoom.html", cms.readUser("Guest"), CmsPermissionSet.ACCESS_WRITE, 0);
     }
 
     /**

@@ -365,7 +365,7 @@ public final class CmsRequestUtil {
      * Parses the parameters of the given request query part and creates a parameter map out of them.<p>
      *
      * Please note: This does not parse a full request URI/URL, only the query part that
-     * starts after the "?". For example, in the URI <code>/system/index.html?a=b&amp;c=d</code>,
+     * starts after the "?". For example, in the URI <code>/system/manageRoom.html?a=b&amp;c=d</code>,
      * the query part is <code>a=b&amp;c=d</code>.<p>
      *
      * If the given String is empty, an empty map is returned.<p>
@@ -382,7 +382,7 @@ public final class CmsRequestUtil {
      * Parses the parameters of the given request query part, optionally decodes them, and creates a parameter map out of them.<p>
      *
      * Please note: This does not parse a full request URI/URL, only the query part that
-     * starts after the "?". For example, in the URI <code>/system/index.html?a=b&amp;c=d</code>,
+     * starts after the "?". For example, in the URI <code>/system/manageRoom.html?a=b&amp;c=d</code>,
      * the query part is <code>a=b&amp;c=d</code>.<p>
      *
      * If the given String is empty, an empty map is returned.<p>

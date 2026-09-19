@@ -1240,7 +1240,7 @@ public abstract class CmsWidgetDialog extends CmsDialog implements I_CmsWidgetDi
     protected String defaultActionHtmlStart() throws JspException {
 
         StringBuffer result = new StringBuffer(2048);
-        result.append(htmlStart("administration/index.html"));
+        result.append(htmlStart("administration/manageRoom.html"));
         result.append("<script  src=\"").append(getResourceUri()).append("editors/xmlcontent/edit.js\"></script>\n");
         result.append("<script  src=\"").append(getResourceUri()).append("editors/xmlcontent/help.js\"></script>\n");
         result.append(getWidgetIncludes());

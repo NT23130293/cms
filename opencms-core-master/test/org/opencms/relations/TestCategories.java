@@ -188,7 +188,7 @@ public class TestCategories extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
 
         // assert the starting situation
-        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         CmsCategory catA = cats.get(0);
         CmsCategory catAA = cats.get(1);
@@ -208,7 +208,7 @@ public class TestCategories extends OpenCmsTestRunner {
             new CmsProperty(CmsPropertyDefinition.PROPERTY_DEFAULT_FILE, "mycats", null));
 
         // assert the category list
-        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catAA, cats.get(1));
@@ -219,7 +219,7 @@ public class TestCategories extends OpenCmsTestRunner {
             CmsResourceTypeFolder.RESOURCE_TYPE_ID);
 
         // create a new category in the local repository
-        CmsCategory catC = CmsCategoryService.getInstance().createCategory(cms, null, "c", "C", "C test", "index.html");
+        CmsCategory catC = CmsCategoryService.getInstance().createCategory(cms, null, "c", "C", "C test", "manageRoom.html");
         // assert the new created category
         assertEquals("c/", catC.getPath());
         assertEquals("C", catC.getTitle());
@@ -240,7 +240,7 @@ public class TestCategories extends OpenCmsTestRunner {
             cms.readPropertyObject(resC, CmsPropertyDefinition.PROPERTY_DESCRIPTION, false).getValue());
 
         // assert the category list
-        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catAA, cats.get(1));
@@ -262,7 +262,7 @@ public class TestCategories extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
 
         // assert the starting situation of categories coming from #testCategoryBaseFolderRepair
-        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         CmsCategory catA = cats.get(0);
         CmsCategory catAA = cats.get(1);
@@ -275,7 +275,7 @@ public class TestCategories extends OpenCmsTestRunner {
                 + "c/",
             catC.getRootPath());
 
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(1, cats.size());
         assertEquals(catA, cats.get(0));
 
@@ -283,47 +283,47 @@ public class TestCategories extends OpenCmsTestRunner {
             cms,
             catA.getPath(),
             true,
-            "index.html");
+            "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catC.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catC.getPath(), true, "manageRoom.html").isEmpty());
 
         // assign a local category from the new repository
-        CmsCategoryService.getInstance().addResourceToCategory(cms, "index.html", catC.getPath());
+        CmsCategoryService.getInstance().addResourceToCategory(cms, "manageRoom.html", catC.getPath());
 
         // assert resource categories after assignment
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catC, cats.get(1));
 
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html");
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catC.getPath(), true, "index.html");
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catC.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
 
         // remove local category from the new repository
-        CmsCategoryService.getInstance().removeResourceFromCategory(cms, "index.html", catC.getPath());
+        CmsCategoryService.getInstance().removeResourceFromCategory(cms, "manageRoom.html", catC.getPath());
 
         // assert resource categories after removing
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(1, cats.size());
         assertEquals(catA, cats.get(0));
 
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html");
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catC.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catC.getPath(), true, "manageRoom.html").isEmpty());
 
         // change the category repositories base folder name back to the default
         // this will invalidate all local categories
@@ -339,7 +339,7 @@ public class TestCategories extends OpenCmsTestRunner {
             cms.readResource(CmsCategoryService.REPOSITORY_BASE_FOLDER + "b"));
 
         // assert the category list
-        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catAA, cats.get(1));
@@ -360,7 +360,7 @@ public class TestCategories extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
 
         // assert the starting situation of categories coming from #testCategoryBaseFolder
-        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         CmsCategory catA = cats.get(0);
         CmsCategory catAA = cats.get(1);
@@ -385,7 +385,7 @@ public class TestCategories extends OpenCmsTestRunner {
         // assert the starting situation of resources coming from #testCategoryTreeAssign
         OpenCmsTestLogAppender.setBreakOnError(false); // to prevent failure because of error log output
         echo("next error stack trace is expected.");
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         OpenCmsTestLogAppender.setBreakOnError(true);
         assertEquals(1, cats.size()); // catB is lost (as category, but still there as relation)
         assertEquals(catA, cats.get(0));
@@ -394,20 +394,20 @@ public class TestCategories extends OpenCmsTestRunner {
             cms,
             catA.getPath(),
             true,
-            "index.html");
+            "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catC.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catC.getPath(), true, "manageRoom.html").isEmpty());
 
         // now assert the relations
         List<CmsRelation> relations = cms.getRelationsForResource(
-            "index.html",
+            "manageRoom.html",
             CmsRelationFilter.TARGETS.filterType(CmsRelationType.CATEGORY));
         assertEquals(2, relations.size());
-        CmsResource resource = cms.readResource("index.html");
+        CmsResource resource = cms.readResource("manageRoom.html");
         CmsResource resCatB = cms.readResource(".categories/b/");
         assertTrue(
             relations.contains(
@@ -427,27 +427,27 @@ public class TestCategories extends OpenCmsTestRunner {
                     CmsRelationType.CATEGORY)));
 
         // repair category associations
-        CmsCategoryService.getInstance().repairRelations(cms, "index.html");
+        CmsCategoryService.getInstance().repairRelations(cms, "manageRoom.html");
 
         // assert after reparation
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(1, cats.size());
         assertEquals(catA, cats.get(0));
 
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html");
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catC.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catC.getPath(), true, "manageRoom.html").isEmpty());
 
         // now assert the relations
         relations = cms.getRelationsForResource(
-            "index.html",
+            "manageRoom.html",
             CmsRelationFilter.TARGETS.filterType(CmsRelationType.CATEGORY));
         assertEquals(1, relations.size());
-        resource = cms.readResource("index.html");
+        resource = cms.readResource("manageRoom.html");
         assertTrue(
             relations.contains(
                 new CmsRelation(
@@ -471,7 +471,7 @@ public class TestCategories extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
 
         // assert the starting situation
-        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         CmsCategory catA = cats.get(0);
         CmsCategory catAA = cats.get(1);
@@ -504,7 +504,7 @@ public class TestCategories extends OpenCmsTestRunner {
             cms.readPropertyObject(resB2, CmsPropertyDefinition.PROPERTY_DESCRIPTION, false).getValue());
 
         // assert the category list
-        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catAA, cats.get(1));
@@ -524,7 +524,7 @@ public class TestCategories extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
 
         // assert the starting situation
-        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         CmsCategory catA = cats.get(0);
         CmsCategory catAA = cats.get(1);
@@ -534,10 +534,10 @@ public class TestCategories extends OpenCmsTestRunner {
         assertEquals(CmsCategoryService.CENTRALIZED_REPOSITORY + "b/", catB2.getRootPath());
 
         // assign a centralized category
-        CmsCategoryService.getInstance().addResourceToCategory(cms, "index.html", catB2.getPath());
+        CmsCategoryService.getInstance().addResourceToCategory(cms, "manageRoom.html", catB2.getPath());
 
         // assert resource categories after assignment
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catB2, cats.get(1));
@@ -546,14 +546,14 @@ public class TestCategories extends OpenCmsTestRunner {
             cms,
             catA.getPath(),
             true,
-            "index.html");
+            "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB2.getPath(), true, "index.html");
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB2.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
     }
 
     /**
@@ -569,7 +569,7 @@ public class TestCategories extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
 
         // assert the starting situation
-        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         CmsCategory catA = cats.get(0);
         CmsCategory catAA = cats.get(1);
@@ -579,7 +579,7 @@ public class TestCategories extends OpenCmsTestRunner {
         assertEquals(CmsCategoryService.CENTRALIZED_REPOSITORY + "b/", catB2.getRootPath());
 
         // assert resource categories
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catB2, cats.get(1));
@@ -588,20 +588,20 @@ public class TestCategories extends OpenCmsTestRunner {
             cms,
             catA.getPath(),
             true,
-            "index.html");
+            "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB2.getPath(), true, "index.html");
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB2.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
 
         // delete category folder
         cms.deleteResource(catB2.getRootPath(), CmsResource.DELETE_PRESERVE_SIBLINGS);
 
         // assert categories after deletion
-        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         CmsCategory catB = cats.get(2);
         assertEquals(catA.getRootPath(), cats.get(0).getRootPath());
@@ -616,81 +616,81 @@ public class TestCategories extends OpenCmsTestRunner {
         OpenCmsTestLogAppender.setBreakOnError(false); // next call will write the error log
 
         printExceptionWarning();
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         OpenCmsTestLogAppender.setBreakOnError(true);
         assertEquals(1, cats.size());
         assertEquals(catA, cats.get(0));
 
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html");
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "manageRoom.html").isEmpty());
 
         // now repair
-        CmsCategoryService.getInstance().repairRelations(cms, "index.html");
+        CmsCategoryService.getInstance().repairRelations(cms, "manageRoom.html");
 
         // assert again
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catB, cats.get(1));
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html");
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "index.html");
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
 
         // recreate global category
         CmsCategory catB2bis = CmsCategoryService.getInstance().createCategory(cms, null, "b", "B2", "B2 test", null);
         assertEquals(catB2.getRootPath(), catB2bis.getRootPath());
 
         // assert categories after recreation
-        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         assertEquals(catA.getRootPath(), cats.get(0).getRootPath());
         assertEquals(catAA.getRootPath(), cats.get(1).getRootPath());
         assertEquals(catB2.getRootPath(), cats.get(2).getRootPath());
 
         // assert resource categories after category folder recreation
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA.getRootPath(), cats.get(0).getRootPath());
         assertEquals(catB.getRootPath(), cats.get(1).getRootPath()); // this has to be repaired
 
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html");
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
         // this is also inconsistent
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catB2.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catB2.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "manageRoom.html").isEmpty());
 
         // now repair
-        CmsCategoryService.getInstance().repairRelations(cms, "index.html");
+        CmsCategoryService.getInstance().repairRelations(cms, "manageRoom.html");
 
         // assert again
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA.getRootPath(), cats.get(0).getRootPath());
         assertEquals(catB2.getRootPath(), cats.get(1).getRootPath());
 
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html");
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB2.getPath(), true, "index.html");
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB2.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
     }
 
     /**
@@ -710,7 +710,7 @@ public class TestCategories extends OpenCmsTestRunner {
         cms.createResource(CmsCategoryService.CENTRALIZED_REPOSITORY, CmsResourceTypeFolder.RESOURCE_TYPE_ID);
 
         // assert the starting situation
-        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertTrue(cats.isEmpty());
 
         // create a new category in the centralized repository
@@ -733,7 +733,7 @@ public class TestCategories extends OpenCmsTestRunner {
             cms.readPropertyObject(resA, CmsPropertyDefinition.PROPERTY_DESCRIPTION, false).getValue());
 
         // assert the category list
-        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(1, cats.size());
         assertEquals(catA, cats.get(0));
 
@@ -743,7 +743,7 @@ public class TestCategories extends OpenCmsTestRunner {
             CmsResourceTypeFolder.RESOURCE_TYPE_ID);
 
         // create a new category in the local repository
-        CmsCategory catB = CmsCategoryService.getInstance().createCategory(cms, null, "b", "B", "B test", "index.html");
+        CmsCategory catB = CmsCategoryService.getInstance().createCategory(cms, null, "b", "B", "B test", "manageRoom.html");
         // assert the new created category
         assertEquals("b/", catB.getPath());
         assertEquals("B", catB.getTitle());
@@ -770,7 +770,7 @@ public class TestCategories extends OpenCmsTestRunner {
         assertTrue(catB.compareTo(catA) > 0);
 
         // assert the category list
-        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catB, cats.get(1));
@@ -795,7 +795,7 @@ public class TestCategories extends OpenCmsTestRunner {
             cms.readPropertyObject(resAA, CmsPropertyDefinition.PROPERTY_DESCRIPTION, false).getValue());
 
         // assert the category list
-        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catAA, cats.get(1));
@@ -803,7 +803,7 @@ public class TestCategories extends OpenCmsTestRunner {
 
         // assert the category list with a different reference path
         cms.getRequestContext().setSiteRoot("");
-        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catAA, cats.get(1));
@@ -822,7 +822,7 @@ public class TestCategories extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
 
         // assert the starting situation
-        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "index.html");
+        List<CmsCategory> cats = CmsCategoryService.getInstance().readCategories(cms, null, true, "manageRoom.html");
         assertEquals(3, cats.size());
         CmsCategory catA = cats.get(0);
         CmsCategory catAA = cats.get(1);
@@ -836,119 +836,119 @@ public class TestCategories extends OpenCmsTestRunner {
             catB.getRootPath());
 
         // assert resource categories before assignment
-        assertTrue(CmsCategoryService.getInstance().readResourceCategories(cms, "index.html").isEmpty());
+        assertTrue(CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "manageRoom.html").isEmpty());
 
         // assign resource to a first level category
-        cms.lockResource("index.html");
-        CmsCategoryService.getInstance().addResourceToCategory(cms, "index.html", catB);
+        cms.lockResource("manageRoom.html");
+        CmsCategoryService.getInstance().addResourceToCategory(cms, "manageRoom.html", catB);
 
         // assert resource categories after assignment
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(1, cats.size());
         assertEquals(catB, cats.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
         List<CmsResource> resources = CmsCategoryService.getInstance().readCategoryResources(
             cms,
             catB.getPath(),
             true,
-            "index.html");
+            "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
 
         // assign resource to the same first level category, should not change anything
-        CmsCategoryService.getInstance().addResourceToCategory(cms, "index.html", catB);
+        CmsCategoryService.getInstance().addResourceToCategory(cms, "manageRoom.html", catB);
 
         // assert resource categories after assignment
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(1, cats.size());
         assertEquals(catB, cats.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "index.html");
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
 
         // assign resource to a deeper level category
-        CmsCategoryService.getInstance().addResourceToCategory(cms, "index.html", catAA);
+        CmsCategoryService.getInstance().addResourceToCategory(cms, "manageRoom.html", catAA);
 
         // assert resource categories after assignment
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(3, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catAA, cats.get(1));
         assertEquals(catB, cats.get(2));
 
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html");
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html");
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "index.html");
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
 
         // remove a deeper category
-        CmsCategoryService.getInstance().removeResourceFromCategory(cms, "index.html", catAA);
+        CmsCategoryService.getInstance().removeResourceFromCategory(cms, "manageRoom.html", catAA);
 
         // assert resource categories after removing
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catB, cats.get(1));
 
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html");
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "index.html");
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
 
         // remove a first level category
-        CmsCategoryService.getInstance().removeResourceFromCategory(cms, "index.html", catA);
+        CmsCategoryService.getInstance().removeResourceFromCategory(cms, "manageRoom.html", catA);
 
         // assert resource categories after assignment
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(1, cats.size());
         assertEquals(catB, cats.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html").isEmpty());
+            CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html").isEmpty());
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "index.html");
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
 
         // assign resource to a category with sub categories
-        CmsCategoryService.getInstance().addResourceToCategory(cms, "index.html", catA);
+        CmsCategoryService.getInstance().addResourceToCategory(cms, "manageRoom.html", catA);
 
         // assert resource categories after assignment
-        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "index.html");
+        cats = CmsCategoryService.getInstance().readResourceCategories(cms, "manageRoom.html");
         assertEquals(2, cats.size());
         assertEquals(catA, cats.get(0));
         assertEquals(catB, cats.get(1));
 
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "index.html");
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catA.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
         assertTrue(
-            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "index.html").isEmpty());
-        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "index.html");
+            CmsCategoryService.getInstance().readCategoryResources(cms, catAA.getPath(), true, "manageRoom.html").isEmpty());
+        resources = CmsCategoryService.getInstance().readCategoryResources(cms, catB.getPath(), true, "manageRoom.html");
         assertEquals(1, resources.size());
-        assertEquals(cms.readResource("index.html"), resources.get(0));
+        assertEquals(cms.readResource("manageRoom.html"), resources.get(0));
     }
 
     /**
@@ -975,7 +975,7 @@ public class TestCategories extends OpenCmsTestRunner {
             "d",
             "D1",
             "D1 Test",
-            "/folder1/index.html");
+            "/folder1/manageRoom.html");
         cms.createResource(
             "/folder2" + CmsCategoryService.getInstance().getRepositoryBaseFolderName(cms),
             CmsResourceTypeFolder.RESOURCE_TYPE_ID);
@@ -985,19 +985,19 @@ public class TestCategories extends OpenCmsTestRunner {
             "d",
             "D2",
             "D2 Test",
-            "/folder2/index.html");
+            "/folder2/manageRoom.html");
 
         // assign category
-        cms.lockResource("/folder1/index.html");
-        CmsCategoryService.getInstance().addResourceToCategory(cms, "/folder1/index.html", d1.getPath());
+        cms.lockResource("/folder1/manageRoom.html");
+        CmsCategoryService.getInstance().addResourceToCategory(cms, "/folder1/manageRoom.html", d1.getPath());
 
         // assert assignment
-        List<CmsCategory> cats = CmsCategoryService.getInstance().readResourceCategories(cms, "/folder1/index.html");
+        List<CmsCategory> cats = CmsCategoryService.getInstance().readResourceCategories(cms, "/folder1/manageRoom.html");
         assertEquals(1, cats.size());
         assertEquals(d1.getRootPath(), cats.get(0).getRootPath());
 
         // copy file
-        cms.copyResource("/folder1/index.html", "/folder2/index2.html");
+        cms.copyResource("/folder1/manageRoom.html", "/folder2/index2.html");
 
         // assert categories after copying
         cats = CmsCategoryService.getInstance().readResourceCategories(cms, "/folder2/index2.html");

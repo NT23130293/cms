@@ -80,7 +80,7 @@ public class TestMoveRename extends OpenCmsTestRunner {
         // Creating paths
         String folder = "/testMoveDeleted/";
         String destinationFolder = "/testMoveDeleted2/";
-        String file = "index.html";
+        String file = "manageRoom.html";
 
         // create the resources
         cms.createResource(folder, CmsResourceTypeFolder.RESOURCE_TYPE_ID);
@@ -140,7 +140,7 @@ public class TestMoveRename extends OpenCmsTestRunner {
         // Creating paths
         String folder1 = "/testMoveDeletedWithSub/";
         String folder2 = "/testMoveDeletedWithSub/folders/";
-        String file = "index.html";
+        String file = "manageRoom.html";
 
         // create the resources
         cms.createResource(folder1, CmsResourceTypeFolder.RESOURCE_TYPE_ID);
@@ -280,7 +280,7 @@ public class TestMoveRename extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing move of a file");
 
-        String source = "/folder1/index.html";
+        String source = "/folder1/manageRoom.html";
         String destination = "/folder1/index_move.html";
 
         storeResources(cms, source);
@@ -474,7 +474,7 @@ public class TestMoveRename extends OpenCmsTestRunner {
         echo("Testing to move a file into an as deleted marked folder");
 
         String deletedFolder = "/folder1/subfolder11/";
-        String file = "index.html";
+        String file = "manageRoom.html";
 
         cms.lockResource(deletedFolder);
         cms.deleteResource(deletedFolder, CmsResource.DELETE_PRESERVE_SIBLINGS);
@@ -693,7 +693,7 @@ public class TestMoveRename extends OpenCmsTestRunner {
         echo("Testing to publish a deleted folder with a unpublished moved resource");
 
         String deletedFolder = "/folder1/subfolder11/";
-        String source = "index.html";
+        String source = "manageRoom.html";
         String destination = "abc.html";
 
         cms.lockResource(deletedFolder + source);

@@ -75,7 +75,7 @@ public class TestAvailability extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing to set expire date");
 
-        String resourceName = "/index.html";
+        String resourceName = "/manageRoom.html";
 
         long yesterday = System.currentTimeMillis() - MSECS_PER_DAY;
         cms.lockResource(resourceName);
@@ -99,7 +99,7 @@ public class TestAvailability extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing to set release date");
 
-        String resourceName = "/index.html";
+        String resourceName = "/manageRoom.html";
         long tomorrow = System.currentTimeMillis() + MSECS_PER_DAY;
         cms.lockResource(resourceName);
         cms.setDateReleased(resourceName, tomorrow, false);
@@ -329,7 +329,7 @@ public class TestAvailability extends OpenCmsTestRunner {
         echo("Testing expire date in a folder");
 
         String folderName = "/folder1/";
-        String resName = folderName + "index.html";
+        String resName = folderName + "manageRoom.html";
         long yesterday = System.currentTimeMillis() - MSECS_PER_DAY;
         cms.lockResource(folderName);
         cms.setDateExpired(folderName, yesterday, true);
@@ -356,7 +356,7 @@ public class TestAvailability extends OpenCmsTestRunner {
         echo("Testing release date in a folder");
 
         String folderName = "/folder1/";
-        String resName = folderName + "index.html";
+        String resName = folderName + "manageRoom.html";
         long tomorrow = System.currentTimeMillis() + MSECS_PER_DAY;
         cms.lockResource(folderName);
         cms.setDateReleased(folderName, tomorrow, true);
@@ -439,7 +439,7 @@ public class TestAvailability extends OpenCmsTestRunner {
 
         String folderName = "/folder1";
         String folderName2 = "/subfolder11";
-        String resName = "/index.html";
+        String resName = "/manageRoom.html";
         long yesterday = System.currentTimeMillis() - MSECS_PER_DAY;
         cms.lockResource(folderName);
         cms.setDateExpired(folderName, yesterday, true);
@@ -468,7 +468,7 @@ public class TestAvailability extends OpenCmsTestRunner {
 
         String folderName = "/folder1";
         String folderName2 = "/subfolder11";
-        String resName = "/index.html";
+        String resName = "/manageRoom.html";
         long tomorrow = System.currentTimeMillis() + MSECS_PER_DAY;
         cms.lockResource(folderName);
         cms.setDateReleased(folderName, tomorrow, true);

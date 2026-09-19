@@ -1004,7 +1004,7 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
 
         echo("Testing the import of a resource with permissions.");
 
-        String filename = "/index.html";
+        String filename = "/manageRoom.html";
         String zipExportFilename = OpenCms.getSystemInfo().getAbsoluteRfsPathRelativeToWebInf(
             "packages/testImportPermissionIssue.zip");
 
@@ -1311,7 +1311,7 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
 
         echo("Testing the import of a resource with relations.");
 
-        String filename = "/index.html";
+        String filename = "/manageRoom.html";
         String zipExportFilename = OpenCms.getSystemInfo().getAbsoluteRfsPathRelativeToWebInf(
             "packages/testImportRelations.zip");
 
@@ -1456,8 +1456,8 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
         Iterator i;
         List siblings;
 
-        // test "/importtest/index.html"
-        file = cms.readFile("/importtest/index.html");
+        // test "/importtest/manageRoom.html"
+        file = cms.readFile("/importtest/manageRoom.html");
         page = CmsXmlPageFactory.unmarshal(cms, file);
 
         table = page.getLinkTable("body", CmsLocaleManager.getDefaultLocale());
@@ -1471,7 +1471,7 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
         assertTrue(links.contains("/sites/default/importtest/page2.html"));
         assertTrue(links.contains("/sites/default/importtest/page3.html"));
 
-        siblings = cms.readSiblings("/importtest/index.html", CmsResourceFilter.ALL);
+        siblings = cms.readSiblings("/importtest/manageRoom.html", CmsResourceFilter.ALL);
         i = siblings.iterator();
         links = new ArrayList();
         while (i.hasNext()) {
@@ -1479,7 +1479,7 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
             links.add(sibling.getRootPath());
         }
         assertEquals(2, links.size());
-        assertTrue(links.contains("/sites/default/importtest/index.html"));
+        assertTrue(links.contains("/sites/default/importtest/manageRoom.html"));
         assertTrue(links.contains("/sites/default/importtest/linktest.html"));
 
         // test "/importtest/page2.html"
@@ -1496,9 +1496,9 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
         }
         assertEquals(2, links.size());
         assertTrue(links.contains("/system/galleries/pics/_anfang/bg_teaser_test2.jpg"));
-        assertTrue(links.contains("/sites/default/importtest/index.html"));
+        assertTrue(links.contains("/sites/default/importtest/manageRoom.html"));
 
-        // test "/importtest/linktest.html" (sibling of "/importtest/index.html")
+        // test "/importtest/linktest.html" (sibling of "/importtest/manageRoom.html")
         file = cms.readFile("/importtest/linktest.html");
         assertEquals(CmsResourceTypeXmlPage.getStaticTypeId(), file.getTypeId());
         page = CmsXmlPageFactory.unmarshal(cms, file);
@@ -1523,11 +1523,11 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
             links.add(sibling.getRootPath());
         }
         assertEquals(2, links.size());
-        assertTrue(links.contains("/sites/default/importtest/index.html"));
+        assertTrue(links.contains("/sites/default/importtest/manageRoom.html"));
         assertTrue(links.contains("/sites/default/importtest/linktest.html"));
 
-        // test "/othertest/index.html"
-        file = cms.readFile("/othertest/index.html");
+        // test "/othertest/manageRoom.html"
+        file = cms.readFile("/othertest/manageRoom.html");
         page = CmsXmlPageFactory.unmarshal(cms, file);
 
         table = page.getLinkTable("body", CmsLocaleManager.getDefaultLocale());
@@ -1626,8 +1626,8 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
         Iterator i;
         List siblings;
 
-        // test "/importtest/index.html"
-        file = cms.readFile("/importtest/index.html");
+        // test "/importtest/manageRoom.html"
+        file = cms.readFile("/importtest/manageRoom.html");
         page = CmsXmlPageFactory.unmarshal(cms, file);
 
         table = page.getLinkTable("body", CmsLocaleManager.getDefaultLocale());
@@ -1641,7 +1641,7 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
         assertTrue(links.contains("/sites/mysite/importtest/page2.html"));
         assertTrue(links.contains("/sites/mysite/importtest/page3.html"));
 
-        siblings = cms.readSiblings("/importtest/index.html", CmsResourceFilter.ALL);
+        siblings = cms.readSiblings("/importtest/manageRoom.html", CmsResourceFilter.ALL);
         i = siblings.iterator();
         links = new ArrayList();
         while (i.hasNext()) {
@@ -1649,7 +1649,7 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
             links.add(sibling.getRootPath());
         }
         assertEquals(2, links.size());
-        assertTrue(links.contains("/sites/mysite/importtest/index.html"));
+        assertTrue(links.contains("/sites/mysite/importtest/manageRoom.html"));
         assertTrue(links.contains("/sites/mysite/importtest/linktest.html"));
 
         // test "/importtest/page2.html"
@@ -1665,9 +1665,9 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
         }
         assertEquals(2, links.size());
         assertTrue(links.contains("/system/galleries/pics/_anfang/bg_teaser_test2.jpg"));
-        assertTrue(links.contains("/sites/mysite/importtest/index.html"));
+        assertTrue(links.contains("/sites/mysite/importtest/manageRoom.html"));
 
-        // test "/importtest/linktest.html" (sibling of "/importtest/index.html")
+        // test "/importtest/linktest.html" (sibling of "/importtest/manageRoom.html")
         file = cms.readFile("/importtest/linktest.html");
         assertEquals(CmsResourceTypeXmlPage.getStaticTypeId(), file.getTypeId());
         page = CmsXmlPageFactory.unmarshal(cms, file);
@@ -1693,14 +1693,14 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
             System.out.println("Sibling: " + sibling.toString());
         }
         assertEquals(2, links.size());
-        assertTrue(links.contains("/sites/mysite/importtest/index.html"));
+        assertTrue(links.contains("/sites/mysite/importtest/manageRoom.html"));
         assertTrue(links.contains("/sites/mysite/importtest/linktest.html"));
 
         // now switch to "othersite"
         cms.getRequestContext().setSiteRoot("/sites/othersite/");
 
-        // test "/othertest/index.html"
-        file = cms.readFile("/index.html");
+        // test "/othertest/manageRoom.html"
+        file = cms.readFile("/manageRoom.html");
         page = CmsXmlPageFactory.unmarshal(cms, file);
 
         table = page.getLinkTable("body", CmsLocaleManager.getDefaultLocale());
@@ -2113,7 +2113,7 @@ public class TestCmsImportExport extends OpenCmsTestRunner {
 
         echo("Testing the import of resources during setup.");
 
-        CmsResource resource = cms.readResource("index.html");
+        CmsResource resource = cms.readResource("manageRoom.html");
 
         long expectedDateCreated = convertTimestamp("Tue, 01 Jun 2004 09:11:24 GMT");
         long expectedDateLastModified = convertTimestamp("Wed, 27 Sep 2006 15:11:58 GMT");

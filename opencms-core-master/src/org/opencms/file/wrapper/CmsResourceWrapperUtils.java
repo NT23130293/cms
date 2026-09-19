@@ -95,7 +95,7 @@ public final class CmsResourceWrapperUtils {
      * If the file with the new extension already exists, an index count will be
      * added before the final extension.<p>
      *
-     * For example: <code>index.html.1.jsp</code>.<p>
+     * For example: <code>manageRoom.html.1.jsp</code>.<p>
      *
      * @see #removeFileExtension(CmsObject, String, String)
      *

@@ -131,7 +131,7 @@ public class CmsQuickLaunchLocationCache implements Serializable {
                             CmsResourceFilter.IGNORE_EXPIRATION.addRequireType(type),
                             true);
                         for (CmsResource resource : resources) {
-                            if (resource.getRootPath().endsWith("/index.html")) {
+                            if (resource.getRootPath().endsWith("/manageRoom.html")) {
                                 return resource;
                             }
                         }

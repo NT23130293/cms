@@ -1963,7 +1963,7 @@ public class CmsVfsSitemapService extends CmsGwtService implements I_CmsSitemapS
                     change.setEntryId(entryFolder.getStructureId());
                 }
                 applyNavigationChanges(change, entryFolder);
-                entryPath = CmsStringUtil.joinPaths(entryFolderPath, "index.html");
+                entryPath = CmsStringUtil.joinPaths(entryFolderPath, "manageRoom.html");
                 boolean isContainerPage = change.getNewResourceTypeId() == CmsResourceTypeXmlContainerPage.getContainerPageTypeIdSafely();
                 if (isContainerPage && (copyPage != null)) {
 

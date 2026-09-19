@@ -120,37 +120,37 @@ public class TestCmsLinkManager3 extends OpenCmsTestRunner {
         cms.getRequestContext().setCurrentProject(cms.readProject("Online"));
         CmsLinkManager linkManager = OpenCms.getLinkManager();
 
-        test = linkManager.substituteLink(cms, "/folder1/index.html?additionalParam", "/sites/default");
+        test = linkManager.substituteLink(cms, "/folder1/manageRoom.html?additionalParam", "/sites/default");
         System.out.println(test);
-        assertEquals(getVfsPrefix() + localeInsert + "/folder1/index.html?additionalParam", test);
+        assertEquals(getVfsPrefix() + localeInsert + "/folder1/manageRoom.html?additionalParam", test);
 
         test = linkManager.substituteLink(
             cms,
-            CmsLinkManager.getAbsoluteUri("/", "/folder1/index.html"),
+            CmsLinkManager.getAbsoluteUri("/", "/folder1/manageRoom.html"),
             "/sites/default");
         System.out.println(test);
         assertEquals(getVfsPrefix() + localeInsert + "/", test);
 
         test = linkManager.substituteLink(
             cms,
-            CmsLinkManager.getAbsoluteUri("./", "/folder1/index.html"),
+            CmsLinkManager.getAbsoluteUri("./", "/folder1/manageRoom.html"),
             "/sites/default");
         System.out.println(test);
         assertEquals(getVfsPrefix() + localeInsert + "/folder1/", test);
 
-        test = CmsLinkManager.getRelativeUri("/index.html", "/index.html");
+        test = CmsLinkManager.getRelativeUri("/manageRoom.html", "/manageRoom.html");
         System.out.println(test);
-        assertEquals("index.html", test);
+        assertEquals("manageRoom.html", test);
 
-        test = CmsLinkManager.getRelativeUri("/folder1/index.html", "/folder1/");
-        System.out.println(test);
-        assertEquals("./", test);
-
-        test = CmsLinkManager.getRelativeUri("/index.html", "/");
+        test = CmsLinkManager.getRelativeUri("/folder1/manageRoom.html", "/folder1/");
         System.out.println(test);
         assertEquals("./", test);
 
-        test = CmsLinkManager.getRelativeUri("/index.html", "./");
+        test = CmsLinkManager.getRelativeUri("/manageRoom.html", "/");
+        System.out.println(test);
+        assertEquals("./", test);
+
+        test = CmsLinkManager.getRelativeUri("/manageRoom.html", "./");
         System.out.println(test);
         assertEquals("./", test);
 

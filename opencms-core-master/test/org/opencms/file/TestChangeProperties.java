@@ -57,8 +57,8 @@ public class TestChangeProperties extends OpenCmsTestRunner {
 
     /**
      * Tries to change the "Description" property of the two files
-     * "/sites/default/folder1/index.html" and
-     * "/sites/default/folder2/index.html" with the site-root "".
+     * "/sites/default/folder1/manageRoom.html" and
+     * "/sites/default/folder2/manageRoom.html" with the site-root "".
      *
      * The test fails, if the <code>recursive</code> parameter of
      * <code>changeResourcesInFolderWithProperty()</code> changes the
@@ -72,8 +72,8 @@ public class TestChangeProperties extends OpenCmsTestRunner {
 
         CmsObject cms = getCmsObject();
 
-        String resource1 = cms.getRequestContext().getSiteRoot() + "/folder2/subfolder21/index.html";
-        String resource2 = cms.getRequestContext().getSiteRoot() + "/folder2/subfolder22/index.html";
+        String resource1 = cms.getRequestContext().getSiteRoot() + "/folder2/subfolder21/manageRoom.html";
+        String resource2 = cms.getRequestContext().getSiteRoot() + "/folder2/subfolder22/manageRoom.html";
 
         cms.getRequestContext().setSiteRoot("");
 
@@ -107,7 +107,7 @@ public class TestChangeProperties extends OpenCmsTestRunner {
 
     /**
      * Tries to change the "Description" property of the two files
-     * "/folder1/index.html" and "/folder2/index.html" with the site-root
+     * "/folder1/manageRoom.html" and "/folder2/manageRoom.html" with the site-root
      * "/sites/default".
      *
      * The test fails, if the <code>recursive</code> parameter of
@@ -122,8 +122,8 @@ public class TestChangeProperties extends OpenCmsTestRunner {
 
         CmsObject cms = getCmsObject();
 
-        String resource1 = "/folder1/subfolder11/index.html";
-        String resource2 = "/folder1/subfolder12/index.html";
+        String resource1 = "/folder1/subfolder11/manageRoom.html";
+        String resource2 = "/folder1/subfolder12/manageRoom.html";
         cms.lockResource(resource1);
         cms.lockResource(resource2);
         assertLock(cms, resource1);
