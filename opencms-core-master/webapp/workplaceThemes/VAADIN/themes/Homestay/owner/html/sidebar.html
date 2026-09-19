@@ -1,6 +1,7 @@
-<script src="../JS/sidebarJs.js"></script>
-<aside class="fixed left-0 top-0 h-screen w-64 bg-primary text-on-primary z-50 flex flex-col justify-between overflow-y-auto scrollbar-none custom-sidebar-bg">
+<!--<script src="../js/sidebarJs.js"></script>-->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-primary text-on-primary z-50 flex flex-col justify-between overflow-y-auto scrollbar-none">
     <div class="flex flex-col">
+        <!-- Brand / Logo -->
         <div class="h-16 px-gutter flex items-center gap-space-sm bg-primary-container/40">
             <div class="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center text-on-secondary shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
                 <span class="material-symbols-outlined text-[20px]">forest</span>
@@ -10,56 +11,60 @@
                 <span class="font-label-sm text-label-sm text-on-primary-container tracking-wider">Về quê, tìm bình yên</span>
             </div>
         </div>
-        <nav class="flex flex-col gap-space-xs px-space-sm py-space-md"
-             data-active-classes="bg-primary-container text-on-primary font-bold shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-            <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="trang-chu" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span
-                    class="font-label-lg text-label-lg">Trang chủ</span></a>
-            <a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="quan-ly-homestay" href="#">
-                <div class="flex items-center gap-space-sm"><span
-                        class="material-symbols-outlined text-[20px]">cottage</span><span
-                        class="font-label-lg text-label-lg">Quản lý Homestay</span></div>
-                <span class="material-symbols-outlined text-[16px]">expand_more</span></a>
-            <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="quan-ly-phong" href="#"><span class="material-symbols-outlined text-[20px]">bed</span><span
-                    class="font-label-lg text-label-lg">Quản lý phòng</span></a>
-            <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="quan-ly-dich-vu" href="#"><span
-                    class="material-symbols-outlined text-[20px]">room_service</span><span
-                    class="font-label-lg text-label-lg">Quản lý dịch vụ</span></a>
-            <a aria-current="page"
-               class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg transition-colors bg-primary-container text-on-primary font-bold shadow-[0_1px_8px_rgba(0,0,0,0.04)] custom-active-link"
-               data-path="quan-ly-booking" href="#"><span
-                    class="material-symbols-outlined text-[20px]">book_online</span><span
-                    class="font-label-lg text-label-lg">Quản lý Booking</span></a>
-            <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="quan-ly-nhiem-vu" href="#"><span
-                    class="material-symbols-outlined text-[20px]">rewarded_ads</span><span
-                    class="font-label-lg text-label-lg">Quản lý nhiệm vụ</span></a>
-            <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="quan-ly-danh-gia" href="#"><span
-                    class="material-symbols-outlined text-[20px]">grade</span><span class="font-label-lg text-label-lg">Quản lý đánh giá</span></a>
-            <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="quan-ly-ma-giam-gia" href="#"><span
-                    class="material-symbols-outlined text-[20px]">local_offer</span><span
-                    class="font-label-lg text-label-lg">Quản lý mã giảm giá</span></a>
-            <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="doanh-thu-thong-ke" href="#"><span
-                    class="material-symbols-outlined text-[20px]">bar_chart</span><span
-                    class="font-label-lg text-label-lg">Doanh thu & thống kê</span></a>
-            <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="tin-nhan-guest" href="#"><span class="material-symbols-outlined text-[20px]">chat</span><span
-                    class="font-label-lg text-label-lg">Chat</span></a>
-            <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="goi-quang-cao" href="#"><span
-                    class="material-symbols-outlined text-[20px]">campaign</span><span
-                    class="font-label-lg text-label-lg">Gói quảng cáo</span></a>
-            <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors"
-               data-path="cai-dat-he-thong" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span
-                    class="font-label-lg text-label-lg">Cài đặt</span></a>
+
+        <!-- Navigation Menu (Đã trỏ href đến các trang của bạn) -->
+        <nav class="flex flex-col gap-space-xs px-space-sm py-space-md">
+            <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="dashboard.html">
+                <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                <span class="font-label-lg text-label-lg">Trang chủ</span>
+            </a>
+            <a class="nav-item flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="homestay-management.html">
+                <div class="flex items-center gap-space-sm">
+                    <span class="material-symbols-outlined text-[20px]">cottage</span>
+                    <span class="font-label-lg text-label-lg">Quản lý Homestay</span>
+                </div>
+                <span class="material-symbols-outlined text-[16px]">expand_more</span>
+            </a>
+            <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="rooms.html">
+                <span class="material-symbols-outlined text-[20px]">bed</span>
+                <span class="font-label-lg text-label-lg">Quản lý phòng</span>
+            </a>
+            <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="services.html">
+                <span class="material-symbols-outlined text-[20px]">room_service</span>
+                <span class="font-label-lg text-label-lg">Quản lý dịch vụ</span>
+            </a>
+            <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="manageBooking.html">
+                <span class="material-symbols-outlined text-[20px]">book_online</span>
+                <span class="font-label-lg text-label-lg">Quản lý Booking</span>
+            </a>
+            <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="tasks.html">
+                <span class="material-symbols-outlined text-[20px]">rewarded_ads</span>
+                <span class="font-label-lg text-label-lg">Quản lý nhiệm vụ</span>
+            </a>
+            <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="reviewsAndFeedback.html">
+                <span class="material-symbols-outlined text-[20px]">grade</span>
+                <span class="font-label-lg text-label-lg">Quản lý đánh giá</span>
+            </a>
+            <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="discounts.html">
+                <span class="material-symbols-outlined text-[20px]">local_offer</span>
+                <span class="font-label-lg text-label-lg">Quản lý mã giảm giá</span>
+            </a>
+            <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="statistics.html">
+                <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+                <span class="font-label-lg text-label-lg">Doanh thu & thống kê</span>
+            </a>
+            <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="ads.html">
+                <span class="material-symbols-outlined text-[20px]">campaign</span>
+                <span class="font-label-lg text-label-lg">Gói quảng cáo</span>
+            </a>
+            <a class="nav-item flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-primary-container hover:bg-primary-container hover:text-on-primary transition-colors" href="settings.html">
+                <span class="material-symbols-outlined text-[20px]">settings</span>
+                <span class="font-label-lg text-label-lg">Cài đặt</span>
+            </a>
         </nav>
     </div>
+
+    <!-- Footer Sidebar -->
     <div class="p-space-sm flex flex-col gap-space-xs">
         <div class="bg-primary-container/80 rounded-lg p-space-sm flex items-center justify-between text-on-primary cursor-pointer hover:bg-primary-container transition-colors shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
             <div class="flex items-center gap-space-xs overflow-hidden">
@@ -73,9 +78,5 @@
             </div>
             <span class="material-symbols-outlined text-[16px] text-on-primary-container shrink-0">unfold_more</span>
         </div>
-<!--        <div class="px-space-xs py-space-xs text-center">-->
-<!--            <p class="font-body-sm text-body-sm text-on-primary-container/80 italic leading-snug">“Kết nối du khách với-->
-<!--                những giá trị bản địa độc đáo!”</p>-->
-<!--        </div>-->
     </div>
 </aside>
