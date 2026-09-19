@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Tourist Home - Homestay &amp; Trải Nghiệm Bản Địa</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <style>
+        .th-footer {
+            background-color: #15803D; /* Màu nền chủ đạo theo yêu cầu */
+            color: #f1f5f9;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            padding-top: 60px;
+            box-sizing: border-box;
+        }
+
+        .th-footer * {
+            box-sizing: border-box;
+        }
+
+        /* Khung bọc giới hạn chiều rộng 1200px, căn giữa */
+        .th-footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 48px 24px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr; /* 4 cột cân đối */
+            gap: 40px;
+        }
+
+        /* Cột 1: Thương hiệu */
+        .th-col-brand .th-brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .th-brand-name {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .th-brand-name span {
+            color: #fef08a; /* Điểm nhấn vàng kem dịu mắt trên nền xanh 15803d */
+        }
+
+        .th-brand-desc {
+            color: #e2e8f0;
+            font-size: 13.5px;
+            margin: 0 0 20px 0;
+        }
+
+        /* Khung Hotline */
+        .th-hotline-box {
+            background: rgba(0, 0, 0, 0.15); /* Làm tối nhẹ để tạo chiều sâu và nổi bật */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .th-hotline-label {
+            display: block;
+            font-size: 12px;
+            color: #d1d5db;
+        }
+
+        .th-hotline-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fef08a; /* Màu vàng sáng sang trọng, dễ đọc trên nền xanh đậm */
+            text-decoration: none;
+        }
+
+        .th-hotline-number:hover {
+            text-decoration: underline;
+        }
+
+        /* Mạng xã hội */
+        .th-social-links {
+            display: flex;
+            gap: 14px;
+        }
+
+        .th-social-links a {
+            color: #e2e8f0;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .th-social-links a:hover {
+            color: #fef08a;
+        }
+
+        /* Tiêu đề mỗi cột */
+        .th-footer-title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .th-footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 32px;
+            height: 2px;
+            background-color: #fef08a; /* Đường gạch chân đổi sang màu vàng dịu tạo điểm nhấn hài hòa */
+        }
+
+        /* Danh sách liên kết */
+        .th-footer-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .th-footer-menu li {
+            margin-bottom: 10px;
+        }
+
+        .th-footer-menu a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 13.5px;
+            transition: all 0.2s ease;
+        }
+
+        .th-footer-menu a:hover {
+            color: #ffffff;
+            padding-left: 4px;
+        }
+
+        /* Cột 4: Mô tả thanh toán & Tag */
+        .th-pay-desc {
+            color: #e2e8f0;
+            font-size: 13.5px;
+            margin: 0 0 16px 0;
+        }
+
+        .th-payment-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .th-pay-icon {
+            width: 60px;
+            height: auto;
+            vertical-align: middle;
+        }
+        .th-badge {
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .th-commitment-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fef08a;
+            font-size: 12.5px;
+            font-weight: 500;
+        }
+
+        /* Dải bản quyền dưới cùng */
+        .th-footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 20px 24px;
+            background-color: #0d5c2e; /* Sắc xanh đậm hơn một chút ở footer bottom để phân tách bố cục */
+        }
+
+        .th-footer-bottom-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .th-copyright {
+            margin: 0;
+            font-size: 12.5px;
+            color: #cbd5e1;
+        }
+
+        .th-legal-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .th-legal-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 12.5px;
+            transition: color 0.2s;
+        }
+
+        .th-legal-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Responsive khi xem trên điện thoại (màn hình nhỏ) */
+        @media (max-width: 768px) {
+            .th-footer-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .th-footer-bottom-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<footer class="th-footer">
+    <div class="th-footer-container">
+        <div class="th-footer-col th-col-brand">
+            <div class="th-brand-logo">
+                <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="48" height="48" rx="12" fill="#0d5c2e"/>
+                    <path d="M14 26L24 16L34 26V36H14V26Z" fill="#ffffff"/>
+                    <path d="M21 36V27H27V36" fill="#15803D"/>
+                    <circle cx="24" cy="11" r="4" fill="#fef08a"/>
+                </svg>
+                <span class="th-brand-name">YÊN<span>TRIP</span></span></div>
+            <p class="th-brand-desc"> Nền tảng kết nối du lịch bền vững, gìn giữ và lan tỏa giá trị văn hóa bản địa qua
+                những homestay sinh thái và trải nghiệm chân thực khắp Việt Nam. </p>
+            <div class="th-hotline-box"><span class="th-hotline-label">Tổng đài tư vấn 24/7:</span>
+                <a href="tel:0949050888" class="th-hotline-number">0949050888</a></div>
+            <div class="th-social-links"><a href="#" aria-label="Facebook">Facebook</a> <a href="#"
+                                                                                           aria-label="Instagram">Instagram</a>
+                <a href="#" aria-label="YouTube">YouTube</a></div>
+        </div> <!-- CỘT 2: KHÁM PHÁ & ĐIỂM ĐẾN -->
+        <div class="th-footer-col"><h3 class="th-footer-title">Khám phá & Điểm đến</h3>
+            <ul class="th-footer-menu">
+                <li><a href="#">Homestay Nhà Trình Tường Hà Giang</a></li>
+                <li><a href="#">Nhà Rông Tây Nguyên & Cồng Chiêng</a></li>
+                <li><a href="#">Làng Nổi Miền Tây Sông Nước</a></li>
+                <li><a href="#">Trải Nghiệm Dệt Vải & Gốm Sứ</a></li>
+                <li><a href="#">Lễ Hội Dân Gian & Tour Sinh Thái</a></li>
+                <li><a href="#">Gói Combo Du Lịch Bản Địa</a></li>
+            </ul>
+        </div> <!-- CỘT 3: VỀ CHÚNG TÔI & CHỦ HOMESTAY -->
+        <div class="th-footer-col"><h3 class="th-footer-title">Về Tourist Home</h3>
+            <ul class="th-footer-menu">
+                <li><a href="#">Câu chuyện thương hiệu</a></li>
+                <li><a href="#">Góc nhìn văn hóa & Blog</a></li>
+                <li><a href="#">Chính sách du lịch bền vững</a></li>
+                <li><a href="#">Tiêu chuẩn Chứng nhận Xanh</a></li>
+                <li><a href="#">Dành cho chủ nhà Homestay</a></li>
+                <li><a href="#">Trung tâm trợ giúp & FAQ</a></li>
+            </ul>
+        </div> <!-- CỘT 4: ĐỐI TÁC, BẢO MẬT & THANH TOÁN -->
+        <div class="th-footer-col"><h3 class="th-footer-title">Đối tác & Thanh toán</h3>
+            <p class="th-pay-desc"> Bảo mật đa tầng theo tiêu chuẩn quốc tế và phương thức thanh toán an toàn, linh
+                hoạt: </p>
+            <div class="th-payment-tags">
+    <span class="th-badge">
+        <img src="../static/icons/vnpayicon.svg" alt="VNPAY" class="th-pay-icon">
+    </span>
+                <span class="th-badge">
+        <img src="../static/icons/momoicon.png" alt="MoMo" class="th-pay-icon">
+    </span>
+                <span class="th-badge">
+        <img src="../static/icons/napasicon.svg" alt="Napas 247" class="th-pay-icon">
+    </span>
+                <span class="th-badge">
+        <img src="../static/icons/visalogo.svg" alt="Visa / Master" class="th-pay-icon">
+    </span>
+            </div>
+            <div class="th-commitment-box"><span class="th-leaf-icon">🌿</span> <span>Đối tác Liên minh Du lịch Sinh thái Việt Nam</span>
+            </div>
+        </div>
+    </div> <!-- DẢI CHÂN TRANG DƯỚI CÙNG (COPYRIGHT & CHÍNH SÁCH) -->
+    <div class="th-footer-bottom">
+        <div class="th-footer-bottom-inner"><p class="th-copyright"> © 2026 Tourist Home Vietnam. Giữ gìn nét đẹp bản
+            địa – Du lịch sinh thái bền vững. </p>
+            <div class="th-legal-links"><a href="#">Điều khoản sử dụng</a> <a href="#">Chính sách bảo mật</a> <a
+                    href="#">Giải quyết tranh chấp</a></div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
