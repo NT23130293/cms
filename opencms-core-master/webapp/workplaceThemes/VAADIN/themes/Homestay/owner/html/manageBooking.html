@@ -533,24 +533,24 @@
 <!-- ========================================================================= -->
 
 <!-- 1. POPUP TẠO ĐƠN ĐẶT PHÒNG TRỰC TIẾP -->
-<div id="createBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+<div id="createBookingModal" class="bk-modal" hidden>
+    <div class="bk-modal-content bk-modal-lg" role="dialog" aria-modal="true">
         <!-- Modal Header -->
-        <div class="p-space-md bg-primary text-on-primary flex items-center justify-between shrink-0 custom-primary-bg">
+        <div class="bk-modal-header-primary">
             <div class="flex items-center gap-space-xs">
                 <span class="material-symbols-outlined text-[24px]">add_circle</span>
                 <div class="flex flex-col">
-                    <h3 class="font-headline-sm text-headline-sm text-on-primary">Tạo đơn đặt phòng trực tiếp</h3>
-                    <span class="font-label-sm text-[11px] text-on-primary-container">Dành cho khách đặt qua hotline, Zalo hoặc đến nhận phòng tại chỗ</span>
+                    <h3 class="bk-modal-title">Tạo đơn đặt phòng trực tiếp</h3>
+                    <span class="bk-modal-subtitle">Dành cho khách đặt qua hotline, Zalo hoặc đến nhận phòng tại chỗ</span>
                 </div>
             </div>
-            <button onclick="closeModal('createBookingModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container text-on-primary transition-colors" type="button">
+            <button class="bk-modal-close-light" data-close-modal="createBookingModal" type="button" title="Đóng">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
 
         <!-- Modal Body (Scrollable) -->
-        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+        <div class="bk-modal-body">
             <!-- Phần 1: Thông tin khách hàng -->
             <div class="flex flex-col gap-space-xs">
                 <span class="font-label-md text-label-md text-primary font-bold flex items-center gap-1 uppercase tracking-wider">
@@ -558,20 +558,20 @@
                 </span>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
                     <div class="flex flex-col gap-1">
-                        <label class="font-label-md text-on-surface">Họ và tên khách hàng <span class="text-error">*</span></label>
-                        <input id="newBookingGuestName" type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="Ví dụ: Hoàng Minh Đức">
+                        <label class="bk-form-label">Họ và tên khách hàng <span class="text-error">*</span></label>
+                        <input id="newBookingGuestName" type="text" class="bk-form-input" placeholder="Ví dụ: Hoàng Minh Đức">
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label class="font-label-md text-on-surface">Số điện thoại <span class="text-error">*</span></label>
-                        <input id="newBookingPhone" type="tel" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="09xx xxx xxx">
+                        <label class="bk-form-label">Số điện thoại <span class="text-error">*</span></label>
+                        <input id="newBookingPhone" type="tel" class="bk-form-input" placeholder="09xx xxx xxx">
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label class="font-label-md text-on-surface">CCCD / Hộ chiếu (Khai báo tạm trú)</label>
-                        <input id="newBookingCccd" type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="12 chữ số CCCD...">
+                        <label class="bk-form-label">CCCD / Hộ chiếu (Khai báo tạm trú)</label>
+                        <input id="newBookingCccd" type="text" class="bk-form-input" placeholder="12 chữ số CCCD...">
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label class="font-label-md text-on-surface">Tỉnh / Thành phố cư trú</label>
-                        <input id="newBookingCity" type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="Ví dụ: Hà Nội, Hải Phòng...">
+                        <label class="bk-form-label">Tỉnh / Thành phố cư trú</label>
+                        <input id="newBookingCity" type="text" class="bk-form-input" placeholder="Ví dụ: Hà Nội, Hải Phòng...">
                     </div>
                 </div>
             </div>
@@ -583,8 +583,8 @@
                 </span>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
                     <div class="flex flex-col gap-1">
-                        <label class="font-label-md text-on-surface">Chọn loại phòng</label>
-                        <select id="newBookingRoomSelect" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md cursor-pointer">
+                        <label class="bk-form-label">Chọn loại phòng</label>
+                        <select id="newBookingRoomSelect" class="bk-form-select">
                             <option value="mountain">Mountain View (Nhà Gỗ - 950.000đ/đêm)</option>
                             <option value="lake">Lake View (Ven Hồ - 1.100.000đ/đêm)</option>
                             <option value="bungalow">Bungalow Suối (1.250.000đ/đêm)</option>
@@ -592,8 +592,8 @@
                         </select>
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label class="font-label-md text-on-surface">Số lượng khách</label>
-                        <select id="newBookingGuestsCount" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md cursor-pointer">
+                        <label class="bk-form-label">Số lượng khách</label>
+                        <select id="newBookingGuestsCount" class="bk-form-select">
                             <option value="1">1 Người lớn</option>
                             <option value="2" selected>2 Người lớn</option>
                             <option value="3">3 Người lớn (+ đệm phụ)</option>
@@ -602,12 +602,12 @@
                         </select>
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label class="font-label-md text-on-surface">Ngày Check-in</label>
-                        <input id="newBookingCheckIn" type="date" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md">
+                        <label class="bk-form-label">Ngày Check-in</label>
+                        <input id="newBookingCheckIn" type="date" class="bk-form-input">
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label class="font-label-md text-on-surface">Ngày Check-out</label>
-                        <input id="newBookingCheckOut" type="date" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md">
+                        <label class="bk-form-label">Ngày Check-out</label>
+                        <input id="newBookingCheckOut" type="date" class="bk-form-input">
                     </div>
                 </div>
             </div>
@@ -628,12 +628,12 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-2">
                     <div class="flex flex-col gap-1">
-                        <label class="font-label-md text-on-surface">Số tiền cọc thu trước</label>
-                        <input id="newBookingDepositInput" type="number" class="px-space-sm py-1.5 rounded-lg bg-surface-container-lowest border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary font-bold text-secondary text-body-md" value="950000">
+                        <label class="bk-form-label">Số tiền cọc thu trước</label>
+                        <input id="newBookingDepositInput" type="number" class="bk-form-input font-bold text-secondary" value="950000">
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label class="font-label-md text-on-surface">Phương thức nhận cọc</label>
-                        <select class="px-space-sm py-1.5 rounded-lg bg-surface-container-lowest border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md cursor-pointer">
+                        <label class="bk-form-label">Phương thức nhận cọc</label>
+                        <select class="bk-form-select">
                             <option>Chuyển khoản VietQR</option>
                             <option>Tiền mặt tại quầy</option>
                             <option>Quẹt thẻ POS</option>
@@ -645,15 +645,15 @@
 
             <!-- Phần 4: Yêu cầu đặc biệt & dịch vụ -->
             <div class="flex flex-col gap-1">
-                <label class="font-label-md text-on-surface">Ghi chú & Yêu cầu dịch vụ đặc biệt</label>
-                <textarea id="newBookingSpecialRequest" rows="2" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="Ví dụ: Báo nhà bếp làm cơm lam lúc 19h00, chuẩn bị xe máy dạo bản, đón tại ngã ba..."></textarea>
+                <label class="bk-form-label">Ghi chú & Yêu cầu dịch vụ đặc biệt</label>
+                <textarea id="newBookingSpecialRequest" rows="2" class="bk-form-textarea" placeholder="Ví dụ: Báo nhà bếp làm cơm lam lúc 19h00, chuẩn bị xe máy dạo bản, đón tại ngã ba..."></textarea>
             </div>
         </div>
 
         <!-- Modal Footer -->
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
-            <button onclick="closeModal('createBookingModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy bỏ</button>
-            <button onclick="submitNewBooking()" class="px-space-lg py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md font-bold transition-all shadow-md custom-primary-bg flex items-center gap-1.5" type="button">
+        <div class="bk-modal-footer">
+            <button class="bk-btn bk-btn-cancel" data-close-modal="createBookingModal" type="button">Hủy bỏ</button>
+            <button onclick="submitNewBooking()" class="bk-btn bk-btn-save" type="button">
                 <span class="material-symbols-outlined text-[18px]">check_circle</span>
                 <span>Lưu & Xác nhận đặt phòng</span>
             </button>
@@ -662,141 +662,143 @@
 </div>
 
 <!-- 2. POPUP CHI TIẾT ĐƠN ĐẶT PHÒNG (BOOKING DETAILS) -->
-<div id="detailBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+<div id="detailBookingModal" class="bk-modal" hidden>
+    <div class="bk-modal-content bk-modal-lg" role="dialog" aria-modal="true">
         <!-- Modal Header -->
-        <div class="p-space-md bg-surface-container-low border-b border-surface-container flex items-center justify-between shrink-0">
+        <div class="bk-modal-header-surface">
             <div class="flex items-center gap-space-xs flex-wrap">
                 <span class="material-symbols-outlined text-[22px] text-primary">receipt_long</span>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+                <h3 class="bk-modal-title flex items-center gap-2">
                     Chi tiết đơn <span id="detailModalBookingId" class="text-primary font-bold">#BK-9842</span>
                 </h3>
                 <span id="detailModalSource" class="px-2 py-0.5 rounded-full bg-surface-container text-outline text-[11px] font-label-md">OTA Sàn VN</span>
                 <span id="detailModalStatus" class="px-space-sm py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-bold">Chờ Check-in</span>
             </div>
-            <button onclick="closeModal('detailBookingModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high text-outline hover:text-on-surface transition-colors" type="button">
+            <button class="bk-modal-close" data-close-modal="detailBookingModal" type="button" title="Đóng">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
 
         <!-- Modal Body (2 Columns Layout) -->
-        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll grid grid-cols-1 md:grid-cols-12 gap-space-md">
-            <!-- Cột trái: Thông tin khách & Phòng (7 Cột) -->
-            <div class="md:col-span-7 flex flex-col gap-space-md">
-                <!-- Thẻ khách hàng -->
-                <div class="p-space-sm rounded-xl bg-surface-container-low flex items-center gap-space-sm border border-surface-container">
-                    <div id="detailModalAvatar" class="w-14 h-14 rounded-xl flex items-center justify-center font-bold text-xl shrink-0 bg-secondary-fixed-dim/40 text-on-secondary-fixed">M</div>
-                    <div class="flex flex-col min-w-0">
-                        <span id="detailModalGuestName" class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Nguyễn Thị Mai</span>
-                        <span class="font-body-sm text-body-sm text-outline flex items-center gap-1">
-                            <span class="material-symbols-outlined text-[14px]">phone</span>
-                            <span id="detailModalPhone">0982 341 112</span>
-                            <span>•</span>
-                            <span id="detailModalCity">Hà Nội</span>
+        <div class="bk-modal-body">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+                <!-- Cột trái: Thông tin khách & Phòng (7 Cột) -->
+                <div class="md:col-span-7 flex flex-col gap-space-md">
+                    <!-- Thẻ khách hàng -->
+                    <div class="p-space-sm rounded-xl bg-surface-container-low flex items-center gap-space-sm border border-surface-container">
+                        <div id="detailModalAvatar" class="w-14 h-14 rounded-xl flex items-center justify-center font-bold text-xl shrink-0 bg-secondary-fixed-dim/40 text-on-secondary-fixed">M</div>
+                        <div class="flex flex-col min-w-0">
+                            <span id="detailModalGuestName" class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Nguyễn Thị Mai</span>
+                            <span class="font-body-sm text-body-sm text-outline flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[14px]">phone</span>
+                                <span id="detailModalPhone">0982 341 112</span>
+                                <span>•</span>
+                                <span id="detailModalCity">Hà Nội</span>
+                            </span>
+                            <span class="text-body-sm text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5">
+                                <span class="material-symbols-outlined text-[13px]">mail</span>
+                                <span id="detailModalEmail">mai.nguyen@gmail.com</span>
+                                <span>• CCCD:</span>
+                                <span id="detailModalCccd" class="font-medium">001198034521</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Thẻ chi tiết phòng & Lưu trú -->
+                    <div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs border border-surface-container">
+                        <div class="flex items-center justify-between">
+                            <span class="font-body-sm text-on-surface-variant">Phòng chỉ định:</span>
+                            <span id="detailModalRoom" class="font-label-md text-on-surface font-bold">Mountain View #01</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="font-body-sm text-on-surface-variant">Loại phòng:</span>
+                            <span id="detailModalRoomType" class="font-label-md text-on-surface">Phòng Mountain View (Nhà Gỗ)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="font-body-sm text-on-surface-variant">Số lượng khách:</span>
+                            <span id="detailModalGuests" class="font-label-md text-on-surface">2 người lớn</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="font-body-sm text-on-surface-variant">Lịch trình lưu trú:</span>
+                            <span id="detailModalSchedule" class="font-label-md text-secondary font-bold">17/09 - 20/09/2024 (3 đêm)</span>
+                        </div>
+                    </div>
+
+                    <!-- Ghi chú đặc biệt -->
+                    <div class="p-space-sm rounded-xl bg-tertiary-fixed/30 border border-tertiary-fixed flex flex-col gap-1">
+                        <span class="font-label-md text-tertiary font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px] text-on-tertiary-container">edit_note</span> Yêu cầu đặc biệt của khách:
                         </span>
-                        <span class="text-body-sm text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5">
-                            <span class="material-symbols-outlined text-[13px]">mail</span>
-                            <span id="detailModalEmail">mai.nguyen@gmail.com</span>
-                            <span>• CCCD:</span>
-                            <span id="detailModalCccd" class="font-medium">001198034521</span>
+                        <p id="detailModalRequest" class="font-body-sm text-on-surface italic leading-relaxed">
+                            “Ăn tối cơm lam thịt nướng tại homestay lúc 18h30. Nhờ chuẩn bị trước lò nướng than mộc ngoài sân.”
+                        </p>
+                    </div>
+
+                    <!-- Dịch vụ kèm theo -->
+                    <div class="flex flex-col gap-1">
+                        <span class="font-label-md text-on-surface font-bold flex items-center justify-between">
+                            <span>Dịch vụ phát sinh kèm theo:</span>
                         </span>
+                        <div id="detailModalServicesList" class="flex flex-col gap-1">
+                            <!-- Danh sách dịch vụ render động -->
+                        </div>
                     </div>
                 </div>
 
-                <!-- Thẻ chi tiết phòng & Lưu trú -->
-                <div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs border border-surface-container">
-                    <div class="flex items-center justify-between">
-                        <span class="font-body-sm text-on-surface-variant">Phòng chỉ định:</span>
-                        <span id="detailModalRoom" class="font-label-md text-on-surface font-bold">Mountain View #01</span>
+                <!-- Cột phải: Tài chính & Dòng thời gian tiến trình (5 Cột) -->
+                <div class="md:col-span-5 flex flex-col gap-space-md">
+                    <!-- Thẻ Tổng quan tài chính -->
+                    <div class="p-space-sm rounded-xl bg-surface-container-lowest border border-surface-container-high flex flex-col gap-space-xs shadow-sm">
+                        <span class="font-label-md text-primary font-bold uppercase tracking-wider">Tổng quan thanh toán</span>
+                        <div class="flex items-center justify-between text-body-sm">
+                            <span class="text-on-surface-variant">Tổng tiền đơn:</span>
+                            <span id="detailModalTotal" class="font-headline-sm text-on-surface font-bold">2.850.000đ</span>
+                        </div>
+                        <div class="flex items-center justify-between text-body-sm">
+                            <span class="text-on-surface-variant">Đã cọc (Sàn/Chuyển khoản):</span>
+                            <span id="detailModalDeposit" class="font-label-md text-secondary font-bold">1.500.000đ</span>
+                        </div>
+                        <div class="flex items-center justify-between text-body-md border-t border-surface-container pt-1.5">
+                            <span class="font-bold text-error">Còn phải thu tại quầy:</span>
+                            <span id="detailModalRemain" class="font-headline-sm text-error font-bold">1.350.000đ</span>
+                        </div>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <span class="font-body-sm text-on-surface-variant">Loại phòng:</span>
-                        <span id="detailModalRoomType" class="font-label-md text-on-surface">Phòng Mountain View (Nhà Gỗ)</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="font-body-sm text-on-surface-variant">Số lượng khách:</span>
-                        <span id="detailModalGuests" class="font-label-md text-on-surface">2 người lớn</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="font-body-sm text-on-surface-variant">Lịch trình lưu trú:</span>
-                        <span id="detailModalSchedule" class="font-label-md text-secondary font-bold">17/09 - 20/09/2024 (3 đêm)</span>
-                    </div>
-                </div>
 
-                <!-- Ghi chú đặc biệt -->
-                <div class="p-space-sm rounded-xl bg-tertiary-fixed/30 border border-tertiary-fixed flex flex-col gap-1">
-                    <span class="font-label-md text-tertiary font-bold flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[16px] text-on-tertiary-container">edit_note</span> Yêu cầu đặc biệt của khách:
-                    </span>
-                    <p id="detailModalRequest" class="font-body-sm text-on-surface italic leading-relaxed">
-                        “Ăn tối cơm lam thịt nướng tại homestay lúc 18h30. Nhờ chuẩn bị trước lò nướng than mộc ngoài sân.”
-                    </p>
-                </div>
-
-                <!-- Dịch vụ kèm theo -->
-                <div class="flex flex-col gap-1">
-                    <span class="font-label-md text-on-surface font-bold flex items-center justify-between">
-                        <span>Dịch vụ phát sinh kèm theo:</span>
-                    </span>
-                    <div id="detailModalServicesList" class="flex flex-col gap-1">
-                        <!-- Danh sách dịch vụ render động -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cột phải: Tài chính & Dòng thời gian tiến trình (5 Cột) -->
-            <div class="md:col-span-5 flex flex-col gap-space-md">
-                <!-- Thẻ Tổng quan tài chính -->
-                <div class="p-space-sm rounded-xl bg-surface-container-lowest border border-surface-container-high flex flex-col gap-space-xs shadow-sm">
-                    <span class="font-label-md text-primary font-bold uppercase tracking-wider">Tổng quan thanh toán</span>
-                    <div class="flex items-center justify-between text-body-sm">
-                        <span class="text-on-surface-variant">Tổng tiền đơn:</span>
-                        <span id="detailModalTotal" class="font-headline-sm text-on-surface font-bold">2.850.000đ</span>
-                    </div>
-                    <div class="flex items-center justify-between text-body-sm">
-                        <span class="text-on-surface-variant">Đã cọc (Sàn/Chuyển khoản):</span>
-                        <span id="detailModalDeposit" class="font-label-md text-secondary font-bold">1.500.000đ</span>
-                    </div>
-                    <div class="flex items-center justify-between text-body-md border-t border-surface-container pt-1.5">
-                        <span class="font-bold text-error">Còn phải thu tại quầy:</span>
-                        <span id="detailModalRemain" class="font-headline-sm text-error font-bold">1.350.000đ</span>
-                    </div>
-                </div>
-
-                <!-- Dòng thời gian tiến trình lưu trú -->
-                <div class="p-space-sm rounded-xl bg-surface-container-low border border-surface-container flex flex-col gap-space-sm">
-                    <span class="font-label-md text-on-surface font-bold">Tiến trình đơn đặt phòng</span>
-                    <div id="detailModalTimeline" class="flex flex-col gap-space-xs">
-                        <!-- Render dòng thời gian động -->
+                    <!-- Dòng thời gian tiến trình lưu trú -->
+                    <div class="p-space-sm rounded-xl bg-surface-container-low border border-surface-container flex flex-col gap-space-sm">
+                        <span class="font-label-md text-on-surface font-bold">Tiến trình đơn đặt phòng</span>
+                        <div id="detailModalTimeline" class="flex flex-col gap-space-xs">
+                            <!-- Render dòng thời gian động -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Modal Footer -->
-        <div id="detailModalActions" class="p-space-md bg-surface-container-low flex items-center justify-between border-t border-surface-container shrink-0">
+        <div id="detailModalActions" class="bk-modal-footer-spread">
             <!-- Nút hành động render động theo trạng thái -->
         </div>
     </div>
 </div>
 
 <!-- 3. POPUP XÁC NHẬN CHECK-IN NHẬN PHÒNG -->
-<div id="checkinModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
-        <div class="p-space-md bg-secondary text-on-secondary flex items-center justify-between shrink-0 custom-secondary-bg">
+<div id="checkinModal" class="bk-modal" hidden>
+    <div class="bk-modal-content" role="dialog" aria-modal="true">
+        <div class="bk-modal-header-secondary">
             <div class="flex items-center gap-space-xs">
                 <span class="material-symbols-outlined text-[24px]">login</span>
                 <div class="flex flex-col">
-                    <h3 class="font-headline-sm text-headline-sm text-on-secondary">Thủ tục Check-in nhận phòng</h3>
-                    <span class="font-label-sm text-[11px] text-on-secondary-container">Mã đơn: <strong id="checkinModalBookingId" class="text-on-secondary">#BK-9842</strong></span>
+                    <h3 class="bk-modal-title">Thủ tục Check-in nhận phòng</h3>
+                    <span class="bk-modal-subtitle">Mã đơn: <strong id="checkinModalBookingId" class="text-on-secondary">#BK-9842</strong></span>
                 </div>
             </div>
-            <button onclick="closeModal('checkinModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-secondary/80 text-on-secondary transition-colors" type="button">
+            <button class="bk-modal-close-light" data-close-modal="checkinModal" type="button" title="Đóng">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
 
-        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+        <div class="bk-modal-body">
             <!-- Tóm tắt phòng & khách -->
             <div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between border border-surface-container">
                 <div class="flex flex-col">
@@ -811,13 +813,13 @@
 
             <!-- Bước 1: Khai báo lưu trú CCCD -->
             <div class="flex flex-col gap-1">
-                <label class="font-label-md text-on-surface font-bold flex items-center justify-between">
+                <label class="bk-form-label flex items-center justify-between">
                     <span>1. Xác thực CCCD / Giấy tờ tùy thân:</span>
                     <button onclick="showToast('Quét CCCD', 'Đã chụp lưu trữ CCCD của khách thành công', 'success')" class="text-[12px] text-secondary font-medium hover:underline flex items-center gap-0.5" type="button">
                         <span class="material-symbols-outlined text-[14px]">document_scanner</span> Quét nhanh
                     </button>
                 </label>
-                <input type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" value="001198034521" placeholder="Nhập hoặc quét mã QR trên CCCD">
+                <input type="text" class="bk-form-input" value="001198034521" placeholder="Nhập hoặc quét mã QR trên CCCD">
             </div>
 
             <!-- Bước 2: Thu tiền phòng còn lại -->
@@ -860,9 +862,9 @@
             </div>
         </div>
 
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
-            <button onclick="closeModal('checkinModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy</button>
-            <button onclick="confirmCheckin()" class="px-space-lg py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md font-bold transition-all shadow-md custom-secondary-bg flex items-center gap-1.5" type="button">
+        <div class="bk-modal-footer">
+            <button class="bk-btn bk-btn-cancel" data-close-modal="checkinModal" type="button">Hủy</button>
+            <button onclick="confirmCheckin()" class="bk-btn bk-btn-secondary" type="button">
                 <span class="material-symbols-outlined text-[18px]">how_to_reg</span>
                 <span>Xác nhận nhận phòng & Giao chìa khóa</span>
             </button>
@@ -871,22 +873,22 @@
 </div>
 
 <!-- 4. POPUP XÁC NHẬN CHECK-OUT & QUYẾT TOÁN -->
-<div id="checkoutModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
-        <div class="p-space-md bg-primary text-on-primary flex items-center justify-between shrink-0 custom-primary-bg">
+<div id="checkoutModal" class="bk-modal" hidden>
+    <div class="bk-modal-content" role="dialog" aria-modal="true">
+        <div class="bk-modal-header-primary">
             <div class="flex items-center gap-space-xs">
                 <span class="material-symbols-outlined text-[24px]">logout</span>
                 <div class="flex flex-col">
-                    <h3 class="font-headline-sm text-headline-sm text-on-primary">Thủ tục Check-out & Quyết toán</h3>
-                    <span class="font-label-sm text-[11px] text-on-primary-container">Đơn: <strong id="checkoutModalBookingId" class="text-on-primary">#BK-9839</strong></span>
+                    <h3 class="bk-modal-title">Thủ tục Check-out & Quyết toán</h3>
+                    <span class="bk-modal-subtitle">Đơn: <strong id="checkoutModalBookingId" class="text-on-primary">#BK-9839</strong></span>
                 </div>
             </div>
-            <button onclick="closeModal('checkoutModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container text-on-primary transition-colors" type="button">
+            <button class="bk-modal-close-light" data-close-modal="checkoutModal" type="button" title="Đóng">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
 
-        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+        <div class="bk-modal-body">
             <!-- Khách & Phòng -->
             <div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between border border-surface-container">
                 <div class="flex flex-col">
@@ -901,7 +903,7 @@
 
             <!-- Kiểm tra phòng -->
             <div class="flex flex-col gap-space-xs">
-                <span class="font-label-md text-on-surface font-bold">Kiểm tra bàn giao phòng:</span>
+                <span class="bk-form-label">Kiểm tra bàn giao phòng:</span>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs">
                     <label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low border border-surface-container cursor-pointer">
                         <input type="checkbox" checked class="w-4 h-4 rounded text-secondary accent-secondary">
@@ -944,7 +946,7 @@
 
             <!-- Phương thức thanh toán nốt -->
             <div class="flex flex-col gap-1">
-                <label class="font-label-md text-on-surface font-bold">Phương thức khách thanh toán nốt:</label>
+                <label class="bk-form-label">Phương thức khách thanh toán nốt:</label>
                 <div class="grid grid-cols-3 gap-space-xs">
                     <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/60 cursor-pointer hover:border-secondary">
                         <input type="radio" name="checkoutPaymentType" checked class="text-secondary accent-secondary">
@@ -962,9 +964,9 @@
             </div>
         </div>
 
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
-            <button onclick="closeModal('checkoutModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
-            <button onclick="confirmCheckout()" class="px-space-lg py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md font-bold transition-all shadow-md custom-secondary-bg flex items-center gap-1.5" type="button">
+        <div class="bk-modal-footer">
+            <button class="bk-btn bk-btn-cancel" data-close-modal="checkoutModal" type="button">Đóng</button>
+            <button onclick="confirmCheckout()" class="bk-btn bk-btn-secondary" type="button">
                 <span class="material-symbols-outlined text-[18px]">verified</span>
                 <span>Xác nhận thanh toán & Hoàn tất Check-out</span>
             </button>
@@ -973,22 +975,22 @@
 </div>
 
 <!-- 5. POPUP THÊM DỊCH VỤ / PHỤ PHÍ -->
-<div id="addServiceModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
-        <div class="p-space-md bg-primary-container text-on-primary flex items-center justify-between shrink-0">
+<div id="addServiceModal" class="bk-modal" hidden>
+    <div class="bk-modal-content bk-modal-lg" role="dialog" aria-modal="true">
+        <div class="bk-modal-header-surface">
             <div class="flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-[24px] text-primary-fixed">room_service</span>
+                <span class="material-symbols-outlined text-[24px] text-primary">room_service</span>
                 <div class="flex flex-col">
-                    <h3 class="font-headline-sm text-headline-sm text-on-primary">Thêm dịch vụ & Trải nghiệm bản địa</h3>
-                    <span class="font-label-sm text-[11px] text-on-primary-container">Ghi nhận vào: <strong id="addServiceModalBookingId" class="text-on-primary">#BK-9839 (Lê Văn Hiếu)</strong></span>
+                    <h3 class="bk-modal-title">Thêm dịch vụ & Trải nghiệm bản địa</h3>
+                    <span class="bk-modal-subtitle">Ghi nhận vào: <strong id="addServiceModalBookingId" class="text-primary font-bold">#BK-9839 (Lê Văn Hiếu)</strong></span>
                 </div>
             </div>
-            <button onclick="closeModal('addServiceModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container text-on-primary transition-colors" type="button">
+            <button class="bk-modal-close" data-close-modal="addServiceModal" type="button" title="Đóng">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
 
-        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+        <div class="bk-modal-body">
             <!-- Danh mục dịch vụ bản địa -->
             <div class="flex flex-col gap-space-xs">
                 <span class="font-label-md text-primary font-bold uppercase tracking-wider">Danh mục dịch vụ homestay</span>
@@ -1086,9 +1088,9 @@
             </div>
         </div>
 
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
-            <button onclick="closeModal('addServiceModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy</button>
-            <button onclick="saveAddedServices()" class="px-space-lg py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md font-bold transition-all shadow-md custom-primary-bg flex items-center gap-1.5" type="button">
+        <div class="bk-modal-footer">
+            <button class="bk-btn bk-btn-cancel" data-close-modal="addServiceModal" type="button">Hủy</button>
+            <button onclick="saveAddedServices()" class="bk-btn bk-btn-save" type="button">
                 <span class="material-symbols-outlined text-[18px]">add_circle</span>
                 <span>Xác nhận thêm vào hóa đơn</span>
             </button>
@@ -1097,26 +1099,26 @@
 </div>
 
 <!-- 6. POPUP HÓA ĐƠN THANH TOÁN (INVOICE / RECEIPT) -->
-<div id="invoiceModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+<div id="invoiceModal" class="bk-modal" hidden>
+    <div class="bk-modal-content bk-modal-lg" role="dialog" aria-modal="true">
         <!-- Header (Ẩn khi in) -->
-        <div class="p-space-md bg-surface-container border-b border-surface-container-high flex items-center justify-between shrink-0 no-print">
+        <div class="bk-modal-header-surface no-print">
             <div class="flex items-center gap-space-xs">
                 <span class="material-symbols-outlined text-[22px] text-primary">receipt</span>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface">Phiếu thanh toán & Hóa đơn dịch vụ</h3>
+                <h3 class="bk-modal-title">Phiếu thanh toán & Hóa đơn dịch vụ</h3>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="printInvoice()" class="px-3 py-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm flex items-center gap-1 transition-all custom-primary-bg" type="button">
+                <button onclick="printInvoice()" class="bk-btn bk-btn-save !py-1.5 !px-3" type="button">
                     <span class="material-symbols-outlined text-[16px]">print</span> In phiếu
                 </button>
-                <button onclick="closeModal('invoiceModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high text-outline transition-colors" type="button">
+                <button class="bk-modal-close" data-close-modal="invoiceModal" type="button" title="Đóng">
                     <span class="material-symbols-outlined text-[20px]">close</span>
                 </button>
             </div>
         </div>
 
         <!-- Nội dung hóa đơn in ấn (Invoice Print Area) -->
-        <div id="invoicePrintContent" class="p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md bg-white text-black">
+        <div id="invoicePrintContent" class="bk-modal-body bg-white text-black">
             <!-- Header Hóa đơn -->
             <div class="flex items-start justify-between border-b pb-4 border-gray-200">
                 <div class="flex flex-col">
@@ -1196,13 +1198,13 @@
         </div>
 
         <!-- Footer (Ẩn khi in) -->
-        <div class="p-space-md bg-surface-container-low flex items-center justify-between border-t border-surface-container shrink-0 no-print">
-            <button onclick="closeModal('invoiceModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
+        <div class="bk-modal-footer-spread no-print">
+            <button class="bk-btn bk-btn-cancel" data-close-modal="invoiceModal" type="button">Đóng</button>
             <div class="flex items-center gap-2">
-                <button onclick="showToast('Tải PDF', 'Đang tạo bản sao lưu PDF hóa đơn...', 'info')" class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md transition-colors flex items-center gap-1" type="button">
+                <button onclick="showToast('Tải PDF', 'Đang tạo bản sao lưu PDF hóa đơn...', 'info')" class="bk-btn bk-btn-ghost" type="button">
                     <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span> Tải file PDF
                 </button>
-                <button onclick="printInvoice()" class="px-space-lg py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md font-bold transition-all shadow-md custom-secondary-bg flex items-center gap-1.5" type="button">
+                <button onclick="printInvoice()" class="bk-btn bk-btn-secondary" type="button">
                     <span class="material-symbols-outlined text-[18px]">print</span>
                     <span>In phiếu hóa đơn</span>
                 </button>
@@ -1212,22 +1214,22 @@
 </div>
 
 <!-- 7. POPUP DUYỆT ĐƠN & ĐỐI SOÁT CỌC -->
-<div id="approveBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
-        <div class="p-space-md bg-secondary text-on-secondary flex items-center justify-between shrink-0 custom-secondary-bg">
+<div id="approveBookingModal" class="bk-modal" hidden>
+    <div class="bk-modal-content bk-modal-sm" role="dialog" aria-modal="true">
+        <div class="bk-modal-header-secondary">
             <div class="flex items-center gap-space-xs">
                 <span class="material-symbols-outlined text-[24px]">verified_user</span>
                 <div class="flex flex-col">
-                    <h3 class="font-headline-sm text-headline-sm text-on-secondary">Duyệt đơn & Xác nhận cọc</h3>
-                    <span class="font-label-sm text-[11px] text-on-secondary-container">Mã đơn: <strong id="approveModalBookingId" class="text-on-secondary">#BK-9850</strong></span>
+                    <h3 class="bk-modal-title">Duyệt đơn & Xác nhận cọc</h3>
+                    <span class="bk-modal-subtitle">Mã đơn: <strong id="approveModalBookingId" class="text-on-secondary">#BK-9850</strong></span>
                 </div>
             </div>
-            <button onclick="closeModal('approveBookingModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-secondary/80 text-on-secondary transition-colors" type="button">
+            <button class="bk-modal-close-light" data-close-modal="approveBookingModal" type="button" title="Đóng">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
 
-        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+        <div class="bk-modal-body">
             <div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between border border-surface-container">
                 <div class="flex flex-col">
                     <span id="approveModalGuestName" class="font-headline-sm text-on-surface font-bold">Trần Tuấn Kiệt</span>
@@ -1266,9 +1268,9 @@
             </div>
         </div>
 
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
-            <button onclick="closeModal('approveBookingModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
-            <button onclick="confirmApproveBooking()" class="px-space-lg py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md font-bold transition-all shadow-md custom-secondary-bg flex items-center gap-1.5" type="button">
+        <div class="bk-modal-footer">
+            <button class="bk-btn bk-btn-cancel" data-close-modal="approveBookingModal" type="button">Đóng</button>
+            <button onclick="confirmApproveBooking()" class="bk-btn bk-btn-secondary" type="button">
                 <span class="material-symbols-outlined text-[18px]">check_circle</span>
                 <span>Xác nhận duyệt & Giữ phòng</span>
             </button>
@@ -1277,25 +1279,25 @@
 </div>
 
 <!-- 8. POPUP TỪ CHỐI / HỦY ĐƠN ĐẶT PHÒNG -->
-<div id="rejectBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
-        <div class="p-space-md bg-error text-on-error flex items-center justify-between shrink-0">
+<div id="rejectBookingModal" class="bk-modal" hidden>
+    <div class="bk-modal-content bk-modal-sm" role="dialog" aria-modal="true">
+        <div class="bk-modal-header-error">
             <div class="flex items-center gap-space-xs">
                 <span class="material-symbols-outlined text-[24px]">cancel</span>
                 <div class="flex flex-col">
-                    <h3 class="font-headline-sm text-headline-sm text-on-error">Từ chối đơn đặt phòng</h3>
-                    <span class="font-label-sm text-[11px] text-white/80">Mã đơn: <strong id="rejectModalBookingId">#BK-9850</strong> (<span id="rejectModalGuestName">Trần Tuấn Kiệt</span>)</span>
+                    <h3 class="bk-modal-title">Từ chối đơn đặt phòng</h3>
+                    <span class="bk-modal-subtitle text-white/90">Mã đơn: <strong id="rejectModalBookingId">#BK-9850</strong> (<span id="rejectModalGuestName">Trần Tuấn Kiệt</span>)</span>
                 </div>
             </div>
-            <button onclick="closeModal('rejectBookingModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 text-on-error transition-colors" type="button">
+            <button class="bk-modal-close-light" data-close-modal="rejectBookingModal" type="button" title="Đóng">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
 
-        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+        <div class="bk-modal-body">
             <div class="flex flex-col gap-1">
-                <label class="font-label-md text-on-surface font-bold">Lý do từ chối tiếp nhận đơn:</label>
-                <select class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-error text-body-md cursor-pointer">
+                <label class="bk-form-label">Lý do từ chối tiếp nhận đơn:</label>
+                <select class="bk-form-select">
                     <option>Hết phòng do khách đoàn gia hạn thêm ngày</option>
                     <option>Trùng lịch sửa chữa, khử khuẩn và bảo trì homestay</option>
                     <option>Khách hàng không chuyển tiền cọc đúng hạn (quá 2 giờ)</option>
@@ -1305,7 +1307,7 @@
             </div>
 
             <div class="flex flex-col gap-1">
-                <label class="font-label-md text-on-surface font-bold">Phương án xử lý tiền cọc (nếu đã chuyển):</label>
+                <label class="bk-form-label">Phương án xử lý tiền cọc (nếu đã chuyển):</label>
                 <div class="flex flex-col gap-1 text-body-sm">
                     <label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low border border-surface-container cursor-pointer">
                         <input type="radio" name="refundOption" checked class="text-error accent-error">
@@ -1319,14 +1321,14 @@
             </div>
 
             <div class="flex flex-col gap-1">
-                <label class="font-label-md text-on-surface font-bold">Nội dung tin nhắn thông báo gửi khách:</label>
-                <textarea rows="2" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-error text-body-md">Homestay Nhà Sàn Mộc rất tiếc chưa thể phục vụ quý khách trong khung giờ này do trùng lịch bảo trì. Bộ phận lễ tân sẽ liên hệ hỗ trợ hoàn cọc ngay ạ.</textarea>
+                <label class="bk-form-label">Nội dung tin nhắn thông báo gửi khách:</label>
+                <textarea rows="2" class="bk-form-textarea">Homestay Nhà Sàn Mộc rất tiếc chưa thể phục vụ quý khách trong khung giờ này do trùng lịch bảo trì. Bộ phận lễ tân sẽ liên hệ hỗ trợ hoàn cọc ngay ạ.</textarea>
             </div>
         </div>
 
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
-            <button onclick="closeModal('rejectBookingModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy bỏ</button>
-            <button onclick="confirmRejectBooking()" class="px-space-lg py-2 rounded-lg bg-error hover:bg-error/90 text-on-error font-label-md font-bold transition-all shadow-md flex items-center gap-1.5" type="button">
+        <div class="bk-modal-footer">
+            <button class="bk-btn bk-btn-cancel" data-close-modal="rejectBookingModal" type="button">Hủy bỏ</button>
+            <button onclick="confirmRejectBooking()" class="bk-btn bk-btn-danger" type="button">
                 <span class="material-symbols-outlined text-[18px]">block</span>
                 <span>Xác nhận từ chối đơn</span>
             </button>
@@ -1335,24 +1337,24 @@
 </div>
 
 <!-- 9. POPUP XUẤT BÁO CÁO / EXCEL -->
-<div id="exportReportModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
-        <div class="p-space-md bg-surface-container-low border-b border-surface-container flex items-center justify-between shrink-0">
+<div id="exportReportModal" class="bk-modal" hidden>
+    <div class="bk-modal-content bk-modal-sm" role="dialog" aria-modal="true">
+        <div class="bk-modal-header-surface">
             <div class="flex items-center gap-space-xs">
                 <span class="material-symbols-outlined text-[24px] text-primary">table_view</span>
                 <div class="flex flex-col">
-                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Xuất báo cáo & Dữ liệu đặt phòng</h3>
-                    <span class="font-label-sm text-[11px] text-outline">Xuất dữ liệu chi tiết phục vụ đối soát và lưu trữ kế toán</span>
+                    <h3 class="bk-modal-title">Xuất báo cáo & Dữ liệu đặt phòng</h3>
+                    <span class="bk-modal-subtitle">Xuất dữ liệu chi tiết phục vụ đối soát và lưu trữ kế toán</span>
                 </div>
             </div>
-            <button onclick="closeModal('exportReportModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high text-outline transition-colors" type="button">
+            <button class="bk-modal-close" data-close-modal="exportReportModal" type="button" title="Đóng">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
 
-        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+        <div class="bk-modal-body">
             <div class="flex flex-col gap-1">
-                <label class="font-label-md text-on-surface font-bold">1. Chọn kỳ thời gian xuất:</label>
+                <label class="bk-form-label">1. Chọn kỳ thời gian xuất:</label>
                 <div class="grid grid-cols-2 gap-space-xs">
                     <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/60 cursor-pointer">
                         <input type="radio" name="exportRange" class="text-secondary accent-secondary">
@@ -1374,8 +1376,8 @@
             </div>
 
             <div class="flex flex-col gap-1">
-                <label class="font-label-md text-on-surface font-bold">2. Trạng thái đơn đặt phòng:</label>
-                <select class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md cursor-pointer">
+                <label class="bk-form-label">2. Trạng thái đơn đặt phòng:</label>
+                <select class="bk-form-select">
                     <option>Tất cả trạng thái (24 đơn)</option>
                     <option>Chỉ đơn đã cọc và đang lưu trú</option>
                     <option>Chỉ đơn đã hoàn tất thanh toán</option>
@@ -1384,7 +1386,7 @@
             </div>
 
             <div class="flex flex-col gap-1">
-                <label class="font-label-md text-on-surface font-bold">3. Định dạng tệp tải về:</label>
+                <label class="bk-form-label">3. Định dạng tệp tải về:</label>
                 <div class="grid grid-cols-3 gap-space-xs">
                     <label class="flex flex-col items-center gap-1 p-3 rounded-xl bg-surface-container-low border-2 border-secondary text-center cursor-pointer">
                         <span class="material-symbols-outlined text-[28px] text-secondary">description</span>
@@ -1405,9 +1407,9 @@
             </div>
         </div>
 
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
-            <button onclick="closeModal('exportReportModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy</button>
-            <button onclick="handleExportReport()" class="px-space-lg py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md font-bold transition-all shadow-md custom-primary-bg flex items-center gap-1.5" type="button">
+        <div class="bk-modal-footer">
+            <button class="bk-btn bk-btn-cancel" data-close-modal="exportReportModal" type="button">Hủy</button>
+            <button onclick="handleExportReport()" class="bk-btn bk-btn-save" type="button">
                 <span class="material-symbols-outlined text-[18px]">download</span>
                 <span>Tải xuống file báo cáo</span>
             </button>
@@ -1416,22 +1418,22 @@
 </div>
 
 <!-- 10. POPUP LIÊN HỆ KHÁCH HÀNG (GỌI ĐIỆN / NHẮN TIN) -->
-<div id="contactGuestModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
-    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
-        <div class="p-space-md bg-surface-container-low border-b border-surface-container flex items-center justify-between shrink-0">
+<div id="contactGuestModal" class="bk-modal" hidden>
+    <div class="bk-modal-content bk-modal-sm" role="dialog" aria-modal="true">
+        <div class="bk-modal-header-surface">
             <div class="flex items-center gap-space-xs">
                 <span class="material-symbols-outlined text-[22px] text-primary">contact_phone</span>
                 <div class="flex flex-col">
-                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Liên hệ khách hàng</h3>
-                    <span class="font-label-sm text-[11px] text-outline" id="contactModalBookingId">#BK-9842 (Mountain View #01)</span>
+                    <h3 class="bk-modal-title">Liên hệ khách hàng</h3>
+                    <span class="bk-modal-subtitle" id="contactModalBookingId">#BK-9842 (Mountain View #01)</span>
                 </div>
             </div>
-            <button onclick="closeModal('contactGuestModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high text-outline transition-colors" type="button">
+            <button class="bk-modal-close" data-close-modal="contactGuestModal" type="button" title="Đóng">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
         </div>
 
-        <div class="p-space-md overflow-y-auto modal-scroll flex flex-col gap-space-md">
+        <div class="bk-modal-body">
             <!-- Tabs chuyển đổi kênh liên hệ -->
             <div class="flex items-center gap-1 p-1 bg-surface-container rounded-xl">
                 <button id="contactTabCallBtn" onclick="switchContactTab('call')" class="flex-1 py-2 rounded-lg font-label-md text-label-md font-bold bg-primary text-on-primary transition-all custom-primary-bg" type="button">
@@ -1452,11 +1454,11 @@
                     <span id="contactModalPhone" class="text-headline-md font-bold text-secondary mt-0.5">0982 341 112</span>
                 </div>
                 <div class="flex items-center gap-2 w-full pt-2">
-                    <a href="tel:0982341112" class="flex-1 py-2.5 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md font-bold transition-all flex items-center justify-center gap-1 custom-secondary-bg">
+                    <a href="tel:0982341112" class="bk-btn bk-btn-secondary flex-1 !py-2.5">
                         <span class="material-symbols-outlined text-[18px]">call</span>
                         <span>Bấm gọi ngay</span>
                     </a>
-                    <button onclick="showToast('Zalo', 'Đang mở liên kết Zalo số 0982341112...', 'info')" class="flex-1 py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md font-bold transition-all flex items-center justify-center gap-1" type="button">
+                    <button onclick="showToast('Zalo', 'Đang mở liên kết Zalo số 0982341112...', 'info')" class="bk-btn bk-btn-ghost flex-1 !py-2.5" type="button">
                         <span class="material-symbols-outlined text-[18px]">chat_bubble</span>
                         <span>Mở Zalo</span>
                     </button>
@@ -1465,7 +1467,7 @@
 
             <!-- Khung 2: Nhắn tin nhanh -->
             <div id="contactChatSection" class="hidden flex flex-col gap-space-sm">
-                <span class="font-label-md text-on-surface font-bold">Mẫu tin nhắn nhanh có sẵn:</span>
+                <span class="bk-form-label">Mẫu tin nhắn nhanh có sẵn:</span>
                 <div class="flex flex-col gap-1.5">
                     <button onclick="selectMessageTemplate('Chào bạn, Homestay Nhà Sàn Mộc đã chuẩn bị xong phòng đón bạn vào lúc 14h00 hôm nay. Nếu cần đón từ ngã ba Bản Lác, bạn nhắn homestay nhé!')" class="p-2 rounded-lg bg-surface-container-low hover:bg-surface-container border border-surface-container text-left text-body-sm text-on-surface transition-colors" type="button">
                         <strong>1. Nhắc nhận phòng:</strong> Phòng đã sẵn sàng đón lúc 14h00...
@@ -1479,22 +1481,21 @@
                 </div>
 
                 <div class="flex flex-col gap-1 pt-1">
-                    <label class="font-label-md text-on-surface font-bold">Nội dung tin nhắn:</label>
-                    <textarea id="contactChatMessageInput" rows="3" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="Nhập nội dung tin nhắn gửi khách..."></textarea>
+                    <label class="bk-form-label">Nội dung tin nhắn:</label>
+                    <textarea id="contactChatMessageInput" rows="3" class="bk-form-textarea" placeholder="Nhập nội dung tin nhắn gửi khách..."></textarea>
                 </div>
 
-                <button onclick="sendContactMessage()" class="w-full py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md font-bold transition-all custom-primary-bg flex items-center justify-center gap-1" type="button">
+                <button onclick="sendContactMessage()" class="bk-btn bk-btn-save w-full !py-2.5" type="button">
                     <span class="material-symbols-outlined text-[18px]">send</span>
                     <span>Gửi tin nhắn qua sàn / Zalo</span>
                 </button>
             </div>
         </div>
 
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end border-t border-surface-container shrink-0">
-            <button onclick="closeModal('contactGuestModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
+        <div class="bk-modal-footer">
+            <button class="bk-btn bk-btn-cancel" data-close-modal="contactGuestModal" type="button">Đóng</button>
         </div>
     </div>
 </div>
-
 </body>
 </html>

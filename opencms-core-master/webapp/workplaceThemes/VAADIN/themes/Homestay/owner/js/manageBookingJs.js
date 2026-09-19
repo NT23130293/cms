@@ -317,47 +317,59 @@ function attachTableRowActions() {
     });
 }
 
-// 5. Các hàm điều khiển Modal Chung
+// 5. Các hàm điều khiển Modal Chung (đồng bộ với manageRoom)
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-        document.body.style.overflow = "hidden"; // Chống cuộn trang phía sau
-    }
+    if (!modal) return;
+    // Bỏ thuộc tính hidden nếu có (giống room-modal)
+    modal.removeAttribute("hidden");
+    // Sau 1 frame thêm is-open để kích hoạt CSS transition
+    requestAnimationFrame(() => {
+        modal.classList.add("is-open");
+    });
+    document.body.classList.add("modal-open");
 }
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.remove("flex");
-        modal.classList.add("hidden");
-        // Kiểm tra nếu không còn modal nào mở thì mở lại cuộn trang
-        const openModals = document.querySelectorAll(".fixed.inset-0.flex");
-        if (openModals.length === 0) {
-            document.body.style.overflow = "";
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    // Đợi transition xong rồi mới ẩn hẳn
+    modal.addEventListener("transitionend", function handler() {
+        if (!modal.classList.contains("is-open")) {
+            modal.setAttribute("hidden", "");
         }
-    }
+        modal.removeEventListener("transitionend", handler);
+    });
+    // Kiểm tra nếu không còn modal nào mở thì xóa class modal-open
+    setTimeout(() => {
+        const openModals = document.querySelectorAll(".bk-modal.is-open");
+        if (openModals.length === 0) {
+            document.body.classList.remove("modal-open");
+        }
+    }, 250);
 }
 
 // Đóng modal khi ấn ESC hoặc ấn ra ngoài phần backdrop xám
 function initModalEscAndBackdrop() {
     document.addEventListener("keydown", function (e) {
         if (e.key === "Escape") {
-            const openModals = document.querySelectorAll(".fixed.inset-0.flex");
-            openModals.forEach(m => {
-                m.classList.remove("flex");
-                m.classList.add("hidden");
-            });
-            document.body.style.overflow = "";
+            const openModals = document.querySelectorAll(".bk-modal.is-open");
+            openModals.forEach(m => closeModal(m.id));
         }
     });
 
-    document.querySelectorAll(".fixed.inset-0").forEach(modalOverlay => {
-        modalOverlay.addEventListener("click", function (e) {
-            if (e.target === this) {
-                closeModal(this.id);
-            }
+    // Bắt sự kiện click backdrop để đóng modal
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("bk-modal") && e.target.classList.contains("is-open")) {
+            closeModal(e.target.id);
+        }
+    });
+
+    // Nút đóng dùng data-close-modal
+    document.querySelectorAll("[data-close-modal]").forEach(btn => {
+        btn.addEventListener("click", function () {
+            closeModal(this.dataset.closeModal);
         });
     });
 }
