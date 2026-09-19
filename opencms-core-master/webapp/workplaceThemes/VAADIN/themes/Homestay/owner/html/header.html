@@ -1,0 +1,32 @@
+<!-- Header Component -->
+<header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="w-96 flex items-center bg-surface-container-low rounded-lg px-space-sm py-space-xs text-on-surface-variant focus-within:bg-surface-container-lowest focus-within:ring-1 focus-within:ring-secondary transition-all">
+        <span class="material-symbols-outlined text-[20px] mr-space-xs text-outline">search</span>
+        <input class="bg-transparent w-full text-body-md font-body-md text-on-surface placeholder:text-outline outline-none"
+               placeholder="Tìm kiếm phòng, khách hàng, mã booking..." type="text">
+    </div>
+    <div class="flex items-center gap-space-md">
+        <div class="flex items-center gap-space-xs">
+            <button class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-[20px]">chat</span>
+            </button>
+            <button class="relative w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined text-[20px]">notifications</span>
+                <span class="absolute top-1 right-1 w-4 h-4 bg-error text-on-error font-label-sm text-[10px] rounded-full flex items-center justify-center">3</span>
+            </button>
+        </div>
+        <div class="h-6 w-px bg-surface-container"></div>
+        <div class="flex items-center gap-space-sm pl-space-xs">
+            <img alt="Profile" class="w-8 h-8 rounded-full object-cover"
+                 src="https://lh3.googleusercontent.com/aida/AEtjO1W7zs7OjBASCOexo74_mIgfQZTcHfdYs4AEy6azcaerc7X6IvM9nRu28E-RnVj7Xy6fyOhptHylxmI6RomPfEdWiYzjw0V-yC6tQ7qliOWFrY8-_z9Umlu9GLUHeDbDtoyytD4pPROYAQ4DqzbShJOYUgKdJWg83gVaScW_7WY2vDqgy16KLOiYQ9rBz3fb50bOLvZtubEFqW8cHqktuA0BcjG9YuxpWN6XELHpvmfymi5zqcsHwvyJ3pz2gBd_bOAup7qMKlzR">
+            <div class="flex flex-col text-left">
+                <div class="flex items-center gap-space-xs">
+                    <span class="font-label-lg text-label-lg text-on-surface leading-none">Nguyễn Văn An</span>
+                    <span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px]">Chủ homestay</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface-variant leading-none mt-1">Nhà Sàn Mộc</span>
+            </div>
+            <span class="material-symbols-outlined text-[18px] text-outline ml-space-xs">expand_more</span>
+        </div>
+    </div>
+</header>
