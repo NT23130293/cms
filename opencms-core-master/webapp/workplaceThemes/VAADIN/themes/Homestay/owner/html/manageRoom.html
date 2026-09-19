@@ -11,10 +11,11 @@
           rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../css/manageRoom.css">
-
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased">
+<div id="sidebar-container"></div>
 <main class="w-full pt-16 bg-surface px-space-lg py-space-lg min-h-screen">
+    <div id="header-container"></div>
     <div class="flex flex-col w-full gap-space-lg">
         <!-- Top Action & Context Banner -->
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_2px_12px_rgba(21,67,50,0.05)] relative overflow-hidden">
@@ -23,12 +24,9 @@
                 <div class="flex items-center gap-space-xs">
                     <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wide">Nhà Sàn Mộc • Mai Châu</span>
                     <span class="text-outline text-label-sm">•</span>
-                    <span class="text-on-surface-variant font-label-sm text-label-sm">Cập nhật lúc: 14:30 hôm nay</span>
                 </div>
                 <h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Quản lý phòng
                     &amp; Tình trạng phòng</h1>
-                <p class="font-body-md text-body-md text-on-surface-variant">Tổng số 8 phòng • 5 phòng đang đón khách •
-                    1 phòng đang bảo trì &amp; dọn buồng</p>
             </div>
             <!-- Action Toolbar -->
             <div class="flex flex-wrap items-center gap-space-sm z-10">
@@ -45,7 +43,10 @@
                         Lịch Timeline
                     </button>
                 </div>
-                <button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5 transition-colors shadow-sm">
+                <button
+                        id="btnBulkPrice"
+                        type="button"
+                        class="bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5 transition-colors shadow-sm">
                     <span class="material-symbols-outlined text-[18px] text-secondary">tune</span>
                     Cập nhật giá hàng loạt
                 </button>
@@ -90,10 +91,6 @@
                         <span class="font-display-lg text-display-lg text-secondary font-bold leading-tight">5/8</span>
                         <span class="font-body-sm text-body-sm text-on-surface-variant">phòng</span>
                     </div>
-                    <div class="flex items-center gap-1 font-body-sm text-body-sm text-on-secondary-container">
-                        <span class="material-symbols-outlined text-[14px]">pie_chart</span>
-                        <span class="">Tỷ lệ lấp đầy: <strong>62.5%</strong></span>
-                    </div>
                 </div>
                 <div class="absolute right-0 top-0 bottom-0 w-1 bg-secondary-fixed-dim rounded-r"></div>
             </div>
@@ -108,7 +105,6 @@
                         <span class="font-display-lg text-display-lg text-on-tertiary-fixed-variant font-bold leading-tight">2</span>
                         <span class="font-body-sm text-body-sm text-on-surface-variant">phòng</span>
                     </div>
-                    <span class="font-body-sm text-body-sm text-on-tertiary-fixed-variant truncate">Garden View, Mountain View</span>
                 </div>
                 <div class="absolute right-0 top-0 bottom-0 w-1 bg-tertiary-fixed-dim rounded-r"></div>
             </div>
@@ -123,7 +119,6 @@
                         <span class="font-display-lg text-display-lg text-error font-bold leading-tight">1</span>
                         <span class="font-body-sm text-body-sm text-on-surface-variant">phòng</span>
                     </div>
-                    <span class="font-body-sm text-body-sm text-outline truncate">Nhà Sàn Gỗ Lớn (Sửa quạt)</span>
                 </div>
                 <div class="absolute right-0 top-0 bottom-0 w-1 bg-outline-variant rounded-r"></div>
             </div>
@@ -229,7 +224,7 @@
                         </div>
                     </div>
                     <!-- Current Guest / Occupancy info Box -->
-                    <div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between">
+                    <div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col gap-space-sm">
                         <div class="flex items-center gap-space-sm min-w-0">
                             <div class="w-9 h-9 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-md shrink-0">
                                 LH
@@ -242,41 +237,107 @@
               </span>
                             </div>
                         </div>
-                        <button class="p-1.5 rounded-lg text-primary hover:bg-surface-container-highest transition-colors"
-                                title="Gọi khách">
-                            <span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
-                        </button>
-                    </div>
-                    <!-- Action Row -->
-                    <div class="flex items-center justify-between pt-space-xs">
-                        <div class="flex items-center gap-space-xs">
-                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[16px]">edit_calendar</span>
-                                Lịch phòng
-                            </button>
-                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[16px]">lock</span>
-                                Khóa phòng
+                        <div class="flex items-center gap-space-xs pt-space-xs border-t border-surface-container">
+                            <button class="flex-1 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container-highest text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 transition-colors"
+                                    title="Gọi khách">
+                                <span class="material-symbols-outlined text-[16px] text-primary">phone_in_talk</span>
+                                Gọi khách
                             </button>
                             <button
                                     type="button"
-                                    class="btn-edit-room px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
-                                    data-room-name="Garden View 101"
+                                    class="btn-checkout flex-1 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1 hover:bg-primary-container transition-colors shadow-sm"
+                                    data-guest-name="Lê Văn Hiếu"
+                                    data-guest-stay="16/09 → 18/09 (2 đêm)"
                                     data-room-code="P.101"
-                                    data-room-type="Garden View"
-                                    data-room-capacity="4"
-                                    data-room-price="850000"
-                                    data-room-description="Phòng hướng vườn, phù hợp cho gia đình nhỏ.">
-
-                                    <span class="material-symbols-outlined text-[16px]">
-                                        edit
-                                    </span>
-
-                                Chỉnh sửa
+                                    data-room-name="Phòng Garden View 101">
+                                <span class="material-symbols-outlined text-[16px]">logout</span>
+                                Check-out
                             </button>
                         </div>
-                        <button class="px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1">
-                            <span class="">Chi tiết &amp; Hóa đơn</span>
+                    </div>
+                    <!-- Action Row -->
+                    <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+                        <div class="flex flex-wrap items-center gap-space-xs">
+
+                            <button
+                                    type="button"
+                                    class="btn-room-calendar px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-code="P.101"
+                                    data-room-name="Phòng Garden View 101"
+                                    data-room-type="Garden View"
+                                    data-room-capacity="3"
+                                    data-room-price="850000"
+                                    data-room-status="occupied"
+                                    data-room-description="Phòng hướng vườn bưởi, ban công gỗ, phù hợp cho gia đình nhỏ."
+                                    data-room-amenities="View vườn bưởi,Ban công gỗ,Điều hòa Inverter,Bồn thảo dược Mai Châu"
+                                    data-room-floor="Tầng 1"
+                                    data-room-bed="Giường King 1m8"
+                                    data-room-guest="Lê Văn Hiếu"
+                                    data-room-stay="16/09 → 18/09 (2 đêm)"
+                                    data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuA92VX9N0UDeWwWCIKjLehBZXqx8o90G5vq3LcG_Tv0TlKZ9rEJ77YoL_ic27GRSnIMBYyV_hPitG43lJozoYkKMt4F4Y7wzS4YPVqq_MN6AAReFtqmQ_Qu-xdxFAFbZ9xj_AL3rI1Hv1uCJLz-BKK40SYyXjnkf6G_WKzgCm_eBrS-GHlu3kwoI38m9ujg_5UmlnI_FmInPuwLvZuARdlOIv0nmTsucIfBFKIImzuftsaBcKWW9n8">
+                                <span class="material-symbols-outlined text-[16px]">edit_calendar</span>
+                                Lịch phòng
+                            </button>
+
+                            <button
+                                    type="button"
+                                    class="btn-block-date px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-code="P.101"
+                                    data-room-name="Phòng Garden View 101"
+                                    data-room-type="Garden View"
+                                    data-room-capacity="3"
+                                    data-room-price="850000"
+                                    data-room-status="occupied"
+                                    data-room-description="Phòng hướng vườn bưởi, ban công gỗ, phù hợp cho gia đình nhỏ."
+                                    data-room-amenities="View vườn bưởi,Ban công gỗ,Điều hòa Inverter,Bồn thảo dược Mai Châu"
+                                    data-room-floor="Tầng 1"
+                                    data-room-bed="Giường King 1m8"
+                                    data-room-guest="Lê Văn Hiếu"
+                                    data-room-stay="16/09 → 18/09 (2 đêm)"
+                                    data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuA92VX9N0UDeWwWCIKjLehBZXqx8o90G5vq3LcG_Tv0TlKZ9rEJ77YoL_ic27GRSnIMBYyV_hPitG43lJozoYkKMt4F4Y7wzS4YPVqq_MN6AAReFtqmQ_Qu-xdxFAFbZ9xj_AL3rI1Hv1uCJLz-BKK40SYyXjnkf6G_WKzgCm_eBrS-GHlu3kwoI38m9ujg_5UmlnI_FmInPuwLvZuARdlOIv0nmTsucIfBFKIImzuftsaBcKWW9n8">
+                                <span class="material-symbols-outlined text-[16px]">lock_clock</span>
+                                Chặn ngày
+                            </button>
+
+                            <button
+                                    type="button"
+                                    class="btn-edit-room px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-code="P.101"
+                                    data-room-name="Phòng Garden View 101"
+                                    data-room-type="Garden View"
+                                    data-room-capacity="3"
+                                    data-room-price="850000"
+                                    data-room-status="occupied"
+                                    data-room-description="Phòng hướng vườn bưởi, ban công gỗ, phù hợp cho gia đình nhỏ."
+                                    data-room-amenities="View vườn bưởi,Ban công gỗ,Điều hòa Inverter,Bồn thảo dược Mai Châu"
+                                    data-room-floor="Tầng 1"
+                                    data-room-bed="Giường King 1m8"
+                                    data-room-guest="Lê Văn Hiếu"
+                                    data-room-stay="16/09 → 18/09 (2 đêm)"
+                                    data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuA92VX9N0UDeWwWCIKjLehBZXqx8o90G5vq3LcG_Tv0TlKZ9rEJ77YoL_ic27GRSnIMBYyV_hPitG43lJozoYkKMt4F4Y7wzS4YPVqq_MN6AAReFtqmQ_Qu-xdxFAFbZ9xj_AL3rI1Hv1uCJLz-BKK40SYyXjnkf6G_WKzgCm_eBrS-GHlu3kwoI38m9ujg_5UmlnI_FmInPuwLvZuARdlOIv0nmTsucIfBFKIImzuftsaBcKWW9n8">
+                                <span class="material-symbols-outlined text-[16px]">edit</span>
+                                Chỉnh sửa
+                            </button>
+
+                        </div>
+
+                        <button
+                                type="button"
+                                class="btn-room-detail px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1"
+                                data-room-code="P.101"
+                                data-room-name="Phòng Garden View 101"
+                                data-room-type="Garden View"
+                                data-room-capacity="3"
+                                data-room-price="850000"
+                                data-room-status="occupied"
+                                data-room-description="Phòng hướng vườn bưởi, ban công gỗ, phù hợp cho gia đình nhỏ."
+                                data-room-amenities="View vườn bưởi,Ban công gỗ,Điều hòa Inverter,Bồn thảo dược Mai Châu"
+                                data-room-floor="Tầng 1"
+                                data-room-bed="Giường King 1m8"
+                                data-room-guest="Lê Văn Hiếu"
+                                data-room-stay="16/09 → 18/09 (2 đêm)"
+                                data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuA92VX9N0UDeWwWCIKjLehBZXqx8o90G5vq3LcG_Tv0TlKZ9rEJ77YoL_ic27GRSnIMBYyV_hPitG43lJozoYkKMt4F4Y7wzS4YPVqq_MN6AAReFtqmQ_Qu-xdxFAFbZ9xj_AL3rI1Hv1uCJLz-BKK40SYyXjnkf6G_WKzgCm_eBrS-GHlu3kwoI38m9ujg_5UmlnI_FmInPuwLvZuARdlOIv0nmTsucIfBFKIImzuftsaBcKWW9n8">
+                            <span class="">Xem chi tiết</span>
                             <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
                         </button>
                     </div>
@@ -343,7 +404,7 @@
                         </div>
                     </div>
                     <!-- Current Guest / Occupancy info Box -->
-                    <div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between">
+                    <div class="bg-surface-container-low rounded-xl p-space-sm flex flex-col gap-space-sm">
                         <div class="flex items-center gap-space-sm min-w-0">
                             <div class="w-9 h-9 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center font-bold text-label-md shrink-0">
                                 NM
@@ -356,40 +417,118 @@
               </span>
                             </div>
                         </div>
-                        <button class="px-2 py-1 rounded-md bg-secondary text-on-secondary text-label-sm font-label-sm hover:bg-primary transition-colors">
-                            Check-in
-                        </button>
-                    </div>
-                    <!-- Action Row -->
-                    <div class="flex items-center justify-between pt-space-xs">
-                        <div class="flex items-center gap-space-xs">
-                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[16px]">edit</span>
+                        <div class="flex items-center gap-space-xs pt-space-xs border-t border-surface-container">
+                            <button
+                                    type="button"
+                                    class="btn-change-room py-1.5 px-space-sm rounded-lg bg-surface-container-lowest hover:bg-surface-container-highest text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 transition-colors"
+                                    title="Đổi phòng"
+                                    data-guest-name="Nguyễn Thị Mai"
+                                    data-guest-stay="17/09 → 20/09"
+                                    data-room-code="P.201"
+                                    data-room-name="Phòng Mountain View 201">
+                                <span class="material-symbols-outlined text-[16px]">sync_alt</span>
                                 Đổi phòng
-                            </button>
-                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[16px]">notifications_active</span>
-                                Nhắc khách
                             </button>
                             <button
                                     type="button"
-                                    class="btn-edit-room px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
-                                    data-room-name="Garden View 101"
-                                    data-room-code="P.101"
-                                    data-room-type="Garden View"
-                                    data-room-capacity="4"
-                                    data-room-price="850000"
-                                    data-room-description="Phòng hướng vườn, phù hợp cho gia đình nhỏ.">
-
-                                    <span class="material-symbols-outlined text-[16px]">
-                                        edit
-                                    </span>
-
-                                Chỉnh sửa
+                                    class="btn-cancel-booking py-1.5 px-space-sm rounded-lg bg-surface-container-lowest hover:bg-error-container text-error font-label-md text-label-md flex items-center justify-center gap-1 transition-colors"
+                                    title="Hủy phòng"
+                                    data-guest-name="Nguyễn Thị Mai"
+                                    data-guest-stay="17/09 → 20/09"
+                                    data-room-code="P.201"
+                                    data-room-name="Phòng Mountain View 201">
+                                <span class="material-symbols-outlined text-[16px]">cancel</span>
+                                Hủy phòng
+                            </button>
+                            <button class="flex-1 py-1.5 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-primary transition-colors flex items-center justify-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">login</span>
+                                Check-in
                             </button>
                         </div>
-                        <button class="px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1">
-                            <span class="">Chi tiết &amp; Hóa đơn</span>
+                    </div>
+                    <!-- Action Row -->
+                    <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+                        <div class="flex flex-wrap items-center gap-space-xs">
+
+                            <button
+                                    type="button"
+                                    class="btn-room-calendar px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-code="P.201"
+                                    data-room-name="Phòng Mountain View 201"
+                                    data-room-type="Mountain View"
+                                    data-room-capacity="4"
+                                    data-room-price="1200000"
+                                    data-room-status="booked"
+                                    data-room-description="Phòng view thung lũng lúa, 2 giường Queen gỗ pơmu, dành cho gia đình."
+                                    data-room-amenities="View thung lũng lúa,Giường King Pơmu,Trà Shan tuyết,Wifi vệ tinh"
+                                    data-room-floor="Tầng 2"
+                                    data-room-bed="2 Giường Queen gỗ pơmu"
+                                    data-room-guest="Nguyễn Thị Mai (đã cọc 50%)"
+                                    data-room-stay="17/09 → 20/09 (chờ check-in)"
+                                    data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuDvwt_LAypkngMfvKDDOYdct2L-JFaJmze6APU8kMIvzwODRa_h5_ep_EukGGhnOY86dp_l0loMQxsXTFSa5NzplVG4c9jBSX5SUO8fF7GkyfaoEGuMtJL-cpZ5uR1ASJBlmOnSaCVFsBD9kKoRE1OiTImP7OK7u27yodqXuT-4vnkRyWt5EZ7OSWBxZck046_lx5GOSdM43jQoLlU4RtloR61HbMgHu1DU13-aYGLO-TAAYSe95HI">
+                                <span class="material-symbols-outlined text-[16px]">edit_calendar</span>
+                                Lịch phòng
+                            </button>
+
+                            <button
+                                    type="button"
+                                    class="btn-block-date px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-code="P.201"
+                                    data-room-name="Phòng Mountain View 201"
+                                    data-room-type="Mountain View"
+                                    data-room-capacity="4"
+                                    data-room-price="1200000"
+                                    data-room-status="booked"
+                                    data-room-description="Phòng view thung lũng lúa, 2 giường Queen gỗ pơmu, dành cho gia đình."
+                                    data-room-amenities="View thung lũng lúa,Giường King Pơmu,Trà Shan tuyết,Wifi vệ tinh"
+                                    data-room-floor="Tầng 2"
+                                    data-room-bed="2 Giường Queen gỗ pơmu"
+                                    data-room-guest="Nguyễn Thị Mai (đã cọc 50%)"
+                                    data-room-stay="17/09 → 20/09 (chờ check-in)"
+                                    data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuDvwt_LAypkngMfvKDDOYdct2L-JFaJmze6APU8kMIvzwODRa_h5_ep_EukGGhnOY86dp_l0loMQxsXTFSa5NzplVG4c9jBSX5SUO8fF7GkyfaoEGuMtJL-cpZ5uR1ASJBlmOnSaCVFsBD9kKoRE1OiTImP7OK7u27yodqXuT-4vnkRyWt5EZ7OSWBxZck046_lx5GOSdM43jQoLlU4RtloR61HbMgHu1DU13-aYGLO-TAAYSe95HI">
+                                <span class="material-symbols-outlined text-[16px]">lock_clock</span>
+                                Chặn ngày
+                            </button>
+
+                            <button
+                                    type="button"
+                                    class="btn-edit-room px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-code="P.201"
+                                    data-room-name="Phòng Mountain View 201"
+                                    data-room-type="Mountain View"
+                                    data-room-capacity="4"
+                                    data-room-price="1200000"
+                                    data-room-status="booked"
+                                    data-room-description="Phòng view thung lũng lúa, 2 giường Queen gỗ pơmu, dành cho gia đình."
+                                    data-room-amenities="View thung lũng lúa,Giường King Pơmu,Trà Shan tuyết,Wifi vệ tinh"
+                                    data-room-floor="Tầng 2"
+                                    data-room-bed="2 Giường Queen gỗ pơmu"
+                                    data-room-guest="Nguyễn Thị Mai (đã cọc 50%)"
+                                    data-room-stay="17/09 → 20/09 (chờ check-in)"
+                                    data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuDvwt_LAypkngMfvKDDOYdct2L-JFaJmze6APU8kMIvzwODRa_h5_ep_EukGGhnOY86dp_l0loMQxsXTFSa5NzplVG4c9jBSX5SUO8fF7GkyfaoEGuMtJL-cpZ5uR1ASJBlmOnSaCVFsBD9kKoRE1OiTImP7OK7u27yodqXuT-4vnkRyWt5EZ7OSWBxZck046_lx5GOSdM43jQoLlU4RtloR61HbMgHu1DU13-aYGLO-TAAYSe95HI">
+                                <span class="material-symbols-outlined text-[16px]">edit</span>
+                                Chỉnh sửa
+                            </button>
+
+                        </div>
+
+                        <button
+                                type="button"
+                                class="btn-room-detail px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1"
+                                data-room-code="P.201"
+                                data-room-name="Phòng Mountain View 201"
+                                data-room-type="Mountain View"
+                                data-room-capacity="4"
+                                data-room-price="1200000"
+                                data-room-status="booked"
+                                data-room-description="Phòng view thung lũng lúa, 2 giường Queen gỗ pơmu, dành cho gia đình."
+                                data-room-amenities="View thung lũng lúa,Giường King Pơmu,Trà Shan tuyết,Wifi vệ tinh"
+                                data-room-floor="Tầng 2"
+                                data-room-bed="2 Giường Queen gỗ pơmu"
+                                data-room-guest="Nguyễn Thị Mai (đã cọc 50%)"
+                                data-room-stay="17/09 → 20/09 (chờ check-in)"
+                                data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuDvwt_LAypkngMfvKDDOYdct2L-JFaJmze6APU8kMIvzwODRa_h5_ep_EukGGhnOY86dp_l0loMQxsXTFSa5NzplVG4c9jBSX5SUO8fF7GkyfaoEGuMtJL-cpZ5uR1ASJBlmOnSaCVFsBD9kKoRE1OiTImP7OK7u27yodqXuT-4vnkRyWt5EZ7OSWBxZck046_lx5GOSdM43jQoLlU4RtloR61HbMgHu1DU13-aYGLO-TAAYSe95HI">
+                            <span class="">Xem chi tiết</span>
                             <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
                         </button>
                     </div>
@@ -462,151 +601,90 @@
                                 <span class="font-body-sm text-body-sm text-on-surface-variant">Lịch trống liên tục từ: <strong>17/09 đến 22/09</strong></span>
                             </div>
                         </div>
-                        <button class="px-2.5 py-1 rounded-md bg-secondary text-on-secondary text-label-sm font-label-sm hover:bg-primary transition-colors flex items-center gap-1">
-                            <span class="material-symbols-outlined text-[14px]">add</span>
-                            Tạo booking
-                        </button>
                     </div>
                     <!-- Action Row -->
-                    <div class="flex items-center justify-between pt-space-xs">
-                        <div class="flex items-center gap-space-xs">
-                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[16px]">price_change</span>
-                                Sửa giá khách lẻ
+                    <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+                        <div class="flex flex-wrap items-center gap-space-xs">
+
+                            <button
+                                    type="button"
+                                    class="btn-room-calendar px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-code="DORM.01"
+                                    data-room-name="Nhà Sàn Trải Nghiệm Bản Đạo"
+                                    data-room-type="Dorm"
+                                    data-room-capacity="12"
+                                    data-room-price="350000"
+                                    data-room-status="available"
+                                    data-room-description="Nhà sàn tập thể, bếp củi giao lưu, không gian BBQ, nhận đoàn tour và trekking."
+                                    data-room-amenities="Bếp củi giao lưu,BBQ sàn gỗ,4 buồng tắm riêng,10 đệm thổ cẩm"
+                                    data-room-floor="Toàn sàn"
+                                    data-room-bed="10 Đệm đơn thổ cẩm"
+                                    data-room-guest=""
+                                    data-room-stay="Trống liên tục 17/09 → 22/09"
+                                    data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuBG_MU48hzMQCyOhQjXMvJGqzt-Py1zvLIKdJxQSDTxbSE7QFP2vJjB9mDbcUYJLJqaC3JtSepgaFuDuU4fq9isiJfqTU8A3vE2yVcYPpMMb6VjetGR6nDaojf8gVynYqRPemLgYKJQxuP-dLld77rT4avkl2Nybfhcf8SMnDh39PJFgUbN8E0t5PfUHgP9RLlTL1RAJzlVia4IsO_kMnl9HllAv9kj71hnmBxXa6Mw1n38jFb7zQM">
+                                <span class="material-symbols-outlined text-[16px]">edit_calendar</span>
+                                Lịch phòng
                             </button>
-                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+
+                            <button
+                                    type="button"
+                                    class="btn-block-date px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-code="DORM.01"
+                                    data-room-name="Nhà Sàn Trải Nghiệm Bản Đạo"
+                                    data-room-type="Dorm"
+                                    data-room-capacity="12"
+                                    data-room-price="350000"
+                                    data-room-status="available"
+                                    data-room-description="Nhà sàn tập thể, bếp củi giao lưu, không gian BBQ, nhận đoàn tour và trekking."
+                                    data-room-amenities="Bếp củi giao lưu,BBQ sàn gỗ,4 buồng tắm riêng,10 đệm thổ cẩm"
+                                    data-room-floor="Toàn sàn"
+                                    data-room-bed="10 Đệm đơn thổ cẩm"
+                                    data-room-guest=""
+                                    data-room-stay="Trống liên tục 17/09 → 22/09"
+                                    data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuBG_MU48hzMQCyOhQjXMvJGqzt-Py1zvLIKdJxQSDTxbSE7QFP2vJjB9mDbcUYJLJqaC3JtSepgaFuDuU4fq9isiJfqTU8A3vE2yVcYPpMMb6VjetGR6nDaojf8gVynYqRPemLgYKJQxuP-dLld77rT4avkl2Nybfhcf8SMnDh39PJFgUbN8E0t5PfUHgP9RLlTL1RAJzlVia4IsO_kMnl9HllAv9kj71hnmBxXa6Mw1n38jFb7zQM">
                                 <span class="material-symbols-outlined text-[16px]">lock_clock</span>
                                 Chặn ngày
                             </button>
+
                             <button
                                     type="button"
                                     class="btn-edit-room px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
-                                    data-room-name="Garden View 101"
-                                    data-room-code="P.101"
-                                    data-room-type="Garden View"
-                                    data-room-capacity="4"
-                                    data-room-price="850000"
-                                    data-room-description="Phòng hướng vườn, phù hợp cho gia đình nhỏ.">
-
-                                    <span class="material-symbols-outlined text-[16px]">
-                                        edit
-                                    </span>
-
+                                    data-room-code="DORM.01"
+                                    data-room-name="Nhà Sàn Trải Nghiệm Bản Đạo"
+                                    data-room-type="Dorm"
+                                    data-room-capacity="12"
+                                    data-room-price="350000"
+                                    data-room-status="available"
+                                    data-room-description="Nhà sàn tập thể, bếp củi giao lưu, không gian BBQ, nhận đoàn tour và trekking."
+                                    data-room-amenities="Bếp củi giao lưu,BBQ sàn gỗ,4 buồng tắm riêng,10 đệm thổ cẩm"
+                                    data-room-floor="Toàn sàn"
+                                    data-room-bed="10 Đệm đơn thổ cẩm"
+                                    data-room-guest=""
+                                    data-room-stay="Trống liên tục 17/09 → 22/09"
+                                    data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuBG_MU48hzMQCyOhQjXMvJGqzt-Py1zvLIKdJxQSDTxbSE7QFP2vJjB9mDbcUYJLJqaC3JtSepgaFuDuU4fq9isiJfqTU8A3vE2yVcYPpMMb6VjetGR6nDaojf8gVynYqRPemLgYKJQxuP-dLld77rT4avkl2Nybfhcf8SMnDh39PJFgUbN8E0t5PfUHgP9RLlTL1RAJzlVia4IsO_kMnl9HllAv9kj71hnmBxXa6Mw1n38jFb7zQM">
+                                <span class="material-symbols-outlined text-[16px]">edit</span>
                                 Chỉnh sửa
                             </button>
+
                         </div>
-                        <button class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+
+                        <button
+                                type="button"
+                                class="btn-room-detail px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1"
+                                data-room-code="DORM.01"
+                                data-room-name="Nhà Sàn Trải Nghiệm Bản Đạo"
+                                data-room-type="Dorm"
+                                data-room-capacity="12"
+                                data-room-price="350000"
+                                data-room-status="available"
+                                data-room-description="Nhà sàn tập thể, bếp củi giao lưu, không gian BBQ, nhận đoàn tour và trekking."
+                                data-room-amenities="Bếp củi giao lưu,BBQ sàn gỗ,4 buồng tắm riêng,10 đệm thổ cẩm"
+                                data-room-floor="Toàn sàn"
+                                data-room-bed="10 Đệm đơn thổ cẩm"
+                                data-room-guest=""
+                                data-room-stay="Trống liên tục 17/09 → 22/09"
+                                data-room-image="https://lh3.googleusercontent.com/aida-public/AB6AXuBG_MU48hzMQCyOhQjXMvJGqzt-Py1zvLIKdJxQSDTxbSE7QFP2vJjB9mDbcUYJLJqaC3JtSepgaFuDuU4fq9isiJfqTU8A3vE2yVcYPpMMb6VjetGR6nDaojf8gVynYqRPemLgYKJQxuP-dLld77rT4avkl2Nybfhcf8SMnDh39PJFgUbN8E0t5PfUHgP9RLlTL1RAJzlVia4IsO_kMnl9HllAv9kj71hnmBxXa6Mw1n38jFb7zQM">
                             <span class="">Xem chi tiết</span>
-                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 4: Bungalow Ven Suối 102 -->
-            <div class="room-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_10px_rgba(21,67,50,0.05)] hover:shadow-[0_8px_24px_rgba(21,67,50,0.09)] transition-all duration-300 flex flex-col group">
-                <!-- Media Header -->
-                <div class="relative h-56 overflow-hidden">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                         data-alt="Wooden bungalow villa situated directly next to a tranquil mountain stream in northern Vietnam, large open wooden deck with outdoor bath tub, babbling clear water, rocks, bamboo groves, golden twilight warm ambiance"
-                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdRc0qDLPBSTDJIJW2s3PkYD9H5PhpgyuC7eZKcE2waDR-TfN_9Rvu_pZxbchesB1fnuFgi_youXZIUaHB9Rl2-xb3fybCOIvHFXdiDicok6kFw-93eEj7VSmu-rVsdmtzpjtbo-QveKm0cTnSmNtcTQnHlO1zhZgL1DD8-2Ssf49c-KABYbmSCAdyurK7WqjUb94R9a8ndFbrs7o0eeLM_Y-Ch25GM-yiVrC9CGjJtcLOO_UFXUM">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-black/30"></div>
-                    <!-- Status Pill Top Right -->
-                    <div class="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/95 text-on-secondary-container font-label-md text-label-md shadow-sm backdrop-blur-sm">
-                        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-                        <span class="">Đang có khách</span>
-                    </div>
-                    <!-- Room Code / Type Badge Top Left -->
-                    <div class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm font-bold backdrop-blur-sm shadow-sm flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[15px] text-secondary">water</span>
-                        Bungalow 102 • Ven suối
-                    </div>
-                    <!-- Bottom Overlaid Content on Image -->
-                    <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between text-on-primary">
-                        <div>
-                            <h2 class="font-headline-md text-headline-md font-bold tracking-tight text-on-primary drop-shadow-sm">
-                                Bungalow Ven Suối 102</h2>
-                            <div class="flex items-center gap-space-xs font-body-sm text-body-sm text-primary-fixed drop-shadow">
-                                <span class="material-symbols-outlined text-[16px]">favorite</span>
-                                <span class="">2 người lớn (Cặp đôi)</span>
-                                <span class="">•</span>
-                                <span class="">Giường King lụa tơ tằm</span>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <span class="font-label-sm text-label-sm text-primary-fixed block uppercase tracking-wider">Giá gốc / đêm</span>
-                            <span class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">1.450.000₫</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Body Content -->
-                <div class="p-space-md flex flex-col gap-space-md flex-grow justify-between">
-                    <!-- Amenities & Highlights -->
-                    <div class="flex flex-col gap-space-xs">
-                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Tiện nghi cao cấp</span>
-                        <div class="flex flex-wrap gap-1.5">
-<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
-<span class="material-symbols-outlined text-[14px] text-secondary">waves</span>
-              Suối róc rách sát ban công
-            </span>
-                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
-<span class="material-symbols-outlined text-[14px] text-secondary">bathtub</span>
-              Bồn ngâm lộ thiên
-            </span>
-                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
-<span class="material-symbols-outlined text-[14px] text-secondary">coffee</span>
-              Máy pha cà phê Moka
-            </span>
-                        </div>
-                    </div>
-                    <!-- Current Guest / Occupancy info Box -->
-                    <div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between">
-                        <div class="flex items-center gap-space-sm min-w-0">
-                            <div class="w-9 h-9 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-md shrink-0">
-                                HA
-                            </div>
-                            <div class="flex flex-col min-w-0">
-                                <span class="font-label-md text-label-md text-on-surface font-semibold truncate">Khách: Hoàng Minh Anh</span>
-                                <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">event</span>
-                15/09 → 19/09 (Đã ở 2 đêm • Còn 2 đêm)
-              </span>
-                            </div>
-                        </div>
-                        <button class="p-1.5 rounded-lg text-primary hover:bg-surface-container-highest transition-colors"
-                                title="Nhắn tin">
-                            <span class="material-symbols-outlined text-[18px]">chat</span>
-                        </button>
-                    </div>
-                    <!-- Action Row -->
-                    <div class="flex items-center justify-between pt-space-xs">
-                        <div class="flex items-center gap-space-xs">
-                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[16px]">room_service</span>
-                                Đặt dịch vụ
-                            </button>
-                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[16px]">lock</span>
-                                Khóa phòng
-                            </button>
-                            <button
-                                    type="button"
-                                    class="btn-edit-room px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
-                                    data-room-name="Garden View 101"
-                                    data-room-code="P.101"
-                                    data-room-type="Garden View"
-                                    data-room-capacity="4"
-                                    data-room-price="850000"
-                                    data-room-description="Phòng hướng vườn, phù hợp cho gia đình nhỏ.">
-
-                                    <span class="material-symbols-outlined text-[16px]">
-                                        edit
-                                    </span>
-
-                                Chỉnh sửa
-                            </button>
-                        </div>
-                        <button class="px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1">
-                            <span class="">Chi tiết &amp; Hóa đơn</span>
                             <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
                         </button>
                     </div>
@@ -623,27 +701,25 @@
                         <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Lịch trống &amp; Dải
                             booking 7 ngày tới (17/09 - 23/09)</h2>
                     </div>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant">Kéo rê hoặc click vào dải màu để xem
-                        nhanh người ở và tình trạng dọn phòng</p>
                 </div>
                 <!-- Legend -->
                 <div class="flex flex-wrap items-center gap-space-sm text-label-sm font-label-sm">
-<span class="flex items-center gap-1.5">
-<span class="w-3 h-3 rounded bg-secondary"></span>
-          Đang ở
-        </span>
                     <span class="flex items-center gap-1.5">
-<span class="w-3 h-3 rounded bg-tertiary-fixed-dim"></span>
-          Đã đặt cọc
-        </span>
-                    <span class="flex items-center gap-1.5">
-<span class="w-3 h-3 rounded bg-surface-container-high"></span>
-          Còn trống
-        </span>
-                    <span class="flex items-center gap-1.5">
-<span class="w-3 h-3 rounded bg-error-container"></span>
-          Bảo trì / Khóa
-        </span>
+                    <span class="w-3 h-3 rounded bg-secondary"></span>
+                              Đang ở
+                            </span>
+                                        <span class="flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded bg-tertiary-fixed-dim"></span>
+                              Đã đặt cọc
+                            </span>
+                                        <span class="flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded bg-surface-container-high"></span>
+                              Còn trống
+                            </span>
+                                        <span class="flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded bg-error-container"></span>
+                      Bảo trì / Khóa
+                    </span>
                 </div>
             </div>
             <!-- Timeline Table with horizontal overflow handling -->
@@ -749,14 +825,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Quick Footer Tip -->
-            <div class="flex items-center justify-between pt-space-xs text-body-sm font-body-sm text-on-surface-variant">
-                <div class="flex items-center gap-1.5">
-                    <span class="material-symbols-outlined text-[18px] text-secondary">tips_and_updates</span>
-                    <span class="">Mẹo quản lý: Vào cuối tuần (21/09 - 22/09), phòng Mountain View vẫn trống, hãy tạo flash sale giảm 15% để kéo khách lấp phòng.</span>
-                </div>
-                <button class="text-secondary hover:underline font-label-md text-label-md">Tạo mã ưu đãi ngay</button>
             </div>
         </div>
     </div>
@@ -867,37 +935,22 @@
                             Loại phòng
                         </label>
 
-                        <select
+                        <input
                                 id="roomType"
                                 name="roomType"
-                                class="room-form-select"
+                                class="room-form-input"
+                                type="text"
+                                list="roomTypeSuggestions"
+                                placeholder="Tự nhập, ví dụ: Garden View"
                                 required>
 
-                            <option value="">
-                                Chọn loại phòng
-                            </option>
-
-                            <option value="Garden View">
-                                Garden View
-                            </option>
-
-                            <option value="Mountain View">
-                                Mountain View
-                            </option>
-
-                            <option value="Bungalow">
-                                Bungalow
-                            </option>
-
-                            <option value="Dorm">
-                                Dorm
-                            </option>
-
-                            <option value="Nhà sàn">
-                                Nhà sàn
-                            </option>
-
-                        </select>
+                        <datalist id="roomTypeSuggestions">
+                            <option value="Garden View"></option>
+                            <option value="Mountain View"></option>
+                            <option value="Bungalow"></option>
+                            <option value="Dorm"></option>
+                            <option value="Nhà sàn"></option>
+                        </datalist>
 
                     </div>
 
@@ -961,9 +1014,164 @@
                                 id="roomDescription"
                                 name="roomDescription"
                                 class="room-form-textarea"
-                                placeholder="Mô tả đặc điểm, tiện nghi và trải nghiệm của phòng..."></textarea>
+                                placeholder="Mô tả đặc trưng, không gian và trải nghiệm của phòng..."></textarea>
 
                     </div>
+
+                    <!-- Tiện nghi phòng -->
+
+                    <div class="room-form-group full">
+
+                        <label class="room-form-label" for="roomAmenityInput">
+                            Tiện nghi phòng
+                        </label>
+
+                        <div class="room-amenity-box">
+
+                            <div class="room-amenity-row">
+
+                                <input
+                                        id="roomAmenityInput"
+                                        type="text"
+                                        class="room-form-input"
+                                        list="roomAmenitySuggestions"
+                                        placeholder="Nhập tiện nghi rồi nhấn Enter, ví dụ: Điều hòa Inverter">
+
+                                <datalist id="roomAmenitySuggestions">
+                                    <option value="Điều hòa Inverter"></option>
+                                    <option value="Wifi tốc độ cao"></option>
+                                    <option value="Bình nóng lạnh"></option>
+                                    <option value="Ban công gỗ"></option>
+                                    <option value="Tủ lạnh mini"></option>
+                                    <option value="Máy sấy tóc"></option>
+                                    <option value="Bàn làm việc"></option>
+                                    <option value="Phòng tắm riêng"></option>
+                                    <option value="Màn chống muỗi"></option>
+                                    <option value="Ấm đun nước"></option>
+                                </datalist>
+
+                                <button
+                                        id="btnAddAmenity"
+                                        type="button"
+                                        class="room-btn room-btn-ghost">
+                                    <span class="material-symbols-outlined text-[16px]">add</span>
+                                    Thêm
+                                </button>
+
+                            </div>
+
+                            <div id="roomAmenityList" class="room-amenity-list"></div>
+
+                            <p class="room-media-empty" id="roomAmenityEmpty">
+                                Chưa có tiện nghi nào. Mỗi tiện nghi sẽ hiển thị thành một thẻ trên card phòng.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Ảnh phòng -->
+
+                    <div class="room-form-group full">
+
+                        <label class="room-form-label" for="roomImages">
+                            Ảnh phòng
+                        </label>
+
+                        <div class="room-media-box">
+
+                            <input
+                                    id="roomImages"
+                                    name="roomImages"
+                                    type="file"
+                                    accept="image/*"
+                                    multiple
+                                    class="room-media-input">
+
+                            <label for="roomImages" class="room-media-drop">
+                                <span class="material-symbols-outlined">add_photo_alternate</span>
+                                <span class="room-media-drop-title">Chọn ảnh phòng</span>
+                                <span class="room-media-drop-hint">JPG, PNG, WEBP • có thể chọn nhiều ảnh</span>
+                            </label>
+
+                            <div class="room-media-url-row">
+                                <input
+                                        id="roomImageUrl"
+                                        type="url"
+                                        class="room-form-input"
+                                        placeholder="Hoặc dán link ảnh (https://...)">
+
+                                <button
+                                        id="btnAddImageUrl"
+                                        type="button"
+                                        class="room-btn room-btn-ghost">
+                                    <span class="material-symbols-outlined text-[16px]">link</span>
+                                    Thêm link
+                                </button>
+                            </div>
+
+                            <div id="roomImagePreview" class="room-media-preview"></div>
+
+                            <p class="room-media-empty" id="roomImageEmpty">
+                                Chưa có ảnh nào. Ảnh đầu tiên sẽ là ảnh bìa của phòng.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Video phòng -->
+
+                    <div class="room-form-group full">
+
+                        <label class="room-form-label" for="roomVideos">
+                            Video phòng
+                        </label>
+
+                        <div class="room-media-box">
+
+                            <input
+                                    id="roomVideos"
+                                    name="roomVideos"
+                                    type="file"
+                                    accept="video/*"
+                                    multiple
+                                    class="room-media-input">
+
+                            <label for="roomVideos" class="room-media-drop">
+                                <span class="material-symbols-outlined">video_library</span>
+                                <span class="room-media-drop-title">Chọn video phòng</span>
+                                <span class="room-media-drop-hint">MP4, MOV, WEBM • tối đa 100MB / video</span>
+                            </label>
+
+                            <div class="room-media-url-row">
+                                <input
+                                        id="roomVideoUrl"
+                                        type="url"
+                                        class="room-form-input"
+                                        placeholder="Hoặc dán link YouTube / MP4">
+
+                                <button
+                                        id="btnAddVideoUrl"
+                                        type="button"
+                                        class="room-btn room-btn-ghost">
+                                    <span class="material-symbols-outlined text-[16px]">link</span>
+                                    Thêm link
+                                </button>
+                            </div>
+
+                            <div id="roomVideoPreview" class="room-media-preview"></div>
+
+                            <p class="room-media-empty" id="roomVideoEmpty">
+                                Chưa có video nào.
+                            </p>
+
+                        </div>
+
+                    </div>
+
 
                 </div>
 
@@ -1000,10 +1208,682 @@
         </div>
 
     </div>
-</main>
-</div>
 
-<script src="../JS/manageRoom.js"></script>
+    <!-- =====================================================
+     POPUP CHI TIẾT PHÒNG
+     ===================================================== -->
+
+    <div id="roomDetailModal" class="room-modal" hidden>
+
+        <div class="room-modal-content room-modal-lg"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="roomDetailTitle">
+
+            <div class="room-modal-header">
+                <div>
+                    <h2 id="roomDetailTitle"
+                        class="font-headline-md text-headline-md text-on-surface font-bold">
+                        Chi tiết phòng
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                        Toàn bộ thông tin, hình ảnh và tình trạng của phòng.
+                    </p>
+                </div>
+
+                <button type="button"
+                        class="room-modal-close"
+                        data-close-modal="roomDetailModal"
+                        aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="room-detail-body">
+
+                <div class="room-detail-hero">
+                    <img id="roomDetailImage" src="" alt="Ảnh phòng">
+                    <span id="roomDetailStatus" class="room-detail-status">Còn trống</span>
+                </div>
+
+                <div class="room-detail-grid">
+                    <div class="room-detail-item">
+                        <span class="room-detail-label">Mã phòng</span>
+                        <span class="room-detail-value" id="roomDetailCode">—</span>
+                    </div>
+                    <div class="room-detail-item">
+                        <span class="room-detail-label">Loại phòng</span>
+                        <span class="room-detail-value" id="roomDetailType">—</span>
+                    </div>
+                    <div class="room-detail-item">
+                        <span class="room-detail-label">Sức chứa</span>
+                        <span class="room-detail-value" id="roomDetailCapacity">—</span>
+                    </div>
+                    <div class="room-detail-item">
+                        <span class="room-detail-label">Giá / đêm</span>
+                        <span class="room-detail-value room-detail-price" id="roomDetailPrice">—</span>
+                    </div>
+                    <div class="room-detail-item">
+                        <span class="room-detail-label">Vị trí</span>
+                        <span class="room-detail-value" id="roomDetailFloor">—</span>
+                    </div>
+                    <div class="room-detail-item">
+                        <span class="room-detail-label">Giường</span>
+                        <span class="room-detail-value" id="roomDetailBed">—</span>
+                    </div>
+                </div>
+
+                <div class="room-detail-section">
+                    <span class="room-detail-label">Tiện nghi</span>
+                    <div class="room-detail-chips" id="roomDetailAmenities"></div>
+                </div>
+
+                <div class="room-detail-section">
+                    <span class="room-detail-label">Mô tả</span>
+                    <p class="room-detail-desc" id="roomDetailDescription">—</p>
+                </div>
+
+                <div class="room-detail-section" id="roomDetailGuestBox">
+                    <span class="room-detail-label">Khách đang ở / sắp đến</span>
+                    <div class="room-detail-guest">
+                        <span class="material-symbols-outlined text-[20px]">person</span>
+                        <div>
+                            <div class="room-detail-value" id="roomDetailGuest">—</div>
+                            <div class="room-detail-sub" id="roomDetailStay">—</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="room-modal-footer">
+                <button type="button"
+                        class="room-btn room-btn-cancel"
+                        data-close-modal="roomDetailModal">
+                    Đóng
+                </button>
+
+                <button type="button" id="btnDetailToCalendar" class="room-btn room-btn-ghost">
+                    <span class="material-symbols-outlined text-[17px]">edit_calendar</span>
+                    Xem lịch phòng
+                </button>
+
+                <button type="button" id="btnDetailToEdit" class="room-btn room-btn-save">
+                    <span class="material-symbols-outlined text-[17px]">edit</span>
+                    Chỉnh sửa phòng
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP LỊCH PHÒNG
+     ===================================================== -->
+
+    <div id="roomCalendarModal" class="room-modal" hidden>
+
+        <div class="room-modal-content room-modal-lg"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="roomCalendarTitle">
+
+            <div class="room-modal-header">
+                <div>
+                    <h2 id="roomCalendarTitle"
+                        class="font-headline-md text-headline-md text-on-surface font-bold">
+                        Lịch phòng
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1"
+                       id="roomCalendarSubtitle">
+                        Chọn ngày để xem hoặc chặn nhanh.
+                    </p>
+                </div>
+
+                <button type="button"
+                        class="room-modal-close"
+                        data-close-modal="roomCalendarModal"
+                        aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="room-calendar-body">
+
+                <div class="room-calendar-nav">
+                    <button type="button" id="btnCalendarPrev" class="room-calendar-nav-btn">
+                        <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                    </button>
+
+                    <span class="room-calendar-month" id="roomCalendarMonth">Tháng 9 / 2026</span>
+
+                    <button type="button" id="btnCalendarNext" class="room-calendar-nav-btn">
+                        <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                    </button>
+                </div>
+
+                <div class="room-calendar-weekdays">
+                    <span>T2</span><span>T3</span><span>T4</span>
+                    <span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+                </div>
+
+                <div class="room-calendar-grid" id="roomCalendarGrid"></div>
+
+                <div class="room-calendar-legend">
+                    <span><i class="dot dot-available"></i>Còn trống</span>
+                    <span><i class="dot dot-booked"></i>Đã đặt</span>
+                    <span><i class="dot dot-staying"></i>Đang ở</span>
+                    <span><i class="dot dot-blocked"></i>Đã chặn / bảo trì</span>
+                    <span><i class="dot dot-selected"></i>Đang chọn</span>
+                </div>
+
+                <div class="room-calendar-selection" id="roomCalendarSelection">
+                    Chưa chọn ngày nào. Click 1 ngày để chọn, click ngày thứ 2 để chọn khoảng.
+                </div>
+
+            </div>
+
+            <div class="room-modal-footer">
+                <button type="button"
+                        class="room-btn room-btn-cancel"
+                        data-close-modal="roomCalendarModal">
+                    Đóng
+                </button>
+
+                <button type="button" id="btnCalendarUnblock" class="room-btn room-btn-ghost">
+                    <span class="material-symbols-outlined text-[17px]">lock_open</span>
+                    Bỏ chặn ngày đã chọn
+                </button>
+
+                <button type="button" id="btnCalendarBlock" class="room-btn room-btn-save">
+                    <span class="material-symbols-outlined text-[17px]">lock_clock</span>
+                    Chặn ngày đã chọn
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP CHẶN NGÀY
+     ===================================================== -->
+
+    <div id="blockDateModal" class="room-modal" hidden>
+
+        <div class="room-modal-content"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="blockDateTitle">
+
+            <div class="room-modal-header">
+                <div>
+                    <h2 id="blockDateTitle"
+                        class="font-headline-md text-headline-md text-on-surface font-bold">
+                        Chặn ngày
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1"
+                       id="blockDateSubtitle">
+                        Khoá phòng trong khoảng thời gian để bảo trì hoặc giữ chỗ.
+                    </p>
+                </div>
+
+                <button type="button"
+                        class="room-modal-close"
+                        data-close-modal="blockDateModal"
+                        aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="blockDateForm" class="room-form">
+
+                <div class="room-form-grid">
+
+                    <div class="room-form-group">
+                        <label class="room-form-label" for="blockFrom">Từ ngày</label>
+                        <input id="blockFrom" name="blockFrom" type="date"
+                               class="room-form-input" required>
+                    </div>
+
+                    <div class="room-form-group">
+                        <label class="room-form-label" for="blockTo">Đến ngày</label>
+                        <input id="blockTo" name="blockTo" type="date"
+                               class="room-form-input" required>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-form-label" for="blockReason">Lý do chặn</label>
+                        <select id="blockReason" name="blockReason" class="room-form-select" required>
+                            <option value="Bảo trì">Bảo trì</option>
+                            <option value="Dọn buồng">Dọn buồng</option>
+                            <option value="Giữ chỗ cho chủ nhà">Giữ chỗ cho chủ nhà</option>
+                            <option value="Sửa chữa thiết bị">Sửa chữa thiết bị</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-form-label" for="blockNote">Ghi chú</label>
+                        <textarea id="blockNote" name="blockNote" class="room-form-textarea"
+                                  placeholder="Ví dụ: thay quạt trần và sơn lại tường..."></textarea>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-check">
+                            <input type="checkbox" id="blockStopSelling" checked>
+                            <span>Ngừng bán phòng trên tất cả kênh trong khoảng ngày này</span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="room-block-summary" id="blockSummary">
+                    Chọn khoảng ngày để xem số đêm bị chặn.
+                </div>
+
+                <div class="room-modal-footer">
+                    <button type="button"
+                            class="room-btn room-btn-cancel"
+                            data-close-modal="blockDateModal">
+                        Hủy
+                    </button>
+
+                    <button type="submit" class="room-btn room-btn-save">
+                        <span class="material-symbols-outlined text-[17px]">lock_clock</span>
+                        Xác nhận chặn
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP ĐỔI PHÒNG (KHÁCH CHƯA CHECK-IN)
+     ===================================================== -->
+
+    <div id="changeRoomModal" class="room-modal" hidden>
+
+        <div class="room-modal-content"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="changeRoomTitle">
+
+            <div class="room-modal-header">
+                <div>
+                    <h2 id="changeRoomTitle"
+                        class="font-headline-md text-headline-md text-on-surface font-bold">
+                        Đổi phòng
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1"
+                       id="changeRoomSubtitle">
+                        Chuyển khách sang phòng khác trước khi check-in.
+                    </p>
+                </div>
+
+                <button type="button"
+                        class="room-modal-close"
+                        data-close-modal="changeRoomModal"
+                        aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="changeRoomForm" class="room-form">
+
+                <div class="room-change-current" id="changeRoomCurrent"></div>
+
+                <div class="room-form-grid">
+
+                    <div class="room-form-group full">
+                        <label class="room-form-label" for="changeRoomTarget">Chuyển đến phòng</label>
+                        <select id="changeRoomTarget" name="changeRoomTarget" class="room-form-select" required></select>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-form-label" for="changeRoomReason">Lý do đổi phòng</label>
+                        <select id="changeRoomReason" name="changeRoomReason" class="room-form-select">
+                            <option value="Khách yêu cầu">Khách yêu cầu</option>
+                            <option value="Phòng gốc gặp sự cố">Phòng gốc gặp sự cố</option>
+                            <option value="Nâng hạng phòng">Nâng hạng phòng</option>
+                            <option value="Sắp xếp lại đoàn khách">Sắp xếp lại đoàn khách</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-check">
+                            <input type="checkbox" id="changeRoomNotify" checked>
+                            <span>Gửi thông báo đổi phòng cho khách</span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="room-change-preview" id="changeRoomPreview">
+                    Chọn phòng đích để xem chênh lệch giá.
+                </div>
+
+                <div class="room-modal-footer">
+                    <button type="button"
+                            class="room-btn room-btn-cancel"
+                            data-close-modal="changeRoomModal">
+                        Hủy
+                    </button>
+
+                    <button type="submit" class="room-btn room-btn-save">
+                        <span class="material-symbols-outlined text-[17px]">sync_alt</span>
+                        Xác nhận đổi phòng
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP HỦY PHÒNG (KHÁCH CHƯA CHECK-IN)
+     ===================================================== -->
+
+    <div id="cancelBookingModal" class="room-modal" hidden>
+
+        <div class="room-modal-content"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="cancelBookingTitle">
+
+            <div class="room-modal-header">
+                <div>
+                    <h2 id="cancelBookingTitle"
+                        class="font-headline-md text-headline-md text-on-surface font-bold">
+                        Hủy phòng
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1"
+                       id="cancelBookingSubtitle">
+                        Hủy lượt đặt của khách khi chưa check-in.
+                    </p>
+                </div>
+
+                <button type="button"
+                        class="room-modal-close"
+                        data-close-modal="cancelBookingModal"
+                        aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="cancelBookingForm" class="room-form">
+
+                <div class="room-change-current" id="cancelBookingCurrent"></div>
+
+                <div class="room-cancel-warning">
+                    <span class="material-symbols-outlined text-[18px]">warning</span>
+                    <span>Hành động này sẽ mở lại ngày đã giữ cho phòng và không thể hoàn tác.</span>
+                </div>
+
+                <div class="room-form-grid">
+
+                    <div class="room-form-group full">
+                        <label class="room-form-label" for="cancelBookingReason">Lý do hủy</label>
+                        <select id="cancelBookingReason" name="cancelBookingReason" class="room-form-select">
+                            <option value="Khách đổi lịch trình">Khách đổi lịch trình</option>
+                            <option value="Khách không phản hồi">Khách không phản hồi</option>
+                            <option value="Đặt trùng / đặt nhầm">Đặt trùng / đặt nhầm</option>
+                            <option value="Không đủ điều kiện thanh toán">Không đủ điều kiện thanh toán</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-form-label" for="cancelBookingNote">Ghi chú</label>
+                        <textarea id="cancelBookingNote" name="cancelBookingNote" class="room-form-textarea"
+                                  placeholder="Ghi chú thêm về lý do hủy, chính sách hoàn cọc..."></textarea>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-check">
+                            <input type="checkbox" id="cancelBookingRefund">
+                            <span>Đã xử lý hoàn cọc / hoàn tiền cho khách</span>
+                        </label>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-check">
+                            <input type="checkbox" id="cancelBookingReopen" checked>
+                            <span>Mở lại ngày này để nhận đặt phòng mới</span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="room-modal-footer">
+                    <button type="button"
+                            class="room-btn room-btn-cancel"
+                            data-close-modal="cancelBookingModal">
+                        Đóng
+                    </button>
+
+                    <button type="submit" class="room-btn room-btn-danger">
+                        <span class="material-symbols-outlined text-[17px]">cancel</span>
+                        Xác nhận hủy phòng
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP CHECK-OUT
+     ===================================================== -->
+
+    <div id="checkoutModal" class="room-modal" hidden>
+
+        <div class="room-modal-content"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="checkoutTitle">
+
+            <div class="room-modal-header">
+                <div>
+                    <h2 id="checkoutTitle"
+                        class="font-headline-md text-headline-md text-on-surface font-bold">
+                        Check-out
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1"
+                       id="checkoutSubtitle">
+                        Xác nhận khách trả phòng và chuyển phòng sang trạng thái dọn dẹp.
+                    </p>
+                </div>
+
+                <button type="button"
+                        class="room-modal-close"
+                        data-close-modal="checkoutModal"
+                        aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="checkoutForm" class="room-form">
+
+                <div class="room-change-current" id="checkoutCurrent"></div>
+
+                <div class="room-form-grid">
+
+                    <div class="room-form-group full">
+                        <label class="room-check">
+                            <input type="checkbox" id="checkoutRoomInspected">
+                            <span>Đã kiểm tra phòng, không có hư hỏng / thiếu đồ</span>
+                        </label>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-check">
+                            <input type="checkbox" id="checkoutBillSettled" checked>
+                            <span>Khách đã thanh toán đầy đủ hóa đơn</span>
+                        </label>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-check">
+                            <input type="checkbox" id="checkoutNeedCleaning" checked>
+                            <span>Chuyển phòng sang trạng thái "Bảo trì / Dọn buồng" sau khi check-out</span>
+                        </label>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-form-label" for="checkoutNote">Ghi chú bàn giao</label>
+                        <textarea id="checkoutNote" name="checkoutNote" class="room-form-textarea"
+                                  placeholder="Ví dụ: khách để quên sạc điện thoại, cần thay ga giường..."></textarea>
+                    </div>
+
+                </div>
+
+                <div class="room-modal-footer">
+                    <button type="button"
+                            class="room-btn room-btn-cancel"
+                            data-close-modal="checkoutModal">
+                        Hủy
+                    </button>
+
+                    <button type="submit" class="room-btn room-btn-save">
+                        <span class="material-symbols-outlined text-[17px]">logout</span>
+                        Xác nhận check-out
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP CẬP NHẬT GIÁ HÀNG LOẠT
+     ===================================================== -->
+
+    <div id="bulkPriceModal" class="room-modal" hidden>
+
+        <div class="room-modal-content room-modal-lg"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="bulkPriceTitle">
+
+            <div class="room-modal-header">
+                <div>
+                    <h2 id="bulkPriceTitle"
+                        class="font-headline-md text-headline-md text-on-surface font-bold">
+                        Cập nhật giá hàng loạt
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                        Chọn phòng, chọn cách điều chỉnh và xem trước giá mới trước khi lưu.
+                    </p>
+                </div>
+
+                <button type="button"
+                        class="room-modal-close"
+                        data-close-modal="bulkPriceModal"
+                        aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="bulkPriceForm" class="room-form">
+
+                <div class="room-form-group full">
+                    <div class="room-bulk-head">
+                        <span class="room-form-label">Chọn phòng áp dụng</span>
+                        <label class="room-check">
+                            <input type="checkbox" id="bulkSelectAll" checked>
+                            <span>Chọn tất cả</span>
+                        </label>
+                    </div>
+
+                    <div class="room-bulk-list" id="bulkRoomList"></div>
+                </div>
+
+                <div class="room-form-grid">
+
+                    <div class="room-form-group">
+                        <label class="room-form-label" for="bulkMode">Cách điều chỉnh</label>
+                        <select id="bulkMode" name="bulkMode" class="room-form-select">
+                            <option value="percent-up">Tăng theo %</option>
+                            <option value="percent-down">Giảm theo %</option>
+                            <option value="amount-up">Tăng số tiền cố định</option>
+                            <option value="amount-down">Giảm số tiền cố định</option>
+                            <option value="fixed">Đặt giá cố định</option>
+                        </select>
+                    </div>
+
+                    <div class="room-form-group">
+                        <label class="room-form-label" for="bulkValue">Giá trị</label>
+                        <input id="bulkValue" name="bulkValue" type="number" min="0"
+                               class="room-form-input" placeholder="Ví dụ: 10" required>
+                    </div>
+
+                    <div class="room-form-group">
+                        <label class="room-form-label" for="bulkFrom">Áp dụng từ ngày</label>
+                        <input id="bulkFrom" name="bulkFrom" type="date" class="room-form-input">
+                    </div>
+
+                    <div class="room-form-group">
+                        <label class="room-form-label" for="bulkTo">Đến ngày</label>
+                        <input id="bulkTo" name="bulkTo" type="date" class="room-form-input">
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-form-label">Áp dụng cho ngày</label>
+                        <div class="room-day-picker" id="bulkDayPicker">
+                            <label class="room-day"><input type="checkbox" value="1" checked><span>T2</span></label>
+                            <label class="room-day"><input type="checkbox" value="2" checked><span>T3</span></label>
+                            <label class="room-day"><input type="checkbox" value="3" checked><span>T4</span></label>
+                            <label class="room-day"><input type="checkbox" value="4" checked><span>T5</span></label>
+                            <label class="room-day"><input type="checkbox" value="5" checked><span>T6</span></label>
+                            <label class="room-day"><input type="checkbox" value="6" checked><span>T7</span></label>
+                            <label class="room-day"><input type="checkbox" value="0" checked><span>CN</span></label>
+                        </div>
+                    </div>
+
+                    <div class="room-form-group full">
+                        <label class="room-check">
+                            <input type="checkbox" id="bulkRoundPrice" checked>
+                            <span>Làm tròn giá đến 1.000₫</span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="room-form-group full">
+                    <span class="room-form-label">Xem trước giá mới</span>
+                    <div class="room-bulk-preview" id="bulkPreview"></div>
+                </div>
+
+                <div class="room-modal-footer">
+                    <button type="button"
+                            class="room-btn room-btn-cancel"
+                            data-close-modal="bulkPriceModal">
+                        Hủy
+                    </button>
+
+                    <button type="submit" class="room-btn room-btn-save">
+                        <span class="material-symbols-outlined text-[17px]">save</span>
+                        Áp dụng cho <span id="bulkCount">0</span> phòng
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <script src="../js/manageRoom.js"></script>
+    <script src="../js/sidebarJs.js"></script>
+</main>
+
 
 </body>
 </html>

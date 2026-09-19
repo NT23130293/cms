@@ -1086,3 +1086,1156 @@ body.modal-open {
         max-height: calc(100vh - 0.5rem);
     }
 }
+/* =========================================================
+   LAYOUT - SIDEBAR + MAIN
+   ========================================================= */
+
+main {
+    margin-left: 275px !important;
+    width: calc(100% - 275px) !important;
+    box-sizing: border-box;
+}
+
+/* Màn hình nhỏ */
+@media (max-width: 768px) {
+    main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
+
+/* =========================================================
+   MODAL LỚN
+   ========================================================= */
+
+.room-modal-lg {
+    max-width: 880px;
+}
+
+
+/* =========================================================
+   NÚT PHỤ (GHOST)
+   ========================================================= */
+
+.room-btn-ghost {
+    background: var(--surface-container-low);
+
+    color: var(--on-surface);
+
+    border: 1px solid var(--outline-variant);
+}
+
+.room-btn-ghost:hover {
+    background: var(--surface-container);
+}
+
+
+/* =========================================================
+   CHECKBOX DÒNG
+   ========================================================= */
+
+.room-check {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    font-size: 12.5px;
+
+    color: var(--on-surface);
+
+    cursor: pointer;
+}
+
+.room-check input {
+    width: 16px;
+    height: 16px;
+
+    accent-color: var(--secondary);
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   TIỆN NGHI (TỰ NHẬP)
+   ========================================================= */
+
+.room-amenity-box {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.6rem;
+
+    padding: 0.85rem;
+
+    border: 1px dashed var(--outline-variant);
+
+    border-radius: 0.75rem;
+
+    background: var(--surface-container-low);
+}
+
+.room-amenity-row {
+    display: flex;
+
+    gap: 0.5rem;
+}
+
+.room-amenity-row .room-form-input {
+    background: var(--surface-container-lowest);
+}
+
+.room-amenity-row .room-btn {
+    white-space: nowrap;
+}
+
+.room-amenity-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.4rem;
+}
+
+.room-amenity-tag {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.25rem;
+
+    padding: 0.3rem 0.4rem 0.3rem 0.55rem;
+
+    border-radius: 999px;
+
+    background: var(--secondary-container);
+
+    color: var(--on-secondary-container);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.room-amenity-remove {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: inherit;
+
+    cursor: pointer;
+
+    opacity: 0.7;
+}
+
+.room-amenity-remove:hover {
+    background: rgba(0, 0, 0, 0.1);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   ẢNH & VIDEO
+   ========================================================= */
+
+.room-media-box {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.6rem;
+
+    padding: 0.85rem;
+
+    border: 1px dashed var(--outline-variant);
+
+    border-radius: 0.75rem;
+
+    background: var(--surface-container-low);
+}
+
+.room-media-input {
+    display: none;
+}
+
+.room-media-drop {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.15rem;
+
+    padding: 1.1rem;
+
+    border: 1px dashed var(--outline-variant);
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-lowest);
+
+    color: var(--on-surface-variant);
+
+    cursor: pointer;
+
+    transition:
+            border-color 0.2s ease,
+            background-color 0.2s ease;
+}
+
+.room-media-drop:hover {
+    border-color: var(--secondary);
+
+    background: var(--surface);
+}
+
+.room-media-drop .material-symbols-outlined {
+    font-size: 26px;
+
+    color: var(--secondary);
+}
+
+.room-media-drop-title {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: var(--on-surface);
+}
+
+.room-media-drop-hint {
+    font-size: 11.5px;
+}
+
+.room-media-url-row {
+    display: flex;
+
+    gap: 0.5rem;
+}
+
+.room-media-url-row .room-form-input {
+    background: var(--surface-container-lowest);
+}
+
+.room-media-url-row .room-btn {
+    white-space: nowrap;
+}
+
+.room-media-preview {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+
+    gap: 0.5rem;
+}
+
+.room-media-item {
+    position: relative;
+
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-highest);
+}
+
+.room-media-item img,
+.room-media-item video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.room-media-link {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.2rem;
+
+    height: 100%;
+
+    padding: 0.4rem;
+
+    text-align: center;
+
+    color: var(--on-surface-variant);
+}
+
+.room-media-link-text {
+    font-size: 10.5px;
+
+    word-break: break-all;
+
+    line-height: 14px;
+
+    max-height: 42px;
+
+    overflow: hidden;
+}
+
+.room-media-cover {
+    position: absolute;
+
+    left: 6px;
+    bottom: 6px;
+
+    padding: 2px 6px;
+
+    border-radius: 999px;
+
+    background: var(--secondary);
+
+    color: var(--on-secondary);
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.room-media-remove {
+    position: absolute;
+
+    top: 5px;
+    right: 5px;
+
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    color: #fff;
+
+    cursor: pointer;
+}
+
+.room-media-remove:hover {
+    background: var(--error);
+}
+
+.room-media-empty {
+    margin: 0;
+
+    font-size: 11.5px;
+
+    color: var(--on-surface-variant);
+}
+
+
+/* =========================================================
+   POPUP CHI TIẾT PHÒNG
+   ========================================================= */
+
+.room-detail-body {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1rem;
+
+    padding: 1.25rem;
+}
+
+.room-detail-hero {
+    position: relative;
+
+    height: 220px;
+
+    border-radius: 0.85rem;
+
+    overflow: hidden;
+
+    background: var(--surface-container-highest);
+}
+
+.room-detail-hero img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.room-detail-status {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    padding: 0.3rem 0.7rem;
+
+    border-radius: 999px;
+
+    background: var(--surface-container-highest);
+
+    color: var(--on-surface);
+
+    font-size: 11.5px;
+
+    font-weight: 600;
+
+    backdrop-filter: blur(4px);
+}
+
+.room-detail-status.status-occupied {
+    background: var(--secondary-container);
+
+    color: var(--on-secondary-container);
+}
+
+.room-detail-status.status-booked {
+    background: var(--tertiary-fixed);
+
+    color: var(--on-tertiary-fixed);
+}
+
+.room-detail-status.status-maintenance {
+    background: var(--error-container);
+
+    color: var(--on-error-container);
+}
+
+.room-detail-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 0.6rem;
+}
+
+.room-detail-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.15rem;
+
+    padding: 0.7rem 0.8rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-low);
+}
+
+.room-detail-label {
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+
+    color: var(--on-surface-variant);
+}
+
+.room-detail-value {
+    font-size: 13.5px;
+
+    font-weight: 600;
+
+    color: var(--on-surface);
+}
+
+.room-detail-price {
+    color: var(--secondary);
+}
+
+.room-detail-sub {
+    font-size: 12px;
+
+    color: var(--on-surface-variant);
+}
+
+.room-detail-section {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.4rem;
+}
+
+.room-detail-chips {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.4rem;
+}
+
+.room-detail-chip {
+    padding: 0.3rem 0.6rem;
+
+    border-radius: 0.45rem;
+
+    background: var(--surface-container-low);
+
+    color: var(--on-surface);
+
+    font-size: 12px;
+}
+
+.room-detail-desc {
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 20px;
+
+    color: var(--on-surface-variant);
+}
+
+.room-detail-guest {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    padding: 0.7rem 0.8rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-low);
+
+    color: var(--secondary);
+}
+
+
+/* =========================================================
+   POPUP LỊCH PHÒNG
+   ========================================================= */
+
+.room-calendar-body {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.8rem;
+
+    padding: 1.25rem;
+}
+
+.room-calendar-nav {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 1rem;
+}
+
+.room-calendar-nav-btn {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--outline-variant);
+
+    border-radius: 0.5rem;
+
+    background: var(--surface-container-lowest);
+
+    color: var(--on-surface);
+
+    cursor: pointer;
+}
+
+.room-calendar-nav-btn:hover {
+    background: var(--surface-container);
+}
+
+.room-calendar-month {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: var(--on-surface);
+
+    min-width: 150px;
+
+    text-align: center;
+}
+
+.room-calendar-weekdays,
+.room-calendar-grid {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 0.35rem;
+}
+
+.room-calendar-weekdays span {
+    text-align: center;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: var(--on-surface-variant);
+}
+
+.room-calendar-day {
+    position: relative;
+
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+
+    border-radius: 0.5rem;
+
+    background: var(--surface-container-low);
+
+    color: var(--on-surface);
+
+    font-size: 12.5px;
+
+    font-weight: 600;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+            transform 0.12s ease,
+            box-shadow 0.2s ease;
+}
+
+.room-calendar-day:hover:not(.is-empty) {
+    transform: translateY(-1px);
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.room-calendar-day.is-empty {
+    background: transparent;
+
+    cursor: default;
+}
+
+.room-calendar-day.is-past {
+    opacity: 0.4;
+}
+
+.room-calendar-day.is-today {
+    border-color: var(--secondary);
+}
+
+.room-calendar-day.status-staying {
+    background: var(--secondary);
+
+    color: var(--on-secondary);
+}
+
+.room-calendar-day.status-booked {
+    background: var(--tertiary-fixed-dim);
+
+    color: var(--on-tertiary-fixed);
+}
+
+.room-calendar-day.status-blocked {
+    background: var(--error-container);
+
+    color: var(--on-error-container);
+}
+
+.room-calendar-day.is-selected {
+    outline: 2px solid var(--primary);
+
+    outline-offset: 1px;
+}
+
+.room-calendar-legend {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.8rem;
+
+    font-size: 11.5px;
+
+    color: var(--on-surface-variant);
+}
+
+.room-calendar-legend span {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.3rem;
+}
+
+.room-calendar-legend .dot {
+    width: 11px;
+    height: 11px;
+
+    border-radius: 3px;
+
+    display: inline-block;
+}
+
+.dot-available {
+    background: var(--surface-container-high);
+}
+
+.dot-booked {
+    background: var(--tertiary-fixed-dim);
+}
+
+.dot-staying {
+    background: var(--secondary);
+}
+
+.dot-blocked {
+    background: var(--error-container);
+}
+
+.dot-selected {
+    background: transparent;
+
+    outline: 2px solid var(--primary);
+}
+
+.room-calendar-selection {
+    padding: 0.65rem 0.8rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-low);
+
+    font-size: 12.5px;
+
+    color: var(--on-surface);
+}
+
+
+/* =========================================================
+   POPUP CHẶN NGÀY
+   ========================================================= */
+
+.room-block-summary {
+    padding: 0.7rem 0.85rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--secondary-container);
+
+    color: var(--on-secondary-container);
+
+    font-size: 12.5px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   POPUP CẬP NHẬT GIÁ HÀNG LOẠT
+   ========================================================= */
+
+.room-bulk-head {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 0.45rem;
+}
+
+.room-bulk-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.35rem;
+
+    max-height: 190px;
+
+    overflow-y: auto;
+
+    padding: 0.5rem;
+
+    border: 1px solid var(--outline-variant);
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-low);
+}
+
+.room-bulk-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    padding: 0.5rem 0.6rem;
+
+    border-radius: 0.5rem;
+
+    background: var(--surface-container-lowest);
+
+    cursor: pointer;
+}
+
+.room-bulk-item:hover {
+    background: var(--surface-container);
+}
+
+.room-bulk-item input {
+    width: 16px;
+    height: 16px;
+
+    accent-color: var(--secondary);
+}
+
+.room-bulk-name {
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: var(--on-surface);
+}
+
+.room-bulk-name small {
+    font-size: 11px;
+
+    font-weight: 500;
+
+    color: var(--on-surface-variant);
+}
+
+.room-bulk-price {
+    font-size: 12.5px;
+
+    font-weight: 700;
+
+    color: var(--on-surface-variant);
+}
+
+.room-day-picker {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.4rem;
+}
+
+.room-day {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.3rem;
+
+    padding: 0.35rem 0.6rem;
+
+    border: 1px solid var(--outline-variant);
+
+    border-radius: 999px;
+
+    background: var(--surface-container-lowest);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.room-day input {
+    accent-color: var(--secondary);
+}
+
+.room-bulk-preview {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.3rem;
+
+    max-height: 180px;
+
+    overflow-y: auto;
+
+    padding: 0.5rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--surface-container-low);
+}
+
+.room-bulk-preview-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    padding: 0.4rem 0.55rem;
+
+    border-radius: 0.45rem;
+
+    background: var(--surface-container-lowest);
+
+    font-size: 12.5px;
+}
+
+.room-bulk-preview-name {
+    flex: 1;
+
+    font-weight: 600;
+
+    color: var(--on-surface);
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.room-bulk-old {
+    color: var(--on-surface-variant);
+
+    text-decoration: line-through;
+}
+
+.room-bulk-new {
+    font-weight: 700;
+
+    color: var(--on-surface);
+}
+
+.room-bulk-diff {
+    min-width: 92px;
+
+    text-align: right;
+
+    font-weight: 600;
+
+    color: var(--on-surface-variant);
+}
+
+.room-bulk-diff.up {
+    color: var(--secondary);
+}
+
+.room-bulk-diff.down {
+    color: var(--error);
+}
+
+.room-bulk-empty {
+    margin: 0;
+
+    padding: 0.4rem;
+
+    font-size: 12px;
+
+    color: var(--on-surface-variant);
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.room-toast-box {
+    position: fixed;
+
+    right: 1rem;
+    bottom: 1rem;
+
+    z-index: 2000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+.room-toast {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    padding: 0.7rem 0.9rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--primary);
+
+    color: var(--on-primary);
+
+    font-size: 12.5px;
+
+    font-weight: 600;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+            opacity 0.2s ease,
+            transform 0.2s ease;
+}
+
+.room-toast.is-show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.room-toast-error {
+    background: var(--error);
+
+    color: #fff;
+}
+
+
+/* =========================================================
+   RESPONSIVE CHO POPUP MỚI
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .room-detail-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .room-media-url-row,
+    .room-amenity-row {
+        flex-direction: column;
+    }
+
+    .room-toast-box {
+        left: 1rem;
+        right: 1rem;
+    }
+}
+
+
+/* =========================================================
+   POPUP ĐỔI PHÒNG / HỦY PHÒNG
+   ========================================================= */
+
+.room-change-current {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    padding: 0.75rem 0.9rem;
+
+    border-radius: 0.65rem;
+
+    background: var(--surface-container-low);
+
+    font-size: 12.5px;
+
+    color: var(--on-surface);
+}
+
+.room-change-current strong {
+    color: var(--on-surface);
+}
+
+.room-change-preview {
+    padding: 0.7rem 0.85rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--secondary-container);
+
+    color: var(--on-secondary-container);
+
+    font-size: 12.5px;
+
+    font-weight: 600;
+}
+
+.room-cancel-warning {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 0.5rem;
+
+    padding: 0.75rem 0.9rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--error-container);
+
+    color: var(--on-error-container);
+
+    font-size: 12px;
+
+    line-height: 17px;
+}
+
+.room-btn-danger {
+    background: var(--error);
+
+    color: #fff;
+}
+
+.room-btn-danger:hover {
+    background: #93000a;
+}
