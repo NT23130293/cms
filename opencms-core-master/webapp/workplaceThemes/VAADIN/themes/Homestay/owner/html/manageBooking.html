@@ -16,9 +16,9 @@
         tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary":"#1b6d24","on-tertiary-fixed-variant":"#6e3900","on-secondary-fixed":"#002204","on-tertiary":"#ffffff","surface-dim":"#cbdbf5","on-primary-fixed-variant":"#224f3d","secondary-fixed-dim":"#88d982","primary-fixed":"#bdedd5","primary-fixed-dim":"#a1d1ba","inverse-surface":"#213145","surface-container-highest":"#d3e4fe","on-background":"#0b1c30","on-tertiary-container":"#f38b23","surface-container-high":"#dce9ff","primary-container":"#154332","inverse-primary":"#a1d1ba","tertiary-container":"#5d2f00","secondary-container":"#a0f399","surface-container-lowest":"#ffffff","tertiary-fixed-dim":"#ffb77d","on-secondary-container":"#217128","surface-variant":"#d3e4fe","background":"#f8f9ff","on-surface-variant":"#414944","on-error-container":"#93000a","on-primary-container":"#81b099","outline-variant":"#c0c8c2","surface-container-low":"#eff4ff","inverse-on-surface":"#eaf1ff","tertiary-fixed":"#ffdcc3","error":"#ba1a1a","on-surface":"#0b1c30","on-primary-fixed":"#002115","on-error":"#ffffff","surface":"#f8f9ff","surface-bright":"#f8f9ff","tertiary":"#3d1d00","on-secondary-fixed-variant":"#005312","surface-container":"#e5eeff","on-secondary":"#ffffff","secondary-fixed":"#a3f69c","surface-tint":"#3b6754","primary":"#002c1e","on-primary":"#ffffff","outline":"#717974","error-container":"#ffdad6","on-tertiary-fixed":"#2f1500"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"gutter-sm":"0.75rem","space-sm":"0.5rem","space-xs":"0.25rem","space-xl":"1.75rem","margin-mobile":"1rem","space-md":"0.875rem","space-lg":"1.25rem","gutter":"1.25rem","margin":"1.75rem"},fontFamily:{"display-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"label-lg":["Inter"],"headline-sm":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-md":["Inter"]},fontSize:{"display-lg":["30px",{"lineHeight":"38px","fontWeight":"700"}],"body-md":["13.5px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["19px",{"lineHeight":"26px","fontWeight":"700"}],"label-sm":["10.5px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}],"headline-lg":["22px",{"lineHeight":"30px","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"18px","fontWeight":"400"}],"label-lg":["13px",{"lineHeight":"18px","fontWeight":"600"}],"headline-sm":["16px",{"lineHeight":"24px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"26px","fontWeight":"600"}],"body-lg":["15px",{"lineHeight":"22px","fontWeight":"400"}],"label-md":["11.5px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}]}}}};</script>
 
     <!-- Link file CSS riêng -->
-    <link rel="stylesheet" href="style.css">
-    <script src="../JS/manageBookingJs.js"></script>
-    <script src="../JS/sidebarJs.js"></script>
+    <script src="../js/sidebarJs.js"></script>
+    <script src="../js/manageBookingJs.js"></script>
+    <link rel="stylesheet" href="../css/manageBookingStyle.css">
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased">
 
@@ -48,11 +48,11 @@
                         </p>
                     </div>
                     <div class="flex items-center gap-space-sm shrink-0 flex-wrap">
-                        <button class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface font-label-lg text-label-lg rounded-lg shadow-sm transition-all duration-200" type="button">
+                        <button onclick="openModal('exportReportModal')" class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface font-label-lg text-label-lg rounded-lg shadow-sm transition-all duration-200" type="button">
                             <span class="material-symbols-outlined text-[19px] text-outline">file_download</span>
                             <span>Xuất file Excel / Báo cáo</span>
                         </button>
-                        <button class="flex items-center gap-space-xs px-space-md py-space-sm bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded-lg shadow-md transition-all duration-200 custom-primary-bg" type="button">
+                        <button onclick="openModal('createBookingModal')" class="flex items-center gap-space-xs px-space-md py-space-sm bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded-lg shadow-md transition-all duration-200 custom-primary-bg" type="button">
                             <span class="material-symbols-outlined text-[19px]">add_circle</span>
                             <span>Tạo đơn đặt phòng trực tiếp</span>
                         </button>
@@ -227,8 +227,8 @@
                                     </td>
                                     <td class="py-3.5 px-4 text-center">
                                         <div class="flex items-center justify-center gap-1.5">
-                                            <button class="px-2.5 py-1 rounded bg-secondary hover:bg-secondary/90 text-on-secondary font-label-sm text-label-sm shadow-sm transition-all whitespace-nowrap" type="button">Check-in</button>
-                                            <button class="w-7 h-7 rounded flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Chi tiết booking" type="button"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+                                            <button onclick="openCheckinModal('BK-9842')" class="px-2.5 py-1 rounded bg-secondary hover:bg-secondary/90 text-on-secondary font-label-sm text-label-sm shadow-sm transition-all whitespace-nowrap custom-secondary-bg" type="button">Check-in</button>
+                                            <button onclick="openDetailModal('BK-9842')" class="w-7 h-7 rounded flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Chi tiết booking" type="button"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -271,8 +271,9 @@
                                     </td>
                                     <td class="py-3.5 px-4 text-center">
                                         <div class="flex items-center justify-center gap-1.5">
-                                            <button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all whitespace-nowrap" type="button">Check-out</button>
-                                            <button class="px-2 py-1 rounded bg-primary-container/20 hover:bg-primary-container/30 text-primary font-label-sm text-label-sm transition-all whitespace-nowrap" type="button">+ Dịch vụ</button>
+                                            <button onclick="openCheckoutModal('BK-9839')" class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all whitespace-nowrap" type="button">Check-out</button>
+                                            <button onclick="openAddServiceModal('BK-9839')" class="px-2 py-1 rounded bg-primary-container/20 hover:bg-primary-container/30 text-primary font-label-sm text-label-sm transition-all whitespace-nowrap" type="button">+ Dịch vụ</button>
+                                            <button onclick="openDetailModal('BK-9839')" class="w-7 h-7 rounded flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Chi tiết booking" type="button"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -312,7 +313,10 @@
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium whitespace-nowrap">Đã hoàn tất</span>
                                     </td>
                                     <td class="py-3.5 px-4 text-center">
-                                        <button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-all whitespace-nowrap" type="button">Xem hóa đơn</button>
+                                        <div class="flex items-center justify-center gap-1.5">
+                                            <button onclick="openInvoiceModal('BK-9830')" class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-all whitespace-nowrap" type="button">Xem hóa đơn</button>
+                                            <button onclick="openDetailModal('BK-9830')" class="w-7 h-7 rounded flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Chi tiết booking" type="button"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <!-- Row 4 -->
@@ -354,8 +358,9 @@
                                     </td>
                                     <td class="py-3.5 px-4 text-center">
                                         <div class="flex items-center justify-center gap-1.5">
-                                            <button class="px-2.5 py-1 rounded bg-secondary hover:bg-secondary/90 text-on-secondary font-label-sm text-label-sm shadow-sm transition-all whitespace-nowrap" type="button">Duyệt</button>
-                                            <button class="px-2 py-1 rounded bg-error-container hover:bg-error-container/80 text-on-error-container font-label-sm text-label-sm transition-all whitespace-nowrap" type="button">Từ chối</button>
+                                            <button onclick="openApproveModal('BK-9850')" class="px-2.5 py-1 rounded bg-secondary hover:bg-secondary/90 text-on-secondary font-label-sm text-label-sm shadow-sm transition-all whitespace-nowrap custom-secondary-bg" type="button">Duyệt</button>
+                                            <button onclick="openRejectModal('BK-9850')" class="px-2 py-1 rounded bg-error-container hover:bg-error-container/80 text-on-error-container font-label-sm text-label-sm transition-all whitespace-nowrap" type="button">Từ chối</button>
+                                            <button onclick="openDetailModal('BK-9850')" class="w-7 h-7 rounded flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Chi tiết booking" type="button"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -455,16 +460,16 @@
                                 </div>
                             </div>
                             <div class="flex flex-col gap-space-xs pt-space-xs">
-                                <button class="w-full py-2.5 px-space-md rounded-lg bg-secondary hover:bg-secondary/95 text-on-secondary font-label-lg text-label-lg font-bold shadow-sm transition-all flex items-center justify-center gap-space-xs custom-secondary-bg" type="button">
+                                <button onclick="openCheckinModal('BK-9842')" class="w-full py-2.5 px-space-md rounded-lg bg-secondary hover:bg-secondary/95 text-on-secondary font-label-lg text-label-lg font-bold shadow-sm transition-all flex items-center justify-center gap-space-xs custom-secondary-bg" type="button">
                                     <span class="material-symbols-outlined text-[20px]">how_to_reg</span>
                                     <span>Đánh dấu khách đã nhận phòng</span>
                                 </button>
                                 <div class="grid grid-cols-2 gap-space-xs">
-                                    <button class="py-2 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all flex items-center justify-center gap-1" type="button">
+                                    <button onclick="openContactModal('BK-9842', 'call')" class="py-2 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all flex items-center justify-center gap-1" type="button">
                                         <span class="material-symbols-outlined text-[16px] text-outline">call</span>
                                         <span>Gọi cho khách</span>
                                     </button>
-                                    <button class="py-2 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all flex items-center justify-center gap-1" type="button">
+                                    <button onclick="openContactModal('BK-9842', 'chat')" class="py-2 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all flex items-center justify-center gap-1" type="button">
                                         <span class="material-symbols-outlined text-[16px] text-outline">chat</span>
                                         <span>Nhắn qua sàn</span>
                                     </button>
@@ -523,6 +528,973 @@
     </main>
 </div>
 
+<!-- ========================================================================= -->
+<!--                   HỆ THỐNG TOÀN BỘ 10 POPUP / MODAL CHUYÊN NGHIỆP         -->
+<!-- ========================================================================= -->
+
+<!-- 1. POPUP TẠO ĐƠN ĐẶT PHÒNG TRỰC TIẾP -->
+<div id="createBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+        <!-- Modal Header -->
+        <div class="p-space-md bg-primary text-on-primary flex items-center justify-between shrink-0 custom-primary-bg">
+            <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[24px]">add_circle</span>
+                <div class="flex flex-col">
+                    <h3 class="font-headline-sm text-headline-sm text-on-primary">Tạo đơn đặt phòng trực tiếp</h3>
+                    <span class="font-label-sm text-[11px] text-on-primary-container">Dành cho khách đặt qua hotline, Zalo hoặc đến nhận phòng tại chỗ</span>
+                </div>
+            </div>
+            <button onclick="closeModal('createBookingModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container text-on-primary transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <!-- Modal Body (Scrollable) -->
+        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+            <!-- Phần 1: Thông tin khách hàng -->
+            <div class="flex flex-col gap-space-xs">
+                <span class="font-label-md text-label-md text-primary font-bold flex items-center gap-1 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-[16px]">person</span> 1. Thông tin khách lưu trú
+                </span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-md text-on-surface">Họ và tên khách hàng <span class="text-error">*</span></label>
+                        <input id="newBookingGuestName" type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="Ví dụ: Hoàng Minh Đức">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-md text-on-surface">Số điện thoại <span class="text-error">*</span></label>
+                        <input id="newBookingPhone" type="tel" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="09xx xxx xxx">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-md text-on-surface">CCCD / Hộ chiếu (Khai báo tạm trú)</label>
+                        <input id="newBookingCccd" type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="12 chữ số CCCD...">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-md text-on-surface">Tỉnh / Thành phố cư trú</label>
+                        <input id="newBookingCity" type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="Ví dụ: Hà Nội, Hải Phòng...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phần 2: Chọn phòng & Lịch trình -->
+            <div class="flex flex-col gap-space-xs pt-1 border-t border-surface-container">
+                <span class="font-label-md text-label-md text-primary font-bold flex items-center gap-1 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-[16px]">hotel</span> 2. Chi tiết phòng & Lịch lưu trú
+                </span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-md text-on-surface">Chọn loại phòng</label>
+                        <select id="newBookingRoomSelect" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md cursor-pointer">
+                            <option value="mountain">Mountain View (Nhà Gỗ - 950.000đ/đêm)</option>
+                            <option value="lake">Lake View (Ven Hồ - 1.100.000đ/đêm)</option>
+                            <option value="bungalow">Bungalow Suối (1.250.000đ/đêm)</option>
+                            <option value="dorm">Nhà Sàn Trải Nghiệm (350.000đ/người)</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-md text-on-surface">Số lượng khách</label>
+                        <select id="newBookingGuestsCount" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md cursor-pointer">
+                            <option value="1">1 Người lớn</option>
+                            <option value="2" selected>2 Người lớn</option>
+                            <option value="3">3 Người lớn (+ đệm phụ)</option>
+                            <option value="4">Gia đình (2 người lớn + 2 trẻ em)</option>
+                            <option value="6">Đoàn thể (6 - 10 người)</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-md text-on-surface">Ngày Check-in</label>
+                        <input id="newBookingCheckIn" type="date" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-md text-on-surface">Ngày Check-out</label>
+                        <input id="newBookingCheckOut" type="date" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phần 3: Tính toán chi phí & Tiền cọc -->
+            <div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs border border-surface-container">
+                <div class="flex items-center justify-between text-body-sm">
+                    <span class="text-on-surface-variant">Đơn giá phòng mỗi đêm:</span>
+                    <span id="newBookingPricePerNight" class="font-bold text-on-surface">950.000đ</span>
+                </div>
+                <div class="flex items-center justify-between text-body-sm">
+                    <span class="text-on-surface-variant">Thời gian lưu trú:</span>
+                    <span id="newBookingNightsCount" class="font-semibold text-secondary">2 đêm</span>
+                </div>
+                <div class="flex items-center justify-between text-body-md border-t border-surface-container pt-1">
+                    <span class="font-bold text-on-surface">Tạm tính tiền phòng:</span>
+                    <span id="newBookingEstimatedTotal" class="font-headline-sm text-primary font-bold">1.900.000đ</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-2">
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-md text-on-surface">Số tiền cọc thu trước</label>
+                        <input id="newBookingDepositInput" type="number" class="px-space-sm py-1.5 rounded-lg bg-surface-container-lowest border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary font-bold text-secondary text-body-md" value="950000">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="font-label-md text-on-surface">Phương thức nhận cọc</label>
+                        <select class="px-space-sm py-1.5 rounded-lg bg-surface-container-lowest border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md cursor-pointer">
+                            <option>Chuyển khoản VietQR</option>
+                            <option>Tiền mặt tại quầy</option>
+                            <option>Quẹt thẻ POS</option>
+                            <option>Chưa thu cọc (Giữ phòng tạm)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phần 4: Yêu cầu đặc biệt & dịch vụ -->
+            <div class="flex flex-col gap-1">
+                <label class="font-label-md text-on-surface">Ghi chú & Yêu cầu dịch vụ đặc biệt</label>
+                <textarea id="newBookingSpecialRequest" rows="2" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="Ví dụ: Báo nhà bếp làm cơm lam lúc 19h00, chuẩn bị xe máy dạo bản, đón tại ngã ba..."></textarea>
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
+            <button onclick="closeModal('createBookingModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy bỏ</button>
+            <button onclick="submitNewBooking()" class="px-space-lg py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md font-bold transition-all shadow-md custom-primary-bg flex items-center gap-1.5" type="button">
+                <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                <span>Lưu & Xác nhận đặt phòng</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 2. POPUP CHI TIẾT ĐƠN ĐẶT PHÒNG (BOOKING DETAILS) -->
+<div id="detailBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+        <!-- Modal Header -->
+        <div class="p-space-md bg-surface-container-low border-b border-surface-container flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-space-xs flex-wrap">
+                <span class="material-symbols-outlined text-[22px] text-primary">receipt_long</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+                    Chi tiết đơn <span id="detailModalBookingId" class="text-primary font-bold">#BK-9842</span>
+                </h3>
+                <span id="detailModalSource" class="px-2 py-0.5 rounded-full bg-surface-container text-outline text-[11px] font-label-md">OTA Sàn VN</span>
+                <span id="detailModalStatus" class="px-space-sm py-0.5 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-bold">Chờ Check-in</span>
+            </div>
+            <button onclick="closeModal('detailBookingModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high text-outline hover:text-on-surface transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <!-- Modal Body (2 Columns Layout) -->
+        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll grid grid-cols-1 md:grid-cols-12 gap-space-md">
+            <!-- Cột trái: Thông tin khách & Phòng (7 Cột) -->
+            <div class="md:col-span-7 flex flex-col gap-space-md">
+                <!-- Thẻ khách hàng -->
+                <div class="p-space-sm rounded-xl bg-surface-container-low flex items-center gap-space-sm border border-surface-container">
+                    <div id="detailModalAvatar" class="w-14 h-14 rounded-xl flex items-center justify-center font-bold text-xl shrink-0 bg-secondary-fixed-dim/40 text-on-secondary-fixed">M</div>
+                    <div class="flex flex-col min-w-0">
+                        <span id="detailModalGuestName" class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Nguyễn Thị Mai</span>
+                        <span class="font-body-sm text-body-sm text-outline flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">phone</span>
+                            <span id="detailModalPhone">0982 341 112</span>
+                            <span>•</span>
+                            <span id="detailModalCity">Hà Nội</span>
+                        </span>
+                        <span class="text-body-sm text-[11px] text-on-surface-variant flex items-center gap-1 mt-0.5">
+                            <span class="material-symbols-outlined text-[13px]">mail</span>
+                            <span id="detailModalEmail">mai.nguyen@gmail.com</span>
+                            <span>• CCCD:</span>
+                            <span id="detailModalCccd" class="font-medium">001198034521</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Thẻ chi tiết phòng & Lưu trú -->
+                <div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs border border-surface-container">
+                    <div class="flex items-center justify-between">
+                        <span class="font-body-sm text-on-surface-variant">Phòng chỉ định:</span>
+                        <span id="detailModalRoom" class="font-label-md text-on-surface font-bold">Mountain View #01</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="font-body-sm text-on-surface-variant">Loại phòng:</span>
+                        <span id="detailModalRoomType" class="font-label-md text-on-surface">Phòng Mountain View (Nhà Gỗ)</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="font-body-sm text-on-surface-variant">Số lượng khách:</span>
+                        <span id="detailModalGuests" class="font-label-md text-on-surface">2 người lớn</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="font-body-sm text-on-surface-variant">Lịch trình lưu trú:</span>
+                        <span id="detailModalSchedule" class="font-label-md text-secondary font-bold">17/09 - 20/09/2024 (3 đêm)</span>
+                    </div>
+                </div>
+
+                <!-- Ghi chú đặc biệt -->
+                <div class="p-space-sm rounded-xl bg-tertiary-fixed/30 border border-tertiary-fixed flex flex-col gap-1">
+                    <span class="font-label-md text-tertiary font-bold flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px] text-on-tertiary-container">edit_note</span> Yêu cầu đặc biệt của khách:
+                    </span>
+                    <p id="detailModalRequest" class="font-body-sm text-on-surface italic leading-relaxed">
+                        “Ăn tối cơm lam thịt nướng tại homestay lúc 18h30. Nhờ chuẩn bị trước lò nướng than mộc ngoài sân.”
+                    </p>
+                </div>
+
+                <!-- Dịch vụ kèm theo -->
+                <div class="flex flex-col gap-1">
+                    <span class="font-label-md text-on-surface font-bold flex items-center justify-between">
+                        <span>Dịch vụ phát sinh kèm theo:</span>
+                    </span>
+                    <div id="detailModalServicesList" class="flex flex-col gap-1">
+                        <!-- Danh sách dịch vụ render động -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột phải: Tài chính & Dòng thời gian tiến trình (5 Cột) -->
+            <div class="md:col-span-5 flex flex-col gap-space-md">
+                <!-- Thẻ Tổng quan tài chính -->
+                <div class="p-space-sm rounded-xl bg-surface-container-lowest border border-surface-container-high flex flex-col gap-space-xs shadow-sm">
+                    <span class="font-label-md text-primary font-bold uppercase tracking-wider">Tổng quan thanh toán</span>
+                    <div class="flex items-center justify-between text-body-sm">
+                        <span class="text-on-surface-variant">Tổng tiền đơn:</span>
+                        <span id="detailModalTotal" class="font-headline-sm text-on-surface font-bold">2.850.000đ</span>
+                    </div>
+                    <div class="flex items-center justify-between text-body-sm">
+                        <span class="text-on-surface-variant">Đã cọc (Sàn/Chuyển khoản):</span>
+                        <span id="detailModalDeposit" class="font-label-md text-secondary font-bold">1.500.000đ</span>
+                    </div>
+                    <div class="flex items-center justify-between text-body-md border-t border-surface-container pt-1.5">
+                        <span class="font-bold text-error">Còn phải thu tại quầy:</span>
+                        <span id="detailModalRemain" class="font-headline-sm text-error font-bold">1.350.000đ</span>
+                    </div>
+                </div>
+
+                <!-- Dòng thời gian tiến trình lưu trú -->
+                <div class="p-space-sm rounded-xl bg-surface-container-low border border-surface-container flex flex-col gap-space-sm">
+                    <span class="font-label-md text-on-surface font-bold">Tiến trình đơn đặt phòng</span>
+                    <div id="detailModalTimeline" class="flex flex-col gap-space-xs">
+                        <!-- Render dòng thời gian động -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div id="detailModalActions" class="p-space-md bg-surface-container-low flex items-center justify-between border-t border-surface-container shrink-0">
+            <!-- Nút hành động render động theo trạng thái -->
+        </div>
+    </div>
+</div>
+
+<!-- 3. POPUP XÁC NHẬN CHECK-IN NHẬN PHÒNG -->
+<div id="checkinModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+        <div class="p-space-md bg-secondary text-on-secondary flex items-center justify-between shrink-0 custom-secondary-bg">
+            <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[24px]">login</span>
+                <div class="flex flex-col">
+                    <h3 class="font-headline-sm text-headline-sm text-on-secondary">Thủ tục Check-in nhận phòng</h3>
+                    <span class="font-label-sm text-[11px] text-on-secondary-container">Mã đơn: <strong id="checkinModalBookingId" class="text-on-secondary">#BK-9842</strong></span>
+                </div>
+            </div>
+            <button onclick="closeModal('checkinModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-secondary/80 text-on-secondary transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+            <!-- Tóm tắt phòng & khách -->
+            <div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between border border-surface-container">
+                <div class="flex flex-col">
+                    <span id="checkinModalGuestName" class="font-headline-sm text-on-surface font-bold">Nguyễn Thị Mai</span>
+                    <span id="checkinModalPhone" class="font-body-sm text-outline">0982 341 112</span>
+                </div>
+                <div class="flex flex-col items-end">
+                    <span id="checkinModalRoom" class="font-label-md text-secondary font-bold">Mountain View #01</span>
+                    <span id="checkinModalSchedule" class="font-body-sm text-outline">17/09 - 20/09</span>
+                </div>
+            </div>
+
+            <!-- Bước 1: Khai báo lưu trú CCCD -->
+            <div class="flex flex-col gap-1">
+                <label class="font-label-md text-on-surface font-bold flex items-center justify-between">
+                    <span>1. Xác thực CCCD / Giấy tờ tùy thân:</span>
+                    <button onclick="showToast('Quét CCCD', 'Đã chụp lưu trữ CCCD của khách thành công', 'success')" class="text-[12px] text-secondary font-medium hover:underline flex items-center gap-0.5" type="button">
+                        <span class="material-symbols-outlined text-[14px]">document_scanner</span> Quét nhanh
+                    </button>
+                </label>
+                <input type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" value="001198034521" placeholder="Nhập hoặc quét mã QR trên CCCD">
+            </div>
+
+            <!-- Bước 2: Thu tiền phòng còn lại -->
+            <div class="p-space-sm rounded-xl bg-error-container/20 border border-error-container flex flex-col gap-space-xs">
+                <span class="font-label-md text-error font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">payments</span> 2. Thanh toán số tiền phòng còn lại:
+                </span>
+                <div class="flex items-center justify-between">
+                    <span class="text-body-sm text-on-surface-variant">Số tiền phải thu tại quầy:</span>
+                    <span id="checkinModalRemain" class="font-headline-sm text-error font-bold">1.350.000đ</span>
+                </div>
+                <div class="grid grid-cols-3 gap-space-xs pt-1">
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-lowest border border-outline-variant/60 cursor-pointer hover:border-secondary">
+                        <input type="radio" name="checkinPaymentMethod" checked class="text-secondary accent-secondary">
+                        <span class="font-label-sm text-[11.5px] text-on-surface">Chuyển VietQR</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-lowest border border-outline-variant/60 cursor-pointer hover:border-secondary">
+                        <input type="radio" name="checkinPaymentMethod" class="text-secondary accent-secondary">
+                        <span class="font-label-sm text-[11.5px] text-on-surface">Tiền mặt</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-lowest border border-outline-variant/60 cursor-pointer hover:border-secondary">
+                        <input type="radio" name="checkinPaymentMethod" class="text-secondary accent-secondary">
+                        <span class="font-label-sm text-[11.5px] text-on-surface">Quẹt thẻ POS</span>
+                    </label>
+                </div>
+                <label class="flex items-center gap-space-xs pt-1 cursor-pointer">
+                    <input type="checkbox" checked class="w-4 h-4 rounded text-secondary accent-secondary">
+                    <span class="font-body-sm text-on-surface font-medium">Đã thu đủ số tiền tại quầy</span>
+                </label>
+            </div>
+
+            <!-- Bước 3: Giao chìa khóa & Tiện ích -->
+            <div class="p-space-sm rounded-xl bg-surface-container-low border border-surface-container flex flex-col gap-1 text-body-sm">
+                <span class="font-label-md text-on-surface font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px] text-secondary">vpn_key</span> 3. Bàn giao chìa khóa & Tiện ích:
+                </span>
+                <span class="text-on-surface-variant">• Đã bàn giao: 01 Chìa khóa cơ + 01 Thẻ bật điện phòng 01.</span>
+                <span class="text-on-surface-variant">• Wifi Homestay: <strong>NhaSanMoc_Guest</strong> - Mật khẩu: <strong>maichau2024</strong></span>
+                <span class="text-on-surface-variant">• Giờ ăn tối theo yêu cầu: <strong>18h30</strong> tại sân nướng than mộc.</span>
+            </div>
+        </div>
+
+        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
+            <button onclick="closeModal('checkinModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy</button>
+            <button onclick="confirmCheckin()" class="px-space-lg py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md font-bold transition-all shadow-md custom-secondary-bg flex items-center gap-1.5" type="button">
+                <span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+                <span>Xác nhận nhận phòng & Giao chìa khóa</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 4. POPUP XÁC NHẬN CHECK-OUT & QUYẾT TOÁN -->
+<div id="checkoutModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+        <div class="p-space-md bg-primary text-on-primary flex items-center justify-between shrink-0 custom-primary-bg">
+            <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[24px]">logout</span>
+                <div class="flex flex-col">
+                    <h3 class="font-headline-sm text-headline-sm text-on-primary">Thủ tục Check-out & Quyết toán</h3>
+                    <span class="font-label-sm text-[11px] text-on-primary-container">Đơn: <strong id="checkoutModalBookingId" class="text-on-primary">#BK-9839</strong></span>
+                </div>
+            </div>
+            <button onclick="closeModal('checkoutModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container text-on-primary transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+            <!-- Khách & Phòng -->
+            <div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between border border-surface-container">
+                <div class="flex flex-col">
+                    <span id="checkoutModalGuestName" class="font-headline-sm text-on-surface font-bold">Lê Văn Hiếu</span>
+                    <span class="font-body-sm text-outline">Đã lưu trú: 2 đêm</span>
+                </div>
+                <div class="flex flex-col items-end">
+                    <span id="checkoutModalRoom" class="font-label-md text-primary font-bold">Lake View #02</span>
+                    <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-bold">Đang ở</span>
+                </div>
+            </div>
+
+            <!-- Kiểm tra phòng -->
+            <div class="flex flex-col gap-space-xs">
+                <span class="font-label-md text-on-surface font-bold">Kiểm tra bàn giao phòng:</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs">
+                    <label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low border border-surface-container cursor-pointer">
+                        <input type="checkbox" checked class="w-4 h-4 rounded text-secondary accent-secondary">
+                        <span class="font-body-sm text-on-surface">Đã nhận đủ chìa khóa phòng</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low border border-surface-container cursor-pointer">
+                        <input type="checkbox" checked class="w-4 h-4 rounded text-secondary accent-secondary">
+                        <span class="font-body-sm text-on-surface">Trang thiết bị phòng nguyên vẹn</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Bảng kê quyết toán chi phí -->
+            <div class="p-space-sm rounded-xl bg-surface-container-low border border-surface-container flex flex-col gap-space-xs">
+                <span class="font-label-md text-primary font-bold uppercase tracking-wider">Bảng kê chi phí quyết toán</span>
+                
+                <div class="flex items-center justify-between text-body-sm py-1 border-b border-surface-container">
+                    <span class="text-on-surface-variant">Tiền phòng còn thiếu:</span>
+                    <span id="checkoutModalRemainRoom" class="font-semibold text-on-surface">1.200.000đ</span>
+                </div>
+
+                <!-- Danh sách dịch vụ dùng trong thời gian ở -->
+                <div class="flex flex-col gap-1 py-1">
+                    <span class="font-label-sm text-outline uppercase text-[10.5px]">Dịch vụ dùng thêm:</span>
+                    <div id="checkoutModalServicesList" class="flex flex-col gap-1">
+                        <!-- Render dịch vụ động -->
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-body-sm pt-1 border-t border-surface-container">
+                    <span class="text-on-surface-variant">Tổng tiền dịch vụ thêm:</span>
+                    <span id="checkoutModalServiceTotal" class="font-bold text-on-surface">400.000đ</span>
+                </div>
+
+                <div class="flex items-center justify-between text-headline-sm pt-2 border-t-2 border-surface-container-high">
+                    <span class="font-bold text-on-surface">TỔNG CỘNG THANH TOÁN:</span>
+                    <span id="checkoutModalFinalTotal" class="font-headline-lg text-secondary font-bold">1.600.000đ</span>
+                </div>
+            </div>
+
+            <!-- Phương thức thanh toán nốt -->
+            <div class="flex flex-col gap-1">
+                <label class="font-label-md text-on-surface font-bold">Phương thức khách thanh toán nốt:</label>
+                <div class="grid grid-cols-3 gap-space-xs">
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/60 cursor-pointer hover:border-secondary">
+                        <input type="radio" name="checkoutPaymentType" checked class="text-secondary accent-secondary">
+                        <span class="font-label-sm text-[11.5px] text-on-surface">Quét VietQR</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/60 cursor-pointer hover:border-secondary">
+                        <input type="radio" name="checkoutPaymentType" class="text-secondary accent-secondary">
+                        <span class="font-label-sm text-[11.5px] text-on-surface">Tiền mặt</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/60 cursor-pointer hover:border-secondary">
+                        <input type="radio" name="checkoutPaymentType" class="text-secondary accent-secondary">
+                        <span class="font-label-sm text-[11.5px] text-on-surface">Quẹt thẻ</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
+            <button onclick="closeModal('checkoutModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
+            <button onclick="confirmCheckout()" class="px-space-lg py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md font-bold transition-all shadow-md custom-secondary-bg flex items-center gap-1.5" type="button">
+                <span class="material-symbols-outlined text-[18px]">verified</span>
+                <span>Xác nhận thanh toán & Hoàn tất Check-out</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 5. POPUP THÊM DỊCH VỤ / PHỤ PHÍ -->
+<div id="addServiceModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+        <div class="p-space-md bg-primary-container text-on-primary flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[24px] text-primary-fixed">room_service</span>
+                <div class="flex flex-col">
+                    <h3 class="font-headline-sm text-headline-sm text-on-primary">Thêm dịch vụ & Trải nghiệm bản địa</h3>
+                    <span class="font-label-sm text-[11px] text-on-primary-container">Ghi nhận vào: <strong id="addServiceModalBookingId" class="text-on-primary">#BK-9839 (Lê Văn Hiếu)</strong></span>
+                </div>
+            </div>
+            <button onclick="closeModal('addServiceModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container text-on-primary transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+            <!-- Danh mục dịch vụ bản địa -->
+            <div class="flex flex-col gap-space-xs">
+                <span class="font-label-md text-primary font-bold uppercase tracking-wider">Danh mục dịch vụ homestay</span>
+                
+                <div class="flex flex-col gap-space-xs">
+                    <!-- Dịch vụ 1 -->
+                    <div class="service-item-row flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low border border-surface-container" data-name="Cơm lam thịt nướng Mai Châu" data-price="180000">
+                        <div class="flex items-center gap-space-sm">
+                            <span class="material-symbols-outlined text-[24px] text-secondary">restaurant</span>
+                            <div class="flex flex-col">
+                                <span class="font-label-md text-on-surface font-bold">Cơm lam & Thịt nướng Mai Châu</span>
+                                <span class="text-body-sm text-outline">180.000đ / suất (kèm muối vừng)</span>
+                            </div>
+                        </div>
+                        <div class="service-counter-wrap flex items-center gap-2">
+                            <button onclick="adjustServiceQty(this, -1)" class="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center font-bold text-on-surface" type="button">-</button>
+                            <input type="text" readonly class="service-qty-input w-9 text-center font-bold text-on-surface bg-transparent" value="0">
+                            <button onclick="adjustServiceQty(this, 1)" class="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center font-bold text-on-surface" type="button">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Dịch vụ 2 -->
+                    <div class="service-item-row flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low border border-surface-container" data-name="Gà đồi nướng mắc khén than mộc" data-price="280000">
+                        <div class="flex items-center gap-space-sm">
+                            <span class="material-symbols-outlined text-[24px] text-on-tertiary-container">local_fire_department</span>
+                            <div class="flex flex-col">
+                                <span class="font-label-md text-on-surface font-bold">Gà đồi nướng than mộc mắc khén</span>
+                                <span class="text-body-sm text-outline">280.000đ / con (nướng nguyên con)</span>
+                            </div>
+                        </div>
+                        <div class="service-counter-wrap flex items-center gap-2">
+                            <button onclick="adjustServiceQty(this, -1)" class="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center font-bold text-on-surface" type="button">-</button>
+                            <input type="text" readonly class="service-qty-input w-9 text-center font-bold text-on-surface bg-transparent" value="0">
+                            <button onclick="adjustServiceQty(this, 1)" class="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center font-bold text-on-surface" type="button">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Dịch vụ 3 -->
+                    <div class="service-item-row flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low border border-surface-container" data-name="Thuê xe máy dạo bản Lác" data-price="150000">
+                        <div class="flex items-center gap-space-sm">
+                            <span class="material-symbols-outlined text-[24px] text-primary">two_wheeler</span>
+                            <div class="flex flex-col">
+                                <span class="font-label-md text-on-surface font-bold">Thuê xe máy dạo bản Lác</span>
+                                <span class="text-body-sm text-outline">150.000đ / ngày (đầy bình xăng)</span>
+                            </div>
+                        </div>
+                        <div class="service-counter-wrap flex items-center gap-2">
+                            <button onclick="adjustServiceQty(this, -1)" class="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center font-bold text-on-surface" type="button">-</button>
+                            <input type="text" readonly class="service-qty-input w-9 text-center font-bold text-on-surface bg-transparent" value="0">
+                            <button onclick="adjustServiceQty(this, 1)" class="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center font-bold text-on-surface" type="button">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Dịch vụ 4 -->
+                    <div class="service-item-row flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low border border-surface-container" data-name="Set củi lửa trại & bắp khoai nướng" data-price="250000">
+                        <div class="flex items-center gap-space-sm">
+                            <span class="material-symbols-outlined text-[24px] text-tertiary">camping</span>
+                            <div class="flex flex-col">
+                                <span class="font-label-md text-on-surface font-bold">Set lửa trại & bắp khoai nướng ngoài thềm</span>
+                                <span class="text-body-sm text-outline">250.000đ / set (củi nứa + 10 bắp khoai)</span>
+                            </div>
+                        </div>
+                        <div class="service-counter-wrap flex items-center gap-2">
+                            <button onclick="adjustServiceQty(this, -1)" class="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center font-bold text-on-surface" type="button">-</button>
+                            <input type="text" readonly class="service-qty-input w-9 text-center font-bold text-on-surface bg-transparent" value="0">
+                            <button onclick="adjustServiceQty(this, 1)" class="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center font-bold text-on-surface" type="button">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Dịch vụ 5 -->
+                    <div class="service-item-row flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low border border-surface-container" data-name="Thuê trang phục truyền thống Thái" data-price="80000">
+                        <div class="flex items-center gap-space-sm">
+                            <span class="material-symbols-outlined text-[24px] text-secondary">styler</span>
+                            <div class="flex flex-col">
+                                <span class="font-label-md text-on-surface font-bold">Thuê trang phục dân tộc Thái chụp ảnh</span>
+                                <span class="text-body-sm text-outline">80.000đ / bộ (kèm khăn piêu & phụ kiện)</span>
+                            </div>
+                        </div>
+                        <div class="service-counter-wrap flex items-center gap-2">
+                            <button onclick="adjustServiceQty(this, -1)" class="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center font-bold text-on-surface" type="button">-</button>
+                            <input type="text" readonly class="service-qty-input w-9 text-center font-bold text-on-surface bg-transparent" value="0">
+                            <button onclick="adjustServiceQty(this, 1)" class="w-7 h-7 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center font-bold text-on-surface" type="button">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tổng kết cộng thêm -->
+            <div class="p-space-sm rounded-xl bg-primary-fixed/30 border border-primary-fixed flex items-center justify-between">
+                <div class="flex flex-col">
+                    <span class="font-label-md text-primary font-bold">Tổng tiền dịch vụ cộng thêm:</span>
+                    <span class="text-body-sm text-on-surface-variant">Tự động cộng vào hóa đơn thanh toán khi check-out</span>
+                </div>
+                <span id="addServiceTotalSum" class="font-headline-lg text-primary font-bold">0đ</span>
+            </div>
+        </div>
+
+        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
+            <button onclick="closeModal('addServiceModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy</button>
+            <button onclick="saveAddedServices()" class="px-space-lg py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md font-bold transition-all shadow-md custom-primary-bg flex items-center gap-1.5" type="button">
+                <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                <span>Xác nhận thêm vào hóa đơn</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 6. POPUP HÓA ĐƠN THANH TOÁN (INVOICE / RECEIPT) -->
+<div id="invoiceModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+        <!-- Header (Ẩn khi in) -->
+        <div class="p-space-md bg-surface-container border-b border-surface-container-high flex items-center justify-between shrink-0 no-print">
+            <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[22px] text-primary">receipt</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface">Phiếu thanh toán & Hóa đơn dịch vụ</h3>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="printInvoice()" class="px-3 py-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm flex items-center gap-1 transition-all custom-primary-bg" type="button">
+                    <span class="material-symbols-outlined text-[16px]">print</span> In phiếu
+                </button>
+                <button onclick="closeModal('invoiceModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high text-outline transition-colors" type="button">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Nội dung hóa đơn in ấn (Invoice Print Area) -->
+        <div id="invoicePrintContent" class="p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md bg-white text-black">
+            <!-- Header Hóa đơn -->
+            <div class="flex items-start justify-between border-b pb-4 border-gray-200">
+                <div class="flex flex-col">
+                    <h2 class="text-xl font-bold tracking-tight text-gray-900">HOMESTAY NHÀ SÀN MỘC</h2>
+                    <span class="text-xs text-gray-600">Bản Lác, Xã Chiềng Châu, Huyện Mai Châu, Hòa Bình</span>
+                    <span class="text-xs text-gray-600">Hotline: 0988 345 678 • Email: contact@nhasanmoc.vn</span>
+                    <span class="text-xs text-gray-600">Mã số thuế: 5400192837</span>
+                </div>
+                <div class="flex flex-col items-end">
+                    <span class="text-base font-bold text-emerald-800 uppercase tracking-wide">HÓA ĐƠN THANH TOÁN</span>
+                    <span class="text-xs text-gray-700">Số HĐ: <strong id="invModalNumber">HD-20240916-003</strong></span>
+                    <span class="text-xs text-gray-500">Ngày lập: <span id="invModalDate">16/09/2024 11:45</span></span>
+                </div>
+            </div>
+
+            <!-- Thông tin khách hàng & phòng -->
+            <div class="grid grid-cols-2 gap-2 text-xs py-2 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                <div><strong>Khách hàng:</strong> <span id="invModalGuestName">Phạm Thị Lan</span></div>
+                <div><strong>Số điện thoại:</strong> <span id="invModalPhone">0903 442 771</span></div>
+                <div><strong>CCCD / Hộ chiếu:</strong> <span id="invModalCccd">025091004523</span></div>
+                <div><strong>Phòng lưu trú:</strong> <span id="invModalRoom">Bungalow Suối #01</span></div>
+                <div class="col-span-2"><strong>Thời gian ở:</strong> <span id="invModalSchedule">14/09/2024 đến 16/09/2024 (2 đêm)</span></div>
+            </div>
+
+            <!-- Bảng kê dịch vụ -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 border-b border-gray-300 font-semibold text-gray-700">
+                            <th class="py-2 px-3">STT</th>
+                            <th class="py-2 px-3">Nội dung dịch vụ</th>
+                            <th class="py-2 px-3 text-center">SL</th>
+                            <th class="py-2 px-3 text-right">Đơn giá</th>
+                            <th class="py-2 px-3 text-right">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invModalItemsTable" class="divide-y divide-gray-100">
+                        <!-- Render dòng chi tiết hóa đơn -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tổng kết tiền -->
+            <div class="flex flex-col gap-1 border-t border-gray-300 pt-3 text-xs">
+                <div class="flex justify-between py-0.5">
+                    <span class="text-gray-600">Tổng tiền dịch vụ & lưu trú:</span>
+                    <span id="invModalTotal" class="font-bold text-gray-900">3.100.000đ</span>
+                </div>
+                <div class="flex justify-between py-0.5 text-emerald-700">
+                    <span>Đã trừ tiền cọc trực tuyến / Sàn:</span>
+                    <span id="invModalDeposit" class="font-bold">-1.500.000đ</span>
+                </div>
+                <div class="flex justify-between py-1.5 border-t border-dashed border-gray-300 text-sm">
+                    <span class="font-bold text-gray-900">Khách đã thanh toán tại quầy:</span>
+                    <span id="invModalFinalPaid" class="font-bold text-emerald-800 text-base">1.600.000đ</span>
+                </div>
+            </div>
+
+            <!-- Dấu mộc & Chữ ký -->
+            <div class="grid grid-cols-2 pt-6 items-center text-center text-xs">
+                <div class="flex flex-col items-center">
+                    <span class="font-bold text-gray-800">Khách hàng</span>
+                    <span class="text-[11px] text-gray-500 italic mt-0.5">(Ký và ghi rõ họ tên)</span>
+                    <span class="mt-12 font-medium text-gray-700">Phạm Thị Lan</span>
+                </div>
+                <div class="flex flex-col items-center relative">
+                    <span class="font-bold text-gray-800">Đại diện Homestay</span>
+                    <span class="text-[11px] text-gray-500 italic mt-0.5">(Đã thu đủ 100%)</span>
+                    <!-- Dấu đỏ ĐÃ THANH TOÁN -->
+                    <div class="w-24 h-24 rounded-full border-4 border-red-600/80 text-red-600 flex flex-col items-center justify-center uppercase font-bold text-[10px] tracking-wider rotate-[-12deg] opacity-80 mt-2 pointer-events-none">
+                        <span>NHÀ SÀN MỘC</span>
+                        <span class="text-[12px] font-black border-y border-red-600 py-0.5 my-0.5">ĐÃ THU TIỀN</span>
+                        <span>PAID</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer (Ẩn khi in) -->
+        <div class="p-space-md bg-surface-container-low flex items-center justify-between border-t border-surface-container shrink-0 no-print">
+            <button onclick="closeModal('invoiceModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
+            <div class="flex items-center gap-2">
+                <button onclick="showToast('Tải PDF', 'Đang tạo bản sao lưu PDF hóa đơn...', 'info')" class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md transition-colors flex items-center gap-1" type="button">
+                    <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span> Tải file PDF
+                </button>
+                <button onclick="printInvoice()" class="px-space-lg py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md font-bold transition-all shadow-md custom-secondary-bg flex items-center gap-1.5" type="button">
+                    <span class="material-symbols-outlined text-[18px]">print</span>
+                    <span>In phiếu hóa đơn</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 7. POPUP DUYỆT ĐƠN & ĐỐI SOÁT CỌC -->
+<div id="approveBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+        <div class="p-space-md bg-secondary text-on-secondary flex items-center justify-between shrink-0 custom-secondary-bg">
+            <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[24px]">verified_user</span>
+                <div class="flex flex-col">
+                    <h3 class="font-headline-sm text-headline-sm text-on-secondary">Duyệt đơn & Xác nhận cọc</h3>
+                    <span class="font-label-sm text-[11px] text-on-secondary-container">Mã đơn: <strong id="approveModalBookingId" class="text-on-secondary">#BK-9850</strong></span>
+                </div>
+            </div>
+            <button onclick="closeModal('approveBookingModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-secondary/80 text-on-secondary transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+            <div class="p-space-sm rounded-xl bg-surface-container-low flex items-center justify-between border border-surface-container">
+                <div class="flex flex-col">
+                    <span id="approveModalGuestName" class="font-headline-sm text-on-surface font-bold">Trần Tuấn Kiệt</span>
+                    <span id="approveModalRoom" class="font-body-sm text-outline">Nhà Sàn Tập Thể (6 khách)</span>
+                </div>
+                <div class="flex flex-col items-end">
+                    <span class="font-label-sm text-outline text-[11px]">Tiền cọc cần xác nhận:</span>
+                    <span id="approveModalAmount" class="font-headline-sm text-secondary font-bold">2.100.000đ</span>
+                </div>
+            </div>
+
+            <!-- Chi tiết chuyển khoản ngân hàng -->
+            <div class="p-space-sm rounded-xl bg-surface-container-low border border-surface-container flex flex-col gap-space-xs">
+                <span class="font-label-md text-primary font-bold flex items-center gap-1 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-[16px]">account_balance</span> Dữ liệu giao dịch ngân hàng
+                </span>
+                <div class="flex flex-col gap-1 text-body-sm">
+                    <div class="flex items-center justify-between">
+                        <span class="text-on-surface-variant">Ngân hàng:</span>
+                        <span id="approveModalBankInfo" class="font-medium text-on-surface">Vietcombank - GD FT24261899201</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-on-surface-variant">Thời gian nhận:</span>
+                        <span id="approveModalTransferDate" class="font-medium text-on-surface">17/09/2024 08:35:12</span>
+                    </div>
+                    <div class="flex flex-col gap-0.5 pt-1">
+                        <span class="text-on-surface-variant text-[11px]">Nội dung chuyển khoản đối soát:</span>
+                        <span id="approveModalContent" class="p-2 rounded-lg bg-surface-container font-mono text-[12px] text-on-surface border border-surface-container-high">BK9850 Tran Tuan Kiet dat phong nha san</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-space-xs rounded-lg bg-secondary-container/40 text-on-secondary-container flex items-center gap-2 text-body-sm">
+                <span class="material-symbols-outlined text-[20px] text-secondary">check_circle</span>
+                <span>Số tiền khớp 100% với giá trị cọc yêu cầu (50%).</span>
+            </div>
+        </div>
+
+        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
+            <button onclick="closeModal('approveBookingModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
+            <button onclick="confirmApproveBooking()" class="px-space-lg py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md font-bold transition-all shadow-md custom-secondary-bg flex items-center gap-1.5" type="button">
+                <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                <span>Xác nhận duyệt & Giữ phòng</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 8. POPUP TỪ CHỐI / HỦY ĐƠN ĐẶT PHÒNG -->
+<div id="rejectBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+        <div class="p-space-md bg-error text-on-error flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[24px]">cancel</span>
+                <div class="flex flex-col">
+                    <h3 class="font-headline-sm text-headline-sm text-on-error">Từ chối đơn đặt phòng</h3>
+                    <span class="font-label-sm text-[11px] text-white/80">Mã đơn: <strong id="rejectModalBookingId">#BK-9850</strong> (<span id="rejectModalGuestName">Trần Tuấn Kiệt</span>)</span>
+                </div>
+            </div>
+            <button onclick="closeModal('rejectBookingModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 text-on-error transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+            <div class="flex flex-col gap-1">
+                <label class="font-label-md text-on-surface font-bold">Lý do từ chối tiếp nhận đơn:</label>
+                <select class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-error text-body-md cursor-pointer">
+                    <option>Hết phòng do khách đoàn gia hạn thêm ngày</option>
+                    <option>Trùng lịch sửa chữa, khử khuẩn và bảo trì homestay</option>
+                    <option>Khách hàng không chuyển tiền cọc đúng hạn (quá 2 giờ)</option>
+                    <option>Số lượng khách vượt quá công suất phòng tối đa</option>
+                    <option>Lý do khác...</option>
+                </select>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label class="font-label-md text-on-surface font-bold">Phương án xử lý tiền cọc (nếu đã chuyển):</label>
+                <div class="flex flex-col gap-1 text-body-sm">
+                    <label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low border border-surface-container cursor-pointer">
+                        <input type="radio" name="refundOption" checked class="text-error accent-error">
+                        <span>Hoàn lại 100% tiền cọc về số tài khoản khách trong 24h</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low border border-surface-container cursor-pointer">
+                        <input type="radio" name="refundOption" class="text-error accent-error">
+                        <span>Đề xuất khách dời lịch sang cuối tuần sau</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label class="font-label-md text-on-surface font-bold">Nội dung tin nhắn thông báo gửi khách:</label>
+                <textarea rows="2" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-error text-body-md">Homestay Nhà Sàn Mộc rất tiếc chưa thể phục vụ quý khách trong khung giờ này do trùng lịch bảo trì. Bộ phận lễ tân sẽ liên hệ hỗ trợ hoàn cọc ngay ạ.</textarea>
+            </div>
+        </div>
+
+        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
+            <button onclick="closeModal('rejectBookingModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy bỏ</button>
+            <button onclick="confirmRejectBooking()" class="px-space-lg py-2 rounded-lg bg-error hover:bg-error/90 text-on-error font-label-md font-bold transition-all shadow-md flex items-center gap-1.5" type="button">
+                <span class="material-symbols-outlined text-[18px]">block</span>
+                <span>Xác nhận từ chối đơn</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 9. POPUP XUẤT BÁO CÁO / EXCEL -->
+<div id="exportReportModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+        <div class="p-space-md bg-surface-container-low border-b border-surface-container flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[24px] text-primary">table_view</span>
+                <div class="flex flex-col">
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Xuất báo cáo & Dữ liệu đặt phòng</h3>
+                    <span class="font-label-sm text-[11px] text-outline">Xuất dữ liệu chi tiết phục vụ đối soát và lưu trữ kế toán</span>
+                </div>
+            </div>
+            <button onclick="closeModal('exportReportModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high text-outline transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <div class="p-space-md sm:p-space-lg overflow-y-auto modal-scroll flex flex-col gap-space-md">
+            <div class="flex flex-col gap-1">
+                <label class="font-label-md text-on-surface font-bold">1. Chọn kỳ thời gian xuất:</label>
+                <div class="grid grid-cols-2 gap-space-xs">
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/60 cursor-pointer">
+                        <input type="radio" name="exportRange" class="text-secondary accent-secondary">
+                        <span class="text-body-sm text-on-surface">Hôm nay (17/09)</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/60 cursor-pointer">
+                        <input type="radio" name="exportRange" class="text-secondary accent-secondary">
+                        <span class="text-body-sm text-on-surface">7 ngày gần nhất</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/60 cursor-pointer">
+                        <input type="radio" name="exportRange" checked class="text-secondary accent-secondary">
+                        <span class="text-body-sm text-on-surface">Tháng 9/2024</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-surface-container-low border border-outline-variant/60 cursor-pointer">
+                        <input type="radio" name="exportRange" class="text-secondary accent-secondary">
+                        <span class="text-body-sm text-on-surface">Tùy chỉnh khoảng ngày</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label class="font-label-md text-on-surface font-bold">2. Trạng thái đơn đặt phòng:</label>
+                <select class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md cursor-pointer">
+                    <option>Tất cả trạng thái (24 đơn)</option>
+                    <option>Chỉ đơn đã cọc và đang lưu trú</option>
+                    <option>Chỉ đơn đã hoàn tất thanh toán</option>
+                    <option>Chỉ đơn đặt qua sàn OTA (đối soát hoa hồng)</option>
+                </select>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label class="font-label-md text-on-surface font-bold">3. Định dạng tệp tải về:</label>
+                <div class="grid grid-cols-3 gap-space-xs">
+                    <label class="flex flex-col items-center gap-1 p-3 rounded-xl bg-surface-container-low border-2 border-secondary text-center cursor-pointer">
+                        <span class="material-symbols-outlined text-[28px] text-secondary">description</span>
+                        <span class="font-label-md text-on-surface font-bold text-[12px]">Excel (.xlsx)</span>
+                        <span class="text-[10px] text-outline">Đầy đủ biểu thức</span>
+                    </label>
+                    <label class="flex flex-col items-center gap-1 p-3 rounded-xl bg-surface-container-low border border-outline-variant/60 text-center cursor-pointer hover:border-secondary">
+                        <span class="material-symbols-outlined text-[28px] text-primary">csv</span>
+                        <span class="font-label-md text-on-surface font-bold text-[12px]">CSV Data</span>
+                        <span class="text-[10px] text-outline">Dữ liệu thô</span>
+                    </label>
+                    <label class="flex flex-col items-center gap-1 p-3 rounded-xl bg-surface-container-low border border-outline-variant/60 text-center cursor-pointer hover:border-secondary">
+                        <span class="material-symbols-outlined text-[28px] text-error">picture_as_pdf</span>
+                        <span class="font-label-md text-on-surface font-bold text-[12px]">PDF Báo cáo</span>
+                        <span class="text-[10px] text-outline">In ấn & Ký duyệt</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container shrink-0">
+            <button onclick="closeModal('exportReportModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy</button>
+            <button onclick="handleExportReport()" class="px-space-lg py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md font-bold transition-all shadow-md custom-primary-bg flex items-center gap-1.5" type="button">
+                <span class="material-symbols-outlined text-[18px]">download</span>
+                <span>Tải xuống file báo cáo</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 10. POPUP LIÊN HỆ KHÁCH HÀNG (GỌI ĐIỆN / NHẮN TIN) -->
+<div id="contactGuestModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto modal-backdrop">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col modal-box my-auto border border-surface-container-high/60 max-h-[92vh]">
+        <div class="p-space-md bg-surface-container-low border-b border-surface-container flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[22px] text-primary">contact_phone</span>
+                <div class="flex flex-col">
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Liên hệ khách hàng</h3>
+                    <span class="font-label-sm text-[11px] text-outline" id="contactModalBookingId">#BK-9842 (Mountain View #01)</span>
+                </div>
+            </div>
+            <button onclick="closeModal('contactGuestModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high text-outline transition-colors" type="button">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <div class="p-space-md overflow-y-auto modal-scroll flex flex-col gap-space-md">
+            <!-- Tabs chuyển đổi kênh liên hệ -->
+            <div class="flex items-center gap-1 p-1 bg-surface-container rounded-xl">
+                <button id="contactTabCallBtn" onclick="switchContactTab('call')" class="flex-1 py-2 rounded-lg font-label-md text-label-md font-bold bg-primary text-on-primary transition-all custom-primary-bg" type="button">
+                    <span class="material-symbols-outlined text-[16px] align-middle">call</span> Gọi điện thoại
+                </button>
+                <button id="contactTabChatBtn" onclick="switchContactTab('chat')" class="flex-1 py-2 rounded-lg font-label-md text-label-md font-medium text-on-surface-variant hover:bg-surface-container-high transition-all" type="button">
+                    <span class="material-symbols-outlined text-[16px] align-middle">chat</span> Nhắn tin nhanh
+                </button>
+            </div>
+
+            <!-- Khung 1: Gọi điện thoại -->
+            <div id="contactCallSection" class="flex flex-col items-center gap-space-sm py-2">
+                <div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+                    <span class="material-symbols-outlined text-[32px]">phone_in_talk</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span id="contactModalGuestName" class="font-headline-sm text-headline-sm text-on-surface font-bold">Nguyễn Thị Mai</span>
+                    <span id="contactModalPhone" class="text-headline-md font-bold text-secondary mt-0.5">0982 341 112</span>
+                </div>
+                <div class="flex items-center gap-2 w-full pt-2">
+                    <a href="tel:0982341112" class="flex-1 py-2.5 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md font-bold transition-all flex items-center justify-center gap-1 custom-secondary-bg">
+                        <span class="material-symbols-outlined text-[18px]">call</span>
+                        <span>Bấm gọi ngay</span>
+                    </a>
+                    <button onclick="showToast('Zalo', 'Đang mở liên kết Zalo số 0982341112...', 'info')" class="flex-1 py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md font-bold transition-all flex items-center justify-center gap-1" type="button">
+                        <span class="material-symbols-outlined text-[18px]">chat_bubble</span>
+                        <span>Mở Zalo</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Khung 2: Nhắn tin nhanh -->
+            <div id="contactChatSection" class="hidden flex flex-col gap-space-sm">
+                <span class="font-label-md text-on-surface font-bold">Mẫu tin nhắn nhanh có sẵn:</span>
+                <div class="flex flex-col gap-1.5">
+                    <button onclick="selectMessageTemplate('Chào bạn, Homestay Nhà Sàn Mộc đã chuẩn bị xong phòng đón bạn vào lúc 14h00 hôm nay. Nếu cần đón từ ngã ba Bản Lác, bạn nhắn homestay nhé!')" class="p-2 rounded-lg bg-surface-container-low hover:bg-surface-container border border-surface-container text-left text-body-sm text-on-surface transition-colors" type="button">
+                        <strong>1. Nhắc nhận phòng:</strong> Phòng đã sẵn sàng đón lúc 14h00...
+                    </button>
+                    <button onclick="selectMessageTemplate('Homestay đã chuẩn bị xong suất cơm lam thịt nướng cho bữa tối lúc 18h30 theo yêu cầu của bạn ạ.')" class="p-2 rounded-lg bg-surface-container-low hover:bg-surface-container border border-surface-container text-left text-body-sm text-on-surface transition-colors" type="button">
+                        <strong>2. Xác nhận ăn tối:</strong> Cơm lam thịt nướng sẵn sàng lúc 18h30...
+                    </button>
+                    <button onclick="selectMessageTemplate('Hướng dẫn đường vào: Bạn đi theo Google Maps Homestay Nhà Sàn Mộc, xe ô tô 16 chỗ vào tận cổng sân homestay được nhé.')" class="p-2 rounded-lg bg-surface-container-low hover:bg-surface-container border border-surface-container text-left text-body-sm text-on-surface transition-colors" type="button">
+                        <strong>3. Chỉ dẫn đường đi:</strong> Xe ô tô vào tận cổng homestay...
+                    </button>
+                </div>
+
+                <div class="flex flex-col gap-1 pt-1">
+                    <label class="font-label-md text-on-surface font-bold">Nội dung tin nhắn:</label>
+                    <textarea id="contactChatMessageInput" rows="3" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" placeholder="Nhập nội dung tin nhắn gửi khách..."></textarea>
+                </div>
+
+                <button onclick="sendContactMessage()" class="w-full py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md font-bold transition-all custom-primary-bg flex items-center justify-center gap-1" type="button">
+                    <span class="material-symbols-outlined text-[18px]">send</span>
+                    <span>Gửi tin nhắn qua sàn / Zalo</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="p-space-md bg-surface-container-low flex items-center justify-end border-t border-surface-container shrink-0">
+            <button onclick="closeModal('contactGuestModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
