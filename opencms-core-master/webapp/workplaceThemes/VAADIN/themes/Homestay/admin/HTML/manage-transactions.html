@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Giao dịch & Tài chính - Admin YÊN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="../CSS/admin_sidebar.css">
+    <link rel="stylesheet" href="../CSS/manage-transactions.css">
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../images/logo_white.png" alt="YÊN Logo" class="sidebar-logo-img">
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu" id="adminMenu">
+                <li class="menu-item">
+                    <a href="admin.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">dashboard</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">group</span>
+                        <span>Quản lý tài khoản</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-homestay.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">cottage</span>
+                        <span>Quản lý Homestay</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">map</span>
+                        <span>Quản lý nội dung địa phương</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage-transactions.html" class="menu-link active">
+                        <span class="material-symbols-outlined menu-icon">receipt_long</span>
+                        <span>Quản lý giao dịch</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">campaign</span>
+                        <span>Quản lý quảng cáo</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">local_offer</span>
+                        <span>Quản lý mã giảm giá</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">bar_chart</span>
+                        <span>Báo cáo & Thống kê</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">report_problem</span>
+                        <span>Quản lý báo cáo & Khiếu nại</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="host-profile">
+                <div class="host-icon">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">admin_panel_settings</span>
+                </div>
+                <div class="host-info">
+                    <h4>Admin System</h4>
+                    <p>Quản trị hệ thống</p>
+                </div>
+                <span class="material-symbols-outlined" style="color: #A7F3D0; font-size: 18px;">unfold_more</span>
+            </div>
+            <div class="host-quote">
+                "Hệ thống quản trị YÊN Homestay"
+            </div>
+        </div>
+    </aside>
+
+    <div class="admin-main">
+
+        <!-- HEADER -->
+        <header class="admin-header">
+            <div class="header-left">
+                <div class="header-search">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" class="search-input" placeholder="Tìm kiếm tài khoản, homestay, giao dịch...">
+                </div>
+            </div>
+
+            <div class="admin-header-right">
+                <div class="header-action-btns">
+                    <button class="header-icon-btn" title="Thông báo">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="badge-dot">3</span>
+                    </button>
+                    <button class="header-icon-btn" title="Tin nhắn">
+                        <span class="material-symbols-outlined">chat</span>
+                    </button>
+                </div>
+
+                <div class="header-divider"></div>
+                
+                <div class="owner-header-profile-wrapper">
+                    <div class="owner-header-profile" id="adminProfileBtn">
+                        <div class="owner-avatar">A</div>
+                        <div class="owner-info">
+                            <div class="owner-info-top">
+                                <span class="owner-name">Admin System</span>
+                                <span class="owner-role-badge">Quản trị viên</span>
+                            </div>
+                            <span class="owner-subtext">Hệ thống YÊN</span>
+                        </div>
+                        <span class="material-symbols-outlined dropdown-arrow" style="font-size: 18px; color: var(--text-muted); margin-left: 2px;">expand_more</span>
+                    </div>
+
+                    <div class="profile-dropdown-menu" id="adminProfileDropdown">
+                        <div class="dropdown-header">
+                            <strong class="dropdown-user-name">Admin System</strong>
+                            <span class="dropdown-user-email">admin@yenhomestay.com</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-danger" id="dropdownLogoutBtn">
+                            <span class="material-symbols-outlined">logout</span>
+                            <span>Đăng xuất</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-body-content">
+            
+            <div class="tx-page-header">
+                <h1 class="tx-page-title">Quản lý Giao dịch & Tài chính</h1>
+                <div class="tx-page-sub">Theo dõi tiền cọc đặt phòng, hoàn tiền khách hàng và giải ngân cho Homestay Owner</div>
+            </div>
+
+            <div class="financial-stats-grid">
+                <div class="f-stat-card emerald">
+                    <div>
+                        <div class="f-stat-lbl">Phí sàn YÊN (Tháng 9)</div>
+                        <div class="f-stat-val">34.800.000đ</div>
+                    </div>
+                    <div class="f-stat-icon-wrap">
+                        <span class="material-symbols-outlined">account_balance_wallet</span>
+                    </div>
+                </div>
+                <div class="f-stat-card indigo">
+                    <div>
+                        <div class="f-stat-lbl">Tiền cọc đang giữ</div>
+                        <div class="f-stat-val">68.500.000đ</div>
+                    </div>
+                    <div class="f-stat-icon-wrap">
+                        <span class="material-symbols-outlined">lock_clock</span>
+                    </div>
+                </div>
+                <div class="f-stat-card amber">
+                    <div>
+                        <div class="f-stat-lbl">Yêu cầu hoàn tiền</div>
+                        <div class="f-stat-val">2 Đơn</div>
+                    </div>
+                    <div class="f-stat-icon-wrap">
+                        <span class="material-symbols-outlined">assignment_return</span>
+                    </div>
+                </div>
+                <div class="f-stat-card blue">
+                    <div>
+                        <div class="f-stat-lbl">Chờ giải ngân Owner</div>
+                        <div class="f-stat-val">5 Đơn</div>
+                    </div>
+                    <div class="f-stat-icon-wrap">
+                        <span class="material-symbols-outlined">payments</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="tx-filter-bar">
+                <div class="tx-filter-chips" id="txFilterChips">
+                    <button class="tx-chip active" data-tab="all">
+                        <span>Tất cả</span>
+                        <span class="tx-chip-badge">24</span>
+                    </button>
+                    <button class="tx-chip" data-tab="escrow">
+                        <span>Quản lý tiền cọc</span>
+                        <span class="tx-chip-badge">14</span>
+                    </button>
+                    <button class="tx-chip" data-tab="refund">
+                        <span>Xác nhận hoàn tiền</span>
+                        <span class="tx-chip-badge">2</span>
+                    </button>
+                    <button class="tx-chip" data-tab="payout">
+                        <span>Thanh toán Owner</span>
+                        <span class="tx-chip-badge">5</span>
+                    </button>
+                </div>
+
+                <div class="tx-filter-right">
+                    <div class="tx-search-wrap">
+                        <span class="material-symbols-outlined">search</span>
+                        <input type="text" id="txSearchInput" placeholder="Tìm mã GD, tên khách...">
+                    </div>
+                    <select class="tx-select" id="gatewaySelect">
+                        <option value="all">Tất cả phương thức</option>
+                        <option value="vnpay">VNPay QR</option>
+                        <option value="momo">Ví MoMo</option>
+                        <option value="vietqr">VietQR</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Transaction Data Table -->
+            <div class="tx-table-wrap">
+                <table class="tx-table">
+                    <thead>
+                        <tr>
+                            <th>Giao Dịch / Khách Hàng</th>
+                            <th>Homestay & Chủ Nhà</th>
+                            <th>Số Tiền</th>
+                            <th>Trạng Thái</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="txTableBody">
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="txDetailModal">
+    <div class="modal-box" style="max-width: 720px;">
+        <div class="modal-head">
+            <h4 id="dtTxCode">Chi tiết Giao dịch #GD-88201</h4>
+            <button class="modal-close" onclick="closeTxModal('txDetailModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-grid-2">
+                <div class="bill-card">
+                    <h5><span class="material-symbols-outlined" style="font-size: 18px; color: #15803D;">receipt</span> Bảng kê Tài chính</h5>
+                    <div class="bill-row"><span>Mã Booking:</span> <strong id="dtBookingCode">#BK-9042</strong></div>
+                    <div class="bill-row"><span>Giá phòng:</span> <span id="dtRoomFee">1.700.000đ</span></div>
+                    <div class="bill-row"><span>Phí sàn YÊN (8%):</span> <span id="dtPlatformFee">136.000đ</span></div>
+                    <div class="bill-row total"><span>Tổng thanh toán:</span> <span id="dtTotal" style="color: #15803D;">1.700.000đ</span></div>
+                    <div class="bill-row" style="margin-top: 8px; background: #EEF2FF; padding: 6px 8px; border-radius: 4px;">
+                        <span>Tiền cọc giữ:</span> <strong id="dtDeposit" style="color: #4F46E5;">850.000đ (50%)</strong>
+                    </div>
+                </div>
+
+                <div class="bill-card">
+                    <h5><span class="material-symbols-outlined" style="font-size: 18px; color: #0284C7;">account_balance</span> Thông tin Thanh toán</h5>
+                    <div class="bill-row"><span>Cổng thanh toán:</span> <strong id="dtGateway">VNPay QR</strong></div>
+                    <div class="bill-row"><span>Mã Trace ID:</span> <strong id="dtTraceId">VNP-992019482</strong></div>
+                    <div class="bill-row"><span>Người đặt:</span> <span id="dtGuest">Trần Minh Khoa</span></div>
+                    <div class="bill-row"><span>Chủ nhà:</span> <span id="dtOwner">Triệu Văn Sản</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-foot">
+            <button class="tx-btn tx-btn-secondary" onclick="closeTxModal('txDetailModal')">Đóng</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="refundModal">
+    <div class="modal-box" style="max-width: 600px;">
+        <div class="modal-head">
+            <h4 style="color: #C2410C;">Duyệt Hoàn Tiền Cho Khách Hàng</h4>
+            <button class="modal-close" onclick="closeTxModal('refundModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="bill-card" style="border-color: #FED7AA; background: #FFF7ED; margin-bottom: 14px;">
+                <h5 style="color: #C2410C;"><span class="material-symbols-outlined" style="font-size: 18px;">warning</span> Yêu cầu hủy phòng</h5>
+                <div class="bill-row"><span>Khách hàng:</span> <strong id="rfGuest">Lê Thị Mai (0918 776 554)</strong></div>
+                <div class="bill-row"><span>Lý do:</span> <span id="rfReason">Bão thời tiết tại Mộc Châu, hủy trước 48h</span></div>
+                <div class="bill-row total" style="color: #C2410C;"><span>Số tiền hoàn trả:</span> <span id="rfAmount">1.500.000đ</span></div>
+            </div>
+
+            <div class="bank-info-box">
+                <div style="font-size: 12px; font-weight: 700; color: #64748B; margin-bottom: 4px;">NHẬN TIỀN HOÀN (Ví MoMo / NH):</div>
+                <div class="bank-name" id="rfBankName">Ví Điện Tử MoMo / Ngân Hàng MB Bank</div>
+                <div class="bank-acc" id="rfBankAcc">0918776554</div>
+                <div class="bank-holder" id="rfBankHolder">LE THI MAI</div>
+            </div>
+
+            <div style="margin-top: 14px;">
+                <label style="font-size: 12.5px; font-weight: 600; color: #334155; display: block; margin-bottom: 4px;">Mã giao dịch hoàn tiền (Trace ID):</label>
+                <input type="text" id="rfTraceInput" placeholder="MOMO-REF-88392" style="width: 100%; padding: 8px 12px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 13px;">
+            </div>
+        </div>
+        <div class="modal-foot">
+            <button class="tx-btn tx-btn-secondary" onclick="closeTxModal('refundModal')">Hủy bỏ</button>
+            <button class="tx-btn tx-btn-refund" style="background: #EA580C; color: white;" onclick="confirmRefund()">
+                Xác nhận Hoàn tiền
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="payoutModal">
+    <div class="modal-box" style="max-width: 600px;">
+        <div class="modal-head">
+            <h4 style="color: #15803D;">Giải Ngân Cho Homestay Owner</h4>
+            <button class="modal-close" onclick="closeTxModal('payoutModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="bill-card" style="border-color: #A7F3D0; background: #F0FDF4; margin-bottom: 14px;">
+                <h5 style="color: #15803D;"><span class="material-symbols-outlined" style="font-size: 18px;">verified</span> Khách đã hoàn tất trả phòng</h5>
+                <div class="bill-row"><span>Homestay:</span> <strong id="poHomestay">Pù Luông Eco Lodge</strong></div>
+                <div class="bill-row"><span>Chủ nhà:</span> <strong id="poOwner">Triệu Văn Sản</strong></div>
+                <div class="bill-row"><span>Trừ phí sàn YÊN (8%):</span> <span style="color: #DC2626;">-136.000đ</span></div>
+                <div class="bill-row total" style="color: #15803D; font-size: 15px;"><span>Thực chuyển cho Chủ nhà:</span> <span id="poNetTotal">1.564.000đ</span></div>
+            </div>
+
+            <div class="bank-info-box">
+                <div style="font-size: 12px; font-weight: 700; color: #64748B; margin-bottom: 4px;">TÀI KHOẢN NGÂN HÀNG CHỦ NHÀ:</div>
+                <div class="bank-name" id="poBankName">Ngân Hàng MB Bank</div>
+                <div class="bank-acc" id="poBankAcc">9704 2200 8891 002</div>
+                <div class="bank-holder" id="poBankHolder">TRIEU VAN SAN</div>
+            </div>
+        </div>
+        <div class="modal-foot">
+            <button class="tx-btn tx-btn-secondary" onclick="closeTxModal('payoutModal')">Đóng</button>
+            <button class="tx-btn tx-btn-payout" style="background: #15803D; color: white;" onclick="confirmPayout()">
+                Duyệt Chuyển Khoản
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const transactions = [
+        { id: 1, txCode: "#GD-88201", bookingCode: "#BK-9042", guest: "Trần Minh Khoa", guestPhone: "0903 123 456", homestay: "Pù Luông Eco Lodge", owner: "Triệu Văn Sản", total: "1.700.000đ", deposit: "850.000đ (50%)", netPayout: "1.564.000đ", gateway: "VNPay QR", gatewayClass: "vnpay", status: "escrow", statusText: "Giữ cọc YÊN", traceId: "VNP-992019482" },
+        { id: 2, txCode: "#GD-88198", bookingCode: "#BK-8102", guest: "Lê Thị Mai", guestPhone: "0918 776 554", homestay: "Mộc Châu Bamboo Bungalow", owner: "Đinh Thị Hương", total: "1.500.000đ", deposit: "1.500.000đ (100%)", netPayout: "1.380.000đ", gateway: "Ví MoMo", gatewayClass: "momo", status: "refund-pending", statusText: "Chờ hoàn tiền", traceId: "MOMO-77281049" },
+        { id: 3, txCode: "#GD-88170", bookingCode: "#BK-7410", guest: "Phạm Quốc Huy", guestPhone: "0977 889 001", homestay: "Sa Pa Terraces Valley", owner: "Vàng A Sáng", total: "2.800.000đ", deposit: "1.400.000đ (50%)", netPayout: "2.576.000đ", gateway: "VietQR", gatewayClass: "vietqr", status: "payout-ready", statusText: "Chờ giải ngân", traceId: "MB-88392019" },
+        { id: 4, txCode: "#GD-88155", bookingCode: "#BK-6021", guest: "Nguyễn Vũ Long", guestPhone: "0908 991 223", homestay: "Nhà Sàn Mộc Mai Châu", owner: "Nguyễn Văn An", total: "1.300.000đ", deposit: "650.000đ (50%)", netPayout: "1.196.000đ", gateway: "VNPay QR", gatewayClass: "vnpay", status: "completed", statusText: "Hoàn tất", traceId: "VNP-88102394" },
+        { id: 5, txCode: "#GD-88140", bookingCode: "#BK-5912", guest: "Hoàng Anh Tuấn", guestPhone: "0934 556 778", homestay: "Đà Lạt Cloud Valley", owner: "Phạm Hoàng Nam", total: "2.400.000đ", deposit: "1.200.000đ (50%)", netPayout: "2.208.000đ", gateway: "VietQR", gatewayClass: "vietqr", status: "refund-pending", statusText: "Chờ hoàn tiền", traceId: "VCB-9910248" }
+    ];
+    let currentTxId = null;
+    let activeTab = 'all';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderTxTable();
+        const btn = document.getElementById('adminProfileBtn');
+        const dd = document.getElementById('adminProfileDropdown');
+        if (btn && dd) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                btn.classList.toggle('active');
+                dd.classList.toggle('show');
+            });
+            document.addEventListener('click', (e) => {
+                if (!btn.contains(e.target) && !dd.contains(e.target)) {
+                    btn.classList.remove('active');
+                    dd.classList.remove('show');
+                }
+            });
+        }
+
+        document.querySelectorAll('#txFilterChips .tx-chip').forEach(b => {
+            b.addEventListener('click', function() {
+                document.querySelectorAll('#txFilterChips .tx-chip').forEach(x => x.classList.remove('active'));
+                this.classList.add('active');
+                activeTab = this.getAttribute('data-tab');
+                renderTxTable();
+            });
+        });
+        document.getElementById('txSearchInput').addEventListener('input', renderTxTable);
+        document.getElementById('gatewaySelect').addEventListener('change', renderTxTable);
+        document.querySelectorAll('.modal-backdrop').forEach(mb => {
+            mb.addEventListener('click', (e) => {
+                if (e.target === mb) {
+                    mb.classList.remove('open');
+                }
+            });
+        });
+    });
+
+    function renderTxTable() {
+        const tbody = document.getElementById('txTableBody');
+        const search = document.getElementById('txSearchInput').value.toLowerCase().trim();
+        const gateway = document.getElementById('gatewaySelect').value;
+
+        tbody.innerHTML = '';
+
+        const data = transactions.filter(item => {
+            let matchTab = true;
+            if (activeTab === 'escrow') matchTab = (item.status === 'escrow');
+            else if (activeTab === 'refund') matchTab = (item.status === 'refund-pending');
+            else if (activeTab === 'payout') matchTab = (item.status === 'payout-ready');
+            const matchSearch = item.txCode.toLowerCase().includes(search) || 
+                                item.bookingCode.toLowerCase().includes(search) || 
+                                item.guest.toLowerCase().includes(search) || 
+                                item.homestay.toLowerCase().includes(search);
+            const matchGateway = gateway === 'all' || item.gatewayClass === gateway;
+            return matchTab && matchSearch && matchGateway;
+        });
+
+        if (data.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #94A3B8; padding: 24px;">Không tìm thấy giao dịch nào.</td></tr>`;
+            return;
+        }
+
+        data.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>
+                    <div class="tx-title-main">${item.txCode}</div>
+                    <div class="tx-sub-info">Khách: ${item.guest} (${item.guestPhone})</div>
+                </td>
+                <td>
+                    <div class="tx-title-main">${item.homestay}</div>
+                    <div class="tx-sub-info">Chủ nhà: ${item.owner}</div>
+                </td>
+                <td>
+                    <strong style="color: #0F172A; font-size: 13.5px;">${item.total}</strong>
+                    <div class="tx-sub-info" style="color: #4F46E5;">Cọc: ${item.deposit}</div>
+                </td>
+                <td>
+                    <span class="tx-status-badge ${item.status}">
+                        ${item.statusText}
+                    </span>
+                </td>
+                <td>
+                    <button class="tx-btn tx-btn-secondary" onclick="openTxDetail(${item.id})">
+                        <span class="material-symbols-outlined" style="font-size: 15px;">visibility</span> Xem
+                    </button>
+                    ${item.status === 'refund-pending' ? `
+                        <button class="tx-btn tx-btn-refund" onclick="openRefundModal(${item.id})">
+                            Hoàn tiền
+                        </button>
+                    ` : ''}
+                    ${item.status === 'payout-ready' ? `
+                        <button class="tx-btn tx-btn-payout" onclick="openPayoutModal(${item.id})">
+                            Giải ngân
+                        </button>
+                    ` : ''}
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function openTxDetail(id) {
+        currentTxId = id;
+        const item = transactions.find(x => x.id === id);
+        if (!item) return;
+        document.getElementById('dtTxCode').innerText = "Chi tiết Giao dịch " + item.txCode;
+        document.getElementById('dtBookingCode').innerText = item.bookingCode;
+        document.getElementById('dtRoomFee').innerText = item.total;
+        document.getElementById('dtTotal').innerText = item.total;
+        document.getElementById('dtDeposit').innerText = item.deposit;
+        document.getElementById('dtGateway').innerText = item.gateway;
+        document.getElementById('dtTraceId').innerText = item.traceId;
+        document.getElementById('dtGuest').innerText = item.guest;
+        document.getElementById('dtOwner').innerText = item.owner;
+        document.getElementById('txDetailModal').classList.add('open');
+    }
+
+    function openRefundModal(id) {
+        currentTxId = id;
+        const item = transactions.find(x => x.id === id);
+        if (!item) return;
+
+        document.getElementById('rfGuest').innerText = item.guest + " (" + item.guestPhone + ")";
+        document.getElementById('rfAmount').innerText = item.total;
+        document.getElementById('rfBankHolder').innerText = item.guest.toUpperCase();
+        document.getElementById('refundModal').classList.add('open');
+    }
+
+    function openPayoutModal(id) {
+        currentTxId = id;
+        const item = transactions.find(x => x.id === id);
+        if (!item) return;
+
+        document.getElementById('poHomestay').innerText = item.homestay;
+        document.getElementById('poOwner').innerText = item.owner;
+        document.getElementById('poNetTotal').innerText = item.netPayout;
+        document.getElementById('poBankHolder').innerText = item.owner.toUpperCase();
+        document.getElementById('payoutModal').classList.add('open');
+    }
+
+    function closeTxModal(modalId) {
+        document.getElementById(modalId).classList.remove('open');
+    }
+
+    function confirmRefund() {
+        if (!currentTxId) return;
+        const item = transactions.find(x => x.id === currentTxId);
+        if (item) {
+            item.status = 'refunded';
+            item.statusText = 'Đã hoàn tiền';
+            renderTxTable();
+            closeTxModal('refundModal');
+        }
+    }
+
+    function confirmPayout() {
+        if (!currentTxId) return;
+        const item = transactions.find(x => x.id === currentTxId);
+        if (item) {
+            item.status = 'completed';
+            item.statusText = 'Hoàn tất';
+            renderTxTable();
+            closeTxModal('payoutModal');
+        }
+    }
+</script>
+</body>
+</html>
