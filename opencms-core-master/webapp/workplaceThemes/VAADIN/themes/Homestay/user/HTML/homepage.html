@@ -1,10 +1,975 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YÊN Homestay - Mái Ấm Bình Yên & Trải Nghiệm Nghỉ Dưỡng Bản Địa</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap Icons (Sử dụng đồng bộ toàn bộ dự án) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- CSS Header dùng chung -->
+  <link rel="stylesheet" href="../CSS/header.css">
+
+  <!-- CSS Giao diện Trang chủ Homepage -->
+  <link rel="stylesheet" href="../CSS/homepage.css">
 </head>
 <body>
 
+  <!-- =======================================================
+       1. HEADER NAVIGATION (Link nhúng động từ header.html)
+       ======================================================= -->
+  <div id="header-placeholder"></div>
+
+  <main>
+    <!-- 2. BANNER (SLIDER 3+ ẢNH & THANH TÌM KIẾM) -->
+    <section class="hero-section" id="heroBannerSection">
+      <div class="container">
+        <div class="hero-slider-wrapper">
+          <div class="hero-slider" id="heroSlider">
+            <!-- Slide 1: Theo đúng thiết kế trong ảnh mẫu -->
+            <div class="hero-slide active">
+              <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80" alt="Homestay giữa núi rừng bản địa chân thực" class="hero-slide-img">
+            </div>
+
+            <!-- Slide 2: Sapa mây ngàn -->
+            <div class="hero-slide">
+              <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1600&q=80" alt="Homestay Sapa bồng bềnh mây" class="hero-slide-img">
+            </div>
+
+            <!-- Slide 3: Hội An phố cổ -->
+            <div class="hero-slide">
+              <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1600&q=80" alt="Homestay Hội An cổ kính thơ mộng" class="hero-slide-img">
+            </div>
+          </div>
+
+          <!-- Nội dung & Thanh tìm kiếm nằm trọn vẹn trong lòng tấm hình -->
+          <div class="hero-overlay-content">
+            <div class="hero-badge">
+              <i class="bi bi-compass"></i> Du lịch gắn kết văn hóa bản địa chân thực
+            </div>
+            <h1 class="hero-slogan">Đi đâu không chỉ để ở – mà để<br>trải nghiệm.</h1>
+            <p class="hero-subslogan">Tìm một nơi lưu trú phù hợp và bắt đầu hành trình khám phá những câu chuyện văn hóa độc bản khắp mọi miền Việt Nam.</p>
+
+            <!-- THANH TÌM KIẾM (NẰM LÒNG LÊN TẤM HÌNH, KHÔNG CHE MẤT CHÂN ẢNH) -->
+            <div class="hero-search-wrapper inside-hero">
+              <div class="search-box modern-gold-box">
+                <form class="search-form" id="searchForm" onsubmit="event.preventDefault(); handleSearch();">
+                  <!-- Trường Điểm đến -->
+                  <div class="search-field field-with-border">
+                    <i class="bi bi-geo-alt search-field-icon"></i>
+                    <div class="field-content">
+                      <label class="field-label" for="searchDestination">Nhập điểm đến</label>
+                      <input type="text" id="searchDestination" class="field-input" placeholder="Bạn muốn đến đâu?">
+                    </div>
+                  </div>
+
+                  <!-- Trường Ngày nhận - Ngày trả -->
+                  <div class="search-field field-with-border">
+                    <i class="bi bi-calendar-event search-field-icon"></i>
+                    <div class="field-content">
+                      <label class="field-label" for="searchDates">Chọn ngày</label>
+                      <input type="text" id="searchDates" class="field-input" placeholder="Nhận phòng – Trả phòng">
+                    </div>
+                  </div>
+
+                  <!-- Trường Khách & Phòng -->
+                  <div class="search-field field-with-border">
+                    <i class="bi bi-person-fill search-field-icon"></i>
+                    <div class="field-content">
+                      <label class="field-label" for="searchGuests">Chọn số lượng</label>
+                      <select id="searchGuests" class="field-input select-styled">
+                        <option value="2-1">2 người lớn · 0 trẻ em · 1 phòng</option>
+                        <option value="4-2">4 người lớn · 0 trẻ em · 2 phòng</option>
+                        <option value="6-3">6 người lớn · 2 trẻ em · 3 phòng</option>
+                        <option value="group">Nhóm đông (>8 người)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Nút Tìm kiếm -->
+                  <button type="submit" class="search-submit-btn btn-primary-submit">
+                    <span>Tìm</span>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Gợi ý tìm nhanh -->
+              <div class="quick-search-tags modern-hero-tags">
+                <span class="tags-label"><i class="bi bi-fire"></i> Gợi ý:</span>
+                <span class="quick-tag" onclick="selectQuickTag('Đà Lạt')">Đà Lạt</span>
+                <span class="quick-tag" onclick="selectQuickTag('Đà Nẵng')">Đà Nẵng</span>
+                <span class="quick-tag" onclick="selectQuickTag('Hội An')">Hội An</span>
+                <span class="quick-tag" onclick="selectQuickTag('Sapa')">Sapa</span>
+                <span class="quick-tag" onclick="selectQuickTag('Ninh Bình')">Ninh Bình</span>
+                <span class="quick-tag" onclick="selectQuickTag('Phú Quốc')">Phú Quốc</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slider Controls: Previous / Next buttons -->
+          <button class="slider-arrow prev" id="sliderPrevBtn" aria-label="Slide trước">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <button class="slider-arrow next" id="sliderNextBtn" aria-label="Slide tiếp theo">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+
+          <!-- Slider Indicators (Dots) -->
+          <div class="slider-dots" id="sliderDots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 3. DANH MỤC: Ý TƯỞNG TRẢI NGHIỆM -->
+    <section class="categories-section" id="categoriesSection">
+      <div class="container">
+        <div class="exp-header-wrap">
+          <div class="exp-title-group">
+            <span class="section-badge-top"><i class="bi bi-compass-fill"></i> Danh mục trải nghiệm</span>
+            <h2 class="section-title">Ý Tưởng Trải Nghiệm Bản Địa</h2>
+            <p class="section-subtitle">Chạm vào nét mộc mạc, yên bình và hòa mình cùng thiên nhiên, đời sống làng quê</p>
+          </div>
+          <div class="exp-slider-nav">
+            <button class="exp-nav-btn prev" onclick="scrollExperience(-1)" title="Cuộn sang trái" aria-label="Trước">
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="exp-nav-btn next" onclick="scrollExperience(1)" title="Cuộn sang phải" aria-label="Sau">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="experience-grid" id="experienceGrid">
+          <!-- 1. Miệt vườn -->
+          <div class="experience-card" onclick="filterByCategory('Miệt vườn')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80" alt="Miệt vườn" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-tree"></i> Miệt vườn</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-tree"></i> Miệt vườn</h4>
+              <p class="exp-desc">Ở giữa vườn cây, hái trái, làm vườn</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Nông trại -->
+          <div class="experience-card" onclick="filterByCategory('Nông trại')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Nông trại" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-sun"></i> Nông trại</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-sun"></i> Nông trại</h4>
+              <p class="exp-desc">Trồng rau, thu hoạch, chăm vật nuôi, làm ruộng</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Sông nước -->
+          <div class="experience-card" onclick="filterByCategory('Sông nước')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=600&q=80" alt="Sông nước" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-water"></i> Sông nước</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-water"></i> Sông nước</h4>
+              <p class="exp-desc">Đi xuồng, chèo ghe, câu cá, ngắm sông</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Nhà quê truyền thống -->
+          <div class="experience-card" onclick="filterByCategory('Nhà quê truyền thống')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1596401057633-54a8fe8ef647?auto=format&fit=crop&w=600&q=80" alt="Nhà quê truyền thống" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-house-door"></i> Nhà quê</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-house-door"></i> Nhà quê truyền thống</h4>
+              <p class="exp-desc">Nhà gỗ, nhà vườn, nhà cổ, sinh hoạt cùng gia đình địa phương</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Ẩm thực quê -->
+          <div class="experience-card" onclick="filterByCategory('Ẩm thực quê')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Ẩm thực quê" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-cup-hot"></i> Ẩm thực</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-cup-hot"></i> Ẩm thực quê</h4>
+              <p class="exp-desc">Nấu ăn cùng chủ nhà, làm bánh dân gian, ăn cơm nhà</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Làng nghề truyền thống -->
+          <div class="experience-card" onclick="filterByCategory('Làng nghề truyền thống')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=600&q=80" alt="Làng nghề truyền thống" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-brush"></i> Làng nghề</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-brush"></i> Làng nghề truyền thống</h4>
+              <p class="exp-desc">Đan lát, làm gốm, dệt, làm đồ thủ công</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Thiên nhiên sinh thái -->
+          <div class="experience-card" onclick="filterByCategory('Thiên nhiên sinh thái')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80" alt="Thiên nhiên sinh thái" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-compass"></i> Thiên nhiên</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-compass"></i> Thiên nhiên sinh thái</h4>
+              <p class="exp-desc">Rừng, đồng ruộng, hồ, suối, vườn sinh thái</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. Trải nghiệm đời sống -->
+          <div class="experience-card" onclick="filterByCategory('Trải nghiệm đời sống')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=600&q=80" alt="Trải nghiệm đời sống" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-basket"></i> Đời sống quê</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-basket"></i> Trải nghiệm đời sống</h4>
+              <p class="exp-desc">Bắt cá, hái rau, đi chợ quê, chăm vườn</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. Văn hóa địa phương -->
+          <div class="experience-card" onclick="filterByCategory('Văn hóa địa phương')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Văn hóa địa phương" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-music-note-beamed"></i> Văn hóa</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-music-note-beamed"></i> Văn hóa địa phương</h4>
+              <p class="exp-desc">Đờn ca, hát dân gian, lễ hội, kể chuyện địa phương</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10. Khám phá làng quê -->
+          <div class="experience-card" onclick="filterByCategory('Khám phá làng quê')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=600&q=80" alt="Khám phá làng quê" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-bicycle"></i> Khám phá</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-bicycle"></i> Khám phá làng quê</h4>
+              <p class="exp-desc">Đạp xe, đi bộ, tham quan xóm làng</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 11. Chậm thư giãn -->
+          <div class="experience-card" onclick="filterByCategory('Chậm thư giãn')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=600&q=80" alt="Chậm thư giãn" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-cloud-sun"></i> Nghỉ dưỡng</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-cloud-sun"></i> Chậm thư giãn</h4>
+              <p class="exp-desc">Võng, uống trà, ngắm hoàng hôn, đọc sách, nghỉ dưỡng</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 12. Ở cùng người bản địa -->
+          <div class="experience-card" onclick="filterByCategory('Ở cùng người bản địa')">
+            <div class="exp-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Ở cùng người bản địa" loading="lazy">
+              <span class="exp-badge"><i class="bi bi-people"></i> Người bản địa</span>
+            </div>
+            <div class="exp-content">
+              <h4 class="exp-title"><i class="bi bi-people"></i> Ở cùng người bản địa</h4>
+              <p class="exp-desc">Sinh hoạt, ăn uống và trò chuyện cùng gia đình chủ nhà</p>
+              <div class="exp-action">
+                <span>Khám phá ngay</span>
+                <i class="bi bi-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. COMBO TỐT NHẤT HÔM NAY (Theo đúng mẫu thiết kế trong ảnh) -->
+    <section class="combo-section" id="comboSection">
+      <div class="container">
+        <div class="combo-header-wrap">
+          <div class="combo-title-area">
+            <!-- Badge đếm khách đặt trong 24h -->
+            <div class="combo-hot-badge">
+              <i class="bi bi-fire"></i> 522 khách đã đặt phòng trong 24h qua
+            </div>
+            <h2 class="section-title">Combo tốt nhất hôm nay</h2>
+            <p class="section-subtitle">Nhanh tay đặt ngay. Để mai sẽ lỡ</p>
+          </div>
+        </div>
+
+        <!-- Combo Card Banner (Chuẩn theo hình ảnh Intercontinental Đà Nẵng) -->
+        <div class="combo-card-banner" id="featuredComboCard">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80" alt="Intercontinental Đà Nẵng" class="combo-bg-img" id="comboBgImg">
+          <div class="combo-card-overlay"></div>
+          <div class="combo-content">
+            <div>
+              <span class="combo-badge-discount" id="comboDiscount">Combo tiết kiệm đến 34%</span>
+              <span class="combo-badge-days" id="comboDays">Combo 3N2Đ</span>
+            </div>
+            <h3 class="combo-hotel-name" id="comboTitle">INTERCONTINENTAL ĐÀ NẴNG</h3>
+            <p class="combo-description" id="comboDesc">Bay khứ hồi · Phòng ban công toàn cảnh · Ăn sáng buffet</p>
+            <div class="combo-price-action">
+              <div class="combo-price" id="comboPrice">14.799.000đ <span>/ khách</span></div>
+              <button class="btn-combo-arrow" onclick="openComboDetail()" title="Xem chi tiết combo">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dots điều hướng giữa các combo hot -->
+        <div class="combo-pagination">
+          <span class="combo-dot active" onclick="switchCombo(0)"></span>
+          <span class="combo-dot" onclick="switchCombo(1)"></span>
+          <span class="combo-dot" onclick="switchCombo(2)"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. HOMESTAY THEO LỄ HỘI (Lễ hội -> Địa điểm -> Homestay gần đó) -->
+    <section class="festival-section" id="festivalSection">
+      <div class="container">
+        <div class="section-header">
+          <div class="festival-header-badge">
+            <i class="bi bi-balloon-fill"></i> Sôi động mùa lễ hội
+          </div>
+          <h2 class="section-title">Homestay theo lễ hội</h2>
+          
+          <!-- Quy trình giải thích trực quan: Lễ hội -> Địa điểm -> Homestay gần đó -->
+          <div class="festival-concept-box">
+            <div class="concept-step">
+              <i class="bi bi-calendar-event-fill" style="color: #B45309;"></i> Lễ hội sắp diễn ra
+            </div>
+            <span class="concept-arrow"><i class="bi bi-arrow-right"></i></span>
+            <div class="concept-step">
+              <i class="bi bi-geo-alt-fill" style="color: #B45309;"></i> Địa điểm tổ chức
+            </div>
+            <span class="concept-arrow"><i class="bi bi-arrow-right"></i></span>
+            <div class="concept-step">
+              <i class="bi bi-house-heart-fill" style="color: #15803D;"></i> Homestay gần đó dễ dàng di chuyển
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs chọn Lễ hội -->
+        <div class="festival-tabs" id="festivalTabs">
+          <button class="festival-tab-btn active" onclick="switchFestival('diff')">
+            <i class="bi bi-fire"></i> Lễ Hội Pháo Hoa Quốc Tế DIFF (Đà Nẵng)
+          </button>
+          <button class="festival-tab-btn" onclick="switchFestival('dalat-flower')">
+            <i class="bi bi-flower1"></i> Festival Hoa Đà Lạt (Lâm Viên)
+          </button>
+          <button class="festival-tab-btn" onclick="switchFestival('hue-fest')">
+            <i class="bi bi-award-fill"></i> Festival Huế Cố Đô (Đại Nội)
+          </button>
+          <button class="festival-tab-btn" onclick="switchFestival('ninh-binh')">
+            <i class="bi bi-compass-fill"></i> Lễ Hội Khinh Khí Cầu (Tràng An)
+          </button>
+        </div>
+
+        <!-- Banner thông tin Lễ hội hiện tại -->
+        <div class="festival-banner-card" id="festivalBannerInfo">
+          <div class="festival-info-left">
+            <span class="fest-badge" id="festBadge">Sắp diễn ra vào tháng 6</span>
+            <h3 class="fest-name" id="festName">Lễ Hội Pháo Hoa Quốc Tế Đà Nẵng (DIFF)</h3>
+            <div class="fest-meta">
+              <span><i class="bi bi-geo-alt-fill"></i> <strong id="festLocation">Sân khấu bờ sông Hàn, TP. Đà Nẵng</strong></span>
+              <span><i class="bi bi-clock-fill"></i> <strong id="festDate">08/06 - 13/07/2026</strong></span>
+            </div>
+          </div>
+          <div>
+            <button class="btn-view-room" style="background: #D97706; color: #FFF; font-weight: 800;" onclick="scrollToHomestayList()">
+              Xem homestay gần nhất
+            </button>
+          </div>
+        </div>
+
+        <!-- Danh sách Homestay gần địa điểm lễ hội -->
+        <div class="festival-homestays-grid" id="festivalHomestayList">
+          <!-- Render động qua JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. HOMESTAY HOT (4 CÁI) ĐƯỢC ĐẶT THEO NHIỀU NHẤT HÔM NAY -->
+    <section class="hot-section" id="hotSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge-top" style="color: #E11D48;"><i class="bi bi-graph-up-arrow"></i> Xu hướng đặt phòng</span>
+          <h2 class="section-title">Homestay hot được đặt nhiều nhất hôm nay</h2>
+          <p class="section-subtitle">Top 4 căn homestay được khách hàng chốt phòng liên tục trong 24 giờ qua</p>
+        </div>
+
+        <div class="hot-grid">
+          <!-- Hot 1 -->
+          <div class="homestay-card">
+            <div class="card-img-wrapper">
+              <span class="card-top-tag tag-hot"><i class="bi bi-fire me-1"></i> Top 1 Bán Chạy</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'The Memory Valley Villa')" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=600&q=80" alt="The Memory Valley Villa">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Đà Lạt</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.96 <span class="review-count">(340)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('The Memory Valley Villa')">The Memory Valley Villa</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 3 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 6 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">Bể bơi nước ấm · Lò sưởi củi · Sân BBQ đồi thông</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">1.450.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('The Memory Valley Villa')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hot 2 -->
+          <div class="homestay-card">
+            <div class="card-img-wrapper">
+              <span class="card-top-tag tag-hot"><i class="bi bi-fire me-1"></i> Đã đặt 31 lần</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'An Bàng Seaside Haven')" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="An Bàng Seaside Haven">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Hội An</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.93 <span class="review-count">(285)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('An Bàng Seaside Haven')">An Bàng Seaside Haven</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 2 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 4 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">Sát biển 50m · Xe đạp miễn phí · Bữa sáng miền Trung</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">1.550.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('An Bàng Seaside Haven')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hot 3 -->
+          <div class="homestay-card">
+            <div class="card-img-wrapper">
+              <span class="card-top-tag tag-hot"><i class="bi bi-fire me-1"></i> Đã đặt 29 lần</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Mây Lang Thang Eco Lodge')" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=600&q=80" alt="Mây Lang Thang Eco Lodge">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Sapa</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.90 <span class="review-count">(198)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('Mây Lang Thang Eco Lodge')">Mây Lang Thang Eco Lodge</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 1 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 2 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">View thung lũng Mường Hoa · Lẩu cá hồi · Tắm bồn gỗ pơmu</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">1.100.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('Mây Lang Thang Eco Lodge')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hot 4 -->
+          <div class="homestay-card">
+            <div class="card-img-wrapper">
+              <span class="card-top-tag tag-hot"><i class="bi bi-fire me-1"></i> Đã đặt 26 lần</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Sơn Trà Sunset Infinity Villa')" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Sơn Trà Sunset Infinity Villa">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Đà Nẵng</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.94 <span class="review-count">(215)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('Sơn Trà Sunset Infinity Villa')">Sơn Trà Sunset Infinity Villa</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 4 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 8 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">Hồ bơi vô cực view biển · Bếp nướng BBQ · Karaoke cao cấp</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">2.750.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('Sơn Trà Sunset Infinity Villa')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. HOMESTAY YÊU THÍCH (DU KHÁCH BÌNH CHỌN - BÁM SÁT 100% ẢNH MẪU) -->
+    <section class="favorites-section" id="favoritesSection">
+      <div class="container">
+        <div class="favorites-header">
+          <span class="section-badge-top"><i class="bi bi-patch-check-fill"></i> DU KHÁCH BÌNH CHỌN</span>
+          <h2 class="section-title">Những homestay được yêu thích</h2>
+          <p class="section-subtitle">Đánh giá thực tế từ hàng ngàn du khách đã trải nghiệm trọn vẹn sự tận tâm của chủ nhà</p>
+        </div>
+
+        <!-- Filter Tabs theo thành phố như trong ảnh mẫu -->
+        <div class="filter-tabs-wrapper">
+          <div class="city-filter-tabs" id="favoriteTabs">
+            <button class="city-tab active" onclick="filterFavoriteCity('all', this)">Tất cả</button>
+            <button class="city-tab" onclick="filterFavoriteCity('dalat', this)">Đà Lạt</button>
+            <button class="city-tab" onclick="filterFavoriteCity('danang', this)">Đà Nẵng</button>
+            <button class="city-tab" onclick="filterFavoriteCity('hoian', this)">Hội An</button>
+            <button class="city-tab" onclick="filterFavoriteCity('sapa', this)">Sapa</button>
+          </div>
+        </div>
+
+        <!-- Grid Cards (Chính xác các card trong hình ảnh mẫu) -->
+        <div class="favorites-grid" id="favoritesGrid">
+          
+          <!-- CARD 1: The Pine Hill Retreat (Đà Lạt) -->
+          <div class="homestay-card" data-city="dalat">
+            <div class="card-img-wrapper">
+              <!-- Tag trên ảnh: Chủ nhà tận tâm -->
+              <span class="card-top-tag">Chủ nhà tận tâm</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'The Pine Hill Retreat')" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80" alt="The Pine Hill Retreat">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Đà Lạt</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.90 <span class="review-count">(126 đánh giá)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('The Pine Hill Retreat')">The Pine Hill Retreat</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 2 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 4 khách</span>
+              </div>
+              <!-- Tiện nghi nổi bật dạng khung chữ nhật -->
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">BBQ sân vườn &nbsp;•&nbsp; Lò sưởi củi &nbsp;•&nbsp; Bồn tắm ngắm mây</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">1.200.000đ</span>
+                </div>
+                <!-- Nút Xem phòng màu xanh YÊN bo tròn đúng mẫu -->
+                <button class="btn-view-room" onclick="showQuickDetail('The Pine Hill Retreat')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: Lạc Vào Phố Cổ Heritage (Hội An) -->
+          <div class="homestay-card" data-city="hoian">
+            <div class="card-img-wrapper">
+              <!-- Tag trên ảnh: Điểm kiến trúc -->
+              <span class="card-top-tag">Điểm kiến trúc</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Lạc Vào Phố Cổ Heritage')" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Lạc Vào Phố Cổ Heritage">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Hội An</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.95 <span class="review-count">(215 đánh giá)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('Lạc Vào Phố Cổ Heritage')">Lạc Vào Phố Cổ Heritage</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 3 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 6 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">Bể bơi riêng &nbsp;•&nbsp; Xe đạp miễn phí &nbsp;•&nbsp; Trà chiều bản địa</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">1.650.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('Lạc Vào Phố Cổ Heritage')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: Sapa Cloud Forest Lodge (Tả Van, Sapa) -->
+          <div class="homestay-card" data-city="sapa">
+            <div class="card-img-wrapper">
+              <!-- Tag trên ảnh: Trải nghiệm Dao Đỏ -->
+              <span class="card-top-tag">Trải nghiệm Dao Đỏ</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Sapa Cloud Forest Lodge')" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80" alt="Sapa Cloud Forest Lodge">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Tả Van, Sapa</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.91 <span class="review-count">(154 đánh giá)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('Sapa Cloud Forest Lodge')">Sapa Cloud Forest Lodge</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 1 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 2 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">Ban công săn mây &nbsp;•&nbsp; Tắm thuốc Dao Đỏ &nbsp;•&nbsp; Ăn tối gia đình</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">980.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('Sapa Cloud Forest Lodge')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4: Danang Ocean Horizon (Đà Nẵng) -->
+          <div class="homestay-card" data-city="danang">
+            <div class="card-img-wrapper">
+              <span class="card-top-tag">View biển triệu đô</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Danang Ocean Horizon')" title="Yêu thích">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Danang Ocean Horizon">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Bán đảo Sơn Trà, Đà Nẵng</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.94 <span class="review-count">(178 đánh giá)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('Danang Ocean Horizon')">Danang Ocean Horizon</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 2 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 4 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">Bể bơi vô cực ngắm vịnh &nbsp;•&nbsp; Bếp BBQ &nbsp;•&nbsp; Đón tiễn sân bay</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">1.450.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('Danang Ocean Horizon')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. HOMESTAY GỢI Ý -->
+    <section class="suggested-section" id="suggestedSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge-top"><i class="bi bi-stars"></i> Dành riêng cho bạn</span>
+          <h2 class="section-title">Homestay gợi ý hôm nay</h2>
+          <p class="section-subtitle">Được tuyển chọn dựa trên đánh giá cao và mức độ hài lòng tuyệt đối của khách hàng</p>
+        </div>
+
+        <div class="suggested-grid">
+          <!-- Gợi ý 1 -->
+          <div class="homestay-card">
+            <div class="card-img-wrapper">
+              <span class="card-top-tag">Lãng mạn cặp đôi</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Thung Lũng Mơ Màng Homestay')">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80" alt="Thung Lũng Mơ Màng">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Đà Lạt</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.88 <span class="review-count">(112)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('Thung Lũng Mơ Màng Homestay')">Thung Lũng Mơ Màng Homestay</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 1 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 2 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">Vườn cúc hoạ mi · Kính ngắm thung lũng đèn · Bữa sáng</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">850.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('Thung Lũng Mơ Màng Homestay')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gợi ý 2 -->
+          <div class="homestay-card">
+            <div class="card-img-wrapper">
+              <span class="card-top-tag">Gia đình ấm cúng</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Tràng An Riverside Garden')">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Tràng An Riverside Garden">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Ninh Bình</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.92 <span class="review-count">(165)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('Tràng An Riverside Garden')">Tràng An Riverside Garden</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 2 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 4 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">Thuyền kayak chèo miễn phí · Vườn sen ngát hương</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">920.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('Tràng An Riverside Garden')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gợi ý 3 -->
+          <div class="homestay-card">
+            <div class="card-img-wrapper">
+              <span class="card-top-tag">View núi Fansipan</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Fansipan Horizon Wooden House')">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80" alt="Fansipan Wooden House">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Sapa</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.95 <span class="review-count">(204)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('Fansipan Horizon Wooden House')">Fansipan Horizon Wooden House</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 1 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 2 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">Ban công kính Panorama · Lò nướng than sưởi ấm</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">1.050.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('Fansipan Horizon Wooden House')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gợi ý 4 -->
+          <div class="homestay-card">
+            <div class="card-img-wrapper">
+              <span class="card-top-tag">Biệt thự hồ bơi</span>
+              <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Phú Quốc Sunset Pearl')">
+                <i class="bi bi-heart"></i>
+              </button>
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" alt="Phú Quốc Sunset Pearl">
+            </div>
+            <div class="card-body">
+              <div class="card-location-rating">
+                <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Phú Quốc</span>
+                <span class="card-rating"><i class="bi bi-star-fill"></i> 4.89 <span class="review-count">(142)</span></span>
+              </div>
+              <h3 class="card-title"><a href="#" onclick="showQuickDetail('Phú Quốc Sunset Pearl')">Phú Quốc Sunset Pearl</a></h3>
+              <div class="card-specs">
+                <span><i class="bi bi-door-open"></i> 2 phòng ngủ</span>
+                <span>•</span>
+                <span><i class="bi bi-people"></i> 4 khách</span>
+              </div>
+              <div class="card-amenities-box">
+                <span class="amenities-label">Tiện nghi nổi bật:</span>
+                <p class="amenities-items">Bể bơi riêng · Ngắm hoàng hôn Bãi Dài · Miễn phí xe đưa đón</p>
+              </div>
+              <div class="card-footer-row">
+                <div class="card-price-group">
+                  <span class="price-label">Giá mỗi đêm:</span>
+                  <span class="card-price">1.890.000đ</span>
+                </div>
+                <button class="btn-view-room" onclick="showQuickDetail('Phú Quốc Sunset Pearl')">Xem phòng</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <!-- =======================================================
+       10. FOOTER (Dành để link / nhúng footer khi có)
+       ======================================================= -->
+  <div id="footer-placeholder"></div>
+
+  <!-- 11. QUICK VIEW MODAL (Xem chi tiết phòng & Đặt ngay) -->
+  <div class="modal-overlay" id="quickModal">
+    <div class="modal-container">
+      <button class="modal-close-btn" onclick="closeModal()" title="Đóng">
+        <i class="bi bi-x-lg"></i>
+      </button>
+      <img id="modalImg" src="" alt="Homestay" class="modal-header-img">
+      <div class="modal-body">
+        <span class="modal-tag" id="modalTag">Chủ nhà tận tâm</span>
+        <h2 class="modal-title" id="modalTitle">Tên Homestay</h2>
+        <div class="modal-location" id="modalLocation">
+          <i class="bi bi-geo-alt-fill text-success"></i> <span>Địa chỉ homestay</span>
+        </div>
+        <p id="modalDesc" style="color: #475569; font-size: 0.92rem; line-height: 1.6; margin-bottom: 14px;">
+          Không gian tuyệt đẹp, yên tĩnh, view nhìn toàn cảnh thơ mộng với đầy đủ tiện nghi sinh hoạt hiện đại và chủ nhà hỗ trợ 24/7.
+        </p>
+
+        <h4 style="font-size: 0.95rem; font-weight: 700; color: #0F172A;">Tiện ích có sẵn:</h4>
+        <div class="modal-amenities-list" id="modalAmenities">
+          <!-- Render chip tiện nghi -->
+        </div>
+
+        <div class="modal-footer">
+          <div>
+            <span style="font-size: 0.75rem; color: #64748B; display: block;">Giá niêm yết ưu đãi:</span>
+            <span class="modal-price-val" id="modalPrice">1.200.000đ / đêm</span>
+          </div>
+          <button class="btn-modal-book" onclick="bookNowAction()">
+            <i class="bi bi-lightning-charge-fill me-1"></i> Đặt phòng ngay
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast thông báo -->
+  <div class="toast-notice" id="toastNotice">
+    <i class="bi bi-check-circle-fill text-white fs-5"></i>
+    <span id="toastMsg">Đã thêm vào danh sách yêu thích!</span>
+  </div>
+
+  <!-- Custom JavaScript -->
+  <script src="../JS/homepage.js"></script>
 </body>
 </html>
