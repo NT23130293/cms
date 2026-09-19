@@ -69,7 +69,7 @@ public class TestSolrDocumentContainerPage extends OpenCmsTestRunner {
 
     private static final String SUBSITEMAP_PATH = "/test.extraction/";
 
-    private static final String INDEX_HTML = "index.html";
+    private static final String INDEX_HTML = "manageRoom.html";
 
     /**
      * @see org.opencms.test.OpenCmsTestRunner#$openCmsSetUp(org.junit.jupiter.api.TestInfo)

@@ -82,7 +82,7 @@ public class TestLock extends OpenCmsTestRunner {
         cms.loginUser("test1", "test1");
         cms.getRequestContext().setCurrentProject(cms.readProject("Offline"));
 
-        String source = "/index.html";
+        String source = "/manageRoom.html";
         String folder = "/folder2";
         String destination = "/copytest.html";
 
@@ -450,7 +450,7 @@ public class TestLock extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing lock state after sibling creation");
 
-        String source = "/folder2/index.html";
+        String source = "/folder2/manageRoom.html";
         String destination1 = "/folder2/index_sib1.html";
         String destination2 = "/folder2/index_sib2.html";
         storeResources(cms, source);
@@ -525,7 +525,7 @@ public class TestLock extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing inherited lock delete scenario");
 
-        String source = "/folder1/index.html";
+        String source = "/folder1/manageRoom.html";
         String folder = "/folder1/";
         storeResources(cms, source);
 
@@ -589,7 +589,7 @@ public class TestLock extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing if a lock is required for write/control operations");
 
-        String source = "/index.html";
+        String source = "/manageRoom.html";
         storeResources(cms, source);
         long timestamp = System.currentTimeMillis();
 

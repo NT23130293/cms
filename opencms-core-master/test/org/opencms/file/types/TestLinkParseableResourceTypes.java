@@ -178,7 +178,7 @@ public class TestLinkParseableResourceTypes extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing 'copyResource' method");
 
-        String sourceName = "/index.html";
+        String sourceName = "/manageRoom.html";
         CmsResource source = cms.readResource(sourceName);
         String targetName = "/folder1/image2.gif";
         CmsResource target = cms.readResource(targetName);
@@ -227,7 +227,7 @@ public class TestLinkParseableResourceTypes extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing 'createResource' method");
 
-        String sourceName = "/index.html";
+        String sourceName = "/manageRoom.html";
         CmsResource source = cms.readResource(sourceName);
         String targetName = "/folder1/image2.gif";
         CmsResource target = cms.readResource(targetName);
@@ -275,7 +275,7 @@ public class TestLinkParseableResourceTypes extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing 'createSibling' method");
 
-        String sourceName = "/index.html";
+        String sourceName = "/manageRoom.html";
         CmsResource source = cms.readResource(sourceName);
         String targetName = "/folder1/image2.gif";
         CmsResource target = cms.readResource(targetName);
@@ -330,7 +330,7 @@ public class TestLinkParseableResourceTypes extends OpenCmsTestRunner {
         String targetName = "/folder2/image2.gif";
         CmsResource target = cms.readResource(targetName);
 
-        String sourceName = folderName + "/index.html";
+        String sourceName = folderName + "/manageRoom.html";
         CmsResource source = cms.createResource(sourceName, CmsResourceTypeXmlPage.getStaticTypeId());
         TestLinkValidation.setContent(cms, sourceName, "<img src='" + targetName + "'>");
 
@@ -409,7 +409,7 @@ public class TestLinkParseableResourceTypes extends OpenCmsTestRunner {
         cms.lockResource(targetName);
         cms.deleteResource(targetName, CmsResource.DELETE_PRESERVE_SIBLINGS);
 
-        sourceName = "/index.html";
+        sourceName = "/manageRoom.html";
         source = cms.readResource(sourceName);
         relations = cms.getRelationsForResource(sourceName, CmsRelationFilter.TARGETS);
         assertEquals(1, relations.size());
@@ -440,7 +440,7 @@ public class TestLinkParseableResourceTypes extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing 'importResource' method for link parseable resources");
 
-        String sourceName = "/index.html";
+        String sourceName = "/manageRoom.html";
         CmsResource source = cms.readResource(sourceName);
         String targetName = "folder1/subfolder11/subsubfolder111/jsp.jsp";
         String zipExportFilename = OpenCms.getSystemInfo().getAbsoluteRfsPathRelativeToWebInf(
@@ -591,7 +591,7 @@ public class TestLinkParseableResourceTypes extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing the links after the setup");
 
-        String sourceName = "/index.html";
+        String sourceName = "/manageRoom.html";
         CmsResource source = cms.readResource(sourceName);
         String targetName = "/folder1/image2.gif";
         CmsResource target = cms.readResource(targetName);
@@ -718,7 +718,7 @@ public class TestLinkParseableResourceTypes extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing 'replaceResource' method, replace non link parseable with link parseable resource");
 
-        String sourceName = "/index.html";
+        String sourceName = "/manageRoom.html";
         CmsResource source = cms.readResource(sourceName);
         String targetName = "/folder1/image2.gif";
         CmsResource target = cms.readResource(targetName);
@@ -766,9 +766,9 @@ public class TestLinkParseableResourceTypes extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing 'undoChanges' method");
 
-        String sourceName = "/index.html";
+        String sourceName = "/manageRoom.html";
         CmsResource source = cms.readResource(sourceName);
-        String targetName = "/folder1/index.html";
+        String targetName = "/folder1/manageRoom.html";
         CmsResource target = cms.readResource(targetName);
 
         List<CmsRelation> relations = cms.getRelationsForResource(targetName, CmsRelationFilter.TARGETS);
@@ -823,7 +823,7 @@ public class TestLinkParseableResourceTypes extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing 'writeFile' method");
 
-        String sourceName = "/index.html";
+        String sourceName = "/manageRoom.html";
         CmsResource source = cms.readResource(sourceName);
         String targetName = "/folder1/image2.gif";
         CmsResource target = cms.readResource(targetName);

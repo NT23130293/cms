@@ -118,7 +118,7 @@ public class TestCmsStringTemplateResolver extends OpenCmsTestRunner {
 
         // positive tests
         assertEquals(
-            "/index.html",
+            "/manageRoom.html",
             CmsStringTemplateRenderer.renderTemplate(cms, "%content.value.Cascade/VfsLink%", bean, null));
         assertEquals(
             "/test.html",
@@ -129,22 +129,22 @@ public class TestCmsStringTemplateResolver extends OpenCmsTestRunner {
         assertEquals(
             "\n"
                 + "<a href=\"http://www.alkacon.com\">Alkacon</a>\n"
-                + "<a href=\"/noexist/index.html\">Index page</a>\n"
-                + "<a href=\"/noexist/folder1/index.html?a=b&c=d#anchor\">Index page</a>\n"
+                + "<a href=\"/noexist/manageRoom.html\">Index page</a>\n"
+                + "<a href=\"/noexist/folder1/manageRoom.html?a=b&c=d#anchor\">Index page</a>\n"
                 + "Please note: The internal link targets must not exist,\n"
                 + "because otherwise the link management will add <uuid> nodes which are unknown in the test case.\n"
                 + "",
             CmsStringTemplateRenderer.renderTemplate(cms, "%content.value.Cascade/Html%", bean, null));
 
         assertEquals(
-            "<a href='/index.html' /><a href='/test.html' />",
+            "<a href='/manageRoom.html' /><a href='/test.html' />",
             CmsStringTemplateRenderer.renderTemplate(
                 cms,
                 "%content.valueList.Cascade/VfsLink :{link |<a href='%link%' />} %",
                 bean,
                 null));
         assertEquals(
-            "<a href='/index.html' /><a href='/test.html' />",
+            "<a href='/manageRoom.html' /><a href='/test.html' />",
             CmsStringTemplateRenderer.renderTemplate(
                 cms,
                 "%content.valueList.(\"Cascade[1]/VfsLink\") :{link |<a href='%link%' />} %",
@@ -152,7 +152,7 @@ public class TestCmsStringTemplateResolver extends OpenCmsTestRunner {
                 null));
 
         assertEquals(
-            "<div><a href='/index.html' /><a href='/test.html' /></div><div><a href='/index.jsp' /></div>",
+            "<div><a href='/manageRoom.html' /><a href='/test.html' /></div><div><a href='/index.jsp' /></div>",
             CmsStringTemplateRenderer.renderTemplate(
                 cms,
                 "%content.valueList.Cascade :{cascade |<div>%cascade.valueList.VfsLink :{link |<a href='%link%' />}%</div>} %",

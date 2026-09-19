@@ -570,13 +570,13 @@ public final class CmsJspVfsAccessBean {
      * Relative links are converted to absolute links, using the current OpenCms request context URI as base.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Link to the "/index.html" file: ${cms:vfs(pageContext).link['/index.html']}
+     * Link to the "/manageRoom.html" file: ${cms:vfs(pageContext).link['/manageRoom.html']}
      * </pre>
      *
      * Usage example on a JSP with the <code>&lt;cms:contentaccess&gt;</code> tag:<pre>
      * &lt;cms:contentload ... &gt;
      *     &lt;cms:contentaccess var="content" /&gt;
-     *     Link to the "/index.html" file: ${content.vfs.link['/index.html']}
+     *     Link to the "/manageRoom.html" file: ${content.vfs.link['/manageRoom.html']}
      * &lt;/cms:contentload&gt;</pre>
      *
      * @return a map that lazily calculates links to resources in the OpenCms VFS
@@ -596,7 +596,7 @@ public final class CmsJspVfsAccessBean {
     /**
      * Gets a lazy loading map used to access locale variants of a resource with a given path.<p>
      *
-     * Usage in JSP: ${myvfsaccessbeaninstance.localeResource['/foo/bar/index.html']['de']}
+     * Usage in JSP: ${myvfsaccessbeaninstance.localeResource['/foo/bar/manageRoom.html']['de']}
      *
      * @return the lazy loading map
      */
@@ -627,7 +627,7 @@ public final class CmsJspVfsAccessBean {
     /**
      * Returns a lazy loading map used to detect the main locale of a resource which is part of a locale group.<p>
      *
-     * Usage in JSPs: ${myvfsaccessbeaninstance.mainLocale['/foo/index.html']}
+     * Usage in JSPs: ${myvfsaccessbeaninstance.mainLocale['/foo/manageRoom.html']}
      *
      * @return the lazy loading map
      */
@@ -710,13 +710,13 @@ public final class CmsJspVfsAccessBean {
      * Short form for {@link #getReadPermissions()}.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Permission string of the "/index.html" resource: ${cms:vfs(pageContext).readPermissions['/index.html'].permissionString}
+     * Permission string of the "/manageRoom.html" resource: ${cms:vfs(pageContext).readPermissions['/manageRoom.html'].permissionString}
      * </pre>
      *
      * Usage example on a JSP with the <code>&lt;cms:contentaccess&gt;</code> tag:<pre>
      * &lt;cms:contentload ... &gt;
      *     &lt;cms:contentaccess var="content" /&gt;
-     *     Permission string of the "/index.html" resource: ${content.vfs.readPermissions['/index.html'].permissionString}
+     *     Permission string of the "/manageRoom.html" resource: ${content.vfs.readPermissions['/manageRoom.html'].permissionString}
      * &lt;/cms:contentload&gt;</pre>
      *
      * @return a map that lazily reads resource permissions from the OpenCms VFS
@@ -732,7 +732,7 @@ public final class CmsJspVfsAccessBean {
      * Short form for {@link #getReadProperties()}.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Title property of the "/index.html" resource: ${cms:vfs(pageContext).property['/index.html']['Title']}
+     * Title property of the "/manageRoom.html" resource: ${cms:vfs(pageContext).property['/manageRoom.html']['Title']}
      * </pre>
      *
      * @return a map that lazily reads all resource properties from the OpenCms VFS, without search
@@ -748,7 +748,7 @@ public final class CmsJspVfsAccessBean {
      * Short form for {@link #getReadPropertiesLocale()}.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Title property of the "/index.html" resource for locale "de": ${cms:vfs(pageContext).property['/index.html']['de']['Title']}
+     * Title property of the "/manageRoom.html" resource for locale "de": ${cms:vfs(pageContext).property['/manageRoom.html']['de']['Title']}
      * </pre>
      *
      * @return a map that lazily reads all resource properties from the OpenCms VFS, without search
@@ -764,7 +764,7 @@ public final class CmsJspVfsAccessBean {
      * Short form for {@link #getReadPropertiesSearch()}.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Title property of the "/index.html" resource (searched): ${cms:vfs(pageContext).propertySearch['/index.html']['Title']}
+     * Title property of the "/manageRoom.html" resource (searched): ${cms:vfs(pageContext).propertySearch['/manageRoom.html']['Title']}
      * </pre>
      *
      * @return a map that lazily reads all resource properties from the OpenCms VFS, with search
@@ -780,7 +780,7 @@ public final class CmsJspVfsAccessBean {
      * Short form for {@link #getReadPropertiesSearchLocale()}.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Title property of the "/index.html" resource (searched) for locale "de": ${cms:vfs(pageContext).propertySearch['/index.html']['de']['Title']}
+     * Title property of the "/manageRoom.html" resource (searched) for locale "de": ${cms:vfs(pageContext).propertySearch['/manageRoom.html']['de']['Title']}
      * </pre>
      *
      * @return a map that lazily reads all resource properties from the OpenCms VFS, with search
@@ -796,13 +796,13 @@ public final class CmsJspVfsAccessBean {
      * Returns a map that lazily reads resource permissions from the OpenCms VFS.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Permission string of the "/index.html" resource: ${cms:vfs(pageContext).readPermissions['/index.html'].permissionString}
+     * Permission string of the "/manageRoom.html" resource: ${cms:vfs(pageContext).readPermissions['/manageRoom.html'].permissionString}
      * </pre>
      *
      * Usage example on a JSP with the <code>&lt;cms:contentaccess&gt;</code> tag:<pre>
      * &lt;cms:contentload ... &gt;
      *     &lt;cms:contentaccess var="content" /&gt;
-     *     Permission string of the "/index.html" resource: ${content.vfs.readPermissions['/index.html'].permissionString}
+     *     Permission string of the "/manageRoom.html" resource: ${content.vfs.readPermissions['/manageRoom.html'].permissionString}
      * &lt;/cms:contentload&gt;</pre>
      *
      * @return a map that lazily reads resource permissions from the OpenCms VFS
@@ -822,13 +822,13 @@ public final class CmsJspVfsAccessBean {
      * Returns a map that lazily reads all resource properties from the OpenCms VFS, without search.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Title property of the "/index.html" resource: ${cms:vfs(pageContext).readProperties['/index.html']['Title']}
+     * Title property of the "/manageRoom.html" resource: ${cms:vfs(pageContext).readProperties['/manageRoom.html']['Title']}
      * </pre>
      *
      * Usage example on a JSP with the <code>&lt;cms:contentaccess&gt;</code> tag:<pre>
      * &lt;cms:contentload ... &gt;
      *     &lt;cms:contentaccess var="content" /&gt;
-     *     Title property of the "/index.html" resource: ${content.vfs.readProperties['/index.html']['Title']}
+     *     Title property of the "/manageRoom.html" resource: ${content.vfs.readProperties['/manageRoom.html']['Title']}
      * &lt;/cms:contentload&gt;</pre>
      *
      * @return a map that lazily reads all resource properties from the OpenCms VFS, without search
@@ -848,13 +848,13 @@ public final class CmsJspVfsAccessBean {
      * Returns a map that lazily reads all resource properties from the OpenCms VFS, without search.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Title property of the "/index.html" resource for locale "de": ${cms:vfs(pageContext).readProperties['/index.html']['de']['Title']}
+     * Title property of the "/manageRoom.html" resource for locale "de": ${cms:vfs(pageContext).readProperties['/manageRoom.html']['de']['Title']}
      * </pre>
      *
      * Usage example on a JSP with the <code>&lt;cms:contentaccess&gt;</code> tag:<pre>
      * &lt;cms:contentload ... &gt;
      *     &lt;cms:contentaccess var="content" /&gt;
-     *     Title property of the "/index.html" resource: ${content.vfs.readProperties['/index.html']['Title']}
+     *     Title property of the "/manageRoom.html" resource: ${content.vfs.readProperties['/manageRoom.html']['Title']}
      * &lt;/cms:contentload&gt;</pre>
      *
      * @return a map that lazily reads all resource properties from the OpenCms VFS, without search
@@ -875,13 +875,13 @@ public final class CmsJspVfsAccessBean {
      * Returns a map that lazily reads all resource properties from the OpenCms VFS, with search.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Title property of the "/index.html" resource (searched): ${cms:vfs(pageContext).readPropertiesSearch['/index.html']['Title']}
+     * Title property of the "/manageRoom.html" resource (searched): ${cms:vfs(pageContext).readPropertiesSearch['/manageRoom.html']['Title']}
      * </pre>
      *
      * Usage example on a JSP with the <code>&lt;cms:contentaccess&gt;</code> tag:<pre>
      * &lt;cms:contentload ... &gt;
      *     &lt;cms:contentaccess var="content" /&gt;
-     *     Title property of the "/index.html" resource (searched): ${content.vfs.readPropertiesSearch['/index.html']['Title']}
+     *     Title property of the "/manageRoom.html" resource (searched): ${content.vfs.readPropertiesSearch['/manageRoom.html']['Title']}
      * &lt;/cms:contentload&gt;</pre>
      *
      * @return a map that lazily reads all resource properties from the OpenCms VFS, with search
@@ -902,13 +902,13 @@ public final class CmsJspVfsAccessBean {
      * Returns a map that lazily reads all resource properties from the OpenCms VFS, with search and provides locale specific access to them.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Title property of the "/index.html" resource (searched): ${cms:vfs(pageContext).readPropertiesSearch['/index.html']['Title']}
+     * Title property of the "/manageRoom.html" resource (searched): ${cms:vfs(pageContext).readPropertiesSearch['/manageRoom.html']['Title']}
      * </pre>
      *
      * Usage example on a JSP with the <code>&lt;cms:contentaccess&gt;</code> tag:<pre>
      * &lt;cms:contentload ... &gt;
      *     &lt;cms:contentaccess var="content" /&gt;
-     *     Title property of the "/index.html" resource (searched) for locale "de": ${content.vfs.readPropertiesSearchLocale['/index.html']['de']['Title']}
+     *     Title property of the "/manageRoom.html" resource (searched) for locale "de": ${content.vfs.readPropertiesSearchLocale['/manageRoom.html']['de']['Title']}
      * &lt;/cms:contentload&gt;</pre>
      *
      * @return a map that lazily reads all resource properties from the OpenCms VFS, with search
@@ -929,13 +929,13 @@ public final class CmsJspVfsAccessBean {
      * Returns a map that lazily reads resources from the OpenCms VFS.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Root path of the "/index.html" resource: ${cms:vfs(pageContext).readResource['/index.html'].rootPath}
+     * Root path of the "/manageRoom.html" resource: ${cms:vfs(pageContext).readResource['/manageRoom.html'].rootPath}
      * </pre>
      *
      * Usage example on a JSP with the <code>&lt;cms:contentaccess&gt;</code> tag:<pre>
      * &lt;cms:contentload ... &gt;
      *     &lt;cms:contentaccess var="content" /&gt;
-     *     Root path of the "/index.html" resource: ${content.vfs.readResource['/index.html'].rootPath}
+     *     Root path of the "/manageRoom.html" resource: ${content.vfs.readResource['/manageRoom.html'].rootPath}
      * &lt;/cms:contentload&gt;</pre>
      *
      * @return a map that lazily reads resources from the OpenCms VFS
@@ -992,7 +992,7 @@ public final class CmsJspVfsAccessBean {
      * Short form for {@link #getReadResource()}.<p>
      *
      * Usage example on a JSP with the EL:<pre>
-     * Root path of the "/index.html" resource: ${cms:vfs(pageContext).resource['/index.html'].rootPath}
+     * Root path of the "/manageRoom.html" resource: ${cms:vfs(pageContext).resource['/manageRoom.html'].rootPath}
      * </pre>
      *
      * @return a map that lazily reads resources from the OpenCms VFS

@@ -975,13 +975,13 @@ public class TestCmsXmlContentWithVfs extends OpenCmsTestRunner {
             "<a href=\"http://www.alkacon.com\">Alkacon</a>\n"
                 + "<a href=\""
                 + getVfsPrefix()
-                + "/index.html\">Index page</a>\n"
+                + "/manageRoom.html\">Index page</a>\n"
                 + "<a href=\""
                 + getVfsPrefix()
-                + "/folder1/index.html?a=b&amp;c=d#anchor\">Index page</a>\n"
+                + "/folder1/manageRoom.html?a=b&amp;c=d#anchor\">Index page</a>\n"
                 + "<a href=\""
                 + getVfsPrefix()
-                + "/folder1/index.html?a2=b2&amp;c2=d2\">Index page with unescaped ampersand</a>", // note that the & in the links appear correctly escaped here
+                + "/folder1/manageRoom.html?a2=b2&amp;c2=d2\">Index page with unescaped ampersand</a>", // note that the & in the links appear correctly escaped here
             retranslatedOutput.trim(),
             "Incorrect links in resulting output");
 
@@ -993,16 +993,16 @@ public class TestCmsXmlContentWithVfs extends OpenCmsTestRunner {
         while (i.hasNext()) {
             // iterate all links and check if the required values are found
             CmsLink link = i.next();
-            if (link.getTarget().equals("/sites/default/index.html") && link.isInternal()) {
+            if (link.getTarget().equals("/sites/default/manageRoom.html") && link.isInternal()) {
                 result++;
             } else if (link.getTarget().equals("http://www.alkacon.com") && !link.isInternal()) {
                 result++;
-            } else if (link.getTarget().equals("/sites/default/folder1/index.html")
+            } else if (link.getTarget().equals("/sites/default/folder1/manageRoom.html")
                 && link.getQuery().equals("a=b&c=d") // at this point the & in the link should be unescaped
                 && link.getAnchor().equals("anchor")
                 && link.isInternal()) {
                 result++;
-            } else if (link.getTarget().equals("/sites/default/folder1/index.html")
+            } else if (link.getTarget().equals("/sites/default/folder1/manageRoom.html")
                 && link.getQuery().equals("a2=b2&c2=d2") // at this point the & in the link should be unescaped
                 && link.isInternal()) {
                 result++;
@@ -1012,9 +1012,9 @@ public class TestCmsXmlContentWithVfs extends OpenCmsTestRunner {
         assertEquals(4, result);
 
         CmsLink link = vfsValue.getLink(cms);
-        assertEquals("/sites/default/index.html", link.getTarget());
+        assertEquals("/sites/default/manageRoom.html", link.getTarget());
         assertTrue(link.isInternal());
-        assertEquals("/index.html", vfsValue.getStringValue(cms));
+        assertEquals("/manageRoom.html", vfsValue.getStringValue(cms));
     }
 
     /**
@@ -1265,10 +1265,10 @@ public class TestCmsXmlContentWithVfs extends OpenCmsTestRunner {
         CmsXmlContentValueSequence seq = xmlcontent.getValueSequence("VfsFile", Locale.ENGLISH);
         assertEquals(0, seq.getElementCount());
 
-        String res1 = "/index.html";
+        String res1 = "/manageRoom.html";
         String res2 = "/xmlcontent/";
         String res3 = "/xmlcontent/article_0001.html";
-        String res4 = "/folder1/index.html";
+        String res4 = "/folder1/manageRoom.html";
 
         String sr = cms.getRequestContext().getSiteRoot();
         String propValue = sr + res1 + "|" + sr + res2 + "|" + sr + res3 + "|" + sr + res4;
@@ -1636,7 +1636,7 @@ public class TestCmsXmlContentWithVfs extends OpenCmsTestRunner {
         CmsXmlContentValueSequence seq = xmlcontent.getValueSequence("VfsFile", Locale.ENGLISH);
         assertEquals(0, seq.getElementCount());
 
-        String res1 = "/index.html";
+        String res1 = "/manageRoom.html";
         String res2 = "/xmlcontent/";
 
         value = seq.addValue(cms, 0);
@@ -2736,14 +2736,14 @@ public class TestCmsXmlContentWithVfs extends OpenCmsTestRunner {
 
         // make sure the XML unmarshals as expected
         CmsLink link = vfsValue.getLink(cms);
-        assertEquals("/sites/default/index.html", link.getTarget());
+        assertEquals("/sites/default/manageRoom.html", link.getTarget());
         assertTrue(link.isInternal());
-        assertEquals("/index.html", vfsValue.getStringValue(cms));
+        assertEquals("/manageRoom.html", vfsValue.getStringValue(cms));
 
         CmsLink varLink1 = varValue1.getLink(cms);
-        assertEquals("/sites/default/index.html", varLink1.getTarget());
+        assertEquals("/sites/default/manageRoom.html", varLink1.getTarget());
         assertTrue(varLink1.isInternal());
-        assertEquals("/index.html", varValue1.getStringValue(cms));
+        assertEquals("/manageRoom.html", varValue1.getStringValue(cms));
 
         CmsLink varLink2 = varValue2.getLink(cms);
         assertEquals("http://www.alkacon.com", varLink2.getTarget());

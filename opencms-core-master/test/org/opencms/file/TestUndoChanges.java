@@ -710,7 +710,7 @@ public class TestUndoChanges extends OpenCmsTestRunner {
         switchStorage(OpenCmsTestResourceStorage.DEFAULT_STORAGE);
 
         echo("Testing undoChanges on a file");
-        undoChanges(this, cms, "/index.html");
+        undoChanges(this, cms, "/manageRoom.html");
     }
 
     /**
@@ -980,7 +980,7 @@ public class TestUndoChanges extends OpenCmsTestRunner {
 
         CmsObject cms = getCmsObject();
         echo("Testing undoChanges on a resource with an ACE");
-        undoChanges(this, cms, "/folder2/index.html");
+        undoChanges(this, cms, "/folder2/manageRoom.html");
     }
 
 }

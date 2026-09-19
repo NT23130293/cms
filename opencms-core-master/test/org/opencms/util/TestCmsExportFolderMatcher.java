@@ -60,13 +60,13 @@ public class TestCmsExportFolderMatcher extends OpenCmsTestRunner {
         test = matcher.match("/system/opencms.ini");
         assertEquals(true, test);
 
-        test = matcher.match("/sites/default/index.html");
+        test = matcher.match("/sites/default/manageRoom.html");
         assertEquals(true, test);
 
-        test = matcher.match("/sites/default/folder/index.html");
+        test = matcher.match("/sites/default/folder/manageRoom.html");
         assertEquals(true, test);
 
-        test = matcher.match("/gibtsnicht/index.html");
+        test = matcher.match("/gibtsnicht/manageRoom.html");
         assertEquals(false, test);
 
         test = matcher.match("/system/galleries/pics/demo.gif");

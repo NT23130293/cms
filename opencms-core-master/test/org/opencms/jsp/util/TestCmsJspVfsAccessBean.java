@@ -149,11 +149,11 @@ public class TestCmsJspVfsAccessBean extends OpenCmsTestRunner {
         CmsJspVfsAccessBean bean = CmsJspVfsAccessBean.create(cms);
 
         Map<String, Map<String, String>> readProperties = bean.getReadProperties();
-        Map<String, String> props = readProperties.get("/index.html");
+        Map<String, String> props = readProperties.get("/manageRoom.html");
         assertNotNull(props);
         String title = props.get(CmsPropertyDefinition.PROPERTY_TITLE);
         assertEquals("Index page", title);
-        CmsProperty titleProp = cms.readPropertyObject("/index.html", CmsPropertyDefinition.PROPERTY_TITLE, false);
+        CmsProperty titleProp = cms.readPropertyObject("/manageRoom.html", CmsPropertyDefinition.PROPERTY_TITLE, false);
         assertEquals(titleProp.getValue(), title);
     }
 
@@ -221,9 +221,9 @@ public class TestCmsJspVfsAccessBean extends OpenCmsTestRunner {
         Map<String, CmsJspResourceWrapper> readResource = bean.getReadResource();
 
         CmsResource res, dres;
-        res = readResource.get("/index.html");
+        res = readResource.get("/manageRoom.html");
         assertNotNull(res);
-        dres = cms.readResource("/index.html");
+        dres = cms.readResource("/manageRoom.html");
         assertEquals(res, dres);
 
         res = readResource.get("/idontexist.html");
@@ -248,7 +248,7 @@ public class TestCmsJspVfsAccessBean extends OpenCmsTestRunner {
         assertEquals("Alkacon Software", content.getValue().get("Author").toString());
 
         // access XML page
-        content = readXml.get("/index.html");
+        content = readXml.get("/manageRoom.html");
         assertEquals(Boolean.TRUE, content.getHasValue().get("body"));
         assertEquals(Boolean.FALSE, content.getHasValue().get("element"));
         System.out.println(content.getValue().get("body"));

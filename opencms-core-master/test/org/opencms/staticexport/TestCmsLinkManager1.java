@@ -147,37 +147,37 @@ public class TestCmsLinkManager1 extends OpenCmsTestRunner {
         cms.getRequestContext().setCurrentProject(cms.readProject("Online"));
         CmsLinkManager linkManager = OpenCms.getLinkManager();
 
-        test = linkManager.substituteLink(cms, "/folder1/index.html?additionalParam", "/sites/default");
+        test = linkManager.substituteLink(cms, "/folder1/manageRoom.html?additionalParam", "/sites/default");
         System.out.println(test);
-        assertEquals(getVfsPrefix() + "/folder1/index.html?additionalParam", test);
+        assertEquals(getVfsPrefix() + "/folder1/manageRoom.html?additionalParam", test);
 
         test = linkManager.substituteLink(
             cms,
-            CmsLinkManager.getAbsoluteUri("/", "/folder1/index.html"),
+            CmsLinkManager.getAbsoluteUri("/", "/folder1/manageRoom.html"),
             "/sites/default");
         System.out.println(test);
         assertEquals(getVfsPrefix() + "/", test);
 
         test = linkManager.substituteLink(
             cms,
-            CmsLinkManager.getAbsoluteUri("./", "/folder1/index.html"),
+            CmsLinkManager.getAbsoluteUri("./", "/folder1/manageRoom.html"),
             "/sites/default");
         System.out.println(test);
         assertEquals(getVfsPrefix() + "/folder1/", test);
 
-        test = CmsLinkManager.getRelativeUri("/index.html", "/index.html");
+        test = CmsLinkManager.getRelativeUri("/manageRoom.html", "/manageRoom.html");
         System.out.println(test);
-        assertEquals("index.html", test);
+        assertEquals("manageRoom.html", test);
 
-        test = CmsLinkManager.getRelativeUri("/folder1/index.html", "/folder1/");
-        System.out.println(test);
-        assertEquals("./", test);
-
-        test = CmsLinkManager.getRelativeUri("/index.html", "/");
+        test = CmsLinkManager.getRelativeUri("/folder1/manageRoom.html", "/folder1/");
         System.out.println(test);
         assertEquals("./", test);
 
-        test = CmsLinkManager.getRelativeUri("/index.html", "./");
+        test = CmsLinkManager.getRelativeUri("/manageRoom.html", "/");
+        System.out.println(test);
+        assertEquals("./", test);
+
+        test = CmsLinkManager.getRelativeUri("/manageRoom.html", "./");
         System.out.println(test);
         assertEquals("./", test);
 
@@ -239,25 +239,25 @@ public class TestCmsLinkManager1 extends OpenCmsTestRunner {
 
         String test;
 
-        test = CmsLinkManager.getRelativeUri("/dir1/dir2/index.html", "/dir1/dirB/index.html");
+        test = CmsLinkManager.getRelativeUri("/dir1/dir2/manageRoom.html", "/dir1/dirB/manageRoom.html");
         System.out.println(test);
-        assertEquals(test, "../dirB/index.html");
+        assertEquals(test, "../dirB/manageRoom.html");
 
-        test = CmsLinkManager.getRelativeUri("/exp/en/test/index.html", "/exp/de/test/index.html");
+        test = CmsLinkManager.getRelativeUri("/exp/en/test/manageRoom.html", "/exp/de/test/manageRoom.html");
         System.out.println(test);
-        assertEquals(test, "../../de/test/index.html");
+        assertEquals(test, "../../de/test/manageRoom.html");
 
-        test = CmsLinkManager.getAbsoluteUri("../../index.html", "/dir1/dir2/dir3/");
+        test = CmsLinkManager.getAbsoluteUri("../../manageRoom.html", "/dir1/dir2/dir3/");
         System.out.println(test);
-        assertEquals(test, "/dir1/index.html");
+        assertEquals(test, "/dir1/manageRoom.html");
 
-        test = CmsLinkManager.getAbsoluteUri("./../././.././dir2/./../index.html", "/dir1/dir2/dir3/");
+        test = CmsLinkManager.getAbsoluteUri("./../././.././dir2/./../manageRoom.html", "/dir1/dir2/dir3/");
         System.out.println(test);
-        assertEquals(test, "/dir1/index.html");
+        assertEquals(test, "/dir1/manageRoom.html");
 
-        test = CmsLinkManager.getAbsoluteUri("/dirA/index.html", "/dir1/dir2/dir3/");
+        test = CmsLinkManager.getAbsoluteUri("/dirA/manageRoom.html", "/dir1/dir2/dir3/");
         System.out.println(test);
-        assertEquals(test, "/dirA/index.html");
+        assertEquals(test, "/dirA/manageRoom.html");
     }
 
     protected String getVfsPrefix() {

@@ -276,7 +276,7 @@ public class CmsSetupBean implements I_CmsShellCommands {
     /** The full key of the selected database including the "_jpa" or "_sql" information. */
     private String m_fullDatabaseKey;
 
-    /** Flag which is set to true after module import if there is an index.html file in the default site. */
+    /** Flag which is set to true after module import if there is an manageRoom.html file in the default site. */
     private boolean m_hasIndexHtml;
 
     /** The Database Provider used in setup. */
@@ -1139,9 +1139,9 @@ public class CmsSetupBean implements I_CmsShellCommands {
     }
 
     /**
-     * Returns true if there is an index.html file in the default site after the module import.
+     * Returns true if there is an manageRoom.html file in the default site after the module import.
      *
-     * @return true if there is an index.html file
+     * @return true if there is an manageRoom.html file
      */
     public boolean hasIndexHtml() {
 
@@ -1235,7 +1235,7 @@ public class CmsSetupBean implements I_CmsShellCommands {
             }
             m_hasIndexHtml = false;
             try {
-                m_cms.readResource("/index.html");
+                m_cms.readResource("/manageRoom.html");
                 m_hasIndexHtml = true;
             } catch (Exception e) {
 

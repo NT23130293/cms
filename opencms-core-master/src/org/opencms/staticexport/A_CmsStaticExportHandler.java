@@ -430,7 +430,7 @@ public abstract class A_CmsStaticExportHandler implements I_CmsStaticExportHandl
                         }
                     }
 
-                    // add index_export.html or the index.html to the folder name
+                    // add index_export.html or the manageRoom.html to the folder name
                     rfsName = OpenCms.getStaticExportManager().addDefaultFileNameToFolder(rfsName, res.isFolder());
                     if (LOG.isDebugEnabled()) {
                         LOG.debug(Messages.get().getBundle().key(Messages.LOG_RFSNAME_1, rfsName));
@@ -660,7 +660,7 @@ public abstract class A_CmsStaticExportHandler implements I_CmsStaticExportHandl
     //                    res.getStructureId());
     //                for (CmsInternalSitemapEntry entry : entries) {
     //                    String rfsName = OpenCms.getStaticExportManager().getRfsName(cms, entry.getRootPath());
-    //                    // add index_export.html or the index.html to the folder name
+    //                    // add index_export.html or the manageRoom.html to the folder name
     //                    rfsName = OpenCms.getStaticExportManager().addDefaultFileNameToFolder(rfsName, res.isFolder());
     //                    // get
     //                    String rfsExportFileName = CmsFileUtil.normalizePath(OpenCms.getStaticExportManager().getExportPath(

@@ -71,7 +71,7 @@ public class TestUndelete extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing undelete on file");
 
-        String resourceName = "/index.html";
+        String resourceName = "/manageRoom.html";
         cms.lockResource(resourceName);
         cms.deleteResource(resourceName, CmsResource.DELETE_PRESERVE_SIBLINGS);
         cms.unlockResource(resourceName);
@@ -91,7 +91,7 @@ public class TestUndelete extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing undelete on a not deleted file");
 
-        String resourceName = "/index.html";
+        String resourceName = "/manageRoom.html";
         cms.lockResource(resourceName);
         try {
             cms.undeleteResource(resourceName, false);
@@ -181,7 +181,7 @@ public class TestUndelete extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing undelete on file");
 
-        String resourceName = "/index.html";
+        String resourceName = "/manageRoom.html";
         String siblingName = "/index_sibling.html";
 
         cms.lockResource(resourceName);
@@ -224,7 +224,7 @@ public class TestUndelete extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing undelete on file");
 
-        String resourceName = "/index.html";
+        String resourceName = "/manageRoom.html";
 
         // set some permissions
         cms.lockResource(resourceName);

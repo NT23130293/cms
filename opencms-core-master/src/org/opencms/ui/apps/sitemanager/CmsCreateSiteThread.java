@@ -77,8 +77,8 @@ public class CmsCreateSiteThread extends A_CmsReportThread {
     /** Constant. */
     private static final String BLANK_HTML = "blank.html";
 
-    /**default index.html which gets created.*/
-    private static final String INDEX_HTML = "index.html";
+    /**default manageRoom.html which gets created.*/
+    private static final String INDEX_HTML = "manageRoom.html";
 
     /** Constant. */
     private static final String MODEL_PAGE = "ModelPage";
@@ -315,7 +315,7 @@ public class CmsCreateSiteThread extends A_CmsReportThread {
     private void createIndexHTML(String siteRoot) throws CmsIllegalArgumentException, CmsException {
 
         if (!m_cms.existsResource(siteRoot + INDEX_HTML)) {
-            //Create index.html
+            //Create manageRoom.html
             I_CmsResourceType containerType = OpenCms.getResourceManager().getResourceType(
                 org.opencms.file.types.CmsResourceTypeXmlContainerPage.RESOURCE_TYPE_NAME);
             m_cms.createResource(siteRoot + INDEX_HTML, containerType);

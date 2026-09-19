@@ -62,7 +62,7 @@ public class TestSnapshotSetup extends OpenCmsTestSnapRunner {
             timings[i] = System.currentTimeMillis() - start;
 
             // the imported "simpletest" data must be present in every restored instance
-            assertTrue(cms.existsResource("/index.html"), "fixture data missing in restored instance");
+            assertTrue(cms.existsResource("/manageRoom.html"), "fixture data missing in restored instance");
             // isolation: a resource created in the previous iteration must not survive into this one
             assertFalse(cms.existsResource(MARKER), "snapshot not fresh - marker from previous test leaked");
 

@@ -1097,31 +1097,31 @@ public class TestLiveConfig extends OpenCmsTestRunner {
         CmsResource content;
         final String articlePath = "/.content/blogentries/article.xml";
         I_CmsDetailPageHandler handler = OpenCms.getADEManager().getDetailPageHandler();
-        page = cms.readResource(bb + "/detail/index.html");
+        page = cms.readResource(bb + "/detail/manageRoom.html");
         content = cms.readResource(ab + articlePath);
         assertFalse(handler.isValidDetailPage(cms, page, content), "Should not be a valid detail page");
 
-        page = cms.readResource(ab + "/detail/index.html");
+        page = cms.readResource(ab + "/detail/manageRoom.html");
         content = cms.readResource(bb + articlePath);
         assertTrue(handler.isValidDetailPage(cms, page, content), "Should be a valid detail page");
 
-        page = cms.readResource(ab + "/detail/index.html");
+        page = cms.readResource(ab + "/detail/manageRoom.html");
         content = cms.readResource(ab + articlePath);
         assertTrue(handler.isValidDetailPage(cms, page, content), "Should be a valid detail page");
 
-        page = cms.readResource(ba + "/detail/index.html");
+        page = cms.readResource(ba + "/detail/manageRoom.html");
         content = cms.readResource(bb + articlePath);
         assertFalse(handler.isValidDetailPage(cms, page, content), "Should not be a valid detail page");
 
-        page = cms.readResource(ba + "/detail/index.html");
+        page = cms.readResource(ba + "/detail/manageRoom.html");
         content = cms.readResource(ab + articlePath);
         assertFalse(handler.isValidDetailPage(cms, page, content), "Should not be a valid detail page");
 
-        page = cms.readResource(ba + "/detail/index.html");
+        page = cms.readResource(ba + "/detail/manageRoom.html");
         content = cms.readResource(bb + articlePath);
         assertFalse(handler.isValidDetailPage(cms, page, content), "Should not be a valid detail page");
 
-        page = cms.readResource(ba + "/detail/index.html");
+        page = cms.readResource(ba + "/detail/manageRoom.html");
         content = cms.readResource(ba + articlePath);
         assertTrue(handler.isValidDetailPage(cms, page, content), "Should be a valid detail page");
 
@@ -1341,15 +1341,15 @@ public class TestLiveConfig extends OpenCmsTestRunner {
         cms.createResource(path + "/.content", 0);
         CmsResource detailFolder = cms.createResource(path + "/detail", 0);
         CmsResource fooFolder = cms.createResource(path + "/detail-foo", 0);
-        cms.createResource(path + "/detail/index.html", OpenCms.getResourceManager().getResourceType("containerpage"));
+        cms.createResource(path + "/detail/manageRoom.html", OpenCms.getResourceManager().getResourceType("containerpage"));
         CmsResource special1 = cms.createResource(path + "/default-1", 0);
         cms.createResource(
-            path + "/default-1/index.html",
+            path + "/default-1/manageRoom.html",
             OpenCms.getResourceManager().getResourceType("containerpage"));
 
         CmsResource special2 = cms.createResource(path + "/default-2", 0);
         cms.createResource(
-            path + "/default-2/index.html",
+            path + "/default-2/manageRoom.html",
             OpenCms.getResourceManager().getResourceType("containerpage"));
 
         String config = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -1453,7 +1453,7 @@ public class TestLiveConfig extends OpenCmsTestRunner {
         cms.createResource(path, 0);
         cms.createResource(path + "/.content", 0);
         CmsResource detailFolder = cms.createResource(path + "/detail", 0);
-        cms.createResource(path + "/detail/index.html", OpenCms.getResourceManager().getResourceType("containerpage"));
+        cms.createResource(path + "/detail/manageRoom.html", OpenCms.getResourceManager().getResourceType("containerpage"));
 
         String config = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
             + "\n"

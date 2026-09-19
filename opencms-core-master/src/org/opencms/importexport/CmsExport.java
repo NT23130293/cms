@@ -328,7 +328,7 @@ public class CmsExport {
     /**
      * Adds all files in fileNames to the manifest.xml file.<p>
      *
-     * @param fileNames list of path Strings, e.g. <code>/folder/index.html</code>
+     * @param fileNames list of path Strings, e.g. <code>/folder/manageRoom.html</code>
      *
      * @throws CmsImportExportException if something goes wrong
      * @throws IOException if a file could not be exported

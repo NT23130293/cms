@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+          rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/manageRoom.css">
+
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<main class="w-full pt-16 bg-surface px-space-lg py-space-lg min-h-screen">
+    <div class="flex flex-col w-full gap-space-lg">
+        <!-- Top Action & Context Banner -->
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_2px_12px_rgba(21,67,50,0.05)] relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-secondary-container/20 pointer-events-none blur-2xl"></div>
+            <div class="flex flex-col gap-space-xs z-10">
+                <div class="flex items-center gap-space-xs">
+                    <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wide">Nhà Sàn Mộc • Mai Châu</span>
+                    <span class="text-outline text-label-sm">•</span>
+                    <span class="text-on-surface-variant font-label-sm text-label-sm">Cập nhật lúc: 14:30 hôm nay</span>
+                </div>
+                <h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Quản lý phòng
+                    &amp; Tình trạng phòng</h1>
+                <p class="font-body-md text-body-md text-on-surface-variant">Tổng số 8 phòng • 5 phòng đang đón khách •
+                    1 phòng đang bảo trì &amp; dọn buồng</p>
+            </div>
+            <!-- Action Toolbar -->
+            <div class="flex flex-wrap items-center gap-space-sm z-10">
+                <!-- Mode toggle -->
+                <div class="bg-surface-container-low p-1 rounded-lg flex items-center shadow-inner">
+                    <button class="px-space-sm py-1.5 rounded-md font-label-lg text-label-lg bg-surface-container-lowest text-primary shadow-sm flex items-center gap-1.5 transition-all"
+                            id="btnViewCard">
+                        <span class="material-symbols-outlined text-[18px]">grid_view</span>
+                        Dạng thẻ
+                    </button>
+                    <button class="px-space-sm py-1.5 rounded-md font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface flex items-center gap-1.5 transition-all"
+                            id="btnViewTimeline">
+                        <span class="material-symbols-outlined text-[18px]">calendar_view_week</span>
+                        Lịch Timeline
+                    </button>
+                </div>
+                <button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5 transition-colors shadow-sm">
+                    <span class="material-symbols-outlined text-[18px] text-secondary">tune</span>
+                    Cập nhật giá hàng loạt
+                </button>
+                <button
+                        id="btnAddRoom"
+                        type="button"
+                        class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-2 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5 transition-all shadow-[0_2px_8px_rgba(21,67,50,0.25)] hover:shadow-md">
+
+                        <span class="material-symbols-outlined text-[20px]">
+                            add_circle
+                        </span>
+
+                    Thêm phòng mới
+                </button>
+            </div>
+        </div>
+        <!-- Key Metrics Row (4-up Cards) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+            <!-- Stat 1 -->
+            <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_2px_8px_rgba(21,67,50,0.04)] flex items-center gap-space-md relative overflow-hidden group hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-xl bg-surface-container-low text-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[26px]">apartment</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-label-md text-label-md text-on-surface-variant font-medium">Tổng số phòng</span>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span class="font-display-lg text-display-lg text-on-surface font-bold leading-tight">8</span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">phòng</span>
+                    </div>
+                    <span class="font-body-sm text-body-sm text-secondary font-medium">Sức chứa tối đa: 32 khách</span>
+                </div>
+                <div class="absolute right-0 top-0 bottom-0 w-1 bg-secondary rounded-r"></div>
+            </div>
+            <!-- Stat 2 -->
+            <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_2px_8px_rgba(21,67,50,0.04)] flex items-center gap-space-md relative overflow-hidden group hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-xl bg-secondary-container/40 text-secondary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[26px]">hotel</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-label-md text-label-md text-on-surface-variant font-medium">Đang đón khách</span>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span class="font-display-lg text-display-lg text-secondary font-bold leading-tight">5/8</span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">phòng</span>
+                    </div>
+                    <div class="flex items-center gap-1 font-body-sm text-body-sm text-on-secondary-container">
+                        <span class="material-symbols-outlined text-[14px]">pie_chart</span>
+                        <span class="">Tỷ lệ lấp đầy: <strong>62.5%</strong></span>
+                    </div>
+                </div>
+                <div class="absolute right-0 top-0 bottom-0 w-1 bg-secondary-fixed-dim rounded-r"></div>
+            </div>
+            <!-- Stat 3 -->
+            <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_2px_8px_rgba(21,67,50,0.04)] flex items-center gap-space-md relative overflow-hidden group hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-xl bg-tertiary-fixed/40 text-on-tertiary-fixed-variant flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[26px]">key</span>
+                </div>
+                <div class="flex flex-col min-w-0">
+                    <span class="font-label-md text-label-md text-on-surface-variant font-medium">Check-in hôm nay</span>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span class="font-display-lg text-display-lg text-on-tertiary-fixed-variant font-bold leading-tight">2</span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">phòng</span>
+                    </div>
+                    <span class="font-body-sm text-body-sm text-on-tertiary-fixed-variant truncate">Garden View, Mountain View</span>
+                </div>
+                <div class="absolute right-0 top-0 bottom-0 w-1 bg-tertiary-fixed-dim rounded-r"></div>
+            </div>
+            <!-- Stat 4 -->
+            <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_2px_8px_rgba(21,67,50,0.04)] flex items-center gap-space-md relative overflow-hidden group hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-xl bg-surface-container-highest text-on-surface-variant flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[26px]">cleaning_services</span>
+                </div>
+                <div class="flex flex-col min-w-0">
+                    <span class="font-label-md text-label-md text-on-surface-variant font-medium">Bảo trì &amp; Dọn buồng</span>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span class="font-display-lg text-display-lg text-error font-bold leading-tight">1</span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">phòng</span>
+                    </div>
+                    <span class="font-body-sm text-body-sm text-outline truncate">Nhà Sàn Gỗ Lớn (Sửa quạt)</span>
+                </div>
+                <div class="absolute right-0 top-0 bottom-0 w-1 bg-outline-variant rounded-r"></div>
+            </div>
+        </div>
+        <!-- Interactive Filter Tabs & Quick Search -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-lowest p-space-sm px-space-md rounded-xl shadow-[0_1px_6px_rgba(0,0,0,0.02)]">
+            <!-- Category Tabs -->
+            <div class="flex items-center gap-space-xs overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+                <button class="filter-tab active px-space-md py-2 rounded-lg font-label-lg text-label-lg bg-primary text-on-primary shadow-sm flex items-center gap-1.5 shrink-0 transition-colors"
+                        data-filter="all">
+                    <span class="">Tất cả</span>
+                    <span class="w-5 h-5 rounded-full bg-surface-container-lowest/20 text-on-primary text-[11px] flex items-center justify-center font-bold">8</span>
+                </button>
+                <button class="filter-tab px-space-md py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low flex items-center gap-1.5 shrink-0 transition-colors"
+                        data-filter="occupied">
+                    <span class="">Đang đón khách</span>
+                    <span class="w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container text-[11px] flex items-center justify-center font-bold">5</span>
+                </button>
+                <button class="filter-tab px-space-md py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low flex items-center gap-1.5 shrink-0 transition-colors"
+                        data-filter="available">
+                    <span class="">Còn trống hôm nay</span>
+                    <span class="w-5 h-5 rounded-full bg-surface-container text-on-surface text-[11px] flex items-center justify-center font-bold">2</span>
+                </button>
+                <button class="filter-tab px-space-md py-2 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-low flex items-center gap-1.5 shrink-0 transition-colors"
+                        data-filter="maintenance">
+                    <span class="">Bảo trì / Dọn phòng</span>
+                    <span class="w-5 h-5 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] flex items-center justify-center font-bold">1</span>
+                </button>
+            </div>
+            <!-- Quick Utilities inside tab row -->
+            <div class="flex items-center gap-space-xs">
+                <div class="relative w-full md:w-64">
+                    <span class="material-symbols-outlined text-[18px] text-outline absolute left-3 top-2.5">filter_list</span>
+                    <input class="w-full pl-9 pr-3 py-1.5 text-body-md font-body-md rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-1 focus:ring-secondary transition-all outline-none"
+                           placeholder="Tìm theo tên/mã phòng..." type="text">
+                </div>
+                <button class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant"
+                        title="Tải lại danh sách">
+                    <span class="material-symbols-outlined text-[20px]">sync</span>
+                </button>
+            </div>
+        </div>
+        <!-- Room Grid (Cards View) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-space-lg" id="roomGridView">
+            <!-- Card 1: Phòng Garden View 101 -->
+            <div class="room-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_10px_rgba(21,67,50,0.05)] hover:shadow-[0_8px_24px_rgba(21,67,50,0.09)] transition-all duration-300 flex flex-col group">
+                <!-- Media Header -->
+                <div class="relative h-56 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                         data-alt="Boutique homestay bedroom with natural wood finishes, cozy soft cotton bedding, large glass windows looking out to lush green pomelo orchard garden, warm natural ambient morning light, traditional Vietnamese woven bamboo lampshade, tranquil rural atmosphere"
+                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuA92VX9N0UDeWwWCIKjLehBZXqx8o90G5vq3LcG_Tv0TlKZ9rEJ77YoL_ic27GRSnIMBYyV_hPitG43lJozoYkKMt4F4Y7wzS4YPVqq_MN6AAReFtqmQ_Qu-xdxFAFbZ9xj_AL3rI1Hv1uCJLz-BKK40SYyXjnkf6G_WKzgCm_eBrS-GHlu3kwoI38m9ujg_5UmlnI_FmInPuwLvZuARdlOIv0nmTsucIfBFKIImzuftsaBcKWW9n8">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-black/30"></div>
+                    <!-- Status Pill Top Right -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/95 text-on-secondary-container font-label-md text-label-md shadow-sm backdrop-blur-sm">
+                        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        <span class="">Đang có khách</span>
+                    </div>
+                    <!-- Room Code / Type Badge Top Left -->
+                    <div class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm font-bold backdrop-blur-sm shadow-sm flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-secondary">eco</span>
+                        P.101 • Tầng 1
+                    </div>
+                    <!-- Bottom Overlaid Content on Image -->
+                    <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between text-on-primary">
+                        <div>
+                            <h2 class="font-headline-md text-headline-md font-bold tracking-tight text-on-primary drop-shadow-sm">
+                                Phòng Garden View 101</h2>
+                            <div class="flex items-center gap-space-xs font-body-sm text-body-sm text-primary-fixed drop-shadow">
+                                <span class="material-symbols-outlined text-[16px]">group</span>
+                                <span class="">2 người lớn, 1 trẻ em</span>
+                                <span class="">•</span>
+                                <span class="">Giường King 1m8</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-label-sm text-label-sm text-primary-fixed block uppercase tracking-wider">Giá gốc / đêm</span>
+                            <span class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">850.000₫</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body Content -->
+                <div class="p-space-md flex flex-col gap-space-md flex-grow justify-between">
+                    <!-- Amenities & Highlights -->
+                    <div class="flex flex-col gap-space-xs">
+                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Tiện nghi phòng</span>
+                        <div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">park</span>
+              View vườn bưởi
+            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">deck</span>
+              Ban công gỗ
+            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">ac_unit</span>
+              Điều hòa Inverter
+            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">hot_tub</span>
+              Bồn thảo dược Mai Châu
+            </span>
+                        </div>
+                    </div>
+                    <!-- Current Guest / Occupancy info Box -->
+                    <div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between">
+                        <div class="flex items-center gap-space-sm min-w-0">
+                            <div class="w-9 h-9 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-md shrink-0">
+                                LH
+                            </div>
+                            <div class="flex flex-col min-w-0">
+                                <span class="font-label-md text-label-md text-on-surface font-semibold truncate">Khách: Lê Văn Hiếu</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">event</span>
+                16/09 → 18/09 (2 đêm • Check-out mai)
+              </span>
+                            </div>
+                        </div>
+                        <button class="p-1.5 rounded-lg text-primary hover:bg-surface-container-highest transition-colors"
+                                title="Gọi khách">
+                            <span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+                        </button>
+                    </div>
+                    <!-- Action Row -->
+                    <div class="flex items-center justify-between pt-space-xs">
+                        <div class="flex items-center gap-space-xs">
+                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">edit_calendar</span>
+                                Lịch phòng
+                            </button>
+                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">lock</span>
+                                Khóa phòng
+                            </button>
+                            <button
+                                    type="button"
+                                    class="btn-edit-room px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-name="Garden View 101"
+                                    data-room-code="P.101"
+                                    data-room-type="Garden View"
+                                    data-room-capacity="4"
+                                    data-room-price="850000"
+                                    data-room-description="Phòng hướng vườn, phù hợp cho gia đình nhỏ.">
+
+                                    <span class="material-symbols-outlined text-[16px]">
+                                        edit
+                                    </span>
+
+                                Chỉnh sửa
+                            </button>
+                        </div>
+                        <button class="px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1">
+                            <span class="">Chi tiết &amp; Hóa đơn</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2: Phòng Mountain View 201 -->
+            <div class="room-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_10px_rgba(21,67,50,0.05)] hover:shadow-[0_8px_24px_rgba(21,67,50,0.09)] transition-all duration-300 flex flex-col group">
+                <!-- Media Header -->
+                <div class="relative h-56 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                         data-alt="Charming homestay bedroom interior with rustic wooden beams, floor-to-ceiling glass doors opening onto expansive terraced green rice fields in Mai Châu valley, misty mountains in the background, king-sized bed with handmade ethnic tribal textiles and earth tones"
+                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvwt_LAypkngMfvKDDOYdct2L-JFaJmze6APU8kMIvzwODRa_h5_ep_EukGGhnOY86dp_l0loMQxsXTFSa5NzplVG4c9jBSX5SUO8fF7GkyfaoEGuMtJL-cpZ5uR1ASJBlmOnSaCVFsBD9kKoRE1OiTImP7OK7u27yodqXuT-4vnkRyWt5EZ7OSWBxZck046_lx5GOSdM43jQoLlU4RtloR61HbMgHu1DU13-aYGLO-TAAYSe95HI">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-black/30"></div>
+                    <!-- Status Pill Top Right -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md shadow-sm backdrop-blur-sm">
+                        <span class="w-2 h-2 rounded-full bg-on-tertiary-container animate-pulse"></span>
+                        <span class="">Đã đặt • Chờ Check-in</span>
+                    </div>
+                    <!-- Room Code / Type Badge Top Left -->
+                    <div class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm font-bold backdrop-blur-sm shadow-sm flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-tertiary-container">landscape</span>
+                        P.201 • Tầng 2
+                    </div>
+                    <!-- Bottom Overlaid Content on Image -->
+                    <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between text-on-primary">
+                        <div>
+                            <h2 class="font-headline-md text-headline-md font-bold tracking-tight text-on-primary drop-shadow-sm">
+                                Phòng Mountain View 201</h2>
+                            <div class="flex items-center gap-space-xs font-body-sm text-body-sm text-primary-fixed drop-shadow">
+                                <span class="material-symbols-outlined text-[16px]">family_restroom</span>
+                                <span class="">4 người (Gia đình)</span>
+                                <span class="">•</span>
+                                <span class="">2 Giường Queen gỗ pơmu</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-label-sm text-label-sm text-primary-fixed block uppercase tracking-wider">Giá gốc / đêm</span>
+                            <span class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">1.200.000₫</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body Content -->
+                <div class="p-space-md flex flex-col gap-space-md flex-grow justify-between">
+                    <!-- Amenities & Highlights -->
+                    <div class="flex flex-col gap-space-xs">
+                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Tiện nghi nổi bật</span>
+                        <div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">filter_drama</span>
+              View thung lũng lúa
+            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">bed</span>
+              Giường King Pơmu
+            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">emoji_food_beverage</span>
+              Trà Shan tuyết cổ thụ
+            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">wifi</span>
+              Wifi vệ tinh tốc độ cao
+            </span>
+                        </div>
+                    </div>
+                    <!-- Current Guest / Occupancy info Box -->
+                    <div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between">
+                        <div class="flex items-center gap-space-sm min-w-0">
+                            <div class="w-9 h-9 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center font-bold text-label-md shrink-0">
+                                NM
+                            </div>
+                            <div class="flex flex-col min-w-0">
+                                <span class="font-label-md text-label-md text-on-surface font-semibold truncate">Khách: Nguyễn Thị Mai (Đã cọc 50%)</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-on-tertiary-container">schedule</span>
+                17/09 → 20/09 (Dự kiến đến: 16:30 chiều nay)
+              </span>
+                            </div>
+                        </div>
+                        <button class="px-2 py-1 rounded-md bg-secondary text-on-secondary text-label-sm font-label-sm hover:bg-primary transition-colors">
+                            Check-in
+                        </button>
+                    </div>
+                    <!-- Action Row -->
+                    <div class="flex items-center justify-between pt-space-xs">
+                        <div class="flex items-center gap-space-xs">
+                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">edit</span>
+                                Đổi phòng
+                            </button>
+                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">notifications_active</span>
+                                Nhắc khách
+                            </button>
+                            <button
+                                    type="button"
+                                    class="btn-edit-room px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-name="Garden View 101"
+                                    data-room-code="P.101"
+                                    data-room-type="Garden View"
+                                    data-room-capacity="4"
+                                    data-room-price="850000"
+                                    data-room-description="Phòng hướng vườn, phù hợp cho gia đình nhỏ.">
+
+                                    <span class="material-symbols-outlined text-[16px]">
+                                        edit
+                                    </span>
+
+                                Chỉnh sửa
+                            </button>
+                        </div>
+                        <button class="px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1">
+                            <span class="">Chi tiết &amp; Hóa đơn</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3: Nhà Sàn Trải Nghiệm Tập Thể (Dorm Bản Đạo) -->
+            <div class="room-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_10px_rgba(21,67,50,0.05)] hover:shadow-[0_8px_24px_rgba(21,67,50,0.09)] transition-all duration-300 flex flex-col group">
+                <!-- Media Header -->
+                <div class="relative h-56 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                         data-alt="Traditional grand stilt house interior wooden dormitory in Mai Chau, polished dark wood floor, neat rows of comfortable rustic sleeping mattresses with handmade ethnic brocade quilts, mosquito nets tied up gracefully, warm natural sunlight flowing in through tall wooden windows"
+                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG_MU48hzMQCyOhQjXMvJGqzt-Py1zvLIKdJxQSDTxbSE7QFP2vJjB9mDbcUYJLJqaC3JtSepgaFuDuU4fq9isiJfqTU8A3vE2yVcYPpMMb6VjetGR6nDaojf8gVynYqRPemLgYKJQxuP-dLld77rT4avkl2Nybfhcf8SMnDh39PJFgUbN8E0t5PfUHgP9RLlTL1RAJzlVia4IsO_kMnl9HllAv9kj71hnmBxXa6Mw1n38jFb7zQM">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-black/30"></div>
+                    <!-- Status Pill Top Right -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest text-on-surface font-label-md text-label-md shadow-sm backdrop-blur-sm">
+                        <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                        <span class="">Còn trống hôm nay</span>
+                    </div>
+                    <!-- Room Code / Type Badge Top Left -->
+                    <div class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm font-bold backdrop-blur-sm shadow-sm flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-primary">groups</span>
+                        Dorm Lớn • Toàn sàn
+                    </div>
+                    <!-- Bottom Overlaid Content on Image -->
+                    <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between text-on-primary">
+                        <div>
+                            <h2 class="font-headline-md text-headline-md font-bold tracking-tight text-on-primary drop-shadow-sm">
+                                Nhà Sàn Trải Nghiệm Bản Đạo</h2>
+                            <div class="flex items-center gap-space-xs font-body-sm text-body-sm text-primary-fixed drop-shadow">
+                                <span class="material-symbols-outlined text-[16px]">groups_2</span>
+                                <span class="">10 - 12 khách (Đoàn tập thể)</span>
+                                <span class="">•</span>
+                                <span class="">10 Đệm đơn thổ cẩm</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-label-sm text-label-sm text-primary-fixed block uppercase tracking-wider">Giá / người / đêm</span>
+                            <span class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">350.000₫</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body Content -->
+                <div class="p-space-md flex flex-col gap-space-md flex-grow justify-between">
+                    <!-- Amenities & Highlights -->
+                    <div class="flex flex-col gap-space-xs">
+                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Đặc trưng trải nghiệm</span>
+                        <div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">fireplace</span>
+              Bếp củi giao lưu
+            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">nightlife</span>
+              Không gian tiệc BBQ sàn gỗ
+            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">local_laundry_service</span>
+              4 Buồng tắm riêng biệt
+            </span>
+                        </div>
+                    </div>
+                    <!-- Available Slot Banner -->
+                    <div class="bg-secondary-container/20 rounded-xl p-space-sm flex items-center justify-between">
+                        <div class="flex items-center gap-space-sm min-w-0">
+                            <div class="w-9 h-9 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold shrink-0">
+                                <span class="material-symbols-outlined text-[20px]">check_circle</span>
+                            </div>
+                            <div class="flex flex-col min-w-0">
+                                <span class="font-label-md text-label-md text-on-secondary-container font-semibold truncate">Sẵn sàng nhận khách ngay</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">Lịch trống liên tục từ: <strong>17/09 đến 22/09</strong></span>
+                            </div>
+                        </div>
+                        <button class="px-2.5 py-1 rounded-md bg-secondary text-on-secondary text-label-sm font-label-sm hover:bg-primary transition-colors flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">add</span>
+                            Tạo booking
+                        </button>
+                    </div>
+                    <!-- Action Row -->
+                    <div class="flex items-center justify-between pt-space-xs">
+                        <div class="flex items-center gap-space-xs">
+                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">price_change</span>
+                                Sửa giá khách lẻ
+                            </button>
+                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">lock_clock</span>
+                                Chặn ngày
+                            </button>
+                            <button
+                                    type="button"
+                                    class="btn-edit-room px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-name="Garden View 101"
+                                    data-room-code="P.101"
+                                    data-room-type="Garden View"
+                                    data-room-capacity="4"
+                                    data-room-price="850000"
+                                    data-room-description="Phòng hướng vườn, phù hợp cho gia đình nhỏ.">
+
+                                    <span class="material-symbols-outlined text-[16px]">
+                                        edit
+                                    </span>
+
+                                Chỉnh sửa
+                            </button>
+                        </div>
+                        <button class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+                            <span class="">Xem chi tiết</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4: Bungalow Ven Suối 102 -->
+            <div class="room-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_10px_rgba(21,67,50,0.05)] hover:shadow-[0_8px_24px_rgba(21,67,50,0.09)] transition-all duration-300 flex flex-col group">
+                <!-- Media Header -->
+                <div class="relative h-56 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                         data-alt="Wooden bungalow villa situated directly next to a tranquil mountain stream in northern Vietnam, large open wooden deck with outdoor bath tub, babbling clear water, rocks, bamboo groves, golden twilight warm ambiance"
+                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdRc0qDLPBSTDJIJW2s3PkYD9H5PhpgyuC7eZKcE2waDR-TfN_9Rvu_pZxbchesB1fnuFgi_youXZIUaHB9Rl2-xb3fybCOIvHFXdiDicok6kFw-93eEj7VSmu-rVsdmtzpjtbo-QveKm0cTnSmNtcTQnHlO1zhZgL1DD8-2Ssf49c-KABYbmSCAdyurK7WqjUb94R9a8ndFbrs7o0eeLM_Y-Ch25GM-yiVrC9CGjJtcLOO_UFXUM">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-black/30"></div>
+                    <!-- Status Pill Top Right -->
+                    <div class="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/95 text-on-secondary-container font-label-md text-label-md shadow-sm backdrop-blur-sm">
+                        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        <span class="">Đang có khách</span>
+                    </div>
+                    <!-- Room Code / Type Badge Top Left -->
+                    <div class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 text-on-surface font-label-sm text-label-sm font-bold backdrop-blur-sm shadow-sm flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-secondary">water</span>
+                        Bungalow 102 • Ven suối
+                    </div>
+                    <!-- Bottom Overlaid Content on Image -->
+                    <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between text-on-primary">
+                        <div>
+                            <h2 class="font-headline-md text-headline-md font-bold tracking-tight text-on-primary drop-shadow-sm">
+                                Bungalow Ven Suối 102</h2>
+                            <div class="flex items-center gap-space-xs font-body-sm text-body-sm text-primary-fixed drop-shadow">
+                                <span class="material-symbols-outlined text-[16px]">favorite</span>
+                                <span class="">2 người lớn (Cặp đôi)</span>
+                                <span class="">•</span>
+                                <span class="">Giường King lụa tơ tằm</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-label-sm text-label-sm text-primary-fixed block uppercase tracking-wider">Giá gốc / đêm</span>
+                            <span class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">1.450.000₫</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body Content -->
+                <div class="p-space-md flex flex-col gap-space-md flex-grow justify-between">
+                    <!-- Amenities & Highlights -->
+                    <div class="flex flex-col gap-space-xs">
+                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Tiện nghi cao cấp</span>
+                        <div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">waves</span>
+              Suối róc rách sát ban công
+            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">bathtub</span>
+              Bồn ngâm lộ thiên
+            </span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-low text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">coffee</span>
+              Máy pha cà phê Moka
+            </span>
+                        </div>
+                    </div>
+                    <!-- Current Guest / Occupancy info Box -->
+                    <div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between">
+                        <div class="flex items-center gap-space-sm min-w-0">
+                            <div class="w-9 h-9 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-md shrink-0">
+                                HA
+                            </div>
+                            <div class="flex flex-col min-w-0">
+                                <span class="font-label-md text-label-md text-on-surface font-semibold truncate">Khách: Hoàng Minh Anh</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">event</span>
+                15/09 → 19/09 (Đã ở 2 đêm • Còn 2 đêm)
+              </span>
+                            </div>
+                        </div>
+                        <button class="p-1.5 rounded-lg text-primary hover:bg-surface-container-highest transition-colors"
+                                title="Nhắn tin">
+                            <span class="material-symbols-outlined text-[18px]">chat</span>
+                        </button>
+                    </div>
+                    <!-- Action Row -->
+                    <div class="flex items-center justify-between pt-space-xs">
+                        <div class="flex items-center gap-space-xs">
+                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">room_service</span>
+                                Đặt dịch vụ
+                            </button>
+                            <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">lock</span>
+                                Khóa phòng
+                            </button>
+                            <button
+                                    type="button"
+                                    class="btn-edit-room px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1"
+                                    data-room-name="Garden View 101"
+                                    data-room-code="P.101"
+                                    data-room-type="Garden View"
+                                    data-room-capacity="4"
+                                    data-room-price="850000"
+                                    data-room-description="Phòng hướng vườn, phù hợp cho gia đình nhỏ.">
+
+                                    <span class="material-symbols-outlined text-[16px]">
+                                        edit
+                                    </span>
+
+                                Chỉnh sửa
+                            </button>
+                        </div>
+                        <button class="px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1">
+                            <span class="">Chi tiết &amp; Hóa đơn</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 7-Day Live Booking Visualizer & Timeline Section -->
+        <div id="timelineSection"
+             class="bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_2px_12px_rgba(21,67,50,0.05)] flex flex-col gap-space-md">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-xs">
+                <div>
+                    <div class="flex items-center gap-space-xs">
+                        <span class="material-symbols-outlined text-secondary text-[22px]">date_range</span>
+                        <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Lịch trống &amp; Dải
+                            booking 7 ngày tới (17/09 - 23/09)</h2>
+                    </div>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Kéo rê hoặc click vào dải màu để xem
+                        nhanh người ở và tình trạng dọn phòng</p>
+                </div>
+                <!-- Legend -->
+                <div class="flex flex-wrap items-center gap-space-sm text-label-sm font-label-sm">
+<span class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded bg-secondary"></span>
+          Đang ở
+        </span>
+                    <span class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded bg-tertiary-fixed-dim"></span>
+          Đã đặt cọc
+        </span>
+                    <span class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded bg-surface-container-high"></span>
+          Còn trống
+        </span>
+                    <span class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded bg-error-container"></span>
+          Bảo trì / Khóa
+        </span>
+                </div>
+            </div>
+            <!-- Timeline Table with horizontal overflow handling -->
+            <div class="w-full overflow-x-auto rounded-lg">
+                <div class="min-w-[760px] flex flex-col">
+                    <!-- Date Header Grid -->
+                    <div class="grid grid-cols-8 gap-1 pb-2 border-b border-surface-container text-center font-label-md text-label-md">
+                        <div class="text-left font-bold text-on-surface pl-2">Phòng homestay</div>
+                        <div class="py-1 rounded bg-secondary-container/30 font-bold text-on-secondary-container">
+                            T.3 (17/09) <span class="block text-[10px] font-normal">Hôm nay</span>
+                        </div>
+                        <div class="py-1 text-on-surface-variant">T.4 (18/09)</div>
+                        <div class="py-1 text-on-surface-variant">T.5 (19/09)</div>
+                        <div class="py-1 text-on-surface-variant">T.6 (20/09)</div>
+                        <div class="py-1 text-secondary font-semibold">T.7 (21/09)</div>
+                        <div class="py-1 text-secondary font-semibold">CN (22/09)</div>
+                        <div class="py-1 text-on-surface-variant">T.2 (23/09)</div>
+                    </div>
+                    <!-- Row 1: Garden View 101 -->
+                    <div class="grid grid-cols-8 gap-1 py-2 items-center hover:bg-surface-container-low/50 transition-colors rounded-lg">
+                        <div class="text-left pl-2 font-label-sm text-label-sm font-semibold text-on-surface truncate">
+                            P.101 - Garden
+                        </div>
+                        <!-- 17/09 & 18/09 occupied -->
+                        <div class="col-span-2 bg-secondary text-on-secondary text-center py-1.5 rounded-md font-label-sm text-label-sm font-medium truncate shadow-sm">
+                            Lê Văn Hiếu (Check-out 12h)
+                        </div>
+                        <!-- 19, 20 free -->
+                        <div class="bg-surface-container-low text-on-surface-variant text-center py-1.5 rounded-md font-label-sm text-label-sm">
+                            Trống
+                        </div>
+                        <div class="bg-surface-container-low text-on-surface-variant text-center py-1.5 rounded-md font-label-sm text-label-sm">
+                            Trống
+                        </div>
+                        <!-- 21, 22 weekend booked -->
+                        <div class="col-span-2 bg-tertiary-fixed-dim text-on-tertiary-fixed text-center py-1.5 rounded-md font-label-sm text-label-sm font-medium truncate shadow-sm">
+                            Đoàn anh Hưng (HN)
+                        </div>
+                        <div class="bg-surface-container-low text-on-surface-variant text-center py-1.5 rounded-md font-label-sm text-label-sm">
+                            Trống
+                        </div>
+                    </div>
+                    <!-- Row 2: Mountain View 201 -->
+                    <div class="grid grid-cols-8 gap-1 py-2 items-center hover:bg-surface-container-low/50 transition-colors rounded-lg">
+                        <div class="text-left pl-2 font-label-sm text-label-sm font-semibold text-on-surface truncate">
+                            P.201 - Mountain
+                        </div>
+                        <!-- 17 to 20 booked -->
+                        <div class="col-span-4 bg-tertiary-fixed-dim text-on-tertiary-fixed text-center py-1.5 rounded-md font-label-sm text-label-sm font-medium truncate shadow-sm">
+                            Nguyễn Thị Mai (Chờ nhận 16h)
+                        </div>
+                        <!-- 21, 22 free -->
+                        <div class="col-span-2 bg-surface-container-low text-on-surface-variant text-center py-1.5 rounded-md font-label-sm text-label-sm font-semibold text-secondary">
+                            Ưu tiên đẩy bán cuối tuần
+                        </div>
+                        <div class="bg-surface-container-low text-on-surface-variant text-center py-1.5 rounded-md font-label-sm text-label-sm">
+                            Trống
+                        </div>
+                    </div>
+                    <!-- Row 3: Bungalow 102 -->
+                    <div class="grid grid-cols-8 gap-1 py-2 items-center hover:bg-surface-container-low/50 transition-colors rounded-lg">
+                        <div class="text-left pl-2 font-label-sm text-label-sm font-semibold text-on-surface truncate">
+                            Bungalow Ven Suối
+                        </div>
+                        <!-- 17 to 19 occupied -->
+                        <div class="col-span-3 bg-secondary text-on-secondary text-center py-1.5 rounded-md font-label-sm text-label-sm font-medium truncate shadow-sm">
+                            Hoàng Minh Anh
+                        </div>
+                        <!-- 20 to 22 booked -->
+                        <div class="col-span-3 bg-tertiary-fixed-dim text-on-tertiary-fixed text-center py-1.5 rounded-md font-label-sm text-label-sm font-medium truncate shadow-sm">
+                            Trần Bảo An (3 đêm)
+                        </div>
+                        <div class="bg-surface-container-low text-on-surface-variant text-center py-1.5 rounded-md font-label-sm text-label-sm">
+                            Trống
+                        </div>
+                    </div>
+                    <!-- Row 4: Dorm Bản Đạo -->
+                    <div class="grid grid-cols-8 gap-1 py-2 items-center hover:bg-surface-container-low/50 transition-colors rounded-lg">
+                        <div class="text-left pl-2 font-label-sm text-label-sm font-semibold text-on-surface truncate">
+                            Dorm Bản Đạo (10k)
+                        </div>
+                        <!-- 17 to 21 free -->
+                        <div class="col-span-5 bg-surface-container-low text-secondary font-medium text-center py-1.5 rounded-md font-label-sm text-label-sm">
+                            Còn trống cả sàn (Nhận tour / trekking)
+                        </div>
+                        <!-- 22, 23 booked -->
+                        <div class="col-span-2 bg-tertiary-fixed-dim text-on-tertiary-fixed text-center py-1.5 rounded-md font-label-sm text-label-sm font-medium truncate shadow-sm">
+                            CLB Phượt Tây Bắc
+                        </div>
+                    </div>
+                    <!-- Row 5: Nhà Sàn Gỗ Lớn (Maintenance) -->
+                    <div class="grid grid-cols-8 gap-1 py-2 items-center hover:bg-surface-container-low/50 transition-colors rounded-lg">
+                        <div class="text-left pl-2 font-label-sm text-label-sm font-semibold text-on-surface truncate">
+                            Nhà Sàn Gỗ Lớn
+                        </div>
+                        <!-- 17, 18 maintenance -->
+                        <div class="col-span-2 bg-error-container text-on-error-container text-center py-1.5 rounded-md font-label-sm text-label-sm font-medium truncate">
+                            Bảo trì hệ thống điện &amp; quạt trần
+                        </div>
+                        <!-- 19 to 23 available -->
+                        <div class="col-span-5 bg-surface-container-low text-on-surface-variant text-center py-1.5 rounded-md font-label-sm text-label-sm">
+                            Mở bán trở lại từ 19/09
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Quick Footer Tip -->
+            <div class="flex items-center justify-between pt-space-xs text-body-sm font-body-sm text-on-surface-variant">
+                <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[18px] text-secondary">tips_and_updates</span>
+                    <span class="">Mẹo quản lý: Vào cuối tuần (21/09 - 22/09), phòng Mountain View vẫn trống, hãy tạo flash sale giảm 15% để kéo khách lấp phòng.</span>
+                </div>
+                <button class="text-secondary hover:underline font-label-md text-label-md">Tạo mã ưu đãi ngay</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+     POPUP THÊM / CHỈNH SỬA PHÒNG
+     ===================================================== -->
+
+    <div
+            id="roomModal"
+            class="room-modal"
+            hidden>
+
+        <div
+                class="room-modal-content"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="roomModalTitle">
+
+            <!-- Header -->
+
+            <div class="room-modal-header">
+
+                <div>
+                    <h2
+                            id="roomModalTitle"
+                            class="font-headline-md text-headline-md text-on-surface font-bold">
+                        Thêm phòng mới
+                    </h2>
+
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                        Nhập thông tin phòng để quản lý trong hệ thống.
+                    </p>
+                </div>
+
+                <button
+                        id="btnCloseRoomModal"
+                        type="button"
+                        class="room-modal-close"
+                        aria-label="Đóng">
+
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- Form -->
+
+            <form
+                    id="roomForm"
+                    class="room-form">
+
+                <div class="room-form-grid">
+
+                    <!-- Tên phòng -->
+
+                    <div class="room-form-group full">
+
+                        <label
+                                class="room-form-label"
+                                for="roomName">
+                            Tên phòng
+                        </label>
+
+                        <input
+                                id="roomName"
+                                name="roomName"
+                                class="room-form-input"
+                                type="text"
+                                placeholder="Ví dụ: Garden View 101"
+                                required>
+
+                    </div>
+
+
+                    <!-- Mã phòng -->
+
+                    <div class="room-form-group">
+
+                        <label
+                                class="room-form-label"
+                                for="roomCode">
+                            Mã phòng
+                        </label>
+
+                        <input
+                                id="roomCode"
+                                name="roomCode"
+                                class="room-form-input"
+                                type="text"
+                                placeholder="Ví dụ: P.101"
+                                required>
+
+                    </div>
+
+
+                    <!-- Loại phòng -->
+
+                    <div class="room-form-group">
+
+                        <label
+                                class="room-form-label"
+                                for="roomType">
+                            Loại phòng
+                        </label>
+
+                        <select
+                                id="roomType"
+                                name="roomType"
+                                class="room-form-select"
+                                required>
+
+                            <option value="">
+                                Chọn loại phòng
+                            </option>
+
+                            <option value="Garden View">
+                                Garden View
+                            </option>
+
+                            <option value="Mountain View">
+                                Mountain View
+                            </option>
+
+                            <option value="Bungalow">
+                                Bungalow
+                            </option>
+
+                            <option value="Dorm">
+                                Dorm
+                            </option>
+
+                            <option value="Nhà sàn">
+                                Nhà sàn
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Sức chứa -->
+
+                    <div class="room-form-group">
+
+                        <label
+                                class="room-form-label"
+                                for="roomCapacity">
+                            Sức chứa
+                        </label>
+
+                        <input
+                                id="roomCapacity"
+                                name="roomCapacity"
+                                class="room-form-input"
+                                type="number"
+                                min="1"
+                                placeholder="Số khách"
+                                required>
+
+                    </div>
+
+
+                    <!-- Giá -->
+
+                    <div class="room-form-group">
+
+                        <label
+                                class="room-form-label"
+                                for="roomPrice">
+                            Giá / đêm
+                        </label>
+
+                        <input
+                                id="roomPrice"
+                                name="roomPrice"
+                                class="room-form-input"
+                                type="number"
+                                min="0"
+                                step="1000"
+                                placeholder="Ví dụ: 850000"
+                                required>
+
+                    </div>
+
+
+                    <!-- Mô tả -->
+
+                    <div class="room-form-group full">
+
+                        <label
+                                class="room-form-label"
+                                for="roomDescription">
+                            Mô tả
+                        </label>
+
+                        <textarea
+                                id="roomDescription"
+                                name="roomDescription"
+                                class="room-form-textarea"
+                                placeholder="Mô tả đặc điểm, tiện nghi và trải nghiệm của phòng..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Footer -->
+
+                <div class="room-modal-footer">
+
+                    <button
+                            id="btnCancelRoom"
+                            type="button"
+                            class="room-btn room-btn-cancel">
+
+                        Hủy
+
+                    </button>
+
+                    <button
+                            type="submit"
+                            class="room-btn room-btn-save">
+
+                    <span class="material-symbols-outlined text-[17px]">
+                        save
+                    </span>
+
+                        Lưu thông tin
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</main>
+</div>
+
+<script src="../JS/manageRoom.js"></script>
+
+</body>
+</html>

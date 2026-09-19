@@ -79,13 +79,13 @@ public class TestSubscriptionManager extends OpenCmsTestRunner {
         echo("Testing reading subscribed resources");
 
         CmsSubscriptionManager subMan = OpenCms.getSubscriptionManager();
-        subMan.subscribeResourceFor(cms, user, "/folder2/index.html");
+        subMan.subscribeResourceFor(cms, user, "/folder2/manageRoom.html");
         List<CmsResource> subscribedUserResources = subMan.readAllSubscribedResources(cms, user);
 
         assertEquals(1, subscribedUserResources.size());
-        assertEquals("/folder2/index.html", cms.getSitePath(subscribedUserResources.get(0)));
+        assertEquals("/folder2/manageRoom.html", cms.getSitePath(subscribedUserResources.get(0)));
 
-        subMan.subscribeResourceFor(cms, group, "/folder2/index.html");
+        subMan.subscribeResourceFor(cms, group, "/folder2/manageRoom.html");
 
         CmsSubscriptionFilter filter = new CmsSubscriptionFilter();
         filter.addGroup(group);
@@ -166,13 +166,13 @@ public class TestSubscriptionManager extends OpenCmsTestRunner {
         echo("Testing subscription of resources");
 
         CmsSubscriptionManager subMan = OpenCms.getSubscriptionManager();
-        subMan.subscribeResourceFor(cms, user, "/index.html");
+        subMan.subscribeResourceFor(cms, user, "/manageRoom.html");
         List<CmsResource> subscribedUserResources = subMan.readAllSubscribedResources(cms, user);
 
         assertEquals(1, subscribedUserResources.size());
-        assertEquals("/index.html", cms.getSitePath(subscribedUserResources.get(0)));
+        assertEquals("/manageRoom.html", cms.getSitePath(subscribedUserResources.get(0)));
 
-        subMan.unsubscribeResourceFor(cms, user, "/index.html");
+        subMan.unsubscribeResourceFor(cms, user, "/manageRoom.html");
         subscribedUserResources = subMan.readAllSubscribedResources(cms, user);
         assertEquals(0, subscribedUserResources.size());
     }
@@ -191,13 +191,13 @@ public class TestSubscriptionManager extends OpenCmsTestRunner {
         echo("Testing visitation of resources");
 
         CmsSubscriptionManager subMan = OpenCms.getSubscriptionManager();
-        subMan.markResourceAsVisitedBy(cms, "/folder1/index.html", user);
+        subMan.markResourceAsVisitedBy(cms, "/folder1/manageRoom.html", user);
         CmsVisitedByFilter filter = new CmsVisitedByFilter(cms);
 
         List<CmsResource> visitedUserResources = subMan.readResourcesVisitedBy(cms, filter);
 
         assertEquals(1, visitedUserResources.size());
-        assertEquals("/folder1/index.html", cms.getSitePath(visitedUserResources.get(0)));
+        assertEquals("/folder1/manageRoom.html", cms.getSitePath(visitedUserResources.get(0)));
 
         // wait between operations to be able to perform time based tests
         Thread.sleep(WAIT_FOR_DB_MILLIS);
@@ -236,8 +236,8 @@ public class TestSubscriptionManager extends OpenCmsTestRunner {
         assertEquals(2, visitedUserResources.size());
 
         assertNotSame(Long.valueOf(0L), Long.valueOf(subMan.getDateLastVisitedBy(cms, user, "/folder1/page2.html")));
-        assertNotSame(Long.valueOf(0L), Long.valueOf(subMan.getDateLastVisitedBy(cms, user, "/folder1/index.html")));
-        assertSame(Long.valueOf(0L), Long.valueOf(subMan.getDateLastVisitedBy(cms, user, "/index.html")));
+        assertNotSame(Long.valueOf(0L), Long.valueOf(subMan.getDateLastVisitedBy(cms, user, "/folder1/manageRoom.html")));
+        assertSame(Long.valueOf(0L), Long.valueOf(subMan.getDateLastVisitedBy(cms, user, "/manageRoom.html")));
 
         filter.setToDate(Long.MAX_VALUE);
         filter.setParentResource(cms.readResource("/folder1/subfolder11/page1.html"));

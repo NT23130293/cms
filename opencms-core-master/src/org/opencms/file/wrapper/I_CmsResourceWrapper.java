@@ -308,8 +308,8 @@ public interface I_CmsResourceWrapper {
     /**
      * Returns the link how it is for the resource after using this resource wrapper.<p>
      *
-     * For example: in the VFS: "/sites/default/index.html" and this resource wrapper
-     * adds the extension "jsp" then link returned should be "/sites/default/index.html.jsp".<p>
+     * For example: in the VFS: "/sites/default/manageRoom.html" and this resource wrapper
+     * adds the extension "jsp" then link returned should be "/sites/default/manageRoom.html.jsp".<p>
      *
      * @see #restoreLink(CmsObject, String)
      * @see CmsObjectWrapper#rewriteLink(String)

@@ -91,7 +91,7 @@ public class TestResponsibles extends OpenCmsTestRunner {
         cms.addUserToGroup("leela", "tastycrats");
 
         // make group and user responsible for the group
-        final String resource1 = "/folder1/index.html";
+        final String resource1 = "/folder1/manageRoom.html";
         final CmsPermissionSet permissions = new CmsPermissionSet(
             CmsPermissionSet.PERMISSION_WRITE,
             CmsPermissionSet.PERMISSION_READ);

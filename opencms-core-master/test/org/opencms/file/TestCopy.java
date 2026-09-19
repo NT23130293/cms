@@ -275,7 +275,7 @@ public class TestCopy extends OpenCmsTestRunner {
         cms.getRequestContext().setCurrentProject(cms.readProject("testproject"));
 
         String sourceFolder = "/folder1";
-        String file = "/index.html";
+        String file = "/manageRoom.html";
 
         cms.lockResource(sourceFolder + file);
 
@@ -508,7 +508,7 @@ public class TestCopy extends OpenCmsTestRunner {
         cms.loginUser("test1", "test1");
         cms.getRequestContext().setCurrentProject(cms.readProject("testproject"));
 
-        String source = "/index.html";
+        String source = "/manageRoom.html";
         String destination = "/index_copy.html";
         long timestamp = System.currentTimeMillis();
 

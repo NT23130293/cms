@@ -326,7 +326,7 @@ public class TestCmsXmlContainerPage extends OpenCmsTestRunner {
         elems.add(elem);
         elemMap.put(Locale.ENGLISH.toString() + "test", elems);
 
-        CmsFile file = cms.readFile("containerpage/index.html");
+        CmsFile file = cms.readFile("containerpage/manageRoom.html");
         CmsXmlContainerPage xmlCntPage = CmsXmlContainerPageFactory.unmarshal(cms, file);
 
         // check xml

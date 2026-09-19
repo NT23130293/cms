@@ -119,9 +119,9 @@ public class TestCmsJspUtils extends OpenCmsTestRunner {
         assertFalse(link.getIsInternal());
 
         // check when a relative link is provided
-        link = new CmsJspLinkWrapper(cms, "index.html");
-        assertEquals("/uri/index.html", link.getLink());
-        assertEquals("index.html", link.getLiteral());
+        link = new CmsJspLinkWrapper(cms, "manageRoom.html");
+        assertEquals("/uri/manageRoom.html", link.getLink());
+        assertEquals("manageRoom.html", link.getLiteral());
         assertTrue(link.getIsInternal());
     }
 }

@@ -152,7 +152,7 @@ public class TestReadResource extends OpenCmsTestRunner {
     @Order(9)
     public void testReadFileWithResourceID() throws Throwable {
 
-        String path = "/folder1/subfolder11/index.html";
+        String path = "/folder1/subfolder11/manageRoom.html";
         CmsObject cms = getCmsObject();
         OpenCms.getPublishManager().waitWhileRunning();
         assertTrue(cms.readFile(path).getState().isUnchanged());
@@ -217,7 +217,7 @@ public class TestReadResource extends OpenCmsTestRunner {
     public void testReadWithResourceID() throws Throwable {
 
         CmsObject cms = getCmsObject();
-        String path = "/folder1/subfolder11/index.html";
+        String path = "/folder1/subfolder11/manageRoom.html";
 
         CmsResource resourceByPath = cms.readResource(path);
         CmsUUID strId = resourceByPath.getStructureId();

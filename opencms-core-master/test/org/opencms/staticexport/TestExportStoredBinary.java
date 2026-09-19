@@ -598,7 +598,7 @@ public class TestExportStoredBinary extends OpenCmsTestRunner {
 
             CmsObject exportCms = OpenCms.initCmsObject(OpenCms.getDefaultUsers().getUserExport());
             exportCms.getRequestContext().setCurrentProject(exportCms.readProject("Online"));
-            String resourceName = "/index.html";
+            String resourceName = "/manageRoom.html";
             String rootPath = cms.getRequestContext().addSiteRoot(resourceName);
             CmsResource onlineResource = exportCms.readResource(rootPath);
             CmsStaticExportData data = new CmsStaticExportData(rootPath, rootPath, onlineResource, null);
