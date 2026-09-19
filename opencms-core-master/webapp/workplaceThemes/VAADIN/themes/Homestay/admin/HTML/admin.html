@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YÊN - Admin System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link rel="stylesheet" href="../CSS/admin_sidebar.css">
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../images/logo_white.png" alt="YÊN Logo" class="sidebar-logo-img">
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu" id="adminMenu">
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link active">
+                        <span class="material-symbols-outlined menu-icon">dashboard</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">group</span>
+                        <span>Quản lý tài khoản</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">cottage</span>
+                        <span>Quản lý Homestay</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">map</span>
+                        <span>Quản lý nội dung địa phương</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">receipt_long</span>
+                        <span>Quản lý giao dịch</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">campaign</span>
+                        <span>Quản lý quảng cáo</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">local_offer</span>
+                        <span>Quản lý mã giảm giá</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">bar_chart</span>
+                        <span>Báo cáo & Thống kê</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">report_problem</span>
+                        <span>Quản lý báo cáo & Khiếu nại</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="host-profile">
+                <div class="host-icon">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">admin_panel_settings</span>
+                </div>
+                <div class="host-info">
+                    <h4>Admin System</h4>
+                    <p>Quản trị hệ thống</p>
+                </div>
+                <span class="material-symbols-outlined" style="color: #A7F3D0; font-size: 18px;">unfold_more</span>
+            </div>
+            <div class="host-quote">
+                "Hệ thống quản trị YÊN Homestay"
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN ADMIN AREA -->
+    <div class="admin-main">
+
+        <header class="admin-header">
+            <div class="header-left">
+                <div class="header-search">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" class="search-input" placeholder="Tìm kiếm tài khoản, homestay, giao dịch...">
+                </div>
+            </div>
+
+            <div class="admin-header-right">
+                <div class="header-action-btns">
+                    <button class="header-icon-btn" title="Thông báo">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="badge-dot">3</span>
+                    </button>
+                    <button class="header-icon-btn" title="Tin nhắn">
+                        <span class="material-symbols-outlined">chat</span>
+                    </button>
+                </div>
+
+                <div class="header-divider"></div>
+                
+                <!-- Material UI Owner Header Profile Component & Dropdown -->
+                <div class="owner-header-profile-wrapper">
+                    <div class="owner-header-profile" id="adminProfileBtn">
+                        <div class="owner-avatar">A</div>
+                        <div class="owner-info">
+                            <div class="owner-info-top">
+                                <span class="owner-name">Admin System</span>
+                                <span class="owner-role-badge">Quản trị viên</span>
+                            </div>
+                            <span class="owner-subtext">Hệ thống YÊN</span>
+                        </div>
+                        <span class="material-symbols-outlined dropdown-arrow" style="font-size: 18px; color: var(--text-muted); margin-left: 2px;">expand_more</span>
+                    </div>
+
+                    <!-- Dropdown Menu -->
+                    <div class="profile-dropdown-menu" id="adminProfileDropdown">
+                        <div class="dropdown-header">
+                            <strong class="dropdown-user-name">Admin System</strong>
+                            <span class="dropdown-user-email">admin@yenhomestay.com</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-danger" id="dropdownLogoutBtn">
+                            <span class="material-symbols-outlined">logout</span>
+                            <span>Đăng xuất</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-body-content">
+            <!-- Nội dung trang Admin -->
+        </main>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuLinks = document.querySelectorAll('.menu-link');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                menuLinks.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        const profileBtn = document.getElementById('adminProfileBtn');
+        const profileDropdown = document.getElementById('adminProfileDropdown');
+
+        if (profileBtn && profileDropdown) {
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                profileBtn.classList.toggle('active');
+                profileDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                    profileBtn.classList.remove('active');
+                    profileDropdown.classList.remove('show');
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
