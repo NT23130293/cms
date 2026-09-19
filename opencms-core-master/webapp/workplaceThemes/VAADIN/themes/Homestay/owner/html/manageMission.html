@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Quản lý nhiệm vụ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/manageMission.css">
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+<!-- ===================== INCLUDE MENU (SIDEBAR) ===================== -->
+<div id="sidebar-container"></div>
+
+<main class="w-full pt-16 bg-surface px-space-lg py-space-lg min-h-screen">
+
+    <!-- ===================== INCLUDE HEADER ===================== -->
+    <div id="header-container"></div>
+
+    <div class="flex flex-col w-full gap-space-lg">
+
+        <!-- Top Action & Context Banner -->
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_2px_12px_rgba(21,67,50,0.05)] relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-secondary-container/20 pointer-events-none blur-2xl"></div>
+            <div class="flex flex-col gap-space-xs z-10 max-w-2xl">
+                <div class="flex items-center gap-space-xs">
+                    <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wide">Nhà Sàn Mộc • Mai Châu</span>
+                </div>
+                <h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Quản lý nhiệm vụ
+                    &amp; Phần thưởng du khách</h1>
+            </div>
+            <!-- Action Toolbar -->
+            <div class="flex flex-wrap items-center gap-space-sm z-10">
+                <button id="btnRewardStock" type="button"
+                        class="bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5 transition-colors shadow-sm">
+                    <span class="material-symbols-outlined text-[18px] text-secondary">featured_seasonal_and_gifts</span>
+                    Cấu hình kho phần thưởng
+                </button>
+                <button id="btnAddMission" type="button"
+                        class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-2 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5 transition-all shadow-[0_2px_8px_rgba(21,67,50,0.25)] hover:shadow-md">
+                    <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                    Tạo nhiệm vụ mới
+                </button>
+            </div>
+        </div>
+
+        <!-- Metric Highlights -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_8px_rgba(21,67,50,0.04)] hover:shadow-md transition-shadow flex items-start gap-space-md">
+                <div class="w-12 h-12 rounded-xl bg-secondary-container/60 text-secondary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[24px]">task_alt</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Nhiệm vụ đang mở</span>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span id="metricActive" class="font-display-lg text-display-lg text-primary">04</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_8px_rgba(21,67,50,0.04)] hover:shadow-md transition-shadow flex items-start gap-space-md">
+                <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[24px]">pending_actions</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Chờ duyệt hôm nay</span>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span id="metricPending" class="font-display-lg text-display-lg text-on-surface">08</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_8px_rgba(21,67,50,0.04)] hover:shadow-md transition-shadow flex items-start gap-space-md">
+                <div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[24px]">groups</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Du khách tham gia</span>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span class="font-display-lg text-display-lg text-primary">142</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_8px_rgba(21,67,50,0.04)] hover:shadow-md transition-shadow flex items-start gap-space-md">
+                <div class="w-12 h-12 rounded-xl bg-surface-container-highest text-secondary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[24px]">confirmation_number</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Voucher đã trao</span>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span id="metricVoucher" class="font-display-lg text-display-lg text-primary">96</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Split Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+
+            <!-- LEFT: Danh sách chờ duyệt -->
+            <div class="lg:col-span-7 flex flex-col gap-space-md">
+                <div class="flex items-center justify-between bg-surface-container-lowest px-space-md py-3.5 rounded-xl shadow-[0_1px_6px_rgba(0,0,0,0.02)]">
+                    <div class="flex items-center gap-space-sm">
+                        <span class="material-symbols-outlined text-secondary text-[22px]">inbox</span>
+                        <h2 class="font-headline-sm text-headline-sm text-on-surface">Danh sách chờ duyệt bài nộp</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button id="btnFilterSubmission" type="button"
+                                class="text-on-surface-variant hover:text-primary p-1 rounded transition-colors"
+                                title="Lọc nhiệm vụ">
+                            <span class="material-symbols-outlined text-[20px]">filter_list</span>
+                        </button>
+                        <button id="btnRefreshSubmission" type="button"
+                                class="text-on-surface-variant hover:text-primary p-1 rounded transition-colors"
+                                title="Tải lại">
+                            <span class="material-symbols-outlined text-[20px]">refresh</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="submissionList" class="flex flex-col gap-space-md">
+
+                    <!-- Submission 1 -->
+                    <div class="submission-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md"
+                         data-id="S001"
+                         data-guest="Trần Thị Hương"
+                         data-room="Phòng Garden View"
+                         data-time="09:12 • 17/09/2024"
+                         data-task-type="costume"
+                         data-task="Mặc trang phục dân tộc Thái chụp ảnh bên khung dệt thổ cẩm Nhà Sàn Mộc"
+                         data-review="Không gian nhà sàn Mai Châu quá tuyệt vời, cô chủ chỉ cách dệt vải rất tận tình! Mùa lúa chín này chắc chắn nhóm mình sẽ rủ bạn bè quay lại."
+                         data-reward="Voucher 15% + 1 túi trà gạo lứt Mộc Châu"
+                         data-photos="1">
+                        <div class="flex items-start justify-between gap-space-sm">
+                            <div class="flex items-center gap-space-sm">
+                                <img class="w-11 h-11 rounded-full object-cover shadow-sm" alt="Trần Thị Hương"
+                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtBD2J0dMb6ui-jzFd-s3WAOrIcULKNiD9XtfnGxQMKSTx355Pf1EjERQXBHDwHrcQ0Rorvh9B6EK8HB6KmTt_y_Vmq08HXH1mv79H5Vu9HA98ZemUl4gMQKLX8UE6D4XyoH4aj98giLTIomA-cZpFPmBtgmFxgoZt0ZKA5x-4LkgkGP-hJ2DyiPrZOmmqIdCcd6okDRUACpFaDNJU99_AMzc9ReyPXk77zeU4Z5vnxIG6w4_nVg8">
+                                <div class="flex flex-col">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="font-label-lg text-label-lg text-on-surface">Trần Thị Hương</span>
+                                        <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px]">Phòng Garden View</span>
+                                    </div>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant">Nộp lúc 09:12 • 17/09/2024</span>
+                                </div>
+                            </div>
+                            <span class="submission-status px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 font-label-md text-[11px]">Chờ xác nhận</span>
+                        </div>
+
+                        <div class="bg-surface-container-low px-space-md py-2.5 rounded-lg flex items-center gap-space-xs text-primary">
+                            <span class="material-symbols-outlined text-[20px] text-secondary">styler</span>
+                            <span class="font-label-lg text-label-lg">Nhiệm vụ: Mặc trang phục dân tộc Thái chụp ảnh bên khung dệt thổ cẩm Nhà Sàn Mộc</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-space-md bg-surface-container-low/40 p-space-sm rounded-lg">
+                            <div class="sm:col-span-5 overflow-hidden rounded-lg relative aspect-[4/3] sm:aspect-auto sm:h-44 shadow-sm">
+                                <img class="submission-photo w-full h-full object-cover" alt="Ảnh nộp"
+                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwxRCSb8O0TEvP8qWKkyBWYmOPRU7CAe-lU0L0LMkQVLCWwT-WPYALrACR8Db8vw3_4jArbeXHHO_9d76yf7xm93aRwrudcovcbdkH-3EQrrGzyVg0iJ-Mvu69r8SV1GpbtRs1onXyn8r2zhoo3AUha2-9zCn4Myw7IYvyDRyt2uYN6sGiBB77aieKV_8H49oOFbrdmjYwsetb-x5cKFX4PCfWM-yOuk8sjzC85RU_W3_1EPQSU6E">
+                                <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-primary/80 text-on-primary font-label-sm text-[10px] flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">photo_camera</span> 1 ảnh đính
+                                    kèm
+                                </div>
+                            </div>
+                            <div class="sm:col-span-7 flex flex-col justify-between py-1">
+                                <div class="flex flex-col gap-1.5">
+                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Cảm nhận từ khách hàng</span>
+                                    <p class="font-body-md text-body-md text-on-surface italic bg-surface-container-lowest p-3 rounded-lg shadow-sm">
+                                        “Không gian nhà sàn Mai Châu quá tuyệt vời, cô chủ chỉ cách dệt vải rất tận
+                                        tình! Mùa lúa chín này chắc chắn nhóm mình sẽ rủ bạn bè quay lại.”
+                                    </p>
+                                </div>
+                                <div class="mt-2.5 p-2.5 rounded-lg bg-surface-container flex items-center justify-between">
+                                    <div class="flex items-center gap-space-xs text-primary">
+                                        <span class="material-symbols-outlined text-secondary text-[20px]">redeem</span>
+                                        <div class="flex flex-col">
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant">Phần thưởng dự kiến</span>
+                                            <span class="font-label-lg text-label-lg font-semibold text-primary">Voucher 15% + 1 túi trà gạo lứt Mộc Châu</span>
+                                        </div>
+                                    </div>
+                                    <span class="material-symbols-outlined text-outline text-[18px]">verified</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="submission-actions flex flex-wrap items-center justify-end gap-space-xs pt-1">
+                            <button type="button"
+                                    class="btn-view-submission px-space-md py-2 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">visibility</span>
+                                <span>Xem chi tiết</span>
+                            </button>
+                            <button type="button"
+                                    class="btn-reject-submission px-space-md py-2 rounded-lg bg-surface-container-low text-error hover:bg-error-container hover:text-on-error-container font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">close</span>
+                                <span>Từ chối</span>
+                            </button>
+                            <button type="button"
+                                    class="btn-retake-submission px-space-md py-2 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">replay</span>
+                                <span>Yêu cầu chụp lại</span>
+                            </button>
+                            <button type="button"
+                                    class="btn-approve-submission mission-brand-btn px-space-lg py-2 rounded-lg text-on-secondary font-label-md text-label-md transition-all shadow-sm flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                                <span>Phê duyệt &amp; Trao thưởng</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Submission 2 -->
+                    <div class="submission-card bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md"
+                         data-id="S002"
+                         data-guest="Lê Văn Hiếu"
+                         data-room="Phòng Lake View"
+                         data-time="08:35 • 17/09/2024"
+                         data-task-type="food"
+                         data-task="Thưởng thức và đánh giá mâm cơm lam cá suối nướng"
+                         data-review="Cá suối ướp mắc khén nướng than giòn bì thơm nức mũi, ăn cùng cơm lam dẻo quánh đúng điệu bản Mường - Thái. Điểm 10 chất lượng!"
+                         data-reward="Voucher giảm 50.000đ dịch vụ ăn uống lần sau"
+                         data-photos="2">
+                        <div class="flex items-start justify-between gap-space-sm">
+                            <div class="flex items-center gap-space-sm">
+                                <img class="w-11 h-11 rounded-full object-cover shadow-sm" alt="Lê Văn Hiếu"
+                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf_GZrWvs5PbldzGsECiknjV3jiAuHqF3qQ0vTTpwxRImEmzWcmrBQnpJQPLCNdqaSQyoDm9EP7lyCzAelYHSu6XVwxZuLvuR4SmH4_n1_jLQqsked0ttQNeszq6kP3dH8Eg7Q0znPXhxfzPh9u3nJRtVOB9jjoxAwXHammtyBVEsTPjxOl7oC4sF5gCPWoEmUCpzteXKyDXMyoeC4SLHip0BteQKWK18gnncNJ8HpdsRhQh3I9Kk">
+                                <div class="flex flex-col">
+                                    <div class="flex items-center gap-space-xs">
+                                        <span class="font-label-lg text-label-lg text-on-surface">Lê Văn Hiếu</span>
+                                        <span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Phòng Lake View</span>
+                                    </div>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant">Nộp lúc 08:35 • 17/09/2024</span>
+                                </div>
+                            </div>
+                            <span class="submission-status px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 font-label-md text-[11px]">Chờ duyệt</span>
+                        </div>
+
+                        <div class="bg-surface-container-low px-space-md py-2.5 rounded-lg flex items-center gap-space-xs text-primary">
+                            <span class="material-symbols-outlined text-[20px] text-secondary">dinner_dining</span>
+                            <span class="font-label-lg text-label-lg">Nhiệm vụ: Thưởng thức và đánh giá mâm cơm lam cá suối nướng</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-space-md bg-surface-container-low/40 p-space-sm rounded-lg">
+                            <div class="sm:col-span-5 overflow-hidden rounded-lg relative aspect-[4/3] sm:aspect-auto sm:h-44 shadow-sm">
+                                <img class="submission-photo w-full h-full object-cover" alt="Ảnh nộp"
+                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdBW9ILAd7dvQBEAbmNPGGhivvXfCDDDvtJC4zDg-IGR1XGnQHtA4M57KLjUy_o5-9yqHoF2Uw6AzbXIbXr5JqBg7pqGmVdmi9S8BlHDTQdO6pnk9LM39hh_l_uGgmUtz0c2c8-reOCnTG3SQFP-16zq1RahEvEE-quDqEvGgOYS040aA0FBxBWtVpWrgycH8PZGR5baQ2OB7L6FqQiMNaMef1HWMQ97YLH41-3qmRgcbG08VxzIo">
+                                <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-primary/80 text-on-primary font-label-sm text-[10px] flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[12px]">photo_camera</span> 2 ảnh đính
+                                    kèm
+                                </div>
+                            </div>
+                            <div class="sm:col-span-7 flex flex-col justify-between py-1">
+                                <div class="flex flex-col gap-1.5">
+                                    <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Cảm nhận từ khách hàng</span>
+                                    <p class="font-body-md text-body-md text-on-surface italic bg-surface-container-lowest p-3 rounded-lg shadow-sm">
+                                        “Cá suối ướp mắc khén nướng than giòn bì thơm nức mũi, ăn cùng cơm lam dẻo quánh
+                                        đúng điệu bản Mường - Thái. Điểm 10 chất lượng!”
+                                    </p>
+                                </div>
+                                <div class="mt-2.5 p-2.5 rounded-lg bg-surface-container flex items-center justify-between">
+                                    <div class="flex items-center gap-space-xs text-primary">
+                                        <span class="material-symbols-outlined text-secondary text-[20px]">redeem</span>
+                                        <div class="flex flex-col">
+                                            <span class="font-label-sm text-label-sm text-on-surface-variant">Phần thưởng dự kiến</span>
+                                            <span class="font-label-lg text-label-lg font-semibold text-primary">Voucher giảm 50.000đ dịch vụ ăn uống lần sau</span>
+                                        </div>
+                                    </div>
+                                    <span class="material-symbols-outlined text-outline text-[18px]">verified</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="submission-actions flex flex-wrap items-center justify-end gap-space-xs pt-1">
+                            <button type="button"
+                                    class="btn-view-submission px-space-md py-2 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">visibility</span>
+                                <span>Xem chi tiết bài đăng</span>
+                            </button>
+                            <button type="button"
+                                    class="btn-reject-submission px-space-md py-2 rounded-lg bg-surface-container-low text-error hover:bg-error-container hover:text-on-error-container font-label-md text-label-md transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">close</span>
+                                <span>Từ chối</span>
+                            </button>
+                            <button type="button"
+                                    class="btn-approve-submission mission-brand-btn px-space-lg py-2 rounded-lg text-on-secondary font-label-md text-label-md transition-all shadow-sm flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[18px]">thumb_up</span>
+                                <span>Duyệt bài &amp; Cấp thưởng</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <p id="submissionEmpty" class="mission-empty" hidden>Không có bài nộp nào phù hợp bộ lọc.</p>
+            </div>
+
+            <!-- RIGHT: Nhiệm vụ + Top du khách -->
+            <div class="lg:col-span-5 flex flex-col gap-space-md">
+
+                <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-space-md">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-space-xs">
+                            <div class="w-8 h-8 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
+                                <span class="material-symbols-outlined text-[20px]">checklist</span>
+                            </div>
+                            <h2 class="font-headline-sm text-headline-sm text-primary">Nhiệm vụ đang kích hoạt</h2>
+                        </div>
+                        <span id="missionRunning" class="font-label-md text-label-md text-secondary">3 Nhiệm vụ chạy song song</span>
+                    </div>
+
+                    <div id="missionList" class="flex flex-col gap-space-md">
+
+                        <!-- Mission 1 -->
+                        <div class="mission-card bg-surface-container-low/70 p-space-md rounded-lg flex flex-col gap-2 hover:bg-surface-container-low transition-colors"
+                             data-id="M001"
+                             data-title="Check-in bình minh thung lũng Mai Châu"
+                             data-desc="Chụp ảnh góc ban công hoặc sân vườn lúc sương sớm, gắn thẻ định vị Nhà Sàn Mộc kèm hashtag #NhaSanMoc."
+                             data-icon="wb_sunny"
+                             data-reward-type="voucher-percent"
+                             data-reward-value="10"
+                             data-reward-extra=""
+                             data-given="48"
+                             data-status="active">
+                            <!-- Nội dung được render bằng JS (manageMission.js) -->
+                        </div>
+
+                        <!-- Mission 2 -->
+                        <div class="mission-card bg-surface-container-low/70 p-space-md rounded-lg flex flex-col gap-2 hover:bg-surface-container-low transition-colors"
+                             data-id="M002"
+                             data-title="Làm cơm lam cùng nghệ nhân Làng Cố"
+                             data-desc="Trải nghiệm tự tay cho gạo nếp nương vào ống tre và nướng bên bếp lửa hồng cùng đồng bào dân tộc Thái."
+                             data-icon="outdoor_grill"
+                             data-reward-type="points"
+                             data-reward-value="50"
+                             data-reward-extra="Quà nông sản lưu niệm"
+                             data-given="32"
+                             data-status="active"></div>
+
+                        <!-- Mission 3 -->
+                        <div class="mission-card bg-surface-container-low/70 p-space-md rounded-lg flex flex-col gap-2 hover:bg-surface-container-low transition-colors"
+                             data-id="M003"
+                             data-title="Đánh giá 5 sao kèm 3 ảnh thực tế"
+                             data-desc="Để lại nhận xét chân thực trên Google Maps hoặc nền tảng Booking về trải nghiệm bình yên tại Nhà Sàn Mộc."
+                             data-icon="star"
+                             data-reward-type="voucher-amount"
+                             data-reward-value="100000"
+                             data-reward-extra=""
+                             data-given="16"
+                             data-status="active"></div>
+                    </div>
+
+                    <div class="p-3 bg-surface-container rounded-lg flex items-center justify-between">
+                        <div class="flex items-center gap-space-sm">
+                            <svg class="w-10 h-10 -rotate-90" viewBox="0 0 36 36">
+                                <path class="text-surface-container-highest"
+                                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                      fill="none" stroke="currentColor" stroke-width="3.5"></path>
+                                <path class="text-secondary"
+                                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                      fill="none" stroke="currentColor" stroke-dasharray="82, 100"
+                                      stroke-linecap="round" stroke-width="3.5"></path>
+                            </svg>
+                            <div class="flex flex-col">
+                                <span class="font-label-lg text-label-lg text-primary">82% Mục tiêu tương tác tháng</span>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">96/120 du khách đã nhận phần thưởng</span>
+                            </div>
+                        </div>
+                        <button id="btnMissionStats" type="button"
+                                class="text-secondary font-label-md text-label-md hover:underline">Chi tiết
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Top du khách -->
+                <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-space-xs">
+                            <span class="material-symbols-outlined text-secondary text-[20px]">military_tech</span>
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface">Top du khách tích cực
+                                nhất</h3>
+                        </div>
+                        <span class="font-label-sm text-label-sm text-on-surface-variant">Tháng 09/2024</span>
+                    </div>
+
+                    <div class="flex flex-col" id="topGuestList">
+                        <div class="top-guest flex items-center justify-between py-2.5 px-space-xs hover:bg-surface-container-low rounded-lg transition-colors"
+                             data-name="Hoàng Lan Anh" data-points="280">
+                            <div class="flex items-center gap-space-sm">
+                                <div class="w-6 h-6 rounded-full bg-amber-400 text-amber-950 flex items-center justify-center font-bold text-[11px]">
+                                    1
+                                </div>
+                                <img class="w-9 h-9 rounded-full object-cover" alt="Hoàng Lan Anh"
+                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM2p3xVWdv84AVmzpSgASDhrTJWBslvj9gqrIocFGTSa80ihcG4lcehUXD1yur0QqYvgSIR0sfQCQbHDpnxmX1B0NbaARMi116qNnbisQ0_sqa7JgXnyQMhoHPY3Iaa6L9k-FDayYklK7Ks29G59GDVm9uzDeX5qG0840EGEfjLUks1387sY1oCLzpTjUC20f3HXCH8CWYiCNJN_ZJn-tL-9zKgl6nGoxmg9otBPZcuWuo7KO-gIs">
+                                <div class="flex flex-col">
+                                    <span class="font-label-md text-label-md text-on-surface">Hoàng Lan Anh</span>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant">5 nhiệm vụ đã hoàn thành</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="top-guest flex items-center justify-between py-2.5 px-space-xs hover:bg-surface-container-low rounded-lg transition-colors"
+                             data-name="Đặng Quốc Tuấn" data-points="210">
+                            <div class="flex items-center gap-space-sm">
+                                <div class="w-6 h-6 rounded-full bg-slate-300 text-slate-800 flex items-center justify-center font-bold text-[11px]">
+                                    2
+                                </div>
+                                <img class="w-9 h-9 rounded-full object-cover" alt="Đặng Quốc Tuấn"
+                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0rpyMEE5nGfTtsGVNH0sMheHl0xL1Nh0I0T-S0mogDCf6_L8_WRKYd64wVjiFp7cvZSEDHbFEWziQgnMt0GhnTe0edIUHtKRJm83_Sv89eOqGYW7W2BMeTfOVi4kk4Ibmmx6vMgct7iPbSym5riRvts5r-eU0BoWYXDTjuaJ_PEZKAK1RwD3k5-xXkPa90Nu_AOfJjC5EqzLDQQ83CfkChif6Q4OZqPNIoovOTXyj_auiAKAO_7A">
+                                <div class="flex flex-col">
+                                    <span class="font-label-md text-label-md text-on-surface">Đặng Quốc Tuấn</span>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant">4 nhiệm vụ đã hoàn thành</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="top-guest flex items-center justify-between py-2.5 px-space-xs hover:bg-surface-container-low rounded-lg transition-colors"
+                             data-name="Nguyễn Phương Linh" data-points="160">
+                            <div class="flex items-center gap-space-sm">
+                                <div class="w-6 h-6 rounded-full bg-amber-700/40 text-amber-900 flex items-center justify-center font-bold text-[11px]">
+                                    3
+                                </div>
+                                <img class="w-9 h-9 rounded-full object-cover" alt="Nguyễn Phương Linh"
+                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9O0vFuEGIJVTJSeQK1Jsp5j_IwhXL8ChEXsaM2bcG8OloI7TUCJqlm1Elu0BoIc245q_cEfERzfQklJm6qzTuFaMFG40CKliwBhKhDEUEzQwIS7TvPbSs8K83acaQrBvueOnC0JnWBpBNoyTDir47BjOTPRqu0JzImfPchOEaGcPvrymkvuwOa3BGdP-3q1W7vVYFHRay8HiBPzs0SozC7OxtIDZT_uOXzNdiKbM26xrEKZHRyWY">
+                                <div class="flex flex-col">
+                                    <span class="font-label-md text-label-md text-on-surface">Nguyễn Phương Linh</span>
+                                    <span class="font-body-sm text-body-sm text-on-surface-variant">3 nhiệm vụ đã hoàn thành</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="btnSendGift" type="button"
+                            class="w-full mt-2 py-2 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high font-label-md text-label-md transition-colors text-center">
+                        Gửi quà tri ân tháng 09
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP TẠO / CHỈNH SỬA NHIỆM VỤ
+     ===================================================== -->
+    <div id="missionModal" class="mission-modal" hidden>
+        <div class="mission-modal-content" role="dialog" aria-modal="true" aria-labelledby="missionModalTitle">
+            <div class="mission-modal-header">
+                <div>
+                    <h2 id="missionModalTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Tạo
+                        nhiệm vụ mới</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Thiết lập nhiệm vụ trải nghiệm và
+                        phần thưởng cho du khách.</p>
+                </div>
+                <button type="button" class="mission-modal-close" data-close-modal="missionModal" aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="missionForm" class="mission-form">
+                <div class="mission-form-grid">
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="missionTitle">Tên nhiệm vụ</label>
+                        <input id="missionTitle" class="mission-form-input" type="text" required
+                               placeholder="Ví dụ: Check-in bình minh thung lũng Mai Châu">
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="missionDesc">Mô tả / yêu cầu thực hiện</label>
+                        <textarea id="missionDesc" class="mission-form-textarea" required
+                                  placeholder="Mô tả cách du khách hoàn thành nhiệm vụ, hashtag cần gắn..."></textarea>
+                    </div>
+
+                    <div class="mission-form-group">
+                        <label class="mission-form-label" for="missionIcon">Biểu tượng</label>
+                        <select id="missionIcon" class="mission-form-select">
+                            <option value="wb_sunny">Bình minh / Check-in</option>
+                            <option value="photo_camera">Chụp ảnh</option>
+                            <option value="outdoor_grill">Ẩm thực / Nấu ăn</option>
+                            <option value="styler">Trang phục</option>
+                            <option value="star">Đánh giá</option>
+                            <option value="hiking">Trải nghiệm ngoài trời</option>
+                        </select>
+                    </div>
+
+                    <div class="mission-form-group">
+                        <label class="mission-form-label" for="missionStatus">Trạng thái</label>
+                        <select id="missionStatus" class="mission-form-select">
+                            <option value="active">Đang kích hoạt</option>
+                            <option value="paused">Tạm dừng</option>
+                        </select>
+                    </div>
+
+                    <div class="mission-form-group">
+                        <label class="mission-form-label" for="missionRewardType">Loại phần thưởng</label>
+                        <select id="missionRewardType" class="mission-form-select">
+                            <option value="voucher-percent">Voucher giảm theo %</option>
+                            <option value="voucher-amount">Voucher trừ thẳng (₫)</option>
+                            <option value="gift">Quà tặng</option>
+                        </select>
+                    </div>
+
+                    <div class="mission-form-group">
+                        <label class="mission-form-label" for="missionRewardValue" id="missionRewardValueLabel">Giá trị
+                            (%)</label>
+                        <input id="missionRewardValue" class="mission-form-input" type="text" required
+                               placeholder="Ví dụ: 10">
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="missionRewardExtra">Quà kèm theo (tuỳ chọn)</label>
+                        <input id="missionRewardExtra" class="mission-form-input" type="text"
+                               placeholder="Ví dụ: 1 túi trà gạo lứt Mộc Châu">
+                    </div>
+
+                    <div class="mission-form-group">
+                        <label class="mission-form-label" for="missionFrom">Bắt đầu</label>
+                        <input id="missionFrom" class="mission-form-input" type="date">
+                    </div>
+
+                    <div class="mission-form-group">
+                        <label class="mission-form-label" for="missionTo">Kết thúc (bỏ trống = thường niên)</label>
+                        <input id="missionTo" class="mission-form-input" type="date">
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-check">
+                            <input type="checkbox" id="missionNeedPhoto" checked>
+                            <span>Yêu cầu du khách nộp ảnh minh chứng</span>
+                        </label>
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-check">
+                            <input type="checkbox" id="missionAutoApprove">
+                            <span>Tự động duyệt (không cần chủ homestay xác nhận)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mission-modal-footer">
+                    <button type="button" class="mission-btn mission-btn-cancel" data-close-modal="missionModal">Hủy
+                    </button>
+                    <button type="submit" class="mission-btn mission-btn-save">
+                        <span class="material-symbols-outlined text-[17px]">save</span>
+                        Lưu nhiệm vụ
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP CẤU HÌNH KHO PHẦN THƯỞNG
+     ===================================================== -->
+    <div id="rewardStockModal" class="mission-modal" hidden>
+        <div class="mission-modal-content mission-modal-lg" role="dialog" aria-modal="true"
+             aria-labelledby="rewardStockTitle">
+            <div class="mission-modal-header">
+                <div>
+                    <h2 id="rewardStockTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Kho
+                        phần thưởng</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Quản lý voucher, quà tặng và số
+                        lượng còn lại để gán cho nhiệm vụ.</p>
+                </div>
+                <button type="button" class="mission-modal-close" data-close-modal="rewardStockModal" aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="mission-form">
+                <div id="rewardStockList" class="mission-stock-list"></div>
+
+                <div class="mission-stock-add">
+                    <input id="stockName" class="mission-form-input" type="text"
+                           placeholder="Tên phần thưởng, ví dụ: Túi trà gạo lứt">
+                    <select id="stockType" class="mission-form-select">
+                        <option value="Voucher">Voucher</option>
+                        <option value="Quà tặng">Quà tặng</option>
+                    </select>
+                    <input id="stockQty" class="mission-form-input" type="number" min="0" placeholder="Số lượng">
+                    <button id="btnAddStock" type="button" class="mission-btn mission-btn-ghost">
+                        <span class="material-symbols-outlined text-[16px]">add</span> Thêm
+                    </button>
+                </div>
+            </div>
+
+            <div class="mission-modal-footer">
+                <button type="button" class="mission-btn mission-btn-cancel" data-close-modal="rewardStockModal">Đóng
+                </button>
+                <button id="btnSaveStock" type="button" class="mission-btn mission-btn-save">
+                    <span class="material-symbols-outlined text-[17px]">save</span>
+                    Lưu kho phần thưởng
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP XEM CHI TIẾT BÀI NỘP
+     ===================================================== -->
+    <div id="submissionDetailModal" class="mission-modal" hidden>
+        <div class="mission-modal-content mission-modal-lg" role="dialog" aria-modal="true"
+             aria-labelledby="submissionDetailTitle">
+            <div class="mission-modal-header">
+                <div>
+                    <h2 id="submissionDetailTitle" class="font-headline-md text-headline-md text-on-surface font-bold">
+                        Chi tiết bài nộp</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1" id="submissionDetailSubtitle">
+                        —</p>
+                </div>
+                <button type="button" class="mission-modal-close" data-close-modal="submissionDetailModal"
+                        aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="mission-detail-body">
+                <div class="mission-detail-hero">
+                    <img id="submissionDetailImage" src="" alt="Ảnh bài nộp">
+                    <span id="submissionDetailPhotos" class="mission-detail-badge">1 ảnh</span>
+                </div>
+
+                <div class="mission-detail-grid">
+                    <div class="mission-detail-item">
+                        <span class="mission-detail-label">Du khách</span>
+                        <span class="mission-detail-value" id="submissionDetailGuest">—</span>
+                    </div>
+                    <div class="mission-detail-item">
+                        <span class="mission-detail-label">Phòng</span>
+                        <span class="mission-detail-value" id="submissionDetailRoom">—</span>
+                    </div>
+                    <div class="mission-detail-item">
+                        <span class="mission-detail-label">Thời gian nộp</span>
+                        <span class="mission-detail-value" id="submissionDetailTime">—</span>
+                    </div>
+                </div>
+
+                <div class="mission-detail-section">
+                    <span class="mission-detail-label">Nhiệm vụ</span>
+                    <p class="mission-detail-desc" id="submissionDetailTask">—</p>
+                </div>
+
+                <div class="mission-detail-section">
+                    <span class="mission-detail-label">Cảm nhận từ khách hàng</span>
+                    <p class="mission-detail-desc italic" id="submissionDetailReview">—</p>
+                </div>
+
+                <div class="mission-detail-section">
+                    <span class="mission-detail-label">Phần thưởng dự kiến</span>
+                    <div class="mission-detail-reward">
+                        <span class="material-symbols-outlined text-[20px]">redeem</span>
+                        <span id="submissionDetailReward">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mission-modal-footer">
+                <button type="button" class="mission-btn mission-btn-cancel" data-close-modal="submissionDetailModal">
+                    Đóng
+                </button>
+                <button type="button" id="btnDetailReject" class="mission-btn mission-btn-danger-soft">
+                    <span class="material-symbols-outlined text-[17px]">close</span> Từ chối
+                </button>
+                <button type="button" id="btnDetailApprove" class="mission-btn mission-btn-save">
+                    <span class="material-symbols-outlined text-[17px]">check_circle</span> Phê duyệt &amp; Trao thưởng
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP PHÊ DUYỆT & TRAO THƯỞNG
+     ===================================================== -->
+    <div id="approveModal" class="mission-modal" hidden>
+        <div class="mission-modal-content" role="dialog" aria-modal="true" aria-labelledby="approveTitle">
+            <div class="mission-modal-header">
+                <div>
+                    <h2 id="approveTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Phê duyệt
+                        &amp; Trao thưởng</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1" id="approveSubtitle">Xác nhận bài
+                        nộp hợp lệ và gửi phần thưởng cho du khách.</p>
+                </div>
+                <button type="button" class="mission-modal-close" data-close-modal="approveModal" aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="approveForm" class="mission-form">
+                <div class="mission-current" id="approveCurrent"></div>
+
+                <div class="mission-form-grid">
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="approveReward">Phần thưởng</label>
+                        <input id="approveReward" class="mission-form-input" type="text" required>
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="approveNote">Lời nhắn gửi du khách</label>
+                        <textarea id="approveNote" class="mission-form-textarea"
+                                  placeholder="Ví dụ: Cảm ơn bạn đã chia sẻ, hẹn gặp lại bạn ở Nhà Sàn Mộc!"></textarea>
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-check">
+                            <input type="checkbox" id="approveNotify" checked>
+                            <span>Gửi thông báo và mã voucher cho du khách</span>
+                        </label>
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-check">
+                            <input type="checkbox" id="approveFeature">
+                            <span>Cho phép homestay dùng ảnh này để quảng bá</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mission-modal-footer">
+                    <button type="button" class="mission-btn mission-btn-cancel" data-close-modal="approveModal">Hủy
+                    </button>
+                    <button type="submit" class="mission-btn mission-btn-save">
+                        <span class="material-symbols-outlined text-[17px]">check_circle</span>
+                        Xác nhận duyệt
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP TỪ CHỐI BÀI NỘP
+     ===================================================== -->
+    <div id="rejectModal" class="mission-modal" hidden>
+        <div class="mission-modal-content" role="dialog" aria-modal="true" aria-labelledby="rejectTitle">
+            <div class="mission-modal-header">
+                <div>
+                    <h2 id="rejectTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Từ chối bài
+                        nộp</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Du khách sẽ nhận được thông báo
+                        kèm lý do từ chối.</p>
+                </div>
+                <button type="button" class="mission-modal-close" data-close-modal="rejectModal" aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="rejectForm" class="mission-form">
+                <div class="mission-current" id="rejectCurrent"></div>
+
+                <div class="mission-cancel-warning">
+                    <span class="material-symbols-outlined text-[18px]">warning</span>
+                    <span>Bài nộp bị từ chối sẽ không được trao thưởng.</span>
+                </div>
+
+                <div class="mission-form-grid">
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="rejectReason">Lý do từ chối</label>
+                        <select id="rejectReason" class="mission-form-select">
+                            <option value="Ảnh không đúng nhiệm vụ">Ảnh không đúng nhiệm vụ</option>
+                            <option value="Ảnh mờ / không rõ nội dung">Ảnh mờ / không rõ nội dung</option>
+                            <option value="Nội dung không phù hợp">Nội dung không phù hợp</option>
+                            <option value="Nghi ngờ gian lận">Nghi ngờ gian lận</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="rejectNote">Ghi chú</label>
+                        <textarea id="rejectNote" class="mission-form-textarea"
+                                  placeholder="Giải thích thêm cho du khách..."></textarea>
+                    </div>
+                </div>
+
+                <div class="mission-modal-footer">
+                    <button type="button" class="mission-btn mission-btn-cancel" data-close-modal="rejectModal">Hủy
+                    </button>
+                    <button type="submit" class="mission-btn mission-btn-danger">
+                        <span class="material-symbols-outlined text-[17px]">close</span>
+                        Xác nhận từ chối
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP YÊU CẦU CHỤP LẠI
+     ===================================================== -->
+    <div id="retakeModal" class="mission-modal" hidden>
+        <div class="mission-modal-content" role="dialog" aria-modal="true" aria-labelledby="retakeTitle">
+            <div class="mission-modal-header">
+                <div>
+                    <h2 id="retakeTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Yêu cầu
+                        chụp lại</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Gửi gợi ý để du khách bổ sung ảnh
+                        phù hợp hơn.</p>
+                </div>
+                <button type="button" class="mission-modal-close" data-close-modal="retakeModal" aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="retakeForm" class="mission-form">
+                <div class="mission-current" id="retakeCurrent"></div>
+
+                <div class="mission-form-grid">
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="retakeReason">Vấn đề cần chỉnh</label>
+                        <select id="retakeReason" class="mission-form-select">
+                            <option value="Ảnh bị mờ, thiếu sáng">Ảnh bị mờ, thiếu sáng</option>
+                            <option value="Thiếu hashtag / thẻ định vị">Thiếu hashtag / thẻ định vị</option>
+                            <option value="Chưa thấy rõ trang phục / món ăn">Chưa thấy rõ trang phục / món ăn</option>
+                            <option value="Cần thêm ảnh">Cần thêm ảnh</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="retakeNote">Lời nhắn</label>
+                        <textarea id="retakeNote" class="mission-form-textarea"
+                                  placeholder="Ví dụ: Bạn chụp lại ở ban công lúc sáng sớm nhé!"></textarea>
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="retakeDeadline">Hạn nộp lại</label>
+                        <input id="retakeDeadline" class="mission-form-input" type="date">
+                    </div>
+                </div>
+
+                <div class="mission-modal-footer">
+                    <button type="button" class="mission-btn mission-btn-cancel" data-close-modal="retakeModal">Hủy
+                    </button>
+                    <button type="submit" class="mission-btn mission-btn-save">
+                        <span class="material-symbols-outlined text-[17px]">send</span>
+                        Gửi yêu cầu
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP LỌC BÀI NỘP
+     ===================================================== -->
+    <div id="filterModal" class="mission-modal" hidden>
+        <div class="mission-modal-content" role="dialog" aria-modal="true" aria-labelledby="filterTitle">
+            <div class="mission-modal-header">
+                <div>
+                    <h2 id="filterTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Lọc bài
+                        nộp</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Lọc danh sách chờ duyệt theo loại
+                        nhiệm vụ.</p>
+                </div>
+                <button type="button" class="mission-modal-close" data-close-modal="filterModal" aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="filterForm" class="mission-form">
+                <div class="mission-form-grid">
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="filterType">Loại nhiệm vụ</label>
+                        <select id="filterType" class="mission-form-select">
+                            <option value="all">Tất cả</option>
+                            <option value="costume">Trang phục / Chụp ảnh</option>
+                            <option value="food">Ẩm thực</option>
+                        </select>
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="filterKeyword">Tìm theo tên du khách</label>
+                        <input id="filterKeyword" class="mission-form-input" type="text" placeholder="Ví dụ: Hương">
+                    </div>
+                </div>
+
+                <div class="mission-modal-footer">
+                    <button type="button" id="btnFilterReset" class="mission-btn mission-btn-cancel">Đặt lại</button>
+                    <button type="submit" class="mission-btn mission-btn-save">
+                        <span class="material-symbols-outlined text-[17px]">filter_list</span>
+                        Áp dụng
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP THỐNG KÊ NHIỆM VỤ (nút "Chi tiết")
+     ===================================================== -->
+    <div id="statsModal" class="mission-modal" hidden>
+        <div class="mission-modal-content" role="dialog" aria-modal="true" aria-labelledby="statsTitle">
+            <div class="mission-modal-header">
+                <div>
+                    <h2 id="statsTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Mục tiêu
+                        tương tác tháng</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Số lượt trao thưởng theo từng
+                        nhiệm vụ.</p>
+                </div>
+                <button type="button" class="mission-modal-close" data-close-modal="statsModal" aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="mission-form">
+                <div id="statsList" class="mission-stats-list"></div>
+            </div>
+
+            <div class="mission-modal-footer">
+                <button type="button" class="mission-btn mission-btn-cancel" data-close-modal="statsModal">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+     POPUP GỬI QUÀ TRI ÂN
+     ===================================================== -->
+    <div id="giftModal" class="mission-modal" hidden>
+        <div class="mission-modal-content" role="dialog" aria-modal="true" aria-labelledby="giftTitle">
+            <div class="mission-modal-header">
+                <div>
+                    <h2 id="giftTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Gửi quà tri
+                        ân tháng 09</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Chọn du khách và phần quà dành cho
+                        top tích cực.</p>
+                </div>
+                <button type="button" class="mission-modal-close" data-close-modal="giftModal" aria-label="Đóng">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="giftForm" class="mission-form">
+                <div class="mission-form-group full">
+                    <span class="mission-form-label">Người nhận</span>
+                    <div id="giftGuestList" class="mission-gift-list"></div>
+                </div>
+
+                <div class="mission-form-grid">
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="giftItem">Phần quà</label>
+                        <select id="giftItem" class="mission-form-select">
+                            <option value="Voucher giảm 20% lần lưu trú sau">Voucher giảm 20% lần lưu trú sau</option>
+                            <option value="Đêm nghỉ miễn phí (1 đêm)">Đêm nghỉ miễn phí (1 đêm)</option>
+                            <option value="Set quà nông sản Mai Châu">Set quà nông sản Mai Châu</option>
+                            <option value="Khăn thổ cẩm handmade">Khăn thổ cẩm handmade</option>
+                        </select>
+                    </div>
+
+                    <div class="mission-form-group full">
+                        <label class="mission-form-label" for="giftMessage">Lời nhắn</label>
+                        <textarea id="giftMessage" class="mission-form-textarea">Cảm ơn bạn đã đồng hành cùng Nhà Sàn Mộc trong tháng 09. Mong sớm được đón bạn quay lại!</textarea>
+                    </div>
+                </div>
+
+                <div class="mission-modal-footer">
+                    <button type="button" class="mission-btn mission-btn-cancel" data-close-modal="giftModal">Hủy
+                    </button>
+                    <button type="submit" class="mission-btn mission-btn-save">
+                        <span class="material-symbols-outlined text-[17px]">redeem</span>
+                        Gửi quà
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/manageMission.js"></script>
+    <script src="../js/sidebarJs.js"></script>
+</main>
+
+</body>
+</html>
