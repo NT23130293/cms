@@ -940,20 +940,6 @@ button {
   border: 1px solid var(--accent-border);
 }
 
-.combo-card-banner {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  min-height: 290px;
-  display: flex;
-  align-items: center;
-  box-shadow: var(--shadow-lg);
-  transition: var(--transition-normal);
-}
-
-.combo-card-banner:hover {
-  box-shadow: var(--shadow-xl);
-}
 
 .combo-bg-img {
   position: absolute;
@@ -1280,8 +1266,8 @@ button {
 
 .festival-homestays-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 /* Nearby Badge for Homestay Cards */
@@ -1594,8 +1580,8 @@ button {
 
 .favorites-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 /* --- 7. HOMESTAY GỢI Ý (DÀNH RIÊNG CHO BẠN) --- */

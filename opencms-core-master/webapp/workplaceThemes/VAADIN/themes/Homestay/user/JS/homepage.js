@@ -371,6 +371,18 @@ const festivalData = {
         price: '850.000đ',
         tag: 'Giá tiết kiệm',
         img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        name: 'Sơn Trà Sunset Infinity Villa',
+        location: 'Quận Sơn Trà, Đà Nẵng',
+        distance: 'Cách điểm tổ chức 1.2km',
+        rating: '4.94',
+        reviews: '215',
+        specs: '4 phòng ngủ · 8 khách',
+        amenities: 'Hồ bơi vô cực view biển · Bếp nướng BBQ · Gần bãi tắm',
+        price: '2.750.000đ',
+        tag: 'View biển vô cực',
+        img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80'
       }
     ]
   },
@@ -415,6 +427,18 @@ const festivalData = {
         price: '790.000đ',
         tag: 'Không gian yên tĩnh',
         img: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        name: 'The Memory Valley Villa',
+        location: 'Đường Tuyền Lâm, Đà Lạt',
+        distance: 'Cách điểm tổ chức 1.5km',
+        rating: '4.96',
+        reviews: '340',
+        specs: '3 phòng ngủ · 6 khách',
+        amenities: 'Bể bơi nước ấm · Lò sưởi củi · Sân BBQ ngoài trời',
+        price: '1.450.000đ',
+        tag: 'Săn mây thung lũng',
+        img: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=600&q=80'
       }
     ]
   },
@@ -459,6 +483,18 @@ const festivalData = {
         price: '680.000đ',
         tag: 'Giá tốt nhất',
         img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        name: 'Imperial Citadel Garden Villa',
+        location: 'Phường Thuận Thành, TP. Huế',
+        distance: 'Cách Kỳ Đài Huế 400m',
+        rating: '4.92',
+        reviews: '148',
+        specs: '2 phòng ngủ · 4 khách',
+        amenities: 'Sân vườn tiểu cảnh · Thưởng trà Ngự Hà · Xe đạp cổ điển',
+        price: '920.000đ',
+        tag: 'Gần Kỳ Đài',
+        img: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80'
       }
     ]
   },
@@ -503,6 +539,18 @@ const festivalData = {
         price: '790.000đ',
         tag: 'View đồng lúa',
         img: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        name: 'Hang Múa Lotus View Ecolodge',
+        location: 'Khê Hạ, Ninh Bình',
+        distance: 'Cách khu lễ hội 800m',
+        rating: '4.93',
+        reviews: '164',
+        specs: '2 phòng ngủ · 4 khách',
+        amenities: 'View đỉnh Hang Múa · Đầm sen ngát hương · Phục vụ đồ nướng',
+        price: '980.000đ',
+        tag: 'View Hang Múa',
+        img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80'
       }
     ]
   }
