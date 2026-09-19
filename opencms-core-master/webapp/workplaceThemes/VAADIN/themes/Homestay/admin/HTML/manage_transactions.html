@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="javascript:void(0)" class="menu-link">
+                    <a href="local_content.html" class="menu-link">
                         <span class="material-symbols-outlined menu-icon">map</span>
                         <span>Quản lý nội dung địa phương</span>
                     </a>
@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="javascript:void(0)" class="menu-link">
+                    <a href="ads_management.html" class="menu-link">
                         <span class="material-symbols-outlined menu-icon">campaign</span>
                         <span>Quản lý quảng cáo</span>
                     </a>
@@ -151,74 +151,56 @@
         <main class="admin-body-content">
             
             <div class="tx-page-header">
-                <h1 class="tx-page-title">Quản lý Giao dịch & Tài chính</h1>
-                <div class="tx-page-sub">Theo dõi tiền cọc đặt phòng, hoàn tiền khách hàng và giải ngân cho Homestay Owner</div>
+                <div>
+                    <h1 class="tx-page-title">Quản lý Giao dịch & Tài chính Sàn YÊN</h1>
+                    <div class="tx-page-sub">Theo dõi tiền cọc đặt phòng, duyệt hoàn tiền khách hàng và giải ngân cho Homestay Owner</div>
+                </div>
             </div>
 
             <div class="financial-stats-grid">
-                <div class="f-stat-card emerald">
+                <div class="f-stat-card">
                     <div>
-                        <div class="f-stat-lbl">Phí sàn YÊN (Tháng 9)</div>
                         <div class="f-stat-val">34.800.000đ</div>
+                        <div class="f-stat-lbl">Phí sàn YÊN (Tháng 9)</div>
                     </div>
-                    <div class="f-stat-icon-wrap">
-                        <span class="material-symbols-outlined">account_balance_wallet</span>
-                    </div>
+                    <span class="material-symbols-outlined f-stat-icon" style="color: #16A34A;">account_balance_wallet</span>
                 </div>
-                <div class="f-stat-card indigo">
+                <div class="f-stat-card">
                     <div>
-                        <div class="f-stat-lbl">Tiền cọc đang giữ</div>
                         <div class="f-stat-val">68.500.000đ</div>
+                        <div class="f-stat-lbl">Tiền cọc đang giữ</div>
                     </div>
-                    <div class="f-stat-icon-wrap">
-                        <span class="material-symbols-outlined">lock_clock</span>
-                    </div>
+                    <span class="material-symbols-outlined f-stat-icon" style="color: #4F46E5;">lock_clock</span>
                 </div>
-                <div class="f-stat-card amber">
+                <div class="f-stat-card">
                     <div>
-                        <div class="f-stat-lbl">Yêu cầu hoàn tiền</div>
                         <div class="f-stat-val">2 Đơn</div>
+                        <div class="f-stat-lbl">Yêu cầu hoàn tiền</div>
                     </div>
-                    <div class="f-stat-icon-wrap">
-                        <span class="material-symbols-outlined">assignment_return</span>
-                    </div>
+                    <span class="material-symbols-outlined f-stat-icon" style="color: #EA580C;">assignment_return</span>
                 </div>
-                <div class="f-stat-card blue">
+                <div class="f-stat-card">
                     <div>
-                        <div class="f-stat-lbl">Chờ giải ngân Owner</div>
                         <div class="f-stat-val">5 Đơn</div>
+                        <div class="f-stat-lbl">Chờ giải ngân Owner</div>
                     </div>
-                    <div class="f-stat-icon-wrap">
-                        <span class="material-symbols-outlined">payments</span>
-                    </div>
+                    <span class="material-symbols-outlined f-stat-icon" style="color: #0284C7;">payments</span>
                 </div>
             </div>
 
             <!-- Filter Bar -->
             <div class="tx-filter-bar">
                 <div class="tx-filter-chips" id="txFilterChips">
-                    <button class="tx-chip active" data-tab="all">
-                        <span>Tất cả</span>
-                        <span class="tx-chip-badge">24</span>
-                    </button>
-                    <button class="tx-chip" data-tab="escrow">
-                        <span>Quản lý tiền cọc</span>
-                        <span class="tx-chip-badge">14</span>
-                    </button>
-                    <button class="tx-chip" data-tab="refund">
-                        <span>Xác nhận hoàn tiền</span>
-                        <span class="tx-chip-badge">2</span>
-                    </button>
-                    <button class="tx-chip" data-tab="payout">
-                        <span>Thanh toán Owner</span>
-                        <span class="tx-chip-badge">5</span>
-                    </button>
+                    <button class="tx-chip active" data-status="all">Tất cả (24)</button>
+                    <button class="tx-chip" data-status="escrow">Quản lý tiền cọc (14)</button>
+                    <button class="tx-chip" data-status="refund">Xác nhận hoàn tiền (2)</button>
+                    <button class="tx-chip" data-status="payout">Thanh toán Owner (5)</button>
                 </div>
 
                 <div class="tx-filter-right">
                     <div class="tx-search-wrap">
                         <span class="material-symbols-outlined">search</span>
-                        <input type="text" id="txSearchInput" placeholder="Tìm mã GD, tên khách...">
+                        <input type="text" id="txSearchInput" placeholder="Tìm mã GD, tên khách, homestay...">
                     </div>
                     <select class="tx-select" id="gatewaySelect">
                         <option value="all">Tất cả phương thức</option>
@@ -234,9 +216,10 @@
                 <table class="tx-table">
                     <thead>
                         <tr>
-                            <th>Giao Dịch / Khách Hàng</th>
-                            <th>Homestay & Chủ Nhà</th>
-                            <th>Số Tiền</th>
+                            <th>Mã Giao Dịch</th>
+                            <th>Khách Hàng</th>
+                            <th>Homestay & Owner</th>
+                            <th>Số Tiền / Cọc</th>
                             <th>Trạng Thái</th>
                             <th>Thao Tác</th>
                         </tr>
@@ -251,7 +234,7 @@
 </div>
 
 <div class="modal-backdrop" id="txDetailModal">
-    <div class="modal-box" style="max-width: 720px;">
+    <div class="modal-box">
         <div class="modal-head">
             <h4 id="dtTxCode">Chi tiết Giao dịch #GD-88201</h4>
             <button class="modal-close" onclick="closeTxModal('txDetailModal')">&times;</button>
@@ -262,10 +245,10 @@
                     <h5><span class="material-symbols-outlined" style="font-size: 18px; color: #15803D;">receipt</span> Bảng kê Tài chính</h5>
                     <div class="bill-row"><span>Mã Booking:</span> <strong id="dtBookingCode">#BK-9042</strong></div>
                     <div class="bill-row"><span>Giá phòng:</span> <span id="dtRoomFee">1.700.000đ</span></div>
-                    <div class="bill-row"><span>Phí sàn YÊN (8%):</span> <span id="dtPlatformFee">136.000đ</span></div>
+                    <div class="bill-row"><span>Phí dịch vụ sàn YÊN (8%):</span> <span id="dtPlatformFee">136.000đ</span></div>
                     <div class="bill-row total"><span>Tổng thanh toán:</span> <span id="dtTotal" style="color: #15803D;">1.700.000đ</span></div>
-                    <div class="bill-row" style="margin-top: 8px; background: #EEF2FF; padding: 6px 8px; border-radius: 4px;">
-                        <span>Tiền cọc giữ:</span> <strong id="dtDeposit" style="color: #4F46E5;">850.000đ (50%)</strong>
+                    <div class="bill-row" style="margin-top: 8px; background: #EEF2FF; padding: 6px 8px; border-radius: 6px;">
+                        <span>Tiền cọc YÊN giữ:</span> <strong id="dtDeposit" style="color: #4338CA;">850.000đ (50%)</strong>
                     </div>
                 </div>
 
@@ -285,7 +268,7 @@
 </div>
 
 <div class="modal-backdrop" id="refundModal">
-    <div class="modal-box" style="max-width: 600px;">
+    <div class="modal-box">
         <div class="modal-head">
             <h4 style="color: #C2410C;">Duyệt Hoàn Tiền Cho Khách Hàng</h4>
             <button class="modal-close" onclick="closeTxModal('refundModal')">&times;</button>
@@ -294,8 +277,8 @@
             <div class="bill-card" style="border-color: #FED7AA; background: #FFF7ED; margin-bottom: 14px;">
                 <h5 style="color: #C2410C;"><span class="material-symbols-outlined" style="font-size: 18px;">warning</span> Yêu cầu hủy phòng</h5>
                 <div class="bill-row"><span>Khách hàng:</span> <strong id="rfGuest">Lê Thị Mai (0918 776 554)</strong></div>
-                <div class="bill-row"><span>Lý do:</span> <span id="rfReason">Bão thời tiết tại Mộc Châu, hủy trước 48h</span></div>
-                <div class="bill-row total" style="color: #C2410C;"><span>Số tiền hoàn trả:</span> <span id="rfAmount">1.500.000đ</span></div>
+                <div class="bill-row"><span>Lý do hủy:</span> <span id="rfReason">Bão thời tiết tại Mộc Châu, hủy trước 48h</span></div>
+                <div class="bill-row total" style="color: #C2410C;"><span>Số tiền duyệt hoàn:</span> <span id="rfAmount">1.500.000đ</span></div>
             </div>
 
             <div class="bank-info-box">
@@ -306,21 +289,21 @@
             </div>
 
             <div style="margin-top: 14px;">
-                <label style="font-size: 12.5px; font-weight: 600; color: #334155; display: block; margin-bottom: 4px;">Mã giao dịch hoàn tiền (Trace ID):</label>
+                <label style="font-size: 12.5px; font-weight: 600; color: #334155; display: block; margin-bottom: 4px;">Mã giao dịch hoàn tiền (Trace Reference):</label>
                 <input type="text" id="rfTraceInput" placeholder="MOMO-REF-88392" style="width: 100%; padding: 8px 12px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 13px;">
             </div>
         </div>
         <div class="modal-foot">
             <button class="tx-btn tx-btn-secondary" onclick="closeTxModal('refundModal')">Hủy bỏ</button>
-            <button class="tx-btn tx-btn-refund" style="background: #EA580C; color: white;" onclick="confirmRefund()">
-                Xác nhận Hoàn tiền
+            <button class="tx-btn tx-btn-refund" onclick="confirmRefund()">
+                <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span> Xác nhận Hoàn tiền
             </button>
         </div>
     </div>
 </div>
 
 <div class="modal-backdrop" id="payoutModal">
-    <div class="modal-box" style="max-width: 600px;">
+    <div class="modal-box">
         <div class="modal-head">
             <h4 style="color: #15803D;">Giải Ngân Cho Homestay Owner</h4>
             <button class="modal-close" onclick="closeTxModal('payoutModal')">&times;</button>
@@ -329,8 +312,8 @@
             <div class="bill-card" style="border-color: #A7F3D0; background: #F0FDF4; margin-bottom: 14px;">
                 <h5 style="color: #15803D;"><span class="material-symbols-outlined" style="font-size: 18px;">verified</span> Khách đã hoàn tất trả phòng</h5>
                 <div class="bill-row"><span>Homestay:</span> <strong id="poHomestay">Pù Luông Eco Lodge</strong></div>
-                <div class="bill-row"><span>Chủ nhà:</span> <strong id="poOwner">Triệu Văn Sản</strong></div>
-                <div class="bill-row"><span>Trừ phí sàn YÊN (8%):</span> <span style="color: #DC2626;">-136.000đ</span></div>
+                <div class="bill-row"><span>Chủ nhà thụ hưởng:</span> <strong id="poOwner">Triệu Văn Sản</strong></div>
+                <div class="bill-row"><span>Phí sàn YÊN (8%):</span> <span style="color: #DC2626;">-136.000đ</span></div>
                 <div class="bill-row total" style="color: #15803D; font-size: 15px;"><span>Thực chuyển cho Chủ nhà:</span> <span id="poNetTotal">1.564.000đ</span></div>
             </div>
 
@@ -343,8 +326,8 @@
         </div>
         <div class="modal-foot">
             <button class="tx-btn tx-btn-secondary" onclick="closeTxModal('payoutModal')">Đóng</button>
-            <button class="tx-btn tx-btn-payout" style="background: #15803D; color: white;" onclick="confirmPayout()">
-                Duyệt Chuyển Khoản
+            <button class="tx-btn tx-btn-payout" onclick="confirmPayout()">
+                <span class="material-symbols-outlined" style="font-size: 16px;">account_balance_wallet</span> Duyệt Chuyển Khoản
             </button>
         </div>
     </div>
@@ -359,7 +342,7 @@
         { id: 5, txCode: "#GD-88140", bookingCode: "#BK-5912", guest: "Hoàng Anh Tuấn", guestPhone: "0934 556 778", homestay: "Đà Lạt Cloud Valley", owner: "Phạm Hoàng Nam", total: "2.400.000đ", deposit: "1.200.000đ (50%)", netPayout: "2.208.000đ", gateway: "VietQR", gatewayClass: "vietqr", status: "refund-pending", statusText: "Chờ hoàn tiền", traceId: "VCB-9910248" }
     ];
     let currentTxId = null;
-    let activeTab = 'all';
+    let filterStatus = 'all';
 
     document.addEventListener('DOMContentLoaded', () => {
         renderTxTable();
@@ -383,7 +366,7 @@
             b.addEventListener('click', function() {
                 document.querySelectorAll('#txFilterChips .tx-chip').forEach(x => x.classList.remove('active'));
                 this.classList.add('active');
-                activeTab = this.getAttribute('data-tab');
+                filterStatus = this.getAttribute('data-status');
                 renderTxTable();
             });
         });
@@ -407,9 +390,9 @@
 
         const data = transactions.filter(item => {
             let matchTab = true;
-            if (activeTab === 'escrow') matchTab = (item.status === 'escrow');
-            else if (activeTab === 'refund') matchTab = (item.status === 'refund-pending');
-            else if (activeTab === 'payout') matchTab = (item.status === 'payout-ready');
+            if (filterStatus === 'escrow') matchTab = (item.status === 'escrow');
+            else if (filterStatus === 'refund') matchTab = (item.status === 'refund-pending');
+            else if (filterStatus === 'payout') matchTab = (item.status === 'payout-ready');
             const matchSearch = item.txCode.toLowerCase().includes(search) || 
                                 item.bookingCode.toLowerCase().includes(search) || 
                                 item.guest.toLowerCase().includes(search) || 
@@ -419,7 +402,7 @@
         });
 
         if (data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #94A3B8; padding: 24px;">Không tìm thấy giao dịch nào.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #94A3B8; padding: 24px;">Không tìm thấy giao dịch phù hợp.</td></tr>`;
             return;
         }
 
@@ -428,11 +411,15 @@
             tr.innerHTML = `
                 <td>
                     <div class="tx-title-main">${item.txCode}</div>
-                    <div class="tx-sub-info">Khách: ${item.guest} (${item.guestPhone})</div>
+                    <div class="tx-sub-info">Mã BK: ${item.bookingCode}</div>
+                </td>
+                <td>
+                    <div class="tx-title-main">${item.guest}</div>
+                    <div class="tx-sub-info">${item.guestPhone}</div>
                 </td>
                 <td>
                     <div class="tx-title-main">${item.homestay}</div>
-                    <div class="tx-sub-info">Chủ nhà: ${item.owner}</div>
+                    <div class="tx-sub-info">Owner: ${item.owner}</div>
                 </td>
                 <td>
                     <strong style="color: #0F172A; font-size: 13.5px;">${item.total}</strong>
@@ -444,19 +431,21 @@
                     </span>
                 </td>
                 <td>
-                    <button class="tx-btn tx-btn-secondary" onclick="openTxDetail(${item.id})">
-                        <span class="material-symbols-outlined" style="font-size: 15px;">visibility</span> Xem
-                    </button>
-                    ${item.status === 'refund-pending' ? `
-                        <button class="tx-btn tx-btn-refund" onclick="openRefundModal(${item.id})">
-                            Hoàn tiền
+                    <div class="action-btn-group">
+                        <button class="tx-btn tx-btn-secondary" onclick="openTxDetail(${item.id})">
+                            <span class="material-symbols-outlined" style="font-size: 15px;">visibility</span> Xem
                         </button>
-                    ` : ''}
-                    ${item.status === 'payout-ready' ? `
-                        <button class="tx-btn tx-btn-payout" onclick="openPayoutModal(${item.id})">
-                            Giải ngân
-                        </button>
-                    ` : ''}
+                        ${item.status === 'refund-pending' ? `
+                            <button class="tx-btn tx-btn-refund" onclick="openRefundModal(${item.id})">
+                                <span class="material-symbols-outlined" style="font-size: 15px;">replay</span> Hoàn tiền
+                            </button>
+                        ` : ''}
+                        ${item.status === 'payout-ready' ? `
+                            <button class="tx-btn tx-btn-payout" onclick="openPayoutModal(${item.id})">
+                                <span class="material-symbols-outlined" style="font-size: 15px;">payments</span> Giải ngân
+                            </button>
+                        ` : ''}
+                    </div>
                 </td>
             `;
             tbody.appendChild(tr);
