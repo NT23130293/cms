@@ -25,7 +25,7 @@
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb" class="mb-4">
       <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link"><i class="bi bi-house-door me-1"></i>Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="homepage.html" class="breadcrumb-link"><i class="bi bi-house-door me-1"></i>Trang chủ</a></li>
         <li class="breadcrumb-item active text-dark font-semibold" aria-current="page">Tài khoản cá nhân</li>
       </ol>
     </nav>
@@ -225,13 +225,47 @@
                     <div class="row align-items-center">
                       <label class="col-sm-3 form-label-custom mb-1 mb-sm-0">Quốc tịch</label>
                       <div class="col-sm-9">
-                        <select id="profileNationality" class="form-select form-select-custom">
-                          <option value="vn" selected>🇻🇳 Việt Nam</option>
-                          <option value="la">🇱🇦 Lào</option>
-                          <option value="kh">🇰🇭 Campuchia</option>
-                          <option value="th">🇹🇭 Thái Lan</option>
-                          <option value="other">Khác</option>
-                        </select>
+                        <select id="acctNationality" class="form-select form-select-custom"></select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Địa chỉ (2 cấp: Tỉnh & Xã) -->
+                  <div class="col-12">
+                    <div class="row align-items-start">
+                      <label class="col-sm-3 form-label-custom mb-1 mb-sm-0 pt-1">Địa chỉ</label>
+                      <div class="col-sm-9">
+                        <input type="text" id="acctStreet" class="form-control form-control-custom mb-2" placeholder="Số nhà, tên đường" value="123 Đường Lê Lợi">
+                        <div class="row g-2">
+                          <div class="col-6">
+                            <select id="acctProvince" class="form-select form-select-custom">
+                              <option value="">-- Chọn Tỉnh / Thành phố --</option>
+                            </select>
+                          </div>
+                          <div class="col-6">
+                            <select id="acctWard" class="form-select form-select-custom" disabled>
+                              <option value="">-- Chọn Phường / Xã --</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Thông tin Thuế & Đăng ký kinh doanh -->
+                  <div class="col-12">
+                    <div class="row align-items-start">
+                      <label class="col-sm-3 form-label-custom mb-1 mb-sm-0 pt-1">Thuế &amp; ĐKKD</label>
+                      <div class="col-sm-9">
+                        <div class="row g-2">
+                          <div class="col-6">
+                            <input type="text" id="acctTaxCode" class="form-control form-control-custom" placeholder="Mã số thuế (MST)" value="0312345678">
+                          </div>
+                          <div class="col-6">
+                            <input type="text" id="acctBizCode" class="form-control form-control-custom" placeholder="Số Giấy phép ĐKKD" value="41A8012345">
+                          </div>
+                        </div>
+                        <small class="text-muted text-xs d-block mt-1">Thông tin pháp lý dành cho cơ sở kinh doanh Homestay</small>
                       </div>
                     </div>
                   </div>
