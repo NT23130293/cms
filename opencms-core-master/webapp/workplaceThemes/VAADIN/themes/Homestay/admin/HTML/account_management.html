@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YÊN - Admin System | Quản Lý Tài Khoản</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link rel="stylesheet" href="../CSS/admin_sidebar.css">
+    <link rel="stylesheet" href="../CSS/local_content.css">
+    <link rel="stylesheet" href="../CSS/account_management.css">
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../images/logo_white.png" alt="YÊN Logo" class="sidebar-logo-img">
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu" id="adminMenu">
+                <li class="menu-item">
+                    <a href="admin.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">dashboard</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="account_management.html" class="menu-link active">
+                        <span class="material-symbols-outlined menu-icon">group</span>
+                        <span>Quản lý tài khoản</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">cottage</span>
+                        <span>Quản lý Homestay</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="local_content.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">map</span>
+                        <span>Quản lý nội dung địa phương</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">receipt_long</span>
+                        <span>Quản lý giao dịch</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="ads_management.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">campaign</span>
+                        <span>Quản lý quảng cáo</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">local_offer</span>
+                        <span>Quản lý mã giảm giá</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">bar_chart</span>
+                        <span>Báo cáo & Thống kê</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">report_problem</span>
+                        <span>Quản lý báo cáo & Khiếu nại</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="host-profile">
+                <div class="host-icon">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">admin_panel_settings</span>
+                </div>
+                <div class="host-info">
+                    <h4>Admin System</h4>
+                    <p>Quản trị hệ thống</p>
+                </div>
+                <span class="material-symbols-outlined" style="color: #A7F3D0; font-size: 18px;">unfold_more</span>
+            </div>
+            <div class="host-quote">
+                "Hệ thống quản trị YÊN Homestay"
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN ADMIN AREA -->
+    <div class="admin-main">
+
+        <header class="admin-header">
+            <div class="header-left">
+                <div class="header-search">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" class="search-input" placeholder="Tìm kiếm tài khoản, email, số điện thoại...">
+                </div>
+            </div>
+
+            <div class="admin-header-right">
+                <div class="header-action-btns">
+                    <button class="header-icon-btn" title="Thông báo">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="badge-dot">3</span>
+                    </button>
+                    <button class="header-icon-btn" title="Tin nhắn">
+                        <span class="material-symbols-outlined">chat</span>
+                    </button>
+                </div>
+
+                <div class="header-divider"></div>
+                
+                <div class="owner-header-profile-wrapper">
+                    <div class="owner-header-profile" id="adminProfileBtn">
+                        <div class="owner-avatar">A</div>
+                        <div class="owner-info">
+                            <div class="owner-info-top">
+                                <span class="owner-name">Admin System</span>
+                                <span class="owner-role-badge">Quản trị viên</span>
+                            </div>
+                            <span class="owner-subtext">Hệ thống YÊN</span>
+                        </div>
+                        <span class="material-symbols-outlined dropdown-arrow" style="font-size: 18px; color: var(--text-muted); margin-left: 2px;">expand_more</span>
+                    </div>
+
+                    <div class="profile-dropdown-menu" id="adminProfileDropdown">
+                        <div class="dropdown-header">
+                            <strong class="dropdown-user-name">Admin System</strong>
+                            <span class="dropdown-user-email">admin@yenhomestay.com</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-danger" id="dropdownLogoutBtn">
+                            <span class="material-symbols-outlined">logout</span>
+                            <span>Đăng xuất</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- NỘI DUNG QUẢN LÝ TÀI KHOẢN -->
+        <main class="admin-body-content">
+
+            <!-- 1. Top Stat Cards (Grid 4 cột Thống kê Tài Khoản) -->
+            <div class="user-stats-grid">
+                <div class="user-stat-card">
+                    <div class="user-stat-info">
+                        <span class="user-stat-label">Tổng Số Tài Khoản</span>
+                        <span class="user-stat-value" id="statTotalUsers">5</span>
+                        <span class="user-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">groups</span> Toàn hệ thống YÊN</span>
+                    </div>
+                    <div class="user-stat-icon-wrapper blue">
+                        <span class="material-symbols-outlined">group</span>
+                    </div>
+                </div>
+
+                <div class="user-stat-card">
+                    <div class="user-stat-info">
+                        <span class="user-stat-label">Khách Lưu Trú (Guests)</span>
+                        <span class="user-stat-value" id="statTotalGuests">2</span>
+                        <span class="user-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">person</span> Đã xác thực Email/SĐT</span>
+                    </div>
+                    <div class="user-stat-icon-wrapper amber">
+                        <span class="material-symbols-outlined">travel_explore</span>
+                    </div>
+                </div>
+
+                <div class="user-stat-card">
+                    <div class="user-stat-info">
+                        <span class="user-stat-label">Chủ Homestay (Hosts)</span>
+                        <span class="user-stat-value" id="statTotalHosts">2</span>
+                        <span class="user-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">verified</span> Đã xác minh KYC</span>
+                    </div>
+                    <div class="user-stat-icon-wrapper green">
+                        <span class="material-symbols-outlined">cottage</span>
+                    </div>
+                </div>
+
+                <div class="user-stat-card">
+                    <div class="user-stat-info">
+                        <span class="user-stat-label">Đang Hoạt Động (Active)</span>
+                        <span class="user-stat-value" id="statActiveUsers">4</span>
+                        <span class="user-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">check_circle</span> Trạng thái bình thường</span>
+                    </div>
+                    <div class="user-stat-icon-wrapper green">
+                        <span class="material-symbols-outlined">how_to_reg</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Main Content Module Card -->
+            <div class="content-module-card">
+                
+                <!-- Module Header Bar -->
+                <div class="module-header-bar">
+                    <div class="module-title-group">
+                        <h2>
+                            <span class="material-symbols-outlined" style="color: #0284C7;">group</span>
+                            Quản Lý Tài Khoản Người Dùng & Phân Quyền
+                        </h2>
+                        <span class="module-subtitle">Quản lý Du khách lưu trú, Đối tác Chủ Homestay (Hosts) & Phân quyền Quản trị viên</span>
+                    </div>
+
+                    <!-- Sub-module Navigation Tabs -->
+                    <div class="content-tabs">
+                        <button class="content-tab-btn active" data-tab="all" onclick="switchUserTab('all')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">groups</span>
+                            Tất Cả
+                        </button>
+                        <button class="content-tab-btn" data-tab="guest" onclick="switchUserTab('guest')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">person</span>
+                            Khách Lưu Trú
+                        </button>
+                        <button class="content-tab-btn" data-tab="host" onclick="switchUserTab('host')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">cottage</span>
+                            Chủ Homestay (Owners)
+                        </button>
+                        <button class="content-tab-btn" data-tab="admin" onclick="switchUserTab('admin')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">admin_panel_settings</span>
+                            Quản Trị Viên (Phân Quyền)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Module Toolbar (Search & Filter) -->
+                <div class="module-toolbar">
+                    <div class="toolbar-left">
+                        <div class="search-box-sm">
+                            <span class="material-symbols-outlined" style="color: var(--text-muted); margin-right: 6px; font-size: 18px;">search</span>
+                            <input type="text" id="userSearchInput" placeholder="Tìm tên, email, số điện thoại...">
+                        </div>
+
+                        <select class="select-filter-sm" id="userStatusFilter">
+                            <option value="all">Tất cả trạng thái</option>
+                            <option value="active">Đang hoạt động</option>
+                            <option value="blocked">Bị khóa</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Data Table View -->
+                <div class="table-responsive">
+                    <table class="admin-data-table">
+                        <thead id="userTableHeader">
+                            <!-- Render bằng JS -->
+                        </thead>
+                        <tbody id="userTableBody">
+                            <!-- Render dữ liệu qua JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<!-- 3. Modal Chỉnh Sửa Tài Khoản & Phân Quyền -->
+<div class="modal-overlay" id="userModalOverlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3 class="modal-title">
+                <span class="material-symbols-outlined" style="color: #0284C7;">manage_accounts</span>
+                <span id="userModalTitleText">Chỉnh Sửa Thông Tin Tài Khoản & Phân Quyền</span>
+            </h3>
+            <button class="modal-close-btn" onclick="closeUserModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <div class="form-field full">
+                <label class="form-label">Họ và Tên <span style="color: red;">*</span></label>
+                <input type="text" id="userNameInput" class="form-input" placeholder="Ví dụ: Nguyễn Văn An...">
+            </div>
+
+            <div class="form-group-grid">
+                <div class="form-field">
+                    <label class="form-label">Địa chỉ Email <span style="color: red;">*</span></label>
+                    <input type="email" id="userEmailInput" class="form-input" placeholder="an.nguyen@gmail.com">
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="text" id="userPhoneInput" class="form-input" placeholder="0905 123 456">
+                </div>
+            </div>
+
+            <div class="form-group-grid">
+                <div class="form-field">
+                    <label class="form-label">Vai trò / Phân quyền <span style="color: red;">*</span></label>
+                    <select id="userRoleSelect" class="form-select">
+                        <option value="guest">Khách lưu trú (Guest)</option>
+                        <option value="host">Chủ Homestay (Host Owner)</option>
+                        <option value="admin">Quản trị viên (System Admin)</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label">Trạng thái tài khoản</label>
+                    <select id="userStatusSelect" class="form-select">
+                        <option value="active">Đang hoạt động (Active)</option>
+                        <option value="blocked">Khóa tài khoản (Blocked)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-admin-cancel" onclick="closeUserModal()">Hủy bỏ</button>
+            <button class="btn-admin-primary" style="background-color: #0284C7;" onclick="saveUserData()">Lưu Tài Khoản</button>
+        </div>
+    </div>
+</div>
+
+<!-- 4. Modal CHI TIẾT TÀI KHOẢN (User Detail View) -->
+<div class="modal-overlay" id="userDetailModalOverlay">
+    <div class="modal-container" style="width: 680px;">
+        <div class="modal-header">
+            <h3 class="modal-title">
+                <span class="material-symbols-outlined" style="color: #0284C7;">account_box</span>
+                Chi Tiết Tài Khoản Người Dùng
+            </h3>
+            <button class="modal-close-btn" onclick="closeUserDetailModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="modal-body" id="userDetailModalContent">
+            <!-- Render động bằng JS -->
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-admin-cancel" onclick="closeUserDetailModal()">Đóng cửa sổ</button>
+        </div>
+    </div>
+</div>
+
+<!-- 5. Modal KHÓA TÀI KHOẢN KÈM LÝ DO -->
+<div class="modal-overlay" id="lockModalOverlay">
+    <div class="modal-container" style="width: 500px;">
+        <div class="modal-header" style="background: #FEF2F2;">
+            <h3 class="modal-title" style="color: #DC2626;">
+                <span class="material-symbols-outlined" style="color: #DC2626;">lock</span>
+                Xác Nhận Khóa Tài Khoản
+            </h3>
+            <button class="modal-close-btn" onclick="closeLockModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <p style="font-size: 14px; font-weight: 600; color: #1E293B;">Khóa truy cập cho tài khoản: <strong id="lockTargetUserName" style="color: #DC2626;">-</strong></p>
+
+            <div class="form-field full" style="margin-top: 12px;">
+                <label class="form-label">Lý do khóa tài khoản <span style="color: red;">*</span></label>
+                <select id="lockReasonSelect" class="form-select">
+                    <option value="Vi phạm chính sách hệ thống">Vi phạm chính sách hệ thống YÊN Homestay</option>
+                    <option value="Spammer / Đặt phòng ảo">Spammer / Đặt phòng ảo không đến</option>
+                    <option value="Khiếu nại chưa xử lý">Có báo cáo / Khiếu nại nghiêm trọng</option>
+                    <option value="Yêu cầu từ người dùng">Theo yêu cầu trực tiếp từ chủ tài khoản</option>
+                </select>
+            </div>
+
+            <div class="form-field full" style="margin-top: 12px;">
+                <label class="form-label">Thời hạn khóa</label>
+                <select id="lockDurationSelect" class="form-select">
+                    <option value="Vĩnh viễn">Vĩnh viễn (Permanent Lock)</option>
+                    <option value="7 ngày">Tạm khóa 7 ngày</option>
+                    <option value="30 ngày">Tạm khóa 30 ngày</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-admin-cancel" onclick="closeLockModal()">Hủy</button>
+            <button class="btn-admin-primary" style="background-color: #DC2626;" onclick="confirmLockAccount()">🔒 Đồng ý Khóa Tài Khoản</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const profileBtn = document.getElementById('adminProfileBtn');
+        const profileDropdown = document.getElementById('adminProfileDropdown');
+
+        if (profileBtn && profileDropdown) {
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                profileBtn.classList.toggle('active');
+                profileDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                    profileBtn.classList.remove('active');
+                    profileDropdown.classList.remove('show');
+                }
+            });
+        }
+    });
+</script>
+<script src="../JS/account_management.js"></script>
+</body>
+</html>
