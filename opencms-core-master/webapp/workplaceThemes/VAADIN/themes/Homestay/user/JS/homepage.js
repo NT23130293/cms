@@ -603,10 +603,10 @@ function renderFestivalHomestays(homestays) {
         </div>
         <div class="card-footer-row">
           <div class="card-price-group">
-            <span class="price-label">Giá mỗi đêm:</span>
+            <span class="price-label">Giá từ:</span>
             <span class="card-price">${item.price}</span>
           </div>
-          <button class="btn-view-room" onclick="showQuickDetail('${item.name}')">Xem phòng</button>
+          <button class="btn-view-room" onclick="showQuickDetail('${item.name}')">Xem homestay</button>
         </div>
       </div>
     </div>
