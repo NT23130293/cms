@@ -8,19 +8,32 @@
     <!-- Google Fonts & Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script id="tailwind-config">
         tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#002115","secondary-fixed-dim":"#88d982","tertiary-fixed-dim":"#ffb77d","on-secondary-fixed":"#002204","tertiary-container":"#5d2f00","primary":"#002c1e","outline":"#717974","outline-variant":"#c0c8c2","on-primary-fixed-variant":"#224f3d","surface-dim":"#cbdbf5","inverse-surface":"#213145","surface-variant":"#d3e4fe","error-container":"#ffdad6","surface-container-low":"#eff4ff","secondary":"#1b6d24","primary-fixed":"#bdedd5","surface-container":"#e5eeff","on-surface-variant":"#414944","surface":"#f8f9ff","on-primary-container":"#81b099","background":"#f8f9ff","on-tertiary-fixed-variant":"#6e3900","on-tertiary-container":"#f38b23","tertiary-fixed":"#ffdcc3","on-surface":"#0b1c30","surface-tint":"#3b6754","tertiary":"#3d1d00","on-tertiary-fixed":"#2f1500","surface-container-highest":"#d3e4fe","on-primary":"#ffffff","inverse-primary":"#a1d1ba","on-secondary-fixed-variant":"#005312","secondary-container":"#a0f399","error":"#ba1a1a","on-error-container":"#93000a","on-secondary":"#ffffff","secondary-fixed":"#a3f69c","surface-container-high":"#dce9ff","surface-container-lowest":"#ffffff","on-secondary-container":"#217128","surface-bright":"#f8f9ff","on-error":"#ffffff","primary-container":"#154332","on-background":"#0b1c30","inverse-on-surface":"#eaf1ff","on-tertiary":"#ffffff","primary-fixed-dim":"#a1d1ba"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xs":"0.25rem","margin":"1.75rem","space-md":"0.875rem","space-sm":"0.5rem","space-xl":"1.75rem","gutter-sm":"0.75rem","margin-mobile":"1rem","gutter":"1.25rem","space-lg":"1.25rem"},fontFamily:{"headline-sm":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"label-md":["Inter"],"body-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"body-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-lg":["Inter"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"]},fontSize:{"headline-sm":["16px",{"lineHeight":"24px","fontWeight":"600"}],"display-lg":["30px",{"lineHeight":"38px","fontWeight":"700"}],"label-md":["11.5px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"body-md":["13.5px",{"lineHeight":"20px","fontWeight":"400"}],"label-sm":["10.5px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}],"headline-lg":["22px",{"lineHeight":"30px","fontWeight":"700"}],"headline-lg-mobile":["19px",{"lineHeight":"26px","fontWeight":"700"}],"label-lg":["13px",{"lineHeight":"18px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"26px","fontWeight":"600"}],"body-lg":["15px",{"lineHeight":"22px","fontWeight":"400"}]}}}};</script>
     <style>
-        @layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main>:first-child { margin-top: 0!important; } main>:last-child { margin-bottom: 0!important; } }
+        @layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } }
         ::-webkit-scrollbar { display: none; }
+
+        /* Khắc phục khoảng trắng sidebar bằng cách neo lề trái chuẩn xác */
+        main {
+            margin-left: 275px !important;
+            width: calc(100% - 275px) !important;
+            box-sizing: border-box;
+        }
+        @media (max-width: 768px) {
+            main {
+                margin-left: 0 !important;
+                width: 100% !important;
+            }
+        }
     </style>
-    <!-- Script nạp Sidebar & Header động của bạn -->
+    <!-- CSS tùy chỉnh popup theo phong cách quản lý nhiệm vụ -->
+    <link rel="stylesheet" href="../css/manageMission.css">
+    <!-- Script nạp Sidebar & Header động -->
     <script src="../js/sidebarJs.js"></script>
-    <script src="../js/manageHomestayJs.js"></script>
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased">
 
@@ -28,7 +41,7 @@
 <div id="sidebar-container"></div>
 
 <!-- Main Content Wrapper -->
-<div class="pl-64">
+<div class="w-full">
     <!-- 2. Vị trí nạp Header động -->
     <div id="header-container"></div>
 
@@ -57,11 +70,11 @@
                         <h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">Danh sách Homestay của tôi <span class="font-headline-md text-headline-md text-on-surface-variant font-normal">(04 cơ sở)</span></h1>
                     </div>
                     <div class="flex items-center gap-space-sm shrink-0">
-                        <button class="flex items-center gap-space-xs bg-surface-container-lowest text-primary-container px-space-md py-2.5 rounded-lg font-label-lg text-label-lg hover:bg-surface-container-high transition-all shadow-sm" type="button">
+                        <button onclick="openModal('reportModal')" class="flex items-center gap-space-xs bg-surface-container-lowest text-primary-container px-space-md py-2.5 rounded-lg font-label-lg text-label-lg hover:bg-surface-container-high transition-all shadow-sm" type="button">
                             <span class="material-symbols-outlined text-[18px]">query_stats</span>
                             <span>Báo cáo tổng hợp chuỗi</span>
                         </button>
-                        <button class="flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2.5 rounded-lg font-label-lg text-label-lg shadow-md hover:shadow-lg transition-all" style="background-color: rgb(17, 94, 67);" type="button">
+                        <button onclick="openModal('addHomestayModal')" class="flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2.5 rounded-lg font-label-lg text-label-lg shadow-md hover:shadow-lg transition-all" style="background-color: rgb(17, 94, 67);" type="button">
                             <span class="material-symbols-outlined text-[20px]">add_business</span>
                             <span>+ Thêm Homestay mới</span>
                         </button>
@@ -71,6 +84,7 @@
 
             <!-- KPI Fleet Summary Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter mb-space-xl">
+                <!-- KPI 1 -->
                 <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
                     <div class="flex items-start justify-between">
                         <div class="flex flex-col">
@@ -87,12 +101,12 @@
                         <span class="text-tertiary-container">1 Chờ duyệt</span>
                     </div>
                 </div>
-
+                <!-- KPI 2 (Đã sửa lỗi ngắt dòng bằng whitespace-nowrap) -->
                 <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
                     <div class="flex items-start justify-between">
                         <div class="flex flex-col">
                             <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Quy mô phòng chuỗi</span>
-                            <span class="font-display-lg text-display-lg text-on-surface mt-1">36 <span class="font-headline-sm text-headline-sm font-normal text-on-surface-variant">Căn / Phòng</span></span>
+                            <span class="font-display-lg text-display-lg text-on-surface mt-1 whitespace-nowrap">36 <span class="font-headline-sm text-headline-sm font-normal text-on-surface-variant">Căn / Phòng</span></span>
                         </div>
                         <div class="w-11 h-11 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container">
                             <span class="material-symbols-outlined text-[24px]">king_bed</span>
@@ -103,7 +117,7 @@
                         <span>Sức chứa tối đa: <strong class="text-on-surface">140 khách/ngày</strong></span>
                     </div>
                 </div>
-
+                <!-- KPI 3 -->
                 <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
                     <div class="flex items-start justify-between">
                         <div class="flex flex-col">
@@ -119,7 +133,7 @@
                         <span class="text-on-surface-variant">so với tháng 08</span>
                     </div>
                 </div>
-
+                <!-- KPI 4 -->
                 <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
                     <div class="flex items-start justify-between">
                         <div class="flex flex-col">
@@ -137,35 +151,18 @@
                 </div>
             </div>
 
-            <!-- Filter & Search Bar -->
-            <div class="bg-surface-container-lowest rounded-xl p-space-md mb-space-lg shadow-sm flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-md">
-                <div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg overflow-x-auto">
-                    <button class="px-space-md py-1.5 rounded-lg bg-surface-container-lowest font-label-lg text-label-lg text-on-surface shadow-sm shrink-0" style="background-color: rgb(17, 94, 67); color: rgb(255, 255, 255);" type="button">Tất cả <span class="ml-1 text-on-surface-variant font-normal">4</span></button>
-                    <button class="px-space-md py-1.5 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/50 transition-colors shrink-0" type="button">Đang hoạt động <span class="ml-1 bg-secondary-container text-on-secondary-container px-1.5 py-0.2 rounded-full font-label-sm text-label-sm">2</span></button>
-                    <button class="px-space-md py-1.5 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/50 transition-colors shrink-0" type="button">Bảo trì / Nâng cấp <span class="ml-1 bg-surface-container-high px-1.5 py-0.2 rounded-full font-label-sm text-label-sm">1</span></button>
-                    <button class="px-space-md py-1.5 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest/50 transition-colors shrink-0" type="button">Chờ duyệt hồ sơ <span class="ml-1 bg-tertiary-fixed text-on-tertiary-fixed px-1.5 py-0.2 rounded-full font-label-sm text-label-sm">1</span></button>
-                </div>
-                <div class="flex flex-wrap items-center gap-space-sm">
-                    <div class="relative flex-1 sm:w-72 flex items-center bg-surface-container-low rounded-lg px-space-sm py-1.5 text-on-surface-variant focus-within:bg-surface-container-lowest focus-within:shadow-sm transition-all">
-                        <span class="material-symbols-outlined text-[18px] text-outline mr-2">search</span>
-                        <input class="bg-transparent w-full text-body-md font-body-md text-on-surface placeholder:text-outline outline-none" placeholder="Tìm theo tên homestay, xã, huyện..." type="text">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Multi-Property Grid Section (4 Homestays) -->
+            <!-- Danh sách Homestay -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter mb-space-xl">
-
-                <!-- PROPERTY 1: NHÀ SÀN MỘC -->
+                <!-- PROPERTY 1 -->
                 <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                     <div>
                         <div class="relative h-56 w-full overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGnGWIImij9NPRBfU9DeahKeC1MMScKaucpY8D_ZMNx4r9xAoUaziaeEGqzM81kX2fifUpHlam4_lEOHWgqi3-eLToUXNYsM22gaLBZ4eQBnE9IYpJPNFrx1O2U_Aj9b7fjtWuR0GccX5D3iWJQAn8kO1eOWaiZGmMMom_neKglwFHnhRV_ckaz1ok3X03kdzw_QojRSqJ3u1Nq29f6VU0x1dmk4Zw1XwU5Pyn6IsqcW26dDMGtk8" alt="Nhà Sàn Mộc">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                             <div class="absolute top-space-sm left-space-sm right-space-sm flex items-center justify-between">
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm shadow-sm backdrop-blur-sm">
-                                        <span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span> Đang hoạt động
-                                    </span>
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm shadow-sm backdrop-blur-sm">
+                                    <span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span> Đang hoạt động
+                                </span>
                             </div>
                             <div class="absolute bottom-space-sm left-space-sm right-space-sm text-on-primary">
                                 <h2 class="font-headline-lg text-headline-lg text-white font-bold leading-tight drop-shadow-sm">Nhà Sàn Mộc - Mai Châu</h2>
@@ -182,10 +179,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="px-space-md py-space-sm bg-surface-container-low/60 flex items-center justify-between gap-space-sm">
-                        <button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors shadow-sm" style="background-color: rgb(17, 94, 67);" type="button">
-                            <span class="material-symbols-outlined text-[18px]">space_dashboard</span> Bàn điều khiển
-                        </button>
+                    <div class="px-space-md py-space-sm bg-surface-container-low/60 flex items-center gap-space-sm">
+                        <div class="flex items-center gap-space-xs ml-auto">
+                            <button onclick="openEditHomestay(this)" class="flex items-center gap-1 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md shadow-sm" type="button" title="Chỉnh sửa thông tin">
+                                <span class="material-symbols-outlined text-[18px] text-outline">edit</span>
+                                <span>Chỉnh sửa</span>
+                            </button>
+                            <button onclick="openDeleteModal(this)" class="flex items-center justify-center p-2 rounded-lg bg-error-container/40 text-error hover:bg-error-container transition-colors shadow-sm" type="button" title="Xóa cơ sở">
+                                <span class="material-symbols-outlined text-[18px]">delete</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -196,9 +199,9 @@
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn989bLjKGcMFRrMwKVMEQIMt3iLTFEKp7K4MYSMuQWu-sZNINyztXkYkSd63awFjRtTyIOJn86aCOtskgyUhAjTpKXUcoTK6VyTSg8PKYq8Z2N0mQpxB40iIs1K5812ADHq9KrbCoiMQGZUzbi8NOEFAkHmN7e67janEICbRUaJwXj_xxqvIzUqjf8WTkfQP5m30lFo400yhUWSp4CkYU8LtTA5AvggM4xoKmL00za8i5AHz9Swc" alt="Mộc Retreat Pù Luông">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                             <div class="absolute top-space-sm left-space-sm right-space-sm flex items-center justify-between">
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm shadow-sm backdrop-blur-sm">
-                                        <span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span> Đang hoạt động
-                                    </span>
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm shadow-sm backdrop-blur-sm">
+                                    <span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span> Đang hoạt động
+                                </span>
                             </div>
                             <div class="absolute bottom-space-sm left-space-sm right-space-sm text-on-primary">
                                 <h2 class="font-headline-lg text-headline-lg text-white font-bold leading-tight drop-shadow-sm">Mộc Retreat Pù Luông</h2>
@@ -219,6 +222,15 @@
                         <button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-lowest text-primary-container font-label-md text-label-md hover:bg-surface-container-high transition-colors shadow-sm" type="button">
                             <span class="material-symbols-outlined text-[18px]">sync_alt</span> Chuyển sang cơ sở này
                         </button>
+                        <div class="flex items-center gap-space-xs">
+                            <button onclick="openEditHomestay(this)" class="flex items-center gap-1 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md shadow-sm" type="button" title="Chỉnh sửa thông tin">
+                                <span class="material-symbols-outlined text-[18px] text-outline">edit</span>
+                                <span>Chỉnh sửa</span>
+                            </button>
+                            <button onclick="openDeleteModal(this)" class="flex items-center justify-center p-2 rounded-lg bg-error-container/40 text-error hover:bg-error-container transition-colors shadow-sm" type="button" title="Xóa cơ sở">
+                                <span class="material-symbols-outlined text-[18px]">delete</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -229,9 +241,9 @@
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDERh_gPlOt5_9heNTjgHPPaOckJ6ze0300GjAY1eXRwuAvnGBI85cEpscqL3hrk1KQUXbvchYGtxpt4YqKDdOenfYbw8-R9LtdUq2nPYBCGy1OKB3LbJzP2QDfGWkgEgzPaAt8kfWSYCeWjmTwoF-JNElxTBtZvqH3eL8Da3QU-mXOO0wtTt5jhBqeGhA4xQkoepUUYG2-CW9gcntgu7YbBehCqMaPEGZeSYDQXSrLqvT_luFruAU" alt="Bản Mộc Sapa Ecolodge">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20"></div>
                             <div class="absolute top-space-sm left-space-sm right-space-sm flex items-center justify-between">
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm shadow-sm backdrop-blur-sm font-semibold">
-                                        <span class="material-symbols-outlined text-[14px] text-tertiary-container">construction</span> Đang nâng cấp mùa đông
-                                    </span>
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm shadow-sm backdrop-blur-sm font-semibold">
+                                    <span class="material-symbols-outlined text-[14px] text-tertiary-container">construction</span> Đang nâng cấp mùa đông
+                                </span>
                             </div>
                             <div class="absolute bottom-space-sm left-space-sm right-space-sm text-on-primary">
                                 <h2 class="font-headline-lg text-headline-lg text-white font-bold leading-tight drop-shadow-sm">Bản Mộc Sapa Ecolodge</h2>
@@ -252,6 +264,15 @@
                         <button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors shadow-sm" type="button">
                             <span class="material-symbols-outlined text-[18px]">build</span> Quản lý tiến độ nâng cấp
                         </button>
+                        <div class="flex items-center gap-space-xs">
+                            <button onclick="openEditHomestay(this)" class="flex items-center gap-1 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md shadow-sm" type="button" title="Chỉnh sửa thông tin">
+                                <span class="material-symbols-outlined text-[18px] text-outline">edit</span>
+                                <span>Chỉnh sửa</span>
+                            </button>
+                            <button onclick="openDeleteModal(this)" class="flex items-center justify-center p-2 rounded-lg bg-error-container/40 text-error hover:bg-error-container transition-colors shadow-sm" type="button" title="Xóa cơ sở">
+                                <span class="material-symbols-outlined text-[18px]">delete</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -262,9 +283,9 @@
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_egshJIKTXnjUPIqqRx6ADSxcVFL-LoCf8ElKI3eAFRLYoNEnEsLNhUiDhYfBxCe2GLIDX5VndszRBOhvMJO4URv5hrpPpVMp6pyoZviTSCpG9b8DxXLgICoJ13KygZ6-JViV1PIRjpLfM8Zf_-wAYMVNSBin0JQREbZzLQDGAPpWH5IEpqqLYT8NQfLi58Fu4S4s-442vGBhFE97dIfGeZ8KVH1aOqKYXpb9HwOul9ZG49gAAwU" alt="Nhà Bên Suối Mộc Châu">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
                             <div class="absolute top-space-sm left-space-sm right-space-sm flex items-center justify-between">
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm shadow-sm backdrop-blur-sm font-semibold">
-                                        <span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span> Chờ sàn phê duyệt hồ sơ
-                                    </span>
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm shadow-sm backdrop-blur-sm font-semibold">
+                                    <span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span> Chờ sàn phê duyệt hồ sơ
+                                </span>
                             </div>
                             <div class="absolute bottom-space-sm left-space-sm right-space-sm text-on-primary">
                                 <h2 class="font-headline-lg text-headline-lg text-white font-bold leading-tight drop-shadow-sm">Nhà Bên Suối Mộc Châu</h2>
@@ -276,9 +297,9 @@
                         <div class="p-space-md">
                             <div class="bg-surface-container-low p-space-sm rounded-lg mb-space-md">
                                 <div class="flex items-center justify-between mb-1.5">
-                                        <span class="font-label-sm text-label-sm text-on-surface font-semibold flex items-center gap-1">
-                                            <span class="material-symbols-outlined text-[15px] text-secondary">verified_user</span> Xác thực hồ sơ pháp lý du lịch
-                                        </span>
+                                    <span class="font-label-sm text-label-sm text-on-surface font-semibold flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[15px] text-secondary">verified_user</span> Xác thực hồ sơ pháp lý du lịch
+                                    </span>
                                     <span class="font-label-sm text-label-sm text-secondary font-bold">Bước 3/4 (75%)</span>
                                 </div>
                                 <div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
@@ -291,30 +312,18 @@
                         <button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors shadow-sm" type="button">
                             <span class="material-symbols-outlined text-[18px]">edit_document</span> Bổ sung hồ sơ
                         </button>
+                        <div class="flex items-center gap-space-xs">
+                            <button onclick="openEditHomestay(this)" class="flex items-center gap-1 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md shadow-sm" type="button" title="Chỉnh sửa thông tin">
+                                <span class="material-symbols-outlined text-[18px] text-outline">edit</span>
+                                <span>Chỉnh sửa</span>
+                            </button>
+                            <button onclick="openDeleteModal(this)" class="flex items-center justify-center p-2 rounded-lg bg-error-container/40 text-error hover:bg-error-container transition-colors shadow-sm" type="button" title="Xóa cơ sở">
+                                <span class="material-symbols-outlined text-[18px]">delete</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Special Expansion Banner -->
-<!--            <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-primary-container via-primary to-primary-container p-space-lg text-on-primary mb-space-xl shadow-md" style="background: linear-gradient(135deg, rgb(8, 41, 30) 0%, rgb(14, 61, 46) 60%, rgb(17, 94, 67) 100%);">-->
-<!--                <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg">-->
-<!--                    <div class="max-w-2xl">-->
-<!--                        <div class="inline-flex items-center gap-1.5 bg-secondary-container text-on-secondary-container px-2.5 py-0.5 rounded-full font-label-sm text-label-sm mb-space-sm font-semibold">-->
-<!--                            <span class="material-symbols-outlined text-[15px]">stars</span> Chương trình tăng trưởng chuỗi Homestay 2024-->
-<!--                        </div>-->
-<!--                        <h3 class="font-headline-lg text-headline-lg text-white font-bold">Mở rộng thêm cơ sở Homestay thứ 5 của bạn?</h3>-->
-<!--                        <p class="font-body-md text-body-md text-on-primary-container mt-1">-->
-<!--                            Gia tăng tổng doanh thu và chia sẻ tệp khách hàng quen thuộc. Nhận ngay <strong>Gói tài trợ Đẩy Top Tìm Kiếm 30 ngày</strong> và hỗ trợ chụp ảnh flycam chuyên nghiệp cho cơ sở mới tiếp theo.-->
-<!--                        </p>-->
-<!--                    </div>-->
-<!--                    <div class="flex flex-wrap items-center gap-space-sm shrink-0">-->
-<!--                        <button class="px-space-lg py-3 rounded-lg bg-white text-primary-container font-label-lg text-label-lg hover:bg-surface-container-lowest/90 transition-all shadow-md flex items-center gap-space-xs font-bold" style="color: rgb(8, 41, 30);" type="button">-->
-<!--                            <span class="material-symbols-outlined text-[20px]">add_location_alt</span>-->
-<!--                            <span>Khởi tạo cơ sở ngay</span>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
 
             <!-- Operational Governance Table -->
             <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
@@ -347,7 +356,7 @@
                             <td class="py-space-md px-space-md">Hà Thị Mai (0984.***.219)</td>
                             <td class="py-space-md px-space-md"><span class="px-2 py-0.5 rounded bg-surface-container font-label-sm">3 Nhân sự</span></td>
                             <td class="py-space-md px-space-md text-secondary font-label-sm">Quyền xem &amp; thu tiền mặt</td>
-                            <td class="py-space-md px-space-md text-right"><button class="px-2.5 py-1 rounded bg-surface-container-low text-primary-container font-label-sm font-semibold" type="button">Đổi quyền</button></td>
+                            <td class="py-space-md px-space-md text-right"><button onclick="openModal('permissionModal')" class="px-2.5 py-1 rounded bg-surface-container-low text-primary-container font-label-sm font-semibold" type="button">Đổi quyền</button></td>
                         </tr>
                         </tbody>
                     </table>
@@ -357,115 +366,192 @@
         </div>
     </main>
 </div>
-<!-- ================= HỆ THỐNG POPUP TƯƠNG TÁC ================= -->
 
-<!-- 1. Popup Thêm Homestay Mới / Khởi tạo cơ sở thứ 5 -->
-<div id="addHomestayModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-    <div class="bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]">
-        <div class="p-space-md bg-primary text-on-primary flex items-center justify-between" style="background-color: rgb(8, 41, 30);">
-            <div class="flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-[22px]">add_business</span>
-                <h3 class="font-headline-sm text-headline-sm text-on-primary">Khởi tạo cơ sở Homestay mới</h3>
+<!-- ================= HỆ THỐNG POPUP MODAL ================= -->
+
+<!-- 1. Popup Thêm Homestay Mới -->
+<div id="addHomestayModal" class="mission-modal" hidden>
+    <div class="mission-modal-content" role="dialog" aria-modal="true">
+        <div class="mission-modal-header">
+            <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Khởi tạo cơ sở Homestay mới</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Thêm cơ sở mới vào hệ sinh thái chuỗi nghỉ dưỡng.</p>
             </div>
-            <button onclick="closeModal('addHomestayModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-container text-on-primary transition-colors"><span class="material-symbols-outlined text-[20px]">close</span></button>
+            <button type="button" class="mission-modal-close" onclick="closeModal('addHomestayModal')"><span class="material-symbols-outlined">close</span></button>
         </div>
-        <div class="p-space-lg overflow-y-auto flex flex-col gap-space-md">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-                <div class="flex flex-col gap-1">
-                    <label class="font-label-md text-label-md text-on-surface">Tên cơ sở Homestay</label>
-                    <input type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant focus:outline-none focus:ring-1 focus:ring-secondary text-body-md" placeholder="Ví dụ: Mộc Bản Lác, Sapa Hill...">
+        <form class="mission-form" onsubmit="event.preventDefault(); alert('Đã khởi tạo cơ sở mới thành công!'); closeModal('addHomestayModal');">
+            <div class="mission-form-grid">
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Tên cơ sở Homestay</label>
+                    <input class="mission-form-input" type="text" required placeholder="Ví dụ: Mộc Bản Lác...">
                 </div>
-                <div class="flex flex-col gap-1">
-                    <label class="font-label-md text-label-md text-on-surface">Khu vực / Tỉnh thành</label>
-                    <select class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant focus:outline-none focus:ring-1 focus:ring-secondary text-body-md cursor-pointer">
+                <div class="mission-form-group">
+                    <label class="mission-form-label">Khu vực / Tỉnh thành</label>
+                    <select class="mission-form-select">
                         <option>Hòa Bình (Mai Châu)</option>
                         <option>Thanh Hóa (Pù Luông)</option>
                         <option>Lào Cai (Sa Pa)</option>
                         <option>Sơn La (Mộc Châu)</option>
-                        <option>Hà Giang</option>
                     </select>
                 </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-                <div class="flex flex-col gap-1">
-                    <label class="font-label-md text-label-md text-on-surface">Quy mô phòng ban đầu</label>
-                    <input type="number" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant focus:outline-none focus:ring-1 focus:ring-secondary text-body-md" value="8">
-                </div>
-                <div class="flex flex-col gap-1">
-                    <label class="font-label-md text-label-md text-on-surface">Người quản lý phụ trách</label>
-                    <input type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant focus:outline-none focus:ring-1 focus:ring-secondary text-body-md" placeholder="Họ tên quản lý cơ sở...">
+                <div class="mission-form-group">
+                    <label class="mission-form-label">Quy mô phòng ban đầu</label>
+                    <input class="mission-form-input" type="number" min="1" value="8" required>
                 </div>
             </div>
-            <div class="flex flex-col gap-1">
-                <label class="font-label-md text-label-md text-on-surface">Địa chỉ chi tiết</label>
-                <input type="text" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant focus:outline-none focus:ring-1 focus:ring-secondary text-body-md" placeholder="Số nhà, tên bản, xã, huyện...">
+            <div class="mission-modal-footer">
+                <button type="button" class="mission-btn mission-btn-cancel" onclick="closeModal('addHomestayModal')">Hủy</button>
+                <button type="submit" class="mission-btn mission-btn-save">Xác nhận tạo cơ sở</button>
             </div>
-        </div>
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container">
-            <button onclick="closeModal('addHomestayModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy</button>
-            <button onclick="alert('Đã khởi tạo cơ sở mới và gửi hồ sơ kiểm định thành công!'); closeModal('addHomestayModal');" class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-label-md transition-colors" style="background-color: rgb(8, 41, 30);" type="button">Xác nhận tạo cơ sở</button>
-        </div>
+        </form>
     </div>
 </div>
 
 <!-- 2. Popup Báo cáo tổng hợp chuỗi -->
-<div id="reportModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-    <div class="bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-xl overflow-hidden flex flex-col">
-        <div class="p-space-md bg-surface-container border-b border-surface-container-high flex items-center justify-between">
-            <div class="flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-[20px] text-primary">query_stats</span>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface">Báo cáo tổng hợp hiệu suất chuỗi</h3>
+<div id="reportModal" class="mission-modal" hidden>
+    <div class="mission-modal-content" role="dialog" aria-modal="true">
+        <div class="mission-modal-header">
+            <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Báo cáo hiệu suất chuỗi</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Tổng hợp số liệu kinh doanh toàn hệ thống.</p>
             </div>
-            <button onclick="closeModal('reportModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high text-outline transition-colors"><span class="material-symbols-outlined text-[20px]">close</span></button>
+            <button type="button" class="mission-modal-close" onclick="closeModal('reportModal')"><span class="material-symbols-outlined">close</span></button>
         </div>
-        <div class="p-space-lg flex flex-col gap-space-md">
-            <div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-2">
+        <div class="mission-form">
+            <div class="mission-current flex-col items-start gap-2 bg-surface-container-low p-4 rounded-lg">
                 <span class="font-headline-sm text-primary">Tháng 09/2026: Tăng trưởng mạnh mẽ</span>
-                <p class="font-body-sm text-on-surface-variant">Tổng doanh thu toàn chuỗi đạt <strong>313.7.000.000₫</strong>, tăng 22.4% so với tháng trước nhờ mùa lúa chín Tây Bắc.</p>
-                <div class="flex justify-between text-label-md pt-2 border-t border-surface-container-high">
-                    <span>Mộc Retreat Pù Luông: 185.2M₫</span>
-                    <span class="text-secondary font-bold">59% tổng chuỗi</span>
-                </div>
+                <p class="font-body-sm text-on-surface-variant">Tổng doanh thu toàn chuỗi đạt <strong>313.700.000₫</strong>, tăng 22.4% so với tháng trước nhờ mùa lúa chín.</p>
             </div>
         </div>
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container">
-            <button onclick="alert('Đã tải xuống file báo cáo PDF/Excel!'); closeModal('reportModal');" class="px-space-md py-2 rounded-lg bg-secondary text-on-secondary font-label-md transition-colors" type="button">Tải xuống báo cáo chi tiết</button>
-            <button onclick="closeModal('reportModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
+        <div class="mission-modal-footer">
+            <button type="button" class="mission-btn mission-btn-cancel" onclick="closeModal('reportModal')">Đóng</button>
+            <button type="button" class="mission-btn mission-btn-save" onclick="alert('Đã tải xuống file báo cáo!'); closeModal('reportModal');">Tải xuống báo cáo</button>
         </div>
     </div>
 </div>
 
-<!-- 3. Popup Phân quyền / Thiết lập nhân sự -->
-<div id="permissionModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-    <div class="bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-md overflow-hidden flex flex-col">
-        <div class="p-space-md bg-surface-container border-b border-surface-container-high flex items-center justify-between">
-            <div class="flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-[20px] text-primary">admin_panel_settings</span>
-                <h3 class="font-headline-sm text-headline-sm text-on-surface">Thiết lập quyền nhân sự</h3>
+<!-- 3. Popup Thiết lập quyền nhân sự -->
+<div id="permissionModal" class="mission-modal" hidden>
+    <div class="mission-modal-content" role="dialog" aria-modal="true">
+        <div class="mission-modal-header">
+            <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Thiết lập quyền nhân sự</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Phân quyền kiểm soát tài chính và vận hành.</p>
             </div>
-            <button onclick="closeModal('permissionModal')" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high text-outline transition-colors"><span class="material-symbols-outlined text-[20px]">close</span></button>
+            <button type="button" class="mission-modal-close" onclick="closeModal('permissionModal')"><span class="material-symbols-outlined">close</span></button>
         </div>
-        <div class="p-space-lg flex flex-col gap-space-md">
-            <div class="flex flex-col gap-1">
-                <label class="font-label-md text-label-md text-on-surface">Chọn cấp độ phân quyền</label>
-                <select class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant focus:outline-none focus:ring-1 focus:ring-secondary text-body-md cursor-pointer">
+        <form class="mission-form" onsubmit="event.preventDefault(); alert('Đã cập nhật phân quyền thành công!'); closeModal('permissionModal');">
+            <div class="mission-form-group full">
+                <label class="mission-form-label">Chọn cấp độ phân quyền mới</label>
+                <select class="mission-form-select">
                     <option>Toàn quyền vận hành cơ sở</option>
-                    <option>Quyền xem & thu tiền mặt</option>
+                    <option selected>Quyền xem & thu tiền mặt</option>
                     <option>Chỉ tiếp tân & check-in phòng</option>
-                    <option>Khóa chức năng giao dịch</option>
                 </select>
             </div>
-            <div class="flex flex-col gap-1">
-                <label class="font-label-md text-label-md text-on-surface">Ghi chú phân quyền</label>
-                <textarea rows="2" class="px-space-sm py-2 rounded-lg bg-surface-container-low border border-outline-variant focus:outline-none focus:ring-1 focus:ring-secondary text-body-md" placeholder="Nhập lý do thay đổi quyền..."></textarea>
+            <div class="mission-modal-footer">
+                <button type="button" class="mission-btn mission-btn-cancel" onclick="closeModal('permissionModal')">Hủy</button>
+                <button type="submit" class="mission-btn mission-btn-save">Lưu thay đổi</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 4. Popup Chỉnh sửa thông tin Homestay -->
+<div id="editHomestayModal" class="mission-modal" hidden>
+    <div class="mission-modal-content" role="dialog" aria-modal="true" style="max-height:90vh;overflow-y:auto;">
+        <div class="mission-modal-header">
+            <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Chỉnh sửa thông tin cơ sở</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Cập nhật thông tin, hình ảnh và trạng thái hoạt động.</p>
+            </div>
+            <button type="button" class="mission-modal-close" onclick="closeModal('editHomestayModal')"><span class="material-symbols-outlined">close</span></button>
+        </div>
+
+        <form id="editHomestayForm" class="mission-form" onsubmit="submitEditHomestay(event)">
+            <div class="mission-form-grid">
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Tên cơ sở Homestay</label>
+                    <input id="editHomestayName" class="mission-form-input" type="text" required>
+                </div>
+
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Địa chỉ</label>
+                    <input id="editHomestayAddress" class="mission-form-input" type="text" required
+                           placeholder="Thôn/bản, xã, huyện, tỉnh">
+                </div>
+
+                <!-- Hình ảnh -->
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Hình ảnh cơ sở</label>
+                    <input id="editHomestayImages" type="file" accept="image/*" multiple
+                           class="mission-form-input" onchange="handleEditImages(this)">
+                    <div id="editImagePreview" class="grid grid-cols-4 gap-2 mt-2"></div>
+                </div>
+
+                <!-- Khóa homestay -->
+                <div class="mission-form-group full">
+                    <label class="flex items-center gap-2 cursor-pointer font-label-lg text-label-lg text-error">
+                        <input id="editLockToggle" type="checkbox" onchange="toggleLockReason(this.checked)">
+                        <span class="material-symbols-outlined text-[18px]">lock</span>
+                        Khóa homestay (ngừng nhận đặt phòng)
+                    </label>
+                </div>
+
+                <div id="lockReasonBox" class="mission-form-group full" hidden>
+                    <div class="bg-error-container/40 rounded-lg p-3 flex flex-col gap-2">
+                        <label class="mission-form-label">Lý do khóa <span class="text-error">*</span></label>
+                        <select id="editLockReasonType" class="mission-form-select">
+                            <option value="">-- Chọn lý do --</option>
+                            <option>Bảo trì / nâng cấp cơ sở</option>
+                            <option>Tạm ngưng kinh doanh theo mùa</option>
+                            <option>Thiếu hoặc hết hạn hồ sơ pháp lý</option>
+                            <option>Vi phạm quy định của sàn</option>
+                            <option>Khác</option>
+                        </select>
+                        <textarea id="editLockReasonNote" class="mission-form-input" rows="3"
+                                  placeholder="Ghi rõ chi tiết lý do khóa (tối thiểu 10 ký tự)..."></textarea>
+                        <label class="mission-form-label">Khóa đến ngày (không bắt buộc)</label>
+                        <input id="editLockUntil" class="mission-form-input" type="date">
+                        <p class="font-label-sm text-label-sm text-on-surface-variant">
+                            Lưu ý: khi khóa, cơ sở sẽ không hiển thị và không nhận booking mới. Các đơn đã đặt cần xử lý riêng.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mission-modal-footer">
+                <button type="button" class="mission-btn mission-btn-cancel" onclick="closeModal('editHomestayModal')">Hủy</button>
+                <button type="submit" class="mission-btn mission-btn-save">Lưu thay đổi</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 5. Popup Xác nhận Xóa Cơ Sở -->
+<div id="deleteHomestayModal" class="mission-modal" hidden>
+    <div class="mission-modal-content" role="dialog" aria-modal="true">
+        <div class="mission-modal-header">
+            <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Xác nhận xóa cơ sở</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Gỡ cơ sở khỏi chuỗi quản lý.</p>
+            </div>
+            <button type="button" class="mission-modal-close" onclick="closeModal('deleteHomestayModal')"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div class="mission-form">
+            <div class="mission-current">
+                <span class="material-symbols-outlined text-[20px] text-error">warning</span>
+                <span>Bạn sắp xóa cơ sở: <strong id="deleteHomestayName" class="text-error">cơ sở này</strong></span>
             </div>
         </div>
-        <div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm border-t border-surface-container">
-            <button onclick="closeModal('permissionModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Hủy</button>
-            <button onclick="alert('Đã cập nhật phân quyền nhân sự thành công!'); closeModal('permissionModal');" class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-label-md transition-colors" style="background-color: rgb(8, 41, 30);" type="button">Lưu thay đổi</button>
+        <div class="mission-modal-footer">
+            <button type="button" class="mission-btn mission-btn-cancel" onclick="closeModal('deleteHomestayModal')">Hủy bỏ</button>
+            <button type="button" class="mission-btn mission-btn-danger" onclick="executeDeleteHomestay()">Đồng ý xóa</button>
         </div>
     </div>
 </div>
 
+<!-- Nạp file JavaScript quản lý riêng -->
+<script src="../js/manageHomestayJs.js"></script>
 </body>
 </html>
