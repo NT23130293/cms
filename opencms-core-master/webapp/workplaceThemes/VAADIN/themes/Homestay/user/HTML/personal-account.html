@@ -19,6 +19,8 @@
   <!-- Header & Footer Stylesheets -->
   <link href="../CSS/header.css" rel="stylesheet">
   <link href="../CSS/footer.css" rel="stylesheet">
+  <link href="../CSS/homepage.css" rel="stylesheet">
+  <link href="../CSS/promotions.css" rel="stylesheet">
   <!-- Custom Stylesheet -->
   <link href="../CSS/personal-account.css" rel="stylesheet">
 </head>
@@ -27,7 +29,7 @@
   <!-- Header Placeholder -->
   <div id="header-placeholder"></div>
 
-  <main class="container-xl py-4 py-md-5">
+  <main class="container py-4 py-md-5">
 
     <!-- Main Layout (2 Columns: Sidebar 25-27%, Content 73-75%) -->
     <div class="row g-4">
@@ -48,15 +50,9 @@
               <span class="text-truncate">Thông tin cá nhân</span>
             </button>
 
-            <!-- 2. Đánh giá Homestay -->
-            <button class="account-nav-item" data-tab="tab-reviews">
-              <i class="bi bi-star-fill text-warning"></i>
-              <span class="text-truncate">Đánh giá Homestay</span>
-            </button>
-
-            <!-- 3. Sản phẩm bạn đã xem -->
+            <!-- 2. Sản phẩm bạn đã xem -->
             <button class="account-nav-item" data-tab="tab-viewed">
-              <i class="bi bi-eye-fill"></i>
+              <i class="bi bi-eye-fill text-info"></i>
               <span class="text-truncate">Sản phẩm bạn đã xem</span>
             </button>
 
@@ -64,7 +60,7 @@
             <button class="account-nav-item" data-tab="tab-vouchers">
               <i class="bi bi-ticket-perforated-fill text-success"></i>
               <span class="text-truncate">Mã giảm giá</span>
-              <span class="voucher-badge">3</span>
+              <span class="voucher-badge">4</span>
             </button>
 
             <!-- 5. Danh sách giao dịch -->
@@ -394,108 +390,245 @@
           </div>
         </div>
 
-        <!-- TAB 2: ĐÁNH GIÁ HOMESTAY -->
-        <div id="tab-reviews" class="tab-content-panel d-none">
-          <div class="eco-card">
-            <div class="eco-card-title">
-              <span><i class="bi bi-star-fill text-warning me-2"></i>Đánh giá Homestay của bạn</span>
-              <span class="badge bg-success bg-opacity-10 text-success fs-7">2 Đánh giá</span>
-            </div>
-
-            <!-- Review List -->
-            <div class="d-flex flex-column gap-3">
-              <div class="p-3 border rounded-3 bg-light">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <div>
-                    <h6 class="fw-bold mb-0">Pù Luông Eco Garden Homestay</h6>
-                    <small class="text-muted"><i class="bi bi-geo-alt-fill text-danger me-1"></i>Bá Thước, Thanh Hóa • 12/08/2026</small>
-                  </div>
-                  <div class="text-warning">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
-                </div>
-                <p class="text-sm text-secondary mb-2">"Không gian xanh tuyệt đẹp giữa ruộng bậc thang! Chủ nhà cực kỳ mến khách, cơm lam và gà đồi rất ngon. Sẽ quay lại cùng gia đình!"</p>
-                <div class="badge bg-white text-dark border me-1"><i class="bi bi-hand-thumbs-up-fill text-primary me-1"></i>Hữu ích (12)</div>
-              </div>
-
-              <div class="p-3 border rounded-3 bg-light">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <div>
-                    <h6 class="fw-bold mb-0">Mộc Châu Bamboo Stilt House</h6>
-                    <small class="text-muted"><i class="bi bi-geo-alt-fill text-danger me-1"></i>Sơn La • 24/05/2026</small>
-                  </div>
-                  <div class="text-warning">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-half"></i>
-                  </div>
-                </div>
-                <p class="text-sm text-secondary mb-2">"Nhà sàn thoáng mát, gần đồi chè Trái Tim. Dịch vụ đốt lửa trại buổi tối rât vui và nhiều trải nghiệm văn hóa bản địa."</p>
-                <div class="badge bg-white text-dark border me-1"><i class="bi bi-hand-thumbs-up-fill text-primary me-1"></i>Hữu ích (8)</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB 3: SẢN PHẨM BẠN ĐÃ XEM -->
+        <!-- TAB 2: SẢN PHẨM BẠN ĐÃ XEM (CHUẨN THẺ HOMEPAGE) -->
         <div id="tab-viewed" class="tab-content-panel d-none">
           <div class="eco-card">
-            <div class="eco-card-title">
-              <span><i class="bi bi-eye-fill text-info me-2"></i>Homestay bạn đã xem gần đây</span>
+            <!-- Header Toolbar -->
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 pb-3 border-bottom mb-4">
+              <div>
+                <h2 class="h5 fw-bold text-dark mb-1"><i class="bi bi-eye-fill text-info me-2"></i>Homestay bạn đã xem gần đây</h2>
+                <p class="text-xs text-muted mb-0">Danh sách homestay bạn vừa xem (Thiết kế đồng bộ 100% thẻ Homestay trang chủ)</p>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-outline-danger d-inline-flex align-items-center gap-1" onclick="clearViewedHistoryModal()">
+                  <i class="bi bi-trash3"></i> Xóa toàn bộ lịch sử
+                </button>
+              </div>
             </div>
-            <div class="row g-3">
-              <div class="col-md-6 col-lg-4">
-                <div class="homestay-card">
-                  <img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=500&q=80" alt="Homestay Sa Pa">
-                  <div class="p-3">
-                    <div class="d-flex justify-content-between text-xs text-muted mb-1">
-                      <span><i class="bi bi-geo-alt text-success"></i> Sa Pa, Lào Cai</span>
-                      <span><i class="bi bi-star-fill text-warning"></i> 4.9 (120)</span>
+
+            <!-- Search inside viewed list -->
+            <div class="mb-4">
+              <div class="search-hs-box" style="max-width: 100%;">
+                <div class="search-icon-badge">
+                  <i class="bi bi-search"></i>
+                </div>
+                <input type="text" id="searchViewedInput" placeholder="Tìm kiếm trong danh sách đã xem (Topas, Han River, Đà Lạt)..." oninput="filterViewedHistory(this.value)">
+              </div>
+            </div>
+
+            <!-- Viewed Cards Grid (Grid 3 Cột Chuẩn Homestay Card Homepage) -->
+            <div class="row g-3" id="viewedGridContainer">
+              <!-- Item 1 -->
+              <div class="col-md-6 col-lg-4 viewed-item-col">
+                <div class="homestay-card h-100">
+                  <div class="card-img-wrapper">
+                    <span class="card-top-tag tag-hot"><i class="bi bi-eye me-1"></i> Vừa xem 15 phút trước</span>
+                    <button class="card-wishlist-btn active" onclick="toggleWishlist(this, 'Han River Glass House')" title="Yêu thích">
+                      <i class="bi bi-heart-fill text-danger"></i>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Han River Glass House">
+                  </div>
+                  <div class="card-body">
+                    <div class="card-location-rating">
+                      <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Đà Nẵng</span>
+                      <span class="card-rating"><i class="bi bi-star-fill text-warning"></i> 4.95 <span class="review-count">(184)</span></span>
                     </div>
-                    <h6 class="fw-bold text-dark text-truncate mb-2">Sa Pa Terraces Eco Homestay</h6>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <span class="fw-bold text-success">650.000đ <small class="text-muted fw-normal">/ đêm</small></span>
-                      <button class="btn btn-sm btn-eco-action">Đặt ngay</button>
+                    <h3 class="card-title"><a href="homestayDetail.html">Han River Glass House</a></h3>
+                    <div class="card-specs">
+                      <span><i class="bi bi-door-open"></i> 2 phòng ngủ</span>
+                      <span>•</span>
+                      <span><i class="bi bi-people"></i> 4 khách</span>
+                    </div>
+                    <div class="card-amenities-box">
+                      <span class="amenities-label">Tiện nghi nổi bật:</span>
+                      <p class="amenities-items">Bờ sông Hàn · Căn hộ kính panorama · Đặt gần đây</p>
+                    </div>
+                    <div class="card-footer-row">
+                      <div class="card-price-group">
+                        <span class="price-label">Giá từ:</span>
+                        <span class="card-price">1.150.000đ</span>
+                      </div>
+                      <a href="homestayDetail.html" class="btn-view-room">Đặt ngay</a>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4">
-                <div class="homestay-card">
-                  <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=500&q=80" alt="Homestay Mai Chau">
-                  <div class="p-3">
-                    <div class="d-flex justify-content-between text-xs text-muted mb-1">
-                      <span><i class="bi bi-geo-alt text-success"></i> Mai Châu, Hòa Bình</span>
-                      <span><i class="bi bi-star-fill text-warning"></i> 4.8 (85)</span>
+              <!-- Item 2 -->
+              <div class="col-md-6 col-lg-4 viewed-item-col">
+                <div class="homestay-card h-100">
+                  <div class="card-img-wrapper">
+                    <span class="card-top-tag tag-hot"><i class="bi bi-eye me-1"></i> Vừa xem 2 giờ trước</span>
+                    <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'The Memory Valley Villa')" title="Yêu thích">
+                      <i class="bi bi-heart"></i>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=600&q=80" alt="The Memory Valley Villa">
+                  </div>
+                  <div class="card-body">
+                    <div class="card-location-rating">
+                      <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Đà Lạt</span>
+                      <span class="card-rating"><i class="bi bi-star-fill text-warning"></i> 4.96 <span class="review-count">(340)</span></span>
                     </div>
-                    <h6 class="fw-bold text-dark text-truncate mb-2">Mai Châu Bản Lác Stilt House</h6>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <span class="fw-bold text-success">450.000đ <small class="text-muted fw-normal">/ đêm</small></span>
-                      <button class="btn btn-sm btn-eco-action">Đặt ngay</button>
+                    <h3 class="card-title"><a href="homestayDetail.html">The Memory Valley Villa</a></h3>
+                    <div class="card-specs">
+                      <span><i class="bi bi-door-open"></i> 3 phòng ngủ</span>
+                      <span>•</span>
+                      <span><i class="bi bi-people"></i> 8 khách</span>
+                    </div>
+                    <div class="card-amenities-box">
+                      <span class="amenities-label">Tiện nghi nổi bật:</span>
+                      <p class="amenities-items">Săn mây Đà Lạt · Bể bơi nước ấm · BBQ sân vườn</p>
+                    </div>
+                    <div class="card-footer-row">
+                      <div class="card-price-group">
+                        <span class="price-label">Giá từ:</span>
+                        <span class="card-price">1.450.000đ</span>
+                      </div>
+                      <a href="homestayDetail.html" class="btn-view-room">Đặt ngay</a>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4">
-                <div class="homestay-card">
-                  <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=500&q=80" alt="Homestay Ha Giang">
-                  <div class="p-3">
-                    <div class="d-flex justify-content-between text-xs text-muted mb-1">
-                      <span><i class="bi bi-geo-alt text-success"></i> Đồng Văn, Hà Giang</span>
-                      <span><i class="bi bi-star-fill text-warning"></i> 5.0 (64)</span>
+              <!-- Item 3 -->
+              <div class="col-md-6 col-lg-4 viewed-item-col">
+                <div class="homestay-card h-100">
+                  <div class="card-img-wrapper">
+                    <span class="card-top-tag tag-hot"><i class="bi bi-eye me-1"></i> Xem hôm qua</span>
+                    <button class="card-wishlist-btn active" onclick="toggleWishlist(this, 'Topas Ecolodge Sapa')" title="Yêu thích">
+                      <i class="bi bi-heart-fill text-danger"></i>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Topas Ecolodge Sapa">
+                  </div>
+                  <div class="card-body">
+                    <div class="card-location-rating">
+                      <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Sapa</span>
+                      <span class="card-rating"><i class="bi bi-star-fill text-warning"></i> 4.98 <span class="review-count">(310)</span></span>
                     </div>
-                    <h6 class="fw-bold text-dark text-truncate mb-2">Hà Giang Karst Plateau Homestay</h6>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <span class="fw-bold text-success">550.000đ <small class="text-muted fw-normal">/ đêm</small></span>
-                      <button class="btn btn-sm btn-eco-action">Đặt ngay</button>
+                    <h3 class="card-title"><a href="homestayDetail.html">Topas Ecolodge Sapa</a></h3>
+                    <div class="card-specs">
+                      <span><i class="bi bi-door-open"></i> Bungalow</span>
+                      <span>•</span>
+                      <span><i class="bi bi-people"></i> 2 khách</span>
+                    </div>
+                    <div class="card-amenities-box">
+                      <span class="amenities-label">Tiện nghi nổi bật:</span>
+                      <p class="amenities-items">Bể bơi vô cực nước ấm · Mường Hoa · Đưa đón Limousine</p>
+                    </div>
+                    <div class="card-footer-row">
+                      <div class="card-price-group">
+                        <span class="price-label">Giá từ:</span>
+                        <span class="card-price">4.590.000đ</span>
+                      </div>
+                      <a href="homestayDetail.html" class="btn-view-room">Đặt ngay</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="col-md-6 col-lg-4 viewed-item-col">
+                <div class="homestay-card h-100">
+                  <div class="card-img-wrapper">
+                    <span class="card-top-tag tag-hot"><i class="bi bi-eye me-1"></i> Xem 2 ngày trước</span>
+                    <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Tràng An Valley Retreat')" title="Yêu thích">
+                      <i class="bi bi-heart"></i>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80" alt="Tràng An Valley Retreat">
+                  </div>
+                  <div class="card-body">
+                    <div class="card-location-rating">
+                      <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Ninh Bình</span>
+                      <span class="card-rating"><i class="bi bi-star-fill text-warning"></i> 4.96 <span class="review-count">(175)</span></span>
+                    </div>
+                    <h3 class="card-title"><a href="homestayDetail.html">Tràng An Valley Retreat</a></h3>
+                    <div class="card-specs">
+                      <span><i class="bi bi-door-open"></i> Bungalow núi</span>
+                      <span>•</span>
+                      <span><i class="bi bi-people"></i> 2 khách</span>
+                    </div>
+                    <div class="card-amenities-box">
+                      <span class="amenities-label">Tiện nghi nổi bật:</span>
+                      <p class="amenities-items">View núi đá vôi · Khinh khí cầu · Xe đạp dạo đầm sen</p>
+                    </div>
+                    <div class="card-footer-row">
+                      <div class="card-price-group">
+                        <span class="price-label">Giá từ:</span>
+                        <span class="card-price">1.050.000đ</span>
+                      </div>
+                      <a href="homestayDetail.html" class="btn-view-room">Đặt ngay</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="col-md-6 col-lg-4 viewed-item-col">
+                <div class="homestay-card h-100">
+                  <div class="card-img-wrapper">
+                    <span class="card-top-tag tag-hot"><i class="bi bi-eye me-1"></i> Xem 3 ngày trước</span>
+                    <button class="card-wishlist-btn" onclick="toggleWishlist(this, 'Nhà Rường Cổ Cố Đô')" title="Yêu thích">
+                      <i class="bi bi-heart"></i>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=600&q=80" alt="Nhà Rường Cổ Cố Đô">
+                  </div>
+                  <div class="card-body">
+                    <div class="card-location-rating">
+                      <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Huế</span>
+                      <span class="card-rating"><i class="bi bi-star-fill text-warning"></i> 4.94 <span class="review-count">(167)</span></span>
+                    </div>
+                    <h3 class="card-title"><a href="homestayDetail.html">Nhà Rường Cổ Cố Đô</a></h3>
+                    <div class="card-specs">
+                      <span><i class="bi bi-door-open"></i> Nhà Rường</span>
+                      <span>•</span>
+                      <span><i class="bi bi-people"></i> 4 khách</span>
+                    </div>
+                    <div class="card-amenities-box">
+                      <span class="amenities-label">Tiện nghi nổi bật:</span>
+                      <p class="amenities-items">Cách Đại Nội 350m · Thưởng trà sen · Thử áo dài miễn phí</p>
+                    </div>
+                    <div class="card-footer-row">
+                      <div class="card-price-group">
+                        <span class="price-label">Giá từ:</span>
+                        <span class="card-price">890.000đ</span>
+                      </div>
+                      <a href="homestayDetail.html" class="btn-view-room">Đặt ngay</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 6 -->
+              <div class="col-md-6 col-lg-4 viewed-item-col">
+                <div class="homestay-card h-100">
+                  <div class="card-img-wrapper">
+                    <span class="card-top-tag tag-hot"><i class="bi bi-eye me-1"></i> Xem 5 ngày trước</span>
+                    <button class="card-wishlist-btn active" onclick="toggleWishlist(this, 'Sơn Trà Sunset Villa')" title="Yêu thích">
+                      <i class="bi bi-heart-fill text-danger"></i>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" alt="Sơn Trà Sunset Villa">
+                  </div>
+                  <div class="card-body">
+                    <div class="card-location-rating">
+                      <span class="card-location"><i class="bi bi-geo-alt-fill text-success"></i> Đà Nẵng</span>
+                      <span class="card-rating"><i class="bi bi-star-fill text-warning"></i> 4.94 <span class="review-count">(215)</span></span>
+                    </div>
+                    <h3 class="card-title"><a href="homestayDetail.html">Sơn Trà Sunset Villa</a></h3>
+                    <div class="card-specs">
+                      <span><i class="bi bi-door-open"></i> Villa 4 phòng</span>
+                      <span>•</span>
+                      <span><i class="bi bi-people"></i> 10 khách</span>
+                    </div>
+                    <div class="card-amenities-box">
+                      <span class="amenities-label">Tiện nghi nổi bật:</span>
+                      <p class="amenities-items">Bể bơi vô cực view biển · Nướng BBQ sân vườn · VIP</p>
+                    </div>
+                    <div class="card-footer-row">
+                      <div class="card-price-group">
+                        <span class="price-label">Giá từ:</span>
+                        <span class="card-price">2.750.000đ</span>
+                      </div>
+                      <a href="homestayDetail.html" class="btn-view-room">Đặt ngay</a>
                     </div>
                   </div>
                 </div>
@@ -504,56 +637,188 @@
           </div>
         </div>
 
-        <!-- TAB 4: MÃ GIẢM GIÁ -->
+        <!-- TAB 3: MÃ GIẢM GIÁ (CHUẨN THẺ VOUCHER TRANG KHUYẾN MÃI) -->
         <div id="tab-vouchers" class="tab-content-panel d-none">
+          <!-- Hero Stats Banner -->
+          <div class="voucher-hero-banner mb-4">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+              <div>
+                <span class="voucher-hero-badge mb-2 d-inline-block"><i class="bi bi-wallet2 me-1"></i> Ví voucher cá nhân</span>
+                <h2 class="h4 fw-bold text-white mb-1">Mã Giảm Giá Đã Lưu Trong Ví</h2>
+                <p class="text-xs text-light mb-0">Bạn có 4 voucher khả dụng (Thiết kế đồng bộ 100% mẫu thẻ trang Khuyến mãi)</p>
+              </div>
+              <a href="promotions.html" class="btn-discover">
+                <i class="bi bi-grid-fill me-1"></i> Khám phá thêm kho mã
+              </a>
+            </div>
+          </div>
+
+          <!-- Redeem Input Gold Box -->
+          <div class="eco-card mb-4">
+            <h6 class="fw-bold text-dark mb-2"><i class="bi bi-ticket-perforated-fill text-warning me-2"></i>Kích hoạt mã khuyến mãi mới</h6>
+            <div class="promo-redeem-gold-box" style="max-width: 100%;">
+              <i class="bi bi-ticket-perforated-fill text-success"></i>
+              <input type="text" id="acctRedeemInput" placeholder="Nhập mã ưu đãi (Ví dụ: HANRIVER200, TOPASHOT500)...">
+              <button class="btn-redeem-gold" onclick="acctSubmitRedeemCode()">Kích hoạt ngay</button>
+            </div>
+          </div>
+
+          <!-- Voucher Cards List (Tập hợp các thẻ nearby-card compact-card như trang Khuyến Mãi) -->
           <div class="eco-card">
             <div class="eco-card-title">
-              <span><i class="bi bi-ticket-perforated-fill text-success me-2"></i>Kho Mã giảm giá của bạn</span>
-              <span class="badge bg-success text-white">3 Khuyến mãi</span>
+              <span><i class="bi bi-bookmark-star-fill text-success me-2"></i>Danh sách mã trong ví của bạn</span>
+              <span class="badge bg-success text-white">4 Mã khả dụng</span>
             </div>
 
-            <div class="row g-3">
-              <div class="col-md-6">
-                <div class="voucher-card">
-                  <div class="d-flex justify-content-between align-items-start mb-2">
-                    <span class="badge bg-success text-white">TÂY BẮC ECO</span>
-                    <small class="text-muted">HSD: 30/10/2026</small>
+            <div class="row g-3" id="acctVouchersContainer">
+              <!-- Item 1 (Đồng bộ 100% Thẻ Voucher Trang Khuyến Mãi) -->
+              <div class="col-md-6 col-lg-4">
+                <div class="nearby-card compact-card h-100">
+                  <div class="nearby-img-box compact-img-box">
+                    <span class="nearby-tag tag-red">🔥 HOT NHẤT</span>
+                    <button class="nearby-heart-btn active text-danger" onclick="toggleSaveFav(this)" title="Lưu voucher">
+                      <i class="bi bi-heart-fill text-danger"></i>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Han River Glass House">
                   </div>
-                  <h6 class="fw-bold text-dark mb-1">Giảm 50.000đ cho đơn đặt Homestay Tây Bắc</h6>
-                  <p class="text-xs text-muted mb-3">Áp dụng cho đơn từ 500.000đ khi đặt phòng tại Hòa Bình, Sơn La, Hà Giang.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <code class="fw-bold text-success bg-white px-2 py-1 rounded border">HOMESTAY50K</code>
-                    <button class="btn btn-sm btn-outline-success btn-copy-code" data-code="HOMESTAY50K">Sao chép mã</button>
+
+                  <div class="nearby-body compact-body">
+                    <div class="nearby-meta-row">
+                      <span class="nearby-location"><i class="bi bi-geo-alt-fill text-danger"></i> Bờ sông Hàn, Đà Nẵng</span>
+                      <span class="nearby-rating"><i class="bi bi-star-fill text-warning"></i> 4.95</span>
+                    </div>
+
+                    <h3 class="nearby-name compact-name" title="Han River Glass House">Han River Glass House</h3>
+                    
+                    <div class="compact-voucher-strip">
+                      <div class="strip-left-val">Giảm 200K</div>
+                      <div class="strip-right-code">
+                        <span class="code-pill">HANRIVER200</span>
+                        <span class="cond-text">Đơn từ 1.5tr · Đặt từ 2 đêm</span>
+                      </div>
+                    </div>
+
+                    <div class="nearby-footer-row compact-footer">
+                      <button class="btn-terms-link" onclick="openVoucherTermsModal('HANRIVER200')">Điều kiện</button>
+                      <div class="d-flex align-items-center gap-1.5">
+                        <button class="btn-voucher-action btn-use" onclick="copyVoucherCode('HANRIVER200')">Copy</button>
+                        <a href="homestayDetail.html" class="btn-room-detail">Xem phòng</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="voucher-card">
-                  <div class="d-flex justify-content-between align-items-start mb-2">
-                    <span class="badge bg-primary text-white">VĂN HÓA BẢN ĐỊA</span>
-                    <small class="text-muted">HSD: 15/11/2026</small>
+              <!-- Item 2 -->
+              <div class="col-md-6 col-lg-4">
+                <div class="nearby-card compact-card h-100">
+                  <div class="nearby-img-box compact-img-box">
+                    <span class="nearby-tag tag-orange">🔥 HOT NHẤT</span>
+                    <button class="nearby-heart-btn active text-danger" onclick="toggleSaveFav(this)" title="Lưu voucher">
+                      <i class="bi bi-heart-fill text-danger"></i>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=600&q=80" alt="The Memory Valley Villa">
                   </div>
-                  <h6 class="fw-bold text-dark mb-1">Giảm 20% Gói Trải nghiệm văn hóa & Đốt lửa trại</h6>
-                  <p class="text-xs text-muted mb-3">Áp dụng trực tiếp tại các Homestay đối tác Cộng đồng Việt Nam.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <code class="fw-bold text-success bg-white px-2 py-1 rounded border">ECOVIET20</code>
-                    <button class="btn btn-sm btn-outline-success btn-copy-code" data-code="ECOVIET20">Sao chép mã</button>
+
+                  <div class="nearby-body compact-body">
+                    <div class="nearby-meta-row">
+                      <span class="nearby-location"><i class="bi bi-geo-alt-fill text-danger"></i> Hồ Tuyền Lâm, Đà Lạt</span>
+                      <span class="nearby-rating"><i class="bi bi-star-fill text-warning"></i> 4.96</span>
+                    </div>
+
+                    <h3 class="nearby-name compact-name" title="The Memory Valley Villa">The Memory Valley Villa</h3>
+                    
+                    <div class="compact-voucher-strip">
+                      <div class="strip-left-val">Giảm 180K</div>
+                      <div class="strip-right-code">
+                        <span class="code-pill">MEMORY180</span>
+                        <span class="cond-text">Đơn từ 1.2tr · Bể bơi nước ấm</span>
+                      </div>
+                    </div>
+
+                    <div class="nearby-footer-row compact-footer">
+                      <button class="btn-terms-link" onclick="openVoucherTermsModal('MEMORY180')">Điều kiện</button>
+                      <div class="d-flex align-items-center gap-1.5">
+                        <button class="btn-voucher-action btn-use" onclick="copyVoucherCode('MEMORY180')">Copy</button>
+                        <a href="homestayDetail.html" class="btn-room-detail">Xem phòng</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="voucher-card">
-                  <div class="d-flex justify-content-between align-items-start mb-2">
-                    <span class="badge bg-warning text-dark">ĐƯA ĐÓN BẾN XE</span>
-                    <small class="text-muted">HSD: 31/12/2026</small>
+              <!-- Item 3 -->
+              <div class="col-md-6 col-lg-4">
+                <div class="nearby-card compact-card h-100">
+                  <div class="nearby-img-box compact-img-box">
+                    <span class="nearby-tag tag-green">⚡ SẮP HẾT HẠN</span>
+                    <button class="nearby-heart-btn active text-danger" onclick="toggleSaveFav(this)" title="Lưu voucher">
+                      <i class="bi bi-heart-fill text-danger"></i>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Topas Ecolodge Sapa">
                   </div>
-                  <h6 class="fw-bold text-dark mb-1">Miễn phí dịch vụ Xe trung chuyển bản làng</h6>
-                  <p class="text-xs text-muted mb-3">Tặng 1 lượt đón tại bến xe huyện về tận Homestay.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <code class="fw-bold text-success bg-white px-2 py-1 rounded border">FREEPICKUP</code>
-                    <button class="btn btn-sm btn-outline-success btn-copy-code" data-code="FREEPICKUP">Sao chép mã</button>
+
+                  <div class="nearby-body compact-body">
+                    <div class="nearby-meta-row">
+                      <span class="nearby-location"><i class="bi bi-geo-alt-fill text-danger"></i> Mường Hoa, Sapa</span>
+                      <span class="nearby-rating"><i class="bi bi-star-fill text-warning"></i> 4.98</span>
+                    </div>
+
+                    <h3 class="nearby-name compact-name" title="Topas Ecolodge Sapa">Topas Ecolodge Sapa</h3>
+                    
+                    <div class="compact-voucher-strip">
+                      <div class="strip-left-val">Giảm 500K</div>
+                      <div class="strip-right-code">
+                        <span class="code-pill">TOPASHOT500</span>
+                        <span class="cond-text">Đơn từ 3.8tr · Bể bơi vô cực</span>
+                      </div>
+                    </div>
+
+                    <div class="nearby-footer-row compact-footer">
+                      <button class="btn-terms-link" onclick="openVoucherTermsModal('TOPASHOT500')">Điều kiện</button>
+                      <div class="d-flex align-items-center gap-1.5">
+                        <button class="btn-voucher-action btn-use" onclick="copyVoucherCode('TOPASHOT500')">Copy</button>
+                        <a href="homestayDetail.html" class="btn-room-detail">Xem phòng</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="col-md-6 col-lg-4">
+                <div class="nearby-card compact-card h-100">
+                  <div class="nearby-img-box compact-img-box">
+                    <span class="nearby-tag tag-red">🎁 ĐẶC QUYỀN VIP</span>
+                    <button class="nearby-heart-btn active text-danger" onclick="toggleSaveFav(this)" title="Lưu voucher">
+                      <i class="bi bi-heart-fill text-danger"></i>
+                    </button>
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" alt="Sơn Trà Sunset Infinity Villa">
+                  </div>
+
+                  <div class="nearby-body compact-body">
+                    <div class="nearby-meta-row">
+                      <span class="nearby-location"><i class="bi bi-geo-alt-fill text-danger"></i> Sơn Trà, Đà Nẵng</span>
+                      <span class="nearby-rating"><i class="bi bi-star-fill text-warning"></i> 4.94</span>
+                    </div>
+
+                    <h3 class="nearby-name compact-name" title="Sơn Trà Sunset Villa">Sơn Trà Sunset Villa</h3>
+                    
+                    <div class="compact-voucher-strip">
+                      <div class="strip-left-val">Giảm 250K</div>
+                      <div class="strip-right-code">
+                        <span class="code-pill">SONTRA250</span>
+                        <span class="cond-text">Đơn từ 2.2tr · Hồ bơi view biển</span>
+                      </div>
+                    </div>
+
+                    <div class="nearby-footer-row compact-footer">
+                      <button class="btn-terms-link" onclick="openVoucherTermsModal('SONTRA250')">Điều kiện</button>
+                      <div class="d-flex align-items-center gap-1.5">
+                        <button class="btn-voucher-action btn-use" onclick="copyVoucherCode('SONTRA250')">Copy</button>
+                        <a href="homestayDetail.html" class="btn-room-detail">Xem phòng</a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -561,49 +826,82 @@
           </div>
         </div>
 
-        <!-- TAB 5: DANH SÁCH GIAO DỊCH -->
+        <!-- TAB 4: DANH SÁCH GIAO DỊCH -->
         <div id="tab-transactions" class="tab-content-panel d-none">
           <div class="eco-card">
             <div class="eco-card-title">
-              <span><i class="bi bi-receipt text-primary me-2"></i>Lịch sử giao dịch & Đặt phòng</span>
+              <span><i class="bi bi-receipt text-success me-2"></i>Lịch sử giao dịch & Đặt phòng</span>
+              <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">3 Giao dịch</span>
+            </div>
+
+            <!-- Filter chips -->
+            <div class="d-flex align-items-center gap-2 mb-4">
+              <button class="btn btn-sm btn-success rounded-pill px-3 fw-semibold">Tất cả (3)</button>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">Đã thành công (2)</button>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">Đã hoàn hủy (1)</button>
             </div>
 
             <div class="table-responsive">
-              <table class="table table-hover align-middle text-sm mb-0">
+              <table class="table table-hover align-middle text-sm mb-0 border rounded-3 overflow-hidden">
                 <thead class="table-light">
                   <tr>
-                    <th>Mã đơn</th>
-                    <th>Homestay</th>
+                    <th>Mã đơn hàng</th>
+                    <th>Tên Homestay</th>
                     <th>Ngày nhận phòng</th>
+                    <th>Phương thức</th>
                     <th>Tổng tiền</th>
                     <th>Trạng thái</th>
-                    <th>Thao tác</th>
+                    <th class="text-end">Thao tác</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong class="text-dark">#HS-98234</strong></td>
-                    <td>Pù Luông Eco Garden</td>
+                    <td><strong class="text-success fw-bold">#HS-98234</strong></td>
+                    <td style="max-width: 190px;">
+                      <span class="fw-bold text-dark d-block text-truncate">Pù Luông Eco Garden</span>
+                      <span class="text-muted text-xs d-block text-truncate"><i class="bi bi-geo-alt-fill text-danger me-1"></i>Bá Thước, Thanh Hóa</span>
+                    </td>
                     <td>12/08/2026</td>
+                    <td><span class="badge bg-light text-dark border"><i class="bi bi-qr-code-scan me-1 text-success"></i> Chuyển khoản QR</span></td>
                     <td class="fw-bold text-success">1.300.000đ</td>
-                    <td><span class="badge bg-success bg-opacity-10 text-success">Hoàn thành</span></td>
-                    <td><button class="btn btn-sm btn-link text-decoration-none">Chi tiết</button></td>
+                    <td><span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2.5 py-1.5"><i class="bi bi-check-circle-fill me-1"></i> Thành công</span></td>
+                    <td class="text-end">
+                      <button class="btn btn-sm btn-outline-success fw-bold rounded-3 px-3" onclick="openInvoiceModal('HS-98234', 'Pù Luông Eco Garden Homestay', 'Bá Thước, Thanh Hóa', '12/08/2026 - 14/08/2026 (2 đêm)', '1.300.000đ', '1.500.000đ', '200.000đ', 'Chuyển khoản QR Vietcombank', 'Đã xác nhận thanh toán', 'VCB9823412')">
+                        <i class="bi bi-receipt me-1"></i> Xem hóa đơn
+                      </button>
+                    </td>
                   </tr>
                   <tr>
-                    <td><strong class="text-dark">#HS-87112</strong></td>
-                    <td>Mộc Châu Bamboo Stilt</td>
+                    <td><strong class="text-success fw-bold">#HS-87112</strong></td>
+                    <td style="max-width: 190px;">
+                      <span class="fw-bold text-dark d-block text-truncate">The Memory Villa</span>
+                      <span class="text-muted text-xs d-block text-truncate"><i class="bi bi-geo-alt-fill text-danger me-1"></i>Hồ Tuyền Lâm, Đà Lạt</span>
+                    </td>
                     <td>24/05/2026</td>
-                    <td class="fw-bold text-success">900.000đ</td>
-                    <td><span class="badge bg-success bg-opacity-10 text-success">Hoàn thành</span></td>
-                    <td><button class="btn btn-sm btn-link text-decoration-none">Chi tiết</button></td>
+                    <td><span class="badge bg-light text-dark border"><i class="bi bi-credit-card-2-front me-1 text-primary"></i> Thẻ Visa / Master</span></td>
+                    <td class="fw-bold text-success">1.450.000đ</td>
+                    <td><span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2.5 py-1.5"><i class="bi bi-check-circle-fill me-1"></i> Thành công</span></td>
+                    <td class="text-end">
+                      <button class="btn btn-sm btn-outline-success fw-bold rounded-3 px-3" onclick="openInvoiceModal('HS-87112', 'The Memory Valley Villa', 'Hồ Tuyền Lâm, Đà Lạt', '24/05/2026 - 26/05/2026 (2 đêm)', '1.450.000đ', '1.630.000đ', '180.000đ', 'Thẻ Visa Quốc tế (*8899)', 'Đã xác nhận thanh toán', 'VISA8711200')">
+                        <i class="bi bi-receipt me-1"></i> Xem hóa đơn
+                      </button>
+                    </td>
                   </tr>
                   <tr>
-                    <td><strong class="text-dark">#HS-76501</strong></td>
-                    <td>Mai Châu Bản Lác</td>
+                    <td><strong class="text-muted fw-bold">#HS-76501</strong></td>
+                    <td style="max-width: 190px;">
+                      <span class="fw-bold text-dark d-block text-truncate">Tràng An Retreat</span>
+                      <span class="text-muted text-xs d-block text-truncate"><i class="bi bi-geo-alt-fill text-danger me-1"></i>Tràng An, Ninh Bình</span>
+                    </td>
                     <td>10/01/2026</td>
-                    <td class="fw-bold text-secondary">450.000đ</td>
-                    <td><span class="badge bg-secondary bg-opacity-10 text-secondary">Đã hoàn hủy</span></td>
-                    <td><button class="btn btn-sm btn-link text-decoration-none text-muted">Hóa đơn</button></td>
+                    <td><span class="badge bg-light text-dark border"><i class="bi bi-wallet2 me-1 text-warning"></i> Ví e-Wallet</span></td>
+                    <td class="fw-bold text-secondary">1.050.000đ</td>
+                    <td><span class="badge bg-secondary bg-opacity-10 text-secondary border px-2.5 py-1.5"><i class="bi bi-arrow-return-left me-1"></i> Đã hoàn tiền</span></td>
+                    <td class="text-end">
+                      <button class="btn btn-sm btn-outline-secondary fw-bold rounded-3 px-3" onclick="openInvoiceModal('HS-76501', 'Tràng An Valley Retreat', 'Tràng An, Ninh Bình', '10/01/2026 - 11/01/2026 (1 đêm)', '1.050.000đ', '1.170.000đ', '120.000đ', 'Ví e-Wallet YÊN', 'Đã hủy & Hoàn trả 100% tiền', 'REF7650199')">
+                        <i class="bi bi-receipt me-1"></i> Xem hóa đơn
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -611,32 +909,141 @@
           </div>
         </div>
 
-        <!-- TAB 6: HOÀN TIỀN -->
+        <!-- TAB 5: VÍ HOÀN TIỀN GIỐNG VÍ ĐIỆN TỬ SANG TRỌNG -->
         <div id="tab-cashback" class="tab-content-panel d-none">
-          <div class="eco-card">
-            <div class="eco-card-title">
-              <span><i class="bi bi-cash-coin text-success me-2"></i>Ví Hoàn tiền & Điểm thưởng Eco</span>
-            </div>
-
-            <div class="p-4 bg-success bg-opacity-10 border border-success border-opacity-25 rounded-3 mb-4 d-flex justify-content-between align-items-center">
-              <div>
-                <small class="text-success fw-semibold">Số dư hoàn tiền khả dụng</small>
-                <h3 class="fw-bold text-success mb-0 mt-1">350.000 VNĐ</h3>
-                <small class="text-muted">Tích lũy từ 5% các chuyến du lịch homestay cộng đồng</small>
-              </div>
-              <button class="btn btn-success fw-semibold">Rút về ngân hàng</button>
-            </div>
-
-            <h6 class="fw-bold text-dark mb-3">Lịch sử tích lũy & hoàn tiền</h6>
-            <ul class="list-group list-group-flush border rounded-3">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                  <h6 class="mb-0 text-sm font-semibold">Hoàn tiền đơn #HS-98234</h6>
-                  <small class="text-muted">12/08/2026 • Pù Luông Eco Garden</small>
+          <!-- Top E-Wallet Card Banner -->
+          <div class="wallet-card-hero p-4 mb-4 rounded-4 shadow-sm text-white" style="background: linear-gradient(135deg, #064E3B 0%, #047857 50%, #15803D 100%);">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 pb-3 border-bottom border-white border-opacity-25">
+              <div class="d-flex align-items-center gap-3">
+                <div class="wallet-icon-avatar rounded-circle bg-white bg-opacity-20 d-flex align-items-center justify-content-center" style="width: 52px; height: 52px; font-size: 1.5rem;">
+                  <i class="bi bi-wallet2 text-warning"></i>
                 </div>
-                <span class="fw-bold text-success">+65.000đ</span>
-              </li>
-            </ul>
+                <div>
+                  <span class="badge mb-1" style="background: #FEF3C7 !important; color: #92400E !important; border: 1px solid #FDE68A !important; font-weight: 800 !important; font-size: 0.75rem !important; padding: 5px 12px !important; border-radius: 50px !important;">
+                    <i class="bi bi-shield-check me-1" style="color: #D97706 !important;"></i> Ví YÊN Pay • Tài khoản đã xác thực
+                  </span>
+                  <h2 class="h5 fw-bold text-white mb-0">Ví Hoàn Tiền Cá Nhân</h2>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-light fw-bold text-success rounded-3 shadow-sm px-3 py-2" onclick="openWithdrawModal()">
+                  <i class="bi bi-bank me-1"></i> Rút tiền về Ngân hàng
+                </button>
+              </div>
+            </div>
+
+            <!-- Balance & Stats Grid -->
+            <div class="row g-3 mt-3 align-items-center">
+              <div class="col-md-5">
+                <span class="text-xs text-light text-uppercase tracking-wider">Số dư khả dụng</span>
+                <h2 class="display-6 fw-extrabold text-warning mb-0 mt-1">350.000 <span class="fs-4">VNĐ</span></h2>
+                <small class="text-light opacity-75 text-xs"><i class="bi bi-info-circle me-1"></i>Sử dụng thanh toán phòng hoặc rút về ngân hàng liên kết</small>
+              </div>
+              <div class="col-md-7">
+                <div class="row g-2 text-center">
+                  <div class="col-6">
+                    <div class="p-2.5 rounded-3 bg-white bg-opacity-10 border border-white border-opacity-10">
+                      <span class="text-xs text-light d-block">Tổng tiền hoàn lũy kế</span>
+                      <strong class="text-white fs-6">1.250.000đ</strong>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="p-2.5 rounded-3 bg-white bg-opacity-10 border border-white border-opacity-10">
+                      <span class="text-xs text-light d-block">Tỷ lệ hoàn tiền</span>
+                      <strong class="text-warning fs-6">5% / Đơn phòng</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wallet Quick Utilities Grid -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <div class="p-3 bg-white border rounded-3 shadow-sm h-100 d-flex align-items-center gap-3">
+                <div class="icon-box-emerald">
+                  <i class="bi bi-bank2"></i>
+                </div>
+                <div>
+                  <span class="fw-bold text-dark text-sm d-block">Ngân hàng liên kết</span>
+                  <small class="text-muted text-xs">Vietcombank •••• 6868 (Chủ tài khoản: Lê Hoàng Mai Chi)</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-3 bg-white border rounded-3 shadow-sm h-100 d-flex align-items-center gap-3">
+                <div class="icon-box-amber">
+                  <i class="bi bi-shield-lock-fill"></i>
+                </div>
+                <div>
+                  <span class="fw-bold text-dark text-sm d-block">Mã PIN Ví bảo mật</span>
+                  <small class="text-success text-xs"><i class="bi bi-check-circle-fill"></i> Đã kích hoạt mã PIN 6 chữ số</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wallet Transactions History Ledger -->
+          <div class="eco-card mb-0">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+              <h6 class="fw-bold text-dark mb-0"><i class="bi bi-journal-text text-success me-2"></i>Lịch sử biến động số dư hoàn tiền</h6>
+              <div class="d-flex gap-1">
+                <button class="btn btn-xs btn-outline-success active">Tất cả</button>
+                <button class="btn btn-xs btn-outline-secondary">Cộng tiền (+)</button>
+                <button class="btn btn-xs btn-outline-secondary">Rút tiền (-)</button>
+              </div>
+            </div>
+
+            <div class="list-group list-group-flush border rounded-3 overflow-hidden">
+              <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="rounded-circle bg-success bg-opacity-10 text-success p-2.5 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
+                    <i class="bi bi-arrow-down-left-circle-fill fs-5"></i>
+                  </div>
+                  <div>
+                    <span class="fw-bold text-dark text-sm mb-0 d-block">Hoàn tiền 5% đơn đặt phòng #HS-98234</span>
+                    <small class="text-muted text-xs">12/08/2026 10:15 • Pù Luông Eco Garden Homestay</small>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <span class="fw-extrabold text-success fs-6 d-block">+65.000 VNĐ</span>
+                  <span class="badge bg-success bg-opacity-10 text-success text-xs">Thành công</span>
+                </div>
+              </div>
+
+              <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="rounded-circle bg-success bg-opacity-10 text-success p-2.5 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
+                    <i class="bi bi-arrow-down-left-circle-fill fs-5"></i>
+                  </div>
+                  <div>
+                    <span class="fw-bold text-dark text-sm mb-0 d-block">Hoàn tiền 5% đơn đặt phòng #HS-87112</span>
+                    <small class="text-muted text-xs">24/05/2026 16:40 • The Memory Valley Villa Đà Lạt</small>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <span class="fw-extrabold text-success fs-6 d-block">+72.500 VNĐ</span>
+                  <span class="badge bg-success bg-opacity-10 text-success text-xs">Thành công</span>
+                </div>
+              </div>
+
+              <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="rounded-circle bg-danger bg-opacity-10 text-danger p-2.5 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
+                    <i class="bi bi-arrow-up-right-circle-fill fs-5"></i>
+                  </div>
+                  <div>
+                    <span class="fw-bold text-dark text-sm mb-0 d-block">Rút tiền số dư về ngân hàng Vietcombank</span>
+                    <small class="text-muted text-xs">01/05/2026 09:30 • Mã giao dịch VCB991203</small>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <span class="fw-extrabold text-danger fs-6 d-block">-200.000 VNĐ</span>
+                  <span class="badge bg-primary bg-opacity-10 text-primary text-xs">Đã chuyển khoản</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -762,6 +1169,184 @@
           <a href="login.html" class="btn btn-danger rounded-3 px-4 fw-semibold d-inline-flex align-items-center gap-2">
             <i class="bi bi-box-arrow-right"></i> Đăng xuất
           </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: VIẾT ĐÁNH GIÁ HOMESTAY MỚI -->
+  <div class="modal fade" id="addReviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold text-dark"><i class="bi bi-star-fill text-warning me-2"></i>Viết đánh giá Homestay</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-3">
+          <form id="addReviewForm" onsubmit="submitNewReview(event)">
+            <div class="mb-3">
+              <label class="form-label text-sm fw-semibold">Chọn Homestay bạn đã trải nghiệm</label>
+              <select class="form-select form-select-custom" id="newRevHomestaySelect" required>
+                <option value="">-- Chọn Homestay --</option>
+                <option value="Sa Pa Terraces Eco Homestay">Sa Pa Terraces Eco Homestay (Ngày ở: 15/09/2026)</option>
+                <option value="Mai Châu Bản Lác Stilt House">Mai Châu Bản Lác Stilt House (Ngày ở: 28/08/2026)</option>
+                <option value="Hà Giang Karst Plateau Homestay">Hà Giang Karst Plateau Homestay (Ngày ở: 10/08/2026)</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-sm fw-semibold">Đánh giá chung (Điểm sao)</label>
+              <div class="d-flex align-items-center gap-2 fs-3 text-warning cursor-pointer" id="starRatingSelect">
+                <i class="bi bi-star-fill star-item" data-val="1"></i>
+                <i class="bi bi-star-fill star-item" data-val="2"></i>
+                <i class="bi bi-star-fill star-item" data-val="3"></i>
+                <i class="bi bi-star-fill star-item" data-val="4"></i>
+                <i class="bi bi-star-fill star-item" data-val="5"></i>
+                <span class="fs-6 fw-bold text-dark ms-2" id="starRatingScore">5.0 / 5.0</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-sm fw-semibold">Nội dung đánh giá chi tiết</label>
+              <textarea class="form-control form-control-custom" id="newRevText" rows="4" placeholder="Chia sẻ trải nghiệm chân thực của bạn về không gian, thái độ phục vụ của chủ nhà, món ăn bản địa..." required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-sm fw-semibold">Tải lên hình ảnh thực tế (Tối đa 5 hình)</label>
+              <input type="file" class="form-control form-control-custom" id="newRevPhotosInput" accept="image/*" multiple>
+              <small class="text-muted text-xs">Định dạng PNG, JPG, JPEG (Dung lượng mỗi ảnh dưới 5MB)</small>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 pt-2">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Hủy bỏ</button>
+              <button type="submit" class="btn btn-eco-save"><i class="bi bi-send-fill me-1"></i> Gửi đánh giá</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LIGHTBOX XEM ẢNH THỰC TẾ -->
+  <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark border-0 rounded-4 overflow-hidden">
+        <div class="modal-header border-0 pb-0 text-white">
+          <span class="text-xs text-light"><i class="bi bi-camera me-1"></i>Hình ảnh trải nghiệm thực tế từ du khách</span>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center p-3">
+          <img src="" id="lightboxImg" class="img-fluid rounded-3 shadow" style="max-height: 80vh; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: XÁC NHẬN XÓA LỊCH SỬ XEM -->
+  <div class="modal fade" id="clearHistoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold text-danger"><i class="bi bi-trash3-fill me-2"></i>Xác nhận xóa lịch sử xem</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-3">
+          <p class="text-sm text-secondary mb-0">Bạn có chắc chắn muốn xóa toàn bộ danh sách Homestay đã xem gần đây không?</p>
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Hủy bỏ</button>
+          <button type="button" class="btn btn-danger fw-semibold" onclick="confirmClearHistory()">Đồng ý xóa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: HÓA ĐƠN XÁC NHẬN THANH TOÁN KHI BẤM XEM CHI TIẾT -->
+  <div class="modal fade" id="invoiceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header bg-light border-bottom p-4">
+          <div class="d-flex align-items-center justify-content-between w-100">
+            <div class="d-flex align-items-center gap-3">
+              <div class="bg-success text-white rounded-3 p-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                <i class="bi bi-receipt-cutoff fs-4"></i>
+              </div>
+              <div>
+                <h5 class="fw-extrabold text-dark mb-0">HÓA ĐƠN XÁC NHẬN THANH TOÁN</h5>
+                <p class="text-xs text-muted mb-0">Mã hóa đơn: <strong class="text-success" id="invCode">#HS-98234</strong> • YÊN Homestay Booking System</p>
+              </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="modal-body p-4" id="invoicePrintArea">
+          <!-- Receipt Header info -->
+          <div class="row g-3 mb-4 pb-3 border-bottom">
+            <div class="col-6">
+              <small class="text-muted text-uppercase text-xs fw-bold">Thông tin khách hàng</small>
+              <h6 class="fw-bold text-dark mb-1 mt-1">Lê Hoàng Mai Chi</h6>
+              <p class="text-xs text-muted mb-0"><i class="bi bi-telephone me-1"></i>+84 912 345 678</p>
+              <p class="text-xs text-muted mb-0"><i class="bi bi-envelope me-1"></i>maichi.lehoang@gmail.com</p>
+            </div>
+            <div class="col-6 text-end">
+              <small class="text-muted text-uppercase text-xs fw-bold">Thông tin thanh toán</small>
+              <p class="text-xs mb-1 mt-1">Ngày lập đơn: <strong class="text-dark" id="invDate">10/08/2026</strong></p>
+              <p class="text-xs mb-1">Phương thức: <strong class="text-dark" id="invMethod">Chuyển khoản QR Vietcombank</strong></p>
+              <span class="badge bg-success text-white px-2.5 py-1" id="invStatusBadge">Đã xác nhận thanh toán</span>
+            </div>
+          </div>
+
+          <!-- Homestay Info Box -->
+          <div class="p-3 rounded-3 bg-light border mb-4">
+            <small class="text-muted text-uppercase text-xs fw-bold d-block mb-1">Cơ sở lưu trú homestay</small>
+            <h5 class="fw-extrabold text-dark mb-1" id="invHomestayName">Pù Luông Eco Garden Homestay</h5>
+            <p class="text-xs text-muted mb-0"><i class="bi bi-geo-alt-fill text-danger me-1"></i><span id="invHomestayLoc">Bá Thước, Thanh Hóa</span> • Thời gian: <strong class="text-dark" id="invStayDates">12/08/2026 - 14/08/2026 (2 đêm)</strong></p>
+          </div>
+
+          <!-- Payment BreakDown Table -->
+          <h6 class="fw-bold text-dark mb-2 text-xs text-uppercase">Chi tiết các khoản phí thanh toán</h6>
+          <div class="table-responsive mb-3">
+            <table class="table table-bordered align-middle text-sm mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Hạng mục dịch vụ</th>
+                  <th class="text-end">Đơn giá</th>
+                  <th class="text-end">Thành tiền</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tiền phòng lưu trú homestay (2 đêm)</td>
+                  <td class="text-end" id="invSubTotal">1.500.000đ</td>
+                  <td class="text-end fw-bold" id="invSubTotalRight">1.500.000đ</td>
+                </tr>
+                <tr>
+                  <td>Phí bảo vệ & Dịch vụ dọn dẹp vệ sinh</td>
+                  <td class="text-end">Miễn phí</td>
+                  <td class="text-end text-success fw-bold">0đ</td>
+                </tr>
+                <tr>
+                  <td>Áp dụng Mã giảm giá (<strong class="text-success">HANRIVER200</strong>)</td>
+                  <td class="text-end text-danger">-200.000đ</td>
+                  <td class="text-end text-danger fw-bold" id="invDiscountVal">-200.000đ</td>
+                </tr>
+                <tr class="table-success bg-opacity-10 fw-bold fs-6">
+                  <td colspan="2" class="text-end text-dark">TỔNG TIỀN THANH TOÁN CHI TRẢ:</td>
+                  <td class="text-end text-success fs-5" id="invTotalPaid">1.300.000đ</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="p-3 rounded-3 bg-success bg-opacity-10 border border-success border-opacity-25 d-flex align-items-center justify-content-between">
+            <small class="text-success text-xs"><i class="bi bi-shield-check me-1 fs-6"></i>Hóa đơn điện tử hợp lệ được phát hành bởi Hệ thống Du lịch Homestay YÊN.</small>
+            <span class="text-xs text-muted" id="invTxnId">Mã Giao Dịch: VCB9823412</span>
+          </div>
+        </div>
+        <div class="modal-footer bg-light border-top p-3">
+          <button type="button" class="btn btn-outline-secondary fw-semibold" data-bs-dismiss="modal">Đóng</button>
+          <button type="button" class="btn btn-outline-success fw-semibold" onclick="window.print()"><i class="bi bi-printer me-1"></i> In hóa đơn</button>
+          <button type="button" class="btn btn-eco-save fw-bold" onclick="alert('Đã tải file Hóa đơn PDF thành công!')"><i class="bi bi-download me-1"></i> Tải hóa đơn PDF</button>
         </div>
       </div>
     </div>

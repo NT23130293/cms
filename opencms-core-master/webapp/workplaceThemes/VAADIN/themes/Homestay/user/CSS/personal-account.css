@@ -477,26 +477,6 @@ body {
   box-shadow: 0 6px 16px rgba(21, 128, 61, 0.1);
 }
 
-/* Homestay Card Styling */
-.homestay-card {
-  border: 1px solid #E2E8F0;
-  border-radius: 0.875rem;
-  overflow: hidden;
-  background: #fff;
-  transition: all 0.2s ease;
-}
-
-.homestay-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--eco-shadow-md);
-}
-
-.homestay-card img {
-  height: 160px;
-  object-fit: cover;
-  width: 100%;
-}
-
 /* Toast Custom */
 .toast-eco {
   background-color: var(--eco-primary);
@@ -511,6 +491,352 @@ body {
   color: #ffffff;
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
+}
+
+/* Container 80% width đồng bộ toàn bộ website */
+.container {
+  width: 80% !important;
+  max-width: 80% !important;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+}
+
+/* --- BANNER VÍ VOUCHER CÁ NHÂN (CHỮ RÕ RÀNG 100%, SẮC NÉT) --- */
+.voucher-hero-banner {
+  background: linear-gradient(135deg, #064E3B 0%, #15803D 100%) !important;
+  border-radius: 16px !important;
+  padding: 24px 28px !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 20px rgba(21, 128, 61, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.voucher-hero-banner h2 {
+  color: #FFFFFF !important;
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+}
+
+.voucher-hero-banner p {
+  color: #DCFCE7 !important;
+  font-size: 0.85rem !important;
+}
+
+.voucher-hero-badge {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  padding: 4px 12px !important;
+  border-radius: 50px !important;
+  font-size: 0.78rem !important;
+}
+
+.voucher-hero-banner .btn-discover {
+  background: #FFFFFF !important;
+  color: #15803D !important;
+  font-weight: 800 !important;
+  border-radius: 10px !important;
+  padding: 9px 18px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  text-decoration: none !allowed;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  font-size: 0.85rem !important;
+  transition: all 0.2s ease;
+}
+
+.voucher-hero-banner .btn-discover:hover {
+  background: #F0FDF4 !important;
+  color: #166534 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* --- ĐỒNG BỘ THẺ HOMESTAY VÀ NÚT ĐẶT NGAY KHÔNG BỊ CO GIÃN / DÀI DỌC --- */
+.card-footer-row {
+  margin-top: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  flex-wrap: nowrap !important;
+  padding-top: 10px !important;
+  border-top: 1px solid #F1F5F9 !important;
+}
+
+.card-price-group {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+.card-price-group .price-label {
+  font-size: 0.7rem !important;
+  color: #94A3B8 !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+
+.card-price-group .card-price {
+  font-size: 1.02rem !important;
+  font-weight: 800 !important;
+  color: #15803D !important;
+  white-space: nowrap !important;
+}
+
+.btn-view-room {
+  background: #15803D !important;
+  color: #FFFFFF !important;
+  padding: 6px 14px !important;
+  border-radius: 99px !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 2px 4px rgba(21, 128, 61, 0.2) !important;
+  text-decoration: none !important;
+  height: 34px !important;
+  line-height: 1 !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-view-room:hover {
+  background: #166534 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(21, 128, 61, 0.35) !important;
+  transform: translateY(-1px);
+}
+
+/* --- TAB 3: SẢN PHẨM BẠN ĐÃ XEM STYLES --- */
+.nearby-card.compact-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.nearby-card.compact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.08);
+}
+
+.nearby-img-box.compact-img-box {
+  position: relative;
+  height: 135px;
+  overflow: hidden;
+  background: #E2E8F0;
+}
+
+.nearby-img-box.compact-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nearby-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+.tag-green { background: #14532D; }
+.tag-orange { background: #9A3412; }
+.tag-teal { background: #0F766E; }
+.tag-red { background: #991B1B; }
+
+.nearby-heart-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #475569;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.nearby-body.compact-body {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.nearby-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  margin-bottom: 4px;
+}
+
+.nearby-location {
+  color: #475569;
+  font-weight: 600;
+}
+
+.nearby-rating {
+  color: #0F172A;
+  font-weight: 700;
+}
+
+.nearby-name.compact-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ô Tìm Kiếm Toolbar Đồng Bộ */
+.search-hs-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 5px 12px 5px 6px;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s ease;
+}
+
+.search-hs-box:focus-within {
+  border-color: var(--eco-primary);
+  box-shadow: 0 4px 14px rgba(21, 128, 61, 0.12), 0 0 0 3px rgba(21, 128, 61, 0.08);
+}
+
+.search-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--eco-surface);
+  color: var(--eco-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.92rem;
+  flex-shrink: 0;
+}
+
+.search-hs-box input {
+  width: 100%;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0F172A;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/* --- TAB 4: VOUCHER COMPACT STRIP STYLES --- */
+.promo-redeem-gold-box {
+  border: 2px solid var(--eco-primary) !important;
+  border-radius: 12px !important;
+  padding: 5px 10px !important;
+  background: #FFFFFF !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.promo-redeem-gold-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0F172A;
+  width: 100%;
+}
+
+.btn-redeem-gold {
+  background: var(--eco-primary) !important;
+  color: #FFFFFF !important;
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+  padding: 6px 16px !important;
+  border-radius: 8px !important;
+  white-space: nowrap;
+  border: none;
+}
+
+.compact-voucher-strip {
+  background: #F8FAFC;
+  border: 1px dashed #CBD5E1;
+  border-radius: 8px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.strip-left-val {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--eco-primary);
+  white-space: nowrap;
+  background: #DCFCE7;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.strip-right-code {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.code-pill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--eco-primary);
+}
+
+.cond-text {
+  font-size: 0.7rem;
+  color: #64748B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Responsive fixes */

@@ -81,27 +81,15 @@
             </div>
         </div>
 
-        <!-- Thanh Tìm Kiếm & Toolbar Đồng Bộ Cao Cấp -->
+        <!-- Thanh Tìm Kiếm Đồng Bộ Cao Cấp -->
         <div class="promo-toolbar-wrap">
-            <div class="promo-mode-row">
-                <!-- Tab Chuyển Đổi Danh Mục (Bên Trái) -->
-                <div class="mode-tab-box">
-                    <button class="btn-mode-tab active" onclick="switchModeTab('hub', this)">
-                        <i class="bi bi-grid-fill"></i> Tất cả Voucher
-                        <span class="cnt" id="countHub">16</span>
-                    </button>
-                    <button class="btn-mode-tab" onclick="switchModeTab('wallet', this)">
-                        <i class="bi bi-bookmark-star-fill"></i> Ví voucher của tôi
-                        <span class="cnt" id="countWallet">4</span>
-                    </button>
-                </div>
-
-                <!-- Ô Tìm Kiếm Theo Tên Homestay (Bên Phải Gọn Gàng, Sang Trọng) -->
-                <div class="search-hs-box">
+            <div class="promo-mode-row justify-content-center">
+                <!-- Ô Tìm Kiếm Theo Tên Homestay Sang Trọng -->
+                <div class="search-hs-box" style="max-width: 540px;">
                     <div class="search-icon-badge">
                         <i class="bi bi-search"></i>
                     </div>
-                    <input type="text" id="searchHomestayInput" placeholder="Tìm tên homestay hoặc địa danh (Topas, Đà Lạt)...">
+                    <input type="text" id="searchHomestayInput" placeholder="Tìm kiếm theo tên homestay, mã giảm giá hoặc địa danh (Topas, Han River, Đà Lạt)...">
                     <button type="button" class="btn-search-clear" id="searchClearBtn" onclick="clearSearchInput()" title="Xóa tìm kiếm">
                         <i class="bi bi-x-circle-fill"></i>
                     </button>
@@ -123,7 +111,7 @@
                     <h2 class="section-title">Voucher Hot Nhất Hôm Nay</h2>
                     <p class="section-subtitle">Mã ưu đãi homestay siêu hot đang được nhiều du khách săn đón nhất</p>
                 </div>
-                <a href="javascript:void(0)" class="nearby-view-all" onclick="switchModeTab('hub', document.querySelector('.btn-mode-tab'))">
+                <a href="javascript:void(0)" class="nearby-view-all">
                     Xem tất cả <i class="bi bi-arrow-right"></i>
                 </a>
             </div>

@@ -364,6 +364,292 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
+ * Lọc danh sách đánh giá
+ */
+function filterReviews(status, chipBtn) {
+  const chips = document.querySelectorAll('.review-filter-chips .btn-review-chip');
+  chips.forEach(c => c.classList.remove('active'));
+  if (chipBtn) chipBtn.classList.add('active');
+
+  const items = document.querySelectorAll('#reviewsListContainer .review-card-item');
+  items.forEach(item => {
+    const itemStatus = item.getAttribute('data-status');
+    const isReplied = item.getAttribute('data-replied') === 'true';
+
+    if (status === 'all') {
+      item.style.display = 'block';
+    } else if (status === 'approved') {
+      item.style.display = (itemStatus === 'approved') ? 'block' : 'none';
+    } else if (status === 'pending') {
+      item.style.display = (itemStatus === 'pending') ? 'block' : 'none';
+    } else if (status === 'replied') {
+      item.style.display = isReplied ? 'block' : 'none';
+    }
+  });
+}
+
+/**
+ * Mở modal viết đánh giá mới
+ */
+function openAddReviewModal() {
+  const modalEl = document.getElementById('addReviewModal');
+  if (modalEl) {
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  }
+}
+
+/**
+ * Xem lightbox hình ảnh
+ */
+function openPhotoLightbox(src) {
+  const modalEl = document.getElementById('lightboxModal');
+  const imgEl = document.getElementById('lightboxImg');
+  if (modalEl && imgEl) {
+    imgEl.src = src;
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  }
+}
+
+/**
+ * Gửi đánh giá mới
+ */
+function submitNewReview(e) {
+  e.preventDefault();
+  const selectHs = document.getElementById('newRevHomestaySelect');
+  const revText = document.getElementById('newRevText');
+
+  if (!selectHs.value || !revText.value.trim()) return;
+
+  const modalEl = document.getElementById('addReviewModal');
+  const modalInstance = bootstrap.Modal.getInstance(modalEl);
+  if (modalInstance) modalInstance.hide();
+
+  const container = document.getElementById('reviewsListContainer');
+  if (container) {
+    const newCard = document.createElement('div');
+    newCard.className = 'review-card-item';
+    newCard.setAttribute('data-status', 'pending');
+    newCard.setAttribute('data-replied', 'false');
+    newCard.innerHTML = `
+      <div class="review-card-header">
+        <div class="d-flex align-items-center gap-3">
+          <img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=200&q=80" alt="Homestay" class="review-hs-thumb">
+          <div>
+            <div class="d-flex align-items-center gap-2">
+              <h5 class="review-hs-name mb-0">${selectHs.value}</h5>
+              <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 text-xs"><i class="bi bi-hourglass-split"></i> Đang chờ duyệt</span>
+            </div>
+            <p class="text-xs text-muted mb-0 mt-1"><i class="bi bi-geo-alt-fill text-danger me-1"></i>Mới cập nhật • Ngày vừa gửi: Vừa xong</p>
+          </div>
+        </div>
+        <div class="review-stars-group">
+          <span class="review-score-pill">5.0 ★</span>
+        </div>
+      </div>
+      <p class="review-body-text mt-3">"${revText.value.trim()}"</p>
+      <div class="review-card-footer">
+        <span class="text-xs text-muted"><i class="bi bi-info-circle me-1"></i>Bài đánh giá vừa gửi đang được duyệt.</span>
+        <div class="ms-auto d-flex gap-2">
+          <button class="btn btn-sm btn-outline-danger" onclick="deleteReviewCard(this)"><i class="bi bi-trash"></i> Xóa</button>
+        </div>
+      </div>
+    `;
+    container.prepend(newCard);
+  }
+
+  const toastBody = document.getElementById('toastBody');
+  if (toastBody) toastBody.textContent = 'Gửi bài đánh giá thành công! Bài viết đang chờ kiểm duyệt.';
+  const toastEl = document.getElementById('ecoToast');
+  if (toastEl) new bootstrap.Toast(toastEl).show();
+
+  selectHs.value = '';
+  revText.value = '';
+}
+
+/**
+ * Xóa 1 thẻ đánh giá
+ */
+function deleteReviewCard(btn) {
+  const card = btn.closest('.review-card-item');
+  if (card && confirm('Bạn có chắc chắn muốn xóa bài đánh giá này?')) {
+    card.remove();
+    const toastBody = document.getElementById('toastBody');
+    if (toastBody) toastBody.textContent = 'Đã xóa bài đánh giá.';
+    const toastEl = document.getElementById('ecoToast');
+    if (toastEl) new bootstrap.Toast(toastEl).show();
+  }
+}
+
+/**
+ * Xóa 1 sản phẩm đã xem khỏi lịch sử
+ */
+function removeViewedItem(btn) {
+  const col = btn.closest('.viewed-item-col');
+  if (col) {
+    col.remove();
+    const toastBody = document.getElementById('toastBody');
+    if (toastBody) toastBody.textContent = 'Đã xóa homestay khỏi lịch sử xem.';
+    const toastEl = document.getElementById('ecoToast');
+    if (toastEl) new bootstrap.Toast(toastEl).show();
+  }
+}
+
+/**
+ * Mở modal xác nhận xóa toàn bộ lịch sử
+ */
+function clearViewedHistoryModal() {
+  const modalEl = document.getElementById('clearHistoryModal');
+  if (modalEl) {
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  }
+}
+
+function confirmClearHistory() {
+  const modalEl = document.getElementById('clearHistoryModal');
+  const modalInstance = bootstrap.Modal.getInstance(modalEl);
+  if (modalInstance) modalInstance.hide();
+
+  const container = document.getElementById('viewedGridContainer');
+  if (container) {
+    container.innerHTML = `
+      <div class="col-12 text-center py-5">
+        <i class="bi bi-eye-slash display-4 text-muted mb-3 d-block"></i>
+        <h6 class="fw-bold text-dark mb-1">Lịch sử xem trống</h6>
+        <p class="text-muted text-xs">Bạn chưa có sản phẩm homestay nào trong danh sách xem gần đây.</p>
+        <a href="homepage.html" class="btn btn-sm btn-eco-save mt-2">Khám phá Homestay ngay</a>
+      </div>
+    `;
+  }
+
+  const toastBody = document.getElementById('toastBody');
+  if (toastBody) toastBody.textContent = 'Đã xóa toàn bộ lịch sử xem homestay.';
+  const toastEl = document.getElementById('ecoToast');
+  if (toastEl) new bootstrap.Toast(toastEl).show();
+}
+
+/**
+ * Lọc trong lịch sử đã xem
+ */
+function filterViewedHistory(query) {
+  const q = query.trim().toLowerCase();
+  const cols = document.querySelectorAll('#viewedGridContainer .viewed-item-col');
+  cols.forEach(col => {
+    const text = col.textContent.toLowerCase();
+    col.style.display = text.includes(q) ? 'block' : 'none';
+  });
+}
+
+/**
+ * Kích hoạt mã voucher trong trang tài khoản
+ */
+function acctSubmitRedeemCode() {
+  const input = document.getElementById('acctRedeemInput');
+  if (!input) return;
+  const code = input.value.trim().toUpperCase();
+
+  if (!code) {
+    const toastBody = document.getElementById('toastBody');
+    if (toastBody) toastBody.textContent = 'Vui lòng nhập mã ưu đãi!';
+    const toastEl = document.getElementById('ecoToast');
+    if (toastEl) new bootstrap.Toast(toastEl).show();
+    return;
+  }
+
+  const toastBody = document.getElementById('toastBody');
+  if (toastBody) toastBody.textContent = `Kích hoạt thành công mã ưu đãi "${code}" vào ví của bạn!`;
+  const toastEl = document.getElementById('ecoToast');
+  if (toastEl) new bootstrap.Toast(toastEl).show();
+
+  input.value = '';
+}
+
+/**
+ * Mở modal Hóa đơn chi tiết giao dịch lúc thanh toán
+ */
+function openInvoiceModal(code, hsName, loc, stayDates, paidVal, originalVal, discountVal, method, status, txnId) {
+  const codeEl = document.getElementById('invCode');
+  const hsNameEl = document.getElementById('invHomestayName');
+  const locEl = document.getElementById('invHomestayLoc');
+  const stayDatesEl = document.getElementById('invStayDates');
+  const totalPaidEl = document.getElementById('invTotalPaid');
+  const subTotalEl = document.getElementById('invSubTotal');
+  const subTotalRightEl = document.getElementById('invSubTotalRight');
+  const discountValEl = document.getElementById('invDiscountVal');
+  const methodEl = document.getElementById('invMethod');
+  const statusBadgeEl = document.getElementById('invStatusBadge');
+  const txnIdEl = document.getElementById('invTxnId');
+
+  if (codeEl) codeEl.textContent = '#' + code;
+  if (hsNameEl) hsNameEl.textContent = hsName;
+  if (locEl) locEl.textContent = loc;
+  if (stayDatesEl) stayDatesEl.textContent = stayDates;
+  if (totalPaidEl) totalPaidEl.textContent = paidVal;
+  if (subTotalEl) subTotalEl.textContent = originalVal || paidVal;
+  if (subTotalRightEl) subTotalRightEl.textContent = originalVal || paidVal;
+  if (discountValEl) discountValEl.textContent = '-' + (discountVal || '0đ');
+  if (methodEl) methodEl.textContent = method || 'Chuyển khoản Ngân hàng';
+  if (statusBadgeEl) statusBadgeEl.textContent = status || 'Đã xác nhận thanh toán';
+  if (txnIdEl) txnIdEl.textContent = 'Mã Giao Dịch: ' + (txnId || 'VCB' + Math.floor(Math.random() * 899999 + 100000));
+
+  const modalEl = document.getElementById('invoiceModal');
+  if (modalEl) {
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  }
+}
+
+/**
+ * Rút tiền số dư về ngân hàng
+ */
+function openWithdrawModal() {
+  if (confirm('Bạn muốn gửi yêu cầu rút 350.000đ từ Ví YÊN Pay về tài khoản Vietcombank (*6868)?')) {
+    const toastBody = document.getElementById('toastBody');
+    if (toastBody) toastBody.textContent = 'Yêu cầu rút 350.000đ đã được tiếp nhận. Tiền sẽ về ngân hàng của bạn trong vòng 5 phút.';
+    const toastEl = document.getElementById('ecoToast');
+    if (toastEl) new bootstrap.Toast(toastEl).show();
+  }
+}
+
+/**
+ * Đổi điểm tích lũy Eco Xu sang Voucher
+ */
+function openRedeemPointsModal() {
+  if (confirm('Quy đổi 500 Xu tích lũy lấy Mã giảm giá 50.000đ cho chuyến đi tiếp theo?')) {
+    const toastBody = document.getElementById('toastBody');
+    if (toastBody) toastBody.textContent = 'Đổi điểm thành công! Mã ưu đãi ECO50K đã được thêm vào ví của bạn.';
+    const toastEl = document.getElementById('ecoToast');
+    if (toastEl) new bootstrap.Toast(toastEl).show();
+  }
+}
+
+/**
+ * Yêu thích homestay
+ */
+function toggleSaveFav(btn) {
+  const icon = btn.querySelector('i');
+  if (icon) {
+    if (icon.classList.contains('bi-heart-fill')) {
+      icon.className = 'bi bi-heart';
+      btn.classList.remove('active', 'text-danger');
+      const toastBody = document.getElementById('toastBody');
+      if (toastBody) toastBody.textContent = 'Đã bỏ lưu homestay khỏi danh sách yêu thích.';
+      const toastEl = document.getElementById('ecoToast');
+      if (toastEl) new bootstrap.Toast(toastEl).show();
+    } else {
+      icon.className = 'bi bi-heart-fill';
+      btn.classList.add('active', 'text-danger');
+      const toastBody = document.getElementById('toastBody');
+      if (toastBody) toastBody.textContent = 'Đã lưu homestay vào danh sách yêu thích!';
+      const toastEl = document.getElementById('ecoToast');
+      if (toastEl) new bootstrap.Toast(toastEl).show();
+    }
+  }
+}
+
+/**
  * Nạp động Header từ file header.html
  */
 function loadExternalHeader(placeholderId, filePath, activePageName = 'Tài khoản') {
