@@ -1,0 +1,40 @@
+/* service_experience.css */
+
+/* 1. Ẩn thanh cuộn cho khu vực chứa Tab (dành cho mobile/tablet) nhưng vẫn cho lướt ngang */
+#category-tab-container::-webkit-scrollbar {
+    display: none;
+}
+#category-tab-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    scroll-behavior: smooth;
+}
+
+/* 2. Hiệu ứng Fade-in mượt mà khi các thẻ dịch vụ xuất hiện sau khi lọc */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* 3. Đảm bảo Toggle Switch đồng bộ màu chính xác (Dự phòng cho Tailwind) */
+input[type="checkbox"]:checked + div {
+    background-color: #1b6d24 !important; /* Dựa trên bảng màu theme */
+}
+
+/* 4. Giới hạn số dòng cho thẻ p để các card luôn đều nhau nếu dữ liệu thay đổi */
+.service-card p.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
