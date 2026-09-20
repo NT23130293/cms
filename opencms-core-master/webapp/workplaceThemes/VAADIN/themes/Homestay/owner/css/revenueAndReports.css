@@ -635,14 +635,3 @@ body {
     min-height: 100vh;
 }
 
-#sidebar-container {
-    width: 260px; /* Điều chỉnh thông số này theo độ rộng thực tế của Sidebar */
-    flex-shrink: 0;
-}
-
-.content-wrapper {
-    flex-grow: 1;
-    width: calc(100% - 260px);
-    display: flex;
-    flex-direction: column;
-}
