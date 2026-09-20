@@ -14,18 +14,9 @@
 <body>
 <header class="header">
     <div class="header-container">
-        <!-- Brand Logo -->
-        <a href="#" class="brand-logo" title="YÊN - Trang chủ">
-            <div class="brand-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 10L12 3L21 10V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V10Z" />
-                    <path d="M9 21V12H15V21" />
-                </svg>
-            </div>
-            <div class="brand-text">
-                <span class="brand-name">YÊN</span>
-                <span class="brand-sub">Mái Ấm Bình Yên</span>
-            </div>
+        <!-- Brand Logo YÊN Mới -->
+        <a href="homepage.html" class="brand-logo" title="YÊN - Homestay Booking">
+            <img src="../images/logo.png" alt="YÊN - Homestay Booking" class="brand-logo-img">
         </a>
         <!-- Mobile Toggle Button -->
         <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Menu">
@@ -34,6 +25,12 @@
         <!-- Navigation Menu -->
         <nav class="header-nav">
             <ul class="nav-list" id="navList">
+                <li class="nav-item">
+                    <a href="homepage.html" class="nav-link active" data-name="Trang chủ">
+                        <i class="bi bi-house-door nav-icon"></i>
+                        <span class="nav-text">Trang chủ</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" data-name="Khuyến mãi">
                         <i class="bi bi-gift nav-icon"></i>
@@ -47,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link" data-name="Wishlist">
+                    <a href="wishlist.html" class="nav-link" data-name="Wishlist">
                         <i class="bi bi-heart nav-icon"></i>
                         <span class="nav-text">Wishlist</span>
                     </a>
@@ -59,19 +56,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link" data-name="Tin nhắn">
-                        <i class="bi bi-chat-left-text nav-icon"></i>
-                        <span class="nav-text">Tin nhắn</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" data-name="Đặt chỗ">
                         <i class="bi bi-calendar-check nav-icon"></i>
                         <span class="nav-text">Đặt chỗ</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link active" data-name="Tài khoản">
+                    <a href="personal-account.html" class="nav-link" data-name="Tài khoản">
                         <i class="bi bi-person-circle nav-icon"></i>
                         <span class="nav-text">Tài khoản</span>
                     </a>

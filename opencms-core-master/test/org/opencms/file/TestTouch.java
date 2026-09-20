@@ -184,7 +184,7 @@ public class TestTouch extends OpenCmsTestRunner {
 
         CmsObject cms = getCmsObject();
         echo("Testing touch on file");
-        touchResource(this, cms, "/index.html");
+        touchResource(this, cms, "/manageRoom.html");
     }
 
     /**

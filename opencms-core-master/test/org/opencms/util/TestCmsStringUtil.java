@@ -62,8 +62,8 @@ public class TestCmsStringUtil extends OpenCmsTestRunner {
         content = "<html><body>\n"
             + "See <a href=\"http://www.opencms.org/opencms/opencms/opencms/index.html\">\n"
             + "http://www.opencms.org/opencms/opencms/opencms/index.html</a>\n"
-            + "or <a href=\"/opencms/opencms/opencms/index.html\">\n"
-            + "/opencms/opencms/opencms/index.html</a>\n"
+            + "or <a href=\"/opencms/opencms/opencms/manageRoom.html\">\n"
+            + "/opencms/opencms/opencms/manageRoom.html</a>\n"
             + "<img src=\"/opencms/opencms/system/galleries/pics/test/test.gif\">\n"
             + "<img src=\"http://www.othersite.org/opencms/opencms/system/galleries/pics/test/test.gif\">\n"
             + "Some URL in the Text: http://www.thirdsite.org/opencms/opencms/some/url.html.\n"
@@ -75,9 +75,9 @@ public class TestCmsStringUtil extends OpenCmsTestRunner {
             + "http://www.opencms.org/opencms/opencms/opencms/index.html</a>\n"
             + "or <a href=\""
             + CmsStringUtil.MACRO_OPENCMS_CONTEXT
-            + "/opencms/index.html\">\n"
+            + "/opencms/manageRoom.html\">\n"
             + CmsStringUtil.MACRO_OPENCMS_CONTEXT
-            + "/opencms/index.html</a>\n"
+            + "/opencms/manageRoom.html</a>\n"
             + "<img src=\""
             + CmsStringUtil.MACRO_OPENCMS_CONTEXT
             + "/system/galleries/pics/test/test.gif\">\n"
@@ -263,14 +263,14 @@ public class TestCmsStringUtil extends OpenCmsTestRunner {
         assertEquals("/averylongresourcename.jsp", CmsStringUtil.formatResourceName(test, 25));
         test = "/folder1/folder2/averylongresourcename.jsp";
         assertEquals("/.../averylongresourcename.jsp", CmsStringUtil.formatResourceName(test, 25));
-        test = "/myfolder/subfolder/index.html";
-        assertEquals("/.../index.html", CmsStringUtil.formatResourceName(test, 21));
-        assertEquals("/myfolder/.../index.html", CmsStringUtil.formatResourceName(test, 25));
-        test = "/myfolder/subfolder/subsubfolder/index.html";
-        assertEquals("/myfolder/.../subsubfolder/index.html", CmsStringUtil.formatResourceName(test, 40));
-        assertEquals("/myfolder/.../index.html", CmsStringUtil.formatResourceName(test, 36));
-        assertEquals("/myfolder/.../index.html", CmsStringUtil.formatResourceName(test, 24));
-        assertEquals("/.../index.html", CmsStringUtil.formatResourceName(test, 21));
+        test = "/myfolder/subfolder/manageRoom.html";
+        assertEquals("/.../manageRoom.html", CmsStringUtil.formatResourceName(test, 21));
+        assertEquals("/myfolder/.../manageRoom.html", CmsStringUtil.formatResourceName(test, 25));
+        test = "/myfolder/subfolder/subsubfolder/manageRoom.html";
+        assertEquals("/myfolder/.../subsubfolder/manageRoom.html", CmsStringUtil.formatResourceName(test, 40));
+        assertEquals("/myfolder/.../manageRoom.html", CmsStringUtil.formatResourceName(test, 36));
+        assertEquals("/myfolder/.../manageRoom.html", CmsStringUtil.formatResourceName(test, 24));
+        assertEquals("/.../manageRoom.html", CmsStringUtil.formatResourceName(test, 21));
         test = "/demopages/search-demo/example-documents/";
         assertEquals("/demopages/.../example-documents/", CmsStringUtil.formatResourceName(test, 40));
         assertEquals("/demopages/search-demo/example-documents/", CmsStringUtil.formatResourceName(test, 41));
@@ -362,12 +362,12 @@ public class TestCmsStringUtil extends OpenCmsTestRunner {
     @Order(12)
     public void testLine() {
 
-        String content = "<edittemplate><![CDATA[<H4><IMG style=\"WIDTH: 77px; HEIGHT: 77px\" alt=\"Homepage animation\" hspace=8 src=\"/opencms/opencms/pics/alkacon/x_hp_ani04.gif\" align=right vspace=8 border=0><IMG style=\"WIDTH: 307px; HEIGHT: 52px\" alt=\"Homepage animation\" hspace=0 src=\"/opencms/opencms/pics/alkacon/x_hp_ani05.gif\" vspace=8 border=0></H4>\n<P>Alkacon Software provides software development services for the digital business. We are specialized in web - based content management solutions build on open source Java Software. </P>\n<P>Alkacon Software is a major contributor to the <A href=\"http://www.opencms.org\" target=_blank>OpenCms Project</A>. OpenCms is an enterprise - ready content management platform build in Java from open source components. OpenCms can easily be deployed on almost any existing IT infrastructure and provides powerful features especially suited for large enterprise internet or intranet applications. </P>\n<P>Alkacon Software offers standard <A href=\"/alkacon/en/services/opencms/index.html\" target=_self>service and support </A>packages for OpenCms, providing an optional layer of security and convenience often required for mission critical OpenCms installations.</P>\n<UL>\n<LI><IMG style=\"WIDTH: 125px; HEIGHT: 34px\" alt=OpenCms hspace=3 src=\"/opencms/opencms/pics/alkacon/logo_opencms_125.gif\" align=right border=0>Learn more about our <A href=\"/alkacon/en/services/index.html\" target=_self>Services</A> \n<LI>Subscribe to our&nbsp;<A href=\"/alkacon/en/company/contact/newsletter.html\" target=_self>Company Newsletter</A> \n<LI>Questions? <A href=\"/alkacon/en/company/contact/index.html\" target=_self>Contact us</A></LI></UL>\n<P>&nbsp;</P>]]></edittemplate>";
+        String content = "<edittemplate><![CDATA[<H4><IMG style=\"WIDTH: 77px; HEIGHT: 77px\" alt=\"Homepage animation\" hspace=8 src=\"/opencms/opencms/pics/alkacon/x_hp_ani04.gif\" align=right vspace=8 border=0><IMG style=\"WIDTH: 307px; HEIGHT: 52px\" alt=\"Homepage animation\" hspace=0 src=\"/opencms/opencms/pics/alkacon/x_hp_ani05.gif\" vspace=8 border=0></H4>\n<P>Alkacon Software provides software development services for the digital business. We are specialized in web - based content management solutions build on open source Java Software. </P>\n<P>Alkacon Software is a major contributor to the <A href=\"http://www.opencms.org\" target=_blank>OpenCms Project</A>. OpenCms is an enterprise - ready content management platform build in Java from open source components. OpenCms can easily be deployed on almost any existing IT infrastructure and provides powerful features especially suited for large enterprise internet or intranet applications. </P>\n<P>Alkacon Software offers standard <A href=\"/alkacon/en/services/opencms/manageRoom.html\" target=_self>service and support </A>packages for OpenCms, providing an optional layer of security and convenience often required for mission critical OpenCms installations.</P>\n<UL>\n<LI><IMG style=\"WIDTH: 125px; HEIGHT: 34px\" alt=OpenCms hspace=3 src=\"/opencms/opencms/pics/alkacon/logo_opencms_125.gif\" align=right border=0>Learn more about our <A href=\"/alkacon/en/services/manageRoom.html\" target=_self>Services</A> \n<LI>Subscribe to our&nbsp;<A href=\"/alkacon/en/company/contact/newsletter.html\" target=_self>Company Newsletter</A> \n<LI>Questions? <A href=\"/alkacon/en/company/contact/manageRoom.html\" target=_self>Contact us</A></LI></UL>\n<P>&nbsp;</P>]]></edittemplate>";
         String search = "/pics/";
         String replace = "/system/galleries/pics/";
         String test = CmsStringUtil.substitute(content, search, replace);
         assertEquals(
-            "<edittemplate><![CDATA[<H4><IMG style=\"WIDTH: 77px; HEIGHT: 77px\" alt=\"Homepage animation\" hspace=8 src=\"/opencms/opencms/system/galleries/pics/alkacon/x_hp_ani04.gif\" align=right vspace=8 border=0><IMG style=\"WIDTH: 307px; HEIGHT: 52px\" alt=\"Homepage animation\" hspace=0 src=\"/opencms/opencms/system/galleries/pics/alkacon/x_hp_ani05.gif\" vspace=8 border=0></H4>\n<P>Alkacon Software provides software development services for the digital business. We are specialized in web - based content management solutions build on open source Java Software. </P>\n<P>Alkacon Software is a major contributor to the <A href=\"http://www.opencms.org\" target=_blank>OpenCms Project</A>. OpenCms is an enterprise - ready content management platform build in Java from open source components. OpenCms can easily be deployed on almost any existing IT infrastructure and provides powerful features especially suited for large enterprise internet or intranet applications. </P>\n<P>Alkacon Software offers standard <A href=\"/alkacon/en/services/opencms/index.html\" target=_self>service and support </A>packages for OpenCms, providing an optional layer of security and convenience often required for mission critical OpenCms installations.</P>\n<UL>\n<LI><IMG style=\"WIDTH: 125px; HEIGHT: 34px\" alt=OpenCms hspace=3 src=\"/opencms/opencms/system/galleries/pics/alkacon/logo_opencms_125.gif\" align=right border=0>Learn more about our <A href=\"/alkacon/en/services/index.html\" target=_self>Services</A> \n<LI>Subscribe to our&nbsp;<A href=\"/alkacon/en/company/contact/newsletter.html\" target=_self>Company Newsletter</A> \n<LI>Questions? <A href=\"/alkacon/en/company/contact/index.html\" target=_self>Contact us</A></LI></UL>\n<P>&nbsp;</P>]]></edittemplate>",
+            "<edittemplate><![CDATA[<H4><IMG style=\"WIDTH: 77px; HEIGHT: 77px\" alt=\"Homepage animation\" hspace=8 src=\"/opencms/opencms/system/galleries/pics/alkacon/x_hp_ani04.gif\" align=right vspace=8 border=0><IMG style=\"WIDTH: 307px; HEIGHT: 52px\" alt=\"Homepage animation\" hspace=0 src=\"/opencms/opencms/system/galleries/pics/alkacon/x_hp_ani05.gif\" vspace=8 border=0></H4>\n<P>Alkacon Software provides software development services for the digital business. We are specialized in web - based content management solutions build on open source Java Software. </P>\n<P>Alkacon Software is a major contributor to the <A href=\"http://www.opencms.org\" target=_blank>OpenCms Project</A>. OpenCms is an enterprise - ready content management platform build in Java from open source components. OpenCms can easily be deployed on almost any existing IT infrastructure and provides powerful features especially suited for large enterprise internet or intranet applications. </P>\n<P>Alkacon Software offers standard <A href=\"/alkacon/en/services/opencms/manageRoom.html\" target=_self>service and support </A>packages for OpenCms, providing an optional layer of security and convenience often required for mission critical OpenCms installations.</P>\n<UL>\n<LI><IMG style=\"WIDTH: 125px; HEIGHT: 34px\" alt=OpenCms hspace=3 src=\"/opencms/opencms/system/galleries/pics/alkacon/logo_opencms_125.gif\" align=right border=0>Learn more about our <A href=\"/alkacon/en/services/manageRoom.html\" target=_self>Services</A> \n<LI>Subscribe to our&nbsp;<A href=\"/alkacon/en/company/contact/newsletter.html\" target=_self>Company Newsletter</A> \n<LI>Questions? <A href=\"/alkacon/en/company/contact/manageRoom.html\" target=_self>Contact us</A></LI></UL>\n<P>&nbsp;</P>]]></edittemplate>",
             test);
     }
 

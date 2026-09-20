@@ -50,7 +50,7 @@ public class TestChflags extends OpenCmsTestRunner {
      */
     public static void addFlagInternal(OpenCmsTestRunner tc, CmsObject cms) throws Throwable {
 
-        String resource1 = "/index.html";
+        String resource1 = "/manageRoom.html";
 
         CmsResource resource = cms.readResource(resource1, CmsResourceFilter.ALL);
         tc.storeResources(cms, resource1);

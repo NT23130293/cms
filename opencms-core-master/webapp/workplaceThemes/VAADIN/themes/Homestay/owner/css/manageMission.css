@@ -1,0 +1,1094 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+
+/* =========================================================
+   COLOR VARIABLES
+   ========================================================= */
+
+:root {
+    --secondary: #1b6d24;
+    --on-secondary: #ffffff;
+    --secondary-container: #a0f399;
+    --on-secondary-container: #217128;
+
+    --primary: #002c1e;
+    --on-primary: #ffffff;
+    --primary-container: #154332;
+
+    --surface-container-highest: #d3e4fe;
+    --surface-container-high: #dce9ff;
+    --surface-container: #e5edfb;
+    --surface-container-low: #eff4ff;
+    --surface-container-lowest: #ffffff;
+
+    --background: #f8f9ff;
+    --surface: #f8f9ff;
+
+    --on-surface: #0b1c30;
+    --on-surface-variant: #414944;
+
+    --outline: #717974;
+    --outline-variant: #c0c8c2;
+
+    --error: #ba1a1a;
+    --error-container: #ffdad6;
+    --on-error-container: #93000a;
+}
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overscroll-behavior: none;
+    background-color: var(--background);
+    color: var(--on-surface);
+}
+
+main > :first-child {
+    margin-top: 0 !important;
+}
+
+main > :last-child {
+    margin-bottom: 0 !important;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Chừa chỗ cho sidebar (được include ở #sidebar-container) */
+main {
+    margin-left: 275px !important;
+    width: calc(100% - 275px) !important;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
+
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.bg-primary { background-color: var(--primary); }
+.bg-primary-container { background-color: var(--primary-container); }
+.bg-secondary { background-color: var(--secondary); }
+.bg-secondary-container { background-color: var(--secondary-container); }
+.bg-surface { background-color: var(--surface); }
+.bg-surface-container { background-color: var(--surface-container); }
+.bg-surface-container-high { background-color: var(--surface-container-high); }
+.bg-surface-container-highest { background-color: var(--surface-container-highest); }
+.bg-surface-container-low { background-color: var(--surface-container-low); }
+.bg-surface-container-lowest { background-color: var(--surface-container-lowest); }
+.bg-error-container { background-color: var(--error-container); }
+
+.bg-secondary-container\/60 {
+    background-color: color-mix(in srgb, var(--secondary-container) 60%, transparent);
+}
+
+.bg-secondary\/10 {
+    background-color: color-mix(in srgb, var(--secondary) 10%, transparent);
+}
+
+.bg-primary\/80 {
+    background-color: color-mix(in srgb, var(--primary) 80%, transparent);
+}
+
+.bg-surface-container-low\/40 {
+    background-color: color-mix(in srgb, var(--surface-container-low) 40%, transparent);
+}
+
+.bg-surface-container-low\/70 {
+    background-color: color-mix(in srgb, var(--surface-container-low) 70%, transparent);
+}
+
+
+/* =========================================================
+   TEXT COLORS
+   ========================================================= */
+
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-on-primary { color: var(--on-primary); }
+.text-on-secondary { color: var(--on-secondary); }
+.text-on-secondary-container { color: var(--on-secondary-container); }
+.text-on-surface { color: var(--on-surface); }
+.text-on-surface-variant { color: var(--on-surface-variant); }
+.text-on-error-container { color: var(--on-error-container); }
+.text-outline { color: var(--outline); }
+.text-error { color: var(--error); }
+.text-surface-container-highest { color: var(--surface-container-highest); }
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.hover\:bg-surface-container:hover { background-color: var(--surface-container); }
+.hover\:bg-surface-container-low:hover { background-color: var(--surface-container-low); }
+.hover\:bg-surface-container-high:hover { background-color: var(--surface-container-high); }
+.hover\:bg-error-container:hover { background-color: var(--error-container); }
+.hover\:text-primary:hover { color: var(--primary); }
+.hover\:text-on-error-container:hover { color: var(--on-error-container); }
+
+
+/* =========================================================
+   FONT & TYPOGRAPHY
+   ========================================================= */
+
+.font-display-lg,
+.font-headline-lg,
+.font-headline-md,
+.font-headline-sm,
+.font-body-md,
+.font-body-sm {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-label-sm,
+.font-label-md,
+.font-label-lg {
+    font-family: 'Inter', sans-serif;
+}
+
+.text-display-lg { font-size: 30px; line-height: 38px; font-weight: 700; }
+.text-headline-lg { font-size: 22px; line-height: 30px; font-weight: 700; }
+.text-headline-md { font-size: 18px; line-height: 26px; font-weight: 600; }
+.text-headline-sm { font-size: 16px; line-height: 24px; font-weight: 600; }
+.text-body-md { font-size: 13.5px; line-height: 20px; font-weight: 400; }
+.text-body-sm { font-size: 12px; line-height: 18px; font-weight: 400; }
+.text-label-lg { font-size: 13px; line-height: 18px; font-weight: 600; }
+.text-label-md { font-size: 11.5px; line-height: 16px; font-weight: 600; letter-spacing: 0.02em; }
+.text-label-sm { font-size: 10.5px; line-height: 14px; font-weight: 500; letter-spacing: 0.03em; }
+
+
+/* =========================================================
+   SPACING
+   ========================================================= */
+
+.gap-space-xs { gap: 0.25rem; }
+.gap-space-sm { gap: 0.5rem; }
+.gap-space-md { gap: 0.875rem; }
+.gap-space-lg { gap: 1.25rem; }
+
+.p-space-sm { padding: 0.5rem; }
+.p-space-md { padding: 0.875rem; }
+.p-space-lg { padding: 1.25rem; }
+
+.px-space-xs { padding-left: 0.25rem; padding-right: 0.25rem; }
+.px-space-md { padding-left: 0.875rem; padding-right: 0.875rem; }
+.px-space-lg { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+.py-space-lg { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+
+
+/* =========================================================
+   NÚT CHÍNH (MÀU XANH THƯƠNG HIỆU)
+   ========================================================= */
+
+.mission-brand-btn {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    box-shadow: 0 2px 8px rgba(21, 67, 50, 0.25);
+    border: none;
+    cursor: pointer;
+}
+
+.mission-brand-btn:hover {
+    background-color: var(--primary-container);
+    transform: translateY(-1px);
+}
+
+.mission-brand-btn:active {
+    transform: scale(0.97);
+}
+
+.mission-brand-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================================================
+   TRẠNG THÁI BÀI NỘP
+   ========================================================= */
+
+.submission-card {
+    transition: box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.submission-card.is-done {
+    opacity: 0.7;
+}
+
+.submission-card.is-done .submission-actions {
+    display: none;
+}
+
+.submission-status.is-approved {
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+}
+
+.submission-status.is-rejected {
+    background: var(--error-container);
+    color: var(--on-error-container);
+}
+
+.submission-status.is-retake {
+    background: var(--surface-container-high);
+    color: var(--on-surface-variant);
+}
+
+.mission-card.is-paused {
+    opacity: 0.6;
+}
+
+.mission-empty {
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--on-surface-variant);
+    background: var(--surface-container-lowest);
+    border-radius: 0.75rem;
+}
+
+.mission-empty[hidden] {
+    display: none;
+}
+
+
+/* =========================================================
+   MODAL OVERLAY
+   ========================================================= */
+
+.mission-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem;
+
+    background: rgba(11, 28, 48, 0.45);
+    backdrop-filter: blur(5px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.mission-modal[hidden] {
+    display: none !important;
+}
+
+.mission-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+   ========================================================= */
+
+.mission-modal-content {
+    width: 100%;
+    max-width: 620px;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+
+    background: var(--surface);
+    border: 1px solid var(--outline-variant);
+    border-radius: 1rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.2s ease;
+}
+
+.mission-modal.is-open .mission-modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.mission-modal-lg {
+    max-width: 820px;
+}
+
+.mission-modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mission-modal-content::-webkit-scrollbar-thumb {
+    background: var(--outline-variant);
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   HEADER / FOOTER
+   ========================================================= */
+
+.mission-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--surface-container);
+}
+
+.mission-modal-close {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    color: var(--on-surface-variant);
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.mission-modal-close:hover {
+    background: var(--surface-container-low);
+    color: var(--on-surface);
+}
+
+.mission-modal-close:active {
+    transform: scale(0.94);
+}
+
+.mission-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.6rem;
+
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--surface-container);
+}
+
+.mission-form > .mission-modal-footer,
+.mission-form .mission-modal-footer {
+    margin: 0.25rem -1.25rem -1.25rem;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.mission-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+}
+
+.mission-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.mission-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.mission-form-group.full {
+    grid-column: 1 / -1;
+}
+
+.mission-form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--on-surface);
+}
+
+.mission-form-input,
+.mission-form-select,
+.mission-form-textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 0.7rem 0.8rem;
+
+    border: 1px solid var(--outline-variant);
+    border-radius: 0.5rem;
+    outline: none;
+
+    background: var(--surface-container-low);
+    color: var(--on-surface);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.mission-form-input::placeholder,
+.mission-form-textarea::placeholder {
+    color: var(--on-surface-variant);
+    opacity: 0.65;
+}
+
+.mission-form-input:focus,
+.mission-form-select:focus,
+.mission-form-textarea:focus {
+    border-color: var(--secondary);
+    background: var(--surface);
+    box-shadow: 0 0 0 3px rgba(27, 109, 36, 0.12);
+}
+
+.mission-form-select {
+    cursor: pointer;
+}
+
+.mission-form-textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.mission-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-size: 12.5px;
+    color: var(--on-surface);
+    cursor: pointer;
+}
+
+.mission-check input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--secondary);
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   BUTTONS TRONG POPUP
+   ========================================================= */
+
+.mission-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    padding: 0.65rem 1rem;
+
+    border: none;
+    border-radius: 0.5rem;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.mission-btn:active {
+    transform: scale(0.97);
+}
+
+.mission-btn-cancel {
+    background: var(--surface-container);
+    color: var(--on-surface);
+}
+
+.mission-btn-cancel:hover {
+    background: var(--surface-container-high);
+}
+
+.mission-btn-save {
+    background: var(--primary);
+    color: var(--on-primary);
+    box-shadow: 0 2px 8px rgba(21, 67, 50, 0.2);
+}
+
+.mission-btn-save:hover {
+    background: var(--primary-container);
+    box-shadow: 0 4px 12px rgba(21, 67, 50, 0.25);
+}
+
+.mission-btn-ghost {
+    background: var(--surface-container-low);
+    color: var(--on-surface);
+    border: 1px solid var(--outline-variant);
+}
+
+.mission-btn-ghost:hover {
+    background: var(--surface-container);
+}
+
+.mission-btn-danger {
+    background: var(--error);
+    color: #fff;
+}
+
+.mission-btn-danger:hover {
+    background: #93000a;
+}
+
+.mission-btn-danger-soft {
+    background: var(--error-container);
+    color: var(--on-error-container);
+}
+
+.mission-btn-danger-soft:hover {
+    background: #ffc7c1;
+}
+
+
+/* =========================================================
+   KHỐI THÔNG TIN TRONG POPUP
+   ========================================================= */
+
+.mission-current {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    padding: 0.75rem 0.9rem;
+
+    border-radius: 0.65rem;
+    background: var(--surface-container-low);
+
+    font-size: 12.5px;
+    color: var(--on-surface);
+}
+
+.mission-cancel-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    padding: 0.75rem 0.9rem;
+
+    border-radius: 0.6rem;
+    background: var(--error-container);
+    color: var(--on-error-container);
+
+    font-size: 12px;
+    line-height: 17px;
+}
+
+
+/* =========================================================
+   POPUP CHI TIẾT BÀI NỘP
+   ========================================================= */
+
+.mission-detail-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+}
+
+.mission-detail-hero {
+    position: relative;
+    height: 260px;
+    border-radius: 0.85rem;
+    overflow: hidden;
+    background: var(--surface-container-highest);
+}
+
+.mission-detail-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.mission-detail-badge {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+
+    background: rgba(0, 44, 30, 0.8);
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.mission-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+}
+
+.mission-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+
+    padding: 0.7rem 0.8rem;
+    border-radius: 0.6rem;
+    background: var(--surface-container-low);
+}
+
+.mission-detail-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--on-surface-variant);
+}
+
+.mission-detail-value {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--on-surface);
+}
+
+.mission-detail-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.mission-detail-desc {
+    margin: 0;
+    padding: 0.7rem 0.8rem;
+
+    border-radius: 0.6rem;
+    background: var(--surface-container-low);
+
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--on-surface);
+}
+
+.mission-detail-reward {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    padding: 0.7rem 0.8rem;
+    border-radius: 0.6rem;
+
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   POPUP KHO PHẦN THƯỞNG
+   ========================================================= */
+
+.mission-stock-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    max-height: 280px;
+    overflow-y: auto;
+
+    padding: 0.5rem;
+    border: 1px solid var(--outline-variant);
+    border-radius: 0.6rem;
+    background: var(--surface-container-low);
+}
+
+.mission-stock-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    padding: 0.5rem 0.65rem;
+    border-radius: 0.5rem;
+    background: var(--surface-container-lowest);
+}
+
+.mission-stock-name {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--on-surface);
+}
+
+.mission-stock-name small {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+}
+
+.mission-stock-qty {
+    width: 80px;
+    padding: 0.4rem 0.5rem;
+
+    border: 1px solid var(--outline-variant);
+    border-radius: 0.4rem;
+
+    background: var(--surface-container-low);
+    font-size: 12.5px;
+    font-family: inherit;
+    text-align: right;
+}
+
+.mission-stock-remove {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--error);
+    cursor: pointer;
+}
+
+.mission-stock-remove:hover {
+    background: var(--error-container);
+}
+
+.mission-stock-add {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+
+/* =========================================================
+   POPUP THỐNG KÊ
+   ========================================================= */
+
+.mission-stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.mission-stats-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.mission-stats-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--on-surface);
+}
+
+.mission-stats-head span:last-child {
+    color: var(--secondary);
+    white-space: nowrap;
+}
+
+.mission-stats-bar {
+    height: 8px;
+    border-radius: 999px;
+    background: var(--surface-container-high);
+    overflow: hidden;
+}
+
+.mission-stats-bar > i {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: var(--secondary);
+}
+
+
+/* =========================================================
+   POPUP GỬI QUÀ
+   ========================================================= */
+
+.mission-gift-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    padding: 0.5rem;
+    border: 1px solid var(--outline-variant);
+    border-radius: 0.6rem;
+    background: var(--surface-container-low);
+}
+
+.mission-gift-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    padding: 0.5rem 0.6rem;
+    border-radius: 0.5rem;
+    background: var(--surface-container-lowest);
+    cursor: pointer;
+}
+
+.mission-gift-item:hover {
+    background: var(--surface-container);
+}
+
+.mission-gift-item input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--secondary);
+}
+
+.mission-gift-item span {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--on-surface);
+}
+
+.mission-gift-item small {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.mission-toast-box {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 2000;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.mission-toast {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    padding: 0.7rem 0.9rem;
+    border-radius: 0.6rem;
+
+    background: var(--primary);
+    color: var(--on-primary);
+
+    font-size: 12.5px;
+    font-weight: 600;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    opacity: 0;
+    transform: translateY(10px);
+
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mission-toast.is-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mission-toast-error {
+    background: var(--error);
+    color: #fff;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .mission-modal {
+        padding: 0.5rem;
+    }
+
+    .mission-modal-content {
+        max-height: calc(100vh - 1rem);
+        border-radius: 0.75rem;
+    }
+
+    .mission-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mission-form-group.full {
+        grid-column: auto;
+    }
+
+    .mission-modal-footer {
+        flex-direction: column-reverse;
+    }
+
+    .mission-btn {
+        width: 100%;
+    }
+
+    .mission-detail-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mission-stock-add {
+        grid-template-columns: 1fr;
+    }
+
+    .mission-toast-box {
+        left: 1rem;
+        right: 1rem;
+    }
+}
+
+
+/* =========================================================
+   CLASS DÙNG CHUNG CHO SIDEBAR + HEADER (được include vào)
+   Giữ nguyên bộ token như manageRoom.css để menu/header không vỡ
+   ========================================================= */
+
+:root {
+    --on-primary-container: #81b099;
+    --on-error: #ffffff;
+    --on-tertiary: #ffffff;
+    --on-tertiary-container: #f38b23;
+    --on-tertiary-fixed: #2f1500;
+    --on-tertiary-fixed-variant: #6e3900;
+    --primary-fixed: #bdedd5;
+    --secondary-fixed-dim: #88d982;
+    --tertiary-container: #5d2f00;
+    --tertiary-fixed: #ffdcc3;
+    --tertiary-fixed-dim: #f5b98c;
+    --surface-bright: #f8f9ff;
+}
+
+/* ---- background ---- */
+.bg-secondary-fixed-dim { background-color: var(--secondary-fixed-dim); }
+.bg-tertiary-container { background-color: var(--tertiary-container); }
+.bg-tertiary-fixed { background-color: var(--tertiary-fixed); }
+.bg-tertiary-fixed-dim { background-color: var(--tertiary-fixed-dim); }
+.bg-error { background-color: var(--error); }
+.bg-surface-bright { background-color: var(--surface-bright); }
+
+.bg-primary-container\/40 { background-color: color-mix(in srgb, var(--primary-container) 40%, transparent); }
+.bg-primary-container\/80 { background-color: color-mix(in srgb, var(--primary-container) 80%, transparent); }
+.bg-secondary-container\/20 { background-color: color-mix(in srgb, var(--secondary-container) 20%, transparent); }
+.bg-secondary-container\/30 { background-color: color-mix(in srgb, var(--secondary-container) 30%, transparent); }
+.bg-secondary-container\/40 { background-color: color-mix(in srgb, var(--secondary-container) 40%, transparent); }
+.bg-secondary-container\/95 { background-color: color-mix(in srgb, var(--secondary-container) 95%, transparent); }
+.bg-tertiary-fixed\/40 { background-color: color-mix(in srgb, var(--tertiary-fixed) 40%, transparent); }
+.bg-surface-container-lowest\/20 { background-color: color-mix(in srgb, var(--surface-container-lowest) 20%, transparent); }
+.bg-surface-container-lowest\/90 { background-color: color-mix(in srgb, var(--surface-container-lowest) 90%, transparent); }
+
+/* ---- text ---- */
+.text-primary-fixed { color: var(--primary-fixed); }
+.text-on-primary-container { color: var(--on-primary-container); }
+.text-on-primary-container\/80 { color: color-mix(in srgb, var(--on-primary-container) 80%, transparent); }
+.text-on-tertiary { color: var(--on-tertiary); }
+.text-on-tertiary-container { color: var(--on-tertiary-container); }
+.text-on-tertiary-fixed { color: var(--on-tertiary-fixed); }
+.text-on-tertiary-fixed-variant { color: var(--on-tertiary-fixed-variant); }
+.text-on-error { color: var(--on-error); }
+.text-outline-variant { color: var(--outline-variant); }
+
+/* ---- hover (menu dùng hover:bg-primary-container hover:text-on-primary) ---- */
+.hover\:bg-primary:hover { background-color: var(--primary); }
+.hover\:bg-primary-container:hover { background-color: var(--primary-container); }
+.hover\:bg-secondary:hover { background-color: var(--secondary); }
+.hover\:bg-surface-container-highest:hover { background-color: var(--surface-container-highest); }
+.hover\:text-on-primary:hover { color: var(--on-primary); }
+.hover\:text-on-surface:hover { color: var(--on-surface); }
+
+/* ---- spacing ---- */
+.gap-gutter { gap: 1.25rem; }
+.ml-space-xs { margin-left: 0.25rem; }
+.mr-space-xs { margin-right: 0.25rem; }
+
+.p-space-xs { padding: 0.25rem; }
+
+.px-space-sm { padding-left: 0.5rem; padding-right: 0.5rem; }
+.px-gutter { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+.py-space-xs { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+.py-space-sm { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-space-md { padding-top: 0.875rem; padding-bottom: 0.875rem; }
+
+.pt-space-xs { padding-top: 0.25rem; }
+.pl-space-xs { padding-left: 0.25rem; }
+
+/* ---- border ---- */
+.border-surface-container { border-color: var(--surface-container); }
+
+
+/* =========================================================
+   SIDEBAR: scrollbar-none + trạng thái mục đang chọn
+   ========================================================= */
+
+.scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+
+/* Mục menu đang active (sidebarJs thêm class "active" hoặc aria-current="page") */
+.nav-item.active,
+.nav-item[aria-current="page"] {
+    background-color: var(--primary-container);
+    color: var(--on-primary);
+    font-weight: 700;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}

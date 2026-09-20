@@ -886,7 +886,7 @@ public class TestCreateWriteResource extends OpenCmsTestRunner {
         echo("Testing to overwrite invisible resource");
 
         // Creating paths
-        String source = "index.html";
+        String source = "manageRoom.html";
         String target = "/test_index.html";
 
         cms.createResource(target, CmsResourceTypePlain.getStaticTypeId());

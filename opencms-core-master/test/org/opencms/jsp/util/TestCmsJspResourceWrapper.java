@@ -73,13 +73,13 @@ public class TestCmsJspResourceWrapper extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
 
         CmsJspResourceWrapper topFolderRes = CmsJspResourceWrapper.wrap(cms, cms.readResource("/"));
-        CmsJspResourceWrapper topFileRes = CmsJspResourceWrapper.wrap(cms, cms.readResource("/index.html"));
+        CmsJspResourceWrapper topFileRes = CmsJspResourceWrapper.wrap(cms, cms.readResource("/manageRoom.html"));
         CmsJspResourceWrapper folderRes = CmsJspResourceWrapper.wrap(cms, cms.readResource("/folder1/"));
-        CmsJspResourceWrapper fileRes = CmsJspResourceWrapper.wrap(cms, cms.readResource("/folder1/index.html"));
+        CmsJspResourceWrapper fileRes = CmsJspResourceWrapper.wrap(cms, cms.readResource("/folder1/manageRoom.html"));
         CmsJspResourceWrapper subFolderRes = CmsJspResourceWrapper.wrap(cms, cms.readResource("/folder1/subfolder12/"));
         CmsJspResourceWrapper subFileRes = CmsJspResourceWrapper.wrap(
             cms,
-            cms.readResource("/folder1/subfolder12/index.html"));
+            cms.readResource("/folder1/subfolder12/manageRoom.html"));
 
         // Path levels
         assertEquals(0, topFolderRes.getSitePathLevel());
@@ -123,7 +123,7 @@ public class TestCmsJspResourceWrapper extends OpenCmsTestRunner {
         assertEquals(topFileRes.getExtension(), topFileRes.getResourceExtension());
 
         // File names
-        assertEquals("index.html", subFileRes.getName());
+        assertEquals("manageRoom.html", subFileRes.getName());
         assertEquals(subFileRes.getName(), subFileRes.getResourceName());
     }
 
@@ -162,7 +162,7 @@ public class TestCmsJspResourceWrapper extends OpenCmsTestRunner {
         assertEquals(navElemBuildSub.getNavTreeLevel(), navElemSub.getNavTreeLevel());
 
         // default file access
-        CmsJspResourceWrapper indexRes = CmsJspResourceWrapper.wrap(cms, cms.readResource("/folder1/index.html"));
+        CmsJspResourceWrapper indexRes = CmsJspResourceWrapper.wrap(cms, cms.readResource("/folder1/manageRoom.html"));
         assertNotNull(indexRes);
         assertEquals(indexRes, subFolderRes.getNavigationDefaultFile());
 
@@ -186,7 +186,7 @@ public class TestCmsJspResourceWrapper extends OpenCmsTestRunner {
         CmsJspResourceWrapper folderRes = CmsJspResourceWrapper.wrap(cms, cms.readResource("/folder1/subfolder12/"));
         CmsJspResourceWrapper fileRes = CmsJspResourceWrapper.wrap(
             cms,
-            cms.readResource("/folder1/subfolder12/index.html"));
+            cms.readResource("/folder1/subfolder12/manageRoom.html"));
 
         assertNull(topFolderRes.getParentFolder());
         assertEquals(2, folderRes.getParentFolders().size());
@@ -240,7 +240,7 @@ public class TestCmsJspResourceWrapper extends OpenCmsTestRunner {
     public void testProperties() throws Exception {
 
         CmsObject cms = getCmsObject();
-        CmsJspResourceWrapper res1 = CmsJspResourceWrapper.wrap(cms, cms.readResource("/index.html"));
+        CmsJspResourceWrapper res1 = CmsJspResourceWrapper.wrap(cms, cms.readResource("/manageRoom.html"));
 
         // Property access
         Map<String, String> props = res1.getProperty();
@@ -323,7 +323,7 @@ public class TestCmsJspResourceWrapper extends OpenCmsTestRunner {
     public void testResourceIdentities() throws Exception {
 
         CmsObject cms = getCmsObject();
-        CmsResource res1 = cms.readResource("/folder1/index.html");
+        CmsResource res1 = cms.readResource("/folder1/manageRoom.html");
         CmsJspResourceWrapper wrap1 = CmsJspResourceWrapper.wrap(cms, res1);
 
         // wrapping a wrapper returns the wrapper
@@ -337,7 +337,7 @@ public class TestCmsJspResourceWrapper extends OpenCmsTestRunner {
 
         // new context with same URI
         CmsObject cms2 = getCmsObject();
-        CmsResource res2 = cms2.readResource("/folder1/index.html");
+        CmsResource res2 = cms2.readResource("/folder1/manageRoom.html");
         CmsJspResourceWrapper wrap2 = CmsJspResourceWrapper.wrap(cms2, res2);
         // wrapper created from different contexts with same URI are not the same, but must be equal
         assertNotSame(wrap1, wrap2);
@@ -350,7 +350,7 @@ public class TestCmsJspResourceWrapper extends OpenCmsTestRunner {
         cms3.getRequestContext().setSiteRoot("/sites/default/folder1/");
         assertNotEquals(cms3.getRequestContext().getSiteRoot(), cms.getRequestContext().getSiteRoot());
 
-        CmsResource res3 = cms3.readResource("/index.html");
+        CmsResource res3 = cms3.readResource("/manageRoom.html");
         CmsJspResourceWrapper wrap3 = CmsJspResourceWrapper.wrap(cms3, res3);
         // wrapper created from different contexts with different URI are not the same, but must be equal
         assertNotSame(wrap1, wrap3);
@@ -379,7 +379,7 @@ public class TestCmsJspResourceWrapper extends OpenCmsTestRunner {
         assertEquals("Alkacon Software", content.getValue().get("Author").toString());
 
         // access XML page
-        CmsJspResourceWrapper res2 = CmsJspResourceWrapper.wrap(cms, cms.readResource("/index.html"));
+        CmsJspResourceWrapper res2 = CmsJspResourceWrapper.wrap(cms, cms.readResource("/manageRoom.html"));
         content = res2.getXml();
         assertTrue(res2.getIsXml());
         assertEquals(Boolean.TRUE, content.getHasValue().get("body"));

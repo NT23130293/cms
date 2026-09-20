@@ -7809,7 +7809,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
         if (lastResourceIsFile) {
             if (it.hasNext()) {
                 // this will only be false if a resource in the
-                // top level root folder (e.g. "/index.html") was requested
+                // top level root folder (e.g. "/manageRoom.html") was requested
                 currentResourceName = it.next();
             }
             currentPath.append(currentResourceName);

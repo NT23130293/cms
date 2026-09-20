@@ -1866,7 +1866,7 @@ public abstract class CmsWorkplace {
      * <code>"??? " + keyName + " ???"</code>.<p>
      *
      * If the key starts with <code>"help."</code> and is not found,
-     * the value <code>"index.html"</code> is returned.<p>
+     * the value <code>"manageRoom.html"</code> is returned.<p>
      *
      * @param keyName the key for the desired string
      * @return the resource string for the given key

@@ -671,7 +671,7 @@ public class CmsHtmlImport {
 
         // if the link goes to a directory, lets link to the index page within
         if ((translatedLink != null) && translatedLink.endsWith("/")) {
-            translatedLink += "index.html";
+            translatedLink += "manageRoom.html";
         }
 
         // final check: if the translated link is still null the original link found
@@ -1466,7 +1466,7 @@ public class CmsHtmlImport {
                 //vfsName=m_destinationDir+relativeName;
 
                 // we have to check if there is a folder with the same name but without extension
-                // if so, we will move the file into the folder and name it "index.html"
+                // if so, we will move the file into the folder and name it "manageRoom.html"
                 String folderName = relativeName;
                 if (folderName.indexOf(".") > 0) {
                     folderName = folderName.substring(0, folderName.indexOf("."));
@@ -1475,8 +1475,8 @@ public class CmsHtmlImport {
                 File folder = new File(folderName);
 
                 if (folder.isDirectory()) {
-                    vfsName = m_destinationDir + relativeName.substring(0, relativeName.indexOf(".")) + "/index.html";
-                    // System.err.println("MOVING "+ relativeName + " -> " + name.substring(0,name.indexOf("."))+"/index.html");
+                    vfsName = m_destinationDir + relativeName.substring(0, relativeName.indexOf(".")) + "/manageRoom.html";
+                    // System.err.println("MOVING "+ relativeName + " -> " + name.substring(0,name.indexOf("."))+"/manageRoom.html");
                 } else {
                     // move to destination folder
                     vfsName = m_destinationDir + relativeName;

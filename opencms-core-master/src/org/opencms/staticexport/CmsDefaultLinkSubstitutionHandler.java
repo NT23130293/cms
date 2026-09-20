@@ -212,7 +212,7 @@ public class CmsDefaultLinkSubstitutionHandler implements I_CmsLinkSubstitutionH
                         detailPage,
                         cms.getDetailName(element, locale, defaultLocales),
                         "/");
-                    // technically, we could have an URL name of 'index.html' (or whatever the configured names in the link finisher are),
+                    // technically, we could have an URL name of 'manageRoom.html' (or whatever the configured names in the link finisher are),
                     // and in that case the link finisher would break the link
                     fullLinkFinish = false;
                 } catch (CmsVfsException e) {
@@ -377,7 +377,7 @@ public class CmsDefaultLinkSubstitutionHandler implements I_CmsLinkSubstitutionH
                 if (cms.getRequestContext().getDetailContentId() != null) {
                     uriBaseName = CmsStringUtil.joinPaths(
                         CmsResource.getFolderPath(uriBaseName),
-                        cms.getRequestContext().getDetailContentId().toString() + "/index.html");
+                        cms.getRequestContext().getDetailContentId().toString() + "/manageRoom.html");
                 }
                 resultLink = CmsLinkManager.getRelativeUri(uriBaseName, resultLink);
             }
@@ -425,7 +425,7 @@ public class CmsDefaultLinkSubstitutionHandler implements I_CmsLinkSubstitutionH
         if (isEditMode
             && (cms.getRequestContext().getAttribute(CmsLinkProcessor.ATTR_IS_PROCESSING_LINKS) == Boolean.TRUE)) {
             // in the Offline project, the link engine is also used for rendering links in the WYSIWYG editor, and the resulting HTML
-            // is sent to the server later for saving, so we want to preserve the actual resources linked to - so we can't cut off index.html or similar suffixes.
+            // is sent to the server later for saving, so we want to preserve the actual resources linked to - so we can't cut off manageRoom.html or similar suffixes.
             fullLinkFinish = false;
         }
         linkFinisher = config.getLinkFinisher();

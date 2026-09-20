@@ -24,9 +24,9 @@ body {
     min-height: 100vh;
 }
 
-/* Header Container */
 .header,
 .yen-header-bg {
+    width: 100%;
     background-color: var(--bg-header);
     border-bottom: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
@@ -37,10 +37,11 @@ body {
 
 .header-container,
 .yen-header-container {
-    max-width: 1360px;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 24px;
-    height: 72px;
+    padding: 0 32px;
+    height: 78px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -55,6 +56,18 @@ body {
     text-decoration: none;
     color: var(--text-main);
     user-select: none;
+}
+
+.brand-logo-img {
+    height: 64px;
+    width: auto;
+    max-width: 250px;
+    object-fit: contain;
+    transition: var(--transition-fast);
+}
+
+.brand-logo:hover .brand-logo-img {
+    transform: scale(1.05);
 }
 
 .brand-icon,

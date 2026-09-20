@@ -110,7 +110,7 @@ public class TestMoveRename2 extends OpenCmsTestRunner {
         // Creating paths
         String folder = "/mytestfolder_moved/";
         String folder_moved = "/mytestfolder_moved2/";
-        String file = "index.html";
+        String file = "manageRoom.html";
 
         cms.lockResource(folder + file);
         cms.chacc(folder + file, I_CmsPrincipal.PRINCIPAL_USER, "test2", "-r+v+i");
@@ -193,7 +193,7 @@ public class TestMoveRename2 extends OpenCmsTestRunner {
         // Creating paths
         String folder = "/mytestfolder/";
         String folder_moved = "/mytestfolder_moved/";
-        String file = "index.html";
+        String file = "manageRoom.html";
 
         cms.loginUser("test2", "test2");
         cms.getRequestContext().setCurrentProject(cms.readProject("Offline"));
@@ -309,7 +309,7 @@ public class TestMoveRename2 extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing moving a sibling");
 
-        String resName = "index.html";
+        String resName = "manageRoom.html";
         String sibName = "folder1/sib.html";
         String sib2Name = "folder1/sib2.html";
 
@@ -364,7 +364,7 @@ public class TestMoveRename2 extends OpenCmsTestRunner {
 
         String folder = "/folder1/subfolder12/";
         String folderDest = "/moved_subfolder12/";
-        String source = "index.html";
+        String source = "manageRoom.html";
         String destination = "def.html";
 
         // move the resource outside of the folder

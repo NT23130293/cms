@@ -192,7 +192,7 @@ public final class CmsHelpNavigationListView {
             // one less as level 0 nav elements accepted is one level (depth 1).
             result = counter.countTokens() - 1;
             if (!CmsResource.isFolder(m_navRootPath)) {
-                // cut stuff like system/workpalce/locale/de/help/index.html
+                // cut stuff like system/workpalce/locale/de/help/manageRoom.html
                 result--;
             }
             result += m_depth;

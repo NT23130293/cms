@@ -500,8 +500,8 @@ public class TestHistory extends OpenCmsTestRunner {
         // create a new folder and resource
         CmsResource folder = cms.createResource("testFolder", CmsResourceTypeFolder.RESOURCE_TYPE_ID);
         // create a relation
-        cms.lockResource("index.html");
-        cms.addRelationToResource("index.html", "testFolder", CmsRelationType.CATEGORY.getName());
+        cms.lockResource("manageRoom.html");
+        cms.addRelationToResource("manageRoom.html", "testFolder", CmsRelationType.CATEGORY.getName());
         // write props
         cms.writePropertyObject(
             "testFolder",
@@ -512,7 +512,7 @@ public class TestHistory extends OpenCmsTestRunner {
             "test".getBytes(),
             null);
         // create a relation
-        cms.addRelationToResource("index.html", "testFolder/test.txt", CmsRelationType.CATEGORY.getName());
+        cms.addRelationToResource("manageRoom.html", "testFolder/test.txt", CmsRelationType.CATEGORY.getName());
         // write props
         cms.writePropertyObject(
             "testFolder/test.txt",
@@ -572,12 +572,12 @@ public class TestHistory extends OpenCmsTestRunner {
         List relations = cms.getRelationsForResource("/testFolder", CmsRelationFilter.SOURCES);
         assertEquals(1, relations.size());
         assertRelation(
-            new CmsRelation(cms.readResource("index.html"), folder, CmsRelationType.CATEGORY),
+            new CmsRelation(cms.readResource("manageRoom.html"), folder, CmsRelationType.CATEGORY),
             (CmsRelation)relations.get(0));
         relations = cms.getRelationsForResource("/testFolder/test.txt", CmsRelationFilter.SOURCES);
         assertEquals(1, relations.size());
         assertRelation(
-            new CmsRelation(cms.readResource("index.html"), res, CmsRelationType.CATEGORY),
+            new CmsRelation(cms.readResource("manageRoom.html"), res, CmsRelationType.CATEGORY),
             (CmsRelation)relations.get(0));
 
         // delete again
@@ -2381,7 +2381,7 @@ public class TestHistory extends OpenCmsTestRunner {
         CmsObject cms = getCmsObject();
         echo("Testing versioning limit");
 
-        String source = "/index.html";
+        String source = "/manageRoom.html";
         cms.getRequestContext().setCurrentProject(cms.readProject("Offline"));
 
         // set the history version settings

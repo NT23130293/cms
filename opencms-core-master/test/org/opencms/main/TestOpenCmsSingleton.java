@@ -166,7 +166,7 @@ public class TestOpenCmsSingleton extends OpenCmsTestRunner {
         // now test creation of "Admin" user with admin permissions
         // also check if created context is actually the context provided
         String siteRoot = "/sites/default";
-        String requestedUri = "/index.html";
+        String requestedUri = "/manageRoom.html";
         String encoding = "US-ASCII";
 
         contextInfo.setSiteRoot(siteRoot);
@@ -246,7 +246,7 @@ public class TestOpenCmsSingleton extends OpenCmsTestRunner {
             });
 
         CmsResource resource = OpenCms.initResource(cms, "/folder1/subfolder12/", req, res);
-        assertEquals("/sites/default/folder1/subfolder12/index.html", resource.getRootPath());
+        assertEquals("/sites/default/folder1/subfolder12/manageRoom.html", resource.getRootPath());
 
         CmsProperty defaultFileProperty = new CmsProperty("default-file", "page1.html", null);
         cms.lockResource("/folder1/subfolder12/");

@@ -1,3 +1,25 @@
+/* =========================================================
+   BOOKING MODAL SYSTEM
+   Đồng bộ phong cách với manageRoom.css
+   ========================================================= */
+
+/* =========================================================
+   CSS VARIABLES
+   ========================================================= */
+:root {
+    --surface:           #ffffff;
+    --surface-variant:   #f4f6fb;
+    --on-surface:        #1a1c22;
+    --outline-variant:   #dde1ec;
+    --primary:           #4361ee;
+    --on-primary:        #ffffff;
+    --error:             #e53935;
+    --on-error:          #ffffff;
+    --success:           #2e7d32;
+    --warning:           #f57c00;
+}
+
+/* BASE RESET */
 @layer base {
     html, body {
         margin: 0;
@@ -14,6 +36,597 @@
     }
 }
 
-::-webkit-scrollbar {
+/* Ẩn scrollbar mặc định */
+.scrollbar-none::-webkit-scrollbar {
     display: none;
+}
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+/* =========================================================
+   MODAL OVERLAY
+   ========================================================= */
+
+.bk-modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem;
+
+    background: rgba(11, 28, 48, 0.45);
+
+    backdrop-filter: blur(5px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+/* Khi có hidden thì hoàn toàn không hiển thị */
+.bk-modal[hidden] {
+    display: none !important;
+}
+
+/* Modal đang mở */
+.bk-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+   ========================================================= */
+
+.bk-modal-content {
+    width: 100%;
+    max-width: 620px;
+
+    max-height: calc(100vh - 2rem);
+
+    overflow-y: auto;
+
+    background-color: #ffffff;
+    background: var(--surface, #ffffff);
+
+    border: 1px solid var(--outline-variant, #dde1ec);
+
+    border-radius: 1rem;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+
+    transform: translateY(20px) scale(0.97);
+
+    transition: transform 0.2s ease;
+}
+
+/* Animation khi mở */
+.bk-modal.is-open .bk-modal-content {
+    transform: translateY(0) scale(1);
+}
+
+/* Kích thước lớn hơn */
+.bk-modal-lg {
+    max-width: 880px;
+}
+
+/* Kích thước nhỏ hơn */
+.bk-modal-sm {
+    max-width: 480px;
+}
+
+
+/* =========================================================
+   MODAL HEADER - Kiểu tiêu đề đơn giản (trắng)
+   ========================================================= */
+
+.bk-modal-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1.25rem;
+
+    border-bottom: 1px solid var(--surface-container);
+}
+
+/* Header với màu nền (primary, secondary, error) */
+.bk-modal-header-primary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--primary);
+    color: var(--on-primary);
+    flex-shrink: 0;
+}
+
+.bk-modal-header-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--secondary);
+    color: var(--on-secondary);
+    flex-shrink: 0;
+}
+
+.bk-modal-header-error {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--error);
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.bk-modal-header-surface {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--surface-container-highest);
+    color: var(--on-surface);
+    flex-shrink: 0;
+}
+
+.bk-modal-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.bk-modal-subtitle {
+    font-size: 11px;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   MODAL CLOSE BUTTON
+   ========================================================= */
+
+.bk-modal-close {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    color: var(--on-surface-variant);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.bk-modal-close:hover {
+    background: var(--surface-container-low);
+    color: var(--on-surface);
+}
+
+.bk-modal-close:active {
+    transform: scale(0.94);
+}
+
+/* Close button trên header màu */
+.bk-modal-close-light {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.bk-modal-close-light:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.bk-modal-close-light:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================================================
+   MODAL BODY
+   ========================================================= */
+
+.bk-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   MODAL FOOTER
+   ========================================================= */
+
+.bk-modal-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    padding: 1rem 1.25rem;
+
+    border-top: 1px solid var(--surface-container);
+
+    flex-shrink: 0;
+}
+
+.bk-modal-footer-spread {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--surface-container);
+    background: var(--surface-container-low);
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   MODAL BUTTON
+   ========================================================= */
+
+.bk-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.4rem;
+
+    padding: 0.65rem 1rem;
+
+    border: none;
+
+    border-radius: 0.5rem;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.bk-btn:active {
+    transform: scale(0.97);
+}
+
+/* Cancel / Hủy */
+.bk-btn-cancel {
+    background: var(--surface-container);
+    color: var(--on-surface);
+}
+.bk-btn-cancel:hover {
+    background: var(--surface-container-high);
+}
+
+/* Save / Primary action */
+.bk-btn-save {
+    background: var(--primary);
+    color: var(--on-primary);
+    box-shadow: 0 2px 8px rgba(21, 67, 50, 0.2);
+}
+.bk-btn-save:hover {
+    background: var(--primary-container);
+    box-shadow: 0 4px 12px rgba(21, 67, 50, 0.25);
+}
+
+/* Secondary action */
+.bk-btn-secondary {
+    background: var(--secondary);
+    color: var(--on-secondary);
+    box-shadow: 0 2px 8px rgba(27, 109, 36, 0.2);
+}
+.bk-btn-secondary:hover {
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+}
+
+/* Ghost / outline */
+.bk-btn-ghost {
+    background: var(--surface-container-low);
+    color: var(--on-surface);
+    border: 1px solid var(--outline-variant);
+}
+.bk-btn-ghost:hover {
+    background: var(--surface-container);
+    border-color: var(--outline);
+}
+
+/* Danger / Error */
+.bk-btn-danger {
+    background: var(--error);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(186, 26, 26, 0.25);
+}
+.bk-btn-danger:hover {
+    opacity: 0.88;
+}
+
+
+/* =========================================================
+   FORM STYLES
+   ========================================================= */
+
+.bk-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+}
+
+.bk-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.bk-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.bk-form-group.full {
+    grid-column: 1 / -1;
+}
+
+.bk-form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--on-surface);
+}
+
+.bk-form-input,
+.bk-form-select,
+.bk-form-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--outline-variant);
+    border-radius: 0.5rem;
+    outline: none;
+    background: var(--surface-container-low);
+    color: var(--on-surface);
+    font-family: inherit;
+    font-size: 13px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.bk-form-input::placeholder,
+.bk-form-textarea::placeholder {
+    color: var(--on-surface-variant);
+    opacity: 0.65;
+}
+
+.bk-form-input:focus,
+.bk-form-select:focus,
+.bk-form-textarea:focus {
+    border-color: var(--secondary);
+    background: var(--surface);
+    box-shadow: 0 0 0 3px rgba(27, 109, 36, 0.12);
+}
+
+.bk-form-select {
+    cursor: pointer;
+}
+
+.bk-form-textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+
+/* =========================================================
+   MODAL SCROLLBAR
+   ========================================================= */
+
+.bk-modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.bk-modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.bk-modal-content::-webkit-scrollbar-thumb {
+    background: var(--outline-variant);
+    border-radius: 10px;
+}
+
+.bk-modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--outline);
+}
+
+
+/* =========================================================
+   BODY WHEN MODAL IS OPEN
+   ========================================================= */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TOAST THÔNG BÁO
+   ========================================================= */
+
+.toast-item {
+    animation: toastSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+               toastFadeOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) 3.2s forwards;
+}
+
+@keyframes toastSlideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes toastFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-15px) scale(0.95);
+    }
+}
+
+
+/* =========================================================
+   PRINT - Hóa đơn
+   ========================================================= */
+
+@media print {
+    body * {
+        visibility: hidden !important;
+    }
+    #invoiceModal,
+    #invoiceModal * {
+        visibility: visible !important;
+    }
+    #invoiceModal {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+    }
+    .bk-modal-header-primary,
+    .bk-modal-header-secondary,
+    .bk-modal-header-error,
+    .bk-modal-header-surface,
+    .bk-modal-footer,
+    .bk-modal-footer-spread,
+    .no-print {
+        display: none !important;
+    }
+    #invoicePrintContent {
+        box-shadow: none !important;
+        border: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 20px !important;
+        margin: 0 !important;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 640px) {
+    .bk-modal {
+        padding: 0.5rem;
+    }
+
+    .bk-modal-content {
+        max-height: calc(100vh - 1rem);
+        border-radius: 0.75rem;
+    }
+
+    .bk-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bk-form-group.full {
+        grid-column: auto;
+    }
+
+    .bk-modal-footer,
+    .bk-modal-footer-spread {
+        flex-direction: column-reverse;
+    }
+
+    .bk-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .bk-modal-header,
+    .bk-modal-header-primary,
+    .bk-modal-header-secondary,
+    .bk-modal-header-error,
+    .bk-modal-header-surface {
+        padding: 0.875rem 1rem;
+    }
+
+    .bk-form {
+        padding: 1rem;
+    }
+
+    .bk-modal-footer,
+    .bk-modal-footer-spread {
+        padding: 0.875rem 1rem;
+    }
+
+    .bk-modal-content {
+        max-height: calc(100vh - 0.5rem);
+    }
 }

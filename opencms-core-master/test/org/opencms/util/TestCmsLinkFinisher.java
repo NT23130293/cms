@@ -54,7 +54,7 @@ public class TestCmsLinkFinisher extends OpenCmsTestRunner {
     @Order(1)
     public void testExclude() throws Exception {
 
-        CmsLinkFinisher lf = new CmsLinkFinisher(true, Arrays.asList("index.html"), ".*?/exclude/.*");
+        CmsLinkFinisher lf = new CmsLinkFinisher(true, Arrays.asList("manageRoom.html"), ".*?/exclude/.*");
         assertEquals("http://foo.com/qux", lf.transformLink("http://foo.com/qux/index.html", true));
         assertEquals("http://foo.com/exclude/index.html", lf.transformLink("http://foo.com/exclude/index.html", true));
         assertEquals(
@@ -70,7 +70,7 @@ public class TestCmsLinkFinisher extends OpenCmsTestRunner {
     @Order(3)
     public void testLinkFinisherFull() throws Exception {
 
-        CmsLinkFinisher lf = new CmsLinkFinisher(true, Arrays.asList("index.html"), null);
+        CmsLinkFinisher lf = new CmsLinkFinisher(true, Arrays.asList("manageRoom.html"), null);
         assertEquals("http://foo.com/qux", lf.transformLink("http://foo.com/qux/index.html", true));
         assertEquals("http://foo.com/qux?param=1", lf.transformLink("http://foo.com/qux/index.html?param=1", true));
         assertEquals(
@@ -79,9 +79,9 @@ public class TestCmsLinkFinisher extends OpenCmsTestRunner {
         assertEquals("http://foo.com/qux#fragment", lf.transformLink("http://foo.com/qux/index.html#fragment", true));
         assertEquals("http://foo.com", lf.transformLink("http://foo.com/index.html", true));
         assertEquals("http://foo.com", lf.transformLink("http://foo.com/", true));
-        assertEquals("/", lf.transformLink("/index.html", true));
+        assertEquals("/", lf.transformLink("/manageRoom.html", true));
         assertEquals("/", lf.transformLink("/", true));
-        assertEquals("/opencms", lf.transformLink("/opencms/index.html", true));
+        assertEquals("/opencms", lf.transformLink("/opencms/manageRoom.html", true));
         assertEquals("javascript:void(0)", lf.transformLink("javascript:void(0)", true));
 
     }
@@ -90,16 +90,16 @@ public class TestCmsLinkFinisher extends OpenCmsTestRunner {
     @Order(2)
     public void testLinkFinisherSlashesOnly() throws Exception {
 
-        CmsLinkFinisher lf = new CmsLinkFinisher(true, Arrays.asList("index.html"), null);
+        CmsLinkFinisher lf = new CmsLinkFinisher(true, Arrays.asList("manageRoom.html"), null);
         assertEquals("http://foo.com/qux/index.html", lf.transformLink("http://foo.com/qux/index.html", false));
         assertEquals(
             "http://foo.com/qux/index.html?param=1",
             lf.transformLink("http://foo.com/qux/index.html?param=1", false));
         assertEquals("http://foo.com", lf.transformLink("http://foo.com/", false));
         assertEquals("http://foo.com/bar", lf.transformLink("http://foo.com/bar/", false));
-        assertEquals("/index.html", lf.transformLink("/index.html", false));
+        assertEquals("/manageRoom.html", lf.transformLink("/manageRoom.html", false));
         assertEquals("/", lf.transformLink("/", false));
-        assertEquals("/opencms/index.html", lf.transformLink("/opencms/index.html", false));
+        assertEquals("/opencms/manageRoom.html", lf.transformLink("/opencms/manageRoom.html", false));
         assertEquals("/opencms", lf.transformLink("/opencms/", false));
 
     }

@@ -31,7 +31,7 @@
         window.top.body.location.href = link;
     }
 <%
-    String loginJsp = cms.getCmsObject().readPropertyObject(cms.getRequestContext().getUri(), CmsPropertyDefinition.PROPERTY_LOGIN_FORM, true).getValue("/system/login/index.html");
+    String loginJsp = cms.getCmsObject().readPropertyObject(cms.getRequestContext().getUri(), CmsPropertyDefinition.PROPERTY_LOGIN_FORM, true).getValue("/system/login/manageRoom.html");
     String exitLink = cms.link(CmsRequestUtil.appendParameter(loginJsp, CmsLogin.PARAM_ACTION_LOGOUT, String.valueOf(true)));
 %>
     function doLogout() {

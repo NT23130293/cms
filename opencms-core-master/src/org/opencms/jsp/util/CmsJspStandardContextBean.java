@@ -2171,7 +2171,7 @@ public final class CmsJspStandardContextBean {
     /**
      * Lazily reads the given attribute from the current sitemap or a property of the same name from the given resource.
      *
-     * <p>Usage example: ${cms.readAttributeOrProperty['/index.html']['attr']}
+     * <p>Usage example: ${cms.readAttributeOrProperty['/manageRoom.html']['attr']}
      *
      * @return a lazy loading map for accessing attributes / properties
      */

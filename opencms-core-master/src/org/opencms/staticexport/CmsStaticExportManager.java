@@ -100,7 +100,7 @@ import org.apache.commons.logging.Log;
 public class CmsStaticExportManager implements I_CmsEventListener {
 
     /** Name for the default file. */
-    public static final String DEFAULT_FILE = "index.html";
+    public static final String DEFAULT_FILE = "manageRoom.html";
 
     /** Marker for error message attribute. */
     public static final String EXPORT_ATTRIBUTE_ERROR_MESSAGE = RequestDispatcher.ERROR_MESSAGE;

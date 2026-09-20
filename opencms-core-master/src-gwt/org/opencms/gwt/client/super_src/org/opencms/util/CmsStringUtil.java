@@ -185,7 +185,7 @@ public final class CmsStringUtil {
      * In order to reduce the length of the displayed names, single folder names are removed/replaced with ... successively, 
      * starting with the second! folder. The first folder is removed as last.<p>
      * 
-     * Example: formatResourceName("/myfolder/subfolder/index.html", 21) returns <code>/myfolder/.../index.html</code>.<p>
+     * Example: formatResourceName("/myfolder/subfolder/manageRoom.html", 21) returns <code>/myfolder/.../manageRoom.html</code>.<p>
      * 
      * @param name the resource name to format
      * @param maxLength the maximum length of the resource name (without leading <code>/...</code>)

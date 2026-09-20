@@ -161,7 +161,7 @@ public class TestCmsXmlPageInSystem extends OpenCmsTestRunner {
             + getVfsPrefix()
             + "/image.gif\" alt=\"an image\" />\n<!-- This is a comment -->\n<a href=\""
             + getVfsPrefix()
-            + "/index.html\">Link</a><!-- Another comment -->";
+            + "/manageRoom.html\">Link</a><!-- Another comment -->";
         page.setStringValue(cms, element, Locale.ENGLISH, content);
         result = page.getStringValue(cms, element, Locale.ENGLISH);
         assertEquals(content, result);
@@ -171,7 +171,7 @@ public class TestCmsXmlPageInSystem extends OpenCmsTestRunner {
             + getVfsPrefix()
             + "/image.gif\" alt=\"an image\" />\n<h1>some text</h1>--><!-- This is a comment -->\n<a href=\""
             + getVfsPrefix()
-            + "/index.html\">Link</a><!-- Another comment -->";
+            + "/manageRoom.html\">Link</a><!-- Another comment -->";
         page.setStringValue(cms, element, Locale.ENGLISH, content);
         result = page.getStringValue(cms, element, Locale.ENGLISH);
         assertEquals(content, result);
@@ -181,7 +181,7 @@ public class TestCmsXmlPageInSystem extends OpenCmsTestRunner {
             + getVfsPrefix()
             + "/image.gif\" alt=\"an image\" / -->\n<h1>some text</h1><!-- This is a comment -->\n End of comment! --> <a href=\""
             + getVfsPrefix()
-            + "/index.html\">Link</a><!-- Another comment -->";
+            + "/manageRoom.html\">Link</a><!-- Another comment -->";
         page.setStringValue(cms, element, Locale.ENGLISH, content);
         result = page.getStringValue(cms, element, Locale.ENGLISH);
         assertEquals(content, result);
@@ -220,20 +220,20 @@ public class TestCmsXmlPageInSystem extends OpenCmsTestRunner {
         page.addValue(element, Locale.ENGLISH);
         String text;
 
-        page.setStringValue(cms, element, Locale.ENGLISH, "<a href=\"index.html?a=b&someparam=de\">link</a>");
+        page.setStringValue(cms, element, Locale.ENGLISH, "<a href=\"manageRoom.html?a=b&someparam=de\">link</a>");
         text = page.getStringValue(cms, element, Locale.ENGLISH);
         assertEquals(
-            "<a href=\"" + getVfsPrefix() + "/folder1/subfolder11/index.html?a=b&amp;someparam=de\">link</a>",
+            "<a href=\"" + getVfsPrefix() + "/folder1/subfolder11/manageRoom.html?a=b&amp;someparam=de\">link</a>",
             text);
 
-        page.setStringValue(cms, element, Locale.ENGLISH, "<a href=\"index.html?language=de\">link</a>");
+        page.setStringValue(cms, element, Locale.ENGLISH, "<a href=\"manageRoom.html?language=de\">link</a>");
         text = page.getStringValue(cms, element, Locale.ENGLISH);
-        assertEquals("<a href=\"" + getVfsPrefix() + "/folder1/subfolder11/index.html?language=de\">link</a>", text);
+        assertEquals("<a href=\"" + getVfsPrefix() + "/folder1/subfolder11/manageRoom.html?language=de\">link</a>", text);
 
-        page.setStringValue(cms, element, Locale.ENGLISH, "<a href=\"index.html?a=b&language=de\">link</a>");
+        page.setStringValue(cms, element, Locale.ENGLISH, "<a href=\"manageRoom.html?a=b&language=de\">link</a>");
         text = page.getStringValue(cms, element, Locale.ENGLISH);
         assertEquals(
-            "<a href=\"" + getVfsPrefix() + "/folder1/subfolder11/index.html?a=b&amp;language=de\">link</a>",
+            "<a href=\"" + getVfsPrefix() + "/folder1/subfolder11/manageRoom.html?a=b&amp;language=de\">link</a>",
             text);
 
         page.setStringValue(cms, element, Locale.ENGLISH, "<a href=\"index_noexist.html?a=b&language=de\">link</a>");
@@ -282,13 +282,13 @@ public class TestCmsXmlPageInSystem extends OpenCmsTestRunner {
         String text;
 
         // test link replacement with existing file
-        page.setStringValue(cms, element, Locale.ENGLISH, "<a href=\"index.html\">link</a>");
+        page.setStringValue(cms, element, Locale.ENGLISH, "<a href=\"manageRoom.html\">link</a>");
         text = page.getStringValue(cms, element, Locale.ENGLISH);
-        assertEquals("<a href=\"" + getVfsPrefix() + "/folder1/subfolder11/index.html\">link</a>", text);
+        assertEquals("<a href=\"" + getVfsPrefix() + "/folder1/subfolder11/manageRoom.html\">link</a>", text);
         file.setContents(page.marshal());
 
         // move the file
-        String source = "/folder1/subfolder11/index.html";
+        String source = "/folder1/subfolder11/manageRoom.html";
         String destination = "/folder1/subfolder11/index_new.html";
         CmsResource movedRes = cms.readResource(source);
         cms.lockResource(source);
@@ -366,12 +366,12 @@ public class TestCmsXmlPageInSystem extends OpenCmsTestRunner {
             cms,
             element,
             Locale.ENGLISH,
-            "<a href=\"index.html?bad=\u00E4\u00F6\u00FC\u00C4\u00D6\u00DC\u00DF&good=aouAOUS\">link</a>");
+            "<a href=\"manageRoom.html?bad=\u00E4\u00F6\u00FC\u00C4\u00D6\u00DC\u00DF&good=aouAOUS\">link</a>");
         text = page.getStringValue(cms, element, Locale.ENGLISH);
         assertEquals(
             "<a href=\""
                 + getVfsPrefix()
-                + "/index.html?bad=\u00E4\u00F6\u00FC\u00C4\u00D6\u00DC\u00DF&amp;good=aouAOUS\">link</a>",
+                + "/manageRoom.html?bad=\u00E4\u00F6\u00FC\u00C4\u00D6\u00DC\u00DF&amp;good=aouAOUS\">link</a>",
             text);
 
         file.setContents(page.marshal());
@@ -384,7 +384,7 @@ public class TestCmsXmlPageInSystem extends OpenCmsTestRunner {
         assertEquals(
             "<a href=\""
                 + getVfsPrefix()
-                + "/index.html?bad=\u00E4\u00F6\u00FC\u00C4\u00D6\u00DC\u00DF&amp;good=aouAOUS\">link</a>",
+                + "/manageRoom.html?bad=\u00E4\u00F6\u00FC\u00C4\u00D6\u00DC\u00DF&amp;good=aouAOUS\">link</a>",
             text);
     }
 

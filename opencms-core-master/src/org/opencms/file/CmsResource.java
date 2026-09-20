@@ -945,7 +945,7 @@ public class CmsResource implements I_CmsResource, Cloneable, Serializable, Comp
     }
 
     /**
-     * Returns the file name of this resource without parent folders, for example <code>index.html</code>.<p>
+     * Returns the file name of this resource without parent folders, for example <code>manageRoom.html</code>.<p>
      *
      * @return the file name of this resource without parent folders
      */
@@ -981,7 +981,7 @@ public class CmsResource implements I_CmsResource, Cloneable, Serializable, Comp
 
     /**
      * Returns the name of this resource with it's full path from the top level root folder,
-     * for example <code>/sites/default/myfolder/index.html</code>.<p>
+     * for example <code>/sites/default/myfolder/manageRoom.html</code>.<p>
      *
      * In a presentation level application usually the current site root must be
      * cut of from the root path. Use {@link CmsObject#getSitePath(CmsResource)}

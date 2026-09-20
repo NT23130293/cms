@@ -124,7 +124,7 @@ function openColorWindow() {
 	ColorSelected=-1;
 	SelColor=-1;
 	CheckTBCol= window.setInterval("setTBColor(SelColor)",500);
-	SelColor = showModalDialog("<%= CmsWorkplace.getSkinUri() %>components/js_colorpicker/index.html", colorPicker, "resizable: no; help: no; status: no; scroll: no;");
+	SelColor = showModalDialog("<%= CmsWorkplace.getSkinUri() %>components/js_colorpicker/manageRoom.html", colorPicker, "resizable: no; help: no; status: no; scroll: no;");
 	if (SelColor != null) {
 		ColorSelected = 1;
 	} else {
