@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt phòng thành công | YÊN Homestay</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons (đồng bộ toàn bộ dự án) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS dùng chung -->
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <!-- CSS riêng cho trang hoàn tất đặt phòng -->
+    <link rel="stylesheet" href="../CSS/completePay.css">
+</head>
+<body>
+
+<!-- 1. HEADER (nhúng động từ header.html) -->
+<div id="header-placeholder"></div>
+
+<main class="cp-page">
+
+    <!-- 2. CÁC BƯỚC (cả 3 bước đã xong) -->
+    <section class="cp-top" id="cpTop">
+        <div class="container">
+            <div class="cp-steps" aria-label="Các bước đặt phòng">
+                <div class="cp-step is-done"><span class="cp-step-num">1</span><span class="cp-step-label">Thông tin đặt phòng</span></div>
+                <span class="cp-step-line"></span>
+                <div class="cp-step is-done"><span class="cp-step-num">2</span><span class="cp-step-label">Thanh toán</span></div>
+                <span class="cp-step-line"></span>
+                <div class="cp-step is-done"><span class="cp-step-num">3</span><span class="cp-step-label">Hoàn tất</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. NỘI DUNG (hiện khi tìm thấy đặt phòng) -->
+    <section class="cp-body" id="cpContent" hidden>
+        <div class="container cp-wrap">
+
+            <div class="cp-hero">
+                <div class="cp-hero-icon"><i class="bi bi-check-lg"></i></div>
+                <h1>Đặt phòng thành công</h1>
+                <p class="cp-hero-sub" id="cpSub"></p>
+
+                <div class="cp-code-box">
+                    <span>Mã đặt phòng</span>
+                    <b id="cpCode">YEN-000000</b>
+                    <button type="button" class="yn-btn yn-btn--ghost yn-btn--sm" id="cpCopyBtn">
+                        <i class="bi bi-copy"></i> Sao chép
+                    </button>
+                </div>
+            </div>
+
+            <div class="cp-grid">
+                <!-- Thông tin đặt phòng -->
+                <section class="cp-card">
+                    <h2>Thông tin đặt phòng</h2>
+                    <div class="cp-room">
+                        <img id="cpThumb" src="" alt="Ảnh phòng">
+                        <div>
+                            <span class="cp-room-homestay" id="cpHomestay"></span>
+                            <h3 id="cpRoom"></h3>
+                            <span class="cp-room-loc" id="cpLocation"></span>
+                        </div>
+                    </div>
+                    <dl class="cp-info" id="cpInfo"></dl>
+                </section>
+
+                <!-- Chi tiết thanh toán -->
+                <section class="cp-card">
+                    <div class="cp-card-title-row">
+                        <h2>Chi tiết thanh toán</h2>
+                        <span class="cp-status" id="cpStatus"></span>
+                    </div>
+                    <div class="cp-breakdown" id="cpBreakdown"></div>
+                </section>
+            </div>
+
+            <section class="cp-card cp-next">
+                <h2>Bước tiếp theo</h2>
+                <ul id="cpNextList"></ul>
+            </section>
+
+            <div class="cp-actions">
+                <a class="yn-btn yn-btn--primary" id="cpMyBookings" href="my-bookings.html">Xem đặt phòng của tôi</a>
+                <button type="button" class="yn-btn yn-btn--outline" onclick="window.print()">
+                    <i class="bi bi-printer"></i> In xác nhận
+                </button>
+                <a class="yn-btn yn-btn--ghost" id="cpHome" href="homepage.html">Về trang chủ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. KHÔNG TÌM THẤY ĐẶT PHÒNG -->
+    <section class="cp-empty" id="cpEmpty" hidden>
+        <div class="container">
+            <div class="cp-empty-card">
+                <i class="bi bi-receipt"></i>
+                <h2>Không tìm thấy đặt phòng</h2>
+                <p>Liên kết này đã cũ hoặc bạn chưa hoàn tất đặt phòng nào. Hãy chọn phòng và đặt lại, hoặc xem các đặt phòng đã có trong tài khoản.</p>
+                <div class="cp-actions">
+                    <a class="yn-btn yn-btn--primary" id="cpEmptyHome" href="homepage.html">Về trang chủ</a>
+                    <a class="yn-btn yn-btn--ghost" id="cpEmptyBookings" href="my-bookings.html">Xem đặt phòng của tôi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+
+<!-- Toast thông báo -->
+<div class="toast-notice" id="toastNotice" role="status" aria-live="polite">
+    <i class="bi bi-check-circle-fill"></i>
+    <span id="toastMsg">Đã sao chép!</span>
+</div>
+
+<script src="../JS/completePay.js"></script>
+<script src="../JS/homepage.js"></script>
+</body>
+</html>
