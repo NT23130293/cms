@@ -1,6 +1,10 @@
 // JavaScript for User Personal Account Management - Du lịch Homestay Cộng đồng Việt Nam
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Nạp động Header & Footer
+  loadExternalHeader('header-placeholder', 'header.html', 'Tài khoản');
+  loadExternalFooter('footer-placeholder', 'footer.html');
+
   // --- INDEXEDDB IMPLEMENTATION FOR TEMPORARY DATA STORAGE ---
   const DB_NAME = 'HomestayUserDB';
   const DB_VERSION = 1;
@@ -324,6 +328,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  const logoutSidebarBtn = document.getElementById('logoutSidebarBtn');
+  if (logoutSidebarBtn) {
+    logoutSidebarBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'));
+      logoutModal.show();
+    });
+  }
+
   // OTP Verification Submit
   const confirmOtpBtn = document.getElementById('confirmOtpBtn');
   if (confirmOtpBtn) {
@@ -349,3 +362,146 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+/**
+ * Nạp động Header từ file header.html
+ */
+function loadExternalHeader(placeholderId, filePath, activePageName = 'Tài khoản') {
+  const placeholder = document.getElementById(placeholderId);
+  if (!placeholder) return;
+
+  fetch(filePath)
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error(`Chưa thể đọc ${filePath} (status: ${response.status})`);
+    })
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const headerEl = doc.querySelector('header');
+      if (headerEl) {
+        placeholder.replaceWith(headerEl);
+      } else {
+        placeholder.innerHTML = html;
+      }
+      initHeaderEvents(activePageName);
+    })
+    .catch(err => {
+      console.warn(`[Header Loader] Nạp header offline fallback:`, err);
+      renderFallbackHeader(placeholder, activePageName);
+    });
+}
+
+function initHeaderEvents(activePageName = 'Tài khoản') {
+  const header = document.querySelector('.header');
+  if (!header) return;
+
+  const navLinks = header.querySelectorAll('.nav-link');
+  const mobileBtn = header.querySelector('#mobileMenuBtn');
+  const navList = header.querySelector('#navList');
+
+  // Đặt trạng thái Active cho tab
+  navLinks.forEach(link => {
+    const linkName = link.getAttribute('data-name') || link.innerText.trim();
+    if (linkName === activePageName) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+
+  // Toggle Menu Mobile
+  if (mobileBtn && navList) {
+    mobileBtn.onclick = (e) => {
+      e.stopPropagation();
+      navList.classList.toggle('show');
+    };
+  }
+}
+
+function renderFallbackHeader(placeholder, activePageName) {
+  if (!placeholder) return;
+  placeholder.outerHTML = `
+    <header class="header">
+      <div class="header-container">
+        <a href="homepage.html" class="brand-logo" title="YÊN - Homestay Booking">
+          <img src="../images/logo.png" alt="YÊN - Homestay Booking" class="brand-logo-img">
+        </a>
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Menu">
+          <i class="bi bi-list"></i>
+        </button>
+        <nav class="header-nav">
+          <ul class="nav-list" id="navList">
+            <li class="nav-item">
+              <a href="homepage.html" class="nav-link" data-name="Trang chủ">
+                <i class="bi bi-house-door nav-icon"></i>
+                <span class="nav-text">Trang chủ</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="homepage.html#comboSection" class="nav-link" data-name="Khuyến mãi">
+                <i class="bi bi-gift nav-icon"></i>
+                <span class="nav-text">Khuyến mãi</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="support.html" class="nav-link" data-name="Hỗ trợ">
+                <i class="bi bi-headset nav-icon"></i>
+                <span class="nav-text">Hỗ trợ</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="wishlist.html" class="nav-link" data-name="Wishlist">
+                <i class="bi bi-heart nav-icon"></i>
+                <span class="nav-text">Wishlist</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link" data-name="Thông báo">
+                <i class="bi bi-bell nav-icon"></i>
+                <span class="nav-text">Thông báo</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="homepage.html#festivalSection" class="nav-link" data-name="Đặt chỗ">
+                <i class="bi bi-calendar-check nav-icon"></i>
+                <span class="nav-text">Đặt chỗ</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="personal-account.html" class="nav-link active" data-name="Tài khoản">
+                <i class="bi bi-person-circle nav-icon"></i>
+                <span class="nav-text">Tài khoản</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  `;
+  initHeaderEvents(activePageName);
+}
+
+function loadExternalFooter(placeholderId, filePath) {
+  fetch(filePath)
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error(`Chưa có file ${filePath}`);
+    })
+    .then(html => {
+      const container = document.getElementById(placeholderId);
+      if (container) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const footerEl = doc.querySelector('footer');
+        if (footerEl) {
+          container.replaceWith(footerEl);
+        } else {
+          container.innerHTML = html;
+        }
+      }
+    })
+    .catch(err => {
+      console.warn(`[Footer Loader] Nạp footer offline fallback:`, err);
+    });
+}

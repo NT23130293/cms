@@ -1,875 +1,501 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="vi">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta content="web_standard" name="shell-type"/>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap"
-          rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-          rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-          rel="stylesheet"/>
-    <style>@layer base {
-        html, body {
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh Sách Yêu Thích — YÊN Homestay</title>
+  <meta name="description" content="Danh sách homestay yêu thích và bộ sưu tập điểm đến lưu trú sinh thái của bạn tại YÊN Homestay.">
 
-        body {
-            overscroll-behavior: none;
-        }
+  <!-- Google Fonts: Plus Jakarta Sans & Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        main > :first-child {
-            margin-top: 0 !important;
-        }
+  <!-- Bootstrap 5 CSS & Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
-        main > :last-child {
-            margin-bottom: 0 !important;
-        }
-    }
+  <!-- Shared Header & Footer CSS -->
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/footer.css">
 
-    ::-webkit-scrollbar {
-        display: none;
-    }</style>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script id="tailwind-config">tailwind.config = {
-        darkMode: "class", theme: {
-            extend: {
-                colors: {
-                    "on-tertiary-fixed-variant": "#6e3900",
-                    "on-secondary": "#ffffff",
-                    "outline": "#6f7a6e",
-                    "on-background": "#1c1c19",
-                    "surface-container-high": "#ebe8e2",
-                    "on-error": "#ffffff",
-                    "on-primary-fixed": "#00210a",
-                    "surface-container-low": "#f6f3ee",
-                    "primary-fixed": "#95f8a7",
-                    "terracotta-soft": "#FFEDD5",
-                    "amber-soft": "#FEF3C7",
-                    "on-primary": "#ffffff",
-                    "error-container": "#ffdad6",
-                    "secondary-fixed": "#ffdad3",
-                    "surface-dim": "#dcdad4",
-                    "inverse-surface": "#31302d",
-                    "on-tertiary-container": "#fff1e9",
-                    "primary-fixed-dim": "#79db8d",
-                    "amber-ochre": "#D97706",
-                    "on-secondary-container": "#6c0f00",
-                    "primary": "#00652c",
-                    "forest-soft": "#DCFCE7",
-                    "outline-variant": "#becabc",
-                    "secondary-container": "#ff7355",
-                    "surface-container-lowest": "#ffffff",
-                    "forest-dark": "#0F5128",
-                    "on-primary-fixed-variant": "#005323",
-                    "text-primary": "#1C1C19",
-                    "tertiary-fixed-dim": "#ffb77d",
-                    "text-secondary": "#524B43",
-                    "surface": "#fcf9f4",
-                    "surface-canvas": "#FCF9F4",
-                    "surface-bright": "#fcf9f4",
-                    "inverse-primary": "#79db8d",
-                    "secondary": "#aa361e",
-                    "surface-tint": "#006d30",
-                    "on-error-container": "#93000a",
-                    "on-secondary-fixed": "#3e0500",
-                    "on-tertiary": "#ffffff",
-                    "surface-muted": "#EBE5DC",
-                    "on-tertiary-fixed": "#2f1500",
-                    "terracotta-warm": "#C84B31",
-                    "border-subtle": "#E7DFD5",
-                    "surface-container": "#f0ede8",
-                    "tertiary-container": "#a95b00",
-                    "text-muted": "#857B70",
-                    "tertiary-fixed": "#ffdcc3",
-                    "on-surface": "#1c1c19",
-                    "on-surface-variant": "#3f493f",
-                    "primary-container": "#15803d",
-                    "tertiary": "#854600",
-                    "surface-container-highest": "#e5e2dd",
-                    "surface-variant": "#e5e2dd",
-                    "inverse-on-surface": "#f3f0eb",
-                    "background": "#fcf9f4",
-                    "on-primary-container": "#d3ffd5",
-                    "on-secondary-fixed-variant": "#891e07",
-                    "error": "#ba1a1a",
-                    "surface-card": "#FFFFFF",
-                    "surface-subtle": "#F4EFEA",
-                    "secondary-fixed-dim": "#ffb4a4"
-                },
-                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                spacing: {
-                    "space-xs": "0.25rem",
-                    "margin": "3rem",
-                    "gutter": "1.5rem",
-                    "space-lg": "1.5rem",
-                    "space-xl": "2.5rem",
-                    "space-sm": "0.5rem",
-                    "space-md": "1rem",
-                    "gutter-mobile": "1rem",
-                    "margin-mobile": "1.25rem"
-                },
-                fontFamily: {
-                    "title-md": ["Be Vietnam Pro"],
-                    "label-md": ["Be Vietnam Pro"],
-                    "body-lg": ["Be Vietnam Pro"],
-                    "display-hero-mobile": ["Be Vietnam Pro"],
-                    "caption": ["Be Vietnam Pro"],
-                    "headline-lg": ["Be Vietnam Pro"],
-                    "headline-lg-mobile": ["Be Vietnam Pro"],
-                    "display-hero": ["Be Vietnam Pro"],
-                    "label-lg": ["Be Vietnam Pro"],
-                    "headline-md": ["Be Vietnam Pro"],
-                    "body-md": ["Be Vietnam Pro"],
-                    "headline-sm": ["Be Vietnam Pro"]
-                },
-                fontSize: {
-                    "title-md": ["18px", {lineHeight: "26px", letterSpacing: "0em", fontWeight: "600"}],
-                    "label-md": ["12px", {lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600"}],
-                    "body-lg": ["16px", {lineHeight: "26px", letterSpacing: "0em", fontWeight: "400"}],
-                    "display-hero-mobile": ["36px", {lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "700"}],
-                    "caption": ["11px", {lineHeight: "14px", letterSpacing: "0.03em", fontWeight: "500"}],
-                    "headline-lg": ["36px", {lineHeight: "44px", letterSpacing: "-0.015em", fontWeight: "600"}],
-                    "headline-lg-mobile": ["28px", {lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "600"}],
-                    "display-hero": ["56px", {lineHeight: "64px", letterSpacing: "-0.02em", fontWeight: "700"}],
-                    "label-lg": ["14px", {lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600"}],
-                    "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}],
-                    "body-md": ["14px", {lineHeight: "22px", letterSpacing: "0.01em", fontWeight: "400"}],
-                    "headline-sm": ["20px", {lineHeight: "28px", letterSpacing: "0em", fontWeight: "600"}]
-                }
-            }
-        }
-    };</script>
+  <!-- Custom Wishlist CSS -->
+  <link rel="stylesheet" href="../CSS/wishlist.css">
 </head>
-<body class="bg-surface font-body-md text-body-md text-on-surface antialiased">
-<div id="header"></div>
+<body>
 
-<main class="w-full pt-20 bg-surface min-h-[calc(100vh-20rem)]">
-    <div class="flex flex-col w-full bg-surface-card min-h-screen font-body-md text-text-primary selection:bg-forest-soft selection:text-primary-container">
-        <!-- Breadcrumbs Bar -->
-        <div class="w-full bg-surface-subtle/70">
-            <div class="max-w-[1280px] mx-auto px-margin-mobile lg:px-margin py-space-sm flex items-center justify-between text-caption font-caption text-text-muted">
-                <nav aria-label="Breadcrumb" class="flex items-center gap-space-xs">
-                    <a class="hover:text-primary-container transition-colors flex items-center gap-1" href="#">
-                        <span class="material-symbols-outlined text-[16px] text-text-muted">home</span>
-                        <span>Trang chủ</span>
-                    </a>
-                    <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-                    <a class="hover:text-primary-container transition-colors" href="#">Tài khoản</a>
-                    <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-                    <span class="text-text-primary font-semibold">Danh sách yêu thích</span>
-                </nav>
-                <div class="hidden sm:flex items-center gap-space-xs text-text-secondary">
-                    <span class="material-symbols-outlined text-[16px] text-primary-container">shield</span>
-                    <span>Bảo mật danh sách cá nhân</span>
-                </div>
-            </div>
+  <!-- Header Placeholder (Dynamic Load) -->
+  <div id="header-placeholder"></div>
+
+  <!-- Hero Section Banner -->
+  <section class="wl-hero-section">
+    <div class="container-xl">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="wl-hero-badge">
+            <i class="bi bi-heart-fill text-danger"></i> Bộ sưu tập nghỉ dưỡng cá nhân
+          </div>
+          <h1 class="wl-hero-title">Homestay Yêu Thích Của Bạn</h1>
+          <p class="wl-hero-sub">
+            Lưu giữ những chốn dừng chân mộc mạc, bình yên và giàu bản sắc văn hóa để chuẩn bị cho hành trình trải nghiệm sắp tới.
+          </p>
         </div>
-        <!-- Main Hero & Controls Header -->
-        <header class="w-full pt-space-xl pb-space-lg bg-surface-card">
-            <div class="max-w-[1280px] mx-auto px-margin-mobile lg:px-margin">
-                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
-                    <!-- Title & description -->
-                    <div class="max-w-2xl">
-                        <div class="inline-flex items-center gap-space-xs bg-forest-soft text-primary-container px-space-sm py-1 rounded-full font-label-md text-label-md mb-space-sm">
-                            <span class="material-symbols-outlined text-[16px]"
-                                  style="font-variation-settings: 'FILL' 1;">favorite</span>
-                            <span>Bộ sưu tập lưu trú nghỉ dưỡng</span>
-                        </div>
-                        <h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight">
-                            Danh Sách Homestay Yêu Thích Của Bạn
-                        </h1>
-                        <p class="mt-space-xs font-body-lg text-body-lg text-text-secondary leading-relaxed">
-                            Lưu lại những chốn nghỉ mộc mạc, yên bình và trải nghiệm văn hóa bản địa để chuẩn bị cho
-                            hành trình khám phá sắp tới của bạn.
-                        </p>
-                    </div>
-                    <!-- Interactive State Testing Switcher -->
-                    <div class="bg-surface-subtle p-1.5 rounded-full flex items-center shadow-sm self-start lg:self-end">
-                        <button class="flex items-center gap-1.5 px-space-md py-2 rounded-full font-label-md text-label-md bg-primary-container text-on-primary shadow-sm transition-all duration-200"
-                                id="btn-state-active" onclick="switchWishlistState('active')">
-                            <span class="material-symbols-outlined text-[16px]">grid_view</span>
-                            <span>Xem có phòng (<span id="counter-state-pill">3</span>)</span>
-                        </button>
-                        <button class="flex items-center gap-1.5 px-space-md py-2 rounded-full font-label-md text-label-md text-text-secondary hover:text-text-primary transition-all duration-200"
-                                id="btn-state-empty" onclick="switchWishlistState('empty')">
-                            <span class="material-symbols-outlined text-[16px]">heart_broken</span>
-                            <span>Xem trạng thái trống</span>
-                        </button>
-                    </div>
-                </div>
-                <!-- Action Meta Bar -->
-                <div class="mt-space-lg pt-space-md flex flex-wrap items-center justify-between gap-space-md bg-surface-subtle/50 rounded-xl p-space-md">
-                    <div class="flex items-center gap-space-md">
-                        <div class="flex items-center gap-space-xs">
-<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-forest-soft text-primary-container font-headline-sm text-[15px] font-bold">
-<span id="active-counter-badge">3</span>
-</span>
-                            <span class="font-label-lg text-label-lg text-text-primary font-semibold">Homestay đang lưu</span>
-                        </div>
-                        <div class="h-4 w-px bg-surface-muted hidden sm:block"></div>
-                        <span class="hidden sm:inline-flex items-center gap-1 text-caption font-caption text-text-muted">
-<span class="material-symbols-outlined text-[14px]">sync</span> Tự động đồng bộ với tài khoản
-          </span>
-                    </div>
-                    <div class="flex items-center gap-space-xs flex-wrap">
-                        <!-- Drawer Preview Trigger Button -->
-                        <button class="flex items-center gap-1.5 px-space-sm py-2 rounded-full font-label-md text-label-md text-primary-container bg-surface-card hover:bg-forest-soft transition-colors shadow-sm"
-                                onclick="toggleDrawer(true)">
-                            <span class="material-symbols-outlined text-[18px]">dock_to_left</span>
-                            <span class="hidden md:inline">Mở kiểu</span> Drawer Trượt
-                        </button>
-                        <!-- Share Button -->
-                        <button class="flex items-center gap-1.5 px-space-sm py-2 rounded-full font-label-md text-label-md text-text-secondary bg-surface-card hover:bg-surface-subtle transition-colors shadow-sm"
-                                id="btn-share" onclick="copyShareLink()">
-                            <span class="material-symbols-outlined text-[18px]">ios_share</span>
-                            <span>Chia sẻ danh sách</span>
-                        </button>
-                        <!-- Clear All Button -->
-                        <button class="flex items-center gap-1.5 px-space-sm py-2 rounded-full font-label-md text-label-md text-terracotta-warm bg-surface-card hover:bg-terracotta-soft transition-colors shadow-sm"
-                                onclick="confirmClearAll()">
-                            <span class="material-symbols-outlined text-[18px]">delete_sweep</span>
-                            <span>Xóa tất cả</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Content Container with Active vs Empty view switching -->
-        <div class="w-full max-w-[1280px] mx-auto px-margin-mobile lg:px-margin pb-space-xl flex-1">
-            <!-- ========================================== -->
-            <!-- STATE 1: ACTIVE WISHLIST GRID CONTAINER    -->
-            <!-- ========================================== -->
-            <section class="w-full transition-opacity duration-300" id="wishlist-state-active">
-                <!-- Filter Chips & Sorting Toolbar -->
-                <div class="py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md">
-                    <!-- Region Filter Pills -->
-                    <div class="flex items-center gap-space-xs overflow-x-auto pb-1 no-scrollbar"
-                         id="filter-pill-group">
-                        <button class="filter-pill active px-space-md py-1.5 rounded-full font-label-md text-label-md bg-primary-container text-on-primary shadow-sm transition-all whitespace-nowrap"
-                                onclick="filterRegion('all', this)">
-                            Tất cả (3)
-                        </button>
-                        <button class="filter-pill px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-card text-text-secondary hover:bg-surface-subtle shadow-sm transition-all whitespace-nowrap"
-                                onclick="filterRegion('dalat', this)">
-                            Đà Lạt (1)
-                        </button>
-                        <button class="filter-pill px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-card text-text-secondary hover:bg-surface-subtle shadow-sm transition-all whitespace-nowrap"
-                                onclick="filterRegion('hoian', this)">
-                            Hội An (1)
-                        </button>
-                        <button class="filter-pill px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-card text-text-secondary hover:bg-surface-subtle shadow-sm transition-all whitespace-nowrap"
-                                onclick="filterRegion('ninhbinh', this)">
-                            Ninh Bình (1)
-                        </button>
-                    </div>
-                    <!-- Sort dropdown pill -->
-                    <div class="flex items-center gap-space-xs self-end md:self-auto">
-<span class="font-label-md text-label-md text-text-muted flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]">swap_vert</span> Sắp xếp:
-          </span>
-                        <div class="relative">
-                            <select class="appearance-none bg-surface-subtle pl-space-sm pr-space-lg py-1.5 rounded-full font-label-md text-label-md text-text-primary focus:outline-none focus:bg-surface-card shadow-sm cursor-pointer"
-                                    id="wishlist-sort" onchange="sortCards(this.value)">
-                                <option value="recent">Mới lưu gần đây</option>
-                                <option value="price-asc">Giá: Thấp đến Cao</option>
-                                <option value="price-desc">Giá: Cao đến Thấp</option>
-                                <option value="rating">Đánh giá cao nhất</option>
-                            </select>
-                            <span class="material-symbols-outlined text-[16px] text-text-muted pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2">expand_more</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Homestay Cards Grid (Pure White cards with soft elevation) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg mt-space-sm" id="homestay-grid">
-                    <!-- CARD 1: The Pine Forest Retreat Đà Lạt -->
-                    <article
-                            class="wishlist-card flex flex-col bg-surface-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group"
-                            data-date="20250220" data-price="650000" data-rating="4.9" data-region="dalat"
-                            id="card-item-1">
-                        <!-- Image Gallery / Cover -->
-                        <div class="relative aspect-[4/3] w-full overflow-hidden bg-surface-subtle">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                 data-alt="Cozy authentic wooden eco-homestay bedroom in Da Lat overlooking mist-shrouded green pine forest mountain valley at sunrise. Natural cedar wood interiors, warm linen bedding, rustic ceramic tea kettle on low wooden table with morning golden sun rays streaming through panoramic glass window."
-                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTEACBGIfnz9TiB3f4s7qTOEfOkER-jxSALfgl0BWIns7-FK2s9SWVhk9XjkukaDXHReBaraHCO9nF2LIfCHKe4paGosqbPFl4wRHB1N8ntWsgVzlLLKgQQlpawpcCXE6jYi-X8T4MhY3J_HgxjdYdj8HJtCt2lwS5ljtA2ytCS_uV9NgRu42cDcoEoOZa0Jy9jIpw1hQOqGSFjP1YXVCMdmqwdJHEzALLd8ApP1dFYS-K5bfBOapRxg"/>
-                            <!-- Floating Top Badges -->
-                            <div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs z-10">
-<span class="bg-surface-card/95 backdrop-blur-md font-caption text-caption text-primary-container font-semibold px-space-sm py-1 rounded-full shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">nature_people</span> Bản địa chuẩn
-              </span>
-                                <span class="bg-amber-soft text-amber-ochre font-caption text-caption font-semibold px-space-sm py-1 rounded-full shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.9
-              </span>
-                            </div>
-                            <!-- Top Right Remove from Wishlist Action Button with Tooltip -->
-                            <div class="absolute top-space-sm right-space-sm z-10">
-                                <button class="relative group/btn w-9 h-9 rounded-full bg-surface-card/90 backdrop-blur-md hover:bg-terracotta-warm text-terracotta-warm hover:text-on-primary flex items-center justify-center shadow-md transition-all duration-200"
-                                        onclick="removeWishlistItem('card-item-1', 'The Pine Forest Retreat Đà Lạt')"
-                                        title="Xóa khỏi danh sách yêu thích">
-                                    <span class="material-symbols-outlined text-[18px]">delete</span>
-                                    <span class="pointer-events-none absolute -bottom-8 right-0 bg-inverse-surface text-inverse-on-surface text-caption font-caption px-2 py-1 rounded shadow-lg opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">
-                  Xóa khỏi danh sách
-                </span>
-                                </button>
-                            </div>
-                            <div class="absolute bottom-2 left-3 text-white font-caption text-caption bg-inverse-surface/60 backdrop-blur-sm px-2 py-0.5 rounded">
-                                (186 đánh giá bản xứ)
-                            </div>
-                        </div>
-                        <!-- Body Content -->
-                        <div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
-                            <div>
-                                <div class="flex items-center gap-1 text-caption font-caption text-text-secondary mb-1">
-                                    <span class="material-symbols-outlined text-[16px] text-primary-container">location_on</span>
-                                    <span>Phường 3, TP. Đà Lạt, Lâm Đồng</span>
-                                </div>
-                                <h2 class="font-title-md text-title-md text-text-primary tracking-tight group-hover:text-primary-container transition-colors">
-                                    The Pine Forest Retreat Đà Lạt
-                                </h2>
-                                <p class="text-caption font-caption text-text-muted mt-0.5">View rừng thông bạt ngàn
-                                    &amp; thung lũng săn mây sớm</p>
-                                <!-- Quick tags -->
-                                <div class="mt-space-sm flex flex-wrap gap-1.5">
-                                    <span class="px-2 py-1 rounded-md bg-surface-subtle font-caption text-caption text-text-secondary">Gần đồi thông</span>
-                                    <span class="px-2 py-1 rounded-md bg-surface-subtle font-caption text-caption text-text-secondary">Cà phê phin thủ công</span>
-                                    <span class="px-2 py-1 rounded-md bg-surface-subtle font-caption text-caption text-text-secondary">Bồn tắm Pơ-Mu</span>
-                                </div>
-                            </div>
-                            <!-- Price & CTA -->
-                            <div class="pt-space-sm bg-surface-subtle/30 -mx-space-md px-space-md pb-0 -mb-space-md mt-space-xs rounded-b-2xl">
-                                <div class="flex items-baseline justify-between py-space-xs">
-                                    <div>
-                                        <div class="text-caption font-caption line-through text-text-muted">₫780.000
-                                        </div>
-                                        <div class="flex items-baseline gap-1">
-                                            <span class="font-headline-sm text-headline-sm font-bold text-primary-container">₫650.000</span>
-                                            <span class="font-caption text-caption text-text-muted">/ đêm</span>
-                                        </div>
-                                    </div>
-                                    <div class="inline-flex items-center gap-1 bg-forest-soft text-primary-container font-caption text-caption px-2 py-0.5 rounded-full font-semibold">
-                                        Tiết kiệm 17%
-                                    </div>
-                                </div>
-                                <!-- Double CTA Row -->
-                                <div class="grid grid-cols-2 gap-space-xs py-space-sm">
-                                    <button class="w-full py-2.5 px-3 rounded-full font-label-md text-label-md text-primary-container bg-surface-card hover:bg-forest-soft transition-colors text-center shadow-sm">
-                                        Xem chi tiết
-                                    </button>
-                                    <button class="w-full py-2.5 px-3 rounded-full font-label-md text-label-md text-on-primary bg-primary-container hover:bg-forest-dark transition-all shadow-md text-center flex items-center justify-center gap-1"
-                                            onclick="reserveDirect('The Pine Forest Retreat Đà Lạt')">
-                                        <span>Đặt phòng ngay</span>
-                                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- CARD 2: An Bang Seaside Haven Hội An -->
-                    <article
-                            class="wishlist-card flex flex-col bg-surface-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group"
-                            data-date="20250218" data-price="1150000" data-rating="4.85" data-region="hoian"
-                            id="card-item-2">
-                        <!-- Image Gallery / Cover -->
-                        <div class="relative aspect-[4/3] w-full overflow-hidden bg-surface-subtle">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                 data-alt="Traditional rustic eco-bungalow homestay by An Bang beach Hoi An surrounded by tropical banana trees, frangipani blossoms and coconut palms. Bamboo porch with wooden hammock swinging, terracotta tiled walkway leading towards blue ocean coastline under gentle afternoon sea breeze."
-                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6n8K1ztYtFAn18jNciL1T73x7pY8neGGA4Ha4HJr1Ave4_qark9JpeOJ4p9qEDIZryvr8qpRP30We0HGkA-XvvfJSuIYAu1XELwo94I8tOXF3z2YWMsFBWTZ4qZZuI9sZE_hzqntyKrh76JJVu25uOv6F00FOZ5e19Za1lVjWJgc9xTKLnWWcXTEE4i61sYDuNJJxoISJN7w4HywfyBTS0_FeiJw1D-L2bbqIwGWiX6CBdJvFbn9LrA"/>
-                            <!-- Floating Top Badges -->
-                            <div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs z-10">
-<span class="bg-surface-card/95 backdrop-blur-md font-caption text-caption text-primary-container font-semibold px-space-sm py-1 rounded-full shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">surfing</span> Gần biển
-              </span>
-                                <span class="bg-amber-soft text-amber-ochre font-caption text-caption font-semibold px-space-sm py-1 rounded-full shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.85
-              </span>
-                            </div>
-                            <!-- Top Right Trash -->
-                            <div class="absolute top-space-sm right-space-sm z-10">
-                                <button class="relative group/btn w-9 h-9 rounded-full bg-surface-card/90 backdrop-blur-md hover:bg-terracotta-warm text-terracotta-warm hover:text-on-primary flex items-center justify-center shadow-md transition-all duration-200"
-                                        onclick="removeWishlistItem('card-item-2', 'An Bang Seaside Haven Hội An')"
-                                        title="Xóa khỏi danh sách yêu thích">
-                                    <span class="material-symbols-outlined text-[18px]">delete</span>
-                                    <span class="pointer-events-none absolute -bottom-8 right-0 bg-inverse-surface text-inverse-on-surface text-caption font-caption px-2 py-1 rounded shadow-lg opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">
-                  Xóa khỏi danh sách
-                </span>
-                                </button>
-                            </div>
-                            <div class="absolute bottom-2 left-3 text-white font-caption text-caption bg-inverse-surface/60 backdrop-blur-sm px-2 py-0.5 rounded">
-                                (98 đánh giá du khách)
-                            </div>
-                        </div>
-                        <!-- Body Content -->
-                        <div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
-                            <div>
-                                <div class="flex items-center gap-1 text-caption font-caption text-text-secondary mb-1">
-                                    <span class="material-symbols-outlined text-[16px] text-primary-container">location_on</span>
-                                    <span>Biển An Bàng, Hội An, Quảng Nam</span>
-                                </div>
-                                <h2 class="font-title-md text-title-md text-text-primary tracking-tight group-hover:text-primary-container transition-colors">
-                                    An Bang Seaside Haven Hội An
-                                </h2>
-                                <p class="text-caption font-caption text-text-muted mt-0.5">Homestay ven biển mộc mạc
-                                    &amp; vườn dừa mát lành</p>
-                                <!-- Quick tags -->
-                                <div class="mt-space-sm flex flex-wrap gap-1.5">
-                                    <span class="px-2 py-1 rounded-md bg-surface-subtle font-caption text-caption text-text-secondary">Cách biển 50m</span>
-                                    <span class="px-2 py-1 rounded-md bg-surface-subtle font-caption text-caption text-text-secondary">Bữa sáng hải sản</span>
-                                    <span class="px-2 py-1 rounded-md bg-surface-subtle font-caption text-caption text-text-secondary">Xe đạp miễn phí</span>
-                                </div>
-                            </div>
-                            <!-- Price & CTA -->
-                            <div class="pt-space-sm bg-surface-subtle/30 -mx-space-md px-space-md pb-0 -mb-space-md mt-space-xs rounded-b-2xl">
-                                <div class="flex items-baseline justify-between py-space-xs">
-                                    <div>
-                                        <div class="flex items-baseline gap-1">
-                                            <span class="font-headline-sm text-headline-sm font-bold text-primary-container">₫1.150.000</span>
-                                            <span class="font-caption text-caption text-text-muted">/ đêm</span>
-                                        </div>
-                                    </div>
-                                    <div class="inline-flex items-center gap-1 bg-amber-soft text-amber-ochre font-caption text-caption px-2 py-0.5 rounded-full font-semibold">
-                                        Tặng bữa sáng
-                                    </div>
-                                </div>
-                                <!-- Double CTA Row -->
-                                <div class="grid grid-cols-2 gap-space-xs py-space-sm">
-                                    <button class="w-full py-2.5 px-3 rounded-full font-label-md text-label-md text-primary-container bg-surface-card hover:bg-forest-soft transition-colors text-center shadow-sm">
-                                        Xem chi tiết
-                                    </button>
-                                    <button class="w-full py-2.5 px-3 rounded-full font-label-md text-label-md text-on-primary bg-primary-container hover:bg-forest-dark transition-all shadow-md text-center flex items-center justify-center gap-1"
-                                            onclick="reserveDirect('An Bang Seaside Haven Hội An')">
-                                        <span>Đặt phòng ngay</span>
-                                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- CARD 3: Nhà Vườn Sen Cố Đô Ninh Bình -->
-                    <article
-                            class="wishlist-card flex flex-col bg-surface-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group"
-                            data-date="20250215" data-price="920000" data-rating="4.88" data-region="ninhbinh"
-                            id="card-item-3">
-                        <!-- Image Gallery / Cover -->
-                        <div class="relative aspect-[4/3] w-full overflow-hidden bg-surface-subtle">
-                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                 data-alt="Serene traditional Northern Vietnamese wooden house homestay in Ninh Binh surrounded by a blooming pink lotus pond. Dramatic limestone karst peaks rise majestically in the background beneath a peaceful overcast sky. Wooden rowing boat tied at pond jetty, clay roof tiles and woven bamboo lanterns."
-                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt22yQib9ECTsP6GnAmSgcFoMKmNsreRPJFSFEI8iRer88lGxnohi_3ybns7jKrNS7d9XBih5mbBo_etQbCtj1Z2XgKvSQmmAs1rW_GZLzG3jk3IP9Y4y1h9haBPE8qLeIPh1ODlH_Ud-U8pKv_OIw2zSflxYKFL_21c4ItOgOymG-MSaA4SCbkQGe8O7dohm-UblUcPhVNvKU9HZ9Wyf8h97Aq_k9GooJUEwxTGt5-AXpEmBIBw9hGg"/>
-                            <!-- Floating Top Badges -->
-                            <div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs z-10">
-<span class="bg-surface-card/95 backdrop-blur-md font-caption text-caption text-primary-container font-semibold px-space-sm py-1 rounded-full shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">spa</span> Di sản xanh
-              </span>
-                                <span class="bg-amber-soft text-amber-ochre font-caption text-caption font-semibold px-space-sm py-1 rounded-full shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.88
-              </span>
-                            </div>
-                            <!-- Top Right Trash -->
-                            <div class="absolute top-space-sm right-space-sm z-10">
-                                <button class="relative group/btn w-9 h-9 rounded-full bg-surface-card/90 backdrop-blur-md hover:bg-terracotta-warm text-terracotta-warm hover:text-on-primary flex items-center justify-center shadow-md transition-all duration-200"
-                                        onclick="removeWishlistItem('card-item-3', 'Nhà Vườn Sen Cố Đô Ninh Bình')"
-                                        title="Xóa khỏi danh sách yêu thích">
-                                    <span class="material-symbols-outlined text-[18px]">delete</span>
-                                    <span class="pointer-events-none absolute -bottom-8 right-0 bg-inverse-surface text-inverse-on-surface text-caption font-caption px-2 py-1 rounded shadow-lg opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">
-                  Xóa khỏi danh sách
-                </span>
-                                </button>
-                            </div>
-                            <div class="absolute bottom-2 left-3 text-white font-caption text-caption bg-inverse-surface/60 backdrop-blur-sm px-2 py-0.5 rounded">
-                                (110 đánh giá di sản)
-                            </div>
-                        </div>
-                        <!-- Body Content -->
-                        <div class="p-space-md flex flex-col flex-1 justify-between gap-space-md">
-                            <div>
-                                <div class="flex items-center gap-1 text-caption font-caption text-text-secondary mb-1">
-                                    <span class="material-symbols-outlined text-[16px] text-primary-container">location_on</span>
-                                    <span>Hoa Lư, Cố đô Ninh Bình</span>
-                                </div>
-                                <h2 class="font-title-md text-title-md text-text-primary tracking-tight group-hover:text-primary-container transition-colors">
-                                    Nhà Vườn Sen Cố Đô Ninh Bình
-                                </h2>
-                                <p class="text-caption font-caption text-text-muted mt-0.5">Nhà rường truyền thống bên
-                                    đầm sen &amp; núi đá vôi</p>
-                                <!-- Quick tags -->
-                                <div class="mt-space-sm flex flex-wrap gap-1.5">
-                                    <span class="px-2 py-1 rounded-md bg-surface-subtle font-caption text-caption text-text-secondary">Chèo thuyền ngắm sen</span>
-                                    <span class="px-2 py-1 rounded-md bg-surface-subtle font-caption text-caption text-text-secondary">Trà sen ướp mộc</span>
-                                    <span class="px-2 py-1 rounded-md bg-surface-subtle font-caption text-caption text-text-secondary">Cơm cháy đặc sản</span>
-                                </div>
-                            </div>
-                            <!-- Price & CTA -->
-                            <div class="pt-space-sm bg-surface-subtle/30 -mx-space-md px-space-md pb-0 -mb-space-md mt-space-xs rounded-b-2xl">
-                                <div class="flex items-baseline justify-between py-space-xs">
-                                    <div>
-                                        <div class="flex items-baseline gap-1">
-                                            <span class="font-headline-sm text-headline-sm font-bold text-primary-container">₫920.000</span>
-                                            <span class="font-caption text-caption text-text-muted">/ đêm</span>
-                                        </div>
-                                    </div>
-                                    <div class="inline-flex items-center gap-1 bg-forest-soft text-primary-container font-caption text-caption px-2 py-0.5 rounded-full font-semibold">
-                                        Đang giữ giá tốt
-                                    </div>
-                                </div>
-                                <!-- Double CTA Row -->
-                                <div class="grid grid-cols-2 gap-space-xs py-space-sm">
-                                    <button class="w-full py-2.5 px-3 rounded-full font-label-md text-label-md text-primary-container bg-surface-card hover:bg-forest-soft transition-colors text-center shadow-sm">
-                                        Xem chi tiết
-                                    </button>
-                                    <button class="w-full py-2.5 px-3 rounded-full font-label-md text-label-md text-on-primary bg-primary-container hover:bg-forest-dark transition-all shadow-md text-center flex items-center justify-center gap-1"
-                                            onclick="reserveDirect('Nhà Vườn Sen Cố Đô Ninh Bình')">
-                                        <span>Đặt phòng ngay</span>
-                                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </section>
-            <!-- ========================================== -->
-            <!-- STATE 2: EMPTY STATE CONTAINER             -->
-            <!-- ========================================== -->
-            <section class="hidden w-full transition-opacity duration-300" id="wishlist-state-empty">
-                <div class="py-space-xl text-center max-w-xl mx-auto flex flex-col items-center">
-                    <!-- Heartfelt Vector Graphic: Leafy Organic Heart with Pagoda Roof Motif -->
-                    <div class="relative w-36 h-36 flex items-center justify-center mb-space-md">
-                        <div class="absolute inset-0 rounded-full bg-forest-soft/70 animate-pulse"></div>
-                        <svg class="w-24 h-24 text-primary-container relative z-10" fill="none" viewbox="0 0 100 100"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <!-- Curved roof line -->
-                            <path d="M20 38C35 25 65 25 80 38" stroke="currentColor" stroke-linecap="round"
-                                  stroke-width="3"></path>
-                            <path d="M30 33C40 22 60 22 70 33" stroke="currentColor" stroke-dasharray="2 3"
-                                  stroke-linecap="round" stroke-width="2"></path>
-                            <!-- Heart silhouette formed with organic foliage curves -->
-                            <path d="M50 82C50 82 22 64 22 45C22 36 29 29 38 29C43 29 47 32 50 36C53 32 57 29 62 29C71 29 78 36 78 45C78 64 50 82 50 82Z"
-                                  fill="#DCFCE7" fill-opacity="0.4" stroke="currentColor" stroke-linejoin="round"
-                                  stroke-width="3.5"></path>
-                            <!-- Small interior leaf -->
-                            <path d="M50 48C50 48 44 54 44 60C44 64 48 66 50 68C52 66 56 64 56 60C56 54 50 48 50 48Z"
-                                  fill="currentColor"></path>
-                            <!-- Sparkles -->
-                            <circle cx="82" cy="24" fill="#D97706" r="2.5"></circle>
-                            <circle cx="16" cy="30" fill="#D97706" r="2"></circle>
-                            <circle cx="86" cy="50" fill="#15803D" r="1.5"></circle>
-                        </svg>
-                    </div>
-                    <h2 class="font-headline-md text-headline-md text-text-primary tracking-tight">
-                        Danh sách yêu thích của bạn đang trống
-                    </h2>
-                    <p class="mt-space-xs font-body-lg text-body-lg text-text-secondary leading-relaxed max-w-lg">
-                        Bạn chưa lưu homestay hoặc trải nghiệm nào. Hãy lướt xem những chốn dừng chân mộc mạc, đậm đà
-                        bản sắc Việt và nhấn vào biểu tượng trái tim để lưu lại nhé!
-                    </p>
-                    <!-- CTAs -->
-                    <div class="mt-space-lg flex flex-col sm:flex-row items-center gap-space-sm w-full sm:w-auto">
-                        <a class="w-full sm:w-auto px-space-xl py-3 rounded-full bg-primary-container hover:bg-forest-dark text-on-primary font-label-lg text-label-lg transition-all shadow-md flex items-center justify-center gap-2"
-                           href="#">
-                            <span>Khám phá homestay ngay</span>
-                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-                        </a>
-                        <button class="w-full sm:w-auto px-space-md py-3 rounded-full bg-surface-subtle hover:bg-surface-muted text-text-primary font-label-lg text-label-lg transition-colors flex items-center justify-center gap-1.5"
-                                onclick="switchWishlistState('active')">
-                            <span class="material-symbols-outlined text-[18px]">restore</span>
-                            <span>Khôi phục mẫu 3 phòng</span>
-                        </button>
-                    </div>
-                    <a class="mt-space-md font-label-md text-label-md text-terracotta-warm hover:underline inline-flex items-center gap-1"
-                       href="#">
-                        <span class="material-symbols-outlined text-[16px]">celebration</span>
-                        <span>Xem các lễ hội &amp; combo sinh thái đang có ưu đãi</span>
-                    </a>
-                </div>
-                <!-- Suggested Recommendations Below Empty State -->
-                <div class="mt-space-xl pt-space-xl bg-surface-subtle/50 -mx-margin-mobile lg:-mx-margin px-margin-mobile lg:px-margin pb-space-xl rounded-3xl">
-                    <div class="max-w-[1280px] mx-auto">
-                        <div class="flex items-end justify-between mb-space-md">
-                            <div>
-                                <div class="font-caption text-caption text-primary-container font-semibold uppercase tracking-wider">
-                                    Được gợi ý riêng cho bạn
-                                </div>
-                                <h3 class="font-headline-sm text-headline-sm text-text-primary">Gợi Ý Homestay Nổi Bật
-                                    Dành Cho Bạn</h3>
-                            </div>
-                            <a class="font-label-md text-label-md text-primary-container hover:underline hidden sm:inline-flex items-center gap-1"
-                               href="#">
-                                Xem tất cả homestay <span
-                                    class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                            </a>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
-                            <!-- Recommendation 1 -->
-                            <div class="bg-surface-card rounded-2xl p-space-md flex flex-col sm:flex-row gap-space-md shadow-sm hover:shadow-md transition-all">
-                                <div class="w-full sm:w-44 h-36 rounded-xl overflow-hidden bg-surface-subtle flex-shrink-0">
-                                    <img class="w-full h-full object-cover"
-                                         data-alt="Traditional Mai Chau stilt house made of natural bamboo with view of vibrant emerald green terraced rice fields in early morning light with blue mountains in mist."
-                                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt7q8L9qbJgDWSx3RicnJOJf8bJzD30YXHh4_CN5HS-B_OTL8eUCVJoWyyYg3QjuEX4FhbS_gwdhoz-VrO6PfHX9mLCKq0y97vkqJOg7TiAgRcmpWMuysw3dNjo2uLygS8Pth_xLia6vTPP06R3AlylA0eN7rq5YHyK0YlMiqdTQ8KvJuMOQJeajCmJwgSYfMDkNYXpl7onBULcwO7JRmnJdJSMiFhhzyGTQoJ-NeUH5NByzD7RzvyjA"/>
-                                </div>
-                                <div class="flex flex-col justify-between flex-1">
-                                    <div>
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-caption font-caption text-primary-container font-medium">Bản Lác, Mai Châu, Hòa Bình</span>
-                                            <span class="text-caption font-caption text-amber-ochre flex items-center gap-0.5"><span
-                                                    class="material-symbols-outlined text-[14px]"
-                                                    style="font-variation-settings: 'FILL' 1;">star</span> 4.92</span>
-                                        </div>
-                                        <h4 class="font-title-md text-title-md text-text-primary mt-1">Homestay Nhà Sàn
-                                            Mộc Mây</h4>
-                                        <p class="font-body-md text-body-md text-text-muted text-xs line-clamp-1 mt-0.5">
-                                            Trải nghiệm dệt thổ cẩm cùng người Thái trắng</p>
-                                    </div>
-                                    <div class="flex items-center justify-between mt-space-sm pt-space-xs">
-                                        <div>
-                                            <span class="font-title-md text-title-md font-bold text-primary-container">₫520.000</span>
-                                            <span class="text-caption font-caption text-text-muted">/ đêm</span>
-                                        </div>
-                                        <button class="px-space-md py-1.5 rounded-full bg-forest-soft hover:bg-primary-container hover:text-on-primary text-primary-container font-label-md text-label-md transition-all flex items-center gap-1"
-                                                onclick="quickSaveReco('Homestay Nhà Sàn Mộc Mây')">
-                                            <span class="material-symbols-outlined text-[16px]">bookmark_add</span> Lưu
-                                            ngay
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Recommendation 2 -->
-                            <div class="bg-surface-card rounded-2xl p-space-md flex flex-col sm:flex-row gap-space-md shadow-sm hover:shadow-md transition-all">
-                                <div class="w-full sm:w-44 h-36 rounded-xl overflow-hidden bg-surface-subtle flex-shrink-0">
-                                    <img class="w-full h-full object-cover"
-                                         data-alt="Stunning traditional clay walled house homestay in Dong Van Ha Giang on rocky plateau surrounded by vibrant yellow mustard flower fields and dramatic limestone cliffs."
-                                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYXQad_df-Qxl3dyInzFJ8o9JdH8Dfe1lMqVhgfF4aRwwSXBjwSd_08Es0Y9BY2NjtCHXMPMbQpihzKcQNMYCcavEzxK8IbfmCiKFSw25tUrbbY-IeqaKOm-yG-mUjPJVpvi_DhZDNIOvCKUdgccHTEvRnneYQWvvJN5cpxLu_2ZmWg2iNvNL-VLozhZNnyVStWj2V7MvH-UnZsDadFK6sH9_cW0O76aLqH_s5rZZFY467jdI_L8daYQ"/>
-                                </div>
-                                <div class="flex flex-col justify-between flex-1">
-                                    <div>
-                                        <div class="flex items-center justify-between">
-                                            <span class="text-caption font-caption text-primary-container font-medium">Đồng Văn, Cao nguyên đá Hà Giang</span>
-                                            <span class="text-caption font-caption text-amber-ochre flex items-center gap-0.5"><span
-                                                    class="material-symbols-outlined text-[14px]"
-                                                    style="font-variation-settings: 'FILL' 1;">star</span> 4.96</span>
-                                        </div>
-                                        <h4 class="font-title-md text-title-md text-text-primary mt-1">Nhà Trình Tường
-                                            Lô Lô Chải</h4>
-                                        <p class="font-body-md text-body-md text-text-muted text-xs line-clamp-1 mt-0.5">
-                                            Sưởi ấm bếp than hồng &amp; thưởng thức trà shan tuyết cổ thụ</p>
-                                    </div>
-                                    <div class="flex items-center justify-between mt-space-sm pt-space-xs">
-                                        <div>
-                                            <span class="font-title-md text-title-md font-bold text-primary-container">₫750.000</span>
-                                            <span class="text-caption font-caption text-text-muted">/ đêm</span>
-                                        </div>
-                                        <button class="px-space-md py-1.5 rounded-full bg-forest-soft hover:bg-primary-container hover:text-on-primary text-primary-container font-label-md text-label-md transition-all flex items-center gap-1"
-                                                onclick="quickSaveReco('Nhà Trình Tường Lô Lô Chải')">
-                                            <span class="material-symbols-outlined text-[16px]">bookmark_add</span> Lưu
-                                            ngay
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- ============================================================= -->
-            <!-- SECTION 5: TECHNICAL LOGIC COLLAPSIBLE ACCORDION              -->
-            <!-- Developer Guide for localStorage Wishlist Architecture        -->
-            <!-- ============================================================= -->
-            <div class="mt-space-xl pt-space-lg">
-                <div class="bg-surface-subtle/80 rounded-2xl p-space-md">
-                    <button class="w-full flex items-center justify-between text-left focus:outline-none group"
-                            onclick="toggleTechGuide()">
-                        <div class="flex items-center gap-space-sm">
-                            <span class="material-symbols-outlined text-primary-container text-[22px]">code</span>
-                            <div>
-                                <h4 class="font-title-md text-title-md text-text-primary">Gợi Ý Xử Lý Kỹ Thuật (Frontend
-                                    Logic &amp; LocalStorage)</h4>
-                                <p class="font-caption text-caption text-text-muted">Xem cấu trúc lưu trữ dữ liệu phía
-                                    client và API sync gợi ý cho trang này</p>
-                            </div>
-                        </div>
-                        <span class="material-symbols-outlined text-text-muted transition-transform duration-200"
-                              id="tech-accordion-icon">expand_more</span>
-                    </button>
-                    <div class="hidden mt-space-md pt-space-md space-y-space-md" id="tech-guide-content">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md text-caption font-caption">
-                            <div class="bg-surface-card p-space-sm rounded-xl">
-                                <div class="font-semibold text-primary-container mb-1">1. Cấu trúc lưu danh sách
-                                    (Storage Key)
-                                </div>
-                                <p class="text-text-secondary">Sử dụng key <code
-                                        class="bg-surface-subtle px-1 rounded text-primary font-mono">'tourist_wishlist'</code>
-                                    dạng mảng IDs <code class="bg-surface-subtle px-1 rounded font-mono">['dalat-01',
-                                        'hoian-02']</code> hoặc object chứa thời gian lưu.</p>
-                            </div>
-                            <div class="bg-surface-card p-space-sm rounded-xl">
-                                <div class="font-semibold text-primary-container mb-1">2. Kiểm tra trạng thái rỗng
-                                    (Empty Guard)
-                                </div>
-                                <p class="text-text-secondary">Nếu <code
-                                        class="bg-surface-subtle px-1 rounded font-mono">wishlist.length === 0</code>,
-                                    tự động render view State 2 với các gợi ý sinh thái tương ứng.</p>
-                            </div>
-                            <div class="bg-surface-card p-space-sm rounded-xl">
-                                <div class="font-semibold text-primary-container mb-1">3. Đồng bộ Server (Cloud Sync)
-                                </div>
-                                <p class="text-text-secondary">Khi người dùng đăng nhập, kích hoạt debounce gửi payload
-                                    lên <code class="bg-surface-subtle px-1 rounded font-mono">POST
-                                        /api/v1/user/wishlist/merge</code>.</p>
-                            </div>
-                        </div>
-                        <div class="bg-surface-card p-space-md rounded-xl font-mono text-caption text-text-secondary overflow-x-auto">
-                            <div class="text-text-muted mb-1">// Mã mẫu xử lý Toggle / Xóa item khỏi Wishlist</div>
-                            <span class="text-primary-container font-bold">function</span> <span
-                                class="text-amber-ochre">toggleWishlistItem</span>(homestayId) {<br/>
-                              <span class="text-primary-container font-bold">const</span> list =
-                            JSON.parse(localStorage.getItem(<span class="text-terracotta-warm">'tourist_wishlist'</span>)
-                            || <span class="text-terracotta-warm">'[]'</span>);<br/>
-                              <span class="text-primary-container font-bold">const</span> nextList =
-                            list.includes(homestayId) ? list.filter(id =&gt; id !== homestayId) : [...list, homestayId];<br/>
-                              localStorage.setItem(<span class="text-terracotta-warm">'tourist_wishlist'</span>,
-                            JSON.stringify(nextList));<br/>
-                              renderWishlistUI(nextList);<br/>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+          <div class="d-inline-flex align-items-center gap-2 bg-white bg-opacity-10 backdrop-blur border border-white border-opacity-25 rounded-pill px-4 py-2.5 text-white">
+            <i class="bi bi-bookmark-heart-fill fs-5 text-warning"></i>
+            <span>Đã lưu <strong id="wishlistCountBadge" class="fs-5 text-warning ms-1">8</strong> homestay</span>
+          </div>
         </div>
-        <!-- ============================================================= -->
-        <!-- COMPONENT 5: SLIDE-OVER DRAWER PREVIEW (CÁCH B DEMO)          -->
-        <!-- Simulated quick slide-out panel wishlist on right             -->
-        <!-- ============================================================= -->
-        <div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"
-             id="wishlist-drawer-backdrop" onclick="toggleDrawer(false)"></div>
-        <aside class="fixed top-0 right-0 h-full w-full max-w-md bg-surface-card z-50 shadow-2xl translate-x-full transition-transform duration-300 flex flex-col"
-               id="wishlist-drawer">
-            <!-- Drawer Header -->
-            <div class="p-space-md flex items-center justify-between bg-surface-card">
-                <div class="flex items-center gap-space-xs">
-                    <span class="material-symbols-outlined text-primary-container">favorite</span>
-                    <h3 class="font-title-md text-title-md text-text-primary">Homestay yêu thích (<span
-                            id="drawer-counter">3</span>)</h3>
-                </div>
-                <button class="w-8 h-8 rounded-full bg-surface-subtle hover:bg-surface-muted flex items-center justify-center text-text-secondary transition-colors"
-                        onclick="toggleDrawer(false)">
-                    <span class="material-symbols-outlined text-[18px]">close</span>
-                </button>
-            </div>
-            <!-- Drawer Items List -->
-            <div class="flex-1 overflow-y-auto p-space-md space-y-space-md" id="drawer-items-container">
-                <!-- Drawer Item 1 -->
-                <div class="flex gap-space-sm p-space-xs bg-surface-subtle/50 rounded-xl hover:bg-surface-subtle transition-colors"
-                     id="drawer-item-1">
-                    <div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-subtle flex-shrink-0">
-                        <img class="w-full h-full object-cover"
-                             data-alt="Cozy cedar wood bedroom in Da Lat overlooking misty morning valley"
-                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5O347lCquQ1RcPADSlL4QSVIUflRQzVpoZ8kBG7NVD3paYxyoZAUEvCn92mRWd2PYtBJeX9CNFWauMKEn8y5WEUyrFsvMzZerwSsACaVLocY1K117QLEVFMsdFnEPDT2jdi9V6GQFvOJQI-FdP4FYDsFrq1i3S0VZQ8MrVtgdeHXkE0UMbo0EgN3o68akGz_Jz8ez6AJLK4cHWgefx7CZFscxWSAZlZvjQouO_ehdMZPIUJ1PVeKa7Q"/>
-                    </div>
-                    <div class="flex-1 flex flex-col justify-between min-w-0">
-                        <div class="flex items-start justify-between gap-1">
-                            <h5 class="font-label-lg text-label-lg text-text-primary truncate">The Pine Forest Đà
-                                Lạt</h5>
-                            <button class="text-terracotta-warm hover:text-secondary flex-shrink-0"
-                                    onclick="removeDrawerItem('drawer-item-1', 'card-item-1')" title="Xóa">
-                                <span class="material-symbols-outlined text-[16px]">close</span>
-                            </button>
-                        </div>
-                        <div class="font-caption text-caption text-text-muted truncate">Phường 3, Đà Lạt</div>
-                        <div class="flex items-baseline justify-between pt-1">
-                            <span class="font-title-md text-[15px] font-bold text-primary-container">₫650.000<span
-                                    class="font-caption text-caption text-text-muted">/đêm</span></span>
-                            <button class="font-label-md text-caption text-primary-container font-semibold hover:underline"
-                                    onclick="reserveDirect('The Pine Forest Retreat')">
-                                Đặt ngay
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Drawer Item 2 -->
-                <div class="flex gap-space-sm p-space-xs bg-surface-subtle/50 rounded-xl hover:bg-surface-subtle transition-colors"
-                     id="drawer-item-2">
-                    <div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-subtle flex-shrink-0">
-                        <img class="w-full h-full object-cover"
-                             data-alt="Bungalow overlooking An Bang beach with coconut palms"
-                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQnq1y9bAMdxmnqt2jC4ofd3JxTQrgyBQgxk36wvtXeY0ZveGZdFenRcH3i_U4r7l-i8fERX4bFi1ioXnfjRC2Eo4fH4Bj7pU-FkcpBx_GMxPXbcrvrH8BJBt71AOApdx2riZTznWAde9pqHlp6776IazK-8OB4tL61Fx0-o1KqSP79cL-NOpXwrDLWn1yNDq_dGem9tcq64B0EwrpHLS2AoTeCX6_GyKSYKRho3eH-tpLuSCDL-wrOA"/>
-                    </div>
-                    <div class="flex-1 flex flex-col justify-between min-w-0">
-                        <div class="flex items-start justify-between gap-1">
-                            <h5 class="font-label-lg text-label-lg text-text-primary truncate">An Bang Seaside
-                                Haven</h5>
-                            <button class="text-terracotta-warm hover:text-secondary flex-shrink-0"
-                                    onclick="removeDrawerItem('drawer-item-2', 'card-item-2')" title="Xóa">
-                                <span class="material-symbols-outlined text-[16px]">close</span>
-                            </button>
-                        </div>
-                        <div class="font-caption text-caption text-text-muted truncate">Biển An Bàng, Hội An</div>
-                        <div class="flex items-baseline justify-between pt-1">
-                            <span class="font-title-md text-[15px] font-bold text-primary-container">₫1.150.000<span
-                                    class="font-caption text-caption text-text-muted">/đêm</span></span>
-                            <button class="font-label-md text-caption text-primary-container font-semibold hover:underline"
-                                    onclick="reserveDirect('An Bang Seaside Haven')">
-                                Đặt ngay
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Drawer Item 3 -->
-                <div class="flex gap-space-sm p-space-xs bg-surface-subtle/50 rounded-xl hover:bg-surface-subtle transition-colors"
-                     id="drawer-item-3">
-                    <div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-subtle flex-shrink-0">
-                        <img class="w-full h-full object-cover"
-                             data-alt="Traditional lotus pond wooden stay in Ninh Binh"
-                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVXgEuFW8dxmq4vCI-O26l-2wJ1Cforkkvn4xN_6p9Rof6W9ASbqUGp64lXf1ycc3mglXIsuupvSJYqhQgl8U9bdKmq55tZ5o79qiFP_2B0KXUtLntARez_abab1fjUlH3VCUm6AIelbPlRVfoE2mX5FxNK8-eCTkfabUuBVHjjmxOAxsA2ps7EW1-8aYM1IzpyugQSqD7dxmhVrkn7Qd8N1MYuybBBCLXgUc9kjkC4TtTBJL0DJf9_A"/>
-                    </div>
-                    <div class="flex-1 flex flex-col justify-between min-w-0">
-                        <div class="flex items-start justify-between gap-1">
-                            <h5 class="font-label-lg text-label-lg text-text-primary truncate">Nhà Vườn Sen Cố Đô</h5>
-                            <button class="text-terracotta-warm hover:text-secondary flex-shrink-0"
-                                    onclick="removeDrawerItem('drawer-item-3', 'card-item-3')" title="Xóa">
-                                <span class="material-symbols-outlined text-[16px]">close</span>
-                            </button>
-                        </div>
-                        <div class="font-caption text-caption text-text-muted truncate">Hoa Lư, Ninh Bình</div>
-                        <div class="flex items-baseline justify-between pt-1">
-                            <span class="font-title-md text-[15px] font-bold text-primary-container">₫920.000<span
-                                    class="font-caption text-caption text-text-muted">/đêm</span></span>
-                            <button class="font-label-md text-caption text-primary-container font-semibold hover:underline"
-                                    onclick="reserveDirect('Nhà Vườn Sen Cố Đô')">
-                                Đặt ngay
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Drawer Footer -->
-            <div class="p-space-md bg-surface-card shadow-lg space-y-space-xs">
-                <div class="flex items-center justify-between text-caption font-caption text-text-secondary">
-                    <span>Tạm tính (3 homestay):</span>
-                    <span class="font-headline-sm text-headline-sm font-bold text-text-primary">₫2.720.000</span>
-                </div>
-                <button class="w-full py-3 rounded-full bg-primary-container hover:bg-forest-dark text-on-primary font-label-lg text-label-lg transition-all shadow-md flex items-center justify-center gap-2"
-                        onclick="reserveAllWishlist()">
-                    <span>Lên lịch trình &amp; Đặt tất cả</span>
-                    <span class="material-symbols-outlined text-[18px]">calendar_month</span>
-                </button>
-                <div class="text-center font-caption text-[11px] text-text-muted pt-1">
-                    Miễn phí hủy phòng trước 48 giờ tại hầu hết các điểm lưu trú
-                </div>
-            </div>
-        </aside>
-        <!-- Notification Toast feedback -->
-        <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-space-md py-2.5 rounded-full font-label-md text-label-md shadow-xl flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300 z-50"
-             id="toast-notify">
-            <span class="material-symbols-outlined text-primary-fixed text-[18px]" id="toast-icon">check_circle</span>
-            <span id="toast-msg">Đã cập nhật danh sách yêu thích</span>
-        </div>
+      </div>
     </div>
-    <!-- Interactive Client-side Scripting -->
-</main>
-<div id="footer"></div>
-<script src="../JS/wishlist.js"></script>
+  </section>
+
+  <!-- Main Content Container -->
+  <main class="container-xl pb-5">
+
+    <!-- WISHLIST GRID SECTION -->
+    <div id="wishlistGridSection">
+
+      <!-- Toolbar Card: Filter Pills, Sort & Actions -->
+      <div class="wl-toolbar-card d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+        <!-- Region Filter Pills -->
+        <div class="d-flex align-items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+          <button class="wl-pill-btn active" onclick="filterRegion('all', this)">Tất cả (<span id="wishlistHeaderCount">8</span>)</button>
+          <button class="wl-pill-btn" onclick="filterRegion('dalat', this)">Đà Lạt</button>
+          <button class="wl-pill-btn" onclick="filterRegion('sapa', this)">Sa Pa</button>
+          <button class="wl-pill-btn" onclick="filterRegion('puluong', this)">Pù Luông</button>
+          <button class="wl-pill-btn" onclick="filterRegion('maichau', this)">Mai Châu</button>
+          <button class="wl-pill-btn" onclick="filterRegion('hoian', this)">Hội An</button>
+          <button class="wl-pill-btn" onclick="filterRegion('ninhbinh', this)">Ninh Bình</button>
+          <button class="wl-pill-btn" onclick="filterRegion('hagiang', this)">Hà Giang</button>
+        </div>
+
+        <!-- Sort Select & Global Actions -->
+        <div class="d-flex align-items-center gap-2 flex-wrap shrink-0 ms-auto">
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-xs text-muted font-semibold text-nowrap"><i class="bi bi-arrow-down-up me-1"></i>Sắp xếp:</span>
+            <select class="wl-sort-select" onchange="sortCards(this.value)">
+              <option value="recent">Mới lưu gần đây</option>
+              <option value="price-asc">Giá: Thấp đến Cao</option>
+              <option value="price-desc">Giá: Cao đến Thấp</option>
+              <option value="rating">Đánh giá cao nhất</option>
+            </select>
+          </div>
+
+          <button type="button" class="btn btn-outline-danger rounded-pill px-3 py-1.5 text-xs font-semibold" onclick="confirmClearAll()">
+            <i class="bi bi-trash3-fill me-1"></i> Xóa tất cả
+          </button>
+        </div>
+      </div>
+
+      <!-- 4-COLUMN HOMESTAY GRID (row g-4) -->
+      <div class="row g-4" id="homestayGridContainer">
+
+        <!-- HOMESTAY 1: The Memory Valley Villa -->
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12 wl-card-col" data-region="dalat" data-price="1450000" data-rating="4.96" data-date="20260920" id="card-1">
+          <div class="wl-card">
+            <div class="wl-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=600&q=80" alt="The Memory Valley Villa" class="wl-card-img">
+              <div class="wl-top-badge">
+                <i class="bi bi-fire"></i> Top 1 Bán Chạy
+              </div>
+              <button type="button" class="wl-wishlist-btn" onclick="removeWishlistItem('card-1', 'The Memory Valley Villa')" title="Bỏ yêu thích">
+                <i class="bi bi-heart-fill"></i>
+              </button>
+            </div>
+            <div class="wl-card-body">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <div class="wl-card-location">
+                    <i class="bi bi-geo-alt-fill me-1"></i> Đà Lạt
+                  </div>
+                  <div class="wl-card-rating">
+                    <i class="bi bi-star-fill text-warning me-1"></i><strong>4.96</strong> <span class="text-muted">(340)</span>
+                  </div>
+                </div>
+                <h3 class="wl-card-title" title="The Memory Valley Villa">The Memory Valley Villa</h3>
+                <div class="wl-card-specs">
+                  <i class="bi bi-door-open me-1"></i> 3 phòng ngủ <span class="mx-1.5">•</span> <i class="bi bi-people me-1"></i> 6 khách
+                </div>
+                <div class="wl-feature-box">
+                  <div class="wl-feature-title">Tiện nghi nổi bật:</div>
+                  <div class="wl-feature-text">Bể bơi nước ấm · Lò sưởi củi · Sân BBQ</div>
+                </div>
+              </div>
+              <div class="wl-card-footer">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="wl-price-label">Giá từ:</div>
+                    <div class="wl-price-val">1.450.000đ</div>
+                  </div>
+                  <a href="homepage.html" class="wl-btn-book">Xem homestay</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOMESTAY 2: Sa Pa Terraces Eco Bungalow -->
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12 wl-card-col" data-region="sapa" data-price="780000" data-rating="4.95" data-date="20260919" id="card-2">
+          <div class="wl-card">
+            <div class="wl-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80" alt="Sa Pa Terraces Eco Bungalow" class="wl-card-img">
+              <div class="wl-top-badge" style="background: #E0F2FE; color: #0284C7;">
+                <i class="bi bi-lightning-charge-fill"></i> Nổi bật 2026
+              </div>
+              <button type="button" class="wl-wishlist-btn" onclick="removeWishlistItem('card-2', 'Sa Pa Terraces Eco Bungalow')" title="Bỏ yêu thích">
+                <i class="bi bi-heart-fill"></i>
+              </button>
+            </div>
+            <div class="wl-card-body">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <div class="wl-card-location">
+                    <i class="bi bi-geo-alt-fill me-1"></i> Sa Pa
+                  </div>
+                  <div class="wl-card-rating">
+                    <i class="bi bi-star-fill text-warning me-1"></i><strong>4.95</strong> <span class="text-muted">(210)</span>
+                  </div>
+                </div>
+                <h3 class="wl-card-title" title="Sa Pa Terraces Eco Bungalow">Sa Pa Terraces Eco Bungalow</h3>
+                <div class="wl-card-specs">
+                  <i class="bi bi-door-open me-1"></i> 2 phòng ngủ <span class="mx-1.5">•</span> <i class="bi bi-people me-1"></i> 4 khách
+                </div>
+                <div class="wl-feature-box">
+                  <div class="wl-feature-title">Tiện nghi nổi bật:</div>
+                  <div class="wl-feature-text">View ruộng bậc thang · Lửa trại ngoài trời</div>
+                </div>
+              </div>
+              <div class="wl-card-footer">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="wl-price-label">Giá từ:</div>
+                    <div class="wl-price-val">780.000đ</div>
+                  </div>
+                  <a href="homepage.html" class="wl-btn-book">Xem homestay</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOMESTAY 3: Pù Luông Eco Retreat House -->
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12 wl-card-col" data-region="puluong" data-price="850000" data-rating="4.88" data-date="20260918" id="card-3">
+          <div class="wl-card">
+            <div class="wl-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=600&q=80" alt="Pù Luông Eco Retreat House" class="wl-card-img">
+              <div class="wl-top-badge" style="background: #DCFCE7; color: #15803D;">
+                <i class="bi bi-tree-fill"></i> Sinh thái xanh
+              </div>
+              <button type="button" class="wl-wishlist-btn" onclick="removeWishlistItem('card-3', 'Pù Luông Eco Retreat House')" title="Bỏ yêu thích">
+                <i class="bi bi-heart-fill"></i>
+              </button>
+            </div>
+            <div class="wl-card-body">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <div class="wl-card-location">
+                    <i class="bi bi-geo-alt-fill me-1"></i> Pù Luông
+                  </div>
+                  <div class="wl-card-rating">
+                    <i class="bi bi-star-fill text-warning me-1"></i><strong>4.88</strong> <span class="text-muted">(145)</span>
+                  </div>
+                </div>
+                <h3 class="wl-card-title" title="Pù Luông Eco Retreat House">Pù Luông Eco Retreat House</h3>
+                <div class="wl-card-specs">
+                  <i class="bi bi-door-open me-1"></i> 4 phòng ngủ <span class="mx-1.5">•</span> <i class="bi bi-people me-1"></i> 8 khách
+                </div>
+                <div class="wl-feature-box">
+                  <div class="wl-feature-title">Tiện nghi nổi bật:</div>
+                  <div class="wl-feature-text">Bể bơi vô cực núi · Ẩm thực Mường Thái</div>
+                </div>
+              </div>
+              <div class="wl-card-footer">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="wl-price-label">Giá từ:</div>
+                    <div class="wl-price-val">850.000đ</div>
+                  </div>
+                  <a href="homepage.html" class="wl-btn-book">Xem homestay</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOMESTAY 4: Mai Châu Bamboo Stilt House -->
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12 wl-card-col" data-region="maichau" data-price="550000" data-rating="4.85" data-date="20260917" id="card-4">
+          <div class="wl-card">
+            <div class="wl-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Mai Châu Bamboo Stilt House" class="wl-card-img">
+              <div class="wl-top-badge" style="background: #FEF3C7; color: #D97706;">
+                <i class="bi bi-star-fill"></i> Giá tốt nhất
+              </div>
+              <button type="button" class="wl-wishlist-btn" onclick="removeWishlistItem('card-4', 'Mai Châu Bamboo Stilt House')" title="Bỏ yêu thích">
+                <i class="bi bi-heart-fill"></i>
+              </button>
+            </div>
+            <div class="wl-card-body">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <div class="wl-card-location">
+                    <i class="bi bi-geo-alt-fill me-1"></i> Mai Châu
+                  </div>
+                  <div class="wl-card-rating">
+                    <i class="bi bi-star-fill text-warning me-1"></i><strong>4.85</strong> <span class="text-muted">(98)</span>
+                  </div>
+                </div>
+                <h3 class="wl-card-title" title="Mai Châu Bamboo Stilt House">Mai Châu Bamboo Stilt House</h3>
+                <div class="wl-card-specs">
+                  <i class="bi bi-door-open me-1"></i> 2 phòng ngủ <span class="mx-1.5">•</span> <i class="bi bi-people me-1"></i> 5 khách
+                </div>
+                <div class="wl-feature-box">
+                  <div class="wl-feature-title">Tiện nghi nổi bật:</div>
+                  <div class="wl-feature-text">Xe đạp miễn phí · Múa xòe Bản Lác</div>
+                </div>
+              </div>
+              <div class="wl-card-footer">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="wl-price-label">Giá từ:</div>
+                    <div class="wl-price-val">550.000đ</div>
+                  </div>
+                  <a href="homepage.html" class="wl-btn-book">Xem homestay</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOMESTAY 5: An Bàng Seaside Haven Hội An -->
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12 wl-card-col" data-region="hoian" data-price="920000" data-rating="4.90" data-date="20260916" id="card-5">
+          <div class="wl-card">
+            <div class="wl-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80" alt="An Bàng Seaside Haven Hội An" class="wl-card-img">
+              <div class="wl-top-badge" style="background: #FCE7F3; color: #DB2777;">
+                <i class="bi bi-water"></i> Gần biển An Bàng
+              </div>
+              <button type="button" class="wl-wishlist-btn" onclick="removeWishlistItem('card-5', 'An Bàng Seaside Haven Hội An')" title="Bỏ yêu thích">
+                <i class="bi bi-heart-fill"></i>
+              </button>
+            </div>
+            <div class="wl-card-body">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <div class="wl-card-location">
+                    <i class="bi bi-geo-alt-fill me-1"></i> Hội An
+                  </div>
+                  <div class="wl-card-rating">
+                    <i class="bi bi-star-fill text-warning me-1"></i><strong>4.90</strong> <span class="text-muted">(160)</span>
+                  </div>
+                </div>
+                <h3 class="wl-card-title" title="An Bàng Seaside Haven Hội An">An Bàng Seaside Haven Hội An</h3>
+                <div class="wl-card-specs">
+                  <i class="bi bi-door-open me-1"></i> 3 phòng ngủ <span class="mx-1.5">•</span> <i class="bi bi-people me-1"></i> 6 khách
+                </div>
+                <div class="wl-feature-box">
+                  <div class="wl-feature-title">Tiện nghi nổi bật:</div>
+                  <div class="wl-feature-text">Sân vườn hướng biển · Hải sản tươi sống</div>
+                </div>
+              </div>
+              <div class="wl-card-footer">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="wl-price-label">Giá từ:</div>
+                    <div class="wl-price-val">920.000đ</div>
+                  </div>
+                  <a href="homepage.html" class="wl-btn-book">Xem homestay</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOMESTAY 6: Tràng An Lotus Field Ninh Bình -->
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12 wl-card-col" data-region="ninhbinh" data-price="720000" data-rating="4.87" data-date="20260915" id="card-6">
+          <div class="wl-card">
+            <div class="wl-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Tràng An Lotus Field Ninh Bình" class="wl-card-img">
+              <div class="wl-top-badge" style="background: #F3E8FF; color: #9333EA;">
+                <i class="bi bi-flower1"></i> Đầm sen Tràng An
+              </div>
+              <button type="button" class="wl-wishlist-btn" onclick="removeWishlistItem('card-6', 'Tràng An Lotus Field Ninh Bình')" title="Bỏ yêu thích">
+                <i class="bi bi-heart-fill"></i>
+              </button>
+            </div>
+            <div class="wl-card-body">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <div class="wl-card-location">
+                    <i class="bi bi-geo-alt-fill me-1"></i> Ninh Bình
+                  </div>
+                  <div class="wl-card-rating">
+                    <i class="bi bi-star-fill text-warning me-1"></i><strong>4.87</strong> <span class="text-muted">(115)</span>
+                  </div>
+                </div>
+                <h3 class="wl-card-title" title="Tràng An Lotus Field Ninh Bình">Tràng An Lotus Field Ninh Bình</h3>
+                <div class="wl-card-specs">
+                  <i class="bi bi-door-open me-1"></i> 2 phòng ngủ <span class="mx-1.5">•</span> <i class="bi bi-people me-1"></i> 4 khách
+                </div>
+                <div class="wl-feature-box">
+                  <div class="wl-feature-title">Tiện nghi nổi bật:</div>
+                  <div class="wl-feature-text">Bungalow đầm sen · Chèo thuyền Kayak</div>
+                </div>
+              </div>
+              <div class="wl-card-footer">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="wl-price-label">Giá từ:</div>
+                    <div class="wl-price-val">720.000đ</div>
+                  </div>
+                  <a href="homepage.html" class="wl-btn-book">Xem homestay</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOMESTAY 7: Hà Giang Dong Van Karst Homestay -->
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12 wl-card-col" data-region="hagiang" data-price="680000" data-rating="4.92" data-date="20260914" id="card-7">
+          <div class="wl-card">
+            <div class="wl-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Hà Giang Dong Van Karst Homestay" class="wl-card-img">
+              <div class="wl-top-badge" style="background: #FFE4E6; color: #E11D48;">
+                <i class="bi bi-mountain"></i> Cao nguyên đá
+              </div>
+              <button type="button" class="wl-wishlist-btn" onclick="removeWishlistItem('card-7', 'Hà Giang Dong Van Karst Homestay')" title="Bỏ yêu thích">
+                <i class="bi bi-heart-fill"></i>
+              </button>
+            </div>
+            <div class="wl-card-body">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <div class="wl-card-location">
+                    <i class="bi bi-geo-alt-fill me-1"></i> Hà Giang
+                  </div>
+                  <div class="wl-card-rating">
+                    <i class="bi bi-star-fill text-warning me-1"></i><strong>4.92</strong> <span class="text-muted">(134)</span>
+                  </div>
+                </div>
+                <h3 class="wl-card-title" title="Hà Giang Dong Van Karst Homestay">Hà Giang Dong Van Karst Homestay</h3>
+                <div class="wl-card-specs">
+                  <i class="bi bi-door-open me-1"></i> 3 phòng ngủ <span class="mx-1.5">•</span> <i class="bi bi-people me-1"></i> 6 khách
+                </div>
+                <div class="wl-feature-box">
+                  <div class="wl-feature-title">Tiện nghi nổi bật:</div>
+                  <div class="wl-feature-text">Nhà trình tường H'Mông cổ · Mã Pí Lèng</div>
+                </div>
+              </div>
+              <div class="wl-card-footer">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="wl-price-label">Giá từ:</div>
+                    <div class="wl-price-val">680.000đ</div>
+                  </div>
+                  <a href="homepage.html" class="wl-btn-book">Xem homestay</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOMESTAY 8: Mộc Châu Tea Hill Lodge -->
+        <div class="col-xl-3 col-lg-4 col-md-6 col-12 wl-card-col" data-region="mocchau" data-price="620000" data-rating="4.84" data-date="20260913" id="card-8">
+          <div class="wl-card">
+            <div class="wl-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Mộc Châu Tea Hill Lodge" class="wl-card-img">
+              <div class="wl-top-badge" style="background: #ECFDF5; color: #059669;">
+                <i class="bi bi-cup-hot-fill"></i> Đồi chè Mộc Châu
+              </div>
+              <button type="button" class="wl-wishlist-btn" onclick="removeWishlistItem('card-8', 'Mộc Châu Tea Hill Lodge')" title="Bỏ yêu thích">
+                <i class="bi bi-heart-fill"></i>
+              </button>
+            </div>
+            <div class="wl-card-body">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <div class="wl-card-location">
+                    <i class="bi bi-geo-alt-fill me-1"></i> Mộc Châu
+                  </div>
+                  <div class="wl-card-rating">
+                    <i class="bi bi-star-fill text-warning me-1"></i><strong>4.84</strong> <span class="text-muted">(89)</span>
+                  </div>
+                </div>
+                <h3 class="wl-card-title" title="Mộc Châu Tea Hill Lodge">Mộc Châu Tea Hill Lodge</h3>
+                <div class="wl-card-specs">
+                  <i class="bi bi-door-open me-1"></i> 2 phòng ngủ <span class="mx-1.5">•</span> <i class="bi bi-people me-1"></i> 4 khách
+                </div>
+                <div class="wl-feature-box">
+                  <div class="wl-feature-title">Tiện nghi nổi bật:</div>
+                  <div class="wl-feature-text">Bungalow giữa đồi chè · Vườn mận chín</div>
+                </div>
+              </div>
+              <div class="wl-card-footer">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <div class="wl-price-label">Giá từ:</div>
+                    <div class="wl-price-val">620.000đ</div>
+                  </div>
+                  <a href="homepage.html" class="wl-btn-book">Xem homestay</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- WISHLIST EMPTY STATE SECTION (Shown when all cards are removed) -->
+    <div id="wishlistEmptySection" class="d-none mt-4">
+      <div class="wl-empty-card">
+        <div class="wl-empty-icon">
+          <i class="bi bi-heartbreak-fill"></i>
+        </div>
+        <h2 class="h4 fw-bold text-dark mb-2">Danh sách yêu thích của bạn đang trống</h2>
+        <p class="text-muted text-sm mb-4 max-w-md mx-auto">
+          Hãy khám phá các homestay sinh thái tuyệt đẹp trên khắp Việt Nam và bấm biểu tượng trái tim để lưu lại những chốn nghỉ ưng ý nhé!
+        </p>
+        <a href="homepage.html" class="btn btn-success btn-lg rounded-pill px-4 fw-semibold text-sm d-inline-flex align-items-center gap-2">
+          <i class="bi bi-compass-fill"></i> Khám phá Homestay ngay
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL: XÁC NHẬN XÓA TẤT CẢ -->
+  <div class="modal fade" id="clearAllModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold text-danger"><i class="bi bi-exclamation-triangle-fill me-2"></i>Cảnh báo xóa danh sách</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-3">
+          <p class="text-sm text-secondary mb-0">Bạn có chắc chắn muốn xóa <strong>toàn bộ homestay</strong> khỏi danh sách yêu thích không? Thao tác này không thể hoàn tác.</p>
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-light rounded-pill px-4 text-xs font-semibold" data-bs-dismiss="modal">Hủy bỏ</button>
+          <button type="button" class="btn btn-danger rounded-pill px-4 text-xs font-semibold" onclick="executeClearAll()">Đồng ý xóa sạch</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="wl-toast" id="wlToast">
+    <i class="bi bi-check-circle-fill text-success fs-5" id="wlToastIcon"></i>
+    <span id="wlToastMsg">Thao tác thành công</span>
+  </div>
+
+  <!-- Footer Placeholder (Dynamic Load) -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom Wishlist JS -->
+  <script src="../JS/wishlist.js"></script>
+
 </body>
 </html>
