@@ -394,6 +394,10 @@ function confirmRoomBooking() {
     }
     showToastDetail(`Đang chuyển đến trang xác nhận đặt "${activeRoom.name}"...`);
     closeRoomModal();
+    setTimeout(() => {
+        window.location.href = 'bookingAndPay.html';
+    }, 3000);
+
 }
 
 /* ==========================================================================

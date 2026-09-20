@@ -349,44 +349,6 @@ body {
 .bk-sum-note i { color: var(--primary-color); margin-top: 1px; }
 
 /* ==========================================================================
-   9. MÀN HÌNH THÀNH CÔNG
-   ========================================================================== */
-.bk-success { padding: 40px 0 72px; }
-.bk-success-card {
-    max-width: 760px; margin: 0 auto; padding: 36px 36px 32px; text-align: center;
-    background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
-}
-.bk-success-icon {
-    display: flex; align-items: center; justify-content: center; width: 72px; height: 72px; margin: 0 auto 18px;
-    border-radius: 50%; background: var(--primary-color); color: var(--white); font-size: 2rem;
-    box-shadow: 0 0 0 8px var(--primary-tag-bg);
-    animation: bk-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-@keyframes bk-pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.bk-success-card h2 { font-size: 1.7rem; font-weight: 800; color: var(--dark-color); letter-spacing: -0.4px; margin-bottom: 8px; }
-.bk-success-sub { max-width: 520px; margin: 0 auto 24px; font-size: 0.94rem; color: var(--text-muted); line-height: 1.6; }
-
-.bk-code-box {
-    display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
-    padding: 14px 18px; margin-bottom: 24px; background: var(--primary-light); border: 1.5px dashed var(--primary-tag-border); border-radius: var(--radius-md);
-}
-.bk-code-box span { font-size: 0.84rem; font-weight: 700; color: var(--text-muted); }
-.bk-code-box b { font-size: 1.4rem; font-weight: 800; letter-spacing: 1px; color: var(--primary-color); }
-
-.bk-ok-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; margin: 0 0 24px; text-align: left; }
-.bk-ok-grid > div { display: flex; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border-color); }
-.bk-ok-grid dt { font-size: 0.84rem; font-weight: 600; color: var(--text-muted); }
-.bk-ok-grid dd { margin: 0; font-size: 0.9rem; font-weight: 700; color: var(--dark-color); text-align: right; }
-
-.bk-next { text-align: left; padding: 18px 20px; margin-bottom: 26px; background: var(--light-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); }
-.bk-next h3 { font-size: 0.98rem; font-weight: 800; color: var(--dark-color); margin: 0 0 10px; }
-.bk-next ul { display: flex; flex-direction: column; gap: 9px; list-style: none; margin: 0; padding: 0; }
-.bk-next li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; line-height: 1.55; }
-.bk-next li i { margin-top: 3px; color: var(--primary-color); }
-
-.bk-success-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
-
-/* ==========================================================================
    10. POPUP THANH TOÁN
    ========================================================================== */
 .bk-modal-overlay {
@@ -519,14 +481,4 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
-}
-
-/* ==========================================================================
-   IN XÁC NHẬN
-   ========================================================================== */
-@media print {
-    #header-placeholder, #footer-placeholder, .bk-top, .bk-success-actions, .mobile-booking-bar, .toast-notice, #okCopyBtn { display: none !important; }
-    body { background: #fff; }
-    .bk-success { padding: 0; }
-    .bk-success-card { box-shadow: none; border: none; }
 }

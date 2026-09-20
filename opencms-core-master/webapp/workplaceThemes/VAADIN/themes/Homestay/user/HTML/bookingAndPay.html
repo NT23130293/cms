@@ -343,49 +343,6 @@
             </aside>
         </div>
     </section>
-
-    <!-- 4. MÀN HÌNH ĐẶT PHÒNG THÀNH CÔNG -->
-    <section class="bk-success" id="bkSuccess" hidden>
-        <div class="container">
-            <div class="bk-success-card">
-                <div class="bk-success-icon"><i class="bi bi-check-lg"></i></div>
-                <h2>Đặt phòng thành công</h2>
-                <p class="bk-success-sub" id="okSub"></p>
-
-                <div class="bk-code-box">
-                    <span>Mã đặt phòng</span>
-                    <b id="okCode">YEN-000000</b>
-                    <button type="button" class="yn-btn yn-btn--ghost yn-btn--sm" id="okCopyBtn">
-                        <i class="bi bi-copy"></i> Sao chép
-                    </button>
-                </div>
-
-                <dl class="bk-ok-grid">
-                    <div><dt>Homestay</dt><dd id="okHomestay"></dd></div>
-                    <div><dt>Loại phòng</dt><dd id="okRoom"></dd></div>
-                    <div><dt>Nhận phòng</dt><dd id="okCheckin"></dd></div>
-                    <div><dt>Trả phòng</dt><dd id="okCheckout"></dd></div>
-                    <div><dt>Số khách</dt><dd id="okGuests"></dd></div>
-                    <div><dt>Người đặt</dt><dd id="okContact"></dd></div>
-                    <div><dt>Đã thanh toán</dt><dd id="okPaid"></dd></div>
-                    <div id="okRemainingBox"><dt>Trả khi nhận phòng</dt><dd id="okRemaining"></dd></div>
-                </dl>
-
-                <div class="bk-next">
-                    <h3>Bước tiếp theo</h3>
-                    <ul id="okNextList"></ul>
-                </div>
-
-                <div class="bk-success-actions">
-                    <a class="yn-btn yn-btn--primary" id="okMyBookings" href="my-bookings.html">Xem đặt phòng của tôi</a>
-                    <button type="button" class="yn-btn yn-btn--outline" onclick="window.print()">
-                        <i class="bi bi-printer"></i> In xác nhận
-                    </button>
-                    <a class="yn-btn yn-btn--ghost" id="okHome" href="homepage.html">Về trang chủ</a>
-                </div>
-            </div>
-        </div>
-    </section>
 </main>
 
 <!-- FOOTER -->
@@ -453,9 +410,9 @@
 </div>
 
 <!-- Toast thông báo -->
-<div class="toast-notice" id="toastNotice" role="status" aria-live="polite">
+<div class="toast-notice" id="bkToast" role="status" aria-live="polite">
     <i class="bi bi-check-circle-fill"></i>
-    <span id="toastMsg">Đã sao chép!</span>
+    <span id="bkToastMsg">Đã sao chép!</span>
 </div>
 
 <!-- Thanh thanh toán dính (mobile) -->
@@ -467,6 +424,7 @@
     <button type="submit" form="bookingForm" class="yn-btn yn-btn--primary">Xác nhận & thanh toán</button>
 </div>
 <script src="../JS/bookingAndPay.js"></script>
+<script src="../JS/homestayDetail.js"></script>
 <script src="../JS/homepage.js"></script>
 </body>
 </html>
