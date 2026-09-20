@@ -4,12 +4,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Doanh thu & Báo cáo thống kê</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
-        rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="../css/revenueAndReports.css">
+  <link rel="stylesheet" href="../css/manageRevenue.css">
   <link rel="stylesheet" href="../css/manageMission.css">
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased">
@@ -29,24 +27,63 @@
       <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-secondary-container/20 pointer-events-none blur-2xl"></div>
       <div class="flex flex-col gap-space-xs z-10 max-w-2xl">
         <div class="flex items-center gap-space-xs">
-                    <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wide inline-flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[14px]">update</span> Cập nhật 15 phút trước
-                    </span>
+          <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wide inline-flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">update</span> Cập nhật 15 phút trước
+          </span>
         </div>
         <h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Doanh thu &amp; Báo cáo thống kê</h1>
-        <p class="font-body-sm text-body-sm text-on-surface-variant">Báo cáo hiệu suất vận hành toàn khu Nhà Sàn Mộc (Mai Châu, Hòa Bình)</p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">
+          Báo cáo hiệu suất vận hành toàn khu Nhà Sàn Mộc (<span id="filter-display-text" class="font-bold text-primary">Tháng 09/2026</span>)
+        </p>
       </div>
-      <!-- Action Toolbar & Date Tabs -->
+
+      <!-- Action Toolbar & Dynamic Date Filters -->
       <div class="flex flex-col lg:items-end gap-space-sm z-10">
-        <div class="flex bg-surface-container-low p-1 rounded-lg border border-outline-variant/30">
-          <button type="button" class="px-3 py-1 text-label-md font-label-md text-on-surface-variant rounded-md hover:bg-surface-container transition-colors">Tuần này</button>
-          <button type="button" class="px-3 py-1 text-label-md font-label-md bg-primary text-on-primary rounded-md shadow-sm">Tháng 09/2024</button>
-          <button type="button" class="px-3 py-1 text-label-md font-label-md text-on-surface-variant rounded-md hover:bg-surface-container transition-colors">Quý 3</button>
-          <button type="button" class="px-3 py-1 text-label-md font-label-md text-on-surface-variant rounded-md hover:bg-surface-container transition-colors">Năm 2024</button>
-          <button type="button" class="px-2.5 py-1 text-on-surface-variant rounded-md hover:bg-surface-container transition-colors flex items-center justify-center">
-            <span class="material-symbols-outlined text-[18px]">calendar_month</span>
-          </button>
+        <!-- Dynamic Filter Controls -->
+        <div class="flex flex-wrap items-center gap-2 bg-surface-container-low p-1.5 rounded-xl border border-outline-variant/30 shadow-sm">
+
+          <!-- Month Toggle & Select -->
+          <div class="flex items-center bg-surface rounded-lg border border-outline-variant/40 overflow-hidden">
+            <button type="button" id="btn-toggle-month" class="px-3 py-1.5 text-label-md font-label-md bg-primary text-on-primary transition-colors flex items-center gap-1">
+              <span>Tháng</span>
+            </button>
+            <select id="select-month" class="bg-transparent text-label-md text-on-surface py-1.5 pr-2 pl-1 outline-none border-l border-outline-variant/30 cursor-pointer">
+              <!-- JS Populates 12 Months -->
+            </select>
+          </div>
+
+          <!-- Quarter Toggle & Select -->
+          <div class="flex items-center bg-surface rounded-lg border border-outline-variant/40 overflow-hidden opacity-60">
+            <button type="button" id="btn-toggle-quarter" class="px-3 py-1.5 text-label-md font-label-md text-on-surface-variant hover:bg-surface-container transition-colors flex items-center gap-1">
+              <span>Quý</span>
+            </button>
+            <select id="select-quarter" disabled class="bg-transparent text-label-md text-on-surface py-1.5 pr-2 pl-1 outline-none border-l border-outline-variant/30 cursor-pointer disabled:cursor-not-allowed">
+              <option value="1">Quý 1</option>
+              <option value="2">Quý 2</option>
+              <option value="3">Quý 3</option>
+              <option value="4">Quý 4</option>
+            </select>
+          </div>
+
+          <!-- Year Toggle & Select -->
+          <div class="flex items-center bg-surface rounded-lg border border-outline-variant/40 overflow-hidden">
+            <button type="button" id="btn-toggle-year" class="px-3 py-1.5 text-label-md font-label-md bg-primary text-on-primary transition-colors flex items-center gap-1">
+              <span>Năm</span>
+            </button>
+            <select id="select-year" class="bg-transparent text-label-md text-on-surface py-1.5 pr-2 pl-1 outline-none border-l border-outline-variant/30 cursor-pointer">
+              <!-- JS Populates 10 Years -->
+            </select>
+          </div>
+
+          <!-- Custom Datepicker Toggle -->
+          <div class="relative flex items-center">
+            <button type="button" id="btn-toggle-calendar" title="Chọn khoảng thời gian theo lịch" class="px-3 py-1.5 text-on-surface-variant rounded-lg hover:bg-surface-container transition-colors flex items-center justify-center border border-outline-variant/40 bg-surface">
+              <span class="material-symbols-outlined text-[18px]">calendar_month</span>
+            </button>
+            <input type="date" id="input-custom-date" class="hidden absolute opacity-0 pointer-events-none">
+          </div>
         </div>
+
         <div class="flex flex-wrap items-center gap-space-sm">
           <button type="button" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5 transition-colors shadow-sm">
             <span class="material-symbols-outlined text-[18px] text-secondary">description</span> Đổi xuất báo cáo Excel
@@ -69,15 +106,15 @@
             </div>
           </div>
           <div class="flex items-baseline gap-space-xs mt-0.5">
-            <span class="font-display-lg text-display-lg text-primary font-bold">128.500.000<span class="currency text-xl">đ</span></span>
+            <span id="stat-total-revenue" class="font-display-lg text-display-lg text-primary font-bold">128.500.000<span class="currency text-xl">đ</span></span>
           </div>
           <div class="flex items-center gap-1.5 mt-1 font-label-md text-label-md text-secondary">
-            <span class="material-symbols-outlined text-[16px]">arrow_outward</span> +18.4% <span class="text-on-surface-variant font-normal">so với tháng 08</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_outward</span> +18.4% <span class="text-on-surface-variant font-normal">so với kỳ trước</span>
           </div>
         </div>
         <div class="mt-4 pt-3 border-t border-surface-container">
           <div class="flex justify-between font-label-sm text-label-sm mb-1 text-on-surface-variant">
-            <span>Kế hoạch tháng: 120tr</span>
+            <span>Kế hoạch: 120tr</span>
             <span class="text-secondary font-bold">Đạt 106.5%</span>
           </div>
           <div class="h-1.5 bg-surface-container rounded-full overflow-hidden">
@@ -95,7 +132,7 @@
             </div>
           </div>
           <div class="flex items-baseline gap-space-xs mt-0.5">
-            <span class="font-display-lg text-display-lg text-on-surface font-bold">82.300.000<span class="currency text-xl">đ</span></span>
+            <span id="stat-room-revenue" class="font-display-lg text-display-lg text-on-surface font-bold">82.300.000<span class="currency text-xl">đ</span></span>
           </div>
           <div class="flex items-center gap-1.5 mt-1 font-label-md text-label-md">
             <span class="px-2 py-0.5 rounded bg-surface-container text-primary font-label-sm">64.0%</span> <span class="text-on-surface-variant font-normal text-xs">tổng doanh thu</span>
@@ -116,7 +153,7 @@
             </div>
           </div>
           <div class="flex items-baseline gap-space-xs mt-0.5">
-            <span class="font-display-lg text-display-lg text-on-surface font-bold">46.200.000<span class="currency text-xl">đ</span></span>
+            <span id="stat-service-revenue" class="font-display-lg text-display-lg text-on-surface font-bold">46.200.000<span class="currency text-xl">đ</span></span>
           </div>
           <div class="flex items-center gap-1.5 mt-1 font-label-md text-label-md">
             <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-label-sm">36.0%</span> <span class="text-on-surface-variant font-normal text-xs">Tăng đột biến + 21%</span>
@@ -145,7 +182,7 @@
         </div>
         <div class="mt-4 pt-3 border-t border-surface-container flex flex-col gap-1">
           <span class="text-on-surface-variant text-xs">Chờ sao kê/nhận cọc 2</span>
-          <strong class="font-label-md text-error">12.500.000đ (24/09)</strong>
+          <strong class="font-label-md text-error">12.500.000đ</strong>
         </div>
       </div>
     </div>
@@ -156,7 +193,7 @@
       <div class="lg:col-span-8 bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-space-md">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-sm">
           <div class="flex items-center gap-space-sm">
-            <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Diễn biến doanh thu Tháng 09/2024</h3>
+            <h3 id="chart-main-title" class="font-headline-sm text-headline-sm text-on-surface font-bold">Diễn biến doanh thu Tháng 09/2026</h3>
             <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-[11px] font-semibold">Thực tế</span>
           </div>
           <div class="flex bg-surface-container-low p-1 rounded-lg border border-outline-variant/30 self-start">
@@ -165,11 +202,11 @@
             <button type="button" class="px-3 py-1 text-label-sm font-label-sm text-on-surface-variant rounded-md hover:bg-surface-container transition-colors">Phòng vs Dịch vụ</button>
           </div>
         </div>
-        <p class="font-body-sm text-body-sm text-on-surface-variant">Ghi nhận đỉnh doanh thu cao điểm vào dịp cuối tuần và Lễ 02/09</p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Ghi nhận đỉnh doanh thu cao điểm vào dịp cuối tuần</p>
         <div class="flex flex-wrap items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant">
           <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-primary inline-block"></span> Tiền phòng lưu trú</span>
           <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-amber-500 inline-block"></span> Trải nghiệm &amp; Ẩm thực Tây Bắc</span>
-          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-secondary inline-block"></span> Trung bình tháng (4.2tr/ngày)</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-secondary inline-block"></span> Trung bình kỳ báo cáo</span>
         </div>
 
         <div class="relative w-full py-2">
@@ -197,14 +234,14 @@
             <line x1="0" y1="180" x2="800" y2="180" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4"/>
           </svg>
           <div class="flex justify-between font-label-sm text-[11px] text-on-surface-variant mt-4 pt-2 border-t border-surface-container">
-            <span>01/09</span><span>05/09</span><span>10/09</span><span>15/09</span><span>20/09 (Đỉnh đợt 2)</span><span>25/09</span><span>28/09 (Hiện tại)</span><span>30/09</span>
+            <span>Đầu kỳ</span><span>Giai đoạn 1</span><span>Giai đoạn 2</span><span>Giữa kỳ</span><span>Giai đoạn 3</span><span>Cuối kỳ</span>
           </div>
         </div>
 
         <div class="bg-surface-container-low p-space-md rounded-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-body-sm">
           <div class="flex items-center gap-space-sm text-on-surface">
             <span class="material-symbols-outlined text-secondary text-[20px]">trending_up</span>
-            <span><strong>Nhận xét từ hệ thống:</strong> Doanh thu trung bình các ngày cuối tuần (T6, T7, CN) đạt <strong>7.800.000đ/ngày</strong>, gấp 2.4 lần so với ngày trong tuần.</span>
+            <span><strong>Nhận xét từ hệ thống:</strong> Doanh thu trung bình đạt kết quả khả quan, tăng trưởng ổn định so với cùng kỳ.</span>
           </div>
           <a href="#" class="text-secondary font-label-md text-label-md hover:underline shrink-0">Xem chi tiết ca trực</a>
         </div>
@@ -215,9 +252,9 @@
         <div class="relative w-full h-48 overflow-hidden bg-surface-container-highest">
           <img id="dashboard-main-img" class="w-full h-full object-cover" alt="Mai Châu">
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-space-md text-white">
-                        <span class="px-2 py-0.5 rounded bg-white/20 backdrop-blur-md font-label-sm text-[11px] w-fit mb-1 flex items-center gap-1">
-                            <span class="material-symbols-outlined text-[14px]">house</span> Nhà Sàn Mộc
-                        </span>
+            <span class="px-2 py-0.5 rounded bg-white/20 backdrop-blur-md font-label-sm text-[11px] w-fit mb-1 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">house</span> Nhà Sàn Mộc
+            </span>
             <h3 class="font-headline-sm text-headline-sm font-bold">Mai Châu, Hòa Bình</h3>
           </div>
         </div>
@@ -405,11 +442,31 @@
         <div class="flex items-center gap-space-sm">
           <div class="relative">
             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
-            <input type="text" placeholder="Tìm mã TX, tên khách..." class="py-1.5 pl-9 pr-3 rounded-lg border border-outline-variant bg-surface-container-low font-body-sm text-on-surface outline-none focus:border-secondary w-52">
+            <input type="text" id="input-search-tx" placeholder="Tìm mã TX, tên khách..." class="py-1.5 pl-9 pr-3 rounded-lg border border-outline-variant bg-surface-container-low font-body-sm text-on-surface outline-none focus:border-secondary w-52">
           </div>
-          <button type="button" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors border border-outline-variant/50">
-            <span class="material-symbols-outlined text-[16px]">filter_list</span> Lọc
-          </button>
+
+          <!-- Transaction Filter Dropdown -->
+          <div class="relative inline-block text-left">
+            <button type="button" id="btn-tx-filter-toggle" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors border border-outline-variant/50">
+              <span class="material-symbols-outlined text-[16px]">filter_list</span>
+              <span id="tx-filter-label">Gần nhất (thời gian)</span>
+              <span class="material-symbols-outlined text-[16px]">expand_more</span>
+            </button>
+            <div id="tx-filter-dropdown" class="hidden absolute right-0 mt-2 w-56 rounded-xl bg-surface-container-lowest shadow-lg border border-outline-variant/40 z-30 py-1">
+              <button type="button" data-sort="newest" class="tx-sort-opt w-full text-left px-4 py-2 text-label-md hover:bg-surface-container flex items-center justify-between text-primary font-bold">
+                Gần nhất (thời gian) <span class="material-symbols-outlined text-[16px]">check</span>
+              </button>
+              <button type="button" data-sort="oldest" class="tx-sort-opt w-full text-left px-4 py-2 text-label-md hover:bg-surface-container flex items-center justify-between text-on-surface">
+                Lâu nhất (thời gian)
+              </button>
+              <button type="button" data-sort="highest" class="tx-sort-opt w-full text-left px-4 py-2 text-label-md hover:bg-surface-container flex items-center justify-between text-on-surface">
+                Nhiều nhất (giá trị tiền)
+              </button>
+              <button type="button" data-sort="lowest" class="tx-sort-opt w-full text-left px-4 py-2 text-label-md hover:bg-surface-container flex items-center justify-between text-on-surface">
+                Thấp nhất (giá trị tiền)
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -426,92 +483,8 @@
             <th class="py-3 px-4">TRẠNG THÁI</th>
           </tr>
           </thead>
-          <tbody class="divide-y divide-surface-container font-body-md text-on-surface">
-          <tr class="hover:bg-surface-container-low/50 transition-colors">
-            <td class="py-3.5 px-4 font-bold text-primary">#TX-8403</td>
-            <td class="py-3.5 px-4 font-body-sm text-on-surface-variant">28/09<br>09:35</td>
-            <td class="py-3.5 px-4">
-              <strong class="font-label-lg text-on-surface block">Hoàng Thu Thảo</strong>
-              <span class="font-body-sm text-on-surface-variant">Bungalow Ven Suối (2 đêm)</span>
-            </td>
-            <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded border border-blue-200 bg-sky-50 text-sky-700 font-label-sm text-[11px]">Cọc booking 50%</span></td>
-            <td class="py-3.5 px-4">
-              <div class="flex items-center gap-1.5 font-body-sm">
-                <span class="material-symbols-outlined text-secondary text-[16px]">qr_code_scanner</span>
-                <span>Chuyển khoản VietQR</span>
-              </div>
-            </td>
-            <td class="py-3.5 px-4 text-secondary font-bold">+2.850.000đ</td>
-            <td class="py-3.5 px-4"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-[11px]"><span class="material-symbols-outlined text-[14px]">check_circle</span> Đã vào MB Bank</span></td>
-          </tr>
-          <tr class="hover:bg-surface-container-low/50 transition-colors">
-            <td class="py-3.5 px-4 font-bold text-primary">#TX-8404</td>
-            <td class="py-3.5 px-4 font-body-sm text-on-surface-variant">27/09<br>20:15</td>
-            <td class="py-3.5 px-4">
-              <strong class="font-label-lg text-on-surface block">Đoàn Phượt Trần Vũ</strong>
-              <span class="font-body-sm text-on-surface-variant">Nhà Sàn + Mâm Lợn Bản</span>
-            </td>
-            <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded border border-blue-200 bg-sky-50 text-sky-700 font-label-sm text-[11px]">Thanh toán tại quầy</span></td>
-            <td class="py-3.5 px-4">
-              <div class="flex items-center gap-1.5 font-body-sm">
-                <span class="material-symbols-outlined text-amber-600 text-[16px]">payments</span>
-                <span>Tiền mặt lễ tân</span>
-              </div>
-            </td>
-            <td class="py-3.5 px-4 text-secondary font-bold">+7.420.000đ</td>
-            <td class="py-3.5 px-4"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 font-label-md text-[11px]"><span class="material-symbols-outlined text-[14px]">check_circle</span> Thu ngân nộp két</span></td>
-          </tr>
-          <tr class="hover:bg-surface-container-low/50 transition-colors">
-            <td class="py-3.5 px-4 font-bold text-primary">#TX-8405</td>
-            <td class="py-3.5 px-4 font-body-sm text-on-surface-variant">27/09<br>14:00</td>
-            <td class="py-3.5 px-4">
-              <strong class="font-label-lg text-on-surface block">Booking.com Batch #44</strong>
-              <span class="font-body-sm text-on-surface-variant">Đối soát định kỳ sàn OTA</span>
-            </td>
-            <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded border border-orange-200 bg-orange-50 text-orange-700 font-label-sm text-[11px]">Tiền hoàn sàn OTA</span></td>
-            <td class="py-3.5 px-4">
-              <div class="flex items-center gap-1.5 font-body-sm">
-                <span class="material-symbols-outlined text-blue-600 text-[16px]">account_balance</span>
-                <span>Ví Sàn Booking.com</span>
-              </div>
-            </td>
-            <td class="py-3.5 px-4 text-secondary font-bold">+18.350.000đ</td>
-            <td class="py-3.5 px-4"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-[11px]"><span class="material-symbols-outlined text-[14px]">check_circle</span> Đã quyết toán MB Bank</span></td>
-          </tr>
-          <tr class="hover:bg-surface-container-low/50 transition-colors">
-            <td class="py-3.5 px-4 font-bold text-primary">#TX-8402</td>
-            <td class="py-3.5 px-4 font-body-sm text-on-surface-variant">26/09<br>15:40</td>
-            <td class="py-3.5 px-4">
-              <strong class="font-label-lg text-on-surface block">Gia đình anh David Miller</strong>
-              <span class="font-body-sm text-on-surface-variant">Mountain View 201 + Tour suối</span>
-            </td>
-            <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded border border-blue-200 bg-sky-50 text-sky-700 font-label-sm text-[11px]">Cọc booking 50%</span></td>
-            <td class="py-3.5 px-4">
-              <div class="flex items-center gap-1.5 font-body-sm">
-                <span class="material-symbols-outlined text-on-surface-variant text-[16px]">credit_card</span>
-                <span>Agoda Virtual Card</span>
-              </div>
-            </td>
-            <td class="py-3.5 px-4 text-blue-600 font-bold">+3.600.000đ</td>
-            <td class="py-3.5 px-4"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sky-100 text-sky-900 font-label-md text-[11px]"><span class="material-symbols-outlined text-[14px]">schedule</span> Chờ sao kê thẻ (Check-in)</span></td>
-          </tr>
-          <tr class="hover:bg-surface-container-low/50 transition-colors">
-            <td class="py-3.5 px-4 font-bold text-primary">#TX-8406</td>
-            <td class="py-3.5 px-4 font-body-sm text-on-surface-variant">26/09<br>11:20</td>
-            <td class="py-3.5 px-4">
-              <strong class="font-label-lg text-on-surface block">Lê Quỳnh Mai</strong>
-              <span class="font-body-sm text-on-surface-variant">Garden View 102</span>
-            </td>
-            <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded border border-blue-200 bg-sky-50 text-sky-700 font-label-sm text-[11px]">Thanh toán tại quầy</span></td>
-            <td class="py-3.5 px-4">
-              <div class="flex items-center gap-1.5 font-body-sm">
-                <span class="material-symbols-outlined text-secondary text-[16px]">qr_code_scanner</span>
-                <span>Chuyển khoản VietQR</span>
-              </div>
-            </td>
-            <td class="py-3.5 px-4 text-secondary font-bold">+1.650.000đ</td>
-            <td class="py-3.5 px-4"><span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-[11px]"><span class="material-symbols-outlined text-[14px]">check_circle</span> Đã vào MB Bank</span></td>
-          </tr>
+          <tbody id="transaction-tbody" class="divide-y divide-surface-container font-body-md text-on-surface">
+          <!-- Dynamic Transaction Rows Rendered by JS -->
           </tbody>
         </table>
       </div>
@@ -522,7 +495,7 @@
           <span>Tài khoản nhận tiền chính: <strong>MB Bank - 0988 234 9902</strong> (Chủ tài khoản NGUYEN VAN AN)</span>
         </div>
         <div class="flex items-center gap-4">
-          <span>Hiển thị 5 trên 142 giao dịch tháng 9</span>
+          <span>Hiển thị <span id="tx-count-display">5</span> giao dịch</span>
           <div class="flex items-center gap-1">
             <button type="button" class="w-7 h-7 rounded bg-surface-container-low hover:bg-surface-container flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
             <button type="button" class="w-7 h-7 rounded bg-primary text-on-primary flex items-center justify-center font-bold">1</button>
@@ -536,7 +509,7 @@
 
   </div>
 
-  <script src="../js/RevenueAndReports.js"></script>
+  <script src="../js/manageRevenue.js"></script>
   <script src="../js/sidebarJs.js"></script>
 </main>
 
