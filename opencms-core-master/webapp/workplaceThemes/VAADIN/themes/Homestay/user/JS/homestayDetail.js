@@ -2,7 +2,9 @@
  * YÊN Homestay - Trang Chi Tiết Homestay
  * Đường dẫn: .../Homestay/user/JS/homestayDetail.js
  * Quản lý: Gallery, danh sách loại phòng, popup đặt phòng,
- *          Đánh giá (xem nhanh vài cái + popup bên phải có bộ lọc), Homestay tương tự
+ *          Đánh giá (xem nhanh vài cái + popup bên phải có bộ lọc),
+ *          Tiện nghi (xem nhanh 8 mục + popup bên phải có bộ lọc theo nhóm),
+ *          Trải nghiệm homestay (xem nhanh 4 mục + popup bên phải có bộ lọc), Homestay tương tự
  * Lưu ý: file này chạy CÙNG với homepage.js (đã xử lý header/footer dùng chung)
  */
 
@@ -83,6 +85,8 @@ let roomGalleryIndex = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     renderRoomsList();
+    renderAmenitiesPreview();
+    renderExperiencePreview();
     renderHomestayReviewPreview();
     renderSimilarHomestays();
     initGalleryLabels();
@@ -94,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
    TIỆN ÍCH: KHÓA CUỘN TRANG KHI CÓ POPUP
    ========================================================================== */
 function syncScrollLock() {
-    const anyOpen = ['lightboxOverlay', 'roomModalOverlay', 'rvDrawer']
+    const anyOpen = ['lightboxOverlay', 'roomModalOverlay', 'rvDrawer', 'xpDrawer', 'amDrawer']
         .some((id) => document.getElementById(id)?.classList.contains('active'));
     document.body.style.overflow = anyOpen ? 'hidden' : '';
 }
@@ -655,7 +659,457 @@ function renderReviewsDrawer(keepScroll) {
 }
 
 /* ==========================================================================
-   7. PHÍM TẮT (ESC đóng popup trên cùng trước)
+   7. TIỆN NGHI
+   - Trang chính: xem nhanh 8 tiện nghi nổi bật (các mục có trường preview, theo thứ tự preview)
+   - Popup trượt từ bên phải (cùng khung rv-* với popup đánh giá): xem tất cả, chia theo nhóm + lọc theo nhóm
+   Số lượng "24" trên nút được tính tự động từ amenitiesData.
+   Khi có API thật: thay amenitiesData bằng dữ liệu trả về từ server.
+   ========================================================================== */
+const AMENITY_GROUPS = [
+    { id: 'ngoaitroi', label: 'Ngoài trời & thiên nhiên', icon: 'bi-tree' },
+    { id: 'bep',       label: 'Bếp & ăn uống',            icon: 'bi-cup-straw' },
+    { id: 'phong',     label: 'Phòng ngủ & phòng tắm',    icon: 'bi-moon-stars' },
+    { id: 'tienich',   label: 'Tiện ích & an toàn',       icon: 'bi-shield-check' }
+];
+
+const amenitiesData = [
+    // Ngoài trời & thiên nhiên
+    { id: 'bontam',   group: 'ngoaitroi', icon: 'bi-cup-hot',          name: 'Bồn tắm gỗ ngắm mây', note: 'Hẹn giờ với chủ nhà để có nước nóng sẵn sàng.', preview: 2 },
+    { id: 'bbq',      group: 'ngoaitroi', icon: 'bi-egg-fried',        name: 'Sân BBQ chung', note: 'Villa Toàn Căn có sân BBQ riêng.', preview: 3 },
+    { id: 'luatrai',  group: 'ngoaitroi', icon: 'bi-fire',             name: 'Khu lửa trại ngoài sân' },
+    { id: 'vuon',     group: 'ngoaitroi', icon: 'bi-flower1',          name: 'Vườn rau, vườn hoa trước nhà' },
+    { id: 'hien',     group: 'ngoaitroi', icon: 'bi-tree',             name: 'Hiên gỗ nhìn ra đồi thông' },
+    { id: 'vong',     group: 'ngoaitroi', icon: 'bi-cloud-sun',        name: 'Võng và ghế thư giãn ngoài sân' },
+    // Bếp & ăn uống
+    { id: 'bep',      group: 'bep',       icon: 'bi-cup-straw',        name: 'Bếp chung đầy đủ dụng cụ', preview: 6 },
+    { id: 'tulanh',   group: 'bep',       icon: 'bi-snow2',            name: 'Tủ lạnh' },
+    { id: 'vivi',     group: 'bep',       icon: 'bi-lightning-charge', name: 'Lò vi sóng và ấm siêu tốc' },
+    { id: 'tra',      group: 'bep',       icon: 'bi-cup-hot',          name: 'Bộ ấm trà và cà phê' },
+    { id: 'banan',    group: 'bep',       icon: 'bi-table',            name: 'Bàn ăn ngoài trời' },
+    { id: 'nuoc',     group: 'bep',       icon: 'bi-droplet',          name: 'Nước lọc miễn phí' },
+    // Phòng ngủ & phòng tắm
+    { id: 'losuoi',   group: 'phong',     icon: 'bi-fire',             name: 'Lò sưởi củi', preview: 1 },
+    { id: 'maysuoi',  group: 'phong',     icon: 'bi-snow',             name: 'Máy sưởi phòng', preview: 8 },
+    { id: 'changa',   group: 'phong',     icon: 'bi-moon',             name: 'Chăn ga gối sạch, thơm mùi gỗ thông' },
+    { id: 'chan',     group: 'phong',     icon: 'bi-moon-stars',       name: 'Chăn dày bổ sung cho đêm lạnh' },
+    { id: 'saytoc',   group: 'phong',     icon: 'bi-wind',             name: 'Máy sấy tóc' },
+    { id: 'khan',     group: 'phong',     icon: 'bi-droplet-half',     name: 'Khăn tắm và đồ vệ sinh cá nhân' },
+    // Tiện ích & an toàn
+    { id: 'wifi',     group: 'tienich',   icon: 'bi-wifi',             name: 'Wifi tốc độ cao', preview: 4 },
+    { id: 'dauxe',    group: 'tienich',   icon: 'bi-car-front',        name: 'Chỗ đậu xe miễn phí', note: 'Villa Toàn Căn có chỗ đậu 2 ô tô ngay trong sân.', preview: 5 },
+    { id: 'tv',       group: 'tienich',   icon: 'bi-tv',               name: 'Smart TV', preview: 7 },
+    { id: 'khoama',   group: 'tienich',   icon: 'bi-key',              name: 'Tự nhận phòng bằng mã số' },
+    { id: 'camera',   group: 'tienich',   icon: 'bi-camera-video',     name: 'Camera ở khu vực ngoài trời' },
+    { id: 'yte',      group: 'tienich',   icon: 'bi-bandaid',          name: 'Bình chữa cháy và hộp sơ cứu' }
+];
+
+const amenityState = { category: 'all' };
+let amenitiesDrawerOpener = null;
+
+/* 7.1 Xem nhanh trên trang */
+function renderAmenitiesPreview() {
+    const grid = document.getElementById('amenitiesGrid');
+    if (!grid) return;
+
+    const picks = amenitiesData
+        .filter((a) => a.preview)
+        .sort((a, b) => a.preview - b.preview);
+    grid.innerHTML = picks
+        .map((a) => `<div class="amenity-row"><i class="bi ${a.icon}"></i> ${a.name}</div>`)
+        .join('');
+
+    const btnCount = document.getElementById('amenitiesBtnCount');
+    if (btnCount) btnCount.textContent = amenitiesData.length;
+}
+
+/* 7.2 Popup tiện nghi trượt từ bên phải */
+function openAmenitiesDrawer(category) {
+    amenitiesDrawerOpener = document.activeElement;
+    amenityState.category = category || 'all';
+    renderAmenitiesDrawer();
+
+    document.getElementById('amOverlay').classList.add('active');
+    const drawer = document.getElementById('amDrawer');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    syncScrollLock();
+    setTimeout(() => document.getElementById('amCloseBtn').focus(), 50);
+}
+
+function closeAmenitiesDrawer() {
+    document.getElementById('amOverlay').classList.remove('active');
+    const drawer = document.getElementById('amDrawer');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    syncScrollLock();
+    if (amenitiesDrawerOpener && typeof amenitiesDrawerOpener.focus === 'function') amenitiesDrawerOpener.focus();
+    amenitiesDrawerOpener = null;
+}
+
+function setAmenityCategory(category) {
+    amenityState.category = category;
+    renderAmenitiesDrawer();
+}
+
+function renderAmenitiesDrawer() {
+    const { category } = amenityState;
+    const listEl = document.getElementById('amList');
+
+    const groups = AMENITY_GROUPS.filter((g) => category === 'all' || g.id === category);
+    const shown = amenitiesData.filter((a) => category === 'all' || a.group === category).length;
+    const activeGroup = AMENITY_GROUPS.find((g) => g.id === category);
+
+    document.getElementById('amSummaryLabel').textContent = `${shown} tiện nghi`;
+    document.getElementById('amSummarySub').textContent = activeGroup ? activeGroup.label : 'Tất cả nhóm tiện nghi';
+    document.getElementById('amResultCount').textContent = `Hiển thị ${shown} / ${amenitiesData.length} tiện nghi`;
+
+    document.getElementById('amCategoryChips').innerHTML =
+        [{ id: 'all', label: 'Tất cả', count: amenitiesData.length },
+            ...AMENITY_GROUPS.map((g) => ({ ...g, count: amenitiesData.filter((a) => a.group === g.id).length }))]
+            .map((g) => `<button type="button" class="yn-chip ${category === g.id ? 'active' : ''}" onclick="setAmenityCategory('${g.id}')">${g.label} <span class="chip-count">${g.count}</span></button>`)
+            .join('');
+
+    listEl.innerHTML = groups.map((g) => {
+        const items = amenitiesData.filter((a) => a.group === g.id);
+        return `
+    <section class="am-group">
+      <h4 class="am-group-title"><i class="bi ${g.icon}"></i> ${g.label} <span class="am-group-count">${items.length}</span></h4>
+      <ul class="am-group-list">
+        ${items.map((a) => `
+        <li class="am-row">
+          <i class="bi ${a.icon}"></i>
+          <div>
+            <span class="am-row-name">${a.name}</span>
+            ${a.note ? `<span class="am-row-note">${a.note}</span>` : ''}
+          </div>
+        </li>`).join('')}
+      </ul>
+    </section>`;
+    }).join('');
+
+    listEl.scrollTop = 0;
+}
+
+/* ==========================================================================
+   8. TRẢI NGHIỆM HOMESTAY MANG LẠI
+   - Trang chính (trong khối Tiện nghi): xem nhanh 4 trải nghiệm nổi bật
+   - Popup trượt từ bên phải (cùng khung rv-* với popup đánh giá): xem tất cả + lọc theo nhóm / chi phí
+   Dữ liệu mẫu: khi có API thật, thay experiencesData bằng dữ liệu trả về từ server
+   (price = 0 nghĩa là miễn phí).
+   ========================================================================== */
+const EXPERIENCE_CATEGORIES = [
+    { id: 'thiennhien', label: 'Thiên nhiên',          icon: 'bi-tree' },
+    { id: 'nongtrai',   label: 'Vườn & nông trại',     icon: 'bi-basket' },
+    { id: 'amthuc',     label: 'Ẩm thực',              icon: 'bi-cup-hot' },
+    { id: 'thugian',    label: 'Thư giãn & giao lưu',  icon: 'bi-fire' }
+];
+
+const EXPERIENCE_COSTS = [
+    { id: 'all',  label: 'Tất cả' },
+    { id: 'free', label: 'Miễn phí' },
+    { id: 'paid', label: 'Có phí' }
+];
+
+// Các trải nghiệm hiện ở phần xem nhanh (theo thứ tự)
+const EXPERIENCE_PREVIEW_IDS = ['sanmay', 'hairau', 'naucom', 'luatrai'];
+
+// Ảnh dự phòng khi ảnh chính của trải nghiệm không tải được
+const EXPERIENCE_FALLBACK_IMG = '1470071459604-3b5ec3a7fe05';
+
+const experiencesData = [
+    {
+        id: 'sanmay',
+        category: 'thiennhien',
+        title: 'Săn mây bình minh trên đồi thông',
+        summary: 'Dậy sớm cùng chủ nhà lên điểm ngắm mây phía sau đồi, vừa nhâm nhi trà gừng nóng vừa chờ mặt trời ló dạng.',
+        img: '1470770903676-69b98201ea1c',
+        duration: '90 phút',
+        time: '05:30 – 07:00',
+        people: 'Mọi lứa tuổi',
+        price: 0,
+        unit: '',
+        includes: ['Trà gừng nóng', 'Chủ nhà chỉ đường lên điểm ngắm mây', 'Góc chụp ảnh nhìn ra biển mây'],
+        note: 'Sáng sớm ở Đà Lạt khá lạnh, bạn nhớ mang áo ấm.',
+        booking: 'Không cần đặt trước'
+    },
+    {
+        id: 'trekking',
+        category: 'thiennhien',
+        title: 'Đi bộ xuyên rừng thông',
+        summary: 'Cung đường mòn nhẹ nhàng quanh đồi, chủ nhà dẫn bạn đi qua những góc rừng yên tĩnh ít người biết đến.',
+        img: '1441974231531-c6227db76b6e',
+        duration: '2 giờ',
+        time: 'Sáng hoặc chiều',
+        people: 'Từ 6 tuổi',
+        price: 100000,
+        unit: '/ nhóm',
+        includes: ['Chủ nhà dẫn đường', 'Nước suối', 'Gậy đi bộ'],
+        note: 'Nên mang giày thể thao hoặc giày đế bám.',
+        booking: 'Đặt trước 1 ngày'
+    },
+    {
+        id: 'hairau',
+        category: 'nongtrai',
+        title: 'Hái rau, dâu tại vườn nhà',
+        summary: 'Tự tay chọn rau củ và dâu tây trong vườn hữu cơ của gia đình, rồi mang về bếp chung nấu ngay trong bữa.',
+        img: '1464965911861-746a04b4bca6',
+        duration: '60 phút',
+        time: '08:00 – 10:00',
+        people: 'Mọi lứa tuổi',
+        price: 60000,
+        unit: '/ khách',
+        includes: ['Giỏ và kéo cắt rau', 'Mang về tối đa 1kg rau, quả', 'Găng tay cho bé'],
+        note: 'Rau, quả theo mùa vụ nên có thể thay đổi giữa các tháng.',
+        booking: 'Đặt trước 1 ngày'
+    },
+    {
+        id: 'nongtrai',
+        category: 'nongtrai',
+        title: 'Cho gà, thỏ ăn & chơi vườn cùng bé',
+        summary: 'Góc nông trại nhỏ trong sân vườn: các bé cho gà, thỏ ăn, nhặt trứng và chạy nhảy thoải mái, an toàn.',
+        img: '1500382017468-9049fed747ef',
+        duration: '45 phút',
+        time: 'Cả ngày',
+        people: 'Gia đình có trẻ nhỏ',
+        price: 0,
+        unit: '',
+        includes: ['Thức ăn cho vật nuôi', 'Nước rửa tay sau khi chơi'],
+        note: 'Trẻ nhỏ cần có người lớn đi cùng.',
+        booking: 'Không cần đặt trước'
+    },
+    {
+        id: 'naucom',
+        category: 'amthuc',
+        title: 'Học nấu bữa cơm quê cùng chủ nhà',
+        summary: 'Cùng chị Lan Anh vào bếp làm 3 món quê từ rau vườn nhà, rồi ngồi ăn quây quần như bữa cơm gia đình.',
+        img: '1414235077428-338989a2e8c0',
+        duration: '2 giờ',
+        time: '16:00 – 18:00',
+        people: 'Từ 2 khách',
+        price: 180000,
+        unit: '/ khách',
+        includes: ['Nguyên liệu tươi từ vườn', 'Chủ nhà hướng dẫn từng món', 'Bữa cơm thưởng thức tại chỗ'],
+        note: 'Báo trước nếu có khách ăn chay hoặc dị ứng thực phẩm.',
+        booking: 'Đặt trước 1 ngày'
+    },
+    {
+        id: 'tradacphe',
+        category: 'amthuc',
+        title: 'Trà atiso & cà phê rang xay buổi sáng',
+        summary: 'Ngồi hiên nhà gỗ thưởng thức trà atiso và cà phê xay tay, kèm bánh ngọt chủ nhà làm từ sáng.',
+        img: '1495474472287-4d71bcdd2085',
+        duration: '45 phút',
+        time: '07:00 – 09:00',
+        people: 'Mọi lứa tuổi',
+        price: 0,
+        unit: '',
+        includes: ['Ly trà hoặc cà phê đầu tiên miễn phí', 'Bánh ngọt làm tại nhà', 'Chỗ ngồi hiên nhìn ra đồi'],
+        note: 'Từ ly thứ hai, mỗi ly tính thêm 25.000đ.',
+        booking: 'Không cần đặt trước'
+    },
+    {
+        id: 'luatrai',
+        category: 'thugian',
+        title: 'Lửa trại & nướng BBQ đêm đồi thông',
+        summary: 'Quây quần bên đống lửa nướng đồ, hát hò và kể chuyện dưới trời se lạnh, một buổi tối rất Đà Lạt.',
+        img: '1584622650111-993a426fbf0a',
+        duration: '2 giờ',
+        time: '18:30 – 21:00',
+        people: 'Từ 2 khách',
+        price: 250000,
+        unit: '/ nhóm',
+        includes: ['Củi và than', 'Bếp nướng, vỉ nướng, dụng cụ', 'Bàn ghế ngoài trời'],
+        note: 'Khách tự mang thực phẩm hoặc đặt combo BBQ với chủ nhà. Kết thúc trước 21:00 để giữ yên tĩnh cho cả khu.',
+        booking: 'Đặt trước 1 ngày'
+    },
+    {
+        id: 'bontam',
+        category: 'thugian',
+        title: 'Ngâm bồn tắm gỗ ngắm mây, ngắm sao',
+        summary: 'Ngâm nước ấm trong bồn tắm gỗ ngoài trời, ngắm mây trôi ban ngày hoặc bầu trời sao ban đêm.',
+        img: '1560448204-e02f11c3d0e2',
+        duration: '60 phút',
+        time: 'Cả ngày',
+        people: 'Khách lưu trú',
+        price: 0,
+        unit: '',
+        includes: ['Nước nóng sẵn sàng', 'Khăn tắm và muối thảo mộc'],
+        note: 'Hãy báo giờ với chủ nhà trước để có nước nóng đúng lúc.',
+        booking: 'Hẹn giờ với chủ nhà'
+    }
+];
+
+const experienceState = { category: 'all', cost: 'all' };
+let experiencesDrawerOpener = null;
+
+const experienceCategory = (id) => EXPERIENCE_CATEGORIES.find((c) => c.id === id);
+const experiencePriceLabel = (x) => (x.price > 0 ? `${fmtVND(x.price)} ${x.unit}` : 'Miễn phí');
+
+function experienceImgTag(x, w) {
+    return `<img src="${unsplashUrl(x.img, w)}" alt="${x.title}" loading="lazy"
+              onerror="this.onerror=null;this.src='${unsplashUrl(EXPERIENCE_FALLBACK_IMG, w)}'">`;
+}
+
+function matchExperience(x, category, cost) {
+    return (category === 'all' || x.category === category)
+        && (cost === 'all' || (cost === 'free' ? x.price === 0 : x.price > 0));
+}
+
+/* 7.1 Xem nhanh trong khối Tiện nghi */
+function renderExperiencePreview() {
+    const grid = document.getElementById('experienceGrid');
+    if (!grid) return;
+
+    const picks = EXPERIENCE_PREVIEW_IDS
+        .map((id) => experiencesData.find((x) => x.id === id))
+        .filter(Boolean);
+
+    grid.innerHTML = picks.map((x) => {
+        const cat = experienceCategory(x.category);
+        return `
+    <button type="button" class="xp-card" onclick="openExperiencesDrawer('all', '${x.id}')">
+      <span class="xp-card-media">
+        ${experienceImgTag(x, 700)}
+        <span class="xp-badge ${x.price > 0 ? '' : 'xp-badge--free'}">${experiencePriceLabel(x)}</span>
+      </span>
+      <span class="xp-card-body">
+        <span class="xp-cat"><i class="bi ${cat.icon}"></i> ${cat.label}</span>
+        <span class="xp-card-name">${x.title}</span>
+        <span class="xp-card-meta"><i class="bi bi-clock"></i> ${x.duration}</span>
+      </span>
+    </button>`;
+    }).join('');
+
+    const countText = `${experiencesData.length} trải nghiệm`;
+    const note = document.getElementById('experienceCountNote');
+    const btnCount = document.getElementById('experienceBtnCount');
+    if (note) note.textContent = countText;
+    if (btnCount) btnCount.textContent = experiencesData.length;
+}
+
+/* 7.2 Popup trải nghiệm trượt từ bên phải */
+function openExperiencesDrawer(category, focusId) {
+    experiencesDrawerOpener = document.activeElement;
+    Object.assign(experienceState, { category: category || 'all', cost: 'all' });
+    renderExperiencesDrawer(focusId);
+
+    document.getElementById('xpOverlay').classList.add('active');
+    const drawer = document.getElementById('xpDrawer');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    syncScrollLock();
+    setTimeout(() => document.getElementById('xpCloseBtn').focus(), 50);
+}
+
+function closeExperiencesDrawer() {
+    document.getElementById('xpOverlay').classList.remove('active');
+    const drawer = document.getElementById('xpDrawer');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+    syncScrollLock();
+    if (experiencesDrawerOpener && typeof experiencesDrawerOpener.focus === 'function') experiencesDrawerOpener.focus();
+    experiencesDrawerOpener = null;
+}
+
+// Nút "Chọn phòng để đặt" ở chân popup: đóng popup rồi cuộn tới danh sách phòng
+function experiencesToRooms() {
+    closeExperiencesDrawer();
+    scrollToRooms();
+}
+
+function setExperienceCategory(category) {
+    experienceState.category = category;
+    renderExperiencesDrawer();
+}
+function setExperienceCost(cost) {
+    experienceState.cost = cost;
+    renderExperiencesDrawer();
+}
+function resetExperienceFilters() {
+    Object.assign(experienceState, { category: 'all', cost: 'all' });
+    renderExperiencesDrawer();
+}
+
+function experienceItemHTML(x) {
+    const cat = experienceCategory(x.category);
+    const isFree = x.price === 0;
+    return `
+    <article class="xp-item" data-xp-id="${x.id}">
+      <div class="xp-item-media">
+        ${experienceImgTag(x, 1000)}
+        <span class="xp-badge"><i class="bi ${cat.icon}"></i> ${cat.label}</span>
+      </div>
+      <div class="xp-item-body">
+        <h4 class="xp-item-title">${x.title}</h4>
+        <p class="xp-item-desc">${x.summary}</p>
+        <div class="xp-item-facts">
+          <span><i class="bi bi-hourglass-split"></i>${x.duration}</span>
+          <span><i class="bi bi-clock"></i>${x.time}</span>
+          <span><i class="bi bi-people"></i>${x.people}</span>
+        </div>
+        <ul class="xp-item-includes">
+          ${x.includes.map((t) => `<li><i class="bi bi-check2"></i><span>${t}</span></li>`).join('')}
+        </ul>
+        ${x.note ? `<div class="xp-item-note"><i class="bi bi-info-circle"></i><span>${x.note}</span></div>` : ''}
+        <div class="xp-item-foot">
+          <span class="xp-item-price ${isFree ? 'is-free' : ''}">${experiencePriceLabel(x)}</span>
+          <span class="xp-item-book"><i class="bi bi-calendar-check"></i>${x.booking}</span>
+        </div>
+      </div>
+    </article>`;
+}
+
+function renderExperiencesDrawer(focusId) {
+    const { category, cost } = experienceState;
+    const listEl = document.getElementById('xpList');
+
+    const result = experiencesData.filter((x) => matchExperience(x, category, cost));
+    const cat = experienceCategory(category);
+    const costItem = EXPERIENCE_COSTS.find((c) => c.id === cost);
+
+    // Tóm tắt theo bộ lọc đang chọn
+    document.getElementById('xpSummaryLabel').textContent = `${result.length} trải nghiệm`;
+    document.getElementById('xpSummarySub').textContent =
+        (cat ? cat.label : 'Tất cả nhóm trải nghiệm') + (cost === 'all' ? '' : ` · ${costItem.label}`);
+
+    // Chip nhóm trải nghiệm (số đếm tính theo bộ lọc chi phí đang chọn)
+    document.getElementById('xpCategoryChips').innerHTML =
+        [{ id: 'all', label: 'Tất cả' }, ...EXPERIENCE_CATEGORIES]
+            .map((c) => {
+                const count = experiencesData.filter((x) => matchExperience(x, c.id, cost)).length;
+                return `<button type="button" class="yn-chip ${category === c.id ? 'active' : ''}" onclick="setExperienceCategory('${c.id}')">${c.label} <span class="chip-count">${count}</span></button>`;
+            }).join('');
+
+    // Chip chi phí (số đếm tính theo nhóm đang chọn)
+    document.getElementById('xpCostChips').innerHTML = EXPERIENCE_COSTS
+        .map((c) => {
+            const count = experiencesData.filter((x) => matchExperience(x, category, c.id)).length;
+            return `<button type="button" class="yn-chip ${cost === c.id ? 'active' : ''}" onclick="setExperienceCost('${c.id}')">${c.label} <span class="chip-count">${count}</span></button>`;
+        }).join('');
+
+    document.getElementById('xpResultCount').textContent =
+        result.length ? `Hiển thị ${result.length} / ${experiencesData.length} trải nghiệm` : 'Không có trải nghiệm phù hợp';
+
+    listEl.innerHTML = result.length
+        ? result.map(experienceItemHTML).join('')
+        : `<div class="rv-empty"><i class="bi bi-compass"></i>Chưa có trải nghiệm nào khớp với bộ lọc này.
+             <br><button type="button" class="yn-btn yn-btn--outline yn-btn--sm" onclick="resetExperienceFilters()">Xóa bộ lọc</button></div>`;
+
+    listEl.scrollTop = 0;
+
+    // Bấm từ thẻ xem nhanh: cuộn tới đúng trải nghiệm và làm nổi viền một lúc
+    if (focusId) {
+        const target = listEl.querySelector(`[data-xp-id="${focusId}"]`);
+        if (target) {
+            listEl.scrollTop = Math.max(0, target.offsetTop - 12);
+            target.classList.add('is-focus');
+            setTimeout(() => target.classList.remove('is-focus'), 2400);
+        }
+    }
+}
+
+/* ==========================================================================
+   9. PHÍM TẮT (ESC đóng popup trên cùng trước)
    ========================================================================== */
 document.addEventListener('keydown', (e) => {
     const isOpen = (id) => document.getElementById(id)?.classList.contains('active');
@@ -664,6 +1118,14 @@ document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeGallery();
         if (e.key === 'ArrowRight') lightboxNav(1);
         if (e.key === 'ArrowLeft') lightboxNav(-1);
+        return;
+    }
+    if (isOpen('amDrawer')) {
+        if (e.key === 'Escape') closeAmenitiesDrawer();
+        return;
+    }
+    if (isOpen('xpDrawer')) {
+        if (e.key === 'Escape') closeExperiencesDrawer();
         return;
     }
     if (isOpen('rvDrawer')) {
@@ -678,7 +1140,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ==========================================================================
-   8. HOMESTAY TƯƠNG TỰ (dùng lại style .homestay-card của homepage)
+   10. HOMESTAY TƯƠNG TỰ (dùng lại style .homestay-card của homepage)
    ========================================================================== */
 const similarHomestaysData = [
     { name: 'Xuan Huong Lake View House', location: 'Đà Lạt', rating: '4.91', reviews: '158', specs: '3 phòng ngủ · 6 khách', amenities: 'View toàn cảnh hồ · Sân BBQ rộng · Gần chợ đêm', price: '1.250.000đ', img: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=600&q=80' },
@@ -728,7 +1190,7 @@ function toggleWishlistSimilar(e, btn, name) {
 }
 
 /* ==========================================================================
-   9. TOAST THÔNG BÁO
+   11. TOAST THÔNG BÁO
    ========================================================================== */
 let toastTimer = null;
 function showToastDetail(message) {

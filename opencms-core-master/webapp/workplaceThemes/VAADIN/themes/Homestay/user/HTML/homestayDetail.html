@@ -26,25 +26,12 @@
 <div id="header-placeholder"></div>
 
 <main>
-    <!-- 2. BREADCRUMB -->
-    <section class="detail-breadcrumb-section">
-        <div class="container">
-            <nav class="breadcrumb-nav" aria-label="breadcrumb">
-                <a href="homepage.html">Trang chủ</a>
-                <i class="bi bi-chevron-right"></i>
-                <a href="javascript:void(0)" onclick="filterByCategory('Đà Lạt')">Đà Lạt</a>
-                <i class="bi bi-chevron-right"></i>
-                <span>The Pine Hill Retreat</span>
-            </nav>
-        </div>
-    </section>
 
     <!-- 3. TIÊU ĐỀ + HÀNH ĐỘNG NHANH -->
     <section class="detail-title-section">
         <div class="container">
             <div class="detail-title-row">
                 <div class="detail-title-left">
-                    <span class="detail-tag-pill"><i class="bi bi-patch-check-fill"></i> Chủ nhà tận tâm</span>
                     <h1 class="detail-name" id="detailName">The Pine Hill Retreat</h1>
                     <div class="detail-meta-row">
                         <span class="detail-rating"><i class="bi bi-star-fill"></i> 4.90 <a href="#reviewsSection">126 đánh giá</a></span>
@@ -163,23 +150,30 @@
 
                 <div class="detail-divider"></div>
 
-                <!-- 5.4 Tiện nghi chung -->
-                <div class="detail-block">
+                <!-- 5.4 Tiện nghi chung + Trải nghiệm homestay mang lại -->
+                <div class="detail-block" id="amenitiesSection">
                     <h3 class="detail-block-title">Nơi này có những gì cho bạn</h3>
                     <div class="amenities-grid" id="amenitiesGrid">
-                        <div class="amenity-row"><i class="bi bi-fire"></i> Lò sưởi củi</div>
-                        <div class="amenity-row"><i class="bi bi-cup-hot"></i> Bồn tắm gỗ ngắm mây</div>
-                        <div class="amenity-row"><i class="bi bi-egg-fried"></i> Sân BBQ chung</div>
-                        <div class="amenity-row"><i class="bi bi-wifi"></i> Wifi tốc độ cao</div>
-                        <div class="amenity-row"><i class="bi bi-car-front"></i> Chỗ đậu xe miễn phí</div>
-                        <div class="amenity-row"><i class="bi bi-cup-straw"></i> Bếp chung đầy đủ dụng cụ</div>
-                        <div class="amenity-row"><i class="bi bi-tv"></i> Smart TV</div>
-                        <div class="amenity-row"><i class="bi bi-snow"></i> Máy sưởi phòng</div>
-                    </div>
-                    <button type="button" class="yn-btn yn-btn--outline"
-                            onclick="showToastDetail('Đang mở đầy đủ 24 tiện nghi...')">
-                        Hiển thị tất cả 24 tiện nghi
+                        <!-- render qua JS từ amenitiesData: 8 tiện nghi nổi bật --></div>
+                    <button type="button" class="yn-btn yn-btn--outline" onclick="openAmenitiesDrawer('all')">
+                        Hiển thị tất cả <span id="amenitiesBtnCount">24</span> tiện nghi
                     </button>
+
+                    <!-- 5.4b Trải nghiệm homestay mang lại: xem nhanh 4 mục, xem tất cả mở popup bên phải -->
+                    <div class="experience-section" id="experienceSection">
+                        <div class="experience-head">
+                            <div>
+                                <h4 class="experience-title"><i class="bi bi-stars"></i> Trải nghiệm homestay mang lại</h4>
+                                <p class="experience-sub">Những hoạt động đậm chất miền quê bạn có thể tham gia ngay tại đồi thông.</p>
+                            </div>
+                            <span class="experience-count-note" id="experienceCountNote">8 trải nghiệm</span>
+                        </div>
+                        <div class="experience-grid" id="experienceGrid">
+                            <!-- render qua JS: 4 trải nghiệm nổi bật --></div>
+                        <button type="button" class="yn-btn yn-btn--outline" onclick="openExperiencesDrawer('all')">
+                            <i class="bi bi-compass"></i> Xem tất cả <span id="experienceBtnCount">8</span> trải nghiệm
+                        </button>
+                    </div>
                 </div>
 
                 <div class="detail-divider"></div>
@@ -487,6 +481,77 @@
     <div class="rv-result-bar"><span id="rvResultCount">126 đánh giá</span></div>
     <div class="rv-list" id="rvList"></div>
     <div class="rv-foot" id="rvFoot"></div>
+</aside>
+
+<!-- 9b. POPUP TRẢI NGHIỆM (TRƯỢT TỪ BÊN PHẢI) + BỘ LỌC
+     Dùng chung khung rv-* với popup đánh giá để hai popup luôn giống nhau về kích thước, hiệu ứng, bộ lọc -->
+<div class="rv-overlay" id="xpOverlay" onclick="closeExperiencesDrawer()"></div>
+<aside class="rv-drawer" id="xpDrawer" role="dialog" aria-modal="true" aria-labelledby="xpDrawerTitle"
+       aria-hidden="true">
+    <div class="rv-head">
+        <h3 id="xpDrawerTitle">Trải nghiệm tại homestay</h3>
+        <button type="button" class="yn-btn yn-btn--ghost yn-btn--icon" id="xpCloseBtn"
+                onclick="closeExperiencesDrawer()" title="Đóng"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    <div class="rv-summary">
+        <div class="xp-summary-icon"><i class="bi bi-stars"></i></div>
+        <div class="rv-summary-text">
+            <strong id="xpSummaryLabel">8 trải nghiệm</strong>
+            <span id="xpSummarySub">Tất cả nhóm trải nghiệm</span>
+        </div>
+    </div>
+
+    <div class="rv-filters">
+        <div class="rv-filter-group">
+            <span class="rv-filter-label">Nhóm trải nghiệm</span>
+            <div class="rv-chip-row" id="xpCategoryChips"></div>
+        </div>
+        <div class="rv-filter-group">
+            <span class="rv-filter-label">Chi phí</span>
+            <div class="rv-chip-row" id="xpCostChips"></div>
+        </div>
+    </div>
+
+    <div class="rv-result-bar"><span id="xpResultCount">8 trải nghiệm</span></div>
+    <div class="rv-list xp-list" id="xpList"></div>
+    <div class="rv-foot xp-foot">
+        <p class="xp-foot-note"><i class="bi bi-info-circle"></i> Trải nghiệm tính riêng với tiền phòng. Bạn đăng ký
+            trực tiếp với chủ nhà khi đặt phòng hoặc nhắn tin trước chuyến đi.</p>
+        <button type="button" class="yn-btn yn-btn--primary yn-btn--block" onclick="experiencesToRooms()">
+            Chọn phòng để đặt
+        </button>
+    </div>
+</aside>
+
+<!-- 9c. POPUP TIỆN NGHI (TRƯỢT TỪ BÊN PHẢI) + BỘ LỌC THEO NHÓM
+     Dùng chung khung rv-* với popup đánh giá và popup trải nghiệm -->
+<div class="rv-overlay" id="amOverlay" onclick="closeAmenitiesDrawer()"></div>
+<aside class="rv-drawer" id="amDrawer" role="dialog" aria-modal="true" aria-labelledby="amDrawerTitle"
+       aria-hidden="true">
+    <div class="rv-head">
+        <h3 id="amDrawerTitle">Nơi này có những gì cho bạn</h3>
+        <button type="button" class="yn-btn yn-btn--ghost yn-btn--icon" id="amCloseBtn"
+                onclick="closeAmenitiesDrawer()" title="Đóng"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    <div class="rv-summary">
+        <div class="xp-summary-icon"><i class="bi bi-house-door"></i></div>
+        <div class="rv-summary-text">
+            <strong id="amSummaryLabel">24 tiện nghi</strong>
+            <span id="amSummarySub">Tất cả nhóm tiện nghi</span>
+        </div>
+    </div>
+
+    <div class="rv-filters">
+        <div class="rv-filter-group">
+            <span class="rv-filter-label">Nhóm tiện nghi</span>
+            <div class="rv-chip-row" id="amCategoryChips"></div>
+        </div>
+    </div>
+
+    <div class="rv-result-bar"><span id="amResultCount">24 tiện nghi</span></div>
+    <div class="rv-list am-list" id="amList"></div>
 </aside>
 
 <!-- Toast thông báo -->
