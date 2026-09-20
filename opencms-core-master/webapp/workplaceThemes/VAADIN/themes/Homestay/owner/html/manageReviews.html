@@ -8,17 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../css/reviewsAndFeedback.css">
+    <link rel="stylesheet" href="../css/manageReviews.css">
     <link rel="stylesheet" href="../css/manageMission.css">
+    <script src="../js/manageReviews.js"></script>
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased">
 
-<!-- ===================== INCLUDE MENU (SIDEBAR) ===================== -->
 <div id="sidebar-container"></div>
 
 <main class="w-full pt-16 bg-surface px-space-lg py-space-lg min-h-screen">
-
-    <!-- ===================== INCLUDE HEADER ===================== -->
     <div id="header-container"></div>
 
     <div class="flex flex-col w-full gap-space-lg">
@@ -28,9 +26,9 @@
             <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-secondary-container/20 pointer-events-none blur-2xl"></div>
             <div class="flex flex-col gap-space-xs z-10 max-w-2xl">
                 <div class="flex items-center gap-space-xs">
-          <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wide inline-flex items-center gap-1">
-            <span class="material-symbols-outlined text-[14px]">star</span> Trải nghiệm &amp; Uy tín
-          </span>
+                    <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wide inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">star</span> Trải nghiệm &amp; Uy tín
+                    </span>
                 </div>
                 <h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Quản lý Đánh giá &amp; Phản hồi du khách</h1>
                 <p class="font-body-sm text-body-sm text-on-surface-variant">Lắng nghe cảm nhận thực tế từ lữ khách ghé thăm Nhà Sàn Mộc. Duy trì chỉ số phản hồi tích cực để giữ vững vị thế top Ecolodge tại Mai Châu.</p>
@@ -136,13 +134,30 @@
 
         <!-- Filter Toolbar -->
         <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-sm">
-            <div class="flex flex-wrap items-center gap-2">
-                <button type="button" class="px-3 py-1.5 text-label-md font-label-md bg-primary text-on-primary rounded-lg shadow-sm">Tất cả đánh giá (148)</button>
-                <button type="button" class="px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors flex items-center gap-1">Chưa phản hồi <span class="px-1.5 py-0.2 rounded-full bg-error text-on-error text-[10px] font-bold">3</span></button>
-                <button type="button" class="px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">5 Sao (124)</button>
-                <button type="button" class="px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">4 Sao (18)</button>
-                <button type="button" class="px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">Dưới 2 Sao</button>
+            <div class="flex flex-wrap items-center gap-2" id="filter-buttons">
+                <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-primary text-on-primary rounded-lg shadow-sm">
+                    Tất cả đánh giá (148)
+                </button>
+                <button type="button" data-filter="unreplied" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors flex items-center gap-1">
+                    Chưa phản hồi <span class="px-1.5 py-0.2 rounded-full bg-error text-on-error text-[10px] font-bold">3</span>
+                </button>
+                <button type="button" data-filter="5" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">
+                    5 Sao (124)
+                </button>
+                <button type="button" data-filter="4" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">
+                    4 Sao (18)
+                </button>
+                <button type="button" data-filter="3" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">
+                    3 Sao (4)
+                </button>
+                <button type="button" data-filter="2" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">
+                    2 Sao (1)
+                </button>
+                <button type="button" data-filter="1" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">
+                    1 Sao (1)
+                </button>
             </div>
+
             <div class="flex items-center gap-space-sm">
                 <div class="relative">
                     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
@@ -159,11 +174,12 @@
 
         <!-- Main Section: Feedback List & Analysis Sidebar -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
-            <!-- Reviews List Column -->
+
+            <!-- Reviews List Column (Column 8/12) -->
             <div class="lg:col-span-8 flex flex-col gap-space-md">
 
                 <!-- Review 1 -->
-                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-3">
+                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-3" data-rating="5" data-replied="true">
                     <div class="flex items-start justify-between">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-emerald-200 text-emerald-900 font-bold flex items-center justify-center shrink-0">NM</div>
@@ -206,9 +222,9 @@
 
                     <div class="bg-surface-container-low p-space-md rounded-lg border-l-4 border-secondary flex flex-col gap-1.5 mt-1">
                         <div class="flex items-center justify-between">
-              <span class="font-label-md text-xs text-secondary font-bold flex items-center gap-1">
-                <span class="material-symbols-outlined text-[16px]">subheader_pawn</span> Phản hồi từ Nhà Sàn Mộc (Chủ nhà An) • 1 ngày trước
-              </span>
+                            <span class="font-label-md text-xs text-secondary font-bold flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">subheader_pawn</span> Phản hồi từ Nhà Sàn Mộc (Chủ nhà An) • 1 ngày trước
+                            </span>
                             <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-label-sm text-[10px] font-semibold">Đã gửi voucher tri ân</span>
                         </div>
                         <p class="font-body-sm text-xs text-on-surface leading-relaxed">
@@ -218,7 +234,7 @@
                 </div>
 
                 <!-- Review 2 -->
-                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-3">
+                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-3" data-rating="5" data-replied="false">
                     <div class="flex items-start justify-between">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-sky-200 text-sky-900 font-bold flex items-center justify-center shrink-0">HA</div>
@@ -246,9 +262,9 @@
 
                     <div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-2 mt-1 border border-outline-variant/30">
                         <div class="flex items-center justify-between text-xs">
-              <span class="font-label-md text-on-surface font-bold flex items-center gap-1">
-                <span class="material-symbols-outlined text-[16px] text-secondary">chat</span> Gửi phản hồi cho bạn Hoàng Minh Anh
-              </span>
+                            <span class="font-label-md text-on-surface font-bold flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px] text-secondary">chat</span> Gửi phản hồi cho bạn Hoàng Minh Anh
+                            </span>
                             <span class="text-on-surface-variant text-[11px]">Gợi ý câu mẫu nhanh:</span>
                         </div>
                         <div class="flex flex-wrap gap-1.5">
@@ -258,9 +274,9 @@
                         </div>
                         <textarea placeholder="Nhập lời cảm ơn hoặc giải đáp của Nhà Sàn Mộc tới du khách..." class="w-full p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-xs text-on-surface outline-none focus:border-secondary h-20 resize-none"></textarea>
                         <div class="flex items-center justify-between pt-1">
-              <span class="text-[11px] text-secondary flex items-center gap-1 font-medium">
-                <span class="material-symbols-outlined text-[14px]">auto_awesome</span> AI Tone: Lịch thiệp &amp; Mộc mạc ấm áp
-              </span>
+                            <span class="text-[11px] text-secondary flex items-center gap-1 font-medium">
+                                <span class="material-symbols-outlined text-[14px]">auto_awesome</span> AI Tone: Lịch thiệp &amp; Mộc mạc ấm áp
+                            </span>
                             <div class="flex items-center gap-2">
                                 <button type="button" class="px-3 py-1.5 text-xs text-on-surface-variant hover:text-on-surface">Lưu nháp</button>
                                 <button type="button" class="bg-primary hover:bg-primary-container text-on-primary px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1">Gửi phản hồi <span class="material-symbols-outlined text-[14px]">send</span></button>
@@ -270,7 +286,7 @@
                 </div>
 
                 <!-- Review 3 -->
-                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-3">
+                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-3" data-rating="4" data-replied="false">
                     <div class="flex items-start justify-between">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-amber-200 text-amber-900 font-bold flex items-center justify-center shrink-0">TB</div>
@@ -296,19 +312,34 @@
                         Không khí trong lành tuyệt đối, ngắm trọn cảnh đồng lúa chín vàng ươm. Đồ ăn buổi tối rất ngon và ấm cúng. Tuy nhiên vào buổi trưa mùa hè thì gian nhà sàn hơi hầm nóng một chút, homestay nên bổ sung thêm quạt cây công suất lớn hoặc bố trí rèm che nắng hướng tây để giấc trưa thoải mái hơn nhé.
                     </p>
 
-                    <div class="flex items-center justify-between pt-2 border-t border-surface-container text-xs">
-            <span class="text-amber-800 flex items-center gap-1 font-medium">
-              <span class="material-symbols-outlined text-[16px] text-amber-600">warning</span> Đã tạo thẻ nhiệm vụ bảo trì: <strong>Bổ sung quạt nhà chung</strong>
-            </span>
-                        <button type="button" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 border border-outline-variant/50">
-                            <span class="material-symbols-outlined text-[14px]">edit</span> Viết phản hồi ngay
-                        </button>
+                    <div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-2 mt-1 border border-outline-variant/30">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-label-md text-on-surface font-bold flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px] text-secondary">chat</span> Gửi phản hồi cho bạn Trần Quốc Bảo
+                            </span>
+                            <span class="text-on-surface-variant text-[11px]">Gợi ý câu mẫu nhanh:</span>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <button type="button" class="px-2.5 py-1 rounded bg-surface-container-lowest border border-outline-variant/50 text-[11px] hover:bg-surface-container transition-colors text-on-surface">Cảm ơn bạn đã góp ý chân thành!</button>
+                            <button type="button" class="px-2.5 py-1 rounded bg-surface-container-lowest border border-outline-variant/50 text-[11px] hover:bg-surface-container transition-colors text-on-surface">Mộc sẽ tiếp thu và trang bị thêm quạt ngay</button>
+                            <button type="button" class="px-2.5 py-1 rounded bg-surface-container-lowest border border-outline-variant/50 text-[11px] hover:bg-surface-container transition-colors text-on-surface">Rất mong được đón tiếp bạn lần sau!</button>
+                        </div>
+                        <textarea placeholder="Nhập lời cảm ơn hoặc giải đáp của Nhà Sàn Mộc tới du khách..." class="w-full p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-xs text-on-surface outline-none focus:border-secondary h-20 resize-none"></textarea>
+                        <div class="flex items-center justify-between pt-1">
+                            <span class="text-[11px] text-secondary flex items-center gap-1 font-medium">
+                                <span class="material-symbols-outlined text-[14px]">auto_awesome</span> AI Tone: Lịch thiệp &amp; Tiếp thu cầu thị
+                            </span>
+                            <div class="flex items-center gap-2">
+                                <button type="button" class="px-3 py-1.5 text-xs text-on-surface-variant hover:text-on-surface">Lưu nháp</button>
+                                <button type="button" class="bg-primary hover:bg-primary-container text-on-primary px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1">Gửi phản hồi <span class="material-symbols-outlined text-[14px]">send</span></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-            </div>
+            </div> <!-- CHÍNH XÁC: Đóng cột lg:col-span-8 tại đây -->
 
-            <!-- Right Panel Column -->
+            <!-- Right Panel Column (Column 4/12) -->
             <div class="lg:col-span-4 flex flex-col gap-space-md">
 
                 <!-- Criteria Analysis -->
@@ -409,12 +440,13 @@
                     </button>
                 </div>
 
-            </div>
-        </div>
+            </div> <!-- Đóng cột lg:col-span-4 tại đây -->
+
+        </div> <!-- Đóng main grid container -->
 
     </div>
 
-    <script src="../js/reviewsAndFeedback.js"></script>
+
     <script src="../js/sidebarJs.js"></script>
 </main>
 
