@@ -1,45 +1,123 @@
 /* =========================================================
    BOOKING MODAL SYSTEM
-   Đồng bộ phong cách với manageRoom.css
+   Đồng bộ 100% với manageRoom.css (quản lý phòng là chuẩn)
    ========================================================= */
+
 
 /* =========================================================
-   CSS VARIABLES
+   COLOR VARIABLES (copy y hệt manageRoom.css)
+   Trước đây file này ghi đè --primary = #4361ee (xanh dương)
+   và thiếu --secondary, --surface-container... nên popup bị lệch màu.
    ========================================================= */
+
 :root {
-    --surface:           #ffffff;
-    --surface-variant:   #f4f6fb;
-    --on-surface:        #1a1c22;
-    --outline-variant:   #dde1ec;
-    --primary:           #4361ee;
-    --on-primary:        #ffffff;
-    --error:             #e53935;
-    --on-error:          #ffffff;
-    --success:           #2e7d32;
-    --warning:           #f57c00;
+    --secondary: #1b6d24;
+
+    --on-tertiary-fixed-variant: #6e3900;
+    --on-secondary-fixed: #002204;
+
+    --on-tertiary: #ffffff;
+
+    --surface-dim: #cbdbf5;
+
+    --on-primary-fixed-variant: #224f3d;
+
+    --secondary-fixed-dim: #88d982;
+
+    --primary-fixed: #bdedd5;
+    --primary-fixed-dim: #a1d1ba;
+
+    --inverse-surface: #213145;
+    --inverse-on-surface: #eaf1ff;
+
+    --surface-container-highest: #d3e4fe;
+    --surface-container-high: #dce9ff;
+    --surface-container: #e5edfb;
+    --surface-container-low: #eff4ff;
+    --surface-container-lowest: #ffffff;
+
+    --on-background: #0b1c30;
+
+    --on-tertiary-container: #f38b23;
+
+    --primary-container: #154332;
+
+    --inverse-primary: #a1d1ba;
+
+    --tertiary-container: #5d2f00;
+
+    --secondary-container: #a0f399;
+    --on-secondary-container: #217128;
+
+    --surface-variant: #d3e4fe;
+
+    --background: #f8f9ff;
+    --surface: #f8f9ff;
+    --surface-bright: #f8f9ff;
+
+    --on-surface-variant: #414944;
+
+    --on-error: #ffffff;
+    --on-error-container: #93000a;
+
+    --on-primary-container: #81b099;
+
+    --outline-variant: #c0c8c2;
+    --outline: #717974;
+
+    --error: #ba1a1a;
+    --error-container: #ffdad6;
+
+    --on-surface: #0b1c30;
+
+    --on-tertiary-fixed: #2f1500;
+
+    --primary: #002c1e;
+
+    --on-secondary: #ffffff;
+
+    --secondary-fixed: #a3f69c;
+
+    --surface-tint: #3b6754;
+
+    --on-primary: #ffffff;
+
+    --on-primary-fixed: #002115;
+
+    --tertiary-fixed: #ffdcc3;
+    --tertiary-fixed-dim: #f5b98c;
 }
 
-/* BASE RESET */
-@layer base {
-    html, body {
-        margin: 0;
-        padding: 0;
-    }
-    body {
-        overscroll-behavior: none;
-    }
-    main > :first-child {
-        margin-top: 0 !important;
-    }
-    main > :last-child {
-        margin-bottom: 0 !important;
-    }
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overscroll-behavior: none;
+    background-color: var(--background);
+    color: var(--on-surface);
+}
+
+main > :first-child {
+    margin-top: 0 !important;
+}
+
+main > :last-child {
+    margin-bottom: 0 !important;
 }
 
 /* Ẩn scrollbar mặc định */
 .scrollbar-none::-webkit-scrollbar {
     display: none;
 }
+
 .scrollbar-none {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -70,8 +148,8 @@
     visibility: hidden;
 
     transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease;
+            opacity 0.2s ease,
+            visibility 0.2s ease;
 }
 
 /* Khi có hidden thì hoàn toàn không hiển thị */
@@ -98,10 +176,9 @@
 
     overflow-y: auto;
 
-    background-color: #ffffff;
-    background: var(--surface, #ffffff);
+    background: var(--surface);
 
-    border: 1px solid var(--outline-variant, #dde1ec);
+    border: 1px solid var(--outline-variant);
 
     border-radius: 1rem;
 
@@ -117,7 +194,7 @@
     transform: translateY(0) scale(1);
 }
 
-/* Kích thước lớn hơn */
+/* Kích thước lớn hơn (giống room-modal-lg) */
 .bk-modal-lg {
     max-width: 880px;
 }
@@ -129,81 +206,92 @@
 
 
 /* =========================================================
-   MODAL HEADER - Kiểu tiêu đề đơn giản (trắng)
+   MODAL HEADER
+   Tất cả các biến thể (primary / secondary / error / surface)
+   dùng chung 1 kiểu header như room-modal-header:
+   nền trong suốt + viền dưới + chữ tối.
+   Giữ nguyên tên class để không phải sửa HTML.
    ========================================================= */
 
-.bk-modal-header {
+.bk-modal-header,
+.bk-modal-header-primary,
+.bk-modal-header-secondary,
+.bk-modal-header-error,
+.bk-modal-header-surface {
     display: flex;
 
     align-items: center;
     justify-content: space-between;
+
+    gap: 0.75rem;
 
     padding: 1.25rem;
 
-    border-bottom: 1px solid var(--surface-container);
-}
+    background: transparent;
 
-/* Header với màu nền (primary, secondary, error) */
-.bk-modal-header-primary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.25rem;
-    background: var(--primary);
-    color: var(--on-primary);
-    flex-shrink: 0;
-}
-
-.bk-modal-header-secondary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.25rem;
-    background: var(--secondary);
-    color: var(--on-secondary);
-    flex-shrink: 0;
-}
-
-.bk-modal-header-error {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.25rem;
-    background: var(--error);
-    color: #ffffff;
-    flex-shrink: 0;
-}
-
-.bk-modal-header-surface {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.25rem;
-    background: var(--surface-container-highest);
     color: var(--on-surface);
+
+    border-bottom: 1px solid var(--surface-container);
+
     flex-shrink: 0;
 }
 
 .bk-modal-title {
-    font-size: 1rem;
+    font-size: 18px;
+    line-height: 26px;
     font-weight: 700;
-    line-height: 1.3;
+
+    color: var(--on-surface);
 }
 
-.bk-modal-subtitle {
-    font-size: 11px;
-    opacity: 0.8;
-    margin-top: 2px;
+.bk-modal-title .text-primary {
+    color: var(--primary);
+}
+
+/* Subtitle giống "font-body-sm text-on-surface-variant" của room */
+.bk-modal .bk-modal-subtitle {
+    display: block;
+
+    margin-top: 0.25rem;
+
+    font-size: 12px;
+    line-height: 18px;
+
+    color: var(--on-surface-variant);
+
+    opacity: 1;
+}
+
+/* Mã đơn in đậm trong subtitle (trước đây là chữ trắng) */
+.bk-modal .bk-modal-subtitle strong {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* Icon đầu header: xanh lá nhấn, riêng popup từ chối dùng màu lỗi */
+.bk-modal-header-primary > div > .material-symbols-outlined:first-child,
+.bk-modal-header-secondary > div > .material-symbols-outlined:first-child,
+.bk-modal-header-surface > div > .material-symbols-outlined:first-child {
+    color: var(--secondary);
+}
+
+.bk-modal-header-error > div > .material-symbols-outlined:first-child {
+    color: var(--error);
 }
 
 
 /* =========================================================
    MODAL CLOSE BUTTON
+   Nút "close-light" (chữ trắng trên nền màu) nay dùng
+   đúng kiểu nút đóng của room-modal-close.
    ========================================================= */
 
-.bk-modal-close {
+.bk-modal-close,
+.bk-modal-close-light {
     width: 36px;
     height: 36px;
+
+    flex-shrink: 0;
 
     border: none;
 
@@ -220,41 +308,19 @@
     cursor: pointer;
 
     transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        transform 0.15s ease;
+            background-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.15s ease;
 }
 
-.bk-modal-close:hover {
+.bk-modal-close:hover,
+.bk-modal-close-light:hover {
     background: var(--surface-container-low);
+
     color: var(--on-surface);
 }
 
-.bk-modal-close:active {
-    transform: scale(0.94);
-}
-
-/* Close button trên header màu */
-.bk-modal-close-light {
-    width: 34px;
-    height: 34px;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-    cursor: pointer;
-    transition:
-        background-color 0.2s ease,
-        transform 0.15s ease;
-}
-
-.bk-modal-close-light:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
+.bk-modal-close:active,
 .bk-modal-close-light:active {
     transform: scale(0.94);
 }
@@ -267,14 +333,18 @@
 .bk-modal-body {
     display: flex;
     flex-direction: column;
+
     gap: 1rem;
+
     padding: 1.25rem;
+
     overflow-y: auto;
 }
 
 
 /* =========================================================
    MODAL FOOTER
+   (footer-spread không còn nền riêng, giống room-modal-footer)
    ========================================================= */
 
 .bk-modal-footer {
@@ -295,18 +365,25 @@
 
 .bk-modal-footer-spread {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     gap: 0.6rem;
+
     padding: 1rem 1.25rem;
+
     border-top: 1px solid var(--surface-container);
-    background: var(--surface-container-low);
+
+    background: transparent;
+
     flex-shrink: 0;
 }
 
 
 /* =========================================================
-   MODAL BUTTON
+   MODAL BUTTON (giống room-btn)
    ========================================================= */
 
 .bk-btn {
@@ -329,91 +406,113 @@
 
     font-weight: 600;
 
+    text-decoration: none;
+
     cursor: pointer;
 
     transition:
-        background-color 0.2s ease,
-        transform 0.15s ease,
-        box-shadow 0.2s ease;
+            background-color 0.2s ease,
+            transform 0.15s ease,
+            box-shadow 0.2s ease;
 }
 
 .bk-btn:active {
     transform: scale(0.97);
 }
 
-/* Cancel / Hủy */
+/* Hủy / Đóng  (= room-btn-cancel) */
 .bk-btn-cancel {
     background: var(--surface-container);
+
     color: var(--on-surface);
 }
+
 .bk-btn-cancel:hover {
     background: var(--surface-container-high);
 }
 
-/* Save / Primary action */
-.bk-btn-save {
+/* Nút chính  (= room-btn-save) */
+.bk-btn-save,
+.bk-btn-secondary {
     background: var(--primary);
+
     color: var(--on-primary);
+
     box-shadow: 0 2px 8px rgba(21, 67, 50, 0.2);
 }
-.bk-btn-save:hover {
+
+.bk-btn-save:hover,
+.bk-btn-secondary:hover {
     background: var(--primary-container);
+
+    color: var(--on-primary);
+
     box-shadow: 0 4px 12px rgba(21, 67, 50, 0.25);
 }
 
-/* Secondary action */
-.bk-btn-secondary {
-    background: var(--secondary);
-    color: var(--on-secondary);
-    box-shadow: 0 2px 8px rgba(27, 109, 36, 0.2);
-}
-.bk-btn-secondary:hover {
-    background: var(--secondary-container);
-    color: var(--on-secondary-container);
-}
-
-/* Ghost / outline */
+/* Nút phụ  (= room-btn-ghost) */
 .bk-btn-ghost {
     background: var(--surface-container-low);
+
     color: var(--on-surface);
+
     border: 1px solid var(--outline-variant);
 }
+
 .bk-btn-ghost:hover {
     background: var(--surface-container);
-    border-color: var(--outline);
 }
 
-/* Danger / Error */
+/* Nút nguy hiểm  (= room-btn-danger) */
 .bk-btn-danger {
     background: var(--error);
-    color: #ffffff;
-    box-shadow: 0 2px 8px rgba(186, 26, 26, 0.25);
+
+    color: #fff;
 }
+
 .bk-btn-danger:hover {
-    opacity: 0.88;
+    background: #93000a;
+}
+
+/* Nút nguy hiểm dạng nhạt (dùng cho "Từ chối" ở chân popup chi tiết) */
+.bk-btn-danger-soft {
+    background: var(--error-container);
+
+    color: var(--on-error-container);
+}
+
+.bk-btn-danger-soft:hover {
+    background: color-mix(in srgb, var(--error-container) 80%, var(--error));
 }
 
 
 /* =========================================================
-   FORM STYLES
+   FORM STYLES (giống room-form-*)
    ========================================================= */
 
 .bk-form {
     display: flex;
+
     flex-direction: column;
+
     gap: 1rem;
+
     padding: 1.25rem;
 }
 
 .bk-form-grid {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
+
     gap: 1rem;
 }
 
 .bk-form-group {
     display: flex;
+
     flex-direction: column;
+
     gap: 0.4rem;
 }
 
@@ -423,7 +522,9 @@
 
 .bk-form-label {
     font-size: 12px;
+
     font-weight: 600;
+
     color: var(--on-surface);
 }
 
@@ -431,24 +532,35 @@
 .bk-form-select,
 .bk-form-textarea {
     width: 100%;
+
     box-sizing: border-box;
+
     padding: 0.7rem 0.8rem;
+
     border: 1px solid var(--outline-variant);
+
     border-radius: 0.5rem;
+
     outline: none;
+
     background: var(--surface-container-low);
+
     color: var(--on-surface);
+
     font-family: inherit;
+
     font-size: 13px;
+
     transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background-color 0.2s ease;
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background-color 0.2s ease;
 }
 
 .bk-form-input::placeholder,
 .bk-form-textarea::placeholder {
     color: var(--on-surface-variant);
+
     opacity: 0.65;
 }
 
@@ -456,7 +568,9 @@
 .bk-form-select:focus,
 .bk-form-textarea:focus {
     border-color: var(--secondary);
+
     background: var(--surface);
+
     box-shadow: 0 0 0 3px rgba(27, 109, 36, 0.12);
 }
 
@@ -466,6 +580,7 @@
 
 .bk-form-textarea {
     min-height: 90px;
+
     resize: vertical;
 }
 
@@ -484,6 +599,7 @@
 
 .bk-modal-content::-webkit-scrollbar-thumb {
     background: var(--outline-variant);
+
     border-radius: 10px;
 }
 
@@ -502,34 +618,93 @@ body.modal-open {
 
 
 /* =========================================================
-   TOAST THÔNG BÁO
+   TOAST (giống room-toast: góc phải dưới, nền xanh đậm)
    ========================================================= */
 
-.toast-item {
-    animation: toastSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-               toastFadeOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) 3.2s forwards;
+.bk-toast-box {
+    position: fixed;
+
+    right: 1rem;
+    bottom: 1rem;
+
+    z-index: 2000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.5rem;
+
+    pointer-events: none;
 }
 
-@keyframes toastSlideDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+.bk-toast {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 0.5rem;
+
+    min-width: 260px;
+    max-width: 360px;
+
+    padding: 0.7rem 0.9rem;
+
+    border-radius: 0.6rem;
+
+    background: var(--primary);
+
+    color: var(--on-primary);
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    pointer-events: auto;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+            opacity 0.2s ease,
+            transform 0.2s ease;
 }
 
-@keyframes toastFadeOut {
-    0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-15px) scale(0.95);
-    }
+.bk-toast.is-show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.bk-toast .material-symbols-outlined {
+    flex-shrink: 0;
+
+    margin-top: 1px;
+}
+
+.bk-toast-text {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.1rem;
+
+    font-size: 12.5px;
+
+    line-height: 17px;
+}
+
+.bk-toast-text strong {
+    font-weight: 700;
+}
+
+.bk-toast-text span {
+    opacity: 0.9;
+}
+
+.bk-toast-error {
+    background: var(--error);
+
+    color: #fff;
 }
 
 
@@ -541,10 +716,12 @@ body.modal-open {
     body * {
         visibility: hidden !important;
     }
+
     #invoiceModal,
     #invoiceModal * {
         visibility: visible !important;
     }
+
     #invoiceModal {
         position: absolute !important;
         left: 0 !important;
@@ -556,6 +733,8 @@ body.modal-open {
         margin: 0 !important;
         display: block !important;
     }
+
+    .bk-modal-header,
     .bk-modal-header-primary,
     .bk-modal-header-secondary,
     .bk-modal-header-error,
@@ -565,6 +744,7 @@ body.modal-open {
     .no-print {
         display: none !important;
     }
+
     #invoicePrintContent {
         box-shadow: none !important;
         border: none !important;
@@ -581,12 +761,14 @@ body.modal-open {
    ========================================================= */
 
 @media (max-width: 640px) {
+
     .bk-modal {
         padding: 0.5rem;
     }
 
     .bk-modal-content {
         max-height: calc(100vh - 1rem);
+
         border-radius: 0.75rem;
     }
 
@@ -601,23 +783,43 @@ body.modal-open {
     .bk-modal-footer,
     .bk-modal-footer-spread {
         flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .bk-modal-footer-spread > div {
+        flex-direction: column-reverse;
+        align-items: stretch;
     }
 
     .bk-btn {
         width: 100%;
     }
+
+    .bk-toast-box {
+        left: 1rem;
+        right: 1rem;
+    }
+
+    .bk-toast {
+        max-width: none;
+    }
 }
 
 @media (max-width: 400px) {
+
     .bk-modal-header,
     .bk-modal-header-primary,
     .bk-modal-header-secondary,
     .bk-modal-header-error,
     .bk-modal-header-surface {
-        padding: 0.875rem 1rem;
+        padding: 1rem;
     }
 
     .bk-form {
+        padding: 1rem;
+    }
+
+    .bk-modal-body {
         padding: 1rem;
     }
 
