@@ -601,16 +601,8 @@ function renderSectionGrid(gridId, sectionType) {
   const container = document.getElementById(gridId);
   if (!container) return;
 
-  // Lọc thẻ cho từng Section
-  let items = homestayVouchers.filter(v => v.section === sectionType);
-
-  // Lọc theo Mode
-  items = items.filter(v => {
-    if (currentMode === 'hub') return v.status === 'active';
-    if (currentMode === 'wallet') return v.isSaved && v.status === 'active';
-    if (currentMode === 'expired') return v.status === 'expired';
-    return true;
-  });
+  // Lọc thẻ cho từng Section (Lấy tất cả voucher active)
+  let items = homestayVouchers.filter(v => v.section === sectionType && v.status === 'active');
 
   // Lọc theo Thành phố
   if (currentCity !== 'all') {
