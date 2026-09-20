@@ -726,6 +726,9 @@ function bookNowAction() {
   const homestayName = document.getElementById('modalTitle').textContent;
   closeModal();
   showToast(`Đang chuyển hướng đặt phòng "${homestayName}"...`);
+    setTimeout(() => {
+        window.location.href = 'homestayDetail.html';
+    }, 3000);
 }
 
 // --- 7. TÌM KIẾM & GỢI Ý NHANH ---
