@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả tìm kiếm - Booking</title>
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <link rel="stylesheet" href="../CSS/searchResult.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <main>
+        <div class="search-results-container">
+
+            <!-- Phần tiêu đề và bộ lọc trên cùng -->
+            <div class="results-header">
+                <h2>TP. Hồ Chí Minh: tìm thấy 4.589 chỗ nghỉ</h2>
+                <div class="view-toggle">
+                    <button class="btn-view active">Xem ngang</button>
+                    <button class="btn-view">Xem dọc</button>
+                </div>
+            </div>
+
+            <div class="sort-dropdown">
+                <button class="btn-sort">
+                    <i class="fa-solid fa-arrow-down-up-across-line"></i>
+                    Sắp xếp theo: Lựa chọn hàng đầu của chúng tôi
+                    <i class="fa-solid fa-chevron-down ms-2"></i>
+                </button>
+            </div>
+
+            <!-- Danh sách khách sạn -->
+            <div class="hotel-list">
+
+                <!-- Thẻ khách sạn 1 -->
+                <div class="hotel-card mui-shadow">
+                    <div class="hotel-image">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/square600/446215707.webp?k=f646067fcadbf23df32f8319f6a19f4d7b7fa03c7ea51921c5f8dfec3298a28e&o=" alt="A&L Service Apartment">
+                        <button class="btn-favorite" onclick="toggleFavorite(this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="hotel-info">
+                        <div class="info-main">
+                            <h3 class="hotel-title">A&L Service Apartment - Rivergate Residence
+                                <span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                                <span class="thumbs-up"><i class="fa-solid fa-thumbs-up"></i> <i class="fa-solid fa-plus"></i></span>
+                            </h3>
+                            <div class="hotel-location">
+                                <a href="#">Quận 4, TP. Hồ Chí Minh (Bach Dang Riverside)</a> • <a href="#">Xem trên bản đồ</a>
+                            </div>
+                            <div class="hotel-distance">Cách trung tâm 1km</div>
+                            <p class="hotel-desc">
+                                Tọa lạc cách Bến cảng Nhà Rồng 16 phút đi bộ, A&L Service Apartment - Rivergate Residence cung cấp chỗ nghỉ có hồ bơi ngoài trời, khu vườn và dịch vụ phòng.
+                            </p>
+                        </div>
+                        <div class="info-action">
+                            <div class="rating-section">
+                                <div class="rating-text">
+                                    <div class="rating-word">Xuất sắc</div>
+                                    <div class="rating-count">81 đánh giá</div>
+                                </div>
+                                <div class="rating-score">9,5</div>
+                            </div>
+                            <div class="location-score">Địa điểm 9,8</div>
+                            <button class="btn-primary mui-btn">Chọn ngày</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thẻ khách sạn 2 -->
+                <div class="hotel-card mui-shadow">
+                    <div class="hotel-image">
+                        <img src="https://cf.bstatic.com/xdata/images/hotel/square600/520556277.webp?k=23f95dcde2e7c9bfb41da24a8ed4762c2f7035fec49f15053e146eb132f8f85b&o=" alt="OlaStay Serviced Apartments">
+                        <button class="btn-favorite" onclick="toggleFavorite(this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="hotel-info">
+                        <div class="info-main">
+                            <h3 class="hotel-title">OlaStay Serviced Apartments Free Pool
+                                <span class="stars"><i class="fa-solid fa-square"></i><i class="fa-solid fa-square"></i><i class="fa-solid fa-square"></i></span>
+                                <span class="thumbs-up"><i class="fa-solid fa-thumbs-up"></i> <i class="fa-solid fa-plus"></i></span>
+                            </h3>
+                            <div class="hotel-location">
+                                <a href="#">Quận 4, TP. Hồ Chí Minh (Bach Dang Riverside)</a> • <a href="#">Xem trên bản đồ</a>
+                            </div>
+                            <div class="hotel-distance">Cách trung tâm 1km</div>
+                            <p class="hotel-desc">
+                                Tọa lạc ở TP. Hồ Chí Minh, OlaStay Serviced Apartments Free Pool cung cấp chỗ nghỉ có hồ bơi ngoài trời mở quanh năm. Chỗ đậu xe riêng có sẵn trong khuôn viên.
+                            </p>
+                        </div>
+                        <div class="info-action">
+                            <div class="rating-section">
+                                <div class="rating-text">
+                                    <div class="rating-word">Xuất sắc</div>
+                                    <div class="rating-count">7 đánh giá</div>
+                                </div>
+                                <div class="rating-score">10</div>
+                            </div>
+                            <div class="location-score">Địa điểm 10</div>
+                            <button class="btn-primary mui-btn">Chọn ngày</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="../JS/searchResult.js"></script>
+    <script src="../JS/homepage.js"></script>
+</body>
+</html>
