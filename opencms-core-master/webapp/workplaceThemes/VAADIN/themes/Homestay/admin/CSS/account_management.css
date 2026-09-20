@@ -137,6 +137,12 @@
     border: 1px solid #BAE6FD;
 }
 
+.role-badge.staff {
+    background-color: #F3E8FF;
+    color: #7E22CE;
+    border: 1px solid #E9D5FF;
+}
+
 /* Status Badges for Accounts */
 .user-status-badge {
     display: inline-flex;
@@ -161,4 +167,131 @@
 .user-status-badge.pending {
     background-color: #FEF3C7;
     color: #B45309;
+}
+
+/* --- 3. Form Modal Tabs (Phần chuyển đổi tab trong Modal Sửa/Thêm) --- */
+.form-modal-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid #F1F5F9;
+    margin-bottom: 20px;
+    padding-bottom: 2px;
+    overflow-x: auto;
+}
+
+.form-modal-tab-btn {
+    background: transparent;
+    border: none;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+
+}
+
+.form-modal-tab-btn:hover {
+    color: var(--primary-color);
+}
+
+.form-modal-tab-btn.active {
+    color: #0284C7;
+    border-bottom-color: #0284C7;
+}
+
+.form-modal-tab-btn .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.form-tab-panel.d-none {
+    display: none !important;
+}
+
+/* --- 4. Password Input Box --- */
+.password-input-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.password-input-box input {
+    flex: 1;
+}
+
+.btn-toggle-pwd {
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #64748B;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-toggle-pwd:hover {
+    background: #F1F5F9;
+    color: #0F172A;
+}
+
+.btn-gen-pwd {
+    background: #0284C7;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 700;
+    font-size: 12.5px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.btn-gen-pwd:hover {
+    background: #0369A1;
+}
+
+/* Action buttons in Table */
+.action-btns {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-action-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    background: #FFFFFF;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-action-icon:hover {
+    background: #F8FAFC;
+    border-color: #CBD5E1;
+    color: #0284C7;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 1024px) {
+    .user-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
