@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YÊN - Admin System | Quản Lý Quảng Cáo</title>
+    <title>YÊN - Admin System | Quản Lý Tài Khoản</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="../CSS/admin_sidebar.css">
     <link rel="stylesheet" href="../CSS/local_content.css">
-    <link rel="stylesheet" href="../CSS/ads_management.css">
+    <link rel="stylesheet" href="../CSS/account_management.css">
 </head>
 <body>
 
@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="account_management.html" class="menu-link">
+                    <a href="account_management.html" class="menu-link active">
                         <span class="material-symbols-outlined menu-icon">group</span>
                         <span>Quản lý tài khoản</span>
                     </a>
@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="ads_management.html" class="menu-link active">
+                    <a href="ads_management.html" class="menu-link">
                         <span class="material-symbols-outlined menu-icon">campaign</span>
                         <span>Quản lý quảng cáo</span>
                     </a>
@@ -107,7 +107,7 @@
             <div class="header-left">
                 <div class="header-search">
                     <span class="material-symbols-outlined search-icon">search</span>
-                    <input type="text" class="search-input" placeholder="Tìm kiếm chiến dịch quảng cáo, banner, vị trí...">
+                    <input type="text" class="search-input" placeholder="Tìm kiếm tài khoản, email, số điện thoại...">
                 </div>
             </div>
 
@@ -152,52 +152,52 @@
             </div>
         </header>
 
-        <!-- NỘI DUNG QUẢN LÝ QUẢNG CÁO -->
+        <!-- NỘI DUNG QUẢN LÝ TÀI KHOẢN -->
         <main class="admin-body-content">
 
-            <!-- 1. Top Stat Cards (Grid 4 cột Thống kê Quảng cáo) -->
-            <div class="ads-stats-grid">
-                <div class="ads-stat-card">
-                    <div class="ads-stat-info">
-                        <span class="ads-stat-label">Tổng Chiến Dịch / Banner</span>
-                        <span class="ads-stat-value" id="statTotalAds">4</span>
-                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">campaign</span> Hệ thống YÊN</span>
+            <!-- 1. Top Stat Cards (Grid 4 cột Thống kê Tài Khoản) -->
+            <div class="user-stats-grid">
+                <div class="user-stat-card">
+                    <div class="user-stat-info">
+                        <span class="user-stat-label">Tổng Số Tài Khoản</span>
+                        <span class="user-stat-value" id="statTotalUsers">5</span>
+                        <span class="user-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">groups</span> Toàn hệ thống YÊN</span>
                     </div>
-                    <div class="ads-stat-icon-wrapper purple">
-                        <span class="material-symbols-outlined">view_carousel</span>
-                    </div>
-                </div>
-
-                <div class="ads-stat-card">
-                    <div class="ads-stat-info">
-                        <span class="ads-stat-label">Đang Hiển Thị Active</span>
-                        <span class="ads-stat-value" id="statActiveAds">3</span>
-                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">play_circle</span> Đang chạy thực tế</span>
-                    </div>
-                    <div class="ads-stat-icon-wrapper green">
-                        <span class="material-symbols-outlined">ads_click</span>
+                    <div class="user-stat-icon-wrapper blue">
+                        <span class="material-symbols-outlined">group</span>
                     </div>
                 </div>
 
-                <div class="ads-stat-card">
-                    <div class="ads-stat-info">
-                        <span class="ads-stat-label">Tổng Lượt Xem (Impressions)</span>
-                        <span class="ads-stat-value" id="statTotalImpressions">214.2K</span>
-                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">visibility</span> 30 ngày gần đây</span>
+                <div class="user-stat-card">
+                    <div class="user-stat-info">
+                        <span class="user-stat-label">Khách Lưu Trú (Guests)</span>
+                        <span class="user-stat-value" id="statTotalGuests">2</span>
+                        <span class="user-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">person</span> Đã xác thực Email/SĐT</span>
                     </div>
-                    <div class="ads-stat-icon-wrapper blue">
-                        <span class="material-symbols-outlined">monitoring</span>
+                    <div class="user-stat-icon-wrapper amber">
+                        <span class="material-symbols-outlined">travel_explore</span>
                     </div>
                 </div>
 
-                <div class="ads-stat-card">
-                    <div class="ads-stat-info">
-                        <span class="ads-stat-label">Tỷ Lệ Click CTR Trung Bình</span>
-                        <span class="ads-stat-value" id="statAvgCtr">8.59%</span>
-                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> Cao hơn 2.4% so với trung bình</span>
+                <div class="user-stat-card">
+                    <div class="user-stat-info">
+                        <span class="user-stat-label">Chủ Homestay (Hosts)</span>
+                        <span class="user-stat-value" id="statTotalHosts">2</span>
+                        <span class="user-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">verified</span> Đã xác minh KYC</span>
                     </div>
-                    <div class="ads-stat-icon-wrapper amber">
-                        <span class="material-symbols-outlined">star_rate</span>
+                    <div class="user-stat-icon-wrapper green">
+                        <span class="material-symbols-outlined">cottage</span>
+                    </div>
+                </div>
+
+                <div class="user-stat-card">
+                    <div class="user-stat-info">
+                        <span class="user-stat-label">Đang Hoạt Động (Active)</span>
+                        <span class="user-stat-value" id="statActiveUsers">4</span>
+                        <span class="user-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">check_circle</span> Trạng thái bình thường</span>
+                    </div>
+                    <div class="user-stat-icon-wrapper green">
+                        <span class="material-symbols-outlined">how_to_reg</span>
                     </div>
                 </div>
             </div>
@@ -209,54 +209,56 @@
                 <div class="module-header-bar">
                     <div class="module-title-group">
                         <h2>
-                            <span class="material-symbols-outlined" style="color: #9333EA;">campaign</span>
-                            Quản Lý Quảng Cáo & Banner
+                            <span class="material-symbols-outlined" style="color: #0284C7;">group</span>
+                            Quản Lý Tài Khoản Người Dùng & Phân Quyền
                         </h2>
-                        <span class="module-subtitle">Điều phối các Banner Quảng cáo Hero Slider, Combo Tiết kiệm, Pop-up Khuyến mãi & Slot hiển thị</span>
+                        <span class="module-subtitle">Quản lý Du khách lưu trú, Đối tác Chủ Homestay (Hosts) & Phân quyền Quản trị viên</span>
                     </div>
 
                     <!-- Sub-module Navigation Tabs -->
                     <div class="content-tabs">
-                        <button class="content-tab-btn active" data-tab="banners" onclick="switchAdsTab('banners')">
-                            <span class="material-symbols-outlined" style="font-size: 18px;">view_carousel</span>
-                            Banner Quảng Cáo
+                        <button class="content-tab-btn active" data-tab="all" onclick="switchUserTab('all')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">groups</span>
+                            Tất Cả
                         </button>
-                        <button class="content-tab-btn" data-tab="slots" onclick="switchAdsTab('slots')">
-                            <span class="material-symbols-outlined" style="font-size: 18px;">ad_units</span>
-                            Vị Trí Quảng Cáo (Slots)
+                        <button class="content-tab-btn" data-tab="guest" onclick="switchUserTab('guest')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">person</span>
+                            Khách Lưu Trú
+                        </button>
+                        <button class="content-tab-btn" data-tab="host" onclick="switchUserTab('host')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">cottage</span>
+                            Chủ Homestay (Owners)
+                        </button>
+                        <button class="content-tab-btn" data-tab="admin" onclick="switchUserTab('admin')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">admin_panel_settings</span>
+                            Quản Trị Viên (Phân Quyền)
                         </button>
                     </div>
                 </div>
 
-                <!-- Module Toolbar (Search & Filter & Create Button) -->
+                <!-- Module Toolbar (Search & Filter) -->
                 <div class="module-toolbar">
                     <div class="toolbar-left">
                         <div class="search-box-sm">
                             <span class="material-symbols-outlined" style="color: var(--text-muted); margin-right: 6px; font-size: 18px;">search</span>
-                            <input type="text" id="adsSearchInput" placeholder="Tìm tên chiến dịch, Homestay...">
+                            <input type="text" id="userSearchInput" placeholder="Tìm tên, email, số điện thoại...">
                         </div>
 
-                        <select class="select-filter-sm" id="adsStatusFilter">
+                        <select class="select-filter-sm" id="userStatusFilter">
                             <option value="all">Tất cả trạng thái</option>
-                            <option value="active">Đang chạy</option>
-                            <option value="scheduled">Đã lên lịch</option>
-                            <option value="ended">Tạm dừng / Kết thúc</option>
+                            <option value="active">Đang hoạt động</option>
+                            <option value="blocked">Bị khóa</option>
                         </select>
                     </div>
-
-                    <button class="btn-admin-primary" style="background-color: #9333EA;" onclick="openCreateAdModal()">
-                        <span class="material-symbols-outlined" style="font-size: 18px;">add_circle</span>
-                        <span id="addAdBtnLabel">Tạo Quảng cáo mới</span>
-                    </button>
                 </div>
 
                 <!-- Data Table View -->
                 <div class="table-responsive">
                     <table class="admin-data-table">
-                        <thead id="adsTableHeader">
+                        <thead id="userTableHeader">
                             <!-- Render bằng JS -->
                         </thead>
-                        <tbody id="adsTableBody">
+                        <tbody id="userTableBody">
                             <!-- Render dữ liệu qua JavaScript -->
                         </tbody>
                     </table>
@@ -268,78 +270,126 @@
     </div>
 </div>
 
-<!-- 3. Modal Thêm / Chỉnh Sửa Quảng Cáo -->
-<div class="modal-overlay" id="adModalOverlay">
+<!-- 3. Modal Chỉnh Sửa Tài Khoản & Phân Quyền -->
+<div class="modal-overlay" id="userModalOverlay">
     <div class="modal-container">
         <div class="modal-header">
             <h3 class="modal-title">
-                <span class="material-symbols-outlined" style="color: #9333EA;">add_campaign</span>
-                <span id="adModalTitleText">Tạo Chiến Dịch Quảng Cáo Mới</span>
+                <span class="material-symbols-outlined" style="color: #0284C7;">manage_accounts</span>
+                <span id="userModalTitleText">Chỉnh Sửa Thông Tin Tài Khoản & Phân Quyền</span>
             </h3>
-            <button class="modal-close-btn" onclick="closeAdModal()">
+            <button class="modal-close-btn" onclick="closeUserModal()">
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
 
         <div class="modal-body">
             <div class="form-field full">
-                <label class="form-label">Tên Chiến dịch / Tiêu đề Banner <span style="color: red;">*</span></label>
-                <input type="text" id="adTitleInput" class="form-input" placeholder="Ví dụ: Hero Banner: Ưu Đãi Mùa Lễ Hội Pháo Hoa DIFF 2026...">
+                <label class="form-label">Họ và Tên <span style="color: red;">*</span></label>
+                <input type="text" id="userNameInput" class="form-input" placeholder="Ví dụ: Nguyễn Văn An...">
             </div>
 
             <div class="form-group-grid">
                 <div class="form-field">
-                    <label class="form-label">Chỉ định vị trí hiển thị (Ad Placement Slot) <span style="color: red;">*</span></label>
-                    <select id="adPlacementSelect" class="form-select" onchange="updateAdPlacementHint()">
-                        <option value="hero">🎯 Hero Slider Trang Chủ (1920 x 600 px)</option>
-                        <option value="combo">🏷️ Banner Combo Tiết Kiệm (1200 x 400 px)</option>
-                        <option value="popup">💬 Pop-up Khuyến Mãi Đầu Trang (600 x 400 px)</option>
-                        <option value="festival">📍 Banner Khu Vực Lễ Hội (1200 x 300 px)</option>
-                        <option value="sidebar">📌 Sidebar Homestay Chi Tiết (300 x 450 px)</option>
+                    <label class="form-label">Địa chỉ Email <span style="color: red;">*</span></label>
+                    <input type="email" id="userEmailInput" class="form-input" placeholder="an.nguyen@gmail.com">
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="text" id="userPhoneInput" class="form-input" placeholder="0905 123 456">
+                </div>
+            </div>
+
+            <div class="form-group-grid">
+                <div class="form-field">
+                    <label class="form-label">Vai trò / Phân quyền <span style="color: red;">*</span></label>
+                    <select id="userRoleSelect" class="form-select">
+                        <option value="guest">Khách lưu trú (Guest)</option>
+                        <option value="host">Chủ Homestay (Host Owner)</option>
+                        <option value="admin">Quản trị viên (System Admin)</option>
                     </select>
                 </div>
 
                 <div class="form-field">
-                    <label class="form-label">Homestay / Mục tiêu liên kết</label>
-                    <input type="text" id="adTargetInput" class="form-input" placeholder="Ví dụ: Han River Glass House, The Memory Valley...">
+                    <label class="form-label">Trạng thái tài khoản</label>
+                    <select id="userStatusSelect" class="form-select">
+                        <option value="active">Đang hoạt động (Active)</option>
+                        <option value="blocked">Khóa tài khoản (Blocked)</option>
+                    </select>
                 </div>
             </div>
+        </div>
 
-            <!-- Hộp thông tin trực quan cho Vị Trí Quảng Cáo được chỉ định -->
-            <div class="form-field full" id="adPlacementHintBox" style="background: #F3E8FF; border: 1px solid #E9D5FF; border-radius: 8px; padding: 10px 14px; font-size: 12.5px; color: #6B21A8; font-weight: 600; display: flex; align-items: center; gap: 8px;">
-                <span class="material-symbols-outlined" style="font-size: 18px; color: #9333EA;">info</span>
-                <span id="adPlacementHintText">🎯 Vị trí: Hero Slider Trang Chủ — Hiển thị banner lớn ngay đầu trang chủ web.</span>
+        <div class="modal-footer">
+            <button class="btn-admin-cancel" onclick="closeUserModal()">Hủy bỏ</button>
+            <button class="btn-admin-primary" style="background-color: #0284C7;" onclick="saveUserData()">Lưu Tài Khoản</button>
+        </div>
+    </div>
+</div>
+
+<!-- 4. Modal CHI TIẾT TÀI KHOẢN (User Detail View) -->
+<div class="modal-overlay" id="userDetailModalOverlay">
+    <div class="modal-container" style="width: 680px;">
+        <div class="modal-header">
+            <h3 class="modal-title">
+                <span class="material-symbols-outlined" style="color: #0284C7;">account_box</span>
+                Chi Tiết Tài Khoản Người Dùng
+            </h3>
+            <button class="modal-close-btn" onclick="closeUserDetailModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="modal-body" id="userDetailModalContent">
+            <!-- Render động bằng JS -->
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-admin-cancel" onclick="closeUserDetailModal()">Đóng cửa sổ</button>
+        </div>
+    </div>
+</div>
+
+<!-- 5. Modal KHÓA TÀI KHOẢN KÈM LÝ DO -->
+<div class="modal-overlay" id="lockModalOverlay">
+    <div class="modal-container" style="width: 500px;">
+        <div class="modal-header" style="background: #FEF2F2;">
+            <h3 class="modal-title" style="color: #DC2626;">
+                <span class="material-symbols-outlined" style="color: #DC2626;">lock</span>
+                Xác Nhận Khóa Tài Khoản
+            </h3>
+            <button class="modal-close-btn" onclick="closeLockModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <p style="font-size: 14px; font-weight: 600; color: #1E293B;">Khóa truy cập cho tài khoản: <strong id="lockTargetUserName" style="color: #DC2626;">-</strong></p>
+
+            <div class="form-field full" style="margin-top: 12px;">
+                <label class="form-label">Lý do khóa tài khoản <span style="color: red;">*</span></label>
+                <select id="lockReasonSelect" class="form-select">
+                    <option value="Vi phạm chính sách hệ thống">Vi phạm chính sách hệ thống YÊN Homestay</option>
+                    <option value="Spammer / Đặt phòng ảo">Spammer / Đặt phòng ảo không đến</option>
+                    <option value="Khiếu nại chưa xử lý">Có báo cáo / Khiếu nại nghiêm trọng</option>
+                    <option value="Yêu cầu từ người dùng">Theo yêu cầu trực tiếp từ chủ tài khoản</option>
+                </select>
             </div>
 
-            <div class="form-field full">
-                <label class="form-label">Đường dẫn liên kết khi click (URL)</label>
-                <input type="text" id="adUrlInput" class="form-input" placeholder="https://yenhomestay.com/festival/diff">
-            </div>
-
-            <div class="form-group-grid">
-                <div class="form-field">
-                    <label class="form-label">Ngày bắt đầu</label>
-                    <input type="text" id="adStartDateInput" class="form-input" placeholder="01/05/2026">
-                </div>
-                <div class="form-field">
-                    <label class="form-label">Ngày kết thúc</label>
-                    <input type="text" id="adEndDateInput" class="form-input" placeholder="15/07/2026">
-                </div>
-            </div>
-
-            <div class="form-field full">
-                <label class="form-label">Trạng thái chiến dịch</label>
-                <select id="adStatusSelect" class="form-select">
-                    <option value="active">Đang chạy (Active)</option>
-                    <option value="scheduled">Đã lên lịch (Scheduled)</option>
-                    <option value="ended">Tạm dừng (Paused)</option>
+            <div class="form-field full" style="margin-top: 12px;">
+                <label class="form-label">Thời hạn khóa</label>
+                <select id="lockDurationSelect" class="form-select">
+                    <option value="Vĩnh viễn">Vĩnh viễn (Permanent Lock)</option>
+                    <option value="7 ngày">Tạm khóa 7 ngày</option>
+                    <option value="30 ngày">Tạm khóa 30 ngày</option>
                 </select>
             </div>
         </div>
 
         <div class="modal-footer">
-            <button class="btn-admin-cancel" onclick="closeAdModal()">Hủy bỏ</button>
-            <button class="btn-admin-primary" style="background-color: #9333EA;" onclick="saveAdData()">Lưu Quảng Cáo</button>
+            <button class="btn-admin-cancel" onclick="closeLockModal()">Hủy</button>
+            <button class="btn-admin-primary" style="background-color: #DC2626;" onclick="confirmLockAccount()">🔒 Đồng ý Khóa Tài Khoản</button>
         </div>
     </div>
 </div>
@@ -365,6 +415,6 @@
         }
     });
 </script>
-<script src="../JS/ads_management.js"></script>
+<script src="../JS/account_management.js"></script>
 </body>
 </html>

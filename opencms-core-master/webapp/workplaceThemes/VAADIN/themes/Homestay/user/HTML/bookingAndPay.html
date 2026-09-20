@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt phòng & thanh toán | YÊN Homestay</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons (đồng bộ toàn bộ dự án) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS dùng chung -->
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <!-- CSS riêng cho trang đặt phòng & thanh toán -->
+    <link rel="stylesheet" href="../CSS/bookingAndPay.css">
+</head>
+<body>
+
+<!-- 1. HEADER (nhúng động từ header.html) -->
+<div id="header-placeholder"></div>
+
+<main class="bk-page">
+
+    <!-- 2. TIÊU ĐỀ + CÁC BƯỚC -->
+    <section class="bk-top" id="bkTop">
+        <div class="container">
+            <a class="bk-back" id="bkBackLink" href="homestay-detail.html">
+                <i class="bi bi-chevron-left"></i> Quay lại homestay
+            </a>
+            <div class="bk-top-row">
+                <h1 class="bk-title">Xác nhận và thanh toán</h1>
+                <div class="bk-steps" id="bkSteps" aria-label="Các bước đặt phòng">
+                    <div class="bk-step is-active" data-step="1">
+                        <span class="bk-step-num">1</span><span class="bk-step-label">Thông tin đặt phòng</span>
+                    </div>
+                    <span class="bk-step-line"></span>
+                    <div class="bk-step" data-step="2">
+                        <span class="bk-step-num">2</span><span class="bk-step-label">Thanh toán</span>
+                    </div>
+                    <span class="bk-step-line"></span>
+                    <div class="bk-step" data-step="3">
+                        <span class="bk-step-num">3</span><span class="bk-step-label">Hoàn tất</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. NỘI DUNG CHÍNH -->
+    <section class="bk-body" id="bkBody">
+        <div class="container bk-grid">
+
+            <!-- ===== CỘT TRÁI: FORM ===== -->
+            <form class="bk-main" id="bookingForm" novalidate autocomplete="on">
+
+                <!-- 3.1 Chuyến đi -->
+                <section class="bk-card" id="secTrip">
+                    <div class="bk-card-head">
+                        <span class="bk-card-icon"><i class="bi bi-calendar2-check"></i></span>
+                        <div>
+                            <h2>Chuyến đi của bạn</h2>
+                            <p>Kiểm tra lại ngày ở và số khách trước khi thanh toán.</p>
+                        </div>
+                    </div>
+                    <div class="bk-trip-grid">
+                        <div class="bk-field">
+                            <label for="checkin">Nhận phòng</label>
+                            <input type="date" id="checkin" name="checkin" required>
+                            <p class="bk-hint">Từ 14:00 đến 21:00</p>
+                        </div>
+                        <div class="bk-field">
+                            <label for="checkout">Trả phòng</label>
+                            <input type="date" id="checkout" name="checkout" required>
+                            <p class="bk-hint">Trước 12:00</p>
+                        </div>
+                        <div class="bk-field bk-field--full">
+                            <label for="guests">Số khách</label>
+                            <select id="guests" name="guests"></select>
+                            <p class="bk-hint" id="guestsHint"></p>
+                        </div>
+                    </div>
+                    <p class="bk-error bk-error--block" id="tripWarning" role="alert"></p>
+                </section>
+
+                <!-- 3.2 Thông tin liên hệ -->
+                <section class="bk-card" id="secContact">
+                    <div class="bk-card-head">
+                        <span class="bk-card-icon"><i class="bi bi-person-lines-fill"></i></span>
+                        <div>
+                            <h2>Thông tin liên hệ</h2>
+                            <p>Chủ nhà dùng thông tin này để gửi mã mở khóa và xác nhận đặt phòng.</p>
+                        </div>
+                    </div>
+                    <div class="bk-form-grid">
+                        <div class="bk-field bk-field--full">
+                            <label for="fullName">Họ và tên</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Nguyễn Văn An" autocomplete="name">
+                            <p class="bk-error"></p>
+                        </div>
+                        <div class="bk-field">
+                            <label for="phone">Số điện thoại</label>
+                            <input type="tel" id="phone" name="phone" placeholder="0901 234 567" inputmode="tel" autocomplete="tel">
+                            <p class="bk-error"></p>
+                        </div>
+                        <div class="bk-field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="ban@example.com" autocomplete="email">
+                            <p class="bk-error"></p>
+                        </div>
+                        <div class="bk-field bk-field--full">
+                            <label for="arrivalTime">Giờ dự kiến đến</label>
+                            <select id="arrivalTime" name="arrivalTime">
+                                <option value="">Chưa chắc, tôi sẽ nhắn chủ nhà sau</option>
+                                <option value="14:00 - 16:00">14:00 - 16:00</option>
+                                <option value="16:00 - 18:00">16:00 - 18:00</option>
+                                <option value="18:00 - 21:00">18:00 - 21:00</option>
+                            </select>
+                            <p class="bk-hint">Phòng dùng mã số để tự nhận, bạn đến lúc nào trong khung 14:00 - 21:00 cũng được.</p>
+                        </div>
+                        <div class="bk-field bk-field--full">
+                            <label for="guestNote">Lời nhắn cho chủ nhà <span class="bk-optional">(không bắt buộc)</span></label>
+                            <textarea id="guestNote" name="guestNote" rows="3" maxlength="400"
+                                      placeholder="Ví dụ: đi cùng bé 3 tuổi, cần thêm ghế ăn; kỷ niệm ngày cưới..."></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3.3 Trải nghiệm chọn kèm -->
+                <section class="bk-card" id="secExperiences">
+                    <div class="bk-card-head">
+                        <span class="bk-card-icon"><i class="bi bi-stars"></i></span>
+                        <div>
+                            <h2>Trải nghiệm muốn tham gia</h2>
+                            <p>Chọn trước để chủ nhà chuẩn bị. Khoản này tính riêng với tiền phòng và trả trực tiếp tại homestay.</p>
+                        </div>
+                    </div>
+                    <div class="bk-xp-list" id="xpList"></div>
+                    <div class="bk-xp-total" id="xpTotalRow" hidden>
+                        <span>Dự kiến trả tại homestay</span>
+                        <b id="xpTotal">0đ</b>
+                    </div>
+                </section>
+
+                <!-- 3.4 Mã giảm giá + voucher trong túi -->
+                <section class="bk-card" id="secCoupon">
+                    <div class="bk-card-head">
+                        <span class="bk-card-icon"><i class="bi bi-ticket-perforated"></i></span>
+                        <div>
+                            <h2>Mã giảm giá</h2>
+                            <p>Nhập mã của bạn hoặc chọn một voucher đang có trong túi.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="bk-subtitle">Nhập mã thủ công</h3>
+                    <div class="bk-coupon-row">
+                        <input type="text" id="couponInput" placeholder="Nhập mã giảm giá" maxlength="20"
+                               autocomplete="off" aria-label="Mã giảm giá">
+                        <button type="button" class="yn-btn yn-btn--outline" id="couponApplyBtn">Áp dụng</button>
+                        <button type="button" class="yn-btn yn-btn--ghost" id="couponRemoveBtn" hidden>Bỏ mã</button>
+                    </div>
+                    <p class="bk-coupon-msg" id="couponMsg" role="status"></p>
+                    <p class="bk-hint">Mã thử nghiệm không có trong túi: HELLODALAT</p>
+
+                    <div class="bk-voucher-head">
+                        <h3 class="bk-subtitle"><i class="bi bi-wallet2"></i> Voucher trong túi của bạn</h3>
+                        <span class="bk-voucher-count" id="voucherCount"></span>
+                    </div>
+                    <div class="bk-voucher-list" id="voucherList"></div>
+                </section>
+
+                <!-- 3.5 Thanh toán -->
+                <section class="bk-card" id="secPayment">
+                    <div class="bk-card-head">
+                        <span class="bk-card-icon"><i class="bi bi-wallet2"></i></span>
+                        <div>
+                            <h2>Thanh toán</h2>
+                            <p>Chọn số tiền thanh toán ngay và phương thức bạn muốn dùng.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="bk-subtitle">Bạn muốn trả bao nhiêu bây giờ?</h3>
+                    <div class="bk-options">
+                        <label class="bk-option">
+                            <input type="radio" name="payPlan" value="full" checked>
+                            <span class="bk-option-radio"></span>
+                            <span class="bk-option-body">
+                                <span class="bk-option-title">Trả toàn bộ</span>
+                                <span class="bk-option-sub">Xong một lần, không phải trả thêm khi nhận phòng.</span>
+                            </span>
+                            <b class="bk-option-amount" id="planFullAmount">0đ</b>
+                        </label>
+                        <label class="bk-option">
+                            <input type="radio" name="payPlan" value="deposit">
+                            <span class="bk-option-radio"></span>
+                            <span class="bk-option-body">
+                                <span class="bk-option-title">Đặt cọc 30%</span>
+                                <span class="bk-option-sub" id="planDepositSub">Phần còn lại trả khi nhận phòng.</span>
+                            </span>
+                            <b class="bk-option-amount" id="planDepositAmount">0đ</b>
+                        </label>
+                    </div>
+
+                    <h3 class="bk-subtitle">Phương thức thanh toán</h3>
+                    <div class="bk-options" id="methodOptions">
+                        <label class="bk-option">
+                            <input type="radio" name="payMethod" value="vietqr" checked>
+                            <span class="bk-option-radio"></span>
+                            <span class="bk-method-icon bk-method-icon--qr"><i class="bi bi-qr-code-scan"></i></span>
+                            <span class="bk-option-body">
+                                <span class="bk-option-title">Chuyển khoản QR (VietQR)</span>
+                                <span class="bk-option-sub">Quét bằng app của bất kỳ ngân hàng nào.</span>
+                            </span>
+                        </label>
+                        <label class="bk-option">
+                            <input type="radio" name="payMethod" value="momo">
+                            <span class="bk-option-radio"></span>
+                            <span class="bk-method-icon bk-method-icon--momo"><i class="bi bi-phone"></i></span>
+                            <span class="bk-option-body">
+                                <span class="bk-option-title">Ví MoMo</span>
+                                <span class="bk-option-sub">Quét mã hoặc mở thẳng ứng dụng MoMo.</span>
+                            </span>
+                        </label>
+                        <label class="bk-option">
+                            <input type="radio" name="payMethod" value="zalopay">
+                            <span class="bk-option-radio"></span>
+                            <span class="bk-method-icon bk-method-icon--zalo"><i class="bi bi-phone"></i></span>
+                            <span class="bk-option-body">
+                                <span class="bk-option-title">ZaloPay</span>
+                                <span class="bk-option-sub">Thanh toán nhanh bằng ví ZaloPay.</span>
+                            </span>
+                        </label>
+                        <label class="bk-option">
+                            <input type="radio" name="payMethod" value="card">
+                            <span class="bk-option-radio"></span>
+                            <span class="bk-method-icon bk-method-icon--card"><i class="bi bi-credit-card-2-front"></i></span>
+                            <span class="bk-option-body">
+                                <span class="bk-option-title">Thẻ ATM nội địa, Visa, Mastercard</span>
+                                <span class="bk-option-sub">Ngân hàng có thể yêu cầu xác thực OTP.</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="bk-card-form" id="cardForm" hidden>
+                        <div class="bk-form-grid">
+                            <div class="bk-field bk-field--full">
+                                <label for="cardNumber">Số thẻ</label>
+                                <input type="text" id="cardNumber" inputmode="numeric" autocomplete="cc-number"
+                                       placeholder="1234 5678 9012 3456" maxlength="23">
+                                <p class="bk-error"></p>
+                            </div>
+                            <div class="bk-field bk-field--full">
+                                <label for="cardName">Tên trên thẻ</label>
+                                <input type="text" id="cardName" autocomplete="cc-name" placeholder="NGUYEN VAN AN">
+                                <p class="bk-error"></p>
+                            </div>
+                            <div class="bk-field">
+                                <label for="cardExpiry">Ngày hết hạn</label>
+                                <input type="text" id="cardExpiry" inputmode="numeric" autocomplete="cc-exp"
+                                       placeholder="MM/YY" maxlength="5">
+                                <p class="bk-error"></p>
+                            </div>
+                            <div class="bk-field">
+                                <label for="cardCvv">Mã CVV</label>
+                                <input type="password" id="cardCvv" inputmode="numeric" autocomplete="cc-csc"
+                                       placeholder="•••" maxlength="4">
+                                <p class="bk-error"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="bk-secure"><i class="bi bi-lock-fill"></i> Thông tin thanh toán được mã hóa và không lưu trên trang này.</p>
+                </section>
+
+                <!-- 3.6 Chính sách + đồng ý -->
+                <section class="bk-card" id="secPolicy">
+                    <div class="bk-card-head">
+                        <span class="bk-card-icon"><i class="bi bi-shield-check"></i></span>
+                        <div>
+                            <h2>Chính sách hủy phòng</h2>
+                            <p>Áp dụng cho đặt phòng này.</p>
+                        </div>
+                    </div>
+                    <ul class="bk-policy" id="policyList"></ul>
+
+                    <label class="bk-check">
+                        <input type="checkbox" id="agreeTerms">
+                        <span class="bk-check-box"><i class="bi bi-check-lg"></i></span>
+                        <span>Tôi đã đọc và đồng ý với nội quy nhà, chính sách hủy phòng và
+                            <a href="#" onclick="return false;">điều khoản sử dụng</a> của YÊN.</span>
+                    </label>
+                    <p class="bk-error bk-error--block" id="termsError" role="alert"></p>
+                </section>
+            </form>
+
+            <!-- ===== CỘT PHẢI: TÓM TẮT ===== -->
+            <aside class="bk-side">
+                <div class="bk-summary" id="bkSummary">
+                    <div class="bk-sum-room">
+                        <img id="sumThumb" src="" alt="Ảnh phòng">
+                        <div>
+                            <span class="bk-sum-homestay" id="sumHomestay">The Pine Hill Retreat</span>
+                            <h3 id="sumRoom">Phòng Đôi View Rừng Thông</h3>
+                            <span class="bk-sum-rating"><i class="bi bi-star-fill"></i> <span id="sumRating">4.90 · 126 đánh giá</span></span>
+                        </div>
+                    </div>
+
+                    <div class="bk-sum-trip">
+                        <div><span>Nhận phòng</span><b id="sumCheckin">-</b></div>
+                        <div><span>Trả phòng</span><b id="sumCheckout">-</b></div>
+                        <div><span>Số khách</span><b id="sumGuests">-</b></div>
+                    </div>
+
+                    <div class="bk-breakdown">
+                        <h4>Chi tiết giá</h4>
+                        <div class="bk-row"><span id="sumNightsLabel">0đ x 0 đêm</span><span id="sumSubtotal">0đ</span></div>
+                        <div class="bk-row"><span>Phí vệ sinh</span><span id="sumCleaning">0đ</span></div>
+                        <div class="bk-row"><span>Phí dịch vụ YÊN</span><span id="sumService">0đ</span></div>
+                        <div class="bk-row bk-row--discount" id="sumDiscountRow" hidden>
+                            <span id="sumDiscountLabel">Giảm giá</span><span id="sumDiscount">-0đ</span>
+                        </div>
+                        <div class="bk-divider"></div>
+                        <div class="bk-row bk-row--total"><span>Tổng cộng</span><span id="sumTotal">0đ</span></div>
+                    </div>
+
+                    <div class="bk-due">
+                        <div class="bk-row bk-row--due"><span>Thanh toán bây giờ</span><b id="sumPayNow">0đ</b></div>
+                        <div class="bk-row bk-row--later" id="sumPayLaterRow" hidden>
+                            <span>Trả khi nhận phòng</span><span id="sumPayLater">0đ</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" form="bookingForm" class="yn-btn yn-btn--primary yn-btn--lg yn-btn--block" id="submitBtn">
+                        <i class="bi bi-lock-fill"></i> Xác nhận & thanh toán
+                    </button>
+                    <p class="bk-sum-note"><i class="bi bi-check2-circle"></i> Miễn phí hủy trong 48 giờ sau khi đặt. Bạn sẽ xem lại số tiền ở bước thanh toán tiếp theo.</p>
+                </div>
+            </aside>
+        </div>
+    </section>
+</main>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+
+<!-- 5. POPUP THANH TOÁN -->
+<div class="bk-modal-overlay" id="payOverlay">
+    <div class="bk-modal" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+        <div class="bk-modal-head">
+            <h3 id="payTitle">Thanh toán</h3>
+            <button type="button" class="yn-btn yn-btn--ghost yn-btn--icon" id="payCloseBtn" title="Đóng"><i class="bi bi-x-lg"></i></button>
+        </div>
+
+        <div class="bk-modal-body">
+            <div class="pay-amount">
+                <span id="payAmountLabel">Số tiền cần thanh toán</span>
+                <b id="payAmount">0đ</b>
+            </div>
+            <div class="pay-timer" id="payTimerBox">
+                <i class="bi bi-clock-history"></i> Phiên thanh toán còn <b id="payCountdown">15:00</b>
+            </div>
+
+            <!-- QR (VietQR / MoMo / ZaloPay) -->
+            <div class="pay-view" id="payQrView">
+                <div class="pay-qr-wrap">
+                    <div class="pay-qr" id="payQr"></div>
+                    <p class="pay-qr-caption" id="payQrCaption"></p>
+                </div>
+                <ol class="pay-steps" id="payQrSteps"></ol>
+                <dl class="pay-bank" id="payBank"></dl>
+            </div>
+
+            <!-- Thẻ -->
+            <div class="pay-view" id="payCardView" hidden>
+                <div class="pay-card-preview">
+                    <i class="bi bi-credit-card-2-front"></i>
+                    <div>
+                        <b id="payCardMasked">•••• •••• •••• ••••</b>
+                        <span id="payCardHolder"></span>
+                    </div>
+                </div>
+                <p class="pay-card-note">Sau khi bấm thanh toán, ngân hàng phát hành thẻ có thể gửi mã OTP để xác thực giao dịch.</p>
+            </div>
+
+            <!-- Hết hạn -->
+            <div class="pay-expired" id="payExpired" hidden>
+                <i class="bi bi-hourglass-bottom"></i>
+                <p>Phiên thanh toán đã hết hạn. Bạn chưa bị trừ tiền. Hãy tạo phiên mới để tiếp tục giữ phòng.</p>
+                <button type="button" class="yn-btn yn-btn--outline" id="payRestartBtn">Tạo phiên thanh toán mới</button>
+            </div>
+
+            <p class="pay-demo-note"><i class="bi bi-info-circle"></i> Giao diện mẫu: chưa kết nối cổng thanh toán thật, mã QR chỉ mang tính minh họa.</p>
+        </div>
+
+        <div class="bk-modal-foot">
+            <button type="button" class="yn-btn yn-btn--ghost" id="payBackBtn">Quay lại chỉnh sửa</button>
+            <button type="button" class="yn-btn yn-btn--primary" id="payConfirmBtn">Tôi đã thanh toán</button>
+        </div>
+
+        <div class="bk-processing" id="payProcessing" hidden>
+            <span class="bk-spinner"></span>
+            <p>Đang xác nhận thanh toán, vui lòng không đóng trang...</p>
+        </div>
+    </div>
+</div>
+
+<!-- Toast thông báo -->
+<div class="toast-notice" id="bkToast" role="status" aria-live="polite">
+    <i class="bi bi-check-circle-fill"></i>
+    <span id="bkToastMsg">Đã sao chép!</span>
+</div>
+
+<!-- Thanh thanh toán dính (mobile) -->
+<div class="mobile-booking-bar" id="mobileBar">
+    <div>
+        <b id="mobileTotal">0đ</b>
+        <span id="mobileTotalNote">thanh toán bây giờ</span>
+    </div>
+    <button type="submit" form="bookingForm" class="yn-btn yn-btn--primary">Xác nhận & thanh toán</button>
+</div>
+<script src="../JS/bookingAndPay.js"></script>
+<script src="../JS/homestayDetail.js"></script>
+<script src="../JS/homepage.js"></script>
+</body>
+</html>

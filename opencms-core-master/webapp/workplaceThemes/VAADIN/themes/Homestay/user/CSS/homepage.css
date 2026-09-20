@@ -1483,7 +1483,7 @@ button {
   text-overflow: ellipsis;
 }
 
-/* Hàng Giá & Nút Xem phòng */
+/* Hàng Giá & Nút Xem homestay */
 .card-footer-row {
   margin-top: auto;
   display: flex;
@@ -1510,7 +1510,7 @@ button {
   color: var(--primary-color);
 }
 
-/* Nút Xem phòng màu xanh lá chuẩn phong cách YÊN (#15803D) */
+/* Nút Xem homestay màu xanh lá chuẩn phong cách YÊN (#15803D) */
 .btn-view-room {
   background: var(--primary-color);
   color: var(--white);

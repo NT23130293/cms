@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pine Hill Retreat - Đà Lạt | YÊN Homestay</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons (đồng bộ toàn bộ dự án) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS dùng chung -->
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <!-- CSS riêng cho trang chi tiết homestay -->
+    <link rel="stylesheet" href="../CSS/homestayDetail.css">
+</head>
+<body>
+
+<!-- 1. HEADER (nhúng động từ header.html) -->
+<div id="header-placeholder"></div>
+
+<main>
+
+    <!-- 3. TIÊU ĐỀ + HÀNH ĐỘNG NHANH -->
+    <section class="detail-title-section">
+        <div class="container">
+            <div class="detail-title-row">
+                <div class="detail-title-left">
+                    <h1 class="detail-name" id="detailName">The Pine Hill Retreat</h1>
+                    <div class="detail-meta-row">
+                        <span class="detail-rating"><i class="bi bi-star-fill"></i> 4.90 <a href="#reviewsSection">126 đánh giá</a></span>
+                        <span class="detail-dot">•</span>
+                        <span class="detail-location"><i class="bi bi-geo-alt-fill"></i> Phường 3, TP. Đà Lạt, Lâm Đồng</span>
+                    </div>
+                </div>
+                <div class="detail-title-actions">
+                    <button type="button" class="yn-btn yn-btn--ghost yn-btn--sm" onclick="shareListing()">
+                        <i class="bi bi-share"></i> Chia sẻ
+                    </button>
+                    <button type="button" class="yn-btn yn-btn--ghost yn-btn--sm" id="saveBtn"
+                            onclick="toggleSaveListing(this)">
+                        <i class="bi bi-heart"></i> Lưu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. GALLERY ẢNH (1 lớn + 4 nhỏ) -->
+    <section class="detail-gallery-section">
+        <div class="container">
+            <div class="gallery-wrap">
+                <div class="gallery-grid" id="galleryGrid" onclick="openGallery(0)">
+                    <div class="gallery-main">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1400&q=80"
+                             alt="Toàn cảnh The Pine Hill Retreat">
+                    </div>
+                    <div class="gallery-side">
+                        <div class="gallery-thumb"><img
+                                src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=700&q=80"
+                                alt="Phòng khách"></div>
+                        <div class="gallery-thumb"><img
+                                src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=700&q=80"
+                                alt="Phòng ngủ"></div>
+                        <div class="gallery-thumb"><img
+                                src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80"
+                                alt="Sân vườn BBQ"></div>
+                        <div class="gallery-thumb"><img
+                                src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=700&q=80"
+                                alt="Bồn tắm ngắm mây"></div>
+                    </div>
+                </div>
+                <button type="button" class="yn-btn yn-btn--light yn-btn--sm gallery-all-btn" onclick="openGallery(0)">
+                    <i class="bi bi-grid-3x3-gap-fill"></i> Xem tất cả <span id="galleryCountLabel">10</span> ảnh
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. NỘI DUNG CHÍNH -->
+    <section class="detail-body-section">
+        <div class="container detail-body-grid">
+
+            <!-- ===== CỘT TRÁI ===== -->
+            <div class="detail-main-col">
+
+                <!-- 5.1 Tổng quan chủ nhà -->
+                <div class="detail-block host-overview-block">
+                    <div class="host-overview-text">
+                        <h2 class="host-overview-title">Homestay do Chị Lan Anh quản lý</h2>
+                        <div class="host-overview-specs">
+                            <span><i class="bi bi-door-open"></i> 3 loại phòng</span>
+                            <span><i class="bi bi-people"></i> Tối đa 8 khách/phòng</span>
+                            <span><i class="bi bi-tree"></i> Trên đồi thông riêng biệt</span>
+                        </div>
+                    </div>
+                    <img class="host-avatar"
+                         src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
+                         alt="Chủ nhà Lan Anh">
+                </div>
+
+                <div class="detail-divider"></div>
+
+                <!-- 5.2 Điểm nổi bật -->
+                <div class="detail-block highlight-block">
+                    <div class="highlight-item">
+                        <span class="highlight-icon"><i class="bi bi-tree"></i></span>
+                        <div>
+                            <h4>Không gian giữa rừng thông</h4>
+                            <p>Nằm trên đồi thông riêng biệt, yên tĩnh và trong lành quanh năm.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon"><i class="bi bi-key"></i></span>
+                        <div>
+                            <h4>Tự nhận phòng dễ dàng</h4>
+                            <p>Mở khóa bằng mã số, thoải mái nhận phòng bất cứ giờ nào.</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon"><i class="bi bi-patch-check"></i></span>
+                        <div>
+                            <h4>Chủ nhà tận tâm</h4>
+                            <p>Phản hồi trong vòng 1 giờ và luôn hỗ trợ khách 24/7.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-divider"></div>
+
+                <!-- 5.3 Mô tả -->
+                <div class="detail-block">
+                    <p class="detail-description" id="detailDescription">
+                        Ẩn mình giữa đồi thông Đà Lạt, The Pine Hill Retreat mang đến không gian nghỉ dưỡng mộc mạc mà
+                        ấm cúng,
+                        nơi bạn có thể nhóm lửa sưởi ấm buổi tối se lạnh và ngắm mây trôi ngay từ bồn tắm gỗ ngoài trời.
+                        Homestay có nhiều loại phòng khác nhau, từ phòng đôi ấm cúng cho cặp đôi đến villa toàn căn cho
+                        nhóm đông,
+                        phù hợp cho mọi nhu cầu nghỉ dưỡng chậm rãi cùng người thân hoặc bạn bè.
+                    </p>
+                    <button type="button" class="yn-btn yn-btn--link" onclick="toggleDescription(this)">Đọc thêm <i
+                            class="bi bi-chevron-down"></i></button>
+                </div>
+
+                <div class="detail-divider"></div>
+
+                <!-- 5.4 Tiện nghi chung + Trải nghiệm homestay mang lại -->
+                <div class="detail-block" id="amenitiesSection">
+                    <h3 class="detail-block-title">Nơi này có những gì cho bạn</h3>
+                    <div class="amenities-grid" id="amenitiesGrid">
+                        <!-- render qua JS từ amenitiesData: 8 tiện nghi nổi bật --></div>
+                    <button type="button" class="yn-btn yn-btn--outline" onclick="openAmenitiesDrawer('all')">
+                        Hiển thị tất cả <span id="amenitiesBtnCount">24</span> tiện nghi
+                    </button>
+
+                    <!-- 5.4b Trải nghiệm homestay mang lại: xem nhanh 4 mục, xem tất cả mở popup bên phải -->
+                    <div class="experience-section" id="experienceSection">
+                        <div class="experience-head">
+                            <div>
+                                <h4 class="experience-title"><i class="bi bi-stars"></i> Trải nghiệm homestay mang lại</h4>
+                                <p class="experience-sub">Những hoạt động đậm chất miền quê bạn có thể tham gia ngay tại đồi thông.</p>
+                            </div>
+                            <span class="experience-count-note" id="experienceCountNote">8 trải nghiệm</span>
+                        </div>
+                        <div class="experience-grid" id="experienceGrid">
+                            <!-- render qua JS: 4 trải nghiệm nổi bật --></div>
+                        <button type="button" class="yn-btn yn-btn--outline" onclick="openExperiencesDrawer('all')">
+                            <i class="bi bi-compass"></i> Xem tất cả <span id="experienceBtnCount">8</span> trải nghiệm
+                        </button>
+                    </div>
+                </div>
+
+                <div class="detail-divider"></div>
+
+                <!-- 5.5 DANH SÁCH CÁC LOẠI PHÒNG (render từ roomsData trong JS) -->
+                <div class="detail-block" id="roomsSection">
+                    <div class="rooms-header">
+                        <h3 class="detail-block-title">Chọn phòng để đặt</h3>
+                        <span class="rooms-count-note" id="roomsCountNote">3 loại phòng đang mở đặt</span>
+                    </div>
+                    <div class="rooms-list" id="roomsList"></div>
+                </div>
+
+                <div class="detail-divider"></div>
+
+                <!-- 5.6 Đánh giá homestay: chỉ hiện vài đánh giá, xem tất cả mở popup bên phải -->
+                <div class="detail-block" id="reviewsSection">
+                    <h3 class="detail-block-title"><i class="bi bi-star-fill star-gold"></i> 4.90 · 126 đánh giá về
+                        homestay</h3>
+
+                    <div class="rating-overview">
+                        <div class="rating-score">
+                            <b>4.90</b>
+                            <div class="rating-stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i>
+                            </div>
+                            <span>Tuyệt vời</span>
+                        </div>
+                        <div class="rating-breakdown">
+                            <div class="rating-bar-row"><span>Sạch sẽ</span>
+                                <div class="rating-bar"><span style="width:98%"></span></div>
+                                <b>4.9</b></div>
+                            <div class="rating-bar-row"><span>Vị trí</span>
+                                <div class="rating-bar"><span style="width:96%"></span></div>
+                                <b>4.8</b></div>
+                            <div class="rating-bar-row"><span>Giao tiếp</span>
+                                <div class="rating-bar"><span style="width:99%"></span></div>
+                                <b>5.0</b></div>
+                            <div class="rating-bar-row"><span>Đáng giá tiền</span>
+                                <div class="rating-bar"><span style="width:94%"></span></div>
+                                <b>4.7</b></div>
+                        </div>
+                    </div>
+
+                    <div class="reviews-grid" id="reviewsGrid">
+                        <!-- render qua JS: vài đánh giá mới nhất, xếp dọc, có hình --></div>
+                    <button type="button" class="yn-btn yn-btn--outline" onclick="openReviewsDrawer('all')">
+                        <i class="bi bi-chat-square-text"></i> Xem tất cả 126 đánh giá
+                    </button>
+                </div>
+
+                <div class="detail-divider"></div>
+
+                <!-- 5.7 Vị trí -->
+                <div class="detail-block">
+                    <h3 class="detail-block-title">Vị trí homestay</h3>
+                    <p class="location-note"><i class="bi bi-geo-alt-fill"></i> Phường 3, TP. Đà Lạt, Lâm Đồng · Cách
+                        trung tâm 1.2km, cách chợ đêm Đà Lạt 5 phút đi xe</p>
+                    <div class="location-map-box">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80"
+                             alt="Bản đồ khu vực Đà Lạt">
+                        <div class="map-pin"><i class="bi bi-geo-alt-fill"></i></div>
+                    </div>
+                </div>
+
+                <div class="detail-divider"></div>
+
+                <!-- 5.8 Chủ nhà -->
+                <div class="detail-block host-profile-block">
+                    <img class="host-profile-avatar"
+                         src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
+                         alt="Chủ nhà Lan Anh">
+                    <div class="host-profile-info">
+                        <h3>Chủ nhà: Lan Anh</h3>
+                        <div class="host-profile-stats">
+                            <span><b>126</b> đánh giá</span>
+                            <span><b>4.9</b> ★ điểm chủ nhà</span>
+                            <span><b>3</b> năm đón khách</span>
+                        </div>
+                        <p>Xin chào, mình là Lan Anh — sinh ra và lớn lên ở Đà Lạt. Mình xây khu nhà gỗ này để chia sẻ
+                            góc bình yên của gia đình
+                            với những ai muốn tạm rời phố thị. Mình luôn ở gần đó nên có thể hỗ trợ bạn bất cứ lúc nào
+                            trong chuyến đi.</p>
+                    </div>
+                </div>
+
+                <div class="detail-divider"></div>
+
+                <!-- 5.9 Nội quy -->
+                <div class="detail-block">
+                    <h3 class="detail-block-title">Điều cần lưu ý</h3>
+                    <div class="rules-grid">
+                        <div class="rules-col">
+                            <h5><i class="bi bi-clock"></i> Nội quy nhà</h5>
+                            <p>Nhận phòng: 14:00 - 21:00</p>
+                            <p>Trả phòng: trước 12:00</p>
+                            <p>Không tổ chức tiệc, sự kiện</p>
+                        </div>
+                        <div class="rules-col">
+                            <h5><i class="bi bi-shield-check"></i> An toàn & tài sản</h5>
+                            <p>Có lắp camera ở khu vực ngoài trời</p>
+                            <p>Trang bị bình chữa cháy, hộp sơ cứu</p>
+                        </div>
+                        <div class="rules-col">
+                            <h5><i class="bi bi-arrow-counterclockwise"></i> Chính sách hủy phòng</h5>
+                            <p>Miễn phí hủy trong 48 giờ sau khi đặt</p>
+                            <p>Hoàn 50% nếu hủy trước 5 ngày nhận phòng</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CỘT PHẢI ===== -->
+            <aside class="detail-side-col">
+                <div class="summary-card">
+                    <span class="summary-from-label">Giá chỉ từ</span>
+                    <div class="summary-price"><b id="summaryFromPrice">890.000đ</b> / đêm</div>
+                    <div class="summary-rating"><i class="bi bi-star-fill"></i> 4.90 · 126 đánh giá</div>
+                    <button type="button" class="yn-btn yn-btn--primary yn-btn--lg yn-btn--block"
+                            onclick="scrollToRooms()">Xem các loại phòng
+                    </button>
+                    <p class="summary-note"><i class="bi bi-check2-circle"></i> 3 loại phòng còn trống · Miễn phí hủy
+                        trong 48 giờ</p>
+                </div>
+
+            </aside>
+        </div>
+    </section>
+
+    <!-- 6. HOMESTAY TƯƠNG TỰ -->
+    <section class="similar-section">
+        <div class="container">
+            <div class="similar-head">
+                <div>
+                    <h2 class="similar-title">Homestay tương tự gần Đà Lạt</h2>
+                    <p class="similar-sub">Cùng khu vực, cùng phong cách nghỉ dưỡng giữa thiên nhiên.</p>
+                </div>
+            </div>
+            <div class="similar-grid" id="similarGrid"><!-- render qua JS --></div>
+        </div>
+    </section>
+</main>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+
+<!-- 7. GALLERY LIGHTBOX -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="if(event.target===this) closeGallery()">
+    <button type="button" class="lightbox-close-btn" onclick="closeGallery()" title="Đóng"><i class="bi bi-x-lg"></i>
+    </button>
+    <button type="button" class="lightbox-arrow prev" onclick="lightboxNav(-1)" title="Ảnh trước"><i
+            class="bi bi-chevron-left"></i></button>
+    <div class="lightbox-image-wrap">
+        <img id="lightboxImg" src="" alt="Ảnh homestay">
+        <span class="lightbox-counter" id="lightboxCounter">1 / 10</span>
+    </div>
+    <button type="button" class="lightbox-arrow next" onclick="lightboxNav(1)" title="Ảnh sau"><i
+            class="bi bi-chevron-right"></i></button>
+</div>
+
+<!-- 8. POPUP CHI TIẾT PHÒNG & ĐẶT PHÒNG -->
+<div class="room-modal-overlay" id="roomModalOverlay" onclick="if(event.target===this) closeRoomModal()">
+    <div class="room-modal-container" role="dialog" aria-modal="true" aria-labelledby="roomModalTitle">
+        <button type="button" class="room-modal-close-btn" onclick="closeRoomModal()" title="Đóng">
+            <i class="bi bi-x-lg"></i>
+        </button>
+
+        <div class="room-modal-scroll">
+            <!-- 8.1 Gallery riêng của phòng -->
+            <div class="room-modal-gallery">
+                <button type="button" class="room-gallery-arrow prev" onclick="roomGalleryNav(-1)" title="Ảnh trước"><i
+                        class="bi bi-chevron-left"></i></button>
+                <img id="roomModalImg" src="" alt="Ảnh phòng">
+                <button type="button" class="room-gallery-arrow next" onclick="roomGalleryNav(1)" title="Ảnh sau"><i
+                        class="bi bi-chevron-right"></i></button>
+                <span class="room-gallery-counter" id="roomGalleryCounter">1 / 5</span>
+            </div>
+
+            <div class="room-modal-body">
+                <!-- 8.2 Tên phòng -->
+                <div class="room-modal-head">
+                    <div>
+                        <span class="room-modal-tag" id="roomModalTag">Còn 2 phòng trống</span>
+                        <h2 class="room-modal-title" id="roomModalTitle">Phòng Đôi View Rừng Thông</h2>
+                        <div class="room-modal-specs" id="roomModalSpecs"></div>
+                    </div>
+                    <div class="room-modal-price-tag">
+                        <b id="roomModalPrice">890.000đ</b>
+                        <span>/ đêm</span>
+                    </div>
+                </div>
+
+                <p class="room-modal-desc" id="roomModalDesc"></p>
+
+                <!-- 8.3 Tiện nghi riêng -->
+                <h4 class="room-modal-subtitle">Tiện nghi trong phòng</h4>
+                <div class="room-modal-amenities" id="roomModalAmenities"></div>
+
+                <!-- 8.4 Chọn ngày & số khách -->
+                <h4 class="room-modal-subtitle">Chọn ngày & số khách</h4>
+                <div class="room-booking-form">
+                    <div class="room-booking-date-grid">
+                        <div class="room-booking-field">
+                            <label for="roomCheckin">Nhận phòng</label>
+                            <input type="date" id="roomCheckin" onchange="updateRoomModalSummary()">
+                        </div>
+                        <div class="room-booking-field">
+                            <label for="roomCheckout">Trả phòng</label>
+                            <input type="date" id="roomCheckout" onchange="updateRoomModalSummary()">
+                        </div>
+                    </div>
+                    <div class="room-booking-field room-booking-field--full">
+                        <label for="roomGuests">Số khách</label>
+                        <select id="roomGuests" onchange="updateRoomModalSummary()"></select>
+                    </div>
+                </div>
+                <p class="room-booking-warning" id="roomBookingWarning"></p>
+
+                <!-- 8.5 Bảng tính giá -->
+                <div class="room-price-breakdown" id="roomPriceBreakdown">
+                    <div class="breakdown-row">
+                        <span><span id="roomPricePerNightLabel">890.000đ</span> x <span id="roomNightsCount">2</span> đêm</span>
+                        <span id="roomSubtotalPrice">1.780.000đ</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span>Phí vệ sinh</span>
+                        <span id="roomCleaningFee">100.000đ</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span>Phí dịch vụ YÊN</span>
+                        <span id="roomServiceFee">90.000đ</span>
+                    </div>
+                    <div class="breakdown-divider"></div>
+                    <div class="breakdown-row breakdown-total">
+                        <span>Tổng cộng</span>
+                        <span id="roomTotalPrice">1.970.000đ</span>
+                    </div>
+                </div>
+
+                <!-- 8.6 Đánh giá riêng của loại phòng: chỉ hiện 2, xem tất cả mở popup bên phải -->
+                <div class="room-modal-subhead">
+                    <h4 class="room-modal-subtitle">Khách nói gì về phòng này</h4>
+                    <span class="room-modal-rating" id="roomModalRating"></span>
+                </div>
+                <div class="room-modal-reviews" id="roomModalReviews"></div>
+                <button type="button" class="yn-btn yn-btn--outline yn-btn--block" id="roomModalReviewsBtn"
+                        onclick="openActiveRoomReviews()">
+                    Xem tất cả đánh giá
+                </button>
+            </div>
+        </div>
+
+        <!-- 8.7 Thanh CTA dính đáy -->
+        <div class="room-modal-footer">
+            <div class="room-modal-footer-price">
+                <b id="roomFooterTotal">1.970.000đ</b>
+                <span>tổng cho <span id="roomFooterNights">2</span> đêm</span>
+            </div>
+            <button type="button" class="yn-btn yn-btn--primary yn-btn--lg" onclick="confirmRoomBooking()">Đặt phòng
+                ngay
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- 9. POPUP ĐÁNH GIÁ (TRƯỢT TỪ BÊN PHẢI) + BỘ LỌC -->
+<div class="rv-overlay" id="rvOverlay" onclick="closeReviewsDrawer()"></div>
+<aside class="rv-drawer" id="rvDrawer" role="dialog" aria-modal="true" aria-labelledby="rvDrawerTitle"
+       aria-hidden="true">
+    <div class="rv-head">
+        <h3 id="rvDrawerTitle">Đánh giá của khách</h3>
+        <button type="button" class="yn-btn yn-btn--ghost yn-btn--icon" id="rvCloseBtn" onclick="closeReviewsDrawer()"
+                title="Đóng"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    <div class="rv-summary">
+        <div class="rv-score"><i class="bi bi-star-fill"></i> <b id="rvScore">4.90</b></div>
+        <div class="rv-summary-text">
+            <strong id="rvSummaryLabel">126 đánh giá</strong>
+            <span id="rvSummarySub">Tất cả loại phòng</span>
+        </div>
+    </div>
+
+    <div class="rv-filters">
+        <div class="rv-filter-group">
+            <span class="rv-filter-label">Loại phòng</span>
+            <div class="rv-chip-row" id="rvRoomChips"></div>
+        </div>
+        <div class="rv-filter-group">
+            <span class="rv-filter-label">Lọc theo</span>
+            <div class="rv-chip-row" id="rvStarChips"></div>
+        </div>
+        <div class="rv-filter-group rv-filter-group--inline">
+            <label class="rv-filter-label" for="rvSort">Sắp xếp</label>
+            <select id="rvSort" class="rv-select" onchange="setReviewSort(this.value)">
+                <option value="newest">Mới nhất</option>
+                <option value="high">Điểm cao nhất</option>
+                <option value="low">Điểm thấp nhất</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="rv-result-bar"><span id="rvResultCount">126 đánh giá</span></div>
+    <div class="rv-list" id="rvList"></div>
+    <div class="rv-foot" id="rvFoot"></div>
+</aside>
+
+<!-- 9b. POPUP TRẢI NGHIỆM (TRƯỢT TỪ BÊN PHẢI) + BỘ LỌC
+     Dùng chung khung rv-* với popup đánh giá để hai popup luôn giống nhau về kích thước, hiệu ứng, bộ lọc -->
+<div class="rv-overlay" id="xpOverlay" onclick="closeExperiencesDrawer()"></div>
+<aside class="rv-drawer" id="xpDrawer" role="dialog" aria-modal="true" aria-labelledby="xpDrawerTitle"
+       aria-hidden="true">
+    <div class="rv-head">
+        <h3 id="xpDrawerTitle">Trải nghiệm tại homestay</h3>
+        <button type="button" class="yn-btn yn-btn--ghost yn-btn--icon" id="xpCloseBtn"
+                onclick="closeExperiencesDrawer()" title="Đóng"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    <div class="rv-summary">
+        <div class="xp-summary-icon"><i class="bi bi-stars"></i></div>
+        <div class="rv-summary-text">
+            <strong id="xpSummaryLabel">8 trải nghiệm</strong>
+            <span id="xpSummarySub">Tất cả nhóm trải nghiệm</span>
+        </div>
+    </div>
+
+    <div class="rv-filters">
+        <div class="rv-filter-group">
+            <span class="rv-filter-label">Nhóm trải nghiệm</span>
+            <div class="rv-chip-row" id="xpCategoryChips"></div>
+        </div>
+        <div class="rv-filter-group">
+            <span class="rv-filter-label">Chi phí</span>
+            <div class="rv-chip-row" id="xpCostChips"></div>
+        </div>
+    </div>
+
+    <div class="rv-result-bar"><span id="xpResultCount">8 trải nghiệm</span></div>
+    <div class="rv-list xp-list" id="xpList"></div>
+    <div class="rv-foot xp-foot">
+        <p class="xp-foot-note"><i class="bi bi-info-circle"></i> Trải nghiệm tính riêng với tiền phòng. Bạn đăng ký
+            trực tiếp với chủ nhà khi đặt phòng hoặc nhắn tin trước chuyến đi.</p>
+        <button type="button" class="yn-btn yn-btn--primary yn-btn--block" onclick="experiencesToRooms()">
+            Chọn phòng để đặt
+        </button>
+    </div>
+</aside>
+
+<!-- 9c. POPUP TIỆN NGHI (TRƯỢT TỪ BÊN PHẢI) + BỘ LỌC THEO NHÓM
+     Dùng chung khung rv-* với popup đánh giá và popup trải nghiệm -->
+<div class="rv-overlay" id="amOverlay" onclick="closeAmenitiesDrawer()"></div>
+<aside class="rv-drawer" id="amDrawer" role="dialog" aria-modal="true" aria-labelledby="amDrawerTitle"
+       aria-hidden="true">
+    <div class="rv-head">
+        <h3 id="amDrawerTitle">Nơi này có những gì cho bạn</h3>
+        <button type="button" class="yn-btn yn-btn--ghost yn-btn--icon" id="amCloseBtn"
+                onclick="closeAmenitiesDrawer()" title="Đóng"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    <div class="rv-summary">
+        <div class="xp-summary-icon"><i class="bi bi-house-door"></i></div>
+        <div class="rv-summary-text">
+            <strong id="amSummaryLabel">24 tiện nghi</strong>
+            <span id="amSummarySub">Tất cả nhóm tiện nghi</span>
+        </div>
+    </div>
+
+    <div class="rv-filters">
+        <div class="rv-filter-group">
+            <span class="rv-filter-label">Nhóm tiện nghi</span>
+            <div class="rv-chip-row" id="amCategoryChips"></div>
+        </div>
+    </div>
+
+    <div class="rv-result-bar"><span id="amResultCount">24 tiện nghi</span></div>
+    <div class="rv-list am-list" id="amList"></div>
+</aside>
+
+<!-- Toast thông báo -->
+<div class="toast-notice" id="toastNoticeDetail" role="status" aria-live="polite">
+    <i class="bi bi-check-circle-fill"></i>
+    <span id="toastMsgDetail">Đã lưu vào Wishlist!</span>
+</div>
+
+<!-- 10. THANH ĐẶT PHÒNG DÍNH (MOBILE) -->
+<div class="mobile-booking-bar" id="mobileBookingBar">
+    <div>
+        <b id="mobilePriceVal">890.000đ</b> <span>/ đêm</span>
+        <div class="mobile-booking-rating"><i class="bi bi-star-fill"></i> 4.90 (126)</div>
+    </div>
+    <button type="button" class="yn-btn yn-btn--primary" onclick="scrollToRooms()">Xem phòng</button>
+</div>
+
+<script src="../JS/homestayDetail.js"></script>
+<script src="../JS/homepage.js"></script>
+</body>
+</html>

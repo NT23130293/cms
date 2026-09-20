@@ -39,13 +39,9 @@
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md relative z-10">
                     <div class="flex flex-col gap-space-xs">
                         <div class="flex items-center gap-space-xs">
-                            <span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10.5px] uppercase tracking-wider">Mục 3.5 • Quản lý Vận Hành</span>
-                            <span class="text-outline font-label-sm text-[11px]">• Homestay Nhà Sàn Mộc (Mai Châu)</span>
+                            <span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10.5px] uppercase tracking-wider">Quản lý Vận Hành</span>
                         </div>
                         <h1 class="font-headline-lg text-headline-lg text-on-surface">Quản lý đơn đặt phòng (Bookings)</h1>
-                        <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
-                            Theo dõi tình trạng đặt cọc, tiến độ lưu trú, xác nhận Check-in và Check-out trực tuyến theo thời gian thực.
-                        </p>
                     </div>
                     <div class="flex items-center gap-space-sm shrink-0 flex-wrap">
                         <button onclick="openModal('exportReportModal')" class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface font-label-lg text-label-lg rounded-lg shadow-sm transition-all duration-200" type="button">
@@ -70,10 +66,6 @@
                             <span class="font-display-lg text-display-lg text-on-surface">06</span>
                             <span class="font-body-sm text-body-sm text-tertiary-container font-medium">cần duyệt ngay</span>
                         </div>
-                        <span class="font-label-sm text-label-sm text-outline flex items-center gap-1 mt-0.5">
-                                <span class="material-symbols-outlined text-[14px] text-on-tertiary-container">hourglass_top</span>
-                                2 khách thanh toán cọc chờ duyệt
-                            </span>
                     </div>
                     <div class="w-12 h-12 rounded-xl bg-tertiary-fixed/60 flex items-center justify-center text-on-tertiary-fixed-variant shrink-0">
                         <span class="material-symbols-outlined text-[24px]">pending_actions</span>
@@ -87,10 +79,6 @@
                             <span class="font-display-lg text-display-lg text-secondary">03</span>
                             <span class="font-body-sm text-body-sm text-on-surface-variant">đơn đặt</span>
                         </div>
-                        <span class="font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-0.5">
-                                <span class="material-symbols-outlined text-[14px]">check_circle</span>
-                                1 đã vào • 2 sắp đến
-                            </span>
                     </div>
                     <div class="w-12 h-12 rounded-xl bg-secondary-container/70 flex items-center justify-center text-on-secondary-container shrink-0">
                         <span class="material-symbols-outlined text-[24px]">login</span>
@@ -104,10 +92,6 @@
                             <span class="font-display-lg text-display-lg text-on-surface">02</span>
                             <span class="font-body-sm text-body-sm text-on-surface-variant">phòng</span>
                         </div>
-                        <span class="font-label-sm text-label-sm text-outline flex items-center gap-1 mt-0.5">
-                                <span class="material-symbols-outlined text-[14px] text-outline">schedule</span>
-                                Hạn chót 12:00 trưa
-                            </span>
                     </div>
                     <div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
                         <span class="material-symbols-outlined text-[24px]">logout</span>
@@ -120,10 +104,6 @@
                         <div class="flex items-baseline gap-space-xs">
                             <span class="font-headline-lg text-headline-lg text-primary tracking-tight">18.600.000đ</span>
                         </div>
-                        <span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-                                <span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
-                                Quyết toán tự động sau check-out
-                            </span>
                     </div>
                     <div class="w-12 h-12 rounded-xl bg-primary-fixed/50 flex items-center justify-center text-on-primary-fixed-variant shrink-0">
                         <span class="material-symbols-outlined text-[24px]">account_balance_wallet</span>
@@ -504,22 +484,6 @@
                                 <input class="w-4 h-4 rounded text-secondary focus:ring-secondary accent-secondary" type="checkbox">
                                 <span class="font-body-sm text-body-sm text-on-surface font-medium">Đối soát thanh toán cọc booking #BK-9850 (Trần Tuấn Kiệt)</span>
                             </label>
-                        </div>
-                    </div>
-
-                    <!-- Promotion Banner Card -->
-                    <div class="relative overflow-hidden rounded-xl bg-primary text-on-primary p-space-md shadow-sm">
-                        <div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-secondary/30 blur-2xl pointer-events-none"></div>
-                        <div class="flex items-center gap-space-sm relative z-10">
-                            <div class="w-10 h-10 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-[20px]">local_fire_department</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span class="font-label-lg text-label-lg text-on-primary">Tối ưu công suất cuối tuần</span>
-                                <p class="font-body-sm text-body-sm text-on-primary-container leading-snug">
-                                    Bật ngay gói đẩy phòng & trải nghiệm bản địa để đón khách đoàn thứ Bảy này.
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -919,7 +883,7 @@
             <!-- Bảng kê quyết toán chi phí -->
             <div class="p-space-sm rounded-xl bg-surface-container-low border border-surface-container flex flex-col gap-space-xs">
                 <span class="font-label-md text-primary font-bold uppercase tracking-wider">Bảng kê chi phí quyết toán</span>
-                
+
                 <div class="flex items-center justify-between text-body-sm py-1 border-b border-surface-container">
                     <span class="text-on-surface-variant">Tiền phòng còn thiếu:</span>
                     <span id="checkoutModalRemainRoom" class="font-semibold text-on-surface">1.200.000đ</span>
@@ -994,7 +958,7 @@
             <!-- Danh mục dịch vụ bản địa -->
             <div class="flex flex-col gap-space-xs">
                 <span class="font-label-md text-primary font-bold uppercase tracking-wider">Danh mục dịch vụ homestay</span>
-                
+
                 <div class="flex flex-col gap-space-xs">
                     <!-- Dịch vụ 1 -->
                     <div class="service-item-row flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low border border-surface-container" data-name="Cơm lam thịt nướng Mai Châu" data-price="180000">

@@ -181,6 +181,22 @@ body {
     color: #FFFFFF;
 }
 
+.nav-noti-badge {
+    background-color: #EF4444;
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 1px 6px;
+    border-radius: 10px;
+    margin-left: 2px;
+    line-height: 1.2;
+}
+
+.nav-link.active .nav-noti-badge {
+    background-color: #FFFFFF;
+    color: #DC2626;
+}
+
 /* Mobile Toggle */
 .mobile-toggle,
 .yen-mobile-toggle {

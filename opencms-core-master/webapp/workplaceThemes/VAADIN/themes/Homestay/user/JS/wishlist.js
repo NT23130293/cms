@@ -1,204 +1,307 @@
-    // State Manager between Active list and Empty state
-    fetch("header.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("header").innerHTML = data;
-        });
+/**
+ * YÊN Homestay — Wishlist Page Scripts
+ * Đường dẫn: opencms-core-master/.../Homestay/user/JS/wishlist.js
+ * Quản lý Nạp động Header & Footer, Bộ lọc theo Khu vực, Sắp xếp, Xóa sản phẩm Yêu thích & Toast
+ */
 
-    fetch("footer.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("footer").innerHTML = data;
-        });
-    function switchWishlistState(state) {
-        const activeView = document.getElementById('wishlist-state-active');
-        const emptyView = document.getElementById('wishlist-state-empty');
-        const btnActive = document.getElementById('btn-state-active');
-        const btnEmpty = document.getElementById('btn-state-empty');
-    if (state === 'empty') {
-    activeView.classList.add('hidden');
-    emptyView.classList.remove('hidden');
+document.addEventListener('DOMContentLoaded', () => {
+  // Nạp động Header & Footer
+  loadExternalHeader('header-placeholder', 'header.html', 'Wishlist');
+  loadExternalFooter('footer-placeholder', 'footer.html');
 
-    btnEmpty.className = "flex items-center gap-1.5 px-space-md py-2 rounded-full font-label-md text-label-md bg-primary-container text-on-primary shadow-sm transition-all duration-200";
-    btnActive.className = "flex items-center gap-1.5 px-space-md py-2 rounded-full font-label-md text-label-md text-text-secondary hover:text-text-primary transition-all duration-200";
-    showToast('Đang mô phỏng giao diện khi chưa lưu phòng nào', 'info');
-} else {
-    emptyView.classList.add('hidden');
-    activeView.classList.remove('hidden');
-
-    btnActive.className = "flex items-center gap-1.5 px-space-md py-2 rounded-full font-label-md text-label-md bg-primary-container text-on-primary shadow-sm transition-all duration-200";
-    btnEmpty.className = "flex items-center gap-1.5 px-space-md py-2 rounded-full font-label-md text-label-md text-text-secondary hover:text-text-primary transition-all duration-200";
-    showToast('Đã chuyển về danh sách 3 homestay đang lưu', 'check_circle');
-}
-}
-
-    // Remove individual Card Item
-    function removeWishlistItem(cardId, name) {
-    const el = document.getElementById(cardId);
-    if (el) {
-    el.style.transform = 'scale(0.95)';
-    el.style.opacity = '0';
-    setTimeout(() => {
-    el.remove();
-    updateRemainingCounters();
-    showToast('Đã xóa "' + name + '" khỏi danh sách yêu thích', 'delete');
-}, 250);
-}
-}
-
-    // Remove item from Drawer & sync grid
-    function removeDrawerItem(drawerItemId, mainCardId) {
-    const dItem = document.getElementById(drawerItemId);
-    if (dItem) {
-    dItem.remove();
-}
-    const mItem = document.getElementById(mainCardId);
-    if (mItem) {
-    mItem.remove();
-}
-    updateRemainingCounters();
-    showToast('Đã xóa khỏi danh sách yêu thích', 'delete');
-}
-
-    // Update counters dynamically
-    function updateRemainingCounters() {
-    const remaining = document.querySelectorAll('.wishlist-card').length;
-    const counterBadge = document.getElementById('active-counter-badge');
-    const statePill = document.getElementById('counter-state-pill');
-    const drawerCounter = document.getElementById('drawer-counter');
-
-    if (counterBadge) counterBadge.innerText = remaining;
-    if (statePill) statePill.innerText = remaining;
-    if (drawerCounter) drawerCounter.innerText = remaining;
-
-    if (remaining === 0) {
-    switchWishlistState('empty');
-}
-}
-
-    // Confirm and clear all items
-    function confirmClearAll() {
-    if (confirm("Bạn có chắc chắn muốn xóa tất cả 3 homestay khỏi danh sách yêu thích?")) {
-    const grid = document.getElementById('homestay-grid');
-    const drawerContainer = document.getElementById('drawer-items-container');
-    if (grid) grid.innerHTML = '';
-    if (drawerContainer) drawerContainer.innerHTML = '<p class="text-caption text-text-muted text-center py-8">Danh sách drawer đang trống</p>';
-    updateRemainingCounters();
-    switchWishlistState('empty');
-    showToast('Đã xóa toàn bộ danh sách yêu thích', 'check');
-}
-}
-
-    // Filter cards by region
-    function filterRegion(region, btn) {
-    // Update button styling
-    const pills = document.querySelectorAll('#filter-pill-group .filter-pill');
-    pills.forEach(p => {
-    p.className = 'filter-pill px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-card text-text-secondary hover:bg-surface-subtle shadow-sm transition-all whitespace-nowrap';
-});
-    btn.className = 'filter-pill active px-space-md py-1.5 rounded-full font-label-md text-label-md bg-primary-container text-on-primary shadow-sm transition-all whitespace-nowrap';
-
-    const cards = document.querySelectorAll('.wishlist-card');
-    cards.forEach(card => {
-    if (region === 'all' || card.getAttribute('data-region') === region) {
-    card.style.display = 'flex';
-} else {
-    card.style.display = 'none';
-}
-});
-}
-
-    // Sort cards logic
-    function sortCards(criteria) {
-    const grid = document.getElementById('homestay-grid');
-    const cards = Array.from(document.querySelectorAll('.wishlist-card'));
-
-    cards.sort((a, b) => {
-    if (criteria === 'price-asc') {
-    return Number(a.getAttribute('data-price')) - Number(b.getAttribute('data-price'));
-} else if (criteria === 'price-desc') {
-    return Number(b.getAttribute('data-price')) - Number(a.getAttribute('data-price'));
-} else if (criteria === 'rating') {
-    return Number(b.getAttribute('data-rating')) - Number(a.getAttribute('data-rating'));
-} else {
-    return Number(b.getAttribute('data-date')) - Number(a.getAttribute('data-date'));
-}
+  // Khởi tạo số lượng ban đầu
+  updateCounters();
 });
 
-    cards.forEach(c => grid.appendChild(c));
-    showToast('Đã sắp xếp lại danh sách homestay', 'sort');
+/**
+ * Nạp động Header từ file header.html
+ */
+function loadExternalHeader(placeholderId, filePath, activePageName = 'Wishlist') {
+  const placeholder = document.getElementById(placeholderId);
+  if (!placeholder) return;
+
+  fetch(filePath)
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error(`Chưa thể đọc ${filePath} (status: ${response.status})`);
+    })
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const headerEl = doc.querySelector('header');
+      if (headerEl) {
+        placeholder.replaceWith(headerEl);
+      } else {
+        placeholder.innerHTML = html;
+      }
+      initHeaderEvents(activePageName);
+    })
+    .catch(err => {
+      console.warn(`[Header Loader] Nạp header offline fallback:`, err);
+      renderFallbackHeader(placeholder, activePageName);
+    });
 }
 
-    // Drawer Slide-over Panel Toggle
-    function toggleDrawer(open) {
-    const drawer = document.getElementById('wishlist-drawer');
-    const backdrop = document.getElementById('wishlist-drawer-backdrop');
+function initHeaderEvents(activePageName = 'Wishlist') {
+  const header = document.querySelector('.header');
+  if (!header) return;
 
-    if (open) {
-    drawer.classList.remove('translate-x-full');
-    backdrop.classList.remove('opacity-0', 'pointer-events-none');
-} else {
-    drawer.classList.add('translate-x-full');
-    backdrop.classList.add('opacity-0', 'pointer-events-none');
-}
-}
+  const navLinks = header.querySelectorAll('.nav-link');
+  const mobileBtn = header.querySelector('#mobileMenuBtn');
+  const navList = header.querySelector('#navList');
 
-    // Collapsible Tech Guide
-    function toggleTechGuide() {
-    const guide = document.getElementById('tech-guide-content');
-    const icon = document.getElementById('tech-accordion-icon');
-    if (guide.classList.contains('hidden')) {
-    guide.classList.remove('hidden');
-    icon.style.transform = 'rotate(180deg)';
-} else {
-    guide.classList.add('hidden');
-    icon.style.transform = 'rotate(0deg)';
-}
-}
+  // Active tab Wishlist
+  navLinks.forEach(link => {
+    const linkName = link.getAttribute('data-name') || link.innerText.trim();
+    if (linkName === activePageName) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
 
-    // Quick save recommendation from empty state
-    function quickSaveReco(name) {
-    showToast('Đã thêm "' + name + '" vào yêu thích!', 'favorite');
-    setTimeout(() => {
-    switchWishlistState('active');
-}, 600);
+  // Toggle Menu Mobile
+  if (mobileBtn && navList) {
+    mobileBtn.onclick = (e) => {
+      e.stopPropagation();
+      navList.classList.toggle('show');
+    };
+  }
 }
 
-    // Copy share link simulation
-    function copyShareLink() {
-    if (navigator.clipboard) {
+function renderFallbackHeader(placeholder, activePageName) {
+  if (!placeholder) return;
+  placeholder.outerHTML = `
+    <header class="header">
+      <div class="header-container">
+        <a href="homepage.html" class="brand-logo" title="YÊN - Homestay Booking">
+          <img src="../images/logo.png" alt="YÊN - Homestay Booking" class="brand-logo-img">
+        </a>
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle Menu">
+          <i class="bi bi-list"></i>
+        </button>
+        <nav class="header-nav">
+          <ul class="nav-list" id="navList">
+            <li class="nav-item">
+              <a href="homepage.html" class="nav-link" data-name="Trang chủ">
+                <i class="bi bi-house-door nav-icon"></i>
+                <span class="nav-text">Trang chủ</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="homepage.html#comboSection" class="nav-link" data-name="Khuyến mãi">
+                <i class="bi bi-gift nav-icon"></i>
+                <span class="nav-text">Khuyến mãi</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="support.html" class="nav-link" data-name="Hỗ trợ">
+                <i class="bi bi-headset nav-icon"></i>
+                <span class="nav-text">Hỗ trợ</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="wishlist.html" class="nav-link active" data-name="Wishlist">
+                <i class="bi bi-heart nav-icon"></i>
+                <span class="nav-text">Wishlist</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)" class="nav-link" data-name="Thông báo">
+                <i class="bi bi-bell nav-icon"></i>
+                <span class="nav-text">Thông báo</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="homepage.html#festivalSection" class="nav-link" data-name="Đặt chỗ">
+                <i class="bi bi-calendar-check nav-icon"></i>
+                <span class="nav-text">Đặt chỗ</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="personal-account.html" class="nav-link" data-name="Tài khoản">
+                <i class="bi bi-person-circle nav-icon"></i>
+                <span class="nav-text">Tài khoản</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  `;
+  initHeaderEvents(activePageName);
+}
+
+function loadExternalFooter(placeholderId, filePath) {
+  fetch(filePath)
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error(`Chưa có file ${filePath}`);
+    })
+    .then(html => {
+      const container = document.getElementById(placeholderId);
+      if (container) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const footerEl = doc.querySelector('footer');
+        if (footerEl) {
+          container.replaceWith(footerEl);
+        } else {
+          container.innerHTML = html;
+        }
+      }
+    })
+    .catch(err => {
+      console.warn(`[Footer Loader] Nạp footer offline fallback:`, err);
+    });
+}
+
+// ── WISHLIST CARD ACTIONS ──
+
+/**
+ * Xóa 1 Homestay khỏi danh sách yêu thích với hiệu ứng fade/zoom
+ */
+function removeWishlistItem(cardId, title) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+
+  card.style.transform = 'scale(0.9)';
+  card.style.opacity = '0';
+  card.style.transition = 'all 0.3s ease';
+
+  setTimeout(() => {
+    card.remove();
+    updateCounters();
+    showToast(`Đã xóa "${title}" khỏi danh sách yêu thích!`, 'bi-heartbreak-fill text-danger');
+  }, 280);
+}
+
+/**
+ * Cập nhật lại các bộ đếm số lượng Homestay yêu thích
+ */
+function updateCounters() {
+  const count = document.querySelectorAll('.wl-card-col').length;
+  const countBadge = document.getElementById('wishlistCountBadge');
+  const countHeader = document.getElementById('wishlistHeaderCount');
+  const gridSection = document.getElementById('wishlistGridSection');
+  const emptySection = document.getElementById('wishlistEmptySection');
+
+  if (countBadge) countBadge.textContent = count;
+  if (countHeader) countHeader.textContent = count;
+
+  if (count === 0) {
+    if (gridSection) gridSection.classList.add('d-none');
+    if (emptySection) emptySection.classList.remove('d-none');
+  } else {
+    if (gridSection) gridSection.classList.remove('d-none');
+    if (emptySection) emptySection.classList.add('d-none');
+  }
+}
+
+/**
+ * Bộ lọc danh sách Homestay theo khu vực (Khu vực / Tỉnh thành)
+ */
+function filterRegion(region, btnElement) {
+  const pills = document.querySelectorAll('.wl-pill-btn');
+  pills.forEach(p => p.classList.remove('active'));
+  if (btnElement) btnElement.classList.add('active');
+
+  const cardCols = document.querySelectorAll('.wl-card-col');
+  let visibleCount = 0;
+
+  cardCols.forEach(col => {
+    const cardRegion = col.getAttribute('data-region');
+    if (region === 'all' || cardRegion === region) {
+      col.style.display = 'block';
+      visibleCount++;
+    } else {
+      col.style.display = 'none';
+    }
+  });
+
+  if (visibleCount === 0) {
+    showToast(`Không có homestay nào ở khu vực được chọn!`, 'bi-info-circle-fill text-warning');
+  }
+}
+
+/**
+ * Sắp xếp danh sách Homestay (Theo giá, đánh giá, ngày thêm)
+ */
+function sortCards(criteria) {
+  const grid = document.getElementById('homestayGridContainer');
+  if (!grid) return;
+
+  const cardCols = Array.from(grid.querySelectorAll('.wl-card-col'));
+
+  cardCols.sort((a, b) => {
+    const priceA = parseInt(a.getAttribute('data-price') || '0', 10);
+    const priceB = parseInt(b.getAttribute('data-price') || '0', 10);
+    const ratingA = parseFloat(a.getAttribute('data-rating') || '0');
+    const ratingB = parseFloat(b.getAttribute('data-rating') || '0');
+    const dateA = parseInt(a.getAttribute('data-date') || '0', 10);
+    const dateB = parseInt(b.getAttribute('data-date') || '0', 10);
+
+    if (criteria === 'price-asc') return priceA - priceB;
+    if (criteria === 'price-desc') return priceB - priceA;
+    if (criteria === 'rating') return ratingB - ratingA;
+    return dateB - dateA;
+  });
+
+  cardCols.forEach(col => grid.appendChild(col));
+  showToast('Đã sắp xếp lại danh sách homestay!', 'bi-arrow-down-up text-success');
+}
+
+/**
+ * Mở modal xác nhận xóa tất cả
+ */
+function confirmClearAll() {
+  const modalEl = document.getElementById('clearAllModal');
+  if (modalEl) {
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+  }
+}
+
+/**
+ * Thực hiện xóa tất cả sản phẩm
+ */
+function executeClearAll() {
+  const grid = document.getElementById('homestayGridContainer');
+  if (grid) grid.innerHTML = '';
+
+  const modalEl = document.getElementById('clearAllModal');
+  const modalInstance = bootstrap.Modal.getInstance(modalEl);
+  if (modalInstance) modalInstance.hide();
+
+  updateCounters();
+  showToast('Đã xóa toàn bộ danh sách homestay yêu thích!', 'bi-trash-fill text-danger');
+}
+
+/**
+ * Chia sẻ liên kết danh sách yêu thích
+ */
+function copyShareLink() {
+  if (navigator.clipboard) {
     navigator.clipboard.writeText(window.location.href);
-}
-    showToast('Đã sao chép liên kết danh sách yêu thích vào bộ nhớ tạm!', 'link');
-}
-
-    // Direct reserve simulation
-    function reserveDirect(name) {
-    showToast('Đang chuyển hướng đặt phòng: ' + name, 'shopping_bag');
+  }
+  showToast('Đã sao chép liên kết danh sách yêu thích vào khay nhớ tạm!', 'bi-share-fill text-primary');
 }
 
-    function reserveAllWishlist() {
-    showToast('Đang chuẩn bị lộ trình kết hợp cho 3 địa điểm...', 'event_seat');
-}
+/**
+ * Toast Notification Helper
+ */
+function showToast(message, iconClass = 'bi-check-circle-fill text-success') {
+  const toast = document.getElementById('wlToast');
+  const msgEl = document.getElementById('wlToastMsg');
+  const iconEl = document.getElementById('wlToastIcon');
 
-    // Toast Notification helper
-    let toastTimer;
+  if (!toast || !msgEl || !iconEl) return;
 
-    function showToast(message, iconName = 'check_circle') {
-    const toast = document.getElementById('toast-notify');
-    const toastMsg = document.getElementById('toast-msg');
-    const toastIcon = document.getElementById('toast-icon');
+  msgEl.textContent = message;
+  iconEl.className = `bi ${iconClass}`;
+  toast.classList.add('show');
 
-    if (toast && toastMsg && toastIcon) {
-    toastMsg.innerText = message;
-    toastIcon.innerText = iconName;
-    toast.classList.remove('opacity-0', 'pointer-events-none');
-    toast.classList.add('opacity-100');
-
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-    toast.classList.remove('opacity-100');
-    toast.classList.add('opacity-0', 'pointer-events-none');
-}, 3000);
-}
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3200);
 }

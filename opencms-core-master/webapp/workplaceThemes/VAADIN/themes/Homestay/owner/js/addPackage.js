@@ -1,5 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    // 1. CHỨC NĂNG LỌC BỘ NÚT CHUYỂN ĐỔI (Tất cả gói, Gói HOT, Ngắn hạn, Dài hạn)
+    const filterButtons = document.querySelectorAll("#pkg-filter-group .filter-btn");
+    const packageItems = document.querySelectorAll("#packages-container .package-item");
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener("click", function() {
+            // Reset style nút
+            filterButtons.forEach(b => {
+                b.classList.remove("bg-emerald-800", "text-white", "shadow-sm", "font-semibold");
+                b.classList.add("text-slate-600", "hover:bg-slate-200");
+            });
+
+            // Set style active cho nút được click
+            this.classList.remove("text-slate-600", "hover:bg-slate-200");
+            this.classList.add("bg-emerald-800", "text-white", "shadow-sm", "font-semibold");
+
+            const filterValue = this.getAttribute("data-filter");
+
+            // Thực hiện chuyển đổi lọc gói
+            packageItems.forEach(item => {
+                const categories = item.getAttribute("data-category") ? item.getAttribute("data-category").split(" ") : [];
+                if (filterValue === "all" || categories.includes(filterValue)) {
+                    item.style.display = "flex";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    });
+
     // 2. CẤU HÌNH INDEXEDDB
     const dbName = "HomestayAdsDB";
     const storeName = "ad_history";
@@ -16,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
         db = event.target.result;
         if (!db.objectStoreNames.contains(storeName)) {
             const objectStore = db.createObjectStore(storeName, { keyPath: "id", autoIncrement: true });
-            // Tạo index để có thể sắp xếp hoặc tìm kiếm sau này
             objectStore.createIndex("date", "date", { unique: false });
         }
     };
@@ -33,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const transaction = db.transaction([storeName], "readwrite");
         const store = transaction.objectStore(storeName);
 
-        // Tạo ngày giả định
         const today = new Date();
         const dateStr = `${today.getDate().toString().padStart(2,'0')}/${(today.getMonth()+1).toString().padStart(2,'0')}`;
 
@@ -42,14 +70,14 @@ document.addEventListener("DOMContentLoaded", () => {
             price: price,
             date: dateStr,
             status: "Đang chạy",
-            timestamp: new Date().getTime() // Để sort mới nhất lên đầu
+            timestamp: new Date().getTime()
         };
 
         const addRequest = store.add(newRecord);
 
         addRequest.onsuccess = () => {
             alert(`Đã đăng ký thành công gói: ${pkgName}`);
-            loadHistoryFromDB(); // Cập nhật lại UI sau khi thêm
+            loadHistoryFromDB();
         };
 
         addRequest.onerror = () => {
@@ -59,25 +87,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 4. HÀM ĐỌC DỮ LIỆU TỪ INDEXEDDB VÀ HIỂN THỊ RA UI
     function loadHistoryFromDB() {
+        const historyListContainer = document.getElementById("history-list");
+        if (!historyListContainer) return; // Tránh lỗi nếu container không xuất hiện trên UI
+
         const transaction = db.transaction([storeName], "readonly");
         const store = transaction.objectStore(storeName);
         const request = store.getAll();
 
         request.onsuccess = (event) => {
             const historyData = event.target.result;
-            const historyListContainer = document.getElementById("history-list");
 
-            // Sắp xếp mới nhất lên đầu
             historyData.sort((a, b) => b.timestamp - a.timestamp);
-
-            historyListContainer.innerHTML = ""; // Xóa dữ liệu cũ trên UI
+            historyListContainer.innerHTML = "";
 
             if (historyData.length === 0) {
                 historyListContainer.innerHTML = `<p class="text-muted fs-12 text-center py-3">Chưa có lịch sử đăng ký nào.</p>`;
                 return;
             }
 
-            // Render từng item
             historyData.forEach(item => {
                 const formattedPrice = parseInt(item.price).toLocaleString('vi-VN') + " đ";
                 const isLive = item.status === "Đang chạy";
@@ -100,16 +127,91 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    // 5. BẮT SỰ KIỆN CLICK VÀO CÁC NÚT ĐĂNG KÝ GÓI
-    const registerButtons = document.querySelectorAll(".register-btn");
-    registerButtons.forEach(button => {
-        button.addEventListener("click", function() {
-            // Lấy thông tin gói từ data-attributes (đã cài đặt trong HTML)
-            const pkgName = this.getAttribute("data-pkg");
-            const price = this.getAttribute("data-price");
+    // 5. XỬ LÝ QUẢN LÝ POPUP (MODAL) XÁC NHẬN DỊCH VỤ
+    const modal = document.getElementById("confirmModal");
+    const modalPlanName = document.getElementById("modalPlanName");
+    const modalPlanDesc = document.getElementById("modalPlanDesc");
+    const modalPlanDuration = document.getElementById("modalPlanDuration");
+    const modalPlanPrice = document.getElementById("modalPlanPrice");
+    const modalPlanFeatures = document.getElementById("modalPlanFeatures");
 
-            // Gọi hàm thêm vào DB
-            addPackageToHistory(pkgName, price);
-        });
+    const btnCloseX = document.getElementById("btnCloseX");
+    const btnCancel = document.getElementById("btnCancel");
+    const btnConfirm = document.getElementById("btnConfirm");
+
+    let currentSelectedPkg = null;
+
+    // Hàm mở Modal và đổ dữ liệu gói
+    function openModal(btnElement) {
+        const pkgName = btnElement.getAttribute("data-pkg");
+        const rawPrice = btnElement.getAttribute("data-price");
+        const duration = btnElement.getAttribute("data-duration") || "N/A";
+        const desc = btnElement.getAttribute("data-desc") || "";
+        const rawFeatures = btnElement.getAttribute("data-features") || "";
+
+        currentSelectedPkg = {
+            name: pkgName,
+            price: rawPrice
+        };
+
+        // Gán dữ liệu lên Modal UI
+        modalPlanName.textContent = pkgName;
+        modalPlanDesc.textContent = desc;
+        modalPlanDuration.textContent = duration;
+        modalPlanPrice.textContent = parseInt(rawPrice).toLocaleString('vi-VN') + " VNĐ";
+
+        // Tách và dựng danh sách tính năng (Features)
+        modalPlanFeatures.innerHTML = "";
+        if (rawFeatures) {
+            const featuresList = rawFeatures.split(";");
+            featuresList.forEach(feat => {
+                if (feat.trim()) {
+                    const li = document.createElement("li");
+                    li.className = "flex items-center gap-2";
+                    li.innerHTML = `<span class="material-symbols-outlined text-emerald-600 text-sm">check_circle</span> ${feat.trim()}`;
+                    modalPlanFeatures.appendChild(li);
+                }
+            });
+        }
+
+        // Hiện modal
+        modal.classList.add("active");
+    }
+
+    // Hàm đóng Modal
+    function closeModal() {
+        modal.classList.remove("active");
+        currentSelectedPkg = null;
+    }
+
+    // Bắt sự kiện click nút Đăng ký ngay / Kích hoạt gói để bật Modal
+    document.addEventListener("click", function(e) {
+        const btn = e.target.closest(".register-btn");
+        if (btn) {
+            openModal(btn);
+        }
     });
+
+    // Các sự kiện đóng Modal
+    if (btnCloseX) btnCloseX.addEventListener("click", closeModal);
+    if (btnCancel) btnCancel.addEventListener("click", closeModal);
+
+    // Đóng Modal khi bấm ra ngoài vùng nội dung
+    if (modal) {
+        modal.addEventListener("click", function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
+
+    // Bắt sự kiện người dùng bấm "Xác nhận đăng ký"
+    if (btnConfirm) {
+        btnConfirm.addEventListener("click", function() {
+            if (currentSelectedPkg) {
+                addPackageToHistory(currentSelectedPkg.name, currentSelectedPkg.price);
+                closeModal();
+            }
+        });
+    }
 });

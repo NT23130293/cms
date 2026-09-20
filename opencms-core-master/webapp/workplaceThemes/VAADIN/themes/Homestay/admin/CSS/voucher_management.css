@@ -1,0 +1,369 @@
+/* ==========================================================================
+   YÊN HOMESTAY ADMIN - VOUCHER & DISCOUNT MANAGEMENT STYLESHEET
+   File: opencms-core-master/.../admin/CSS/voucher_management.css
+   Chủ đề: 4.8 Quản lý Mã Giảm Giá (Tạo, Chỉnh sửa, Chi tiết & Thống kê)
+   ========================================================================== */
+
+/* --- 1. Voucher Stat Card Accents --- */
+.voucher-stat-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.voucher-stat-icon-wrapper.orange {
+    background-color: #FFEDD5;
+    color: #EA580C;
+}
+
+.voucher-stat-icon-wrapper.green {
+    background-color: #F0FDF4;
+    color: #15803D;
+}
+
+.voucher-stat-icon-wrapper.blue {
+    background-color: #E0F2FE;
+    color: #0284C7;
+}
+
+.voucher-stat-icon-wrapper.purple {
+    background-color: #F3E8FF;
+    color: #9333EA;
+}
+
+.voucher-stat-icon-wrapper .material-symbols-outlined {
+    font-size: 26px;
+}
+
+/* --- 2. Coupon Code Badge in Table --- */
+.voucher-code-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: #FFF7ED;
+    color: #C2410C;
+    border: 1.5px dashed #FDBA74;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+    font-size: 13.5px;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.voucher-code-badge:hover {
+    background: #FFEDD5;
+    border-color: #EA580C;
+    transform: scale(1.02);
+}
+
+.voucher-code-badge .copy-icon {
+    font-size: 14px;
+    color: #EA580C;
+    opacity: 0.8;
+}
+
+/* --- 3. Discount Value & Condition Highlights --- */
+.discount-val-badge {
+    font-weight: 800;
+    color: #15803D;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.discount-condition-sub {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* --- 4. Quota Progress Bar --- */
+.quota-progress-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 130px;
+}
+
+.quota-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.quota-bar-track {
+    height: 6px;
+    background: #F1F5F9;
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+}
+
+.quota-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #EA580C, #F97316);
+    transition: width 0.4s ease;
+}
+
+.quota-bar-fill.high {
+    background: linear-gradient(90deg, #15803D, #22C55E);
+}
+
+.quota-bar-fill.full {
+    background: #DC2626;
+}
+
+/* --- 5. Status Chips for Vouchers --- */
+.voucher-status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.voucher-status-chip.active {
+    background: #DCFCE7;
+    color: #15803D;
+}
+
+.voucher-status-chip.scheduled {
+    background: #FEF3C7;
+    color: #D97706;
+}
+
+.voucher-status-chip.expired {
+    background: #F1F5F9;
+    color: #64748B;
+}
+
+.voucher-status-chip.paused {
+    background: #FEE2E2;
+    color: #B91C1C;
+}
+
+/* --- 6. Visual Ticket Card for Detail Modal --- */
+.voucher-ticket-preview {
+    background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+    border: 2px dashed #FB923C;
+    border-radius: 14px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.08);
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.ticket-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ticket-brand-logo {
+    width: 28px;
+    height: 28px;
+    background: #EA580C;
+    color: #FFFFFF;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.ticket-brand-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #9A3412;
+    letter-spacing: 0.5px;
+}
+
+.ticket-discount-amount {
+    font-size: 28px;
+    font-weight: 800;
+    color: #C2410C;
+    line-height: 1.1;
+    margin-bottom: 4px;
+}
+
+.ticket-program-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #431407;
+    margin-bottom: 8px;
+}
+
+.ticket-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px dashed #FDBA74;
+    font-size: 12px;
+    color: #7C2D12;
+}
+
+.ticket-code-pill {
+    background: #FFFFFF;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-family: monospace;
+    font-size: 14px;
+    color: #EA580C;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* --- 7. Detail KPI Row in Modal --- */
+.modal-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.modal-kpi-card {
+    background: #F8FAFC;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.modal-kpi-lbl {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.modal-kpi-val {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+/* --- 8. Recent Redemptions Table in Modal --- */
+.redemptions-table-wrap {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.redemptions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+}
+
+.redemptions-table th {
+    background: #F8FAFC;
+    padding: 8px 12px;
+    text-align: left;
+    color: var(--text-muted);
+    font-weight: 700;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.redemptions-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #F1F5F9;
+    color: var(--text-main);
+}
+
+/* Action Button Tooltips & States */
+.action-icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: #FFFFFF;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.action-icon-btn:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background: var(--primary-light);
+}
+
+.action-icon-btn.delete:hover {
+    color: #DC2626;
+    border-color: #DC2626;
+    background: #FEF2F2;
+}
+
+.action-icon-btn.toggle:hover {
+    color: #D97706;
+    border-color: #D97706;
+    background: #FFFBEB;
+}
+
+/* Toast alert container */
+.admin-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1E293B;
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.admin-toast.success {
+    background: #065F46;
+    border-left: 4px solid #34D399;
+}
+
+.admin-toast.info {
+    background: #1E40AF;
+    border-left: 4px solid #60A5FA;
+}

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo & Thống kê - Admin YÊN Homestay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="../CSS/admin_sidebar.css">
+    <link rel="stylesheet" href="../CSS/reports_statistics.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="admin-wrapper">
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <a href="admin.html">
+                <img src="../images/logo_white.png" alt="YÊN Logo" class="sidebar-logo-img">
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu" id="adminMenu">
+                <li class="menu-item">
+                    <a href="admin.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">dashboard</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="account_management.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">group</span>
+                        <span>Quản lý tài khoản</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage_homestay.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">cottage</span>
+                        <span>Quản lý Homestay</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="local_content.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">map</span>
+                        <span>Quản lý nội dung địa phương</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage_transactions.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">receipt_long</span>
+                        <span>Quản lý giao dịch</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="ads_management.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">campaign</span>
+                        <span>Quản lý quảng cáo</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="voucher_management.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">local_offer</span>
+                        <span>Quản lý mã giảm giá</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="reports_statistics.html" class="menu-link active">
+                        <span class="material-symbols-outlined menu-icon">bar_chart</span>
+                        <span>Báo cáo & Thống kê</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="complaints_management.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">report_problem</span>
+                        <span>Quản lý báo cáo & Khiếu nại</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="host-profile">
+                <div class="host-icon">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">admin_panel_settings</span>
+                </div>
+                <div class="host-info">
+                    <h4>Admin System</h4>
+                    <p>Quản trị hệ thống</p>
+                </div>
+                <span class="material-symbols-outlined" style="color: #A7F3D0; font-size: 18px;">unfold_more</span>
+            </div>
+            <div class="host-quote">
+                "Hệ thống quản trị YÊN Homestay"
+            </div>
+        </div>
+    </aside>
+
+    <div class="admin-main">
+        <header class="admin-header">
+            <div class="header-left">
+                <div class="header-search">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" class="search-input" placeholder="Tìm kiếm chỉ số, báo cáo, homestay...">
+                </div>
+            </div>
+
+            <div class="admin-header-right">
+                <div class="header-action-btns">
+                    <button class="header-icon-btn" title="Thông báo">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="badge-dot">3</span>
+                    </button>
+                    <button class="header-icon-btn" title="Tin nhắn">
+                        <span class="material-symbols-outlined">chat</span>
+                    </button>
+                </div>
+
+                <div class="header-divider"></div>
+
+                <div class="owner-header-profile-wrapper">
+                    <div class="owner-header-profile" id="adminProfileBtn">
+                        <div class="owner-avatar">A</div>
+                        <div class="owner-info">
+                            <div class="owner-info-top">
+                                <span class="owner-name">Admin System</span>
+                                <span class="owner-role-badge">Quản trị viên</span>
+                            </div>
+                            <span class="owner-subtext">Hệ thống YÊN</span>
+                        </div>
+                        <span class="material-symbols-outlined dropdown-arrow" style="font-size: 18px; color: var(--text-muted); margin-left: 2px;">expand_more</span>
+                    </div>
+
+                    <div class="profile-dropdown-menu" id="adminProfileDropdown">
+                        <div class="dropdown-header">
+                            <strong class="dropdown-user-name">Admin System</strong>
+                            <span class="dropdown-user-email">admin@yenhomestay.com</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="../../user/HTML/login.html" class="dropdown-item text-danger" id="dropdownLogoutBtn">
+                            <span class="material-symbols-outlined">logout</span>
+                            <span>Đăng xuất</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-body-content">
+            <div class="reports-page-header">
+                <div class="reports-page-title-group">
+                    <h1>
+                        <span class="material-symbols-outlined header-title-icon">analytics</span>
+                        Báo Cáo & Thống Kê Sàn YÊN
+                    </h1>
+                    <div class="reports-page-subtitle">Tổng hợp chỉ số kinh doanh, xu hướng booking, tăng trưởng người dùng & hiệu quả vận hành</div>
+                </div>
+
+                <div class="reports-header-actions">
+                    <div class="date-range-wrap">
+                        <span class="material-symbols-outlined">calendar_today</span>
+                        <select class="date-range-select" id="globalDateFilter">
+                            <option value="today">Hôm nay</option>
+                            <option value="7days">7 ngày qua</option>
+                            <option value="30days" selected>Tháng này (Tháng 9/2026)</option>
+                            <option value="this_quarter">Quý 3/2026</option>
+                            <option value="this_year">Năm 2026</option>
+                            <option value="custom">Tùy chỉnh khoảng thời gian...</option>
+                        </select>
+
+                        <div class="custom-date-box" id="customDateBox">
+                            <span class="date-lbl">Từ:</span>
+                            <input type="date" id="startDateInput" class="date-picker-input">
+                            <span class="date-lbl">Đến:</span>
+                            <input type="date" id="endDateInput" class="date-picker-input">
+                            <button class="btn-apply-date" id="btnApplyDate">Lọc</button>
+                        </div>
+                    </div>
+
+                    <button class="btn-export btn-export-excel" onclick="exportReportExcel()">
+                        <span class="material-symbols-outlined">download</span> Xuất Excel
+                    </button>
+                    <button class="btn-export btn-export-pdf" onclick="exportReportPdf()">
+                        <span class="material-symbols-outlined">picture_as_pdf</span> In Báo Cáo
+                    </button>
+                </div>
+            </div>
+
+            <div class="reports-tabs-nav">
+                <button class="tab-btn active" data-tab="revenue">
+                    <span class="material-symbols-outlined">payments</span>
+                    Báo cáo doanh thu
+                </button>
+                <button class="tab-btn" data-tab="booking">
+                    <span class="material-symbols-outlined">book_online</span>
+                    Thống kê Booking
+                </button>
+                <button class="tab-btn" data-tab="tourist">
+                    <span class="material-symbols-outlined">group</span>
+                    Thống kê khách thuê
+                </button>
+                <button class="tab-btn" data-tab="owner">
+                    <span class="material-symbols-outlined">real_estate_agent</span>
+                    Thống kê Owner
+                </button>
+                <button class="tab-btn" data-tab="homestay">
+                    <span class="material-symbols-outlined">cottage</span>
+                    Thống kê Homestay
+                </button>
+                <button class="tab-btn" data-tab="transactions">
+                    <span class="material-symbols-outlined">receipt_long</span>
+                    Thống kê giao dịch
+                </button>
+                <button class="tab-btn" data-tab="vouchers">
+                    <span class="material-symbols-outlined">local_offer</span>
+                    Thống kê mã giảm giá
+                </button>
+                <button class="tab-btn" data-tab="ads">
+                    <span class="material-symbols-outlined">campaign</span>
+                    Thống kê quảng cáo
+                </button>
+            </div>
+
+            <div class="tab-panel-content active" id="tab-revenue">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tổng Doanh Thu Đặt Phòng (GMV)</div>
+                            <div class="kpi-value">3.48 Tỷ VNĐ</div>
+                            <span class="kpi-trend up">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +20.0% so tháng trước
+                            </span>
+                        </div>
+                        <div class="kpi-icon-box green">
+                            <span class="material-symbols-outlined">account_balance_wallet</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Phí Hoa Hồng Sàn YÊN (8%)</div>
+                            <div class="kpi-value">278.4 Triệu</div>
+                            <span class="kpi-trend up">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +19.8%
+                            </span>
+                        </div>
+                        <div class="kpi-icon-box blue">
+                            <span class="material-symbols-outlined">domain</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tiền Cọc Đang Giữ (Escrow)</div>
+                            <div class="kpi-value">685 Triệu</div>
+                            <span class="kpi-trend neutral">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">horizontal_rule</span> 145 Booking giữ cọc
+                            </span>
+                        </div>
+                        <div class="kpi-icon-box purple">
+                            <span class="material-symbols-outlined">lock_clock</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Doanh Thu TB / Đơn Phòng</div>
+                            <div class="kpi-value">895.000đ</div>
+                            <span class="kpi-trend up">
+                                <span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +4.5%
+                            </span>
+                        </div>
+                        <div class="kpi-icon-box amber">
+                            <span class="material-symbols-outlined">price_change</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-grid-2">
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div>
+                                <div class="chart-card-title">
+                                    <span class="material-symbols-outlined">show_chart</span>
+                                    Biểu Đồ Xu Hướng Doanh Thu Theo Tháng
+                                </div>
+                                <div class="chart-card-subtitle">So sánh Doanh thu tổng sàn (GMV) và Doanh thu phí sàn YÊN (8%)</div>
+                            </div>
+                        </div>
+                        <div class="chart-container-box">
+                            <canvas id="chartRevenueTrend"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div>
+                                <div class="chart-card-title">
+                                    <span class="material-symbols-outlined">pie_chart</span>
+                                    Cơ Cấu Doanh Thu Theo Khu Vực
+                                </div>
+                                <div class="chart-card-subtitle">Tỷ lệ đóng góp doanh thu từ các điểm du lịch</div>
+                            </div>
+                        </div>
+                        <div class="chart-container-box">
+                            <canvas id="chartRevenueRegion"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-card-header">
+                        <div class="table-card-title">
+                            <span class="material-symbols-outlined">table_view</span>
+                            Chi Tiết Doanh Thu & Hoa Hồng Theo Khu Vực Du Lịch
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="reports-table">
+                            <thead>
+                            <tr>
+                                <th>Top</th>
+                                <th>Khu Vực Du Lịch</th>
+                                <th>Số Lượng Homestay</th>
+                                <th>Tổng Doanh Thu Đặt Phòng</th>
+                                <th>Phí Sàn YÊN Thu Về (8%)</th>
+                                <th>Mức Tăng Trưởng MoM</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><div class="rank-badge top-1">1</div></td>
+                                <td><strong>Pù Luông (Thanh Hóa)</strong></td>
+                                <td>128 Homestay</td>
+                                <td>1.218.000.000đ</td>
+                                <td><strong style="color: #15803D;">97.440.000đ</strong></td>
+                                <td><span class="badge-status success">+24.5%</span></td>
+                            </tr>
+                            <tr>
+                                <td><div class="rank-badge top-2">2</div></td>
+                                <td><strong>Mai Châu (Hòa Bình)</strong></td>
+                                <td>95 Homestay</td>
+                                <td>765.600.000đ</td>
+                                <td><strong style="color: #15803D;">61.248.000đ</strong></td>
+                                <td><span class="badge-status success">+18.2%</span></td>
+                            </tr>
+                            <tr>
+                                <td><div class="rank-badge top-3">3</div></td>
+                                <td><strong>Mộc Châu (Sơn La)</strong></td>
+                                <td>82 Homestay</td>
+                                <td>626.400.000đ</td>
+                                <td><strong style="color: #15803D;">50.112.000đ</strong></td>
+                                <td><span class="badge-status success">+15.0%</span></td>
+                            </tr>
+                            <tr>
+                                <td><div class="rank-badge">4</div></td>
+                                <td><strong>Sa Pa (Lào Cai)</strong></td>
+                                <td>74 Homestay</td>
+                                <td>522.000.000đ</td>
+                                <td><strong style="color: #15803D;">41.760.000đ</strong></td>
+                                <td><span class="badge-status info">+8.4%</span></td>
+                            </tr>
+                            <tr>
+                                <td><div class="rank-badge">5</div></td>
+                                <td><strong>Đà Lạt (Lâm Đồng)</strong></td>
+                                <td>45 Homestay</td>
+                                <td>243.600.000đ</td>
+                                <td><strong style="color: #15803D;">19.488.000đ</strong></td>
+                                <td><span class="badge-status info">+11.6%</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel-content" id="tab-booking">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tổng Số Lượt Booking</div>
+                            <div class="kpi-value">3.890 Đơn</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +14.2%</span>
+                        </div>
+                        <div class="kpi-icon-box blue"><span class="material-symbols-outlined">book_online</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tỷ Lệ Lấp Đầy (Occupancy)</div>
+                            <div class="kpi-value">76.8%</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +5.2%</span>
+                        </div>
+                        <div class="kpi-icon-box green"><span class="material-symbols-outlined">meeting_room</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Booking Hoàn Thành Chi Trả</div>
+                            <div class="kpi-value">3.480 Đơn (89.5%)</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> Ổn định</span>
+                        </div>
+                        <div class="kpi-icon-box teal"><span class="material-symbols-outlined">verified</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Thời Gian Ở Trung Bình</div>
+                            <div class="kpi-value">2.4 Đêm</div>
+                            <span class="kpi-trend neutral"><span class="material-symbols-outlined" style="font-size: 14px;">horizontal_rule</span> Trung bình cuối tuần</span>
+                        </div>
+                        <div class="kpi-icon-box amber"><span class="material-symbols-outlined">bedtime</span></div>
+                    </div>
+                </div>
+
+                <div class="charts-grid-equal">
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">bar_chart</span> Phân Bổ Booking Thành Công / Hủy Theo Tuần</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartBookingTrend"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">pie_chart</span> Tỷ Lệ Nguồn Đặt Phòng (Traffic Attribution)</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartBookingSource"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel-content" id="tab-tourist">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tổng Du Khách Đăng Ký</div>
+                            <div class="kpi-value">28.450 Người</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +3.120 tháng này</span>
+                        </div>
+                        <div class="kpi-icon-box purple"><span class="material-symbols-outlined">person_add</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tỷ Lệ Khách Quay Lại (Return Rate)</div>
+                            <div class="kpi-value">34.2%</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +2.8%</span>
+                        </div>
+                        <div class="kpi-icon-box green"><span class="material-symbols-outlined">replay</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Đánh Giá Hài Lòng Trung Bình</div>
+                            <div class="kpi-value">4.85 / 5 ⭐</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">star</span> 4.520 lượt review</span>
+                        </div>
+                        <div class="kpi-icon-box amber"><span class="material-symbols-outlined">star_rate</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tỷ Lệ Du Khách Quốc Tế</div>
+                            <div class="kpi-value">18.5%</div>
+                            <span class="kpi-trend info"><span class="material-symbols-outlined" style="font-size: 14px;">public</span> Pháp, Đức, Nhật</span>
+                        </div>
+                        <div class="kpi-icon-box blue"><span class="material-symbols-outlined">travel_explore</span></div>
+                    </div>
+                </div>
+
+                <div class="charts-grid-equal">
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">trending_up</span> Tăng Trưởng Người Dùng Du Khách Mới</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartTouristGrowth"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">groups</span> Cơ Cấu Độ Tuổi Du Khách Sàn YÊN</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartTouristAge"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel-content" id="tab-owner">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tổng Số Chủ Nhà (Owners)</div>
+                            <div class="kpi-value">320 Đối Tác</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +18 mới tháng này</span>
+                        </div>
+                        <div class="kpi-icon-box blue"><span class="material-symbols-outlined">real_estate_agent</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Owner Đang Hoạt Động (Active)</div>
+                            <div class="kpi-value">285 Owner (89.0%)</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">verified</span> Chất lượng cao</span>
+                        </div>
+                        <div class="kpi-icon-box green"><span class="material-symbols-outlined">task_alt</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Thời Gian Duyệt Phòng TB</div>
+                            <div class="kpi-value">12 Phút</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">speed</span> Rất nhanh</span>
+                        </div>
+                        <div class="kpi-icon-box purple"><span class="material-symbols-outlined">timer</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tỷ Lệ Phản Hỏi Tin Nhắn</div>
+                            <div class="kpi-value">96.5%</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">chat</span> Dưới 5 phút</span>
+                        </div>
+                        <div class="kpi-icon-box teal"><span class="material-symbols-outlined">mark_chat_read</span></div>
+                    </div>
+                </div>
+
+                <div class="charts-grid-equal">
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">leaderboard</span> Top Homestay Owner Doanh Thu Cao Nhất</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartOwnerPerformance"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">stars</span> Phân Bổ Đánh Giá Chất Lượng Phục Vụ Owner</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartOwnerRating"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel-content" id="tab-homestay">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tổng Homestay Niêm Yết</div>
+                            <div class="kpi-value">450 Homestay</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +25 chờ thẩm định</span>
+                        </div>
+                        <div class="kpi-icon-box green"><span class="material-symbols-outlined">cottage</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Homestay Đang Hoạt Động</div>
+                            <div class="kpi-value">395 Homestay</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">check_circle</span> 87.7% khả dụng</span>
+                        </div>
+                        <div class="kpi-icon-box blue"><span class="material-symbols-outlined">house_siding</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Hồ Sơ Đăng Ký Chờ Phê Duyệt</div>
+                            <div class="kpi-value">25 Hồ Sơ</div>
+                            <span class="kpi-trend neutral"><span class="material-symbols-outlined" style="font-size: 14px;">pending</span> Trong 48 giờ</span>
+                        </div>
+                        <div class="kpi-icon-box amber"><span class="material-symbols-outlined">pending_actions</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Giá Thuê Trung Bình / Đêm</div>
+                            <div class="kpi-value">850.000đ</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> Từ 550k - 2.5Tr</span>
+                        </div>
+                        <div class="kpi-icon-box rose"><span class="material-symbols-outlined">sell</span></div>
+                    </div>
+                </div>
+
+                <div class="charts-grid-equal">
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">location_on</span> Mật Độ Phân Bổ Homestay Theo Khu Vực</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartHomestayRegionCount"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">pie_chart</span> Tỷ Lệ Trạng Thái Niêm Yết Homestay</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartHomestayStatus"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel-content" id="tab-transactions">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tổng Giá Trị Giao Dịch</div>
+                            <div class="kpi-value">12.4 Tỷ VNĐ</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> 100% Khách chuyển tiền</span>
+                        </div>
+                        <div class="kpi-icon-box green"><span class="material-symbols-outlined">receipt_long</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tỷ Lệ Giao Dịch Thành Công</div>
+                            <div class="kpi-value">98.4%</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">check</span> Cổng thanh toán ổn định</span>
+                        </div>
+                        <div class="kpi-icon-box blue"><span class="material-symbols-outlined">verified_user</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Yêu Cầu Hoàn Tiền Chờ Duyệt</div>
+                            <div class="kpi-value">2 Đơn (14.5M)</div>
+                            <span class="kpi-trend neutral"><span class="material-symbols-outlined" style="font-size: 14px;">schedule</span> Do thời tiết</span>
+                        </div>
+                        <div class="kpi-icon-box rose"><span class="material-symbols-outlined">assignment_return</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Cổng Thanh Toán Phổ Biến Nhất</div>
+                            <div class="kpi-value">VNPay QR (45%)</div>
+                            <span class="kpi-trend info"><span class="material-symbols-outlined" style="font-size: 14px;">qr_code_2</span> Tiếp theo là MoMo</span>
+                        </div>
+                        <div class="kpi-icon-box purple"><span class="material-symbols-outlined">credit_card</span></div>
+                    </div>
+                </div>
+
+                <div class="charts-grid-equal">
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">donut_large</span> Tỷ Lệ Sử Dụng Các Cổng Thanh Toán</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartGatewayVolume"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">bar_chart</span> Số Lượng Giao Dịch Phân Theo Loại Hình</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartTransactionTypes"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel-content" id="tab-vouchers">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tổng Lượt Dùng Voucher</div>
+                            <div class="kpi-value">12.450 Lượt</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +3.420 lượt tháng này</span>
+                        </div>
+                        <div class="kpi-icon-box rose"><span class="material-symbols-outlined">local_offer</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Ngân Sách Ưu Đãi Đã Tài Trợ</div>
+                            <div class="kpi-value">340.5 Triệu</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> Hiệu quả chuyển đổi cao</span>
+                        </div>
+                        <div class="kpi-icon-box amber"><span class="material-symbols-outlined">savings</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tỷ Số Doanh Thu Đem Lại (ROAS)</div>
+                            <div class="kpi-value">x8.4 Lần</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> 1đ giảm giá sinh 8.4đ GMV</span>
+                        </div>
+                        <div class="kpi-icon-box green"><span class="material-symbols-outlined">auto_graph</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Mã Hot Nhất (Top Redemptions)</div>
+                            <div class="kpi-value">YENNEW2026</div>
+                            <span class="kpi-trend info"><span class="material-symbols-outlined" style="font-size: 14px;">local_fire_department</span> 4.850 lượt dùng</span>
+                        </div>
+                        <div class="kpi-icon-box purple"><span class="material-symbols-outlined">confirmation_number</span></div>
+                    </div>
+                </div>
+
+                <div class="charts-grid-equal">
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">leaderboard</span> Top 5 Voucher Được Sử Dụng Nhiều Nhất</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartVoucherRedemption"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">show_chart</span> Xu Hướng Tỷ Số Tăng Trưởng Doanh Thu ROAS từ Voucher</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartVoucherRoi"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel-content" id="tab-ads">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tổng Lượt Hiển Thị (Impressions)</div>
+                            <div class="kpi-value">1.84M Lượt</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> +32.5%</span>
+                        </div>
+                        <div class="kpi-icon-box purple"><span class="material-symbols-outlined">visibility</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tỷ Lệ Click CTR Trung Bình</div>
+                            <div class="kpi-value">8.59%</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> Cao hơn 2.4% chuẩn</span>
+                        </div>
+                        <div class="kpi-icon-box green"><span class="material-symbols-outlined">ads_click</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Tổng Chi Phí Ads (Ad Spend)</div>
+                            <div class="kpi-value">120 Triệu</div>
+                            <span class="kpi-trend neutral"><span class="material-symbols-outlined" style="font-size: 14px;">horizontal_rule</span> 4 Chiến dịch active</span>
+                        </div>
+                        <div class="kpi-icon-box blue"><span class="material-symbols-outlined">campaign</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div>
+                            <div class="kpi-title">Doanh Thu Tạo Ra Từ Ads (Ad Revenue)</div>
+                            <div class="kpi-value">890 Triệu</div>
+                            <span class="kpi-trend up"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> ROAS x7.4</span>
+                        </div>
+                        <div class="kpi-icon-box amber"><span class="material-symbols-outlined">monetization_on</span></div>
+                    </div>
+                </div>
+
+                <div class="charts-grid-equal">
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">monitoring</span> Xu Hướng Lượt Hiển Thị Banner Quảng Cáo (Impressions)</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartAdsImpressions"></canvas></div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-card-header">
+                            <div class="chart-card-title"><span class="material-symbols-outlined">touch_app</span> Tỷ Lệ Click CTR Theo Vị Trí Quảng Cáo (Ad Slot)</div>
+                        </div>
+                        <div class="chart-container-box"><canvas id="chartAdsCtr"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<script src="../JS/reports_statistics.js"></script>
+</body>
+</html>

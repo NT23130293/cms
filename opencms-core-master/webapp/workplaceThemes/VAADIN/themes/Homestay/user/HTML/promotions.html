@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mã Giảm Giá Homestay - YÊN Homestay</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <link rel="stylesheet" href="../CSS/promotions.css">
+</head>
+<body>
+
+    <!-- Header Navigation Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <main class="promotions-main-layout">
+      <div class="container">
+
+        <!-- Banner Hero Khuyến Mãi Đồng Bộ Phong Cách Homepage -->
+        <div class="promo-hero-wrapper">
+            <div class="promo-hero-top">
+                <div class="promo-hero-title-group">
+                    <div class="promo-badge-top">
+                        <i class="bi bi-gift-fill"></i> Ưu đãi độc quyền cho du khách YÊN
+                    </div>
+                    <h1 class="promo-hero-title">Kho Mã Giảm Giá Homestay</h1>
+                    <p class="promo-hero-subtitle">
+                        Khám phá mã giảm giá riêng cho từng Homestay tại Đà Nẵng, Đà Lạt, Sapa, Ninh Bình và Huế để tiết kiệm chi phí cho chuyến du lịch của bạn.
+                    </p>
+                </div>
+
+                <!-- Ô Nhập Mã Khuyến Mãi (Khung Viền Vàng Sang Trọng) -->
+                <div class="promo-redeem-gold-box">
+                    <i class="bi bi-ticket-perforated-fill"></i>
+                    <input type="text" id="redeemCodeInput" placeholder="Nhập mã ưu đãi (Ví dụ: HANRIVER200)...">
+                    <button class="btn-redeem-gold" onclick="submitRedeemCode()">
+                        Kích hoạt mã
+                    </button>
+                </div>
+            </div>
+
+            <!-- Thống Kê Nhanh -->
+            <div class="promo-stats-bar">
+                <div class="p-stat-item">
+                    <div class="p-stat-icon">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+                    <div class="p-stat-info">
+                        <p class="v-val" id="statSavedCount">4 mã</p>
+                        <p class="v-lbl">Mã đã lưu trong Ví</p>
+                    </div>
+                </div>
+
+                <div class="p-stat-item">
+                    <div class="p-stat-icon">
+                        <i class="bi bi-house-heart"></i>
+                    </div>
+                    <div class="p-stat-info">
+                        <p class="v-val">16 Homestay</p>
+                        <p class="v-lbl">Đang có chương trình ưu đãi</p>
+                    </div>
+                </div>
+
+                <div class="p-stat-item">
+                    <div class="p-stat-icon">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
+                    <div class="p-stat-info">
+                        <p class="v-val" id="statUrgentCount">1 mã</p>
+                        <p class="v-lbl">Mã sắp hết hạn trong 3 ngày</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thanh Tìm Kiếm & Toolbar Đồng Bộ Cao Cấp -->
+        <div class="promo-toolbar-wrap">
+            <div class="promo-mode-row">
+                <!-- Tab Chuyển Đổi Danh Mục (Bên Trái) -->
+                <div class="mode-tab-box">
+                    <button class="btn-mode-tab active" onclick="switchModeTab('hub', this)">
+                        <i class="bi bi-grid-fill"></i> Tất cả Voucher
+                        <span class="cnt" id="countHub">16</span>
+                    </button>
+                    <button class="btn-mode-tab" onclick="switchModeTab('wallet', this)">
+                        <i class="bi bi-bookmark-star-fill"></i> Ví voucher của tôi
+                        <span class="cnt" id="countWallet">4</span>
+                    </button>
+                </div>
+
+                <!-- Ô Tìm Kiếm Theo Tên Homestay (Bên Phải Gọn Gàng, Sang Trọng) -->
+                <div class="search-hs-box">
+                    <div class="search-icon-badge">
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <input type="text" id="searchHomestayInput" placeholder="Tìm tên homestay hoặc địa danh (Topas, Đà Lạt)...">
+                    <button type="button" class="btn-search-clear" id="searchClearBtn" onclick="clearSearchInput()" title="Xóa tìm kiếm">
+                        <i class="bi bi-x-circle-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- =======================================================
+             CÁC KHỐI SECTION DỌC ĐỒNG BỘ CHUẨN SECTION HOMEPAGE
+             ======================================================= -->
+
+        <!-- SECTION 1: VOUCHER HOT NHẤT HÔM NAY -->
+        <section class="promo-section-block">
+            <div class="section-header-hp">
+                <div>
+                    <span class="section-badge-top">
+                        <span class="nearby-dot"></span> ĐẶC BIỆT HOT
+                    </span>
+                    <h2 class="section-title">Voucher Hot Nhất Hôm Nay</h2>
+                    <p class="section-subtitle">Mã ưu đãi homestay siêu hot đang được nhiều du khách săn đón nhất</p>
+                </div>
+                <a href="javascript:void(0)" class="nearby-view-all" onclick="switchModeTab('hub', document.querySelector('.btn-mode-tab'))">
+                    Xem tất cả <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+            <div class="vouchers-grid" id="gridHot">
+                <!-- Rendered dynamically by promotions.js -->
+            </div>
+        </section>
+
+        <!-- SECTION 2: MÃ GIẢM GIÁ MỚI PHÁT HÀNH -->
+        <section class="promo-section-block">
+            <div class="section-header-hp">
+                <div>
+                    <span class="section-badge-top">
+                        <span class="nearby-dot green"></span> CẬP NHẬT MỚI
+                    </span>
+                    <h2 class="section-title">Mã Giảm Giá Mới Phát Hành</h2>
+                    <p class="section-subtitle">Voucher vừa cập nhật dành riêng cho các homestay mới niêm yết trong tháng</p>
+                </div>
+                <a href="javascript:void(0)" class="nearby-view-all">
+                    Xem tất cả <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+            <div class="vouchers-grid" id="gridNew">
+                <!-- Rendered dynamically by promotions.js -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: VOUCHER ĐÃ DÙNG NHIỀU NHẤT -->
+        <section class="promo-section-block">
+            <div class="section-header-hp">
+                <div>
+                    <span class="section-badge-top">
+                        <span class="nearby-dot amber"></span> THÂN THIỆN DU KHÁCH
+                    </span>
+                    <h2 class="section-title">Voucher Dùng Nhiều Nhất</h2>
+                    <p class="section-subtitle">Top các mã được du khách quy đổi đặt phòng thành công cao nhất tuần qua</p>
+                </div>
+                <a href="javascript:void(0)" class="nearby-view-all">
+                    Xem tất cả <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+            <div class="vouchers-grid" id="gridMostUsed">
+                <!-- Rendered dynamically by promotions.js -->
+            </div>
+        </section>
+
+        <!-- SECTION 4: ĐẶC QUYỀN VIP & VILLA NGUYÊN CĂN -->
+        <section class="promo-section-block">
+            <div class="section-header-hp">
+                <div>
+                    <span class="section-badge-top">
+                        <span class="nearby-dot purple"></span> SANG TRỌNG & RIÊNG TƯ
+                    </span>
+                    <h2 class="section-title">Đặc Quyền VIP & Villa Nguyên Căn</h2>
+                    <p class="section-subtitle">Dành riêng cho khách lưu trú biệt thự nghỉ dưỡng và homestay cao cấp</p>
+                </div>
+                <a href="javascript:void(0)" class="nearby-view-all">
+                    Xem tất cả <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+            <div class="vouchers-grid" id="gridVip">
+                <!-- Rendered dynamically by promotions.js -->
+            </div>
+        </section>
+
+      </div>
+    </main>
+
+    <div class="v-modal-overlay" id="voucherTermsModalOverlay">
+        <div class="v-modal-card">
+            <div class="v-modal-header">
+                <div>
+                    <h3>Điều Kiện Sử Dụng: <span id="mTitleCode">HANRIVER200</span></h3>
+                </div>
+                <button class="v-modal-close-btn" onclick="closeVoucherTermsModal()">&times;</button>
+            </div>
+
+            <div class="v-modal-body">
+                <p class="fw-bold text-dark mb-2" id="mTitleDesc">Nội dung ưu đãi...</p>
+
+                <h4 class="fs-6 fw-bold text-secondary mt-3 mb-2">Quy định áp dụng:</h4>
+                <ul class="terms-list" id="mTermsList">
+                    <!-- Dynamic terms rendered by JS -->
+                </ul>
+
+                <div class="d-flex justify-content-end gap-2 mt-3">
+                    <button class="btn-noti-tool" onclick="closeVoucherTermsModal()">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notice Floating -->
+    <div class="promo-toast" id="promoToast">
+        <i class="bi bi-check-circle-fill"></i>
+        <span id="promoToastMsg">Thông báo hệ thống</span>
+    </div>
+    
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="../JS/homepage.js"></script>
+    <script src="../JS/promotions.js"></script>
+</body>
+</html>

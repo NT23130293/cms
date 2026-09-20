@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Quản lý Đánh giá & Phản hồi du khách</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/manageReviews.css">
+    <link rel="stylesheet" href="../css/manageMission.css">
+    <script src="../js/manageReviews.js"></script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+
+<div id="sidebar-container"></div>
+
+<main class="w-full pt-16 bg-surface px-space-lg py-space-lg min-h-screen">
+    <div id="header-container"></div>
+
+    <div class="flex flex-col w-full gap-space-lg">
+
+        <!-- Top Action & Context Banner -->
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_2px_12px_rgba(21,67,50,0.05)] relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-secondary-container/20 pointer-events-none blur-2xl"></div>
+            <div class="flex flex-col gap-space-xs z-10 max-w-2xl">
+                <div class="flex items-center gap-space-xs">
+                    <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wide inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">star</span> Trải nghiệm &amp; Uy tín
+                    </span>
+                </div>
+                <h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Quản lý Đánh giá &amp; Phản hồi du khách</h1>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Lắng nghe cảm nhận thực tế từ lữ khách ghé thăm Nhà Sàn Mộc. Duy trì chỉ số phản hồi tích cực để giữ vững vị thế top Ecolodge tại Mai Châu.</p>
+            </div>
+
+            <!-- Action Toolbar -->
+            <div class="flex flex-wrap items-center gap-space-sm z-10">
+                <button type="button" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-space-md py-2 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5 transition-colors shadow-sm">
+                    <span class="material-symbols-outlined text-[18px] text-secondary">download</span> Xuất báo cáo đánh giá
+                </button>
+                <button type="button" class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-2 rounded-lg font-label-lg text-label-lg flex items-center gap-1.5 transition-all shadow-[0_2px_8px_rgba(21,67,50,0.25)] hover:shadow-md">
+                    <span class="material-symbols-outlined text-[18px]">settings</span> Cấu hình mẫu phản hồi nhanh
+                </button>
+            </div>
+        </div>
+
+        <!-- Metric Highlights (Stats Grid) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_8px_rgba(21,67,50,0.04)] hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">ĐIỂM ĐÁNH GIÁ TRUNG BÌNH</span>
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[24px]">grade</span>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span class="font-display-lg text-display-lg text-primary font-bold">4.92<span class="text-xl text-on-surface-variant font-normal">/5.0</span></span>
+                    </div>
+                    <div class="flex items-center gap-1.5 mt-1 font-label-md text-label-md text-secondary">
+                        <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm font-bold">Xuất sắc</span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-surface-container flex justify-between items-center text-xs text-on-surface-variant">
+                    <span>Tổng số phản hồi</span>
+                    <strong class="font-label-md text-on-surface">148 lượt đánh giá</strong>
+                </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_8px_rgba(21,67,50,0.04)] hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">TỶ LỆ PHẢN HỒI</span>
+                        <div class="w-12 h-12 rounded-xl bg-secondary-container/60 text-secondary flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[24px]">forum</span>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span class="font-display-lg text-display-lg text-on-surface font-bold">98.5%</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 mt-1 font-label-md text-label-md text-secondary">
+                        <span class="material-symbols-outlined text-[16px]">schedule</span> <span class="text-on-surface-variant font-normal text-xs">Thời gian trả lời TB: <strong>10 phút</strong></span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-surface-container flex justify-between items-center text-xs text-on-surface-variant">
+                    <span>Đạt chuẩn SuperHost</span>
+                    <strong class="text-secondary font-bold">Duy trì ấn tượng</strong>
+                </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_8px_rgba(21,67,50,0.04)] hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">CHƯA PHẢN HỒI</span>
+                        <div class="w-12 h-12 rounded-xl bg-red-100 text-red-700 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[24px]">error</span>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span class="font-display-lg text-display-lg text-error font-bold">03<span class="text-xl text-on-surface-variant font-normal"> lượt</span></span>
+                    </div>
+                    <div class="flex items-center gap-1.5 mt-1 font-label-md text-label-md text-error">
+                        <span class="text-xs">Cần trả lời sớm để giữ huy hiệu SuperHost</span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-surface-container flex justify-between items-center text-xs text-on-surface-variant">
+                    <span>Thời hạn ưu tiên</span>
+                    <strong class="text-error font-bold">Trước 21:00 hôm nay</strong>
+                </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_8px_rgba(21,67,50,0.04)] hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">CÓ ẢNH &amp; VIDEO</span>
+                        <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-[24px]">photo_library</span>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-space-xs mt-0.5">
+                        <span class="font-display-lg text-display-lg text-on-surface font-bold">86<span class="text-xl text-on-surface-variant font-normal"> lượt</span></span>
+                    </div>
+                    <div class="flex items-center gap-1.5 mt-1 font-label-md text-label-md text-sky-700">
+                        <span class="material-symbols-outlined text-[16px]">trending_up</span> <span class="text-xs font-semibold">+15% Tỷ lệ chốt phòng</span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-surface-container flex justify-between items-center text-xs text-on-surface-variant">
+                    <span>Tài nguyên hình ảnh</span>
+                    <strong class="font-label-md text-on-surface">Chất lượng cao</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Toolbar -->
+        <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-sm">
+            <div class="flex flex-wrap items-center gap-2" id="filter-buttons">
+                <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-primary text-on-primary rounded-lg shadow-sm">
+                    Tất cả đánh giá (148)
+                </button>
+                <button type="button" data-filter="unreplied" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors flex items-center gap-1">
+                    Chưa phản hồi <span class="px-1.5 py-0.2 rounded-full bg-error text-on-error text-[10px] font-bold">3</span>
+                </button>
+                <button type="button" data-filter="5" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">
+                    5 Sao (124)
+                </button>
+                <button type="button" data-filter="4" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">
+                    4 Sao (18)
+                </button>
+                <button type="button" data-filter="3" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">
+                    3 Sao (4)
+                </button>
+                <button type="button" data-filter="2" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">
+                    2 Sao (1)
+                </button>
+                <button type="button" data-filter="1" class="filter-btn px-3 py-1.5 text-label-md font-label-md bg-surface-container-low hover:bg-surface-container text-on-surface-variant rounded-lg transition-colors">
+                    1 Sao (1)
+                </button>
+            </div>
+
+            <div class="flex items-center gap-space-sm">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+                    <input type="text" placeholder="Tìm theo tên khách, nội dung..." class="py-1.5 pl-9 pr-3 rounded-lg border border-outline-variant bg-surface-container-low font-body-sm text-on-surface outline-none focus:border-secondary w-60">
+                </div>
+                <select class="py-1.5 px-3 rounded-lg border border-outline-variant bg-surface-container-low font-body-sm text-on-surface outline-none">
+                    <option>Tất cả loại phòng</option>
+                    <option>Mountain View 201</option>
+                    <option>Bungalow Ven Suối</option>
+                    <option>Nhà Sàn Tập Thể</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Main Section: Feedback List & Analysis Sidebar -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+
+            <!-- Reviews List Column (Column 8/12) -->
+            <div class="lg:col-span-8 flex flex-col gap-space-md">
+
+                <!-- Review 1 -->
+                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-3" data-rating="5" data-replied="true">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-200 text-emerald-900 font-bold flex items-center justify-center shrink-0">NM</div>
+                            <div>
+                                <h4 class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-2">
+                                    Nguyễn Thị Mai
+                                    <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-[10px]">Khách quen (3 chuyến)</span>
+                                </h4>
+                                <p class="font-body-sm text-xs text-on-surface-variant flex items-center gap-1 mt-0.5">
+                                    <span class="material-symbols-outlined text-[14px]">door_open</span> Phòng Mountain View 201 • Lưu trú: 14/10 - 16/10/2024
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="flex text-amber-500 text-sm">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <span class="text-[11px] text-on-surface-variant">2 ngày trước</span>
+                        </div>
+                    </div>
+
+                    <p class="font-body-md text-on-surface text-sm leading-relaxed">
+                        Chuyến đi Mai Châu tuyệt vời hơn kỳ vọng rất nhiều! Phòng 201 có ban công ngắm trọn thung lũng, sáng sớm mở cửa mây lững lờ trôi vào tận giường luôn. Anh An chủ nhà vô cùng chu đáo, tự tay chuẩn bị món cá suối nướng mắc khén thơm lừng và chèn trà shan tuyết ấm nóng. Không gian sạch sẽ, ấm cúng và giữ được trọn vẹn nét văn hóa nhà sàn Thái cổ. Chắc chắn gia đình mình sẽ quay lại vào dịp cuối năm!
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-2 my-1">
+                        <div class="relative h-24 rounded-lg overflow-hidden bg-surface-container">
+                            <img id="img1" class="w-full h-full object-cover" alt="Ban công ngắm mây">
+                            <span class="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/60 text-white text-[10px] rounded">Ban công ngắm mây</span>
+                        </div>
+                        <div class="relative h-24 rounded-lg overflow-hidden bg-surface-container">
+                            <img id="img2" class="w-full h-full object-cover" alt="Cá suối & cơm lam">
+                            <span class="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/60 text-white text-[10px] rounded">Cá suối &amp; cơm lam</span>
+                        </div>
+                        <div class="relative h-24 rounded-lg overflow-hidden bg-surface-container">
+                            <img id="img3" class="w-full h-full object-cover" alt="Kiến trúc nhà sàn">
+                            <span class="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/60 text-white text-[10px] rounded">Kiến trúc Nhà Sàn</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-container-low p-space-md rounded-lg border-l-4 border-secondary flex flex-col gap-1.5 mt-1">
+                        <div class="flex items-center justify-between">
+                            <span class="font-label-md text-xs text-secondary font-bold flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">subheader_pawn</span> Phản hồi từ Nhà Sàn Mộc (Chủ nhà An) • 1 ngày trước
+                            </span>
+                            <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-label-sm text-[10px] font-semibold">Đã gửi voucher tri ân</span>
+                        </div>
+                        <p class="font-body-sm text-xs text-on-surface leading-relaxed">
+                            Dạ Nhà Sàn Mộc xin chân thành cảm ơn chị Mai và gia đình đã gửi gắm những ngày nghỉ thu trọn vẹn tại bản làng. Mộc rất vui khi chị yêu thích món cá suối nướng! Em đã gửi tặng chị mã ưu đãi <strong>TRIANMOC10</strong> giảm 10% cho kỳ nghỉ mùa hoa mận tháng 12 tới. Chúc chị và gia đình luôn dồi dào sức khỏe và bình an!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-3" data-rating="5" data-replied="false">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-sky-200 text-sky-900 font-bold flex items-center justify-center shrink-0">HA</div>
+                            <div>
+                                <h4 class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-2">
+                                    Hoàng Minh Anh
+                                    <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Khách vãng lai</span>
+                                </h4>
+                                <p class="font-body-sm text-xs text-on-surface-variant flex items-center gap-1 mt-0.5">
+                                    <span class="material-symbols-outlined text-[14px]">house</span> Bungalow Ven Suối 102 • Lưu trú: 16/10 - 18/10/2024
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="flex text-amber-500 text-sm">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <span class="text-[11px] text-error font-bold">Chưa phản hồi (Mới 8h)</span>
+                        </div>
+                    </div>
+
+                    <p class="font-body-md text-on-surface text-sm leading-relaxed">
+                        Không gian tĩnh lặng đúng nghĩa để healing. Đêm nằm trong bungalow nghe tiếng suối chảy róc rách cực kỳ dễ ngủ. Đặc biệt là bạn hướng dẫn viên người bản địa dẫn tour trekking đồi chè và thác Pùng rất nhiệt tình, am hiểu từng nếp sinh hoạt địa phương. 10/10 điểm cho sự hiếu khách!
+                    </p>
+
+                    <div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-2 mt-1 border border-outline-variant/30">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-label-md text-on-surface font-bold flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px] text-secondary">chat</span> Gửi phản hồi cho bạn Hoàng Minh Anh
+                            </span>
+                            <span class="text-on-surface-variant text-[11px]">Gợi ý câu mẫu nhanh:</span>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <button type="button" class="px-2.5 py-1 rounded bg-surface-container-lowest border border-outline-variant/50 text-[11px] hover:bg-surface-container transition-colors text-on-surface">Cảm ơn quý khách rất nhiều!</button>
+                            <button type="button" class="px-2.5 py-1 rounded bg-surface-container-lowest border border-outline-variant/50 text-[11px] hover:bg-surface-container transition-colors text-on-surface">Rất vui được đón tiếp bạn và gia đình</button>
+                            <button type="button" class="px-2.5 py-1 rounded bg-surface-container-lowest border border-outline-variant/50 text-[11px] hover:bg-surface-container transition-colors text-on-surface">Hẹn gặp lại mùa lúa chín!</button>
+                        </div>
+                        <textarea placeholder="Nhập lời cảm ơn hoặc giải đáp của Nhà Sàn Mộc tới du khách..." class="w-full p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-xs text-on-surface outline-none focus:border-secondary h-20 resize-none"></textarea>
+                        <div class="flex items-center justify-between pt-1">
+                            <span class="text-[11px] text-secondary flex items-center gap-1 font-medium">
+                                <span class="material-symbols-outlined text-[14px]">auto_awesome</span> AI Tone: Lịch thiệp &amp; Mộc mạc ấm áp
+                            </span>
+                            <div class="flex items-center gap-2">
+                                <button type="button" class="px-3 py-1.5 text-xs text-on-surface-variant hover:text-on-surface">Lưu nháp</button>
+                                <button type="button" class="bg-primary hover:bg-primary-container text-on-primary px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1">Gửi phản hồi <span class="material-symbols-outlined text-[14px]">send</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-3" data-rating="4" data-replied="false">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-amber-200 text-amber-900 font-bold flex items-center justify-center shrink-0">TB</div>
+                            <div>
+                                <h4 class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-2">
+                                    Trần Quốc Bảo
+                                    <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Nhóm phượt 6 người</span>
+                                </h4>
+                                <p class="font-body-sm text-xs text-on-surface-variant flex items-center gap-1 mt-0.5">
+                                    <span class="material-symbols-outlined text-[14px]">groups</span> Nhà Sàn Tập Thể • Lưu trú: 17/10 - 18/10/2024
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="flex text-amber-500 text-sm">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+                            </div>
+                            <span class="px-2 py-0.5 rounded bg-error text-on-error font-label-sm text-[10px] font-bold inline-block mt-0.5">Chưa phản hồi</span>
+                        </div>
+                    </div>
+
+                    <p class="font-body-md text-on-surface text-sm leading-relaxed">
+                        Không khí trong lành tuyệt đối, ngắm trọn cảnh đồng lúa chín vàng ươm. Đồ ăn buổi tối rất ngon và ấm cúng. Tuy nhiên vào buổi trưa mùa hè thì gian nhà sàn hơi hầm nóng một chút, homestay nên bổ sung thêm quạt cây công suất lớn hoặc bố trí rèm che nắng hướng tây để giấc trưa thoải mái hơn nhé.
+                    </p>
+
+                    <div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-2 mt-1 border border-outline-variant/30">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-label-md text-on-surface font-bold flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px] text-secondary">chat</span> Gửi phản hồi cho bạn Trần Quốc Bảo
+                            </span>
+                            <span class="text-on-surface-variant text-[11px]">Gợi ý câu mẫu nhanh:</span>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <button type="button" class="px-2.5 py-1 rounded bg-surface-container-lowest border border-outline-variant/50 text-[11px] hover:bg-surface-container transition-colors text-on-surface">Cảm ơn bạn đã góp ý chân thành!</button>
+                            <button type="button" class="px-2.5 py-1 rounded bg-surface-container-lowest border border-outline-variant/50 text-[11px] hover:bg-surface-container transition-colors text-on-surface">Mộc sẽ tiếp thu và trang bị thêm quạt ngay</button>
+                            <button type="button" class="px-2.5 py-1 rounded bg-surface-container-lowest border border-outline-variant/50 text-[11px] hover:bg-surface-container transition-colors text-on-surface">Rất mong được đón tiếp bạn lần sau!</button>
+                        </div>
+                        <textarea placeholder="Nhập lời cảm ơn hoặc giải đáp của Nhà Sàn Mộc tới du khách..." class="w-full p-2.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-xs text-on-surface outline-none focus:border-secondary h-20 resize-none"></textarea>
+                        <div class="flex items-center justify-between pt-1">
+                            <span class="text-[11px] text-secondary flex items-center gap-1 font-medium">
+                                <span class="material-symbols-outlined text-[14px]">auto_awesome</span> AI Tone: Lịch thiệp &amp; Tiếp thu cầu thị
+                            </span>
+                            <div class="flex items-center gap-2">
+                                <button type="button" class="px-3 py-1.5 text-xs text-on-surface-variant hover:text-on-surface">Lưu nháp</button>
+                                <button type="button" class="bg-primary hover:bg-primary-container text-on-primary px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1">Gửi phản hồi <span class="material-symbols-outlined text-[14px]">send</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- CHÍNH XÁC: Đóng cột lg:col-span-8 tại đây -->
+
+            <!-- Right Panel Column (Column 4/12) -->
+            <div class="lg:col-span-4 flex flex-col gap-space-md">
+
+                <!-- Criteria Analysis -->
+                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-space-md">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Phân tích chi tiết tiêu chí</h3>
+                        <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-bold">100% Khách thật</span>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <div>
+                            <div class="flex justify-between font-label-sm text-xs mb-1">
+                                <span class="text-on-surface-variant">Thái độ phục vụ &amp; Hiếu khách</span>
+                                <strong class="text-on-surface">5.0 / 5.0</strong>
+                            </div>
+                            <div class="h-1.5 bg-surface-container rounded-full overflow-hidden">
+                                <div class="h-full bg-secondary rounded-full" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between font-label-sm text-xs mb-1">
+                                <span class="text-on-surface-variant">Vị trí &amp; Cảnh quan thiên nhiên</span>
+                                <strong class="text-on-surface">4.95 / 5.0</strong>
+                            </div>
+                            <div class="h-1.5 bg-surface-container rounded-full overflow-hidden">
+                                <div class="h-full bg-secondary rounded-full" style="width: 98%;"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between font-label-sm text-xs mb-1">
+                                <span class="text-on-surface-variant">Vệ sinh buồng phòng &amp; Khuôn viên</span>
+                                <strong class="text-on-surface">4.90 / 5.0</strong>
+                            </div>
+                            <div class="h-1.5 bg-surface-container rounded-full overflow-hidden">
+                                <div class="h-full bg-secondary rounded-full" style="width: 95%;"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between font-label-sm text-xs mb-1">
+                                <span class="text-on-surface-variant">Dịch vụ ẩm thực bản địa</span>
+                                <strong class="text-on-surface">4.90 / 5.0</strong>
+                            </div>
+                            <div class="h-1.5 bg-surface-container rounded-full overflow-hidden">
+                                <div class="h-full bg-secondary rounded-full" style="width: 95%;"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between font-label-sm text-xs mb-1">
+                                <span class="text-on-surface-variant">Giá trị trải nghiệm tương xứng</span>
+                                <strong class="text-on-surface">4.85 / 5.0</strong>
+                            </div>
+                            <div class="h-1.5 bg-surface-container rounded-full overflow-hidden">
+                                <div class="h-full bg-secondary rounded-full" style="width: 92%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-container-low p-3 rounded-lg flex items-center justify-between text-xs mt-1">
+                        <span class="text-on-surface-variant">Đánh giá tích cực tháng này:</span>
+                        <strong class="text-secondary font-bold flex items-center gap-1">+24 lượt mới <span class="material-symbols-outlined text-[16px]">trending_up</span></strong>
+                    </div>
+                </div>
+
+                <!-- Frequent Keywords -->
+                <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-space-md">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Từ khóa nhắc nhiều nhất</h3>
+                        <span class="material-symbols-outlined text-on-surface-variant text-[18px]">tag</span>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold">Cơm lam thơm ngon <small class="opacity-70">42x</small></span>
+                        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-semibold">View mây Mai Châu <small class="opacity-70">38x</small></span>
+                        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-semibold">Chủ nhà hiếu khách <small class="opacity-70">35x</small></span>
+                        <span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-xs">Suối nước trong lành <small class="opacity-70">28x</small></span>
+                        <span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-xs">Đốt lửa trại vui <small class="opacity-70">24x</small></span>
+                        <span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-xs">Cá suối mắc khén</span>
+                        <span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-xs">Bình yên</span>
+                    </div>
+                </div>
+
+                <!-- SuperHost Banner Card -->
+                <div class="bg-gradient-to-br from-primary to-primary-container p-space-lg rounded-xl text-on-primary shadow-md flex flex-col gap-3 relative overflow-hidden">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-amber-400 text-amber-950 flex items-center justify-center font-bold shrink-0">
+                            <span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm font-bold tracking-tight text-amber-300 uppercase">DUY TRÌ HUY HIỆU SUPERHOST</h3>
+                    </div>
+                    <p class="font-body-sm text-xs leading-relaxed text-on-primary/90">
+                        Bạn chỉ còn <strong>03 đánh giá</strong> chưa phản hồi trong tuần này. Trả lời trước 21:00 tối nay sẽ giúp giữ vững chỉ số tương tác 98.5% và tăng độ uy tín trên kết quả tìm kiếm!
+                    </p>
+                    <button type="button" class="mt-1 bg-amber-400 hover:bg-amber-300 text-amber-950 font-label-lg text-xs py-2 px-3 rounded-lg font-bold flex items-center justify-center gap-1.5 transition-colors shadow">
+                        <span class="material-symbols-outlined text-[16px]">bolt</span> Xử lý nhanh cả 3 đánh giá
+                    </button>
+                </div>
+
+            </div> <!-- Đóng cột lg:col-span-4 tại đây -->
+
+        </div> <!-- Đóng main grid container -->
+
+    </div>
+
+
+    <script src="../js/sidebarJs.js"></script>
+</main>
+
+</body>
+</html>

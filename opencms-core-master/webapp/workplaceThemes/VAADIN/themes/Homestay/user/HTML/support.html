@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hỗ Trợ & Trợ Giúp — YÊN Homestay</title>
+  <meta name="description" content="Trung tâm hỗ trợ khách hàng YÊN Homestay. Giải đáp mọi thắc mắc về đặt phòng, thanh toán, hủy phòng và trải nghiệm bản địa.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Shared Header & Footer -->
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/footer.css">
+
+  <!-- Support Page CSS -->
+  <link rel="stylesheet" href="../CSS/support.css">
+</head>
+<body>
+
+  <!-- ── HEADER (dynamic load) ── -->
+  <div id="header-placeholder"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         1.  HERO — full-width dark banner with search
+         ══════════════════════════════════════════════════════ -->
+    <section class="sp-hero">
+      <div class="sp-container">
+
+        <div class="sp-hero-eyebrow">
+          <i class="bi bi-headset"></i>
+          Trung tâm hỗ trợ khách hàng · 24/7
+        </div>
+
+        <h1>Chúng tôi luôn ở đây<br><span>để giúp bạn</span></h1>
+
+        <p class="sp-hero-sub">
+          Tìm kiếm câu trả lời cho mọi thắc mắc về đặt homestay, thanh toán, hủy phòng và trải nghiệm bản địa trên khắp Việt Nam.
+        </p>
+
+        <!-- Search bar -->
+        <div class="sp-search-bar" id="searchBar">
+          <i class="bi bi-search"></i>
+          <input
+            type="text"
+            id="supportSearchInput"
+            placeholder="Nhập từ khóa... (vd: hủy phòng, VNPAY, check-in, hoàn tiền)"
+            onkeypress="if(event.key==='Enter') handleSupportSearch();"
+            autocomplete="off"
+          >
+          <button class="sp-search-btn" onclick="handleSupportSearch()">
+            <i class="bi bi-search"></i> Tìm kiếm
+          </button>
+        </div>
+
+        <!-- Quick pills -->
+        <div class="sp-pills">
+          <span class="sp-pills-label">Gợi ý:</span>
+          <span class="sp-pill" onclick="selectSupportTag('Hủy phòng')">Hủy phòng miễn phí</span>
+          <span class="sp-pill" onclick="selectSupportTag('VNPAY')">Thanh toán VNPAY</span>
+          <span class="sp-pill" onclick="selectSupportTag('Nhận phòng')">Giờ check-in</span>
+          <span class="sp-pill" onclick="selectSupportTag('Hoàn tiền')">Thời gian hoàn tiền</span>
+          <span class="sp-pill" onclick="selectSupportTag('Chủ nhà')">Liên hệ chủ nhà</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         2.  CONTACT STRIP — 3 channels
+         ══════════════════════════════════════════════════════ -->
+    <section class="sp-contact-strip">
+      <div class="sp-container">
+        <div class="sp-contact-grid">
+
+          <!-- Hotline -->
+          <div class="sp-contact-card">
+            <div class="sp-cicon sp-cicon--phone">
+              <i class="bi bi-telephone-fill"></i>
+            </div>
+            <div class="sp-cinfo">
+              <small>Gọi ngay · Miễn phí</small>
+              <h4>Tổng đài 24/7</h4>
+              <p>Phản hồi dưới 60 giây trong giờ cao điểm</p>
+              <a href="tel:0949050888" class="sp-clink">
+                0949.050.888 <i class="bi bi-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Live Chat -->
+          <div class="sp-contact-card">
+            <div class="sp-cicon sp-cicon--chat">
+              <i class="bi bi-chat-dots-fill"></i>
+            </div>
+            <div class="sp-cinfo">
+              <small>Trực tuyến · Phản hồi &lt; 3 phút</small>
+              <h4>Chat với CSKH</h4>
+              <p>Đội ngũ chuyên viên hỗ trợ tiếng Việt & tiếng Anh</p>
+              <a href="javascript:void(0)" onclick="openLiveChat()" class="sp-clink">
+                Bắt đầu cuộc trò chuyện <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="sp-contact-card">
+            <div class="sp-cicon sp-cicon--email">
+              <i class="bi bi-envelope-at-fill"></i>
+            </div>
+            <div class="sp-cinfo">
+              <small>Email · Phản hồi trong 15 phút</small>
+              <h4>Gửi yêu cầu hỗ trợ</h4>
+              <p>Đính kèm ảnh, video mô tả vấn đề chi tiết</p>
+              <a href="mailto:hotro@yentrip.vn" class="sp-clink">
+                hotro@yentrip.vn <i class="bi bi-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         3.  TOPIC CATEGORIES — 3 × 2 grid
+         ══════════════════════════════════════════════════════ -->
+    <section class="sp-section">
+      <div class="sp-container">
+
+        <div class="sp-section-head">
+          <span class="sp-section-eyebrow"><i class="bi bi-grid-fill"></i> Danh mục</span>
+          <h2 class="sp-section-title">Chọn chủ đề bạn cần hỗ trợ</h2>
+          <p class="sp-section-sub">Chọn đúng danh mục để được hướng dẫn nhanh nhất</p>
+        </div>
+
+        <div class="sp-topics-grid">
+
+          <!-- 1 -->
+          <div class="sp-topic-card">
+            <div class="sp-topic-icon ic-booking"><i class="bi bi-calendar-check-fill"></i></div>
+            <h3 class="sp-topic-title">Đặt phòng & Hủy phòng</h3>
+            <p class="sp-topic-desc">Quy trình giữ chỗ, thay đổi ngày lưu trú, chính sách hủy và bồi hoàn.</p>
+            <ul class="sp-topic-links">
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Hủy phòng')"><span>Hủy phòng miễn phí trước 48 giờ</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Gia hạn')"><span>Cách gia hạn ngày ở</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Xác nhận')"><span>Không nhận được email xác nhận</span><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </div>
+
+          <!-- 2 -->
+          <div class="sp-topic-card">
+            <div class="sp-topic-icon ic-payment"><i class="bi bi-wallet2"></i></div>
+            <h3 class="sp-topic-title">Thanh toán & Hoàn tiền</h3>
+            <p class="sp-topic-desc">VNPAY, MoMo, thẻ quốc tế và thời gian hoàn tiền khi hủy đặt phòng.</p>
+            <ul class="sp-topic-links">
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('VNPAY')"><span>Thanh toán QR Code VNPAY</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Hoàn tiền')"><span>Lịch hoàn tiền về tài khoản</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Hóa đơn')"><span>Xuất hóa đơn VAT</span><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </div>
+
+          <!-- 3 -->
+          <div class="sp-topic-card">
+            <div class="sp-topic-icon ic-experience"><i class="bi bi-compass-fill"></i></div>
+            <h3 class="sp-topic-title">Trải nghiệm bản địa</h3>
+            <p class="sp-topic-desc">Hái trái miệt vườn, sinh hoạt cùng chủ nhà, làng nghề truyền thống.</p>
+            <ul class="sp-topic-links">
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Quy tắc')"><span>Văn hóa ứng xử làng quê</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Ẩm thực')"><span>Đặt trước bữa ăn bản địa</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Thú cưng')"><span>Homestay pet-friendly</span><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </div>
+
+          <!-- 4 -->
+          <div class="sp-topic-card">
+            <div class="sp-topic-icon ic-host"><i class="bi bi-house-heart-fill"></i></div>
+            <h3 class="sp-topic-title">Dành cho Chủ nhà</h3>
+            <p class="sp-topic-desc">Đăng ký Host, quản lý lịch phòng, nhận thanh toán, nâng hạng sao YÊN.</p>
+            <ul class="sp-topic-links">
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Đăng ký chủ nhà')"><span>Đăng ký trở thành đối tác</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Chiết khấu')"><span>Chính sách hoa hồng đối tác</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Chứng nhận xanh')"><span>Tiêu chuẩn Homestay Xanh</span><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </div>
+
+          <!-- 5 -->
+          <div class="sp-topic-card">
+            <div class="sp-topic-icon ic-account"><i class="bi bi-person-lock"></i></div>
+            <h3 class="sp-topic-title">Tài khoản & Bảo mật</h3>
+            <p class="sp-topic-desc">Quản lý hồ sơ, đổi mật khẩu, xác thực hai lớp và bảo vệ dữ liệu cá nhân.</p>
+            <ul class="sp-topic-links">
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Đổi mật khẩu')"><span>Quên mật khẩu & đặt lại OTP</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Cập nhật thông tin')"><span>Cập nhật số điện thoại</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Xác thực')"><span>Bật xác thực hai lớp (2FA)</span><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </div>
+
+          <!-- 6 -->
+          <div class="sp-topic-card">
+            <div class="sp-topic-icon ic-safety"><i class="bi bi-shield-check"></i></div>
+            <h3 class="sp-topic-title">An toàn & Tiêu chuẩn Xanh</h3>
+            <p class="sp-topic-desc">Vệ sinh phòng, bảo hiểm lưu trú, du lịch sinh thái bền vững và sự cố.</p>
+            <ul class="sp-topic-links">
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Tiêu chuẩn vệ sinh')"><span>Quy trình khử khuẩn phòng</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Bảo hiểm')"><span>Quyền lợi bảo hiểm lưu trú</span><i class="bi bi-chevron-right"></i></a></li>
+              <li><a href="javascript:void(0)" onclick="selectSupportTag('Sự cố')"><span>Xử lý sự cố trong chuyến đi</span><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         4.  FAQ — sidebar tabs + accordion
+         ══════════════════════════════════════════════════════ -->
+    <section class="sp-section sp-section--alt" id="faqSection">
+      <div class="sp-container">
+
+        <div class="sp-section-head">
+          <span class="sp-section-eyebrow"><i class="bi bi-question-circle-fill"></i> FAQ</span>
+          <h2 class="sp-section-title">Câu hỏi thường gặp</h2>
+          <p class="sp-section-sub">Nhấn vào câu hỏi để xem câu trả lời chi tiết</p>
+        </div>
+
+        <div class="sp-faq-wrap">
+
+          <!-- Sidebar filter tabs -->
+          <aside class="sp-faq-sidebar">
+            <button class="sp-faq-tab active" onclick="filterFaqCategory('all', this)">
+              <i class="bi bi-grid-fill"></i> Tất cả
+            </button>
+            <button class="sp-faq-tab" onclick="filterFaqCategory('booking', this)">
+              <i class="bi bi-calendar2-check"></i> Đặt & Hủy phòng
+            </button>
+            <button class="sp-faq-tab" onclick="filterFaqCategory('payment', this)">
+              <i class="bi bi-credit-card"></i> Thanh toán
+            </button>
+            <button class="sp-faq-tab" onclick="filterFaqCategory('experience', this)">
+              <i class="bi bi-compass"></i> Trải nghiệm
+            </button>
+            <button class="sp-faq-tab" onclick="filterFaqCategory('host', this)">
+              <i class="bi bi-house-door"></i> Chủ nhà
+            </button>
+          </aside>
+
+          <!-- Accordion list -->
+          <div class="sp-accordion" id="faqAccordion">
+
+            <div class="sp-acc-item open" data-category="booking">
+              <div class="sp-acc-q" onclick="toggleFaq(this)">
+                <span class="sp-acc-q-text">Tôi có thể hủy phòng và nhận lại tiền cọc được không?</span>
+                <div class="sp-acc-icon"><i class="bi bi-chevron-down"></i></div>
+              </div>
+              <div class="sp-acc-body">
+                <div class="sp-acc-body-inner">
+                  <p>Có. Tại <strong>YÊN Homestay</strong>, hầu hết điểm lưu trú hỗ trợ <strong>Hủy phòng miễn phí trước 48 giờ</strong> so với giờ check-in tiêu chuẩn 14:00.</p>
+                  <p>Tiền cọc sẽ được hoàn 100% về tài khoản hoặc ví điện tử trong vòng <strong>24–48 giờ làm việc</strong>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-acc-item" data-category="payment">
+              <div class="sp-acc-q" onclick="toggleFaq(this)">
+                <span class="sp-acc-q-text">YÊN Homestay hỗ trợ những phương thức thanh toán nào?</span>
+                <div class="sp-acc-icon"><i class="bi bi-chevron-down"></i></div>
+              </div>
+              <div class="sp-acc-body">
+                <div class="sp-acc-body-inner">
+                  <p>Hệ thống thanh toán bảo mật chuẩn quốc tế PCI-DSS:</p>
+                  <ul>
+                    <li>Quét mã QR cổng <strong>VNPAY-QR</strong> (hơn 40 ngân hàng nội địa)</li>
+                    <li>Ví điện tử <strong>MoMo</strong>, ZaloPay, ShopeePay</li>
+                    <li>Thẻ ATM nội địa (Napas 247)</li>
+                    <li>Thẻ quốc tế Visa, MasterCard, JCB, UnionPay</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-acc-item" data-category="booking">
+              <div class="sp-acc-q" onclick="toggleFaq(this)">
+                <span class="sp-acc-q-text">Giờ nhận phòng (check-in) và trả phòng (check-out) là mấy giờ?</span>
+                <div class="sp-acc-icon"><i class="bi bi-chevron-down"></i></div>
+              </div>
+              <div class="sp-acc-body">
+                <div class="sp-acc-body-inner">
+                  <p>Nhận phòng tiêu chuẩn từ <strong>14:00</strong>, trả phòng trước <strong>12:00</strong>. Muốn check-in sớm hoặc check-out trễ, bạn nhắn trực tiếp với chủ nhà qua số điện thoại trong phiếu xác nhận — phần lớn chủ nhà YÊN sẽ hỗ trợ linh hoạt miễn phí.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-acc-item" data-category="experience">
+              <div class="sp-acc-q" onclick="toggleFaq(this)">
+                <span class="sp-acc-q-text">Tôi có thể ăn cơm nhà hoặc hái trái trong vườn homestay không?</span>
+                <div class="sp-acc-icon"><i class="bi bi-chevron-down"></i></div>
+              </div>
+              <div class="sp-acc-body">
+                <div class="sp-acc-body-inner">
+                  <p>Hoàn toàn có! Đây chính là điểm khác biệt đặc trưng của YÊN. Nhiều chủ nhà cung cấp trải nghiệm hái trái, nấu ăn và bữa cơm gia đình bản địa theo yêu cầu. Chỉ cần báo trước khi nhận phòng để chủ nhà chuẩn bị nguyên liệu tươi nhất từ vườn.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-acc-item" data-category="host">
+              <div class="sp-acc-q" onclick="toggleFaq(this)">
+                <span class="sp-acc-q-text">Làm thế nào để đăng ký trở thành Chủ nhà (Host) YÊN?</span>
+                <div class="sp-acc-icon"><i class="bi bi-chevron-down"></i></div>
+              </div>
+              <div class="sp-acc-body">
+                <div class="sp-acc-body-inner">
+                  <p>Vào <strong>Tài khoản &gt; Đăng ký Chủ Homestay</strong>. Đội ngũ khảo sát YÊN sẽ liên hệ tư vấn trong <strong>24 giờ</strong> và hỗ trợ hoàn thiện hồ sơ hoàn toàn miễn phí. Các homestay đạt chuẩn Xanh YÊN được ưu tiên hiển thị vị trí đầu.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-acc-item" data-category="payment">
+              <div class="sp-acc-q" onclick="toggleFaq(this)">
+                <span class="sp-acc-q-text">Tôi muốn lấy hóa đơn VAT cho chuyến công tác thì làm thế nào?</span>
+                <div class="sp-acc-icon"><i class="bi bi-chevron-down"></i></div>
+              </div>
+              <div class="sp-acc-body">
+                <div class="sp-acc-body-inner">
+                  <p>Tại bước thanh toán, tích chọn <em>"Yêu cầu xuất hóa đơn VAT"</em> và điền MST công ty. Hóa đơn điện tử (MISA) sẽ gửi về email trong vòng <strong>48 giờ sau khi kết thúc lưu trú</strong>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-acc-item" data-category="booking">
+              <div class="sp-acc-q" onclick="toggleFaq(this)">
+                <span class="sp-acc-q-text">Làm sao liên hệ trực tiếp với gia đình chủ nhà?</span>
+                <div class="sp-acc-icon"><i class="bi bi-chevron-down"></i></div>
+              </div>
+              <div class="sp-acc-body">
+                <div class="sp-acc-body-inner">
+                  <p>Sau khi đặt phòng thành công, hệ thống YÊN gửi email + SMS xác nhận kèm: <strong>số điện thoại chủ nhà</strong>, địa chỉ Google Maps chính xác và ghi chú hướng dẫn di chuyển từng bước.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-acc-item" data-category="experience">
+              <div class="sp-acc-q" onclick="toggleFaq(this)">
+                <span class="sp-acc-q-text">Homestay YÊN có cho mang thú cưng (Pet-friendly) không?</span>
+                <div class="sp-acc-icon"><i class="bi bi-chevron-down"></i></div>
+              </div>
+              <div class="sp-acc-body">
+                <div class="sp-acc-body-inner">
+                  <p>Khoảng <strong>65%</strong> homestay nhà vườn tại YÊN chào đón thú cưng nhỏ. Tìm biểu tượng 🐾 trong phần Tiện nghi hoặc dùng bộ lọc <em>"Pet-friendly"</em> khi tìm kiếm để lọc chính xác.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         5.  SUPPORT TICKET FORM — 2-column layout
+         ══════════════════════════════════════════════════════ -->
+    <section class="sp-section">
+      <div class="sp-container">
+
+        <div class="sp-ticket-wrap">
+
+          <!-- Left: copy -->
+          <div class="sp-ticket-sidebar">
+            <span class="sp-section-eyebrow"><i class="bi bi-send-fill"></i> Gửi yêu cầu</span>
+            <h3>Chưa tìm thấy<br>câu trả lời?</h3>
+            <p>Mô tả chi tiết vấn đề bạn đang gặp — đội ngũ CSKH YÊN sẽ phản hồi trong vòng <strong>15 phút</strong> trong giờ làm việc, và trong vòng <strong>1 giờ</strong> ngoài giờ.</p>
+
+            <div class="sp-meta-badge">
+              <i class="bi bi-lightning-charge-fill"></i>
+              Thời gian xử lý trung bình: 11 phút
+            </div>
+            <div class="sp-meta-badge">
+              <i class="bi bi-patch-check-fill"></i>
+              Tỉ lệ giải quyết thành công: 98.4%
+            </div>
+            <div class="sp-meta-badge">
+              <i class="bi bi-translate"></i>
+              Hỗ trợ Tiếng Việt · Tiếng Anh · Tiếng Trung
+            </div>
+          </div>
+
+          <!-- Right: form card -->
+          <div class="sp-form-card">
+            <form class="sp-form-grid" id="ticketForm" onsubmit="handleTicketSubmit(event)">
+
+              <div class="sp-fgroup">
+                <label class="sp-label" for="ticketName">Họ và tên <span class="req">*</span></label>
+                <input type="text" id="ticketName" class="sp-input" placeholder="Nguyễn Văn A" required>
+              </div>
+
+              <div class="sp-fgroup">
+                <label class="sp-label" for="ticketPhone">Số điện thoại <span class="req">*</span></label>
+                <input type="tel" id="ticketPhone" class="sp-input" placeholder="0949 050 888" required>
+              </div>
+
+              <div class="sp-fgroup">
+                <label class="sp-label" for="ticketEmail">Email <span class="req">*</span></label>
+                <input type="email" id="ticketEmail" class="sp-input" placeholder="email@gmail.com" required>
+              </div>
+
+              <div class="sp-fgroup">
+                <label class="sp-label" for="ticketCode">Mã đặt phòng</label>
+                <input type="text" id="ticketCode" class="sp-input" placeholder="YEN-88294 (không bắt buộc)">
+              </div>
+
+              <div class="sp-fgroup sp-full">
+                <label class="sp-label" for="ticketTopic">Chủ đề hỗ trợ <span class="req">*</span></label>
+                <select id="ticketTopic" class="sp-select sp-input" required>
+                  <option value="booking">Hủy phòng / Thay đổi ngày ở</option>
+                  <option value="payment">Thanh toán & Hoàn tiền</option>
+                  <option value="feedback">Phản ánh chất lượng dịch vụ</option>
+                  <option value="host">Tư vấn đăng ký Chủ nhà (Host)</option>
+                  <option value="account">Tài khoản & Bảo mật</option>
+                  <option value="other">Vấn đề khác</option>
+                </select>
+              </div>
+
+              <div class="sp-fgroup sp-full">
+                <label class="sp-label" for="ticketMessage">Nội dung chi tiết <span class="req">*</span></label>
+                <textarea id="ticketMessage" class="sp-textarea" placeholder="Mô tả cụ thể vấn đề bạn gặp phải..." required></textarea>
+              </div>
+
+              <div class="sp-fgroup sp-full">
+                <label class="sp-label">Đính kèm tệp (ảnh lỗi, biên lai...)</label>
+                <div class="sp-upload" onclick="document.getElementById('ticketFile').click()">
+                  <i class="bi bi-cloud-arrow-up-fill"></i>
+                  <p><strong>Nhấp để chọn tệp</strong> hoặc kéo thả vào đây</p>
+                  <p style="margin-top:4px;font-size:.78rem;color:#94a3b8;">JPG, PNG, PDF · Tối đa 10 MB</p>
+                  <input type="file" id="ticketFile" style="display:none" onchange="showToast('Đã chọn tệp đính kèm!')">
+                </div>
+              </div>
+
+              <button type="submit" class="sp-btn-submit">
+                <i class="bi bi-send-check-fill"></i>
+                Gửi yêu cầu hỗ trợ
+              </button>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER (dynamic load) ── -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Floating Chat Button -->
+  <button class="sp-chat-fab" onclick="openLiveChat()" title="Chat với CSKH YÊN">
+    <span class="fab-dot"></span>
+    <i class="bi bi-chat-heart-fill" style="font-size:1.1rem"></i>
+    Chat trực tuyến
+  </button>
+
+  <!-- Live Chat Modal -->
+  <div class="sp-chat-overlay" id="liveChatModal">
+    <div class="sp-chat-window">
+
+      <div class="sp-chat-head">
+        <div class="sp-chat-head-info">
+          <div class="sp-chat-avatar">YÊN</div>
+          <div>
+            <h5>CSKH YÊN Homestay</h5>
+            <span><span class="sp-online-dot"></span> Đang trực tuyến</span>
+          </div>
+        </div>
+        <button class="sp-chat-close" onclick="closeLiveChat()"><i class="bi bi-x-lg"></i></button>
+      </div>
+
+      <div class="sp-chat-msgs" id="chatMsgs">
+        <div class="sp-msg sp-msg--bot">
+          Xin chào! 👋 Rất vui được đón tiếp bạn tại <strong>YÊN Homestay</strong>. Bạn cần hỗ trợ thông tin gì cho chuyến đi sắp tới?
+        </div>
+      </div>
+
+      <div class="sp-chat-input-area">
+        <input type="text" id="chatInput" class="sp-chat-input" placeholder="Nhập tin nhắn...">
+        <button class="sp-chat-send" onclick="sendChatMessage()"><i class="bi bi-send-fill"></i></button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="sp-toast" id="spToast">
+    <i class="bi bi-check-circle-fill"></i>
+    <span id="spToastMsg"></span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../JS/support.js"></script>
+
+</body>
+</html>
