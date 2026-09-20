@@ -175,7 +175,7 @@ function initStatusTabs() {
                 b.className = 'status-tab px-space-sm py-1 rounded-full text-label-md font-label-md whitespace-nowrap bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all';
             });
             this.className = 'status-tab px-space-sm py-1 rounded-full text-label-md font-label-md whitespace-nowrap bg-primary text-on-primary transition-all custom-primary-bg';
-            
+
             const filterText = this.textContent.trim();
             filterTableRows(filterText);
         });
@@ -397,7 +397,7 @@ function openDetailModal(bookingId) {
     document.getElementById("detailModalTotal").textContent = formatVND(data.totalAmount);
     document.getElementById("detailModalRemain").textContent = formatVND(data.remainAmount);
     document.getElementById("detailModalRequest").textContent = data.specialRequest || "Không có yêu cầu đặc biệt";
-    
+
     // Đổi Avatar chữ cái
     const avatarEl = document.getElementById("detailModalAvatar");
     avatarEl.textContent = data.avatar;
@@ -440,45 +440,50 @@ function openDetailModal(bookingId) {
     }
 
     // Cập nhật các nút hành động chân modal dựa vào trạng thái booking
+    // (dùng class bk-btn để đồng bộ với popup của trang Quản lý phòng)
     const actionContainer = document.getElementById("detailModalActions");
     if (actionContainer) {
+        const closeBtn = `<button onclick="closeModal('detailBookingModal')" class="bk-btn bk-btn-cancel" type="button">Đóng</button>`;
+
         if (data.status === "Chờ Check-in") {
             actionContainer.innerHTML = `
-                <button onclick="closeModal('detailBookingModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
+                ${closeBtn}
                 <div class="flex items-center gap-space-xs">
-                    <button onclick="closeModal('detailBookingModal'); openContactModal('${data.id}', 'call')" class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[16px]">call</span> Gọi điện
+                    <button onclick="closeModal('detailBookingModal'); openContactModal('${data.id}', 'call')" class="bk-btn bk-btn-ghost" type="button">
+                        <span class="material-symbols-outlined text-[17px]">call</span> Gọi điện
                     </button>
-                    <button onclick="closeModal('detailBookingModal'); openCheckinModal('${data.id}')" class="px-space-md py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md transition-colors flex items-center gap-1 custom-secondary-bg">
-                        <span class="material-symbols-outlined text-[16px]">login</span> Check-in ngay
+                    <button onclick="closeModal('detailBookingModal'); openCheckinModal('${data.id}')" class="bk-btn bk-btn-save" type="button">
+                        <span class="material-symbols-outlined text-[17px]">login</span> Check-in ngay
                     </button>
                 </div>
             `;
         } else if (data.status === "Đang ở") {
             actionContainer.innerHTML = `
-                <button onclick="closeModal('detailBookingModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
+                ${closeBtn}
                 <div class="flex items-center gap-space-xs">
-                    <button onclick="closeModal('detailBookingModal'); openAddServiceModal('${data.id}')" class="px-space-md py-2 rounded-lg bg-primary-container/20 hover:bg-primary-container/30 text-primary font-label-md transition-colors flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[16px]">add_circle</span> + Dịch vụ
+                    <button onclick="closeModal('detailBookingModal'); openAddServiceModal('${data.id}')" class="bk-btn bk-btn-ghost" type="button">
+                        <span class="material-symbols-outlined text-[17px]">add_circle</span> Dịch vụ
                     </button>
-                    <button onclick="closeModal('detailBookingModal'); openCheckoutModal('${data.id}')" class="px-space-md py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md transition-colors flex items-center gap-1 custom-secondary-bg">
-                        <span class="material-symbols-outlined text-[16px]">logout</span> Check-out & Quyết toán
+                    <button onclick="closeModal('detailBookingModal'); openCheckoutModal('${data.id}')" class="bk-btn bk-btn-save" type="button">
+                        <span class="material-symbols-outlined text-[17px]">logout</span> Check-out & Quyết toán
                     </button>
                 </div>
             `;
         } else if (data.status === "Chờ xác nhận") {
             actionContainer.innerHTML = `
-                <button onclick="closeModal('detailBookingModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
+                ${closeBtn}
                 <div class="flex items-center gap-space-xs">
-                    <button onclick="closeModal('detailBookingModal'); openRejectModal('${data.id}')" class="px-space-md py-2 rounded-lg bg-error-container hover:bg-error-container/80 text-on-error-container font-label-md transition-colors">Từ chối</button>
-                    <button onclick="closeModal('detailBookingModal'); openApproveModal('${data.id}')" class="px-space-md py-2 rounded-lg bg-secondary hover:bg-secondary/90 text-on-secondary font-label-md transition-colors custom-secondary-bg">Duyệt cọc</button>
+                    <button onclick="closeModal('detailBookingModal'); openRejectModal('${data.id}')" class="bk-btn bk-btn-danger-soft" type="button">Từ chối</button>
+                    <button onclick="closeModal('detailBookingModal'); openApproveModal('${data.id}')" class="bk-btn bk-btn-save" type="button">
+                        <span class="material-symbols-outlined text-[17px]">verified_user</span> Duyệt cọc
+                    </button>
                 </div>
             `;
         } else {
             actionContainer.innerHTML = `
-                <button onclick="closeModal('detailBookingModal')" class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors" type="button">Đóng</button>
-                <button onclick="closeModal('detailBookingModal'); openInvoiceModal('${data.id}')" class="px-space-md py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md transition-colors flex items-center gap-1 custom-primary-bg">
-                    <span class="material-symbols-outlined text-[16px]">receipt_long</span> Xem hóa đơn thanh toán
+                ${closeBtn}
+                <button onclick="closeModal('detailBookingModal'); openInvoiceModal('${data.id}')" class="bk-btn bk-btn-save" type="button">
+                    <span class="material-symbols-outlined text-[17px]">receipt_long</span> Xem hóa đơn thanh toán
                 </button>
             `;
         }
@@ -524,7 +529,7 @@ function openCheckoutModal(bookingId) {
     document.getElementById("checkoutModalGuestName").textContent = data.guestName;
     document.getElementById("checkoutModalRoom").textContent = data.roomCode;
     document.getElementById("checkoutModalRemainRoom").textContent = formatVND(data.remainAmount);
-    
+
     // Tính tổng tiền dịch vụ phát sinh
     let serviceTotal = 0;
     if (data.services && data.services.length > 0) {
@@ -563,7 +568,7 @@ function openAddServiceModal(bookingId) {
     if (!data) return;
 
     document.getElementById("addServiceModalBookingId").textContent = "#" + data.id + " (" + data.guestName + " - " + data.roomCode + ")";
-    
+
     // Reset các bộ đếm số lượng về 0
     document.querySelectorAll(".service-qty-input").forEach(inp => inp.value = "0");
     updateServiceTotalSummary();
@@ -750,12 +755,12 @@ function switchContactTab(tab) {
 
     if (tab === "call") {
         callTabBtn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md font-bold bg-primary text-on-primary transition-all custom-primary-bg";
-        chatTabBtn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md font-medium text-on-surface-variant hover:bg-surface-container transition-all";
+        chatTabBtn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md font-medium text-on-surface-variant hover:bg-surface-container-high transition-all";
         callSection.classList.remove("hidden");
         chatSection.classList.add("hidden");
     } else {
         chatTabBtn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md font-bold bg-primary text-on-primary transition-all custom-primary-bg";
-        callTabBtn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md font-medium text-on-surface-variant hover:bg-surface-container transition-all";
+        callTabBtn.className = "flex-1 py-2 rounded-lg font-label-md text-label-md font-medium text-on-surface-variant hover:bg-surface-container-high transition-all";
         chatSection.classList.remove("hidden");
         callSection.classList.add("hidden");
     }
@@ -873,37 +878,36 @@ function formatVND(num) {
     return new Intl.NumberFormat("vi-VN").format(num) + "đ";
 }
 
+// Toast đồng bộ kiểu với trang Quản lý phòng (góc phải dưới, nền xanh đậm)
 function showToast(title, message, type = "success") {
-    let container = document.getElementById("toastContainer");
-    if (!container) {
-        container = document.createElement("div");
-        container.id = "toastContainer";
-        container.className = "fixed top-5 right-5 z-[9999] flex flex-col gap-2 pointer-events-none";
-        document.body.appendChild(container);
+    let box = document.getElementById("bkToastBox");
+
+    if (!box) {
+        box = document.createElement("div");
+        box.id = "bkToastBox";
+        box.className = "bk-toast-box";
+        document.body.appendChild(box);
     }
 
-    const toast = document.createElement("div");
-    toast.className = `toast-item pointer-events-auto flex items-start gap-3 p-3.5 rounded-xl shadow-xl border backdrop-blur-md min-w-[280px] max-w-sm ${
-        type === 'success' ? 'bg-secondary/95 text-on-secondary border-secondary-fixed' :
-        type === 'error' ? 'bg-error text-on-error border-error-container' :
-        'bg-inverse-surface text-inverse-on-surface border-outline-variant/30'
-    }`;
+    const icon = type === "success" ? "check_circle" : type === "error" ? "error" : "info";
 
-    const icon = type === 'success' ? 'check_circle' : type === 'error' ? 'error' : 'info';
+    const toast = document.createElement("div");
+    toast.className = "bk-toast bk-toast-" + type;
 
     toast.innerHTML = `
-        <span class="material-symbols-outlined text-[20px] shrink-0 mt-0.5">${icon}</span>
-        <div class="flex flex-col flex-1">
-            <span class="font-label-md text-label-md font-bold leading-snug">${title}</span>
-            <span class="text-body-sm text-[12px] opacity-90 leading-tight mt-0.5">${message}</span>
+        <span class="material-symbols-outlined text-[20px]">${icon}</span>
+        <div class="bk-toast-text">
+            <strong>${title}</strong>
+            <span>${message}</span>
         </div>
     `;
 
-    container.appendChild(toast);
+    box.appendChild(toast);
+
+    setTimeout(() => toast.classList.add("is-show"), 10);
 
     setTimeout(() => {
-        if (toast && toast.parentNode) {
-            toast.parentNode.removeChild(toast);
-        }
-    }, 3500);
+        toast.classList.remove("is-show");
+        setTimeout(() => toast.remove(), 250);
+    }, 3200);
 }
