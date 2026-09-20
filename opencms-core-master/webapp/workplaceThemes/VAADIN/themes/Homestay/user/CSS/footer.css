@@ -30,6 +30,14 @@
     margin-bottom: 16px;
 }
 
+.th-footer-logo-img {
+    height: 52px;
+    width: auto;
+    max-width: 240px;
+    object-fit: contain;
+    display: block;
+}
+
 .th-brand-name {
     font-size: 22px;
     font-weight: 800;
