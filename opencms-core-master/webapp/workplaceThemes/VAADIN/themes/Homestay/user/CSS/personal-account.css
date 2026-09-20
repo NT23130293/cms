@@ -23,6 +23,47 @@ body {
   min-height: 100vh;
 }
 
+/* Container 80% width đồng bộ toàn bộ website */
+.container {
+  width: 80% !important;
+  max-width: 80% !important;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.modal-dialog .container,
+.modal-content .container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+}
+
+/* Tab Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tab-content-panel.d-none {
+  display: none !important;
+}
+
 /* Header & Breadcrumb */
 .breadcrumb-item + .breadcrumb-item::before {
   content: "›";
@@ -345,10 +386,11 @@ body {
 .badge-unverified {
   background-color: #FEF3C7;
   color: #92400E;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.725rem;
   padding: 0.2rem 0.6rem;
   border-radius: 50rem;
+  border: 1px solid #FDE68A;
 }
 
 .badge-verified {
@@ -485,27 +527,11 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Toast Icon */
 .toast-eco .toast-header {
   background-color: var(--eco-primary-hover);
   color: #ffffff;
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
-}
-
-/* Container 80% width đồng bộ toàn bộ website */
-.container {
-  width: 80% !important;
-  max-width: 80% !important;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-@media (max-width: 1024px) {
-  .container {
-    width: 95% !important;
-    max-width: 95% !important;
-  }
 }
 
 /* --- BANNER VÍ VOUCHER CÁ NHÂN (CHỮ RÕ RÀNG 100%, SẮC NÉT) --- */
@@ -547,7 +573,7 @@ body {
   border-radius: 10px !important;
   padding: 9px 18px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-  text-decoration: none !allowed;
+  text-decoration: none !important;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -623,7 +649,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* --- TAB 3: SẢN PHẨM BẠN ĐÃ XEM STYLES --- */
+/* --- TAB VOUCHER COMPACT CARDS STYLES --- */
 .nearby-card.compact-card {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
@@ -766,7 +792,7 @@ body {
   outline: none;
 }
 
-/* --- TAB 4: VOUCHER COMPACT STRIP STYLES --- */
+/* --- TAB VOUCHER COMPACT STRIP STYLES --- */
 .promo-redeem-gold-box {
   border: 2px solid var(--eco-primary) !important;
   border-radius: 12px !important;
@@ -837,6 +863,14 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* High Contrast Amber / Warning Helpers */
+.badge-warning-custom {
+  background: #FEF3C7 !important;
+  color: #92400E !important;
+  border: 1px solid #FDE68A !important;
+  font-weight: 700 !important;
 }
 
 /* Responsive fixes */
