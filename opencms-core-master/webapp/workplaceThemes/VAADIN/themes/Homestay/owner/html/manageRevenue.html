@@ -163,53 +163,74 @@
     <!-- Middle Section: Chart & Location Info -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
       <!-- Chart Container -->
-      <div class="lg:col-span-8 bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-space-md">
+      <div class="lg:col-span-12 bg-surface-container-lowest p-space-lg rounded-xl shadow-[0_2px_10px_rgba(21,67,50,0.05)] flex flex-col gap-space-md">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-sm">
           <div class="flex items-center gap-space-sm">
             <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-[11px] font-semibold">Thực tế</span>
-          </div>
-          <div class="flex bg-surface-container-low p-1 rounded-lg border border-outline-variant/30 self-start">
-            <button type="button" class="px-3 py-1 text-label-sm font-label-sm text-on-surface-variant rounded-md hover:bg-surface-container transition-colors">Theo ngày</button>
-            <button type="button" class="px-3 py-1 text-label-sm font-label-sm bg-surface-container-lowest text-on-surface font-bold rounded-md shadow-sm">Theo tuần</button>
-            <button type="button" class="px-3 py-1 text-label-sm font-label-sm text-on-surface-variant rounded-md hover:bg-surface-container transition-colors">Phòng vs Dịch vụ</button>
+            <h3 id="chart-main-title" class="font-headline-sm text-headline-sm text-on-surface font-bold">Diễn biến doanh thu</h3>
           </div>
         </div>
         <p class="font-body-sm text-body-sm text-on-surface-variant">Ghi nhận đỉnh doanh thu cao điểm vào dịp cuối tuần</p>
+
         <div class="flex flex-wrap items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant">
           <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-primary inline-block"></span> Tiền phòng lưu trú</span>
           <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-amber-500 inline-block"></span> Trải nghiệm &amp; Ẩm thực Tây Bắc</span>
           <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-secondary inline-block"></span> Trung bình kỳ báo cáo</span>
         </div>
 
-        <div class="relative w-full py-2">
-          <svg width="100%" height="200" viewBox="0 0 800 200" preserveAspectRatio="none" class="overflow-visible">
-            <defs>
-              <linearGradient id="gradientGreen" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.2"/>
-                <stop offset="100%" stop-color="var(--primary)" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path d="M0,150 C50,150 70,50 100,50 C130,50 150,180 200,180 C250,180 270,80 300,80 C330,80 350,160 400,160 C450,160 470,30 500,30 C530,30 550,120 600,120 C650,120 670,70 700,70 C730,70 750,140 800,140 L800,200 L0,200 Z" fill="url(#gradientGreen)"/>
-            <path d="M0,150 C50,150 70,50 100,50 C130,50 150,180 200,180 C250,180 270,80 300,80 C330,80 350,160 400,160 C450,160 470,30 500,30 C530,30 550,120 600,120 C650,120 670,70 700,70 C730,70 750,140 800,140" fill="none" stroke="var(--primary)" stroke-width="3"/>
+        <!-- Khu vực biểu đồ có Trục Y và Tooltip tương tác -->
+        <div class="relative w-full py-2 flex gap-4">
 
-            <circle cx="100" cy="50" r="4" fill="var(--primary)"/>
-            <circle cx="300" cy="80" r="4" fill="var(--primary)"/>
-            <circle cx="500" cy="30" r="4" fill="var(--primary)"/>
-            <circle cx="700" cy="70" r="4" fill="var(--primary)"/>
-
-            <rect x="70" y="20" width="60" height="20" rx="4" fill="var(--on-surface)"/>
-            <text x="100" y="34" fill="white" font-size="10" text-anchor="middle" font-family="Inter">4.800.000đ</text>
-
-            <rect x="470" y="0" width="60" height="20" rx="4" fill="var(--on-surface)"/>
-            <text x="500" y="14" fill="white" font-size="10" text-anchor="middle" font-family="Inter">9.120.000đ</text>
-
-            <line x1="0" y1="180" x2="800" y2="180" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4"/>
-          </svg>
-          <div class="flex justify-between font-label-sm text-[11px] text-on-surface-variant mt-4 pt-2 border-t border-surface-container">
-            <span>Đầu kỳ</span><span>Giai đoạn 1</span><span>Giai đoạn 2</span><span>Giữa kỳ</span><span>Giai đoạn 3</span><span>Cuối kỳ</span>
+          <!-- Cột số liệu bên trái (Trục Y) -->
+          <div class="flex flex-col justify-between font-label-sm text-[11px] text-on-surface-variant pr-2 border-r border-surface-container select-none text-right min-w-[65px] h-[220px] pb-6">
+            <span>10.000.000đ</span>
+            <span>8.000.000đ</span>
+            <span>6.000.000đ</span>
+            <span>4.000.000đ</span>
+            <span>2.000.000đ</span>
+            <span>0đ</span>
           </div>
-        </div>
 
+          <!-- Khung SVG đồ thị -->
+          <div class="relative flex-1">
+            <svg id="revenue-chart-svg" width="100%" height="220" viewBox="0 0 1000 220" preserveAspectRatio="none" class="overflow-visible cursor-crosshair">
+              <defs>
+                <linearGradient id="gradientGreen" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="var(--primary)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Lưới ngang (Grid lines) -->
+              <line x1="0" y1="0" x2="1000" y2="0" stroke="#F1F5F9" stroke-width="1"/>
+              <line x1="0" y1="44" x2="1000" y2="44" stroke="#F1F5F9" stroke-width="1"/>
+              <line x1="0" y1="88" x2="1000" y2="88" stroke="#F1F5F9" stroke-width="1"/>
+              <line x1="0" y1="132" x2="1000" y2="132" stroke="#F1F5F9" stroke-width="1"/>
+              <line x1="0" y1="176" x2="1000" y2="176" stroke="#F1F5F9" stroke-width="1"/>
+
+              <!-- Đồ thị vùng & đường line -->
+              <path d="M0,150 C70,150 100,50 150,50 C200,50 220,180 300,180 C370,180 400,80 480,80 C540,80 570,160 630,160 C700,160 730,20 800,20 C870,20 920,120 1000,120 L1000,220 L0,220 Z" fill="url(#gradientGreen)"/>
+              <path d="M0,150 C70,150 100,50 150,50 C200,50 220,180 300,180 C370,180 400,80 480,80 C540,80 570,160 630,160 C700,160 730,20 800,20 C870,20 920,120 1000,120" fill="none" stroke="var(--primary)" stroke-width="3.5"/>
+
+              <!-- Đường dóng dọc khi rê chuột -->
+              <line id="chart-hover-line" x1="0" y1="0" x2="0" y2="220" stroke="var(--primary)" stroke-width="1.5" stroke-dasharray="4" class="opacity-0 transition-opacity pointer-events-none"/>
+
+              <!-- Điểm tròn tương tác khi hover -->
+              <circle id="chart-hover-dot" cx="0" cy="0" r="6" fill="#ffffff" stroke="var(--primary)" stroke-width="3" class="opacity-0 transition-opacity pointer-events-none"/>
+            </svg>
+
+            <!-- Tooltip hiển thị số liệu động -->
+            <div id="chart-tooltip" class="absolute pointer-events-none opacity-0 transition-opacity bg-gray-900 text-white text-xs py-1.5 px-3 rounded-lg shadow-lg -translate-x-1/2 -translate-y-full mb-2 whitespace-nowrap z-20 font-medium">
+              <span id="tooltip-value">0đ</span>
+            </div>
+
+            <!-- Trục X (Thời gian) -->
+            <div class="flex justify-between font-label-sm text-[11px] text-on-surface-variant mt-2 pt-2 border-t border-surface-container">
+              <span>Đầu kỳ</span><span>Giai đoạn 1</span><span>Giai đoạn 2</span><span>Giữa kỳ</span><span>Giai đoạn 3</span><span>Cuối kỳ</span>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
 
