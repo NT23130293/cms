@@ -60,6 +60,45 @@ let userBookings = [
       userReview: null
     }
   },
+{
+    id: 'BK-2026-5021',
+    code: 'YEN-2026-5021',
+    homestayName: 'Hội An Ancient Town Retreat',
+    homestayImg: 'https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=600&q=80',
+    location: 'Phố cổ Hội An, Quảng Nam',
+    roomType: 'Phòng suite view phố cổ đèn lồng',
+    checkIn: '10/07/2026',
+    checkOut: '13/07/2026',
+    nights: 3,
+    guests: '2 người lớn',
+    totalPrice: '2.850.000đ',
+    payStatus: 'Đã thanh toán (MoMo)',
+    status: 'complaint',
+    complaint: {
+      id: 'KN-5021',
+      type: 'room_quality',
+      typeText: 'Chất lượng phòng ở',
+      severity: 'medium',
+      content: 'Phòng có mùi ẩm, điều hòa không hoạt động trong suốt kỳ lưu trú. Chủ nhà phản hồi chậm, không khắc phục kịp thời.',
+      resolution: 'refund_partial',
+      contact: '0912345678',
+      status: 'processing',
+      statusText: 'Đang xử lý',
+      submittedDate: '14/07/2026',
+      ticketCode: 'KN-5021-A'
+    },
+    task: {
+      id: 'TASK-5021',
+      title: 'Danh sách việc cần làm tại Homestay',
+      rewardText: '🎁 Quà tặng trực tiếp từ Homestay',
+      status: 'pending',
+      checklist: [
+        { id: 1, text: 'Chụp ảnh phòng suite view phố cổ', done: false },
+        { id: 3, text: 'Đăng bài nhận xét trải nghiệm', done: false }
+      ],
+      userReview: null
+    }
+  },
   {
     id: 'BK-2026-6540',
     code: 'YEN-2026-6540',
@@ -136,6 +175,9 @@ function updateStatsHeader() {
   const cntUpcoming = document.getElementById('cntUpcoming');
   if (cntUpcoming) cntUpcoming.textContent = userBookings.filter(b => b.status === 'upcoming').length;
 
+  const cntComplaint = document.getElementById('cntComplaint');
+  if (cntComplaint) cntComplaint.textContent = userBookings.filter(b => b.status === 'complaint').length;
+
   const cntCompleted = document.getElementById('cntCompleted');
   if (cntCompleted) cntCompleted.textContent = userBookings.filter(b => b.status === 'completed').length;
 }
@@ -198,7 +240,9 @@ function renderBookingsList() {
 
   container.innerHTML = items.map(bk => {
     let statusBadgeHtml = '';
-    if (bk.status === 'active') {
+    if (bk.status === 'complaint') {
+    statusBadgeHtml = '<span class="status-badge status-complaint"><i class="bi bi-exclamation-triangle-fill me-1"></i> Khiếu nại</span>';
+  } else if (bk.status === 'active') {
       statusBadgeHtml = `
         <span class="status-badge status-active">
           <span class="active-pulse-dot"></span> ĐANG LƯU TRÚ
@@ -335,12 +379,19 @@ function renderBookingsList() {
           <button class="btn-action-ghost" onclick="showToast('Liên hệ chủ nhà ${bk.homestayName}: 0949.050.888')">
             <i class="bi bi-telephone-fill text-success me-1"></i> Liên hệ chủ nhà
           </button>
-          <div style="display: flex; gap: 8px;">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
             <button class="btn-action-ghost" onclick="showToast('Đang tải hóa đơn đặt phòng ${bk.code}...')">
               <i class="bi bi-receipt me-1"></i> Xem hóa đơn
             </button>
+            ${bk.status !== 'complaint' ? `
+            <button class="btn-complaint-trigger" onclick="openComplaintModal('${bk.id}')">
+              <i class="bi bi-exclamation-triangle-fill me-1"></i> Khiếu nại
+            </button>` : `
+            <button class="btn-complaint-trigger complaint-filed" onclick="openComplaintModal('${bk.id}')">
+              <i class="bi bi-eye-fill me-1"></i> Xem khiếu nại
+            </button>`}
             <a href="homestayDetail.html" class="btn-action-ghost" style="text-decoration: none;">
-              Xem thông tin phòng <i class="bi bi-arrow-right ms-1"></i>
+              Xem phòng <i class="bi bi-arrow-right ms-1"></i>
             </a>
           </div>
         </div>
@@ -484,3 +535,132 @@ function showToast(message) {
     toast.classList.remove('show');
   }, 3200);
 }
+
+
+// ─── Complaint Modal ─────────────────────────────────────────────────────────
+
+let activeComplaintBookingId = null;
+
+/**
+ * Mở Modal Khiếu nại
+ */
+function openComplaintModal(bookingId) {
+  const bk = userBookings.find(b => b.id === bookingId);
+  if (!bk) return;
+
+  activeComplaintBookingId = bookingId;
+
+  const overlay = document.getElementById('complaintModalOverlay');
+  if (!overlay) return;
+
+  // Điền thông tin đặt phòng
+  const imgEl = document.getElementById('cmpHsImg');
+  if (imgEl) { imgEl.src = bk.homestayImg; imgEl.alt = bk.homestayName; }
+  const nameEl = document.getElementById('cmpHsName');
+  if (nameEl) nameEl.textContent = bk.homestayName;
+  const codeEl = document.getElementById('cmpCode');
+  if (codeEl) codeEl.textContent = bk.code;
+
+  // Nếu đã có khiếu nại đang xử lý
+  const form = document.getElementById('complaintForm');
+  const successBox = document.getElementById('complaintSuccessBox');
+
+  if (bk.complaint && bk.status === 'complaint') {
+    if (form) form.style.display = 'none';
+    if (successBox) {
+      successBox.style.display = 'block';
+      const ticketEl = document.getElementById('cmpTicketCode');
+      if (ticketEl) ticketEl.textContent = bk.complaint.ticketCode || ('KN-' + bk.id);
+    }
+  } else {
+    if (form) { form.style.display = 'block'; form.reset(); }
+    if (successBox) successBox.style.display = 'none';
+  }
+
+  overlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Đóng Modal Khiếu nại
+ */
+function closeComplaintModal() {
+  const overlay = document.getElementById('complaintModalOverlay');
+  if (overlay) overlay.classList.remove('show');
+  document.body.style.overflow = '';
+  activeComplaintBookingId = null;
+}
+
+/**
+ * Submit Khiếu nại
+ */
+function submitComplaint(event) {
+  event.preventDefault();
+
+  if (!activeComplaintBookingId) return;
+  const bk = userBookings.find(b => b.id === activeComplaintBookingId);
+  if (!bk) return;
+
+  const cmpType = document.getElementById('cmpTypeSelect').value;
+  const cmpContent = document.getElementById('cmpContent').value.trim();
+  const cmpContact = document.getElementById('cmpContact').value.trim();
+  const cmpResolution = document.getElementById('cmpResolution').value;
+  const cmpSeverityEl = document.querySelector('input[name="cmpSeverity"]:checked');
+  const cmpSeverity = cmpSeverityEl ? cmpSeverityEl.value : 'medium';
+
+  if (!cmpType) {
+    showToast('Vui lòng chọn loại vấn đề cần khiếu nại!');
+    return;
+  }
+  if (!cmpContent || cmpContent.length < 20) {
+    showToast('Vui lòng mô tả chi tiết sự việc (tối thiểu 20 ký tự)!');
+    document.getElementById('cmpContent').focus();
+    return;
+  }
+  if (!cmpContact) {
+    showToast('Vui lòng nhập SĐT hoặc email để nhận phản hồi!');
+    document.getElementById('cmpContact').focus();
+    return;
+  }
+
+  // Tạo mã khiếu nại
+  const ticketCode = 'KN-' + bk.id.replace('BK-', '') + '-' + Math.floor(100 + Math.random() * 900);
+
+  // Cập nhật booking
+  bk.status = 'complaint';
+  bk.complaint = {
+    id: ticketCode,
+    type: cmpType,
+    typeText: document.getElementById('cmpTypeSelect').options[document.getElementById('cmpTypeSelect').selectedIndex].text,
+    severity: cmpSeverity,
+    content: cmpContent,
+    resolution: cmpResolution,
+    contact: cmpContact,
+    status: 'processing',
+    statusText: 'Đang xử lý',
+    submittedDate: new Date().toLocaleDateString('vi-VN'),
+    ticketCode: ticketCode
+  };
+
+  // Hiển thị thành công
+  const form = document.getElementById('complaintForm');
+  const successBox = document.getElementById('complaintSuccessBox');
+  const ticketEl = document.getElementById('cmpTicketCode');
+
+  if (form) form.style.display = 'none';
+  if (successBox) successBox.style.display = 'block';
+  if (ticketEl) ticketEl.textContent = ticketCode;
+
+  updateStatsHeader();
+  renderBookingsList();
+
+  showToast('Khiếu nại đã được gửi thành công! Mã: ' + ticketCode);
+}
+
+// Close modals on backdrop click
+document.addEventListener('click', function(e) {
+  const complaintOverlay = document.getElementById('complaintModalOverlay');
+  if (complaintOverlay && e.target === complaintOverlay) {
+    closeComplaintModal();
+  }
+});

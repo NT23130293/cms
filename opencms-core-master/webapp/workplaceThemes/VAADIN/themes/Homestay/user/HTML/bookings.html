@@ -91,6 +91,13 @@
                 <span class="text-truncate">Đã hoàn thành</span>
                 <span class="nav-badge-count" id="cntCompleted">1</span>
               </button>
+
+              <!-- Tab Khiếu nại -->
+              <button class="account-nav-item" onclick="filterBookingTab('complaint', this)">
+                <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                <span class="text-truncate">Khiếu nại</span>
+                <span class="nav-badge-count bg-warning-subtle text-warning" id="cntComplaint">0</span>
+              </button>
             </nav>
           </div>
         </aside>
@@ -215,6 +222,144 @@
     <div class="bk-toast" id="bkToast">
         <i class="bi bi-check-circle-fill"></i>
         <span id="bkToastMsg">Thông báo hệ thống</span>
+    </div>
+
+
+    <!-- Modal Gửi Khiếu Nại -->
+    <div class="bk-modal-overlay" id="complaintModalOverlay">
+        <div class="bk-modal-card" style="max-width: 560px;">
+            <!-- Header Modal -->
+            <div class="bk-modal-head" style="background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%); border-bottom: 1px solid #FED7AA;">
+                <h3><i class="bi bi-exclamation-triangle-fill text-warning me-1"></i> Gửi Khiếu Nại</h3>
+                <button class="bk-modal-close" onclick="closeComplaintModal()">&#x2715;</button>
+            </div>
+
+            <!-- Body Modal -->
+            <div class="bk-modal-body">
+                <!-- Banner thông tin đặt phòng -->
+                <div class="complaint-booking-banner">
+                    <div class="complaint-booking-img-wrap">
+                        <img id="cmpHsImg" src="" alt="" class="complaint-hs-thumb">
+                    </div>
+                    <div>
+                        <div class="complaint-hs-name" id="cmpHsName">—</div>
+                        <div class="complaint-booking-code">Mã đặt phòng: <strong id="cmpCode">—</strong></div>
+                    </div>
+                </div>
+
+                <!-- Form khiếu nại -->
+                <form id="complaintForm" onsubmit="submitComplaint(event)">
+
+                    <!-- Loại khiếu nại -->
+                    <div class="form-group-review">
+                        <label for="cmpTypeSelect">1. Loại vấn đề cần khiếu nại <span style="color:#EF4444">*</span></label>
+                        <select id="cmpTypeSelect" class="form-input-review" required style="cursor:pointer;">
+                            <option value="">-- Chọn loại khiếu nại --</option>
+                            <option value="room_quality">Chất lượng phòng ở (Dơ bẩn, hư hỏng, thiếu tiện nghi)</option>
+                            <option value="host_behavior">Thái độ chủ nhà (Không thân thiện, không hỗ trợ)</option>
+                            <option value="price_dispute">Tranh chấp giá / Phụ thu ngoài hóa đơn</option>
+                            <option value="checkin_issue">Sự cố check-in / check-out</option>
+                            <option value="safety">Vấn đề an toàn / An ninh tại homestay</option>
+                            <option value="misleading_info">Thông tin homestay không đúng với quảng cáo</option>
+                            <option value="refund">Yêu cầu hoàn tiền</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+
+                    <!-- Mức độ nghiêm trọng -->
+                    <div class="form-group-review">
+                        <label>2. Mức độ ảnh hưởng</label>
+                        <div class="severity-options">
+                            <label class="severity-opt">
+                                <input type="radio" name="cmpSeverity" value="low" checked>
+                                <span class="sev-tag low"><i class="bi bi-info-circle-fill"></i> Nhẹ</span>
+                            </label>
+                            <label class="severity-opt">
+                                <input type="radio" name="cmpSeverity" value="medium">
+                                <span class="sev-tag medium"><i class="bi bi-exclamation-circle-fill"></i> Trung bình</span>
+                            </label>
+                            <label class="severity-opt">
+                                <input type="radio" name="cmpSeverity" value="high">
+                                <span class="sev-tag high"><i class="bi bi-exclamation-triangle-fill"></i> Nghiêm trọng</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Nội dung chi tiết -->
+                    <div class="form-group-review">
+                        <label for="cmpContent">3. Mô tả chi tiết sự việc <span style="color:#EF4444">*</span></label>
+                        <textarea id="cmpContent" class="form-textarea-review" rows="4"
+                            placeholder="Mô tả rõ ràng vấn đề gặp phải: Thời gian xảy ra, diễn biến, thiệt hại (nếu có)..."
+                            required minlength="20"></textarea>
+                    </div>
+
+                    <!-- Đính kèm ảnh / bằng chứng -->
+                    <div class="form-group-review">
+                        <label>4. Đính kèm ảnh / bằng chứng <span style="color:#64748B; font-weight:400;">(không bắt buộc)</span></label>
+                        <div class="photo-upload-box" onclick="showToast('Đã chọn ảnh bằng chứng!')">
+                            <i class="bi bi-paperclip"></i>
+                            <p><strong>Bấm để đính kèm ảnh / file</strong> (Tối đa 5 tệp, mỗi tệp &le; 5MB)</p>
+                        </div>
+                    </div>
+
+                    <!-- Thông tin liên hệ giải quyết -->
+                    <div class="form-group-review">
+                        <label for="cmpContact">5. SĐT / Email để nhận phản hồi <span style="color:#EF4444">*</span></label>
+                        <input type="text" id="cmpContact" class="form-input-review"
+                            placeholder="Ví dụ: 0912345678 hoặc email@gmail.com" required>
+                    </div>
+
+                    <!-- Yêu cầu giải quyết -->
+                    <div class="form-group-review">
+                        <label for="cmpResolution">6. Bạn mong muốn được giải quyết như thế nào?</label>
+                        <select id="cmpResolution" class="form-input-review" style="cursor:pointer;">
+                            <option value="apology">Được xin lỗi chính thức từ chủ nhà</option>
+                            <option value="refund_partial">Hoàn tiền một phần</option>
+                            <option value="refund_full">Hoàn tiền toàn bộ</option>
+                            <option value="compensation">Bồi thường thiệt hại</option>
+                            <option value="penalty">Yêu cầu xử phạt / khóa homestay</option>
+                            <option value="other">Giải pháp khác</option>
+                        </select>
+                    </div>
+
+                    <!-- Lưu ý -->
+                    <div class="complaint-notice-box">
+                        <i class="bi bi-shield-check-fill text-success"></i>
+                        <div>
+                            <div style="font-weight:700; color:#166534; font-size:0.85rem;">Cam kết bảo mật & xử lý nhanh</div>
+                            <div style="font-size:0.8rem; color:#374151; margin-top:2px;">
+                                Khiếu nại sẽ được đội ngũ YÊN xem xét trong vòng <strong>24–48 giờ</strong>.
+                                Thông tin của bạn được bảo mật tuyệt đối.
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit-complaint">
+                        <i class="bi bi-send-check-fill me-1"></i>
+                        Gửi khiếu nại chính thức
+                    </button>
+                </form>
+
+                <!-- Khối sau khi đã gửi khiếu nại -->
+                <div id="complaintSuccessBox" style="display:none;">
+                    <div class="complaint-success-state">
+                        <div class="complaint-success-icon">
+                            <i class="bi bi-patch-check-fill"></i>
+                        </div>
+                        <h4>Khiếu nại đã được gửi thành công!</h4>
+                        <p>Mã khiếu nại: <strong id="cmpTicketCode" style="color:#15803D;">KN-XXXX</strong></p>
+                        <p style="font-size:0.85rem; color:#64748B;">
+                            Đội ngũ YÊN sẽ xem xét và phản hồi trong vòng <strong>24–48 giờ</strong>
+                            qua SĐT / email bạn đã cung cấp.
+                        </p>
+                        <button class="btn-action-ghost" onclick="closeComplaintModal()" style="margin-top:12px;">
+                            <i class="bi bi-x-circle me-1"></i> Đóng
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <!-- Footer Placeholder (Tự động nạp động) -->

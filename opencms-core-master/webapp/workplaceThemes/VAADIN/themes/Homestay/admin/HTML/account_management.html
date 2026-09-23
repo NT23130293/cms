@@ -209,7 +209,7 @@
                 <div class="module-header-bar">
                     <div class="module-title-group">
                         <h2>
-                            <span class="material-symbols-outlined" style="color: #0284C7;">group</span>
+                            <span class="material-symbols-outlined" style="color: var(--primary-color);">group</span>
                             Quản Lý Tài Khoản Người Dùng & Phân Quyền
                         </h2>
                         <span class="module-subtitle">Quản lý Du khách lưu trú, Đối tác Chủ Homestay (Hosts) & Phân quyền Quản trị viên</span>
@@ -236,12 +236,12 @@
                     </div>
                 </div>
 
-                <!-- Module Toolbar (Search & Filter) -->
+                <!-- Module Toolbar (Search & Filter & Add Button) -->
                 <div class="module-toolbar">
                     <div class="toolbar-left">
                         <div class="search-box-sm">
                             <span class="material-symbols-outlined" style="color: var(--text-muted); margin-right: 6px; font-size: 18px;">search</span>
-                            <input type="text" id="userSearchInput" placeholder="Tìm tên, email, số điện thoại...">
+                            <input type="text" id="userSearchInput" placeholder="Tìm tên, email, số điện thoại, CCCD...">
                         </div>
 
                         <select class="select-filter-sm" id="userStatusFilter">
@@ -250,6 +250,11 @@
                             <option value="blocked">Bị khóa</option>
                         </select>
                     </div>
+
+                    <a href="account_edit.html?id=new" class="btn-admin-primary" style="text-decoration: none;">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">person_add</span>
+                        <span>+ Thêm Tài Khoản Mới</span>
+                    </a>
                 </div>
 
                 <!-- Data Table View -->
@@ -270,88 +275,7 @@
     </div>
 </div>
 
-<!-- 3. Modal Chỉnh Sửa Tài Khoản & Phân Quyền -->
-<div class="modal-overlay" id="userModalOverlay">
-    <div class="modal-container">
-        <div class="modal-header">
-            <h3 class="modal-title">
-                <span class="material-symbols-outlined" style="color: #0284C7;">manage_accounts</span>
-                <span id="userModalTitleText">Chỉnh Sửa Thông Tin Tài Khoản & Phân Quyền</span>
-            </h3>
-            <button class="modal-close-btn" onclick="closeUserModal()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-
-        <div class="modal-body">
-            <div class="form-field full">
-                <label class="form-label">Họ và Tên <span style="color: red;">*</span></label>
-                <input type="text" id="userNameInput" class="form-input" placeholder="Ví dụ: Nguyễn Văn An...">
-            </div>
-
-            <div class="form-group-grid">
-                <div class="form-field">
-                    <label class="form-label">Địa chỉ Email <span style="color: red;">*</span></label>
-                    <input type="email" id="userEmailInput" class="form-input" placeholder="an.nguyen@gmail.com">
-                </div>
-
-                <div class="form-field">
-                    <label class="form-label">Số điện thoại</label>
-                    <input type="text" id="userPhoneInput" class="form-input" placeholder="0905 123 456">
-                </div>
-            </div>
-
-            <div class="form-group-grid">
-                <div class="form-field">
-                    <label class="form-label">Vai trò / Phân quyền <span style="color: red;">*</span></label>
-                    <select id="userRoleSelect" class="form-select">
-                        <option value="guest">Khách lưu trú (Guest)</option>
-                        <option value="host">Chủ Homestay (Host Owner)</option>
-                        <option value="admin">Quản trị viên (System Admin)</option>
-                    </select>
-                </div>
-
-                <div class="form-field">
-                    <label class="form-label">Trạng thái tài khoản</label>
-                    <select id="userStatusSelect" class="form-select">
-                        <option value="active">Đang hoạt động (Active)</option>
-                        <option value="blocked">Khóa tài khoản (Blocked)</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal-footer">
-            <button class="btn-admin-cancel" onclick="closeUserModal()">Hủy bỏ</button>
-            <button class="btn-admin-primary" style="background-color: #0284C7;" onclick="saveUserData()">Lưu Tài Khoản</button>
-        </div>
-    </div>
-</div>
-
-<!-- 4. Modal CHI TIẾT TÀI KHOẢN (User Detail View) -->
-<div class="modal-overlay" id="userDetailModalOverlay">
-    <div class="modal-container" style="width: 680px;">
-        <div class="modal-header">
-            <h3 class="modal-title">
-                <span class="material-symbols-outlined" style="color: #0284C7;">account_box</span>
-                Chi Tiết Tài Khoản Người Dùng
-            </h3>
-            <button class="modal-close-btn" onclick="closeUserDetailModal()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-
-        <div class="modal-body" id="userDetailModalContent">
-            <!-- Render động bằng JS -->
-        </div>
-
-        <div class="modal-footer">
-            <button class="btn-admin-cancel" onclick="closeUserDetailModal()">Đóng cửa sổ</button>
-        </div>
-    </div>
-</div>
-
-<!-- 5. Modal KHÓA TÀI KHOẢN KÈM LÝ DO -->
+<!-- 3. Modal KHÓA TÀI KHOẢN KÈM LÝ DO -->
 <div class="modal-overlay" id="lockModalOverlay">
     <div class="modal-container" style="width: 500px;">
         <div class="modal-header" style="background: #FEF2F2;">

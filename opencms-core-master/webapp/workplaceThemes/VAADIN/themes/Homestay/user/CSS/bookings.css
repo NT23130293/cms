@@ -1072,3 +1072,201 @@ body {
   color: #4ADE80;
   font-size: 1.1rem;
 }
+
+/* ══════════════════════════════════════════════
+   KHIẾU NẠI — Complaint styles
+══════════════════════════════════════════════ */
+
+/* Status badge: khiếu nại */
+.status-badge.status-complaint {
+  background: #FFF3CD;
+  color: #92400E;
+  border: 1.5px solid #FCD34D;
+}
+
+/* Complaint trigger button (in card footer) */
+.btn-complaint-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.18s ease;
+  background: #FFF7ED;
+  color: #C2410C;
+  border: 1.5px solid #FED7AA;
+}
+.btn-complaint-trigger:hover {
+  background: #EA580C;
+  color: #FFFFFF;
+  border-color: #EA580C;
+}
+.btn-complaint-trigger.complaint-filed {
+  background: #F0FDF4;
+  color: #15803D;
+  border-color: #86EFAC;
+}
+.btn-complaint-trigger.complaint-filed:hover {
+  background: #15803D;
+  color: #FFFFFF;
+}
+
+/* Complaint booking banner (modal top) */
+.complaint-booking-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.complaint-booking-img-wrap {
+  flex-shrink: 0;
+}
+.complaint-hs-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.complaint-hs-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 4px;
+}
+.complaint-booking-code {
+  font-size: 0.8rem;
+  color: #64748B;
+}
+
+/* Severity options */
+.severity-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.severity-opt {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.severity-opt input[type="radio"] {
+  display: none;
+}
+.sev-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.sev-tag.low   { background: #F0FDF4; color: #166534; border-color: #BBF7D0; }
+.sev-tag.medium { background: #FFFBEB; color: #92400E; border-color: #FDE68A; }
+.sev-tag.high  { background: #FFF1F2; color: #BE123C; border-color: #FECDD3; }
+
+.severity-opt input:checked + .sev-tag.low    { background: #15803D; color: #FFF; border-color: #15803D; }
+.severity-opt input:checked + .sev-tag.medium { background: #D97706; color: #FFF; border-color: #D97706; }
+.severity-opt input:checked + .sev-tag.high   { background: #E11D48; color: #FFF; border-color: #E11D48; }
+
+/* Complaint notice box */
+.complaint-notice-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.complaint-notice-box i {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Submit complaint button */
+.btn-submit-complaint {
+  width: 100%;
+  background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%);
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 13px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(234,88,12,0.3);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+}
+.btn-submit-complaint:hover {
+  background: linear-gradient(135deg, #C2410C 0%, #9A3412 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(194,65,12,0.4);
+}
+
+/* Complaint success state */
+.complaint-success-state {
+  text-align: center;
+  padding: 24px 16px;
+}
+.complaint-success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+  border: 3px solid #86EFAC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+.complaint-success-icon i {
+  font-size: 2.2rem;
+  color: #15803D;
+}
+.complaint-success-state h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 10px;
+}
+.complaint-success-state p {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+/* Complaint status indicator on card */
+.complaint-status-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFF3CD;
+  color: #92400E;
+  border: 1px solid #FCD34D;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-top: 10px;
+}
