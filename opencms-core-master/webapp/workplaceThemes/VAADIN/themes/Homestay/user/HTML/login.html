@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="utf-8">
@@ -45,20 +45,30 @@
     }
   </style>
 </head>
-<body class="relative min-h-screen bg-slate-900 text-slate-800 antialiased flex flex-col justify-between overflow-x-hidden selection:bg-[#15803D] selection:text-white">
+<body class="relative h-screen w-screen bg-slate-900 text-slate-800 antialiased flex flex-col justify-between overflow-hidden selection:bg-[#15803D] selection:text-white">
 
-  <!-- Full Screen Background Image with Overlay -->
-  <div class="fixed inset-0 z-0 bg-cover bg-center transition-all duration-700 transform scale-105 filter" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80');">
-    <!-- Gradient Dark Veil with subtle blur -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/75 backdrop-blur-[2px]"></div>
+  <!-- Full Screen Background Video (1080p HD Native & Crystal Clear) -->
+  <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black">
+    <video 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full min-w-full min-h-full object-cover pointer-events-none">
+      <source src="https://res.cloudinary.com/dwnbmfhel/video/upload/v1790141158/YTSave_YouTube_VIETNAM-My-Home-Masew-MyoMouse-Nguyen-Lo_Media_NSnkb1IAjbE_001_1080p_-_Trim_-_Trim_sdbnuc.mp4" type="video/mp4">
+      <iframe 
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full h-full min-h-[56.25vw] pointer-events-none scale-125 border-0" 
+        src="https://www.youtube.com/embed/NSnkb1IAjbE?autoplay=1&mute=1&loop=1&playlist=NSnkb1IAjbE&controls=0&showinfo=0&rel=0&enablejsapi=1&iv_load_policy=3&modestbranding=1&playsinline=1&vq=hd1080"
+        allow="autoplay; encrypted-media">
+      </iframe>
+    </video>
   </div>
 
   <!-- Header Navigation Bar -->
-  <header class="relative z-20 w-full px-6 py-4 sm:px-10 flex items-center justify-between">
+  <header class="relative z-20 w-full px-6 py-3 sm:px-10 flex items-center justify-between shrink-0">
     <a class="flex items-center gap-3 group text-decoration-none" href="homepage.html">
-      <div class="h-10 px-3 rounded-2xl bg-white/15 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-md group-hover:bg-white/25 transition">
-        <img src="../images/logo.png" alt="Homestay Logo" class="h-6 w-auto" onerror="this.style.display='none'">
-        <span class="font-bold text-white tracking-wide text-base sm:text-lg drop-shadow-sm ml-1">Homestay</span>
+      <div class="h-12 sm:h-14 px-3 sm:px-4 rounded-2xl bg-white/15 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg group-hover:bg-white/25 transition">
+        <img src="../../owner/images/logo_white.png" alt="Homestay Logo" class="h-8 sm:h-10 w-auto object-contain">
       </div>
       <div class="hidden sm:flex flex-col">
         <span class="text-xs font-semibold text-emerald-200">Cộng đồng Homestay Việt Nam</span>
@@ -73,23 +83,23 @@
     </div>
   </header>
 
-  <!-- Centered Login Box -->
-  <main class="relative z-20 flex-1 flex items-center justify-center px-4 py-6 sm:py-10">
-    <div class="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/60 p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
+  <!-- Right-aligned Login Box -->
+  <main class="relative z-20 flex-1 flex items-center justify-center sm:justify-end px-4 sm:px-12 md:px-20 lg:px-28 py-2 sm:py-4 overflow-hidden">
+    <div class="w-full max-w-[365px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/60 p-6 sm:p-7 relative overflow-hidden transition-all duration-300 my-auto">
 
       <!-- Header Title -->
-      <div class="mb-5">
-        <h2 class="text-2xl font-bold text-slate-900 tracking-tight leading-snug">Đăng nhập tài khoản</h2>
+      <div class="mb-4">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-snug">Đăng nhập tài khoản</h2>
         <p class="text-xs text-slate-500 mt-1">Chào mừng bạn quay trở lại với Homestay Việt Nam</p>
       </div>
 
       <!-- Role Switcher Tabs (Khách thuê / Chủ Homestay) -->
-      <div class="bg-slate-100/90 p-1 rounded-xl flex gap-1 mb-4 border border-slate-200/80">
-        <button class="flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-2 bg-[#15803D] text-white shadow-sm" id="tab-tourist" onclick="switchRole('tourist')" type="button">
+      <div class="bg-slate-100/90 p-1 rounded-xl flex gap-1 mb-3.5 border border-slate-200/80">
+        <button class="flex-1 py-2 px-2.5 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-1.5 bg-[#15803D] text-white shadow-sm" id="tab-tourist" onclick="switchRole('tourist')" type="button">
           <i class="bi bi-person-luggage text-sm"></i>
           <span>Khách thuê</span>
         </button>
-        <button class="flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900 hover:bg-white/80" id="tab-owner" onclick="switchRole('owner')" type="button">
+        <button class="flex-1 py-2 px-2.5 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-1.5 text-slate-600 hover:text-slate-900 hover:bg-white/80" id="tab-owner" onclick="switchRole('owner')" type="button">
           <i class="bi bi-house-heart-fill text-sm"></i>
           <span>Chủ Homestay</span>
         </button>
@@ -125,7 +135,7 @@
             </button>
           </div>
           <!-- Quên mật khẩu link -->
-          <div class="flex justify-end mt-1.5">
+          <div class="flex justify-end mt-1">
             <button type="button" onclick="openForgotPasswordModal()" class="text-xs font-semibold text-[#15803D] hover:text-[#166534] hover:underline flex items-center gap-1 cursor-pointer">
               <i class="bi bi-key text-xs"></i>
               <span>Quên mật khẩu?</span>
@@ -134,14 +144,14 @@
         </div>
 
         <!-- Primary CTA Button -->
-        <button class="w-full mt-1 py-3 px-4 bg-[#15803D] hover:bg-[#166534] active:scale-[0.99] text-white font-bold text-sm rounded-xl shadow-lg shadow-[#15803D]/25 transition flex items-center justify-center gap-2 cursor-pointer" type="submit">
+        <button class="w-full mt-1.5 py-2.5 px-4 bg-[#15803D] hover:bg-[#166534] active:scale-[0.99] text-white font-bold text-sm rounded-xl shadow-lg shadow-[#15803D]/25 transition flex items-center justify-center gap-2 cursor-pointer" type="submit">
           <span>Đăng nhập</span>
           <i class="bi bi-arrow-right text-xs"></i>
         </button>
       </form>
 
       <!-- Divider -->
-      <div class="relative my-4">
+      <div class="relative my-3.5">
         <div class="absolute inset-0 flex items-center">
           <div class="w-full border-t border-slate-200"></div>
         </div>
@@ -151,8 +161,8 @@
       </div>
 
       <!-- Social Logins -->
-      <div class="grid grid-cols-2 gap-3">
-        <button class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 text-xs font-semibold cursor-pointer" type="button" onclick="alert('Đăng nhập Google thành công!'); window.location.href='homepage.html';">
+      <div class="grid grid-cols-2 gap-2.5">
+        <button class="flex items-center justify-center gap-2 py-2 px-3 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 text-xs font-semibold cursor-pointer" type="button" onclick="alert('Đăng nhập Google thành công!'); window.location.href='homepage.html';">
           <svg class="w-4 h-4" viewBox="0 0 24 24">
             <path d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z" fill="#EA4335"></path>
             <path d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z" fill="#4285F4"></path>
@@ -161,23 +171,23 @@
           </svg>
           <span>Google</span>
         </button>
-        <button class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 text-xs font-semibold cursor-pointer" type="button" onclick="alert('Đăng nhập Facebook thành công!'); window.location.href='homepage.html';">
+        <button class="flex items-center justify-center gap-2 py-2 px-3 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition text-slate-700 text-xs font-semibold cursor-pointer" type="button" onclick="alert('Đăng nhập Facebook thành công!'); window.location.href='homepage.html';">
           <i class="bi bi-facebook text-blue-600 text-sm"></i>
           <span>Facebook</span>
         </button>
       </div>
 
       <!-- Bottom Registration Links (Nối sang register.html với role) -->
-      <div class="pt-4 mt-4 border-t border-slate-200 bg-slate-50/90 -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-4 sm:px-6 rounded-b-3xl border-slate-100">
-        <div class="text-center mb-2.5">
+      <div class="pt-3.5 mt-3.5 border-t border-slate-200 bg-slate-50/90 -mx-6 sm:-mx-7 -mb-6 sm:-mb-7 p-3.5 sm:px-6 rounded-b-3xl border-slate-100">
+        <div class="text-center mb-2">
           <span class="text-xs font-semibold text-slate-700">Bạn chưa có tài khoản?</span>
         </div>
-        <div class="grid grid-cols-2 gap-2 mt-2">
-          <a class="py-2.5 px-2.5 rounded-xl border border-emerald-300 bg-white hover:bg-emerald-50 text-[#15803D] text-xs font-bold text-center transition flex items-center justify-center gap-1.5 shadow-sm" href="register.html?role=guest" id="link-reg-guest">
+        <div class="flex flex-col gap-2 mt-2">
+          <a class="py-2.5 px-3 rounded-xl border border-emerald-300 bg-white hover:bg-emerald-50 text-[#15803D] text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm" href="register.html?role=guest" id="link-reg-guest">
             <i class="bi bi-person-luggage text-sm"></i>
             <span>Đăng ký Khách thuê</span>
           </a>
-          <a class="py-2.5 px-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 hover:text-emerald-800 text-xs font-bold text-center transition flex items-center justify-center gap-1.5 shadow-sm" href="register.html?role=host" id="link-reg-host">
+          <a class="py-2.5 px-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 hover:text-emerald-800 text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm" href="register.html?role=host" id="link-reg-host">
             <i class="bi bi-house-heart-fill text-sm text-emerald-600"></i>
             <span>Đăng ký Chủ nhà</span>
           </a>
@@ -236,10 +246,10 @@
           usernameInput.placeholder = "chuhoang.homestay@gmail.com hoặc 0987...";
         }
         if (linkHost) {
-          linkHost.className = "py-2.5 px-2.5 rounded-xl border border-emerald-400 bg-emerald-50 text-[#15803D] text-xs font-bold text-center transition flex items-center justify-center gap-1.5 shadow-sm";
+          linkHost.className = "py-2.5 px-3 rounded-xl border border-emerald-400 bg-emerald-50 text-[#15803D] text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm";
         }
         if (linkGuest) {
-          linkGuest.className = "py-2.5 px-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 text-xs font-bold text-center transition flex items-center justify-center gap-1.5 shadow-sm";
+          linkGuest.className = "py-2.5 px-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm";
         }
       } else {
         tabTourist.className = "flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-2 bg-[#15803D] text-white shadow-sm";
@@ -249,10 +259,10 @@
           usernameInput.placeholder = "maichi.lehoang@gmail.com hoặc 0912...";
         }
         if (linkGuest) {
-          linkGuest.className = "py-2.5 px-2.5 rounded-xl border border-emerald-300 bg-white hover:bg-emerald-50 text-[#15803D] text-xs font-bold text-center transition flex items-center justify-center gap-1.5 shadow-sm";
+          linkGuest.className = "py-2.5 px-3 rounded-xl border border-emerald-300 bg-white hover:bg-emerald-50 text-[#15803D] text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm";
         }
         if (linkHost) {
-          linkHost.className = "py-2.5 px-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 hover:text-emerald-800 text-xs font-bold text-center transition flex items-center justify-center gap-1.5 shadow-sm";
+          linkHost.className = "py-2.5 px-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 hover:text-emerald-800 text-xs font-bold text-center transition flex items-center justify-center gap-2 shadow-sm";
         }
       }
     }
