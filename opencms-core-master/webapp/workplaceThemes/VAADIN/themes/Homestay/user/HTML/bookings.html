@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Home - Lịch Sử & Quản Lý Đặt Chỗ Homestay</title>
+    <link rel="stylesheet" href="../CSS/bookings.css">
+    <script src="../JS/bookings.js"></script>
+</head>
+<body>
+<!-- ==================== HEADER ==================== -->
+<div id="header-placeholder"></div>
+ <!-- ==================== MAIN CONTENT ==================== -->
+<main class="main-wrapper"> <!-- 1. HERO BANNER XANH LỤC -->
+    <section class="hero-banner">
+        <div class="hero-content"><span class="hero-tag"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                               stroke-width="2"><path
+                d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg> Hệ sinh thái du lịch bản địa bền vững </span>
+            <h1 class="hero-title">Quản Lý Đặt Chỗ & Chuyến Đi Của Bạn</h1>
+            <p class="hero-desc"> Theo dõi lịch trình homestay, mã xác nhận đặt phòng, vé điện tử QR check-in và lịch sử
+                lưu trú văn hóa bản địa khắp Việt Nam một cách thuận tiện nhất. </p>
+            <div class="hero-features"><span>✓ Check-in không chạm qua QR</span> <span>✓ Đổi lịch miễn phí 48h</span>
+                <span>✓ Hỗ trợ khẩn cấp 24/7</span></div>
+        </div> <!-- Khung tra cứu nhanh bên phải -->
+        <div class="hero-lookup-card">
+            <div class="lookup-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <h3>Tra cứu nhanh đặt chỗ</h3></div>
+            <label for="lookup-input">Nhập mã đặt chỗ hoặc số điện thoại đăng ký phòng:</label>
+            <div class="lookup-input-group"><span class="input-prefix">#</span> <input type="text" id="lookup-input"
+                                                                                       placeholder="Ví dụ: TH-2026-88924...">
+            </div>
+            <button id="btn-lookup" class="btn-primary-green w-100">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                Tra cứu ngay
+            </button>
+            <div class="lookup-footer"><span>Cần trợ giúp tra cứu?</span> <a href="#">Liên hệ nhân viên hỗ trợ</a></div>
+        </div>
+    </section> <!-- 2. THỐNG KÊ NHANH (STAT CARDS) -->
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-info"><span class="stat-label">CHUYẾN ĐI SẮP TỚI</span>
+                <h2 class="stat-value">2 <span>Chuyến đi</span></h2>
+                <p class="stat-sub">📍 Đà Lạt & Ninh Bình (Sắp tới)</p></div>
+            <div class="stat-icon-box bg-green-light">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-info"><span class="stat-label">HÀNH TRÌNH TRẢI NGHIỆM</span>
+                <h2 class="stat-value">5 <span>Lần lưu trú</span></h2>
+                <p class="stat-sub">🌱 +1.250 Điểm thưởng xanh</p></div>
+            <div class="stat-icon-box bg-orange-light">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-info"><span class="stat-label">THẺ CHECK-IN SẴN SÀNG</span>
+                <h2 class="stat-value">1 <span>Mã QR</span></h2>
+                <p class="stat-sub text-green">📱 Xem mã check-in ngay</p></div>
+            <div class="stat-icon-box bg-yellow-light">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 11 12 14 22 4"></polyline>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+            </div>
+        </div>
+    </section> <!-- 3. BỘ LỌC VÀ TÌM KIẾM ĐẶT CHỖ -->
+    <section class="filter-bar">
+        <div class="filter-tabs">
+            <button class="tab-btn" data-status="all">Tất cả đặt chỗ (7)</button>
+            <button class="tab-btn active" data-status="upcoming">● Sắp diễn ra (2)</button>
+            <button class="tab-btn" data-status="completed">Đã hoàn thành (4)</button>
+            <button class="tab-btn" data-status="cancelled">Đã hủy (1)</button>
+        </div>
+        <div class="filter-actions">
+            <div class="search-input-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-booking" placeholder="Tìm theo tên homestay, mã..."></div>
+            <select class="select-year" id="filter-year">
+                <option value="2026">Năm 2026</option>
+                <option value="2025">Năm 2025</option>
+            </select> <select class="select-sort">
+            <option>Gần đây nhất</option>
+            <option>Cũ nhất</option>
+        </select></div>
+    </section> <!-- 4. CHUYẾN ĐI SẮP TỚI (UPCOMING SECTION) -->
+    <section class="section-container" id="upcoming-container">
+        <div class="section-header"><h2 class="section-title"><span class="indicator-bar green"></span> Chuyến Đi Sắp
+            Tới <span class="badge-tag">2 đơn</span></h2> <span
+                class="note-text">Nhận thông báo check-in trước 24 giờ</span></div>
+        <!-- Thẻ chính nổi bật (Hero Booking Card) -->
+        <article class="booking-card hero-card" data-booking="TH-2026-88924">
+            <div class="card-top-bar">
+                <div class="card-status-tags"><span class="tag-status green">⏱ Sắp diễn ra sau 3 ngày</span> <span
+                        class="booking-id-text">Mã đặt chỗ: <strong>#TH-2026-88924</strong> • Đặt ngày 10/09/2026</span>
+                </div>
+                <span class="payment-badge">✓ Đã thanh toán 100%</span></div>
+            <div class="card-main-grid"> <!-- Ảnh đại diện phòng -->
+                <div class="card-image-box"><img
+                        src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80"
+                        alt="The Pine Forest Retreat"> <span class="img-badge-floating">🏡 Homestay Bản Địa</span>
+                    <div class="img-caption-overlay"><span class="loc-tag">ĐÀ LẠT, LÂM ĐỒNG</span>
+                        <h3>The Pine Forest Retreat</h3></div>
+                </div> <!-- Thông tin lưu trú chi tiết -->
+                <div class="card-details"><h3 class="room-name">Superior Double Đồi Thông</h3>
+                    <p class="room-desc">Phòng 1 giường King lớn • Ban công ngắm thung lũng thông reo</p>
+                    <div class="dates-banner">
+                        <div class="date-item"><span class="date-label">➔ NHẬN PHÒNG (CHECK-IN)</span> <span
+                                class="date-time">14:00 • Thứ 6</span> <span class="date-date">24/09/2026</span></div>
+                        <div class="date-divider"></div>
+                        <div class="date-item"><span class="date-label">➔ TRẢ PHÒNG (CHECK-OUT)</span> <span
+                                class="date-time">12:00 • Chủ Nhật</span> <span class="date-date">26/09/2026</span>
+                        </div>
+                    </div> <!-- Dịch vụ kèm theo -->
+                    <div class="services-box"><span class="services-title">TRẢI NGHIỆM & DỊCH VỤ KÈM THEO:</span>
+                        <div class="service-chips"><span class="service-chip">☕ Workshop Pha Cà Phê Phin Bản Địa</span>
+                            <span class="service-chip">🎵 Acoustic Đêm Thông (Tặng 2 vé)</span> <span
+                                    class="service-chip">🍳 Bao gồm 2 bữa sáng</span></div>
+                    </div> <!-- Chủ nhà -->
+                    <div class="host-info">
+                        <div class="host-avatar">MH</div>
+                        <div class="host-meta"><h4>Chị Mai & Anh Hùng <span class="rating">⭐ 4.98</span></h4>
+                            <p>Chủ nhà sinh thái nhiệt tình</p></div>
+                        <button class="btn-outline-sm">💬 Nhắn tin chủ nhà</button>
+                    </div>
+                </div> <!-- Cột thanh toán & Hành động -->
+                <div class="card-actions-col">
+                    <div class="pricing-summary"><span class="pricing-label">TỔNG CHI PHÍ THANH TOÁN</span>
+                        <div class="price-value">2.450.000₫</div>
+                        <span class="price-meta">2 đêm • 2 khách • Đã gồm VAT & phí dịch vụ</span></div>
+                    <div class="cancellation-policy-box"><strong>Chính sách hủy linh hoạt</strong>
+                        <p>Hủy miễn phí trước 14:00 ngày 22/09/2026.</p></div>
+                    <div class="action-buttons-group">
+                        <button class="btn-primary-green btn-qr-action" onclick="openQrModal('TH-2026-88924')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                            Xem mã QR Check-in
+                        </button>
+                        <div class="btn-sub-row">
+                            <button class="btn-secondary-white">📍 Chỉ đường</button>
+                            <button class="btn-secondary-white">📥 Tải vé PDF</button>
+                        </div>
+                        <a href="#" class="link-cancel-request">Yêu cầu đổi lịch hoặc hỗ trợ hủy phòng</a></div>
+                </div>
+            </div>
+        </article> <!-- Thẻ thứ 2 dạng Compact (Ninh Bình) -->
+        <article class="booking-card compact-card" data-booking="TH-2026-90112">
+            <div class="compact-left"><img
+                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&q=80"
+                    alt="Nhà Vườn Sen Cố Đô">
+                <div class="compact-info">
+                    <div class="compact-tags"><span class="tag-status green-light">Sắp diễn ra</span> <span
+                            class="code">Mã: #TH-2026-90112</span></div>
+                    <h3 class="compact-name">Nhà Vườn Sen Cố Đô Ninh Bình</h3>
+                    <p class="compact-sub">Gian Nhà Gỗ Mộc Nhìn Ra Đầm Sen • 15/10/2026 – 16/10/2026 (1 đêm, 2
+                        khách)</p>
+                    <p class="compact-perk">🚣 Miễn phí chèo thuyền kayak đầm sen • 🛡 Hủy miễn phí trước 13/10</p></div>
+            </div>
+            <div class="compact-right">
+                <div class="compact-price-wrap"><span class="label">TỔNG THANH TOÁN</span> <span class="price">1.350.000₫</span>
+                    <span class="status-paid">Đã thanh toán qua VNPAY</span></div>
+                <div class="compact-btns">
+                    <button class="btn-secondary-sm">Xem chi tiết phòng</button>
+                    <button class="btn-secondary-sm text-green">📄 Tải xác nhận</button>
+                </div>
+            </div>
+        </article>
+    </section> <!-- 5. LỊCH SỬ CHUYẾN ĐI ĐÃ HOÀN THÀNH -->
+    <section class="section-container" id="history-container">
+        <div class="section-header"><h2 class="section-title"><span class="indicator-bar orange"></span> Lịch Sử Các
+            Chuyến Đi Đã Hoàn Thành <span class="badge-tag">4 chuyến</span></h2> <a href="#" class="export-link">Xuất
+            lịch sử năm 2026 ⤓</a></div> <!-- Item lịch sử 1 (Hội An) -->
+        <div class="history-item-row" data-booking="TH-2026-77218"><img
+                src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=200&q=80"
+                alt="Hội An">
+            <div class="history-body">
+                <div class="history-tags"><span class="tag-status gray">✓ Đã hoàn thành</span> <span class="code">Mã: #TH-2026-77218</span>
+                </div>
+                <h3 class="history-title">An Bang Seaside Haven Hội An</h3>
+                <p class="history-desc">Bungalow Mái Lá Gió Biển • 18/07/2026 – 20/07/2026 (2 đêm)</p>
+                <p class="history-review">⭐⭐⭐⭐⭐ Bạn đã đánh giá 5.0 sao ("Chủ nhà chu đáo, món chả ram tuyệt hảo!")</p>
+            </div>
+            <div class="history-actions">
+                <div class="history-price">1.890.000₫</div>
+                <div class="history-btn-group">
+                    <button class="btn-secondary-sm">Xem hóa đơn</button>
+                    <button class="btn-primary-green-sm">↻ Đặt lại chỗ này</button>
+                </div>
+            </div>
+        </div> <!-- Item lịch sử 2 (Sapa) -->
+        <div class="history-item-row" data-booking="TH-2026-65431"><img
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80"
+                alt="Sapa">
+            <div class="history-body">
+                <div class="history-tags"><span class="tag-status gray">✓ Đã hoàn thành</span> <span class="code">Mã: #TH-2026-65431</span>
+                </div>
+                <h3 class="history-title">Topas Ecolodge Sapa</h3>
+                <p class="history-desc">Suite View Ruộng Bậc Thang Mường Hoa • 12/04/2026 – 14/04/2026 (2 đêm)</p>
+                <p class="history-reward">🌱 Đã tích lũy +420 Điểm Bảo Tồn Rừng Xanh</p></div>
+            <div class="history-actions">
+                <div class="history-price">4.200.000₫</div>
+                <div class="history-btn-group">
+                    <button class="btn-secondary-sm">Xem lại hóa đơn VAT</button>
+                    <button class="btn-primary-green-sm">↻ Đặt lại</button>
+                </div>
+            </div>
+        </div> <!-- Item lịch sử 3 (Mộc Châu) -->
+        <div class="history-item-row" data-booking="TH-2026-51209"><img
+                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=200&q=80"
+                alt="Mộc Châu">
+            <div class="history-body">
+                <div class="history-tags"><span class="tag-status gray">✓ Đã hoàn thành</span> <span class="code">Mã: #TH-2026-51209</span>
+                </div>
+                <h3 class="history-title">Mộc Châu Valley View Homestay</h3>
+                <p class="history-desc">Nhà Sàn Gỗ Đồi Chè Trái Tim • 02/01/2026 – 04/01/2026 (2 đêm)</p>
+                <p class="history-perk">🔥 Đã tham gia tiệc lửa trại và giao lưu múa xòe</p></div>
+            <div class="history-actions">
+                <div class="history-price">1.120.000₫</div>
+                <div class="history-btn-group">
+                    <button class="btn-secondary-sm">Xem hóa đơn</button>
+                    <button class="btn-primary-green-sm">↻ Đặt lại</button>
+                </div>
+            </div>
+        </div>
+    </section> <!-- 6. BANNER TRỢ GIÚP 24/7 -->
+    <section class="support-banner">
+        <div class="support-text"><span class="support-tag">🎧 TRUNG TÂM HỖ TRỢ ĐẶT CHỖ 24/7</span>
+            <h2>Bạn cần hỗ trợ thay đổi lịch trình hoặc sự cố tại homestay?</h2>
+            <p>Đội ngũ tư vấn viên bản địa của Tourist Home luôn đồng hành cùng bạn trên mọi nẻo đường. Cam kết xử lý
+                yêu cầu hoàn tiền, đổi phòng trong vòng tối đa 30 phút.</p>
+            <div class="support-contacts"><span>📞 <strong>1900 8899</strong> (Phím 1 cho Đặt phòng)</span>
+                <span>💬 <strong>Zalo CSKH Official:</strong> @TouristHomeVN</span></div>
+        </div>
+        <div class="support-actions"><a href="tel:19008899" class="btn-support-call">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            Gọi Tổng Đài Khẩn Cấp </a> <a href="#" class="btn-support-faq">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            Câu hỏi thường gặp (FAQ) </a></div>
+    </section>
+</main> <!-- ==================== FOOTER ==================== -->
+<div id="footer-placeholder"></div>
+
+<div id="qr-modal" class="modal-overlay">
+    <div class="modal-card">
+        <button class="modal-close" onclick="closeQrModal()">&times;</button>
+        <div class="modal-header"><span class="badge-tag green">MÃ CHECK-IN KHÔNG CHẠM</span>
+            <h3 id="modal-booking-title">The Pine Forest Retreat</h3>
+            <p>Mã đặt chỗ: <strong id="modal-booking-id">#TH-2026-88924</strong></p></div>
+        <div class="qr-code-box"> <!-- SVG Giả lập Mã QR chuẩn đẹp -->
+            <svg viewBox="0 0 100 100" class="qr-svg">
+                <rect width="100" height="100" fill="#ffffff"/>
+                <path d="M10,10 h25 v25 h-25 z M15,15 v15 h15 v-15 z M19,19 h7 v7 h-7 z" fill="#15803d"/>
+                <path d="M65,10 h25 v25 h-25 z M70,15 v15 h15 v-15 z M74,19 h7 v7 h-7 z" fill="#15803d"/>
+                <path d="M10,65 h25 v25 h-25 z M15,70 v15 h15 v-15 z M19,74 h7 v7 h-7 z" fill="#15803d"/>
+                <rect x="45" y="15" width="10" height="10" fill="#15803d"/>
+                <rect x="40" y="35" width="15" height="15" fill="#15803d"/>
+                <rect x="65" y="45" width="20" height="10" fill="#15803d"/>
+                <rect x="45" y="65" width="12" height="20" fill="#15803d"/>
+                <rect x="65" y="75" width="15" height="15" fill="#15803d"/>
+            </svg>
+        </div>
+        <p class="modal-note">Quét mã tại quầy lễ tân homestay hoặc cửa tự động để nhận phòng trong tích tắc.</p>
+        <button class="btn-primary-green w-100" onclick="alert('Đã lưu mã QR về điện thoại của bạn!')">Tải mã QR về điện
+            thoại
+        </button>
+    </div>
+</div>
+</body>
+</html>

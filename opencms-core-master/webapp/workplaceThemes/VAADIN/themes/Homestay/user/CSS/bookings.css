@@ -1,0 +1,1430 @@
+:root {
+    --primary-green: #15803d; /* Xanh lục sinh thái chủ đạo */
+    --primary-hover: #166534; /* Xanh đậm khi hover */
+    --primary-light: #ecfdf5; /* Xanh nhạt nền thẻ / badge */
+    --accent-orange: #c84b31; /* Cam đất nung */
+    --bg-page: #f8fafc; /* Nền tổng thể trang */
+    --bg-card: #ffffff; /* Nền các thẻ Card */
+    --border-color: #e2e8f0; /* Viền xám sáng nhẹ */
+    --text-main: #0f172a; /* Màu chữ tiêu đề */
+    --text-sub: #475569; /* Màu chữ phụ / mô tả */
+    --text-muted: #94a3b8; /* Màu ghi mờ */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --font-family: system-ui, -apple-system, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+input, select {
+    font-family: inherit;
+    outline: none;
+}
+
+/* ============================================================ HEADER / NAVBAR ============================================================ */
+.site-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-green);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.logo-text .logo-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1e293b;
+    letter-spacing: -0.5px;
+    display: block;
+}
+
+.logo-text .logo-title span {
+    color: var(--primary-green);
+}
+
+.logo-text .logo-sub {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--primary-green);
+    letter-spacing: 1.5px;
+    display: block;
+}
+
+.header-search {
+    flex: 1;
+    max-width: 360px;
+    position: relative;
+}
+
+.header-search .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
+}
+
+.header-search input {
+    width: 100%;
+    padding: 8px 12px 8px 36px;
+    background-color: #f1f5f9;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.header-search input:focus {
+    background-color: #fff;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15);
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-sub);
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-link:hover {
+    color: var(--primary-green);
+    background-color: var(--primary-light);
+}
+
+.nav-wishlist {
+    position: relative;
+}
+
+.badge-count {
+    background-color: #ef4444;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 999px;
+}
+
+.nav-booking.active {
+    background-color: var(--primary-light);
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.nav-booking svg {
+    width: 16px;
+    height: 16px;
+}
+
+.btn-account {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--primary-green);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-account:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-account svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ============================================================ MAIN CONTAINER ============================================================ */
+.main-wrapper {
+    max-width: 1280px;
+    margin: 32px auto 60px;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* ============================================================ 1. HERO BANNER XANH LỤC ============================================================ */
+.hero-banner {
+    background: linear-gradient(135deg, #15803d 0%, #0f5c2b 100%);
+    color: #ffffff;
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 40px;
+    align-items: center;
+    box-shadow: 0 10px 25px -5px rgba(21, 128, 61, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.hero-tag svg {
+    width: 14px;
+    height: 14px;
+}
+
+.hero-title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 14px;
+}
+
+.hero-desc {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 24px;
+    max-width: 580px;
+}
+
+.hero-features {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #dcfce7;
+    flex-wrap: wrap;
+}
+
+/* Khung tra cứu nhanh */
+.hero-lookup-card {
+    background-color: #ffffff;
+    color: var(--text-main);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+}
+
+.lookup-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    color: var(--primary-green);
+}
+
+.lookup-header svg {
+    width: 20px;
+    height: 20px;
+}
+
+.lookup-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.hero-lookup-card label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-sub);
+    margin-bottom: 8px;
+}
+
+.lookup-input-group {
+    display: flex;
+    align-items: center;
+    background-color: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    margin-bottom: 14px;
+}
+
+.input-prefix {
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-right: 6px;
+}
+
+.lookup-input-group input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+}
+
+.lookup-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-top: 12px;
+    color: var(--text-muted);
+}
+
+.lookup-footer a {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+/* ============================================================ 2. STAT CARDS GRID ============================================================ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 4px 0;
+}
+
+.stat-value span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-sub);
+}
+
+.stat-sub {
+    font-size: 12px;
+    color: var(--text-sub);
+}
+
+.stat-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon-box svg {
+    width: 24px;
+    height: 24px;
+}
+
+.bg-green-light {
+    background: #dcfce7;
+    color: var(--primary-green);
+}
+
+.bg-orange-light {
+    background: #ffedd5;
+    color: #ea580c;
+}
+
+.bg-yellow-light {
+    background: #fef9c3;
+    color: #ca8a04;
+}
+
+.text-green {
+    color: var(--primary-green) !important;
+    font-weight: 600;
+}
+
+/* ============================================================ 3. BỘ LỌC TABS & SEARCH ============================================================ */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.filter-tabs {
+    display: flex;
+    background-color: #f1f5f9;
+    padding: 4px;
+    border-radius: 999px;
+    gap: 4px;
+}
+
+.tab-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-sub);
+    border-radius: 999px;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    color: var(--text-main);
+}
+
+.tab-btn.active {
+    background-color: var(--primary-green);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(21, 128, 61, 0.3);
+}
+
+.filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-input-box {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    padding: 8px 14px;
+    border-radius: 999px;
+    gap: 8px;
+}
+
+.search-input-box svg {
+    width: 15px;
+    height: 15px;
+    color: var(--text-muted);
+}
+
+.search-input-box input {
+    border: none;
+    font-size: 13px;
+    width: 200px;
+}
+
+.select-year, .select-sort {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--text-sub);
+    font-weight: 500;
+}
+
+/* ============================================================ 4. CHUYẾN ĐI SẮP TỚI & CARD ĐẶT PHÒNG ============================================================ */
+.section-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.indicator-bar {
+    width: 5px;
+    height: 22px;
+    border-radius: 4px;
+}
+
+.indicator-bar.green {
+    background-color: var(--primary-green);
+}
+
+.indicator-bar.orange {
+    background-color: var(--accent-orange);
+}
+
+.badge-tag {
+    background-color: var(--primary-light);
+    color: var(--primary-green);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 999px;
+}
+
+.note-text {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Thẻ Đặt Phòng Chính (Hero Card) */
+.booking-card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.booking-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: var(--shadow-md);
+}
+
+.card-top-bar {
+    background-color: #f8fafc;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tag-status.green {
+    background-color: #dcfce7;
+    color: #166534;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-right: 10px;
+}
+
+.booking-id-text {
+    font-size: 13px;
+    color: var(--text-sub);
+}
+
+.payment-badge {
+    color: var(--primary-green);
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.card-main-grid {
+    display: grid;
+    grid-template-columns: 280px 1.4fr 1fr;
+    gap: 24px;
+    padding: 24px;
+}
+
+/* Cột Ảnh */
+.card-image-box {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    height: 100%;
+    min-height: 240px;
+}
+
+.card-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.img-badge-floating {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: rgba(255, 255, 255, 0.92);
+    color: var(--primary-green);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.img-caption-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 12px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    color: #fff;
+}
+
+.img-caption-overlay .loc-tag {
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #86efac;
+}
+
+.img-caption-overlay h3 {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Cột Chi tiết */
+.card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.room-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.room-desc {
+    font-size: 13px;
+    color: var(--text-sub);
+}
+
+.dates-banner {
+    background-color: #faf5ee;
+    border: 1px solid #fed7aa;
+    border-radius: var(--radius-md);
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.date-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #9a3412;
+}
+
+.date-time {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.date-date {
+    font-size: 12px;
+    color: var(--text-sub);
+}
+
+.date-divider {
+    width: 1px;
+    height: 36px;
+    background-color: #fdba74;
+}
+
+.services-box .services-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.service-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.service-chip {
+    background-color: #f1f5f9;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: var(--text-sub);
+}
+
+.host-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.host-avatar {
+    width: 38px;
+    height: 38px;
+    background-color: #dcfce7;
+    color: var(--primary-green);
+    font-weight: 800;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.host-meta h4 {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.host-meta p {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.btn-outline-sm {
+    margin-left: auto;
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-sub);
+    background-color: #fff;
+}
+
+.btn-outline-sm:hover {
+    background-color: #f8fafc;
+    color: var(--text-main);
+}
+
+/* Cột Actions & Giá */
+.card-actions-col {
+    background-color: #f8fafc;
+    border-radius: var(--radius-md);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.pricing-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.price-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary-green);
+}
+
+.price-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.cancellation-policy-box {
+    background-color: #ffffff;
+    border-left: 3px solid var(--primary-green);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+.cancellation-policy-box strong {
+    color: var(--primary-green);
+    display: block;
+}
+
+.action-buttons-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn-primary-green {
+    background-color: var(--primary-green);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: 0.2s;
+}
+
+.btn-primary-green:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-primary-green svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-sub-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-secondary-white {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-sub);
+}
+
+.btn-secondary-white:hover {
+    background-color: #f1f5f9;
+}
+
+.link-cancel-request {
+    font-size: 11px;
+    text-align: center;
+    color: var(--text-muted);
+    text-decoration: underline;
+}
+
+/* Thẻ phụ Compact Card */
+.compact-card {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.compact-left {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.compact-left img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.compact-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.green-light {
+    background-color: #dcfce7;
+    color: #166534;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 4px;
+}
+
+.compact-tags .code {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.compact-name {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.compact-sub {
+    font-size: 12px;
+    color: var(--text-sub);
+}
+
+.compact-perk {
+    font-size: 11px;
+    color: var(--primary-green);
+    font-weight: 500;
+}
+
+.compact-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.compact-price-wrap {
+    text-align: right;
+}
+
+.compact-price-wrap .label {
+    display: block;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.compact-price-wrap .price {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.compact-price-wrap .status-paid {
+    display: block;
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.compact-btns {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-secondary-sm {
+    background-color: #f1f5f9;
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-sub);
+}
+
+.btn-secondary-sm:hover {
+    background-color: #e2e8f0;
+}
+
+/* ============================================================ 5. LỊCH SỬ CHUYẾN ĐI (HISTORY ROWS) ============================================================ */
+.export-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary-green);
+}
+
+.history-item-row {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.history-item-row img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.history-body {
+    flex: 1;
+}
+
+.history-tags {
+    display: flex;
+    gap: 8px;
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+
+.tag-status.gray {
+    background-color: #f1f5f9;
+    color: var(--text-sub);
+    font-weight: 600;
+    padding: 1px 8px;
+    border-radius: 4px;
+}
+
+.history-title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.history-desc {
+    font-size: 12px;
+    color: var(--text-sub);
+}
+
+.history-review {
+    font-size: 11px;
+    color: #ea580c;
+    margin-top: 2px;
+}
+
+.history-reward {
+    font-size: 11px;
+    color: var(--primary-green);
+    margin-top: 2px;
+}
+
+.history-perk {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.history-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.history-price {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.history-btn-group {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-primary-green-sm {
+    background-color: var(--primary-green);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btn-primary-green-sm:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ============================================================ 6. SUPPORT BANNER 24/7 ============================================================ */
+.support-banner {
+    background: #fefce8;
+    border: 1px solid #fef08a;
+    border-radius: var(--radius-xl);
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.support-tag {
+    font-size: 11px;
+    font-weight: 800;
+    color: #854d0e;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.support-text h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #713f12;
+    margin-bottom: 6px;
+}
+
+.support-text p {
+    font-size: 13px;
+    color: #854d0e;
+    max-width: 600px;
+    margin-bottom: 12px;
+}
+
+.support-contacts {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: #713f12;
+}
+
+.support-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 260px;
+}
+
+.btn-support-call {
+    background-color: var(--primary-green);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-support-call:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-support-call svg, .btn-support-faq svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-support-faq {
+    background-color: #fff;
+    border: 1px solid #ca8a04;
+    color: #854d0e;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* ============================================================ 7. FOOTER ============================================================ */
+.site-footer {
+    background-color: #f1f5f9;
+    border-top: 1px solid var(--border-color);
+    padding: 48px 0 24px;
+}
+
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 36px;
+}
+
+.footer-col h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-main);
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+    font-size: 13px;
+    color: var(--text-sub);
+    transition: color 0.2s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--primary-green);
+}
+
+.footer-logo {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.footer-logo span {
+    color: var(--primary-green);
+}
+
+.brand-col p {
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-bottom: 16px;
+}
+
+.hotline-box span {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    display: block;
+}
+
+.hotline-box strong {
+    font-size: 22px;
+    color: var(--accent-orange);
+    display: block;
+}
+
+.hotline-box small {
+    font-size: 12px;
+    color: var(--text-sub);
+}
+
+.partner-desc {
+    font-size: 12px;
+    color: var(--text-sub);
+    margin-bottom: 12px;
+}
+
+.payment-badges-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.pay-badge {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-sub);
+}
+
+.eco-cert {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-green);
+}
+
+.footer-bottom {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.footer-bottom-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ============================================================ 8. MODAL QR ============================================================ */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-card {
+    background-color: #fff;
+    width: 90%;
+    max-width: 400px;
+    border-radius: var(--radius-xl);
+    padding: 30px;
+    position: relative;
+    text-align: center;
+    animation: modalFadeIn 0.25s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 26px;
+    color: var(--text-muted);
+}
+
+.modal-close:hover {
+    color: var(--text-main);
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    margin: 8px 0 2px;
+}
+
+.modal-header p {
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-bottom: 16px;
+}
+
+.qr-code-box {
+    background-color: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: center;
+}
+
+.qr-svg {
+    width: 160px;
+    height: 160px;
+}
+
+.modal-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* ============================================================ RESPONSIVE DESIGN (TABLET & MOBILE) ============================================================ */
+@media (max-width: 1024px) {
+    .hero-banner {
+        grid-template-columns: 1fr;
+    }
+
+    .card-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-nav .nav-link:not(.nav-booking) {
+        display: none;
+    }
+
+    .compact-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .compact-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .history-item-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .history-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .support-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom-inner {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
