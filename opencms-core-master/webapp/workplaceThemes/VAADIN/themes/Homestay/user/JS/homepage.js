@@ -123,9 +123,9 @@ function renderFallbackHeader(placeholder, activePageName) {
               </a>
             </li>
             <li class="nav-item">
-              <a href="#festivalSection" class="nav-link" data-name="Đặt chỗ">
+              <a href="bookings.html" class="nav-link" data-name="Đặt phòng">
                 <i class="bi bi-calendar-check nav-icon"></i>
-                <span class="nav-text">Đặt chỗ</span>
+                <span class="nav-text">Đặt phòng</span>
               </a>
             </li>
             <li class="nav-item">

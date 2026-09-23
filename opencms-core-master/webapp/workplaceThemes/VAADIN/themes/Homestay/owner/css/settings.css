@@ -1,0 +1,426 @@
+/* =========================================================
+   SETTINGS TABS (mục Tài khoản / Ngân hàng / Thông báo)
+   ========================================================= */
+
+.settings-tab {
+    background-color: transparent;
+    color: var(--on-surface-variant);
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            box-shadow 0.2s ease,
+            transform 0.15s ease;
+}
+
+.settings-tab:hover {
+    background-color: var(--surface-container-low);
+    transform: translateY(-1px);
+}
+
+.settings-tab:active {
+    transform: scale(0.97);
+}
+
+.settings-tab[aria-pressed="true"] {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.settings-tab[aria-pressed="true"] span.rounded-full {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--on-primary);
+}
+
+
+/* =========================================================
+   SECTION VISIBILITY
+   ========================================================= */
+
+.settings-section[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   AVATAR
+   ========================================================= */
+
+.settings-avatar {
+    width: 96px;
+    height: 96px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--primary);
+    color: var(--on-primary);
+
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 14px rgba(21, 67, 50, 0.2);
+}
+
+.settings-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   BANK CARD
+   ========================================================= */
+
+.bank-card {
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 1rem;
+
+    padding: 1.1rem;
+
+    background: var(--surface-container-lowest);
+
+    box-shadow: 0 2px 10px rgba(21, 67, 50, 0.05);
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    transition: box-shadow 0.2s ease;
+}
+
+.bank-card:hover {
+    box-shadow: 0 8px 22px rgba(21, 67, 50, 0.09);
+}
+
+.bank-card.is-default {
+    border: 1.5px solid var(--secondary);
+}
+
+.bank-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.bank-card-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+}
+
+.bank-card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 0.7rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--surface-container-low);
+    color: var(--primary);
+
+    flex-shrink: 0;
+}
+
+.bank-card-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--on-surface);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bank-card-sub {
+    font-size: 11.5px;
+    color: var(--on-surface-variant);
+}
+
+.bank-card-number {
+    font-family: 'Inter', monospace;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--on-surface);
+}
+
+.bank-card-holder {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--on-surface-variant);
+    letter-spacing: 0.03em;
+}
+
+.bank-card-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.bank-badge {
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.bank-badge-default {
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+}
+
+.bank-badge-verified {
+    background: var(--surface-container-low);
+    color: var(--secondary);
+}
+
+.bank-badge-pending {
+    background: var(--tertiary-fixed);
+    color: var(--on-tertiary-fixed);
+}
+
+.bank-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--surface-container);
+}
+
+.bank-card-actions .room-btn {
+    flex: 1;
+    padding: 0.5rem 0.7rem;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   NOTIFICATION FILTER TABS
+   ========================================================= */
+
+.noti-filter-tab {
+    background-color: var(--surface-container-low);
+    color: var(--on-surface-variant);
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.15s ease;
+}
+
+.noti-filter-tab:hover {
+    transform: translateY(-1px);
+}
+
+.noti-filter-tab[aria-pressed="true"] {
+    background-color: var(--primary);
+    color: var(--on-primary);
+}
+
+
+/* =========================================================
+   NOTIFICATION ITEM
+   ========================================================= */
+
+.noti-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+
+    padding: 0.85rem;
+
+    border-radius: 0.8rem;
+
+    background: var(--surface-container-low);
+
+    transition: background-color 0.2s ease;
+}
+
+.noti-item:hover {
+    background: var(--surface-container);
+}
+
+.noti-item.is-unread {
+    background: var(--secondary-container);
+}
+
+.noti-item.is-unread:hover {
+    background: var(--secondary-container);
+    filter: brightness(0.98);
+}
+
+.noti-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+
+    border-radius: 0.65rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--surface-container-lowest);
+    color: var(--primary);
+}
+
+.noti-item.is-unread .noti-icon {
+    background: var(--surface-container-lowest);
+    color: var(--secondary);
+}
+
+.noti-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.noti-title {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--on-surface);
+}
+
+.noti-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--secondary);
+    flex-shrink: 0;
+}
+
+.noti-message {
+    font-size: 12.5px;
+    line-height: 18px;
+    color: var(--on-surface-variant);
+}
+
+.noti-time {
+    font-size: 11px;
+    color: var(--outline);
+    margin-top: 0.15rem;
+}
+
+.noti-empty {
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--on-surface-variant);
+}
+
+
+/* =========================================================
+   NOTIFICATION CHANNEL SETTINGS (toggle switches)
+   ========================================================= */
+
+.noti-setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+
+    padding: 0.75rem 0;
+}
+
+.noti-setting-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+}
+
+.noti-setting-label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--on-surface);
+}
+
+.noti-setting-desc {
+    font-size: 11px;
+    color: var(--on-surface-variant);
+}
+
+.settings-switch {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.settings-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.settings-switch-track {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    background-color: var(--surface-container-high);
+    border-radius: 999px;
+    transition: background-color 0.2s ease;
+}
+
+.settings-switch-track::before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    top: 3px;
+    background-color: var(--surface-container-lowest);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.settings-switch input:checked + .settings-switch-track {
+    background-color: var(--secondary);
+}
+
+.settings-switch input:checked + .settings-switch-track::before {
+    transform: translateX(16px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .settings-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 24px;
+    }
+
+    .bank-card-actions {
+        flex-direction: column;
+    }
+
+    .bank-card-actions .room-btn {
+        width: 100%;
+    }
+}

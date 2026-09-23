@@ -56,7 +56,7 @@
                 <li class="menu-item">
                     <a href="ads_management.html" class="menu-link">
                         <span class="material-symbols-outlined menu-icon">campaign</span>
-                        <span>Quản lý quảng cáo</span>
+                        <span>Bán & Dịch vụ quảng cáo</span>
                     </a>
                 </li>
                 <li class="menu-item">
@@ -89,7 +89,7 @@
                     <h4>Admin System</h4>
                     <p>Quản trị hệ thống</p>
                 </div>
-                <span class="material-symbols-outlined" style="color: #A7F3D0; font-size: 18px;">unfold_more</span>
+                <span class="material-symbols-outlined" style="color: #81b099; font-size: 16px;">unfold_more</span>
             </div>
             <div class="host-quote">
                 "Hệ thống quản trị YÊN Homestay"
@@ -109,107 +109,100 @@
             </div>
 
             <div class="admin-header-right">
-                <div class="header-action-btns">
-                    <button class="header-icon-btn" title="Thông báo">
-                        <span class="material-symbols-outlined">notifications</span>
-                        <span class="badge-dot">3</span>
+                <button class="header-icon-btn" title="Thông báo">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="notif-badge">3</span>
+                </button>
+                <div class="admin-profile-wrap">
+                    <button class="admin-profile-btn" id="adminProfileBtn">
+                        <div class="admin-avatar">A</div>
+                        <span class="admin-name">Admin</span>
+                        <span class="material-symbols-outlined" style="font-size:18px;">expand_more</span>
                     </button>
-                    <button class="header-icon-btn" title="Tin nhắn">
-                        <span class="material-symbols-outlined">chat</span>
-                    </button>
-                </div>
-
-                <div class="header-divider"></div>
-                
-                <div class="owner-header-profile-wrapper">
-                    <div class="owner-header-profile" id="adminProfileBtn">
-                        <div class="owner-avatar">A</div>
-                        <div class="owner-info">
-                            <div class="owner-info-top">
-                                <span class="owner-name">Admin System</span>
-                                <span class="owner-role-badge">Quản trị viên</span>
-                            </div>
-                            <span class="owner-subtext">Hệ thống YÊN</span>
-                        </div>
-                        <span class="material-symbols-outlined dropdown-arrow" style="font-size: 18px; color: var(--text-muted); margin-left: 2px;">expand_more</span>
-                    </div>
-
-                    <div class="profile-dropdown-menu" id="adminProfileDropdown">
-                        <div class="dropdown-header">
-                            <strong class="dropdown-user-name">Admin System</strong>
-                            <span class="dropdown-user-email">admin@yenhomestay.com</span>
-                        </div>
+                    <div class="admin-profile-dropdown" id="adminProfileDropdown">
+                        <a href="#" class="dropdown-item">
+                            <span class="material-symbols-outlined">person</span> Hồ sơ
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <span class="material-symbols-outlined">settings</span> Cài đặt
+                        </a>
                         <div class="dropdown-divider"></div>
-                        <a href="../../user/HTML/login.html" class="dropdown-item text-danger" id="dropdownLogoutBtn">
-                            <span class="material-symbols-outlined">logout</span>
-                            <span>Đăng xuất</span>
+                        <a href="../user/HTML/homepage.html" class="dropdown-item" style="color:#DC2626">
+                            <span class="material-symbols-outlined">logout</span> Đăng xuất
                         </a>
                     </div>
                 </div>
             </div>
         </header>
 
-        <main class="admin-body-content">
+        <!-- PAGE CONTENT -->
+        <div class="admin-content">
+
+            <!-- Page header -->
             <div class="page-header">
                 <div>
-                    <h1 class="page-title">Quản lý Homestay Địa Phương</h1>
-                    <div class="page-sub">Thẩm định hồ sơ đăng ký & duyệt niêm yết Homestay trên sàn YÊN</div>
+                    <h1 class="page-title">Quản lý Homestay</h1>
+                    <p class="page-sub">Duyệt, giám sát và quản lý toàn bộ danh sách homestay trên nền tảng YÊN</p>
                 </div>
+                <button class="btn-add-new" onclick="window.location.href='homestay_edit.html?id=new'">
+                    <span class="material-symbols-outlined" style="font-size:18px;">add</span>
+                    Thêm Homestay Mới
+                </button>
             </div>
 
+            <!-- Stat cards -->
             <div class="stats-row">
                 <div class="stat-box">
                     <div>
-                        <div class="stat-num" id="totalCount">128</div>
+                        <div class="stat-num" id="statTotal">6</div>
                         <div class="stat-lbl">Tổng Homestay</div>
                     </div>
                     <span class="material-symbols-outlined stat-icon">cottage</span>
                 </div>
-                <div class="stat-box orange">
-                    <div>
-                        <div class="stat-num" id="pendingCount">8</div>
-                        <div class="stat-lbl">Chờ phê duyệt</div>
-                    </div>
-                    <span class="material-symbols-outlined stat-icon">pending_actions</span>
-                </div>
                 <div class="stat-box green">
                     <div>
-                        <div class="stat-num" id="activeCount">112</div>
+                        <div class="stat-num" id="statActive">3</div>
                         <div class="stat-lbl">Đang hoạt động</div>
                     </div>
-                    <span class="material-symbols-outlined stat-icon">verified</span>
+                    <span class="material-symbols-outlined stat-icon">check_circle</span>
+                </div>
+                <div class="stat-box orange">
+                    <div>
+                        <div class="stat-num" id="statPending">2</div>
+                        <div class="stat-lbl">Chờ duyệt</div>
+                    </div>
+                    <span class="material-symbols-outlined stat-icon">schedule</span>
                 </div>
                 <div class="stat-box red">
                     <div>
-                        <div class="stat-num" id="suspendedCount">8</div>
-                        <div class="stat-lbl">Bị từ chối / Khóa</div>
+                        <div class="stat-num" id="statSuspended">1</div>
+                        <div class="stat-lbl">Tạm khóa</div>
                     </div>
                     <span class="material-symbols-outlined stat-icon">block</span>
                 </div>
             </div>
 
-            <!-- Filter Bar -->
+            <!-- Filter bar -->
             <div class="filter-bar">
                 <div class="filter-chips" id="filterChips">
-                    <button class="chip-btn active" data-status="all">Tất cả (128)</button>
-                    <button class="chip-btn" data-status="pending">Chờ phê duyệt (8)</button>
-                    <button class="chip-btn" data-status="active">Đang hoạt động (112)</button>
-                    <button class="chip-btn" data-status="rejected">Bị từ chối (5)</button>
-                    <button class="chip-btn" data-status="suspended">Tạm khóa (3)</button>
+                    <button class="chip-btn active" data-status="all">Tất cả</button>
+                    <button class="chip-btn" data-status="active">Đang hoạt động</button>
+                    <button class="chip-btn" data-status="pending">Chờ duyệt</button>
+                    <button class="chip-btn" data-status="suspended">Tạm khóa</button>
+                    <button class="chip-btn" data-status="rejected">Bị từ chối</button>
                 </div>
-
                 <div class="filter-right">
                     <div class="search-input-wrap">
                         <span class="material-symbols-outlined">search</span>
-                        <input type="text" id="searchInput" placeholder="Tìm tên, chủ nhà, khu vực...">
+                        <input type="text" id="searchInput" placeholder="Tìm tên, chủ nhà, mã...">
                     </div>
-                    <select class="select-region" id="regionSelect">
+                    <select id="regionSelect" class="select-region">
                         <option value="all">Tất cả khu vực</option>
-                        <option value="Pù Luông">Pù Luông</option>
-                        <option value="Mai Châu">Mai Châu</option>
-                        <option value="Mộc Châu">Mộc Châu</option>
-                        <option value="Sa Pa">Sa Pa</option>
+                        <option value="Hà Giang">Hà Giang</option>
+                        <option value="Sapa">Sapa</option>
                         <option value="Đà Lạt">Đà Lạt</option>
+                        <option value="Hội An">Hội An</option>
+                        <option value="Mai Châu">Mai Châu</option>
                     </select>
                 </div>
             </div>
@@ -222,7 +215,8 @@
                             <th>Homestay</th>
                             <th>Chủ nhà</th>
                             <th>Khu vực</th>
-                            <th>Ngày nộp</th>
+                            <th>Phòng</th>
+                            <th>Ngày đăng ký</th>
                             <th>Trạng thái</th>
                             <th>Thao tác</th>
                         </tr>
@@ -231,58 +225,242 @@
                     </tbody>
                 </table>
             </div>
-        </main>
-    </div>
-</div>
 
-<div class="modal-backdrop" id="detailModal">
-    <div class="modal-box">
-        <div class="modal-head">
-            <h4 id="mName">Pù Luông Eco Lodge</h4>
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-        </div>
-        <div class="modal-body">
-            <div class="detail-grid">
-                <div class="detail-card">
-                    <h5>Thông tin Homestay</h5>
-                    <div class="detail-item"><span>Mã hồ sơ:</span> <span id="mCode">#HS-9042</span></div>
-                    <div class="detail-item"><span>Chủ nhà:</span> <span id="mHost">Triệu Văn Sản</span></div>
-                    <div class="detail-item"><span>Số điện thoại:</span> <span id="mPhone">0984 123 789</span></div>
-                    <div class="detail-item"><span>Địa chỉ:</span> <span id="mAddress">Bản Đôn, Pù Luông</span></div>
-                    <div class="detail-item"><span>Giá niêm yết:</span> <span id="mPrice" style="color: #15803D;">850.000đ/đêm</span></div>
-                </div>
-                <div class="detail-card">
-                    <h5>Hồ sơ & Giấy tờ pháp lý</h5>
-                    <div class="doc-list">
-                        <div class="doc-item"><span class="material-symbols-outlined">check_circle</span> Giấy kinh doanh hộ gia đình #3829</div>
-                        <div class="doc-item"><span class="material-symbols-outlined">check_circle</span> Giấy kiểm định an toàn PCCC</div>
-                        <div class="doc-item"><span class="material-symbols-outlined">check_circle</span> Cam kết an ninh trật tự bản địa</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-foot" id="modalFootBtns">
-            <button class="btn-reject" onclick="doReject()">Từ chối hồ sơ</button>
-            <button class="btn-pass" onclick="doApprove()">Duyệt niêm yết lên sàn</button>
-        </div>
-    </div>
-</div>
+        </div><!-- /.admin-content -->
+    </div><!-- /.admin-main -->
+</div><!-- /.admin-wrapper -->
 
 <script>
-    const list = [
-        { id: 1, code: "#HS-9042", name: "Pù Luông Eco Lodge", host: "Triệu Văn Sản", phone: "0984 123 789", region: "Pù Luông", address: "Bản Đôn, Thanh Hóa", price: "850.000đ", date: "19/09/2026", status: "pending", statusText: "Chờ phê duyệt", img: "https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=400&q=80" },
-        { id: 2, code: "#HS-8102", name: "Nhà Sàn Mộc Mai Châu", host: "Nguyễn Văn An", phone: "0988 234 990", region: "Mai Châu", address: "Bản Lác 1, Hòa Bình", price: "650.000đ", date: "12/08/2026", status: "active", statusText: "Đang hoạt động", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=400&q=80" },
-        { id: 3, code: "#HS-9045", name: "Mộc Châu Bamboo Bungalow", host: "Đinh Thị Hương", phone: "0912 889 001", region: "Mộc Châu", address: "Bản Âng, Sơn La", price: "750.000đ", date: "18/09/2026", status: "pending", statusText: "Chờ phê duyệt", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" },
-        { id: 4, code: "#HS-7410", name: "Sa Pa Terraces Valley", host: "Vàng A Sáng", phone: "0973 456 123", region: "Sa Pa", address: "Bản Tả Van, Lào Cai", price: "950.000đ", date: "05/06/2026", status: "active", statusText: "Đang hoạt động", img: "https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=400&q=80" },
-        { id: 5, code: "#HS-6021", name: "Đà Lạt Cloud Valley", host: "Phạm Hoàng Nam", phone: "0905 112 334", region: "Đà Lạt", address: "Phường 11, Đà Lạt", price: "1.200.000đ", date: "10/09/2026", status: "rejected", statusText: "Bị từ chối", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=400&q=80" },
-        { id: 6, code: "#HS-5109", name: "Mai Châu Green Lodge", host: "Bùi Văn Nam", phone: "0915 667 889", region: "Mai Châu", address: "Bản Pom Coọng, Hòa Bình", price: "550.000đ", date: "01/05/2026", status: "suspended", statusText: "Tạm khóa", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" }
+    const STORAGE_KEY = 'yen_admin_homestays';
+
+    const defaultList = [
+        {
+            id: 1,
+            code: "#HS-1042",
+            name: "Homestay Nhà Trình Tường Hà Giang",
+            host: "Nguyễn Văn Minh",
+            hostId: "USR001",
+            phone: "0912 345 678",
+            email: "nguyenvanminh@email.com",
+            region: "Hà Giang",
+            province: "Hà Giang",
+            district: "Đồng Văn",
+            ward: "Phố Cáo",
+            address: "Xã Phố Cáo, Đồng Văn, Hà Giang",
+            price: "450.000đ",
+            priceNum: 450000,
+            date: "15/01/2026",
+            status: "active",
+            statusText: "Đang hoạt động",
+            rooms: 5,
+            maxGuests: 12,
+            amenities: ["wifi", "bep", "giunhe", "dieukhoa"],
+            description: "Homestay truyền thống nhà trình tường đặc trưng vùng cao Hà Giang, không gian yên bình giữa thiên nhiên hùng vĩ.",
+            checkIn: "14:00",
+            checkOut: "12:00",
+            policy: "Không hút thuốc trong phòng. Không mang thú nuôi.",
+            rating: 4.8,
+            reviewCount: 124,
+            totalRevenue: "32.400.000đ",
+            img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=400&q=80",
+            images: [],
+            adminNotes: "",
+            approvedDate: "20/01/2026"
+        },
+        {
+            id: 2,
+            code: "#HS-2073",
+            name: "Sapa Valley Retreat",
+            host: "Trần Thị Lan",
+            hostId: "USR002",
+            phone: "0934 567 890",
+            email: "tranthilan@email.com",
+            region: "Sapa",
+            province: "Lào Cai",
+            district: "Sa Pa",
+            ward: "Tả Phìn",
+            address: "Bản Tả Phìn, Sa Pa, Lào Cai",
+            price: "680.000đ",
+            priceNum: 680000,
+            date: "03/03/2026",
+            status: "pending",
+            statusText: "Chờ duyệt",
+            rooms: 8,
+            maxGuests: 20,
+            amenities: ["wifi", "bep", "congdoan", "view"],
+            description: "Retreat yên tĩnh giữa thung lũng Sapa, view ruộng bậc thang tuyệt đẹp, gần bản Tả Phìn.",
+            checkIn: "14:00",
+            checkOut: "12:00",
+            policy: "Không mang đồ ăn ngoài vào. Trẻ em dưới 5 tuổi miễn phí.",
+            rating: 0,
+            reviewCount: 0,
+            totalRevenue: "0đ",
+            img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80",
+            images: [],
+            adminNotes: "Chờ kiểm tra giấy tờ chủ nhà.",
+            approvedDate: ""
+        },
+        {
+            id: 3,
+            code: "#HS-3018",
+            name: "Đà Lạt Pine Garden",
+            host: "Lê Quang Huy",
+            hostId: "USR003",
+            phone: "0901 234 567",
+            email: "lequanghuy@email.com",
+            region: "Đà Lạt",
+            province: "Lâm Đồng",
+            district: "Đà Lạt",
+            ward: "Phường 5",
+            address: "12 Nguyễn Trãi, Phường 5, Đà Lạt, Lâm Đồng",
+            price: "750.000đ",
+            priceNum: 750000,
+            date: "10/02/2026",
+            status: "active",
+            statusText: "Đang hoạt động",
+            rooms: 6,
+            maxGuests: 15,
+            amenities: ["wifi", "bep", "sanchuyen", "losuoi"],
+            description: "Homestay phong cách châu Âu giữa vườn thông Đà Lạt, lò sưởi ấm áp, view thung lũng.",
+            checkIn: "15:00",
+            checkOut: "11:00",
+            policy: "Không tổ chức tiệc ồn ào sau 22h. Vui lòng giữ gìn vệ sinh chung.",
+            rating: 4.9,
+            reviewCount: 87,
+            totalRevenue: "45.750.000đ",
+            img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=400&q=80",
+            images: [],
+            adminNotes: "",
+            approvedDate: "15/02/2026"
+        },
+        {
+            id: 4,
+            code: "#HS-4055",
+            name: "Hội An River House",
+            host: "Phạm Thị Thu",
+            hostId: "USR004",
+            phone: "0978 654 321",
+            email: "phamthithu@email.com",
+            region: "Hội An",
+            province: "Quảng Nam",
+            district: "Hội An",
+            ward: "Phường Cẩm Nam",
+            address: "45 Nguyễn Phúc Tần, Cẩm Nam, Hội An, Quảng Nam",
+            price: "890.000đ",
+            priceNum: 890000,
+            date: "20/04/2026",
+            status: "pending",
+            statusText: "Chờ duyệt",
+            rooms: 10,
+            maxGuests: 24,
+            amenities: ["wifi", "bep", "hotub", "canghe"],
+            description: "Nhà ven sông Thu Bồn, kiến trúc Hội An cổ kính, bơi thuyền tham quan phố cổ.",
+            checkIn: "14:00",
+            checkOut: "12:00",
+            policy: "Cần đặt trước ít nhất 2 ngày. Không hút thuốc trong phòng.",
+            rating: 0,
+            reviewCount: 0,
+            totalRevenue: "0đ",
+            img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80",
+            images: [],
+            adminNotes: "Đang chờ bổ sung giấy phép kinh doanh.",
+            approvedDate: ""
+        },
+        {
+            id: 5,
+            code: "#HS-4821",
+            name: "Mộc Châu Cloud Farm",
+            host: "Hoàng Đức Anh",
+            hostId: "USR005",
+            phone: "0856 789 012",
+            email: "hoanganh@email.com",
+            region: "Mai Châu",
+            province: "Sơn La",
+            district: "Mộc Châu",
+            ward: "Thị trấn Mộc Châu",
+            address: "Trang trại Mộc Châu, Sơn La",
+            price: "420.000đ",
+            priceNum: 420000,
+            date: "28/04/2026",
+            status: "active",
+            statusText: "Đang hoạt động",
+            rooms: 7,
+            maxGuests: 18,
+            amenities: ["wifi", "bep", "bbq", "view"],
+            description: "Trang trại trên mây, vườn mận & hoa cải, trải nghiệm nông nghiệp, BBQ dưới trăng.",
+            checkIn: "14:00",
+            checkOut: "12:00",
+            policy: "Hạn chế ồn ào sau 21h. Không xả rác bừa bãi.",
+            rating: 4.7,
+            reviewCount: 63,
+            totalRevenue: "19.320.000đ",
+            img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=400&q=80",
+            images: [],
+            adminNotes: "",
+            approvedDate: "02/05/2026"
+        },
+        {
+            id: 6,
+            code: "#HS-5109",
+            name: "Mai Châu Green Lodge",
+            host: "Bùi Văn Nam",
+            hostId: "USR006",
+            phone: "0915 667 889",
+            email: "buivannam@email.com",
+            region: "Mai Châu",
+            province: "Hòa Bình",
+            district: "Mai Châu",
+            ward: "Bản Pom Coọng",
+            address: "Bản Pom Coọng, Hòa Bình",
+            price: "550.000đ",
+            priceNum: 550000,
+            date: "01/05/2026",
+            status: "suspended",
+            statusText: "Tạm khóa",
+            rooms: 4,
+            maxGuests: 10,
+            amenities: ["wifi", "bep"],
+            description: "Nhà sàn truyền thống dân tộc Thái, hòa mình vào cuộc sống bản làng Mai Châu.",
+            checkIn: "14:00",
+            checkOut: "12:00",
+            policy: "",
+            rating: 3.2,
+            reviewCount: 18,
+            totalRevenue: "5.940.000đ",
+            img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80",
+            images: [],
+            adminNotes: "Tạm khóa do vi phạm chính sách giá (overpricing mùa cao điểm).",
+            approvedDate: "08/05/2026"
+        }
     ];
 
-    let currentId = null;
+    function loadList() {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) return JSON.parse(stored);
+        } catch(e) {}
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultList));
+        return defaultList;
+    }
+
+    function saveList(list) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }
+
+    let list = loadList();
     let filterStatus = 'all';
 
+    function updateStatCards() {
+        document.getElementById('statTotal').textContent = list.length;
+        document.getElementById('statActive').textContent = list.filter(x => x.status === 'active').length;
+        document.getElementById('statPending').textContent = list.filter(x => x.status === 'pending').length;
+        document.getElementById('statSuspended').textContent = list.filter(x => x.status === 'suspended').length;
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+        updateStatCards();
         render();
+
         const btn = document.getElementById('adminProfileBtn');
         const dd = document.getElementById('adminProfileDropdown');
         if (btn && dd) {
@@ -319,39 +497,41 @@
 
         const data = list.filter(item => {
             const matchStatus = filterStatus === 'all' || item.status === filterStatus;
-            const matchSearch = item.name.toLowerCase().includes(search) || item.host.toLowerCase().includes(search) || item.code.toLowerCase().includes(search);
+            const matchSearch = item.name.toLowerCase().includes(search)
+                || item.host.toLowerCase().includes(search)
+                || item.code.toLowerCase().includes(search);
             const matchRegion = region === 'all' || item.region === region;
             return matchStatus && matchSearch && matchRegion;
         });
 
         if (data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #94A3B8; padding: 20px;">Không tìm thấy dữ liệu phù hợp.</td></tr>`;
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #94A3B8; padding: 30px;">Không tìm thấy dữ liệu phù hợp.</td></tr>';
             return;
         }
 
         data.forEach(item => {
             let actionBtns = `
-                <button class="btn-action" onclick="openModal(${item.id})">
-                    <span class="material-symbols-outlined" style="font-size: 16px;">visibility</span> Xem
+                <button class="btn-action" onclick="goEdit(${item.id})">
+                    <span class="material-symbols-outlined" style="font-size:15px;">edit</span> Xem & Sửa
                 </button>
             `;
 
             if (item.status === 'pending') {
                 actionBtns += `
                     <button class="btn-approve" onclick="quickPass(${item.id})">
-                        <span class="material-symbols-outlined" style="font-size: 16px;">check</span> Duyệt
+                        <span class="material-symbols-outlined" style="font-size:15px;">check</span> Duyệt
                     </button>
                 `;
             } else if (item.status === 'active') {
                 actionBtns += `
                     <button class="btn-suspend" onclick="quickSuspend(${item.id})">
-                        <span class="material-symbols-outlined" style="font-size: 16px;">block</span> Tạm khóa
+                        <span class="material-symbols-outlined" style="font-size:15px;">block</span> Tạm khóa
                     </button>
                 `;
             } else if (item.status === 'suspended') {
                 actionBtns += `
                     <button class="btn-approve" onclick="quickPass(${item.id})">
-                        <span class="material-symbols-outlined" style="font-size: 16px;">lock_open</span> Mở khóa
+                        <span class="material-symbols-outlined" style="font-size:15px;">lock_open</span> Mở khóa
                     </button>
                 `;
             }
@@ -359,65 +539,30 @@
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>
-                    <div class="homestay-meta">
-                        <img src="${item.img}" class="homestay-img">
+                    <div class="homestay-meta" onclick="goEdit(${item.id})" style="cursor:pointer;">
+                        <img src="${item.img}" class="homestay-img" onerror="this.src='https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=400&q=80'">
                         <div>
                             <div class="homestay-title">${item.name}</div>
-                            <div class="homestay-sub">Mã: ${item.code} • ${item.price}</div>
+                            <div class="homestay-sub">Mã: ${item.code} &bull; ${item.price}/đêm</div>
                         </div>
                     </div>
                 </td>
                 <td>
                     <strong>${item.host}</strong>
-                    <div style="font-size: 11.5px; color: #64748B;">${item.phone}</div>
+                    <div style="font-size:11.5px; color:#64748B;">${item.phone}</div>
                 </td>
                 <td>${item.region}</td>
-                <td style="color: #64748B; font-size: 12.5px;">${item.date}</td>
+                <td style="text-align:center; font-weight:600; color:#15803D;">${item.rooms || '-'}</td>
+                <td style="color:#64748B; font-size:12.5px;">${item.date}</td>
                 <td><span class="status-chip ${item.status}">${item.statusText}</span></td>
-                <td>${actionBtns}</td>
+                <td class="action-col">${actionBtns}</td>
             `;
             tbody.appendChild(tr);
         });
     }
 
-    function openModal(id) {
-        currentId = id;
-        const item = list.find(x => x.id === id);
-        if (!item) return;
-
-        document.getElementById('mName').innerText = item.name;
-        document.getElementById('mCode').innerText = item.code;
-        document.getElementById('mHost').innerText = item.host;
-        document.getElementById('mPhone').innerText = item.phone;
-        document.getElementById('mAddress').innerText = item.address;
-        document.getElementById('mPrice').innerText = item.price + "/đêm";
-
-        const foot = document.getElementById('modalFootBtns');
-        if (item.status === 'pending') {
-            foot.innerHTML = `
-                <button class="btn-reject" onclick="doReject()">Từ chối hồ sơ</button>
-                <button class="btn-pass" onclick="doApprove()">Duyệt niêm yết lên sàn</button>
-            `;
-        } else if (item.status === 'active') {
-            foot.innerHTML = `
-                <button class="btn-suspend" onclick="doSuspend()">Tạm khóa Homestay này</button>
-                <button class="btn-pass" onclick="closeModal()">Đóng</button>
-            `;
-        } else if (item.status === 'suspended') {
-            foot.innerHTML = `
-                <button class="btn-pass" onclick="doApprove()">Mở khóa & Cho phép hoạt động lại</button>
-            `;
-        } else {
-            foot.innerHTML = `
-                <button class="btn-pass" onclick="doApprove()">Duyệt lại lên sàn</button>
-            `;
-        }
-
-        document.getElementById('detailModal').classList.add('open');
-    }
-
-    function closeModal() {
-        document.getElementById('detailModal').classList.remove('open');
+    function goEdit(id) {
+        window.location.href = 'homestay_edit.html?id=' + id;
     }
 
     function quickPass(id) {
@@ -425,6 +570,9 @@
         if (item) {
             item.status = 'active';
             item.statusText = 'Đang hoạt động';
+            item.approvedDate = new Date().toLocaleDateString('vi-VN');
+            saveList(list);
+            updateStatCards();
             render();
         }
     }
@@ -434,30 +582,9 @@
         if (item) {
             item.status = 'suspended';
             item.statusText = 'Tạm khóa';
+            saveList(list);
+            updateStatCards();
             render();
-        }
-    }
-
-    function doApprove() {
-        if (!currentId) return;
-        quickPass(currentId);
-        closeModal();
-    }
-
-    function doSuspend() {
-        if (!currentId) return;
-        quickSuspend(currentId);
-        closeModal();
-    }
-
-    function doReject() {
-        if (!currentId) return;
-        const item = list.find(x => x.id === currentId);
-        if (item) {
-            item.status = 'rejected';
-            item.statusText = 'Bị từ chối';
-            render();
-            closeModal();
         }
     }
 </script>

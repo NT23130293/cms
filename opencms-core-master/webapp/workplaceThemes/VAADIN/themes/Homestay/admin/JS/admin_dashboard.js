@@ -158,19 +158,19 @@ const metricDetailsMeta = {
         actionText: 'Đi đến Quản lý Nội dung địa phương'
     },
     ads: {
-        title: 'Chi tiết Quản lý Quảng cáo & Tiếp thị',
+        title: 'Chi tiết Bán Quảng Cáo & Cung Cấp Dịch Vụ Tiếp Thị',
         icon: 'campaign',
         accentColor: '#E11D48',
         rows: [
-            { label: 'Tổng chiến dịch quảng cáo:', val: '28 chiến dịch' },
-            { label: 'Chiến dịch đang phát hành (Active):', val: '18 banner' },
-            { label: 'Chiến dịch chờ duyệt hiển thị:', val: '4 banner' },
-            { label: 'Chiến dịch đã kết thúc:', val: '6 banner' },
-            { label: 'Tổng lượt hiển thị (Impressions):', val: '285.000 lượt' },
+            { label: 'Tổng gói dịch vụ đang cung cấp:', val: '6 gói dịch vụ' },
+            { label: 'Đơn mua dịch vụ đang hoạt động:', val: '18 gói active' },
+            { label: 'Yêu cầu đăng ký mới chờ duyệt:', val: '4 đơn' },
+            { label: 'Doanh thu bán dịch vụ tháng này:', val: '36.500.000đ' },
+            { label: 'Tổng lượt hiển thị cam kết:', val: '285.000 lượt' },
             { label: 'Tỷ lệ nhấp chuột trung bình (CTR):', val: '4.65%' }
         ],
         actionLink: 'ads_management.html',
-        actionText: 'Đi đến Quản lý Quảng cáo'
+        actionText: 'Đi đến Bán & Cung Cấp Dịch Vụ Quảng Cáo'
     },
     voucher: {
         title: 'Chi tiết Quản lý Mã giảm giá (Vouchers)',
@@ -335,11 +335,11 @@ function initDateFilter() {
     });
 }
 
-// 3. Render 9 thẻ chỉ số theo mốc thời gian
+// 3. Render 8 thẻ chỉ số theo mốc thời gian
 function renderMetrics(period) {
     const data = dashboardMetricsData[period] || dashboardMetricsData.month;
 
-    const metricKeys = ['tourist', 'owner', 'homestay', 'booking', 'trans', 'revenue', 'posts', 'ads', 'voucher'];
+    const metricKeys = ['tourist', 'owner', 'homestay', 'booking', 'trans', 'revenue', 'ads', 'voucher'];
 
     metricKeys.forEach(key => {
         const item = data[key];

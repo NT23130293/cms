@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết Homestay - Admin YÊN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="../CSS/admin_sidebar.css">
+    <link rel="stylesheet" href="../CSS/homestay_edit.css">
+</head>
+<body>
+
+<div class="admin-wrapper">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <a href="admin.html">
+                <img src="../images/logo_white.png" alt="YÊN Logo" class="sidebar-logo-img">
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li class="menu-item"><a href="admin.html" class="menu-link"><span class="material-symbols-outlined menu-icon">dashboard</span><span>Dashboard</span></a></li>
+                <li class="menu-item"><a href="account_management.html" class="menu-link"><span class="material-symbols-outlined menu-icon">group</span><span>Quản lý tài khoản</span></a></li>
+                <li class="menu-item"><a href="manage_homestay.html" class="menu-link active"><span class="material-symbols-outlined menu-icon">cottage</span><span>Quản lý Homestay</span></a></li>
+                <li class="menu-item"><a href="local_content.html" class="menu-link"><span class="material-symbols-outlined menu-icon">map</span><span>Quản lý nội dung địa phương</span></a></li>
+                <li class="menu-item"><a href="manage_transactions.html" class="menu-link"><span class="material-symbols-outlined menu-icon">receipt_long</span><span>Quản lý giao dịch</span></a></li>
+                <li class="menu-item"><a href="ads_management.html" class="menu-link"><span class="material-symbols-outlined menu-icon">campaign</span><span>Bán & Dịch vụ quảng cáo</span></a></li>
+                <li class="menu-item"><a href="voucher_management.html" class="menu-link"><span class="material-symbols-outlined menu-icon">local_offer</span><span>Quản lý mã giảm giá</span></a></li>
+                <li class="menu-item"><a href="reports_statistics.html" class="menu-link"><span class="material-symbols-outlined menu-icon">bar_chart</span><span>Báo cáo & Thống kê</span></a></li>
+                <li class="menu-item"><a href="complaints_management.html" class="menu-link"><span class="material-symbols-outlined menu-icon">report_problem</span><span>Quản lý báo cáo & Khiếu nại</span></a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="host-profile">
+                <div class="host-icon"><span class="material-symbols-outlined" style="font-size:20px;">admin_panel_settings</span></div>
+                <div class="host-info"><h4>Admin System</h4><p>Quản trị hệ thống</p></div>
+                <span class="material-symbols-outlined" style="color:#81b099;font-size:16px;">unfold_more</span>
+            </div>
+            <div class="host-quote">"Hệ thống quản trị YÊN Homestay"</div>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="admin-main">
+        <!-- HEADER -->
+        <header class="admin-header">
+            <div class="header-left">
+                <nav class="breadcrumb">
+                    <a href="manage_homestay.html" class="bc-link">Quản lý Homestay</a>
+                    <span class="bc-sep">›</span>
+                    <span class="bc-current" id="bcCurrent">Chi tiết Homestay</span>
+                </nav>
+            </div>
+            <div class="admin-header-right">
+                <button class="btn-back" onclick="window.location.href='manage_homestay.html'">
+                    <span class="material-symbols-outlined">arrow_back</span> Quay lại
+                </button>
+                <button class="btn-save-header" onclick="saveHomestay()">
+                    <span class="material-symbols-outlined">save</span> Lưu thay đổi
+                </button>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="admin-content">
+            <div class="edit-layout">
+
+                <!-- LEFT COLUMN: meta card -->
+                <div class="edit-left">
+
+                    <!-- Thumbnail card -->
+                    <div class="meta-card">
+                        <div class="hs-thumb-wrap">
+                            <img id="thumbImg" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" class="hs-thumb" onerror="this.src='https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80'">
+                            <div class="thumb-overlay">
+                                <span class="material-symbols-outlined">photo_camera</span>
+                            </div>
+                        </div>
+                        <div class="meta-info-block">
+                            <div class="meta-row">
+                                <span class="meta-label">Mã Homestay</span>
+                                <span class="meta-val" id="metaCode">#HS-????</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Ngày đăng ký</span>
+                                <span class="meta-val" id="metaDate">—</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Ngày duyệt</span>
+                                <span class="meta-val" id="metaApproved">—</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Đánh giá</span>
+                                <span class="meta-val" id="metaRating">—</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Số lượt đánh giá</span>
+                                <span class="meta-val" id="metaReviews">—</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Doanh thu</span>
+                                <span class="meta-val green-text" id="metaRevenue">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status card -->
+                    <div class="meta-card">
+                        <h4 class="card-title"><span class="material-symbols-outlined">tune</span> Quản lý trạng thái</h4>
+                        <div class="form-group">
+                            <label class="form-label">Trạng thái hoạt động</label>
+                            <select id="fStatus" class="form-select" onchange="handleStatusChange()">
+                                <option value="active">Đang hoạt động</option>
+                                <option value="pending">Chờ duyệt</option>
+                                <option value="suspended">Tạm khóa</option>
+                                <option value="rejected">Bị từ chối</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="suspendReasonGroup" style="display:none;">
+                            <label class="form-label">Lý do khóa / từ chối</label>
+                            <textarea id="fSuspendReason" class="form-textarea" rows="2" placeholder="Nhập lý do..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Ghi chú nội bộ (Admin)</label>
+                            <textarea id="fAdminNotes" class="form-textarea" rows="3" placeholder="Ghi chú chỉ hiển thị cho admin..."></textarea>
+                        </div>
+                        <div class="action-btns-group">
+                            <button class="btn-approve-lg" onclick="approveHomestay()">
+                                <span class="material-symbols-outlined">check_circle</span> Duyệt lên sàn
+                            </button>
+                            <button class="btn-suspend-lg" onclick="suspendHomestay()">
+                                <span class="material-symbols-outlined">block</span> Tạm khóa
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Host info card -->
+                    <div class="meta-card">
+                        <h4 class="card-title"><span class="material-symbols-outlined">person</span> Thông tin Chủ nhà</h4>
+                        <div class="host-info-row">
+                            <div class="host-avatar-sm" id="hostAvatarSm">CN</div>
+                            <div>
+                                <div class="host-name" id="hostNameDisplay">—</div>
+                                <div class="host-phone" id="hostPhoneDisplay">—</div>
+                            </div>
+                        </div>
+                        <a href="#" class="host-link" id="hostProfileLink">
+                            <span class="material-symbols-outlined" style="font-size:15px;">open_in_new</span>
+                            Xem hồ sơ tài khoản
+                        </a>
+                    </div>
+
+                </div><!-- /.edit-left -->
+
+                <!-- RIGHT COLUMN: form cards -->
+                <div class="edit-right">
+
+                    <!-- Card 1: Thông tin cơ bản -->
+                    <div class="form-card">
+                        <h4 class="card-title"><span class="material-symbols-outlined">info</span> Thông tin cơ bản</h4>
+                        <div class="form-grid-2">
+                            <div class="form-group full-span">
+                                <label class="form-label">Tên Homestay <span class="required">*</span></label>
+                                <input type="text" id="fName" class="form-input" placeholder="Tên homestay hiển thị...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Giá cơ bản (đ/đêm) <span class="required">*</span></label>
+                                <input type="number" id="fPrice" class="form-input" placeholder="450000">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Số phòng</label>
+                                <input type="number" id="fRooms" class="form-input" placeholder="5" min="1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Sức chứa tối đa (khách)</label>
+                                <input type="number" id="fMaxGuests" class="form-input" placeholder="12" min="1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Giờ Check-in</label>
+                                <input type="time" id="fCheckIn" class="form-input" value="14:00">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Giờ Check-out</label>
+                                <input type="time" id="fCheckOut" class="form-input" value="12:00">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mô tả ngắn</label>
+                            <textarea id="fDescription" class="form-textarea" rows="3" placeholder="Mô tả nổi bật của homestay..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">URL ảnh đại diện</label>
+                            <input type="text" id="fImgUrl" class="form-input" placeholder="https://..." oninput="previewThumb()">
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Địa chỉ -->
+                    <div class="form-card">
+                        <h4 class="card-title"><span class="material-symbols-outlined">location_on</span> Địa chỉ & Khu vực</h4>
+                        <div class="form-grid-2">
+                            <div class="form-group full-span">
+                                <label class="form-label">Địa chỉ đầy đủ</label>
+                                <input type="text" id="fAddress" class="form-input" placeholder="Số nhà, đường...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phường / Xã / Thôn / Bản</label>
+                                <input type="text" id="fWard" class="form-input" placeholder="Phường/Xã/Thôn...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Quận / Huyện</label>
+                                <input type="text" id="fDistrict" class="form-input" placeholder="Quận/Huyện...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tỉnh / Thành phố</label>
+                                <input type="text" id="fProvince" class="form-input" placeholder="Tỉnh/Thành phố...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Khu vực du lịch</label>
+                                <select id="fRegion" class="form-select">
+                                    <option value="">-- Chọn khu vực --</option>
+                                    <option value="Hà Giang">Hà Giang</option>
+                                    <option value="Sapa">Sapa</option>
+                                    <option value="Đà Lạt">Đà Lạt</option>
+                                    <option value="Hội An">Hội An</option>
+                                    <option value="Mai Châu">Mai Châu</option>
+                                    <option value="Mộc Châu">Mộc Châu</option>
+                                    <option value="Phú Quốc">Phú Quốc</option>
+                                    <option value="Đà Nẵng">Đà Nẵng</option>
+                                    <option value="Nha Trang">Nha Trang</option>
+                                    <option value="Hạ Long">Hạ Long</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Tiện nghi -->
+                    <div class="form-card">
+                        <h4 class="card-title"><span class="material-symbols-outlined">checklist</span> Tiện nghi & Dịch vụ</h4>
+                        <div class="amenity-grid" id="amenityGrid">
+                            <label class="amenity-item"><input type="checkbox" value="wifi"> <span class="material-symbols-outlined">wifi</span> WiFi miễn phí</label>
+                            <label class="amenity-item"><input type="checkbox" value="bep"> <span class="material-symbols-outlined">kitchen</span> Bếp nấu ăn</label>
+                            <label class="amenity-item"><input type="checkbox" value="giunhe"> <span class="material-symbols-outlined">cleaning_services</span> Giặt / Dọn phòng</label>
+                            <label class="amenity-item"><input type="checkbox" value="dieukhoa"> <span class="material-symbols-outlined">ac_unit</span> Điều hòa</label>
+                            <label class="amenity-item"><input type="checkbox" value="losuoi"> <span class="material-symbols-outlined">fireplace</span> Lò sưởi</label>
+                            <label class="amenity-item"><input type="checkbox" value="hotub"> <span class="material-symbols-outlined">hot_tub</span> Bồn tắm nước nóng</label>
+                            <label class="amenity-item"><input type="checkbox" value="bbq"> <span class="material-symbols-outlined">outdoor_grill</span> Khu BBQ ngoài trời</label>
+                            <label class="amenity-item"><input type="checkbox" value="view"> <span class="material-symbols-outlined">landscape</span> View thiên nhiên đẹp</label>
+                            <label class="amenity-item"><input type="checkbox" value="congdoan"> <span class="material-symbols-outlined">pool</span> Hồ bơi / Bể tắm</label>
+                            <label class="amenity-item"><input type="checkbox" value="canghe"> <span class="material-symbols-outlined">directions_boat</span> Bến thuyền / Cano</label>
+                            <label class="amenity-item"><input type="checkbox" value="sanchuyen"> <span class="material-symbols-outlined">sports_tennis</span> Sân chơi / Thể thao</label>
+                            <label class="amenity-item"><input type="checkbox" value="xe"> <span class="material-symbols-outlined">two_wheeler</span> Cho thuê xe / Phương tiện</label>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Chính sách -->
+                    <div class="form-card">
+                        <h4 class="card-title"><span class="material-symbols-outlined">policy</span> Chính sách & Quy định</h4>
+                        <div class="form-group">
+                            <label class="form-label">Chính sách phòng / Nội quy</label>
+                            <textarea id="fPolicy" class="form-textarea" rows="3" placeholder="Ví dụ: Không hút thuốc. Không mang thú nuôi. Giờ yên tĩnh sau 22h..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Chính sách hoàn tiền / Hủy phòng</label>
+                            <select id="fRefund" class="form-select">
+                                <option value="flexible">Linh hoạt — Hoàn tiền đầy đủ trước 24h</option>
+                                <option value="moderate">Vừa phải — Hoàn tiền 50% trước 5 ngày</option>
+                                <option value="strict">Nghiêm ngặt — Không hoàn tiền sau khi đặt</option>
+                                <option value="custom">Tùy chỉnh</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Giấy tờ & Xác minh -->
+                    <div class="form-card">
+                        <h4 class="card-title"><span class="material-symbols-outlined">verified</span> Giấy tờ & Xác minh</h4>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="form-label">Số Giấy phép kinh doanh</label>
+                                <input type="text" id="fBizLicense" class="form-input" placeholder="GPKD-...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Mã số thuế</label>
+                                <input type="text" id="fTaxCode" class="form-input" placeholder="0123456789">
+                            </div>
+                        </div>
+                        <div class="kyc-checklist">
+                            <div class="kyc-item" id="kycLicense">
+                                <span class="material-symbols-outlined kyc-icon unverified">radio_button_unchecked</span>
+                                <div>
+                                    <div class="kyc-title">Giấy phép kinh doanh</div>
+                                    <div class="kyc-sub">Chưa xác minh</div>
+                                </div>
+                                <button class="btn-kyc-verify" onclick="verifyDoc('kycLicense', this)">Xác minh</button>
+                            </div>
+                            <div class="kyc-item" id="kycOwnership">
+                                <span class="material-symbols-outlined kyc-icon unverified">radio_button_unchecked</span>
+                                <div>
+                                    <div class="kyc-title">Giấy tờ sở hữu / thuê nhà</div>
+                                    <div class="kyc-sub">Chưa xác minh</div>
+                                </div>
+                                <button class="btn-kyc-verify" onclick="verifyDoc('kycOwnership', this)">Xác minh</button>
+                            </div>
+                            <div class="kyc-item" id="kycCCCD">
+                                <span class="material-symbols-outlined kyc-icon unverified">radio_button_unchecked</span>
+                                <div>
+                                    <div class="kyc-title">CCCD / Hộ chiếu Chủ nhà</div>
+                                    <div class="kyc-sub">Chưa xác minh</div>
+                                </div>
+                                <button class="btn-kyc-verify" onclick="verifyDoc('kycCCCD', this)">Xác minh</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /.edit-right -->
+            </div><!-- /.edit-layout -->
+        </div><!-- /.admin-content -->
+
+        <!-- STICKY SAVE BAR -->
+        <div class="sticky-save-bar">
+            <span class="save-bar-info" id="saveBarInfo">Chỉnh sửa thông tin homestay</span>
+            <div class="save-bar-btns">
+                <button class="btn-cancel-bar" onclick="window.location.href='manage_homestay.html'">Hủy</button>
+                <button class="btn-save-bar" onclick="saveHomestay()">
+                    <span class="material-symbols-outlined">save</span> Lưu thay đổi
+                </button>
+            </div>
+        </div>
+    </div><!-- /.admin-main -->
+</div><!-- /.admin-wrapper -->
+
+<!-- TOAST -->
+<div class="toast-notif" id="toastNotif">
+    <span class="material-symbols-outlined">check_circle</span>
+    <span id="toastMsg">Đã lưu thay đổi!</span>
+</div>
+
+<script src="../JS/homestay_edit.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YÊN - Admin System | Quản Lý Quảng Cáo</title>
+    <title>YÊN - Admin System | Bán & Cung Cấp Dịch Vụ Quảng Cáo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -59,7 +59,7 @@
                 <li class="menu-item">
                     <a href="ads_management.html" class="menu-link active">
                         <span class="material-symbols-outlined menu-icon">campaign</span>
-                        <span>Quản lý quảng cáo</span>
+                        <span>Bán & Dịch vụ quảng cáo</span>
                     </a>
                 </li>
                 <li class="menu-item">
@@ -92,7 +92,7 @@
                     <h4>Admin System</h4>
                     <p>Quản trị hệ thống</p>
                 </div>
-                <span class="material-symbols-outlined" style="color: #A7F3D0; font-size: 18px;">unfold_more</span>
+                <span class="material-symbols-outlined" style="color: #81b099; font-size: 16px;">unfold_more</span>
             </div>
             <div class="host-quote">
                 "Hệ thống quản trị YÊN Homestay"
@@ -107,7 +107,7 @@
             <div class="header-left">
                 <div class="header-search">
                     <span class="material-symbols-outlined search-icon">search</span>
-                    <input type="text" class="search-input" placeholder="Tìm kiếm chiến dịch quảng cáo, banner, vị trí...">
+                    <input type="text" class="search-input" placeholder="Tìm kiếm gói dịch vụ, đơn mua quảng cáo, homestay...">
                 </div>
             </div>
 
@@ -152,52 +152,52 @@
             </div>
         </header>
 
-        <!-- NỘI DUNG QUẢN LÝ QUẢNG CÁO -->
+        <!-- NỘI DUNG BÁN & DỊCH VỤ QUẢNG CÁO -->
         <main class="admin-body-content">
 
-            <!-- 1. Top Stat Cards (Grid 4 cột Thống kê Quảng cáo) -->
+            <!-- 1. Top Stat Cards (Grid 4 cột Thống kê Doanh thu & Dịch vụ Quảng cáo) -->
             <div class="ads-stats-grid">
                 <div class="ads-stat-card">
                     <div class="ads-stat-info">
-                        <span class="ads-stat-label">Tổng Chiến Dịch / Banner</span>
-                        <span class="ads-stat-value" id="statTotalAds">4</span>
-                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">campaign</span> Hệ thống YÊN</span>
+                        <span class="ads-stat-label">Doanh Thu Dịch Vụ Ads</span>
+                        <span class="ads-stat-value" id="statRevenue">36.500.000đ</span>
+                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">payments</span> Tháng này (+18.4%)</span>
                     </div>
-                    <div class="ads-stat-icon-wrapper purple">
-                        <span class="material-symbols-outlined">view_carousel</span>
+                    <div class="ads-stat-icon-wrapper emerald">
+                        <span class="material-symbols-outlined">monetization_on</span>
                     </div>
                 </div>
 
                 <div class="ads-stat-card">
                     <div class="ads-stat-info">
-                        <span class="ads-stat-label">Đang Hiển Thị Active</span>
-                        <span class="ads-stat-value" id="statActiveAds">3</span>
-                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">play_circle</span> Đang chạy thực tế</span>
+                        <span class="ads-stat-label">Gói Dịch Vụ Đang Bán</span>
+                        <span class="ads-stat-value" id="statTotalPackages">6</span>
+                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">storefront</span> Mở bán trên cổng Host</span>
                     </div>
                     <div class="ads-stat-icon-wrapper green">
-                        <span class="material-symbols-outlined">ads_click</span>
+                        <span class="material-symbols-outlined">sell</span>
                     </div>
                 </div>
 
                 <div class="ads-stat-card">
                     <div class="ads-stat-info">
-                        <span class="ads-stat-label">Tổng Lượt Xem (Impressions)</span>
-                        <span class="ads-stat-value" id="statTotalImpressions">214.2K</span>
-                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">visibility</span> 30 ngày gần đây</span>
+                        <span class="ads-stat-label">Đơn Dịch Vụ Đang Chạy</span>
+                        <span class="ads-stat-value" id="statActiveOrders">18</span>
+                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">rocket_launch</span> Chủ Homestay đã kích hoạt</span>
                     </div>
                     <div class="ads-stat-icon-wrapper blue">
-                        <span class="material-symbols-outlined">monitoring</span>
+                        <span class="material-symbols-outlined">campaign</span>
                     </div>
                 </div>
 
                 <div class="ads-stat-card">
                     <div class="ads-stat-info">
-                        <span class="ads-stat-label">Tỷ Lệ Click CTR Trung Bình</span>
-                        <span class="ads-stat-value" id="statAvgCtr">8.59%</span>
-                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> Cao hơn 2.4% so với trung bình</span>
+                        <span class="ads-stat-label">Tỷ Lệ Gia Hạn Gói</span>
+                        <span class="ads-stat-value" id="statRenewalRate">84.5%</span>
+                        <span class="ads-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> Khách hàng tiếp tục mua</span>
                     </div>
                     <div class="ads-stat-icon-wrapper amber">
-                        <span class="material-symbols-outlined">star_rate</span>
+                        <span class="material-symbols-outlined">autorenew</span>
                     </div>
                 </div>
             </div>
@@ -209,21 +209,25 @@
                 <div class="module-header-bar">
                     <div class="module-title-group">
                         <h2>
-                            <span class="material-symbols-outlined" style="color: #9333EA;">campaign</span>
-                            Quản Lý Quảng Cáo & Banner
+                            <span class="material-symbols-outlined" style="color: var(--primary-color);">campaign</span>
+                            Bán & Cung Cấp Dịch Vụ Quảng Cáo
                         </h2>
-                        <span class="module-subtitle">Điều phối các Banner Quảng cáo Hero Slider, Combo Tiết kiệm, Pop-up Khuyến mãi & Slot hiển thị</span>
+                        <span class="module-subtitle">Cung cấp các gói đẩy top tìm kiếm, banner Hero Slider, combo ưu đãi & dịch vụ tiếp thị cho chủ Homestay</span>
                     </div>
 
                     <!-- Sub-module Navigation Tabs -->
                     <div class="content-tabs">
-                        <button class="content-tab-btn active" data-tab="banners" onclick="switchAdsTab('banners')">
-                            <span class="material-symbols-outlined" style="font-size: 18px;">view_carousel</span>
-                            Banner Quảng Cáo
+                        <button class="content-tab-btn active" data-tab="packages" onclick="switchAdsTab('packages')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">sell</span>
+                            Gói Dịch Vụ Đang Bán
+                        </button>
+                        <button class="content-tab-btn" data-tab="orders" onclick="switchAdsTab('orders')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">receipt_long</span>
+                            Đơn Mua & Đang Chạy
                         </button>
                         <button class="content-tab-btn" data-tab="slots" onclick="switchAdsTab('slots')">
                             <span class="material-symbols-outlined" style="font-size: 18px;">ad_units</span>
-                            Vị Trí Quảng Cáo (Slots)
+                            Vị Trí & Khung Hiển Thị (Slots)
                         </button>
                     </div>
                 </div>
@@ -233,20 +237,20 @@
                     <div class="toolbar-left">
                         <div class="search-box-sm">
                             <span class="material-symbols-outlined" style="color: var(--text-muted); margin-right: 6px; font-size: 18px;">search</span>
-                            <input type="text" id="adsSearchInput" placeholder="Tìm tên chiến dịch, Homestay...">
+                            <input type="text" id="adsSearchInput" placeholder="Tìm tên gói dịch vụ, đơn mua, homestay...">
                         </div>
 
                         <select class="select-filter-sm" id="adsStatusFilter">
                             <option value="all">Tất cả trạng thái</option>
-                            <option value="active">Đang chạy</option>
-                            <option value="scheduled">Đã lên lịch</option>
+                            <option value="active">Đang mở bán / Đang chạy</option>
+                            <option value="scheduled">Đã lên lịch / Chờ duyệt</option>
                             <option value="ended">Tạm dừng / Kết thúc</option>
                         </select>
                     </div>
 
-                    <button class="btn-admin-primary" style="background-color: #9333EA;" onclick="openCreateAdModal()">
+                    <button class="btn-admin-primary" onclick="openCreateAdModal()">
                         <span class="material-symbols-outlined" style="font-size: 18px;">add_circle</span>
-                        <span id="addAdBtnLabel">Tạo Quảng cáo mới</span>
+                        <span id="addAdBtnLabel">+ Tạo Gói Dịch Vụ Mới</span>
                     </button>
                 </div>
 
@@ -268,13 +272,13 @@
     </div>
 </div>
 
-<!-- 3. Modal Thêm / Chỉnh Sửa Quảng Cáo -->
+<!-- 3. Modal Thêm / Chỉnh Sửa Gói Dịch Vụ & Đơn Chạy Quảng Cáo -->
 <div class="modal-overlay" id="adModalOverlay">
     <div class="modal-container">
         <div class="modal-header">
             <h3 class="modal-title">
-                <span class="material-symbols-outlined" style="color: #9333EA;">add_campaign</span>
-                <span id="adModalTitleText">Tạo Chiến Dịch Quảng Cáo Mới</span>
+                <span class="material-symbols-outlined" style="color: var(--primary-color);" id="adModalIcon">sell</span>
+                <span id="adModalTitleText">Tạo Gói Dịch Vụ Quảng Cáo Mới</span>
             </h3>
             <button class="modal-close-btn" onclick="closeAdModal()">
                 <span class="material-symbols-outlined">close</span>
@@ -282,64 +286,124 @@
         </div>
 
         <div class="modal-body">
-            <div class="form-field full">
-                <label class="form-label">Tên Chiến dịch / Tiêu đề Banner <span style="color: red;">*</span></label>
-                <input type="text" id="adTitleInput" class="form-input" placeholder="Ví dụ: Hero Banner: Ưu Đãi Mùa Lễ Hội Pháo Hoa DIFF 2026...">
-            </div>
+            <!-- Form khi ở Tab Gói Dịch Vụ Đang Bán (packages) -->
+            <div id="packageModalFields">
+                <div class="form-field full">
+                    <label class="form-label">Tên Gói Dịch Vụ Tiếp Thị <span style="color: red;">*</span></label>
+                    <input type="text" id="pkgNameInput" class="form-input" placeholder="Ví dụ: Gói Top 1 Chuyên Nghiệp, Gói Mùa Cao Điểm...">
+                </div>
 
-            <div class="form-group-grid">
-                <div class="form-field">
-                    <label class="form-label">Chỉ định vị trí hiển thị (Ad Placement Slot) <span style="color: red;">*</span></label>
-                    <select id="adPlacementSelect" class="form-select" onchange="updateAdPlacementHint()">
-                        <option value="hero">🎯 Hero Slider Trang Chủ (1920 x 600 px)</option>
-                        <option value="combo">🏷️ Banner Combo Tiết Kiệm (1200 x 400 px)</option>
-                        <option value="popup">💬 Pop-up Khuyến Mãi Đầu Trang (600 x 400 px)</option>
-                        <option value="festival">📍 Banner Khu Vực Lễ Hội (1200 x 300 px)</option>
-                        <option value="sidebar">📌 Sidebar Homestay Chi Tiết (300 x 450 px)</option>
+                <div class="form-group-grid">
+                    <div class="form-field">
+                        <label class="form-label">Phân loại gói <span style="color: red;">*</span></label>
+                        <select id="pkgCategorySelect" class="form-select">
+                            <option value="hot">🔥 Gói HOT (Phổ biến nhất)</option>
+                            <option value="short">⚡ Ngắn hạn (3 - 7 ngày)</option>
+                            <option value="long">📅 Dài hạn (30 ngày)</option>
+                            <option value="seasonal">🌾 Mùa Cao Điểm / Lễ Hội</option>
+                            <option value="vip">💎 Gói Banner VIP Toàn Diện</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label">Giá niêm yết bán (VNĐ) <span style="color: red;">*</span></label>
+                        <input type="text" id="pkgPriceInput" class="form-input" placeholder="Ví dụ: 990.000đ hoặc 990000">
+                    </div>
+                </div>
+
+                <div class="form-group-grid">
+                    <div class="form-field">
+                        <label class="form-label">Thời hạn gói <span style="color: red;">*</span></label>
+                        <input type="text" id="pkgDurationInput" class="form-input" placeholder="Ví dụ: 30 ngày, 3 ngày, 14 ngày...">
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label">Vị trí / Hình thức hiển thị</label>
+                        <select id="pkgPlacementSelect" class="form-select">
+                            <option value="top5">⚡ Ưu tiên TOP 5 Tìm Kiếm</option>
+                            <option value="hero">🎯 Hero Slider Trang Chủ</option>
+                            <option value="combo">🏷️ Combo Spotlight Giữa Trang</option>
+                            <option value="popup">💬 Pop-up Chào Mừng Du Khách</option>
+                            <option value="festival">📍 Khu Vực Lễ Hội & Mùa Du Lịch</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-field full">
+                    <label class="form-label">Mô tả ngắn gói dịch vụ</label>
+                    <input type="text" id="pkgDescInput" class="form-input" placeholder="Ví dụ: Tối ưu cho cả tháng, tiếp cận tối đa du khách">
+                </div>
+
+                <div class="form-field full">
+                    <label class="form-label">Danh sách quyền lợi dịch vụ (phân cách bởi dấu chấm phẩy ;)</label>
+                    <textarea id="pkgFeaturesInput" class="form-input" rows="3" placeholder="Hiển thị Banner đề xuất Trang Chủ; Báo cáo hiệu quả Realtime; Hỗ trợ tối ưu bài viết & hình ảnh"></textarea>
+                </div>
+
+                <div class="form-field full">
+                    <label class="form-label">Trạng thái mở bán</label>
+                    <select id="pkgStatusSelect" class="form-select">
+                        <option value="active">Đang mở bán trên cổng Host</option>
+                        <option value="ended">Tạm ngưng mở bán</option>
                     </select>
                 </div>
+            </div>
 
-                <div class="form-field">
-                    <label class="form-label">Homestay / Mục tiêu liên kết</label>
-                    <input type="text" id="adTargetInput" class="form-input" placeholder="Ví dụ: Han River Glass House, The Memory Valley...">
+            <!-- Form khi ở Tab Đơn Mua & Đang Chạy (orders) -->
+            <div id="orderModalFields" style="display: none;">
+                <div class="form-field full">
+                    <label class="form-label">Tên Homestay / Đối tác đăng ký <span style="color: red;">*</span></label>
+                    <input type="text" id="orderTargetInput" class="form-input" placeholder="Ví dụ: Han River Glass House & Cozy Villa...">
                 </div>
-            </div>
 
-            <!-- Hộp thông tin trực quan cho Vị Trí Quảng Cáo được chỉ định -->
-            <div class="form-field full" id="adPlacementHintBox" style="background: #F3E8FF; border: 1px solid #E9D5FF; border-radius: 8px; padding: 10px 14px; font-size: 12.5px; color: #6B21A8; font-weight: 600; display: flex; align-items: center; gap: 8px;">
-                <span class="material-symbols-outlined" style="font-size: 18px; color: #9333EA;">info</span>
-                <span id="adPlacementHintText">🎯 Vị trí: Hero Slider Trang Chủ — Hiển thị banner lớn ngay đầu trang chủ web.</span>
-            </div>
+                <div class="form-group-grid">
+                    <div class="form-field">
+                        <label class="form-label">Gói Dịch Vụ Đăng Ký <span style="color: red;">*</span></label>
+                        <select id="orderPackageSelect" class="form-select" onchange="syncOrderPackageDetails()">
+                            <!-- Render bằng JS -->
+                        </select>
+                    </div>
 
-            <div class="form-field full">
-                <label class="form-label">Đường dẫn liên kết khi click (URL)</label>
-                <input type="text" id="adUrlInput" class="form-input" placeholder="https://yenhomestay.com/festival/diff">
-            </div>
-
-            <div class="form-group-grid">
-                <div class="form-field">
-                    <label class="form-label">Ngày bắt đầu</label>
-                    <input type="text" id="adStartDateInput" class="form-input" placeholder="01/05/2026">
+                    <div class="form-field">
+                        <label class="form-label">Giá trị đơn hàng (VNĐ)</label>
+                        <input type="text" id="orderAmountInput" class="form-input" placeholder="Ví dụ: 990.000đ">
+                    </div>
                 </div>
-                <div class="form-field">
-                    <label class="form-label">Ngày kết thúc</label>
-                    <input type="text" id="adEndDateInput" class="form-input" placeholder="15/07/2026">
-                </div>
-            </div>
 
-            <div class="form-field full">
-                <label class="form-label">Trạng thái chiến dịch</label>
-                <select id="adStatusSelect" class="form-select">
-                    <option value="active">Đang chạy (Active)</option>
-                    <option value="scheduled">Đã lên lịch (Scheduled)</option>
-                    <option value="ended">Tạm dừng (Paused)</option>
-                </select>
+                <div class="form-field full">
+                    <label class="form-label">Tiêu đề chiến dịch / Nội dung quảng bá</label>
+                    <input type="text" id="orderTitleInput" class="form-input" placeholder="Ví dụ: Đẩy top & Banner Ưu Đãi Mùa Lễ Hội...">
+                </div>
+
+                <div class="form-field full">
+                    <label class="form-label">Đường dẫn liên kết khi click (URL)</label>
+                    <input type="text" id="orderUrlInput" class="form-input" placeholder="https://yenhomestay.com/homestay/han-river">
+                </div>
+
+                <div class="form-group-grid">
+                    <div class="form-field">
+                        <label class="form-label">Ngày bắt đầu</label>
+                        <input type="text" id="orderStartDateInput" class="form-input" placeholder="01/05/2026">
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label">Ngày kết thúc</label>
+                        <input type="text" id="orderEndDateInput" class="form-input" placeholder="31/05/2026">
+                    </div>
+                </div>
+
+                <div class="form-field full">
+                    <label class="form-label">Trạng thái đơn hàng</label>
+                    <select id="orderStatusSelect" class="form-select">
+                        <option value="active">Đang chạy (Active)</option>
+                        <option value="scheduled">Đã lên lịch (Scheduled)</option>
+                        <option value="ended">Tạm dừng / Hoàn thành</option>
+                    </select>
+                </div>
             </div>
         </div>
 
         <div class="modal-footer">
             <button class="btn-admin-cancel" onclick="closeAdModal()">Hủy bỏ</button>
-            <button class="btn-admin-primary" style="background-color: #9333EA;" onclick="saveAdData()">Lưu Quảng Cáo</button>
+            <button class="btn-admin-primary" id="modalSaveBtn" onclick="saveCurrentData()">Lưu Dữ Liệu</button>
         </div>
     </div>
 </div>

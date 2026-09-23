@@ -6,16 +6,33 @@
  * ==========================================================================
  */
 
+const STORAGE_KEY = 'yen_admin_users';
+
 let editingUserId = null;
 let lockingUserId = null;
 
-// Dữ liệu mẫu Tài Khoản (Đã bổ sung KYC, Danh sách Homestay sở hữu & Lịch sử)
-let initialUsers = [
+// Dữ liệu mẫu ban đầu đầy đủ trường như trang cá nhân
+const defaultInitialUsers = [
     {
         id: 'usr-1',
         name: 'Nguyễn Văn An',
+        nickname: 'An Nguyễn Homestay',
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
         email: 'nguyenvanan@gmail.com',
+        emailVerified: true,
         phone: '0905 123 456',
+        phoneVerified: true,
+        cccd: '048092001234',
+        dobDay: '15',
+        dobMonth: '05',
+        dobYear: '1988',
+        gender: 'nam',
+        nationality: 'Việt Nam',
+        street: '128 Đường Bạch Đằng',
+        province: 'Thành phố Đà Nẵng',
+        ward: 'Phường Hải Châu 1',
+        taxCode: '0401892831',
+        bizCode: '48A8019284',
         role: 'host',
         roleText: 'Chủ Homestay (Owner)',
         permission: 'Đối Tác Kinh Doanh',
@@ -29,13 +46,30 @@ let initialUsers = [
         status: 'active',
         statusText: 'Đang hoạt động',
         lockReason: '',
+        memberTier: 'Host Uy Tín (SuperHost)',
+        adminNotes: 'Chủ chuỗi homestay view sông Hàn, đánh giá 4.9/5 sao.',
         avatarBg: 'linear-gradient(135deg, #15803D 0%, #166534 100%)'
     },
     {
         id: 'usr-2',
         name: 'Trần Thị Thu Hà',
+        nickname: 'Thu Hà Đà Lạt',
+        avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
         email: 'thuha.dalat@gmail.com',
+        emailVerified: true,
         phone: '0914 987 654',
+        phoneVerified: true,
+        cccd: '068194002345',
+        dobDay: '22',
+        dobMonth: '10',
+        dobYear: '1992',
+        gender: 'nu',
+        nationality: 'Việt Nam',
+        street: '45 Đường Hoàng Hoa Thám',
+        province: 'Tỉnh Lâm Đồng',
+        ward: 'Phường 10, TP. Đà Lạt',
+        taxCode: '5801293847',
+        bizCode: '68B9023412',
         role: 'host',
         roleText: 'Chủ Homestay (Owner)',
         permission: 'Đối Tác Kinh Doanh',
@@ -49,18 +83,35 @@ let initialUsers = [
         status: 'active',
         statusText: 'Đang hoạt động',
         lockReason: '',
+        memberTier: 'Host Tiêu Biểu',
+        adminNotes: 'Chuyên villa săn mây và homestay thung lũng Đà Lạt.',
         avatarBg: 'linear-gradient(135deg, #0284C7 0%, #0369A1 100%)'
     },
     {
         id: 'usr-3',
-        name: 'Lê Hoàng Nam',
-        email: 'hoangnam.tourist@gmail.com',
+        name: 'Lê Hoàng Mai Chi',
+        nickname: 'Mai Chi Homestay',
+        avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80',
+        email: 'maichi.lehoang@gmail.com',
+        emailVerified: true,
         phone: '0988 555 222',
+        phoneVerified: false,
+        cccd: '001203004005',
+        dobDay: '18',
+        dobMonth: '08',
+        dobYear: '1998',
+        gender: 'nu',
+        nationality: 'Việt Nam',
+        street: '123 Đường Lê Lợi',
+        province: 'Thành phố Hà Nội',
+        ward: 'Phường Hàng Trống, Quận Hoàn Kiếm',
+        taxCode: '0312345678',
+        bizCode: '41A8012345',
         role: 'guest',
         roleText: 'Khách lưu trú',
         permission: 'Người Dùng Phổ Thông',
         kycStatus: 'verified',
-        kycText: 'Đã xác thực Email/SĐT',
+        kycText: 'Đã xác thực Email/CCCD',
         homestays: [],
         homestayCount: 0,
         bookingsCount: 8,
@@ -69,13 +120,30 @@ let initialUsers = [
         status: 'active',
         statusText: 'Đang hoạt động',
         lockReason: '',
+        memberTier: 'Thành viên thân thiết',
+        adminNotes: 'Khách du lịch thường xuyên đặt phòng Tây Bắc và Đà Lạt.',
         avatarBg: 'linear-gradient(135deg, #D97706 0%, #B45309 100%)'
     },
     {
         id: 'usr-4',
         name: 'Admin System (YÊN)',
+        nickname: 'YEN Root Admin',
+        avatar: '',
         email: 'admin@yenhomestay.com',
+        emailVerified: true,
         phone: '0236 888 9999',
+        phoneVerified: true,
+        cccd: '048000999888',
+        dobDay: '01',
+        dobMonth: '01',
+        dobYear: '1990',
+        gender: 'nam',
+        nationality: 'Việt Nam',
+        street: 'Tòa nhà YÊN, 246 Nguyễn Văn Linh',
+        province: 'Thành phố Đà Nẵng',
+        ward: 'Phường Thạc Gián, Quận Thanh Khê',
+        taxCode: '0409999888',
+        bizCode: '48GP-YEN2024',
         role: 'admin',
         roleText: 'System Admin',
         permission: 'Toàn Quyền Quản Trị Hệ Thống (Super Admin)',
@@ -89,13 +157,30 @@ let initialUsers = [
         status: 'active',
         statusText: 'Đang hoạt động',
         lockReason: '',
-        avatarBg: 'linear-gradient(135deg, #7E22CE 0%, #6B21A8 100%)'
+        memberTier: 'Quản Trị Viên Cấp Cao',
+        adminNotes: 'Tài khoản quản trị gốc của hệ thống YÊN Homestay.',
+        avatarBg: 'linear-gradient(135deg, #15803D 0%, #064E3B 100%)'
     },
     {
         id: 'usr-5',
         name: 'Phạm Minh Đức',
+        nickname: 'Đức Phượt',
+        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
         email: 'minhduc.spam@gmail.com',
+        emailVerified: false,
         phone: '0935 000 111',
+        phoneVerified: false,
+        cccd: '031095007890',
+        dobDay: '09',
+        dobMonth: '03',
+        dobYear: '1995',
+        gender: 'nam',
+        nationality: 'Việt Nam',
+        street: '78 Phố Cầu Giấy',
+        province: 'Thành phố Hà Nội',
+        ward: 'Phường Quan Hoa, Quận Cầu Giấy',
+        taxCode: '',
+        bizCode: '',
         role: 'guest',
         roleText: 'Khách lưu trú',
         permission: 'Bị Giới Hạn Truy Cập',
@@ -108,18 +193,40 @@ let initialUsers = [
         lastLogin: '10/08/2025',
         status: 'blocked',
         statusText: 'Bị khóa',
-        lockReason: 'Spammer / Đặt phòng ảo không đến',
+        lockReason: 'Spammer / Đặt phòng ảo không đến (Vĩnh viễn)',
+        memberTier: 'Tài khoản bị hạn chế',
+        adminNotes: 'Có 3 báo cáo no-show từ các host Mai Châu và Sapa.',
         avatarBg: 'linear-gradient(135deg, #EF4444 0%, #B91C1C 100%)'
     }
 ];
 
+let initialUsers = [];
 let currentUserTab = 'all'; // 'all' | 'guest' | 'host' | 'admin'
+
+function getStoredUsers() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultInitialUsers));
+        return defaultInitialUsers;
+    }
+    try {
+        const parsed = JSON.parse(raw);
+        return parsed && parsed.length > 0 ? parsed : defaultInitialUsers;
+    } catch (e) {
+        return defaultInitialUsers;
+    }
+}
+
+function saveStoredUsers(users) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     initUserModule();
 });
 
 function initUserModule() {
+    initialUsers = getStoredUsers();
     updateUserStatCards();
     renderUserTable();
     setupUserEventListeners();
@@ -170,7 +277,7 @@ function renderUserTable() {
             <tr>
                 <th>Chủ Homestay Owner</th>
                 <th>Thông Tin Liên Hệ</th>
-                <th>Xác Minh KYC</th>
+                <th>Xác Minh KYC & CCCD</th>
                 <th>Danh Sách Homestay Sở Hữu</th>
                 <th>Tổng Đặt Phòng</th>
                 <th>Trạng Thái</th>
@@ -195,7 +302,8 @@ function renderUserTable() {
         const matchTab = currentUserTab === 'all' || item.role === currentUserTab;
         const matchSearch = item.name.toLowerCase().includes(searchVal) || 
                             item.email.toLowerCase().includes(searchVal) || 
-                            item.phone.includes(searchVal);
+                            (item.phone && item.phone.includes(searchVal)) ||
+                            (item.cccd && item.cccd.includes(searchVal));
         const matchStatus = statusVal === 'all' || item.status === statusVal;
         return matchTab && matchSearch && matchStatus;
     });
@@ -209,16 +317,17 @@ function renderUserTable() {
         container.innerHTML = filtered.map(item => `
             <tr>
                 <td>
-                    <div class="cell-item-title">
-                        <div class="user-avatar-circle" style="background: ${item.avatarBg};">
-                            ${item.name.charAt(0).toUpperCase()}
-                        </div>
+                    <div class="cell-item-title" style="cursor: pointer;" onclick="editUserAccount('${item.id}')" title="Bấm để chỉnh sửa chi tiết">
+                        ${item.avatar ? 
+                            `<img src="${item.avatar}" alt="${item.name}" class="user-avatar-circle" style="object-fit: cover;">` :
+                            `<div class="user-avatar-circle" style="background: ${item.avatarBg || '#15803D'};">${item.name.charAt(0).toUpperCase()}</div>`
+                        }
                         <div class="item-name-group">
                             <span class="item-name" style="display: flex; align-items: center; gap: 4px;">
                                 ${item.name}
                                 <span class="material-symbols-outlined" style="color: #15803D; font-size: 16px;" title="Verified Host">verified</span>
                             </span>
-                            <span style="font-size: 11.5px; color: #15803D; font-weight: 700;">Chủ Homestay Chính Chủ</span>
+                            <span style="font-size: 11.5px; color: #15803D; font-weight: 700;">${item.memberTier || 'Chủ Homestay'}</span>
                         </div>
                     </div>
                 </td>
@@ -229,35 +338,35 @@ function renderUserTable() {
                     </div>
                 </td>
                 <td>
-                    <span class="status-badge active" style="background: #DCFCE7; color: #15803D;">
-                        <span class="material-symbols-outlined" style="font-size: 14px;">verified_user</span>
-                        ${item.kycText}
-                    </span>
+                    <div style="display: flex; flex-direction: column; gap: 2px;">
+                        <span class="status-badge active" style="background: #DCFCE7; color: #15803D; width: fit-content;">
+                            <span class="material-symbols-outlined" style="font-size: 14px;">verified_user</span>
+                            ${item.kycText || 'Đã xác minh KYC'}
+                        </span>
+                        ${item.cccd ? `<span style="font-size: 11.5px; color: var(--text-muted); font-family: monospace;">CCCD: ${item.cccd}</span>` : ''}
+                    </div>
                 </td>
                 <td>
                     <div style="display: flex; flex-direction: column; gap: 2px;">
-                        <span class="status-badge active" style="width: fit-content;">🏡 ${item.homestayCount} Căn Homestay</span>
-                        <span style="font-size: 11.5px; color: var(--text-muted);">${item.homestays.join(', ')}</span>
+                        <span class="status-badge active" style="width: fit-content;">🏡 ${item.homestayCount || (item.homestays ? item.homestays.length : 0)} Căn Homestay</span>
+                        <span style="font-size: 11.5px; color: var(--text-muted); max-width: 260px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${(item.homestays || []).join(', ')}</span>
                     </div>
                 </td>
-                <td><strong style="font-size: 14px; color: #0284C7;">${item.bookingsCount} lượt khách</strong></td>
+                <td><strong style="font-size: 14px; color: #0284C7;">${item.bookingsCount || 0} lượt khách</strong></td>
                 <td>
                     <span class="user-status-badge ${item.status}">
-                        ${item.statusText}
+                        ${item.statusText || (item.status === 'active' ? 'Đang hoạt động' : 'Bị khóa')}
                     </span>
                 </td>
                 <td>
                     <div class="action-btns" style="justify-content: flex-end;">
-                        <button class="btn-action-icon" title="Chi tiết tài khoản" onclick="viewUserDetail('${item.id}')">
-                            <span class="material-symbols-outlined">visibility</span>
+                        <button class="btn-action-icon" title="Chỉnh sửa chi tiết trang riêng" onclick="editUserAccount('${item.id}')">
+                            <span class="material-symbols-outlined" style="color: #15803D;">edit</span>
                         </button>
                         <button class="btn-action-icon" title="${item.status === 'active' ? 'Khóa tài khoản' : 'Mở khóa'}" onclick="handleLockToggle('${item.id}')">
                             <span class="material-symbols-outlined" style="color: ${item.status === 'active' ? '#EF4444' : '#15803D'};">
                                 ${item.status === 'active' ? 'lock' : 'lock_open'}
                             </span>
-                        </button>
-                        <button class="btn-action-icon" title="Chỉnh sửa" onclick="editUserAccount('${item.id}')">
-                            <span class="material-symbols-outlined">edit</span>
                         </button>
                     </div>
                 </td>
@@ -268,13 +377,14 @@ function renderUserTable() {
         container.innerHTML = filtered.map(item => `
             <tr>
                 <td>
-                    <div class="cell-item-title">
-                        <div class="user-avatar-circle" style="background: ${item.avatarBg};">
-                            ${item.name.charAt(0).toUpperCase()}
-                        </div>
+                    <div class="cell-item-title" style="cursor: pointer;" onclick="editUserAccount('${item.id}')" title="Bấm để chỉnh sửa chi tiết">
+                        ${item.avatar ? 
+                            `<img src="${item.avatar}" alt="${item.name}" class="user-avatar-circle" style="object-fit: cover;">` :
+                            `<div class="user-avatar-circle" style="background: ${item.avatarBg || '#15803D'};">${item.name.charAt(0).toUpperCase()}</div>`
+                        }
                         <div class="item-name-group">
                             <span class="item-name">${item.name}</span>
-                            <span style="font-size: 11.5px; color: var(--text-muted);">ID: ${item.id}</span>
+                            <span style="font-size: 11.5px; color: var(--text-muted);">${item.nickname ? '@' + item.nickname : 'ID: ' + item.id}</span>
                         </div>
                     </div>
                 </td>
@@ -290,38 +400,35 @@ function renderUserTable() {
                             <span class="material-symbols-outlined" style="font-size: 14px;">
                                 ${item.role === 'host' ? 'cottage' : (item.role === 'admin' ? 'admin_panel_settings' : 'person')}
                             </span>
-                            ${item.roleText}
+                            ${item.roleText || item.role}
                         </span>
                         <span style="font-size: 11px; color: var(--text-muted);">${item.permission}</span>
                     </div>
                 </td>
-                <td><span style="font-size: 12.5px; font-weight: 600; color: #475569;">${item.joinDate}</span></td>
+                <td><span style="font-size: 12.5px; font-weight: 600; color: #475569;">${item.joinDate || '01/01/2025'}</span></td>
                 <td>
                     ${item.role === 'host' ? 
-                        `<span class="status-badge active">🏡 ${item.homestayCount} Homestay</span>` : 
-                        `<span class="status-badge active" style="background: #E0F2FE; color: #0284C7;">🧳 ${item.bookingsCount} lượt đặt</span>`
+                        `<span class="status-badge active">🏡 ${item.homestayCount || (item.homestays ? item.homestays.length : 0)} Homestay</span>` : 
+                        `<span class="status-badge active" style="background: #E0F2FE; color: #0284C7;">🧳 ${item.bookingsCount || 0} lượt đặt</span>`
                     }
                 </td>
                 <td>
                     <div style="display: flex; flex-direction: column; gap: 2px;">
                         <span class="user-status-badge ${item.status}">
-                            ${item.statusText}
+                            ${item.statusText || (item.status === 'active' ? 'Đang hoạt động' : 'Bị khóa')}
                         </span>
                         ${item.status === 'blocked' && item.lockReason ? `<span style="font-size: 11px; color: #EF4444;" title="${item.lockReason}">⚠️ ${item.lockReason}</span>` : ''}
                     </div>
                 </td>
                 <td>
                     <div class="action-btns" style="justify-content: flex-end;">
-                        <button class="btn-action-icon" title="Xem chi tiết" onclick="viewUserDetail('${item.id}')">
-                            <span class="material-symbols-outlined">visibility</span>
+                        <button class="btn-action-icon" title="Chỉnh sửa chi tiết trang riêng" onclick="editUserAccount('${item.id}')">
+                            <span class="material-symbols-outlined" style="color: #15803D;">edit</span>
                         </button>
                         <button class="btn-action-icon" title="${item.status === 'active' ? 'Khóa tài khoản' : 'Mở khóa'}" onclick="handleLockToggle('${item.id}')">
                             <span class="material-symbols-outlined" style="color: ${item.status === 'active' ? '#EF4444' : '#15803D'};">
                                 ${item.status === 'active' ? 'lock' : 'lock_open'}
                             </span>
-                        </button>
-                        <button class="btn-action-icon" title="Chỉnh sửa" onclick="editUserAccount('${item.id}')">
-                            <span class="material-symbols-outlined">edit</span>
                         </button>
                     </div>
                 </td>
@@ -330,80 +437,9 @@ function renderUserTable() {
     }
 }
 
-// XEM CHI TIẾT TÀI KHOẢN (User Detail View Modal)
-function viewUserDetail(id) {
-    const user = initialUsers.find(u => u.id === id);
-    if (!user) return;
-
-    const modal = document.getElementById('userDetailModalOverlay');
-    const content = document.getElementById('userDetailModalContent');
-    if (!modal || !content) return;
-
-    content.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color);">
-            <div class="user-avatar-circle" style="width: 64px; height: 64px; font-size: 24px; background: ${user.avatarBg};">
-                ${user.name.charAt(0).toUpperCase()}
-            </div>
-            <div>
-                <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main);">${user.name}</h2>
-                <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
-                    <span class="role-badge ${user.role}">
-                        <span class="material-symbols-outlined" style="font-size: 14px;">
-                            ${user.role === 'host' ? 'cottage' : (user.role === 'admin' ? 'admin_panel_settings' : 'person')}
-                        </span>
-                        ${user.roleText}
-                    </span>
-                    <span class="user-status-badge ${user.status}">${user.statusText}</span>
-                </div>
-            </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 20px;">
-            <div style="background: #F8FAFC; padding: 12px 16px; border-radius: 8px; border: 1px solid #E2E8F0;">
-                <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">EMAIL LIÊN HỆ</span>
-                <p style="font-size: 14px; font-weight: 700; color: var(--text-main); margin-top: 2px;">${user.email}</p>
-            </div>
-            <div style="background: #F8FAFC; padding: 12px 16px; border-radius: 8px; border: 1px solid #E2E8F0;">
-                <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">SỐ ĐIỆN THOẠI</span>
-                <p style="font-size: 14px; font-weight: 700; color: var(--text-main); margin-top: 2px;">${user.phone}</p>
-            </div>
-            <div style="background: #F8FAFC; padding: 12px 16px; border-radius: 8px; border: 1px solid #E2E8F0;">
-                <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">PHÂN QUYỀN HỆ THỐNG</span>
-                <p style="font-size: 14px; font-weight: 700; color: #0284C7; margin-top: 2px;">${user.permission}</p>
-            </div>
-            <div style="background: #F8FAFC; padding: 12px 16px; border-radius: 8px; border: 1px solid #E2E8F0;">
-                <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;">TRẠNG THÁI XÁC MINH KYC</span>
-                <p style="font-size: 14px; font-weight: 700; color: #15803D; margin-top: 2px;">✓ ${user.kycText}</p>
-            </div>
-        </div>
-
-        ${user.role === 'host' ? `
-            <div style="margin-top: 20px;">
-                <h4 style="font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">Danh sách Homestay thuộc quyền sở hữu (${user.homestayCount} căn):</h4>
-                <div style="display: flex; flex-direction: column; gap: 6px;">
-                    ${user.homestays.map(h => `
-                        <div style="background: #F0FDF4; border: 1px solid #BBF7D0; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 700; color: #15803D; display: flex; align-items: center; gap: 8px;">
-                            <span class="material-symbols-outlined">cottage</span> ${h}
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        ` : ''}
-
-        ${user.status === 'blocked' ? `
-            <div style="margin-top: 20px; background: #FEF2F2; border: 1px solid #FCA5A5; padding: 12px 16px; border-radius: 8px; color: #991B1B;">
-                <strong style="font-size: 13px;">⚠️ Thông tin khóa tài khoản:</strong>
-                <p style="font-size: 13px; margin-top: 2px;">Lý do: ${user.lockReason || 'Vi phạm chính sách'}</p>
-            </div>
-        ` : ''}
-    `;
-
-    modal.classList.add('show');
-}
-
-function closeUserDetailModal() {
-    const modal = document.getElementById('userDetailModalOverlay');
-    if (modal) modal.classList.remove('show');
+// Chuyển hướng sang trang Chỉnh sửa Chi tiết Riêng biệt (account_edit.html)
+function editUserAccount(id) {
+    window.location.href = `account_edit.html?id=${encodeURIComponent(id)}`;
 }
 
 // XỬ LÝ KHÓA / MỞ KHÓA TÀI KHOẢN KÈM LÝ DO
@@ -412,16 +448,15 @@ function handleLockToggle(id) {
     if (!user) return;
 
     if (user.status === 'blocked') {
-        // Mở khóa trực tiếp
         if (confirm(`Mở khóa cho tài khoản "${user.name}"?`)) {
             user.status = 'active';
             user.statusText = 'Đang hoạt động';
             user.lockReason = '';
+            saveStoredUsers(initialUsers);
             updateUserStatCards();
             renderUserTable();
         }
     } else {
-        // Bật Modal nhập lý do khóa
         lockingUserId = id;
         document.getElementById('lockTargetUserName').textContent = user.name;
         document.getElementById('lockModalOverlay').classList.add('show');
@@ -444,92 +479,12 @@ function confirmLockAccount() {
         user.status = 'blocked';
         user.statusText = 'Bị khóa';
         user.lockReason = `${reason} (${duration})`;
+        saveStoredUsers(initialUsers);
     }
 
     closeLockModal();
     updateUserStatCards();
     renderUserTable();
-}
-
-function editUserAccount(id) {
-    const user = initialUsers.find(u => u.id === id);
-    if (!user) return;
-
-    editingUserId = id;
-    const modal = document.getElementById('userModalOverlay');
-    const modalTitle = document.getElementById('userModalTitleText');
-    if (!modal) return;
-
-    if (modalTitle) modalTitle.textContent = 'Chỉnh Sửa Thông Tin Tài Khoản & Phân Quyền';
-
-    document.getElementById('userNameInput').value = user.name;
-    document.getElementById('userEmailInput').value = user.email;
-    document.getElementById('userPhoneInput').value = user.phone;
-    document.getElementById('userRoleSelect').value = user.role;
-    document.getElementById('userStatusSelect').value = user.status;
-
-    modal.classList.add('show');
-}
-
-function closeUserModal() {
-    editingUserId = null;
-    const modal = document.getElementById('userModalOverlay');
-    if (modal) modal.classList.remove('show');
-}
-
-function getRoleText(role) {
-    if (role === 'host') return 'Chủ Homestay (Owner)';
-    if (role === 'admin') return 'System Admin';
-    return 'Khách lưu trú';
-}
-
-function getPermissionText(role) {
-    if (role === 'host') return 'Đối Tác Kinh Doanh';
-    if (role === 'admin') return 'Super Admin Hệ Thống';
-    return 'Người Dùng Phổ Thông';
-}
-
-function saveUserData() {
-    const name = document.getElementById('userNameInput').value.trim();
-    const email = document.getElementById('userEmailInput').value.trim();
-    const phone = document.getElementById('userPhoneInput').value.trim();
-    const role = document.getElementById('userRoleSelect').value;
-    const status = document.getElementById('userStatusSelect').value;
-
-    if (!name || !email) {
-        alert('Vui lòng nhập đầy đủ Họ tên và Email!');
-        return;
-    }
-
-    const roleText = getRoleText(role);
-    const permission = getPermissionText(role);
-    const statusText = status === 'active' ? 'Đang hoạt động' : 'Bị khóa';
-
-    if (editingUserId !== null) {
-        const index = initialUsers.findIndex(u => u.id === editingUserId);
-        if (index !== -1) {
-            initialUsers[index].name = name;
-            initialUsers[index].email = email;
-            initialUsers[index].phone = phone || initialUsers[index].phone;
-            initialUsers[index].role = role;
-            initialUsers[index].roleText = roleText;
-            initialUsers[index].permission = permission;
-            initialUsers[index].status = status;
-            initialUsers[index].statusText = statusText;
-        }
-    }
-
-    closeUserModal();
-    updateUserStatCards();
-    renderUserTable();
-}
-
-function deleteUserAccount(id) {
-    if (confirm('Bạn có chắc chắn muốn xóa tài khoản này khỏi hệ thống?')) {
-        initialUsers = initialUsers.filter(u => u.id !== id);
-        updateUserStatCards();
-        renderUserTable();
-    }
 }
 
 function setupUserEventListeners() {
