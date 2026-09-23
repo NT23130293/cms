@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const params = new URLSearchParams(window.location.search);
     let homestays = [];
     let favoriteIds = new Set();
+    const filters = { services: new Set(), roomAmenities: new Set(), amenities: new Set(), travelGroups: new Set(), minPrice: '', maxPrice: '' };
 
     const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char]);
     const showToast = message => { toast.textContent = message; toast.classList.add('show'); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => toast.classList.remove('show'), 2600); };
@@ -18,11 +19,33 @@ document.addEventListener('DOMContentLoaded', async () => {
     function matchesQuery(item) {
         const keyword = (params.get('q') || params.get('destination') || '').trim().toLocaleLowerCase('vi');
         if (!keyword) return true;
+        const guestSpec = params.get('guests') || '';
+        const guestCount = Number((guestSpec.match(/^\d+/) || [0])[0]);
+        if (guestCount && Number(item.maxGuests || item.capacity || 0) && Number(item.maxGuests || item.capacity) < guestCount) return false;
         return [item.name, item.address, item.location, item.description].filter(Boolean).join(' ').toLocaleLowerCase('vi').includes(keyword);
     }
 
+    function values(item, key) { const value = item[key]; return Array.isArray(value) ? value : value ? [value] : []; }
+    function matchesFilters(item) {
+        const price = Number(item.pricePerNight ?? item.price ?? 0);
+        if (filters.minPrice !== '' && price < Number(filters.minPrice)) return false;
+        if (filters.maxPrice !== '' && price > Number(filters.maxPrice)) return false;
+        return ['services', 'roomAmenities', 'amenities', 'travelGroups'].every(key => !filters[key].size || [...filters[key]].every(value => values(item, key).includes(value)));
+    }
+    function renderSidebar() {
+        const host = document.getElementById('search-filter-groups');
+        const groups = [
+            ['services', 'Dịch vụ & trải nghiệm'], ['roomAmenities', 'Tiện nghi phòng'], ['amenities', 'Tiện nghi homestay'], ['travelGroups', 'Nhóm du lịch phù hợp']
+        ];
+        const options = key => [...new Set(homestays.flatMap(item => values(item, key)))].sort((a, b) => String(a).localeCompare(String(b), 'vi'));
+        host.innerHTML = `<section class="filter-group"><h3>Giá mỗi đêm</h3><div class="price-range"><input id="filter-min-price" type="number" min="0" placeholder="Từ (VNĐ)" value="${filters.minPrice}"><input id="filter-max-price" type="number" min="0" placeholder="Đến (VNĐ)" value="${filters.maxPrice}"></div></section>` + groups.map(([key, label]) => {
+            const list = options(key);
+            return `<section class="filter-group"><h3>${label}</h3>${list.length ? list.map(option => `<label class="filter-option"><input type="checkbox" data-filter="${key}" value="${escapeHtml(option)}" ${filters[key].has(option) ? 'checked' : ''}><span>${escapeHtml(option)}</span><small>${homestays.filter(item => values(item, key).includes(option)).length}</small></label>`).join('') : '<p class="text-empty">Chưa có dữ liệu.</p>'}</section>`;
+        }).join('');
+    }
+
     function render() {
-        const selected = homestays.filter(matchesQuery);
+        const selected = homestays.filter(item => matchesQuery(item) && matchesFilters(item));
         const keyword = params.get('q') || params.get('destination') || 'Tất cả điểm đến';
         title.textContent = `${keyword}: tìm thấy ${selected.length} chỗ nghỉ`;
         list.innerHTML = selected.length ? selected.map(item => {
@@ -41,6 +64,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         homestays.sort((a, b) => sorting === 'rating' ? Number(b.rating || 0) - Number(a.rating || 0) : sorting === 'name' ? String(a.name).localeCompare(String(b.name), 'vi') : Number(b.featured || 0) - Number(a.featured || 0));
         render();
     });
+    document.getElementById('search-sidebar-placeholder').addEventListener('change', event => {
+        const input = event.target;
+        if (input.matches('[data-filter]')) { filters[input.dataset.filter][input.checked ? 'add' : 'delete'](input.value); render(); }
+        if (input.id === 'filter-min-price' || input.id === 'filter-max-price') { filters[input.id === 'filter-min-price' ? 'minPrice' : 'maxPrice'] = input.value; render(); }
+    });
+    document.getElementById('search-sidebar-placeholder').addEventListener('click', event => { if (event.target.id === 'clear-filters') { Object.values(filters).forEach(value => value instanceof Set ? value.clear() : null); filters.minPrice = ''; filters.maxPrice = ''; renderSidebar(); render(); } });
     document.querySelectorAll('.btn-view').forEach(button => button.addEventListener('click', () => { document.querySelectorAll('.btn-view').forEach(item => item.classList.remove('active')); button.classList.add('active'); list.classList.toggle('compact-view', button.textContent.includes('dọc')); }));
     list.addEventListener('click', async event => {
         const card = event.target.closest('.hotel-card');
@@ -52,7 +81,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             try { if (isFavorite) { await HomestayUserDB.remove('favorites', id); favoriteIds.delete(id); } else { await HomestayUserDB.put('favorites', { id, savedAt: Date.now(), type: 'homestay' }); favoriteIds.add(id); } favorite.classList.toggle('active', !isFavorite); favorite.setAttribute('aria-pressed', String(!isFavorite)); favorite.querySelector('i').className = `fa-${isFavorite ? 'regular' : 'solid'} fa-heart`; showToast(isFavorite ? 'Đã bỏ khỏi danh sách yêu thích.' : 'Đã thêm vào danh sách yêu thích.'); } catch (_) { showToast('Không thể cập nhật yêu thích.'); }
             return;
         }
-        if (event.target.closest('.choose-stay')) { await HomestayUserDB.put('selectedHomestay', { id: 'current', homestayId: id, selectedAt: Date.now() }); showToast(`Đã chọn ${card.dataset.name}. Bạn có thể tiếp tục chọn phòng và ngày lưu trú.`); }
+        if (event.target.closest('.choose-stay')) {
+            await HomestayUserDB.put('selectedHomestay', { id: 'current', homestayId: id, selectedAt: Date.now() });
+            window.location.href = `homestayDetail.html?id=${encodeURIComponent(id)}`;
+        }
     });
-    try { [homestays, favoriteIds] = [await readHomestays(), new Set((await HomestayUserDB.all('favorites')).filter(item => item.type === 'homestay').map(item => String(item.id)))]; render(); } catch (error) { list.innerHTML = '<div class="empty-results"><h3>Không thể tải dữ liệu</h3><p>Vui lòng tải lại trang.</p></div>'; }
+    try {
+        let sidebar;
+        try { sidebar = await fetch('searchSidebar.html').then(response => { if (!response.ok) throw new Error('Không tải được sidebar'); return response.text(); }); }
+        catch (_) { sidebar = '<aside class="search-filter-sidebar"><div class="filter-heading"><span class="material-symbols-outlined">tune</span><div><h2>Bộ lọc tìm kiếm</h2><p>Chọn theo nhu cầu lưu trú</p></div><button id="clear-filters" class="filter-clear" type="button">Xóa lọc</button></div><div id="active-filter-summary" class="active-filter-summary" hidden></div><div id="search-filter-groups" class="filter-groups"></div></aside>'; }
+        document.getElementById('search-sidebar-placeholder').innerHTML = sidebar;
+        await HomestayUserDB.ensureSearchData();
+        [homestays, favoriteIds] = [await readHomestays(), new Set((await HomestayUserDB.all('favorites')).filter(item => item.type === 'homestay').map(item => String(item.id)))];
+        renderSidebar(); render();
+    } catch (error) { list.innerHTML = '<div class="empty-results"><h3>Không thể tải dữ liệu</h3><p>Vui lòng tải lại trang.</p></div>'; }
 });

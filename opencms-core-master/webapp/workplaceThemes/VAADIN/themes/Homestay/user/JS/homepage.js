@@ -743,6 +743,8 @@ function selectQuickTag(destination) {
 
 function handleSearch() {
   const dest = document.getElementById('searchDestination').value.trim();
+  const dates = document.getElementById('searchDates').value.trim();
+  const guests = document.getElementById('searchGuests').value;
 
   if (!dest) {
     alert('Vui lòng nhập địa điểm hoặc tên homestay bạn muốn tìm!');
@@ -750,14 +752,8 @@ function handleSearch() {
     return;
   }
 
-  showToast(`Đang tìm kiếm homestay tại "${dest}"...`);
-  
-  setTimeout(() => {
-    const targetSection = document.getElementById('favoritesSection');
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, 600);
+  const query = new URLSearchParams({ destination: dest, dates, guests });
+  window.location.href = `searchResult.html?${query.toString()}`;
 }
 
 function filterByCategory(categoryName) {
