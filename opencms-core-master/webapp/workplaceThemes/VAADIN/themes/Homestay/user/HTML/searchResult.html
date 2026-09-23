@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../CSS/footer.css">
     <link rel="stylesheet" href="../CSS/searchResult.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -25,20 +26,24 @@
             </div>
 
             <div class="sort-dropdown">
-                <button class="btn-sort">
+                <label class="btn-sort" for="sort-results">
                     <i class="fa-solid fa-arrow-down-up-across-line"></i>
-                    Sắp xếp theo: Lựa chọn hàng đầu của chúng tôi
-                    <i class="fa-solid fa-chevron-down ms-2"></i>
-                </button>
+                    <span>Sắp xếp theo</span>
+                    <select id="sort-results" aria-label="Sắp xếp kết quả">
+                        <option value="recommended">Lựa chọn hàng đầu</option>
+                        <option value="rating">Đánh giá cao nhất</option>
+                        <option value="name">Tên chỗ nghỉ A–Z</option>
+                    </select>
+                </label>
             </div>
 
             <!-- Danh sách khách sạn -->
             <div class="hotel-list">
 
                 <!-- Thẻ khách sạn 1 -->
-                <div class="hotel-card mui-shadow">
+                <div class="hotel-card mui-shadow" data-rating="9.5">
                     <div class="hotel-image">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/square600/446215707.webp?k=f646067fcadbf23df32f8319f6a19f4d7b7fa03c7ea51921c5f8dfec3298a28e&o=" alt="A&L Service Apartment">
+                        <img src="../images/categories/4_nha_que_truyen_thong.jpg" alt="A&L Service Apartment">
                         <button class="btn-favorite" onclick="toggleFavorite(this)">
                             <i class="fa-regular fa-heart"></i>
                         </button>
@@ -66,15 +71,15 @@
                                 <div class="rating-score">9,5</div>
                             </div>
                             <div class="location-score">Địa điểm 9,8</div>
-                            <button class="btn-primary mui-btn">Chọn ngày</button>
+                            <button class="btn-primary mui-btn choose-stay">Chọn ngày</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Thẻ khách sạn 2 -->
-                <div class="hotel-card mui-shadow">
+                <div class="hotel-card mui-shadow" data-rating="10">
                     <div class="hotel-image">
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/square600/520556277.webp?k=23f95dcde2e7c9bfb41da24a8ed4762c2f7035fec49f15053e146eb132f8f85b&o=" alt="OlaStay Serviced Apartments">
+                        <img src="../images/categories/7_thien_nhien_sinh_thai.jpg" alt="OlaStay Serviced Apartments">
                         <button class="btn-favorite" onclick="toggleFavorite(this)">
                             <i class="fa-regular fa-heart"></i>
                         </button>
@@ -102,7 +107,7 @@
                                 <div class="rating-score">10</div>
                             </div>
                             <div class="location-score">Địa điểm 10</div>
-                            <button class="btn-primary mui-btn">Chọn ngày</button>
+                            <button class="btn-primary mui-btn choose-stay">Chọn ngày</button>
                         </div>
                     </div>
                 </div>
@@ -111,6 +116,8 @@
         </div>
     </main>
     <div id="footer-placeholder"></div>
+    <div id="result-toast" role="status" aria-live="polite"></div>
+    <script src="../JS/userDb.js"></script>
     <script src="../JS/searchResult.js"></script>
     <script src="../JS/homepage.js"></script>
 </body>
