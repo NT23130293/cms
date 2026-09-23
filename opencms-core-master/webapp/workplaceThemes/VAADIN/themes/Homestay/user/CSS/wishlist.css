@@ -26,15 +26,41 @@ body {
   color: var(--wl-dark);
 }
 
-/* ── Hero Banner Section ── */
+/* ── Hero Banner Section (Bo Cong Xuống Sang Trọng) ── */
 .wl-hero-section {
-  background: linear-gradient(135deg, #0F172A 0%, #15803D 100%);
+  position: relative;
+  background: 
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(21,128,61,0.35) 0%, transparent 65%),
+    linear-gradient(135deg, #0a1628 0%, #0f172a 55%, #052e16 100%);
   color: #FFFFFF;
-  padding: 2.5rem 0 3rem 0;
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
+  padding: 3.5rem 0 4.8rem 0;
   margin-bottom: 2rem;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+  overflow: hidden;
+}
+
+/* Geometric decoration mesh lines */
+.wl-hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(60deg, rgba(255,255,255,.03) 0px, rgba(255,255,255,.03) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(-60deg, rgba(255,255,255,.03) 0px, rgba(255,255,255,.03) 1px, transparent 1px, transparent 60px);
+  pointer-events: none;
+}
+
+/* Smooth curved bottom mask curve */
+.wl-hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: var(--wl-bg, #FCF9F4);
+  clip-path: ellipse(55% 100% at 50% 100%);
+  pointer-events: none;
+  z-index: 3;
 }
 
 .wl-hero-badge {

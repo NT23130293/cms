@@ -68,28 +68,46 @@ body {
   padding: 24px 0 60px;
 }
 
-/* --- 1. BANNER HERO KHUYẾN MÃI (ĐỒNG BỘ PHONG CÁCH HERO HOMEPAGE) --- */
-.promo-hero-wrapper {
+/* --- 1. BANNER HERO KHUYẾN MÃI (FULL-WIDTH BO CONG SANG TRỌNG) --- */
+.promo-hero-section {
   position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-xl);
-  background: linear-gradient(135deg, #064E3B 0%, #15803D 60%, #047857 100%);
+  background: 
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(21,128,61,0.35) 0%, transparent 65%),
+    linear-gradient(135deg, #0a1628 0%, #0f172a 55%, #052e16 100%);
   color: #FFFFFF;
-  padding: 30px 36px;
-  margin-bottom: 24px;
+  padding: 48px 0 65px;
+  margin-bottom: 28px;
+  overflow: hidden;
 }
 
-.promo-hero-wrapper::before {
+/* Geometric decoration mesh lines */
+.promo-hero-section::before {
   content: '';
   position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(60deg, rgba(255,255,255,.03) 0px, rgba(255,255,255,.03) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(-60deg, rgba(255,255,255,.03) 0px, rgba(255,255,255,.03) 1px, transparent 1px, transparent 60px);
   pointer-events: none;
+}
+
+/* Smooth curved bottom mask curve */
+.promo-hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: var(--light-bg, #F8FAFC);
+  clip-path: ellipse(55% 100% at 50% 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.promo-hero-wrapper {
+  position: relative;
+  z-index: 2;
 }
 
 .promo-hero-top {
