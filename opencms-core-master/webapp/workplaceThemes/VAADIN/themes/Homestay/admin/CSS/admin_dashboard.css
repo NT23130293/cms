@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    ADMIN DASHBOARD CSS - YÊN HOMESTAY MANAGEMENT
    ============================================================ */
 
@@ -169,7 +169,7 @@
 
 .metrics-grid-9 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
     margin-bottom: 24px;
 }
@@ -215,7 +215,7 @@
 .metric-card.m-trans   { --card-accent: #7C3AED; }
 .metric-card.m-revenue { --card-accent: #059669; }
 .metric-card.m-posts   { --card-accent: #0284C7; }
-.metric-card.m-ads     { --card-accent: #E11D48; }
+.metric-card.m-ads     { --card-accent: #15803D; }
 .metric-card.m-voucher { --card-accent: #EA580C; }
 
 .metric-card-top {
@@ -269,7 +269,7 @@
 .m-trans .metric-icon-box    { background: #F3E8FF; }
 .m-revenue .metric-icon-box  { background: #ECFDF5; }
 .m-posts .metric-icon-box    { background: #E0F2FE; }
-.m-ads .metric-icon-box      { background: #FFE4E6; }
+.m-ads .metric-icon-box      { background: #F0FDF4; }
 .m-voucher .metric-icon-box  { background: #FFEDD5; }
 
 .metric-card-mid {
@@ -811,7 +811,7 @@
 }
 
 /* Responsive */
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
     .metrics-grid-9 {
         grid-template-columns: repeat(2, 1fr);
     }
