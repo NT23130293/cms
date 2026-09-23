@@ -481,3 +481,88 @@ document.addEventListener("DOMContentLoaded", function() {
     initTransactionFilter();
     renderTransactions();
 });
+// ===================== XỬ LÝ HOVER HIỂN THỊ SỐ LIỆU TRÊN BIỂU ĐỒ =====================
+function initChartHoverEffect() {
+    const svg = document.getElementById('revenue-chart-svg');
+    const hoverLine = document.getElementById('chart-hover-line');
+    const hoverDot = document.getElementById('chart-hover-dot');
+    const tooltip = document.getElementById('chart-tooltip');
+    const tooltipValue = document.getElementById('tooltip-value');
+
+    if (!svg || !hoverLine || !hoverDot || !tooltip) return;
+
+    // Lấy đường path biểu đồ
+    const path = svg.querySelectorAll('path')[1];
+    const pathLength = path.getTotalLength();
+
+    // Tính toán tọa độ Y và Giá trị tương ứng dựa vào vị trí X
+    function getPointAtX(xTarget) {
+        let start = 0;
+        let end = pathLength;
+        let targetPoint = path.getPointAtLength(0);
+
+        // Binary search để tìm vị trí điểm trên Path tương ứng với X
+        while (start <= end) {
+            const mid = (start + end) / 2;
+            const pt = path.getPointAtLength(mid);
+            if (Math.abs(pt.x - xTarget) < 0.5) {
+                targetPoint = pt;
+                break;
+            }
+            if (pt.x < xTarget) start = mid + 1;
+            else end = mid - 1;
+        }
+
+        // Qui đổi chiều cao Y (220px) ra số tiền tương ứng (0 - 10 triệu)
+        const maxValue = 10000000;
+        const chartHeight = 220;
+        const calculatedValue = Math.round((1 - (targetPoint.y / chartHeight)) * maxValue);
+
+        return {
+            x: targetPoint.x,
+            y: targetPoint.y,
+            value: Math.max(0, calculatedValue)
+        };
+    }
+
+    svg.addEventListener('mousemove', (e) => {
+        const rect = svg.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+
+        // Qui đổi tọa độ pixel ra tọa độ viewBox (1000px)
+        const svgX = (mouseX / rect.width) * 1000;
+
+        if (svgX >= 0 && svgX <= 1000) {
+            const point = getPointAtX(svgX);
+
+            // Cập nhật vị trí đường dóng & chấm tròn
+            hoverLine.setAttribute('x1', point.x);
+            hoverLine.setAttribute('x2', point.x);
+            hoverDot.setAttribute('cx', point.x);
+            hoverDot.setAttribute('cy', point.y);
+
+            // Cập nhật Tooltip
+            const pixelX = (point.x / 1000) * rect.width;
+            const pixelY = (point.y / 220) * rect.height;
+
+            tooltip.style.left = `${pixelX}px`;
+            tooltip.style.top = `${pixelY}px`;
+            tooltipValue.innerText = `${point.value.toLocaleString('vi-VN')}đ`;
+
+            // Hiển thị các phần tử
+            hoverLine.classList.remove('opacity-0');
+            hoverDot.classList.remove('opacity-0');
+            tooltip.classList.remove('opacity-0');
+        }
+    });
+
+    svg.addEventListener('mouseleave', () => {
+        hoverLine.classList.add('opacity-0');
+        hoverDot.classList.add('opacity-0');
+        tooltip.classList.add('opacity-0');
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    initChartHoverEffect();
+});
