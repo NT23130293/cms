@@ -1,239 +1,181 @@
 // ==========================================================================
-// YÊN HOMESTAY ADMIN - VOUCHER & DISCOUNT MANAGEMENT JAVASCRIPT
+// YÊN HOMESTAY ADMIN - DUYỆT MÃ GIẢM GIÁ TỪ CHỦ HOMESTAY JAVASCRIPT
 // File: opencms-core-master/.../admin/JS/voucher_management.js
-// Mục: 4.8 Quản lý mã giảm giá (Tạo, Sửa, Chi tiết, Lọc, Thao tác nhanh)
+// Mục: Thẩm định và duyệt/từ chối mã giảm giá do chủ Homestay tạo
 // ==========================================================================
 
-// Danh sách dữ liệu mẫu Mã giảm giá
+// Danh sách dữ liệu yêu cầu Mã giảm giá từ các Chủ Homestay
 let vouchersList = [
     {
         id: 1,
-        code: 'YENWELCOME',
-        name: 'Chào mừng Du Khách Mới Đăng Ký',
+        code: 'DALAT200',
+        homestayName: 'The Memory Valley Villa',
+        hostName: 'Nguyễn Văn An',
+        hostPhone: '0912.345.678',
+        hostAvatar: 'A',
+        region: 'Đà Lạt',
+        name: 'Ưu đãi mùa thu thung lũng Đà Lạt',
         discountType: 'percent', // 'percent' hoặc 'fixed'
-        discountVal: 15,
-        maxDiscount: '150.000đ',
-        minOrder: '500.000đ',
-        usedCount: 1250,
-        totalLimit: 2000,
-        limitPerUser: 1,
-        startDate: '01/09/2026',
-        endDate: '31/12/2026',
-        status: 'active', // 'active', 'scheduled', 'expired', 'paused'
-        statusText: 'Đang hoạt động',
-        targetAudience: 'Khách hàng mới',
-        region: 'Tất cả khu vực',
-        description: 'Ưu đãi dành cho thành viên mới lần đầu đặt phòng homestay trên hệ thống YÊN.',
-        stats: {
-            totalSubsidized: '142.500.000đ',
-            totalGmv: '950.000.000đ',
-            conversionRate: '88.4%'
-        },
-        redemptions: [
-            { orderId: '#BK-8842', user: 'Lê Hoàng Long', homestay: 'Pù Luông Eco Lodge', total: '1.700.000đ', discount: '150.000đ', time: '5 phút trước' },
-            { orderId: '#BK-8835', user: 'Phạm Thu Trang', homestay: 'Nhà Sàn Mộc Mai Châu', total: '1.200.000đ', discount: '150.000đ', time: '2 giờ trước' },
-            { orderId: '#BK-8829', user: 'Bùi Hải Đăng', homestay: 'Mộc Châu Bamboo Bungalow', total: '850.000đ', discount: '127.500đ', time: '4 giờ trước' },
-            { orderId: '#BK-8812', user: 'Vũ Thanh Thảo', homestay: 'Sa Pa Terraces Valley', total: '2.100.000đ', discount: '150.000đ', time: 'Hôm qua' },
-            { orderId: '#BK-8798', user: 'Nguyễn Tấn Đạt', homestay: 'Đà Lạt Cloud Valley', total: '980.000đ', discount: '147.000đ', time: 'Hôm qua' }
-        ]
+        discountVal: 20,
+        maxDiscount: '200.000đ',
+        minOrder: '1.000.000đ',
+        totalLimit: 50,
+        usedCount: 0,
+        startDate: '01/10/2026',
+        endDate: '31/10/2026',
+        createdDate: '22/09/2026 14:30',
+        status: 'pending', // 'pending', 'approved', 'rejected'
+        statusText: 'Chờ duyệt',
+        hostReason: 'Chúng tôi muốn chạy chương trình ưu đãi mùa thu tri ân khách lưu trú trên 2 đêm tại Đà Lạt. Chủ homestay tự tài trợ 100% kinh phí trợ giá.',
+        adminNote: ''
     },
     {
         id: 2,
-        code: 'PULUONG2026',
-        name: 'Mùa Vàng Ruộng Bậc Thang Pù Luông',
-        discountType: 'fixed',
-        discountVal: 100000,
-        maxDiscount: '100.000đ',
-        minOrder: '700.000đ',
-        usedCount: 480,
-        totalLimit: 500,
-        limitPerUser: 1,
-        startDate: '15/09/2026',
-        endDate: '30/10/2026',
-        status: 'active',
-        statusText: 'Đang hoạt động',
-        targetAudience: 'Tất cả khách hàng',
-        region: 'Pù Luông',
-        description: 'Giảm trực tiếp 100.000đ cho tất cả homestay tại thung lũng bản Đôn, Pù Luông mùa lúa chín.',
-        stats: {
-            totalSubsidized: '48.000.000đ',
-            totalGmv: '412.000.000đ',
-            conversionRate: '96.0%'
-        },
-        redemptions: [
-            { orderId: '#BK-8840', user: 'Đỗ Minh Quân', homestay: 'Pù Luông Eco Lodge', total: '1.450.000đ', discount: '100.000đ', time: '42 phút trước' },
-            { orderId: '#BK-8818', user: 'Trần Văn Huy', homestay: 'Bản Đôn Retreat', total: '950.000đ', discount: '100.000đ', time: '3 giờ trước' },
-            { orderId: '#BK-8790', user: 'Ngô Mỹ Linh', homestay: 'Pù Luông Treehouse', total: '1.800.000đ', discount: '100.000đ', time: 'Hôm qua' }
-        ]
+        code: 'SAPAWARM15',
+        homestayName: 'Topas Ecolodge Sapa',
+        hostName: 'Trần Thị Thu Hà',
+        hostPhone: '0988.765.432',
+        hostAvatar: 'H',
+        region: 'Sa Pa',
+        name: 'Mùa mây ấm áp Bungalow Sapa',
+        discountType: 'percent',
+        discountVal: 15,
+        maxDiscount: '300.000đ',
+        minOrder: '2.000.000đ',
+        totalLimit: 30,
+        usedCount: 0,
+        startDate: '05/10/2026',
+        endDate: '15/11/2026',
+        createdDate: '22/09/2026 16:15',
+        status: 'pending',
+        statusText: 'Chờ duyệt',
+        hostReason: 'Khuyến mãi mùa săn mây Tả Van cho các cặp đôi và gia đình đặt phòng trước 2 tuần.',
+        adminNote: ''
     },
     {
         id: 3,
-        code: 'MAICHAU50K',
-        name: 'Trải Nghiệm Văn Hóa Bản Lác Mai Châu',
+        code: 'HANRIVER100K',
+        homestayName: 'Han River Glass House',
+        hostName: 'Lê Hoàng Minh',
+        hostPhone: '0905.123.987',
+        hostAvatar: 'M',
+        region: 'Đà Nẵng',
+        name: 'Ngắm cảnh sông Hàn buổi tối',
         discountType: 'fixed',
-        discountVal: 50000,
-        maxDiscount: '50.000đ',
-        minOrder: '400.000đ',
-        usedCount: 310,
-        totalLimit: 600,
-        limitPerUser: 2,
-        startDate: '01/09/2026',
-        endDate: '15/11/2026',
-        status: 'active',
-        statusText: 'Đang hoạt động',
-        targetAudience: 'Tất cả khách hàng',
-        region: 'Mai Châu',
-        description: 'Trợ giá phòng nghỉ nhà sàn truyền thống Thái trắng tại thung lũng Mai Châu.',
-        stats: {
-            totalSubsidized: '15.500.000đ',
-            totalGmv: '198.000.000đ',
-            conversionRate: '78.2%'
-        },
-        redemptions: [
-            { orderId: '#BK-8841', user: 'Nguyễn Thảo Ly', homestay: 'Nhà Sàn Mộc Mai Châu', total: '650.000đ', discount: '50.000đ', time: '18 phút trước' },
-            { orderId: '#BK-8822', user: 'Dương Tuấn Khang', homestay: 'Mai Châu Green Lodge', total: '800.000đ', discount: '50.000đ', time: 'Hôm qua' }
-        ]
+        discountVal: 100000,
+        maxDiscount: '100.000đ',
+        minOrder: '800.000đ',
+        totalLimit: 100,
+        usedCount: 0,
+        startDate: '01/10/2026',
+        endDate: '30/11/2026',
+        createdDate: '23/09/2026 09:10',
+        status: 'pending',
+        statusText: 'Chờ duyệt',
+        hostReason: 'Kích cầu đặt phòng căn hộ kính view sông Hàn cho khách công tác & du lịch ngắn ngày.',
+        adminNote: ''
     },
     {
         id: 4,
-        code: 'VIPSTAY',
-        name: 'Tri Ân Khách Hàng VIP Thân Thiết',
-        discountType: 'percent',
-        discountVal: 20,
-        maxDiscount: '300.000đ',
-        minOrder: '1.000.000đ',
-        usedCount: 85,
-        totalLimit: 100,
-        limitPerUser: 1,
-        startDate: '01/08/2026',
-        endDate: '31/12/2026',
-        status: 'active',
-        statusText: 'Đang hoạt động',
-        targetAudience: 'Thành viên VIP',
-        region: 'Tất cả khu vực',
-        description: 'Dành riêng cho khách hàng đã đặt phòng từ 3 lần trở lên trên hệ sinh thái YÊN.',
-        stats: {
-            totalSubsidized: '23.800.000đ',
-            totalGmv: '145.000.000đ',
-            conversionRate: '94.5%'
-        },
-        redemptions: [
-            { orderId: '#BK-8839', user: 'Trần Ánh Tuyết', homestay: 'Mộc Châu Bamboo Bungalow', total: '1.500.000đ', discount: '300.000đ', time: '1 giờ trước' },
-            { orderId: '#BK-8805', user: 'Lâm Khánh Chi', homestay: 'Sa Pa Terraces Valley', total: '2.800.000đ', discount: '300.000đ', time: 'Hôm qua' }
-        ]
+        code: 'PULUONGGREEN',
+        homestayName: 'Pù Luông Eco Lodge',
+        hostName: 'Phạm Văn Đức',
+        hostPhone: '0945.888.999',
+        hostAvatar: 'Đ',
+        region: 'Pù Luông',
+        name: 'Mùa lúa chín Pù Luông 2026',
+        discountType: 'fixed',
+        discountVal: 150000,
+        maxDiscount: '150.000đ',
+        minOrder: '1.200.000đ',
+        totalLimit: 40,
+        usedCount: 0,
+        startDate: '10/10/2026',
+        endDate: '05/11/2026',
+        createdDate: '23/09/2026 10:05',
+        status: 'pending',
+        statusText: 'Chờ duyệt',
+        hostReason: 'Chào đón du khách ngắm ruộng bậc thang mùa gặt bản Đôn Pù Luông.',
+        adminNote: ''
     },
     {
         id: 5,
-        code: 'WEEKENDYEN',
-        name: 'Cuối Tuần Thảnh Thơi Cùng Bản Làng',
+        code: 'HOIANVILLA10',
+        homestayName: 'An Bang Beach Villa',
+        hostName: 'Vũ Thị Ngọc',
+        hostPhone: '0935.111.222',
+        hostAvatar: 'N',
+        region: 'Hội An',
+        name: 'Nghỉ dưỡng biển An Bàng Hội An',
         discountType: 'percent',
         discountVal: 10,
-        maxDiscount: '100.000đ',
-        minOrder: '600.000đ',
-        usedCount: 850,
-        totalLimit: 1000,
-        limitPerUser: 1,
-        startDate: '01/09/2026',
-        endDate: '30/09/2026',
-        status: 'active',
-        statusText: 'Đang hoạt động',
-        targetAudience: 'Tất cả khách hàng',
-        region: 'Tất cả khu vực',
-        description: 'Áp dụng cho các lượt lưu trú nhận phòng vào Thứ 6, Thứ 7 & Chủ Nhật hàng tuần.',
-        stats: {
-            totalSubsidized: '78.500.000đ',
-            totalGmv: '820.000.000đ',
-            conversionRate: '85.0%'
-        },
-        redemptions: [
-            { orderId: '#BK-8830', user: 'Trương Gia Huy', homestay: 'Đà Lạt Cloud Valley', total: '1.100.000đ', discount: '100.000đ', time: '2 giờ trước' }
-        ]
+        maxDiscount: '150.000đ',
+        minOrder: '1.500.000đ',
+        totalLimit: 60,
+        usedCount: 18,
+        startDate: '15/09/2026',
+        endDate: '31/10/2026',
+        createdDate: '14/09/2026 08:30',
+        status: 'approved',
+        statusText: 'Đã duyệt',
+        hostReason: 'Khuyến mãi dịp đầu thu dành riêng cho du khách thích không gian yên tĩnh bãi biển An Bàng.',
+        adminNote: 'Đã phê duyệt phát hành ngày 14/09/2026.'
     },
     {
         id: 6,
-        code: 'DIFF2026',
-        name: 'Đại Tiệc Pháo Hoa DIFF Quốc Tế',
-        discountType: 'fixed',
-        discountVal: 200000,
-        maxDiscount: '200.000đ',
-        minOrder: '1.500.000đ',
-        usedCount: 500,
-        totalLimit: 500,
-        limitPerUser: 1,
-        startDate: '01/06/2026',
-        endDate: '15/07/2026',
-        status: 'expired',
-        statusText: 'Hết hạn / Hết lượt',
-        targetAudience: 'Tất cả khách hàng',
-        region: 'Đà Nẵng & Hội An',
-        description: 'Chiến dịch mùa hè lễ hội quốc tế DIFF 2026 (Đã kết thúc).',
-        stats: {
-            totalSubsidized: '100.000.000đ',
-            totalGmv: '920.000.000đ',
-            conversionRate: '100%'
-        },
-        redemptions: []
-    },
-    {
-        id: 7,
-        code: 'SAPAWINTER',
-        name: 'Săn Mây & Mùa Tuyết Sa Pa 2026',
-        discountType: 'percent',
-        discountVal: 12,
-        maxDiscount: '180.000đ',
-        minOrder: '800.000đ',
-        usedCount: 0,
-        totalLimit: 500,
-        limitPerUser: 1,
-        startDate: '01/11/2026',
-        endDate: '31/12/2026',
-        status: 'scheduled',
-        statusText: 'Đã lên lịch',
-        targetAudience: 'Tất cả khách hàng',
-        region: 'Sa Pa',
-        description: 'Chương trình kích cầu du lịch mùa đông Sa Pa ngắm tuyết và săn mây Tả Van.',
-        stats: {
-            totalSubsidized: '0đ',
-            totalGmv: '0đ',
-            conversionRate: '0%'
-        },
-        redemptions: []
-    },
-    {
-        id: 8,
-        code: 'AUTUMNDALAT',
-        name: 'Thu Vàng Đồi Cỏ Hồng Đà Lạt',
+        code: 'NINHBINHCOZY',
+        homestayName: 'Tràng An River Homestay',
+        hostName: 'Bùi Quang Tuấn',
+        hostPhone: '0977.333.444',
+        hostAvatar: 'T',
+        region: 'Ninh Bình',
+        name: 'Khám phá di sản Tràng An',
         discountType: 'fixed',
         discountVal: 80000,
         maxDiscount: '80.000đ',
-        minOrder: '500.000đ',
-        usedCount: 120,
-        totalLimit: 400,
-        limitPerUser: 1,
+        minOrder: '600.000đ',
+        totalLimit: 80,
+        usedCount: 35,
         startDate: '01/09/2026',
         endDate: '31/10/2026',
-        status: 'paused',
-        statusText: 'Tạm dừng',
-        targetAudience: 'Tất cả khách hàng',
-        region: 'Đà Lạt',
-        description: 'Tạm ngưng phát hành do cần điều chỉnh lại ngân sách trợ giá các homestay đối tác.',
-        stats: {
-            totalSubsidized: '9.600.000đ',
-            totalGmv: '72.000.000đ',
-            conversionRate: '30.0%'
-        },
-        redemptions: []
+        createdDate: '30/08/2026 11:20',
+        status: 'approved',
+        statusText: 'Đã duyệt',
+        hostReason: 'Tăng lượng chốt phòng cuối tuần cho khách du lịch chèo thuyền Tràng An - Tam Cốc.',
+        adminNote: 'Phê duyệt hợp lệ.'
+    },
+    {
+        id: 7,
+        code: 'HAGIANG500K',
+        homestayName: 'Đồng Văn Plateau Lodge',
+        hostName: 'Vàng A Lềnh',
+        hostPhone: '0919.555.666',
+        hostAvatar: 'L',
+        region: 'Hà Giang',
+        name: 'Mùa hoa tam giác mạch Hà Giang',
+        discountType: 'fixed',
+        discountVal: 500000,
+        maxDiscount: '500.000đ',
+        minOrder: '600.000đ',
+        totalLimit: 200,
+        usedCount: 0,
+        startDate: '01/10/2026',
+        endDate: '30/11/2026',
+        createdDate: '20/09/2026 15:45',
+        status: 'rejected',
+        statusText: 'Đã từ chối',
+        hostReason: 'Giảm 500.000đ cho khách phượt.',
+        adminNote: 'Mức giảm giá quá cao, không phù hợp quy định hạn mức trợ giá của sàn YÊN.'
     }
 ];
 
-// Biến trạng thái hiện tại
-let editingVoucherId = null;
-let currentTab = 'vouchers';
-let filterStatus = 'all';
-let filterType = 'all';
+let activeTabStatus = 'all';
+let selectedRejectId = null;
 let searchQuery = '';
+let selectedRegion = 'all';
+let selectedType = 'all';
 
-// Khởi chạy
+// Khởi chạy khi DOM sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
     initProfileDropdown();
     renderVouchersTable();
@@ -241,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFilters();
 });
 
-// Dropdown Profile
+// Dropdown Profile Header Admin
 function initProfileDropdown() {
     const btn = document.getElementById('adminProfileBtn');
     const dropdown = document.getElementById('adminProfileDropdown');
@@ -262,10 +204,10 @@ function initProfileDropdown() {
     }
 }
 
-// Khởi tạo bộ lọc tìm kiếm & dropdown
+// Khởi tạo bộ lọc tìm kiếm & Dropdown
 function initFilters() {
     const searchInput = document.getElementById('voucherSearchInput');
-    const statusSelect = document.getElementById('voucherStatusFilter');
+    const regionSelect = document.getElementById('voucherRegionFilter');
     const typeSelect = document.getElementById('voucherTypeFilter');
 
     if (searchInput) {
@@ -275,37 +217,74 @@ function initFilters() {
         });
     }
 
-    if (statusSelect) {
-        statusSelect.addEventListener('change', function () {
-            filterStatus = this.value;
+    if (regionSelect) {
+        regionSelect.addEventListener('change', function () {
+            selectedRegion = this.value;
             renderVouchersTable();
         });
     }
 
     if (typeSelect) {
         typeSelect.addEventListener('change', function () {
-            filterType = this.value;
+            selectedType = this.value;
             renderVouchersTable();
         });
     }
 }
 
-// Cập nhật 4 thẻ KPI thống kê trên đầu trang
+// Cập nhật 4 thẻ KPI Thống kê
 function updateStatCards() {
     const totalCount = vouchersList.length;
-    const activeCount = vouchersList.filter(v => v.status === 'active').length;
-    const totalUsed = vouchersList.reduce((sum, v) => sum + v.usedCount, 0);
+    const pendingCount = vouchersList.filter(v => v.status === 'pending').length;
+    const approvedCount = vouchersList.filter(v => v.status === 'approved').length;
+    const rejectedCount = vouchersList.filter(v => v.status === 'rejected').length;
 
-    const statTotalElem = document.getElementById('statTotalVouchers');
-    const statActiveElem = document.getElementById('statActiveVouchers');
-    const statUsedElem = document.getElementById('statTotalUsed');
+    const statTotalElem = document.getElementById('statTotalRequests');
+    const statPendingElem = document.getElementById('statPendingRequests');
+    const statApprovedElem = document.getElementById('statApprovedRequests');
+    const statRejectedElem = document.getElementById('statRejectedRequests');
 
     if (statTotalElem) statTotalElem.innerText = totalCount;
-    if (statActiveElem) statActiveElem.innerText = activeCount;
-    if (statUsedElem) statUsedElem.innerText = totalUsed.toLocaleString('vi-VN');
+    if (statPendingElem) statPendingElem.innerText = pendingCount;
+    if (statApprovedElem) statApprovedElem.innerText = approvedCount;
+    if (statRejectedElem) statRejectedElem.innerText = rejectedCount;
+
+    // Cập nhật số đếm trên các Tab
+    const tabAll = document.getElementById('tabCntAll');
+    const tabPending = document.getElementById('tabCntPending');
+    const tabApproved = document.getElementById('tabCntApproved');
+    const tabRejected = document.getElementById('tabCntRejected');
+
+    if (tabAll) tabAll.innerText = totalCount;
+    if (tabPending) tabPending.innerText = pendingCount;
+    if (tabApproved) tabApproved.innerText = approvedCount;
+    if (tabRejected) tabRejected.innerText = rejectedCount;
 }
 
-// Render bảng danh sách mã giảm giá
+// Chuyển Tab trạng thái
+function switchTab(status, btnElem) {
+    activeTabStatus = status;
+
+    const tabs = document.querySelectorAll('#statusTabs .content-tab-btn');
+    tabs.forEach(t => t.classList.remove('active'));
+    if (btnElem) btnElem.classList.add('active');
+
+    renderVouchersTable();
+}
+
+function filterByStatus(status) {
+    activeTabStatus = status;
+
+    const tabs = document.querySelectorAll('#statusTabs .content-tab-btn');
+    tabs.forEach(t => t.classList.remove('active'));
+
+    const targetTab = Array.from(tabs).find(t => t.getAttribute('onclick').includes(`'${status}'`));
+    if (targetTab) targetTab.classList.add('active');
+
+    renderVouchersTable();
+}
+
+// Render Bảng Danh Sách Yêu Cầu Duyệt Voucher
 function renderVouchersTable() {
     const tbody = document.getElementById('voucherTableBody');
     if (!tbody) return;
@@ -315,16 +294,18 @@ function renderVouchersTable() {
     const filtered = vouchersList.filter(item => {
         const matchSearch = item.code.toLowerCase().includes(searchQuery) ||
             item.name.toLowerCase().includes(searchQuery) ||
-            item.region.toLowerCase().includes(searchQuery);
+            item.homestayName.toLowerCase().includes(searchQuery) ||
+            item.hostName.toLowerCase().includes(searchQuery);
 
-        const matchStatus = filterStatus === 'all' || item.status === filterStatus;
-        const matchType = filterType === 'all' || item.discountType === filterType;
+        const matchStatus = activeTabStatus === 'all' || item.status === activeTabStatus;
+        const matchRegion = selectedRegion === 'all' || item.region === selectedRegion;
+        const matchType = selectedType === 'all' || item.discountType === selectedType;
 
-        return matchSearch && matchStatus && matchType;
+        return matchSearch && matchStatus && matchRegion && matchType;
     });
 
     if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: #94A3B8; padding: 32px;">Không tìm thấy mã giảm giá nào phù hợp với điều kiện tìm kiếm.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: #94A3B8; padding: 36px;">Không tìm thấy yêu cầu tạo mã giảm giá nào trong mục này.</td></tr>`;
         return;
     }
 
@@ -347,71 +328,109 @@ function renderVouchersTable() {
                     <span class="material-symbols-outlined" style="font-size: 16px;">payments</span>
                     <span>Giảm ${item.maxDiscount}</span>
                 </div>
-                <div class="discount-condition-sub">Cố định tiền mặt</div>
+                <div class="discount-condition-sub">Trừ tiền mặt trực tiếp</div>
             `;
         }
 
-        // Thanh tiến độ quota lượt dùng
-        const pctUsed = Math.min(100, Math.round((item.usedCount / item.totalLimit) * 100));
-        let barClass = '';
-        if (pctUsed >= 90) barClass = 'full';
-        else if (pctUsed >= 60) barClass = 'high';
-
-        // Nút toggle trạng thái
-        let toggleIcon = item.status === 'active' ? 'pause_circle' : 'play_circle';
-        let toggleTitle = item.status === 'active' ? 'Tạm dừng mã này' : 'Kích hoạt mã này';
-
-        tr.innerHTML = `
-            <td>
-                <div class="voucher-code-badge" onclick="copyVoucherCode('${item.code}')" title="Nhấp để sao chép mã">
-                    <span>${item.code}</span>
-                    <span class="material-symbols-outlined copy-icon">content_copy</span>
-                </div>
-            </td>
-            <td>
-                <strong style="color: var(--text-main); font-size: 13.5px;">${item.name}</strong>
-                <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">
-                    Khu vực: <strong>${item.region}</strong> • Đơn tối thiểu: <strong>${item.minOrder}</strong>
-                </div>
-            </td>
-            <td>${discountDisplay}</td>
-            <td>
-                <div class="quota-progress-wrap">
-                    <div class="quota-labels">
-                        <span>${item.usedCount.toLocaleString('vi-VN')} / ${item.totalLimit.toLocaleString('vi-VN')}</span>
-                        <span style="color: ${pctUsed >= 90 ? '#DC2626' : '#64748B'};">${pctUsed}%</span>
-                    </div>
-                    <div class="quota-bar-track">
-                        <div class="quota-bar-fill ${barClass}" style="width: ${pctUsed}%;"></div>
-                    </div>
-                </div>
-            </td>
-            <td style="font-size: 12px; color: #475569;">
-                <div>Từ: ${item.startDate}</div>
-                <div>Đến: ${item.endDate}</div>
-            </td>
-            <td>
-                <span class="voucher-status-chip ${item.status}">
-                    <span style="width: 6px; height: 6px; border-radius: 50%; background: currentColor;"></span>
-                    <span>${item.statusText}</span>
+        // Trạng thái Chip
+        let statusChipHtml = '';
+        if (item.status === 'pending') {
+            statusChipHtml = `
+                <span class="voucher-status-chip pending">
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #D97706;"></span>
+                    <span>Chờ Admin duyệt</span>
                 </span>
-            </td>
-            <td>
-                <div style="display: flex; align-items: center; gap: 6px;">
+            `;
+        } else if (item.status === 'approved') {
+            statusChipHtml = `
+                <span class="voucher-status-chip approved">
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #15803D;"></span>
+                    <span>Đã phê duyệt</span>
+                </span>
+            `;
+        } else {
+            statusChipHtml = `
+                <span class="voucher-status-chip rejected">
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #DC2626;"></span>
+                    <span>Đã từ chối</span>
+                </span>
+            `;
+        }
+
+        // Cột Thao Tác Phê Duyệt
+        let actionButtonsHtml = '';
+        if (item.status === 'pending') {
+            actionButtonsHtml = `
+                <div class="action-btn-group">
+                    <button class="btn-approve-sm" onclick="approveVoucher(${item.id})" title="Duyệt phát hành ngay">
+                        <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span>
+                        <span>Duyệt</span>
+                    </button>
+                    <button class="btn-reject-sm" onclick="openRejectModal(${item.id})" title="Từ chối yêu cầu này">
+                        <span class="material-symbols-outlined" style="font-size: 16px;">cancel</span>
+                        <span>Từ chối</span>
+                    </button>
+                    <button class="action-icon-btn" onclick="openDetailModal(${item.id})" title="Xem hồ sơ chi tiết">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+                    </button>
+                </div>
+            `;
+        } else if (item.status === 'approved') {
+            actionButtonsHtml = `
+                <div class="action-btn-group">
+                    <span class="approved-tag"><span class="material-symbols-outlined" style="font-size: 15px;">verified</span> Đã duyệt</span>
                     <button class="action-icon-btn" onclick="openDetailModal(${item.id})" title="Xem chi tiết">
                         <span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
                     </button>
-                    <button class="action-icon-btn" onclick="openEditModal(${item.id})" title="Chỉnh sửa">
-                        <span class="material-symbols-outlined" style="font-size: 18px;">edit</span>
-                    </button>
-                    <button class="action-icon-btn toggle" onclick="toggleVoucherStatus(${item.id})" title="${toggleTitle}">
-                        <span class="material-symbols-outlined" style="font-size: 18px;">${toggleIcon}</span>
-                    </button>
-                    <button class="action-icon-btn delete" onclick="deleteVoucher(${item.id})" title="Xóa mã">
-                        <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+                </div>
+            `;
+        } else {
+            actionButtonsHtml = `
+                <div class="action-btn-group">
+                    <button class="btn-rejected-view-sm" onclick="openDetailModal(${item.id})" title="Xem lý do từ chối">
+                        <span class="material-symbols-outlined" style="font-size: 16px;">info</span>
+                        <span>Xem lý do</span>
                     </button>
                 </div>
+            `;
+        }
+
+        tr.innerHTML = `
+            <td>
+                <div class="voucher-code-badge" onclick="copyVoucherCode('${item.code}')" title="Sao chép mã">
+                    <span>${item.code}</span>
+                    <span class="material-symbols-outlined copy-icon">content_copy</span>
+                </div>
+                <div style="font-size: 11px; color: #64748B; margin-top: 3px;">
+                    Gửi: ${item.createdDate}
+                </div>
             </td>
+            <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div class="host-mini-avatar">${item.hostAvatar}</div>
+                    <div>
+                        <strong style="color: var(--text-main); font-size: 13px;">${item.hostName}</strong>
+                        <div style="font-size: 11.5px; color: #15803D; font-weight: 700; margin-top: 1px;">
+                            ${item.homestayName}
+                        </div>
+                        <div style="font-size: 11px; color: #64748B;">Khu vực: ${item.region}</div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <strong style="color: var(--text-main); font-size: 13px;">${item.name}</strong>
+                ${discountDisplay}
+            </td>
+            <td>
+                <div style="font-size: 12.5px; font-weight: 700; color: #0F172A;">${item.totalLimit} lượt phát hành</div>
+                <div style="font-size: 11.5px; color: #64748B; margin-top: 2px;">Đơn từ: <strong>${item.minOrder}</strong></div>
+            </td>
+            <td style="font-size: 11.5px; color: #475569;">
+                <div>Từ: <strong>${item.startDate}</strong></div>
+                <div>Đến: <strong>${item.endDate}</strong></div>
+            </td>
+            <td>${statusChipHtml}</td>
+            <td style="text-align: right; padding-right: 16px;">${actionButtonsHtml}</td>
         `;
 
         tbody.appendChild(tr);
@@ -419,295 +438,171 @@ function renderVouchersTable() {
 }
 
 // -------------------------------------------------------------
-// 1. TẠO MÃ GIẢM GIÁ (CREATE MODAL)
+// 1. PHÊ DUYỆT MÃ GIẢM GIÁ
 // -------------------------------------------------------------
-function openCreateModal() {
-    editingVoucherId = null;
-
-    document.getElementById('modalTitleText').innerText = 'Tạo Mã Giảm Giá Mới';
-    document.getElementById('vFormCode').value = '';
-    document.getElementById('vFormName').value = '';
-    document.getElementById('vFormType').value = 'percent';
-    document.getElementById('vFormVal').value = '';
-    document.getElementById('vFormMax').value = '';
-    document.getElementById('vFormMin').value = '500000';
-    document.getElementById('vFormLimit').value = '500';
-    document.getElementById('vFormPerUser').value = '1';
-    document.getElementById('vFormRegion').value = 'all';
-    document.getElementById('vFormAudience').value = 'all';
-    document.getElementById('vFormStartDate').value = '20/09/2026';
-    document.getElementById('vFormEndDate').value = '31/12/2026';
-    document.getElementById('vFormStatus').value = 'active';
-    document.getElementById('vFormDesc').value = '';
-
-    onDiscountTypeChange();
-    document.getElementById('voucherFormModal').classList.add('open');
-}
-
-// Tự động sinh mã ngẫu nhiên
-function generateRandomCode() {
-    const prefixes = ['YEN', 'STAY', 'HOMEY', 'SALE', 'DISC'];
-    const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-    const randomNum = Math.floor(1000 + Math.random() * 9000);
-    document.getElementById('vFormCode').value = `${randomPrefix}${randomNum}`;
-}
-
-// Xử lý ẩn hiện ô Giảm tối đa khi đổi loại giảm giá
-function onDiscountTypeChange() {
-    const type = document.getElementById('vFormType').value;
-    const maxWrap = document.getElementById('vFormMaxWrap');
-    const valLabel = document.getElementById('vFormValLabel');
-
-    if (type === 'percent') {
-        valLabel.innerText = 'Mức giảm (%) *';
-        document.getElementById('vFormVal').placeholder = 'Ví dụ: 15';
-        if (maxWrap) maxWrap.style.display = 'block';
-    } else {
-        valLabel.innerText = 'Số tiền giảm (VNĐ) *';
-        document.getElementById('vFormVal').placeholder = 'Ví dụ: 100000';
-        if (maxWrap) maxWrap.style.display = 'none';
-    }
-}
-
-// -------------------------------------------------------------
-// 2. CHỈNH SỬA MÃ GIẢM GIÁ (EDIT MODAL)
-// -------------------------------------------------------------
-function openEditModal(id) {
+function approveVoucher(id) {
     const item = vouchersList.find(x => x.id === id);
     if (!item) return;
 
-    editingVoucherId = id;
+    if (confirm(`Bạn có chắc chắn muốn PHÊ DUYỆT mã giảm giá "${item.code}" cho Homestay ${item.homestayName} không?`)) {
+        item.status = 'approved';
+        item.statusText = 'Đã duyệt';
+        item.adminNote = `Đã duyệt phát hành bởi Admin ngày ${new Date().toLocaleDateString('vi-VN')}`;
 
-    document.getElementById('modalTitleText').innerText = `Chỉnh Sửa Mã Giảm Giá: ${item.code}`;
-    document.getElementById('vFormCode').value = item.code;
-    document.getElementById('vFormName').value = item.name;
-    document.getElementById('vFormType').value = item.discountType;
-    document.getElementById('vFormVal').value = item.discountVal;
-    document.getElementById('vFormMax').value = item.maxDiscount ? item.maxDiscount.replace(/[^0-9]/g, '') : '';
-    document.getElementById('vFormMin').value = item.minOrder ? item.minOrder.replace(/[^0-9]/g, '') : '';
-    document.getElementById('vFormLimit').value = item.totalLimit;
-    document.getElementById('vFormPerUser').value = item.limitPerUser;
-    document.getElementById('vFormRegion').value = item.region === 'Tất cả khu vực' ? 'all' : item.region;
-    document.getElementById('vFormAudience').value = item.targetAudience === 'Khách hàng mới' ? 'new' : (item.targetAudience === 'Thành viên VIP' ? 'vip' : 'all');
-    document.getElementById('vFormStartDate').value = item.startDate;
-    document.getElementById('vFormEndDate').value = item.endDate;
-    document.getElementById('vFormStatus').value = item.status;
-    document.getElementById('vFormDesc').value = item.description || '';
+        showToast(`🎉 Đã phê duyệt phát hành mã giảm giá ${item.code}!`, 'success');
+        renderVouchersTable();
+        updateStatCards();
 
-    onDiscountTypeChange();
-    document.getElementById('voucherFormModal').classList.add('open');
+        if (document.getElementById('voucherDetailModal').classList.contains('open')) {
+            closeModal('voucherDetailModal');
+        }
+    }
 }
 
-// Lưu dữ liệu từ Modal Tạo / Sửa
-function saveVoucherData() {
-    const code = document.getElementById('vFormCode').value.trim().toUpperCase();
-    const name = document.getElementById('vFormName').value.trim();
-    const type = document.getElementById('vFormType').value;
-    const val = parseFloat(document.getElementById('vFormVal').value);
-    const maxVal = document.getElementById('vFormMax').value.trim();
-    const minVal = document.getElementById('vFormMin').value.trim();
-    const limit = parseInt(document.getElementById('vFormLimit').value) || 100;
-    const perUser = parseInt(document.getElementById('vFormPerUser').value) || 1;
-    const regionVal = document.getElementById('vFormRegion').value;
-    const audienceVal = document.getElementById('vFormAudience').value;
-    const startDate = document.getElementById('vFormStartDate').value.trim();
-    const endDate = document.getElementById('vFormEndDate').value.trim();
-    const status = document.getElementById('vFormStatus').value;
-    const desc = document.getElementById('vFormDesc').value.trim();
+// -------------------------------------------------------------
+// 2. TỪ CHỐI YÊU CẦU MÃ GIẢM GIÁ
+// -------------------------------------------------------------
+function openRejectModal(id) {
+    const item = vouchersList.find(x => x.id === id);
+    if (!item) return;
 
-    if (!code) {
-        alert('Vui lòng nhập Mã giảm giá (Code)!');
-        return;
-    }
-    if (!name) {
-        alert('Vui lòng nhập Tên chương trình ưu đãi!');
-        return;
-    }
-    if (isNaN(val) || val <= 0) {
-        alert('Vui lòng nhập Mức giảm hợp lệ!');
-        return;
-    }
+    selectedRejectId = id;
+    document.getElementById('rejectCodeLabel').innerText = item.code;
+    document.getElementById('rejectHsLabel').innerText = item.homestayName;
 
-    const regionText = regionVal === 'all' ? 'Tất cả khu vực' : regionVal;
-    let audienceText = 'Tất cả khách hàng';
-    if (audienceVal === 'new') audienceText = 'Khách hàng mới';
-    if (audienceVal === 'vip') audienceText = 'Thành viên VIP';
+    // Reset form
+    document.getElementById('rejectPresetReason').selectedIndex = 0;
+    document.getElementById('rejectCustomReason').value = '';
+    onRejectReasonChange();
 
-    let statusText = 'Đang hoạt động';
-    if (status === 'scheduled') statusText = 'Đã lên lịch';
-    if (status === 'paused') statusText = 'Tạm dừng';
-    if (status === 'expired') statusText = 'Hết hạn';
+    document.getElementById('voucherRejectModal').classList.add('open');
+}
 
-    const formattedMax = type === 'percent'
-        ? (maxVal ? parseInt(maxVal).toLocaleString('vi-VN') + 'đ' : 'Không giới hạn')
-        : parseInt(val).toLocaleString('vi-VN') + 'đ';
+function onRejectReasonChange() {
+    const select = document.getElementById('rejectPresetReason');
+    const customArea = document.getElementById('rejectCustomReason');
 
-    const formattedMin = minVal ? parseInt(minVal).toLocaleString('vi-VN') + 'đ' : '0đ';
-
-    if (editingVoucherId) {
-        // Cập nhật mã hiện có
-        const item = vouchersList.find(x => x.id === editingVoucherId);
-        if (item) {
-            item.code = code;
-            item.name = name;
-            item.discountType = type;
-            item.discountVal = val;
-            item.maxDiscount = formattedMax;
-            item.minOrder = formattedMin;
-            item.totalLimit = limit;
-            item.limitPerUser = perUser;
-            item.region = regionText;
-            item.targetAudience = audienceText;
-            item.startDate = startDate;
-            item.endDate = endDate;
-            item.status = status;
-            item.statusText = statusText;
-            item.description = desc;
-        }
-        showToast(`Đã cập nhật thành công mã giảm giá ${code}`, 'success');
+    if (select.value === 'custom') {
+        customArea.style.display = 'block';
+        customArea.focus();
     } else {
-        // Tạo mã mới
-        const newId = vouchersList.length > 0 ? Math.max(...vouchersList.map(x => x.id)) + 1 : 1;
-        const newVoucher = {
-            id: newId,
-            code: code,
-            name: name,
-            discountType: type,
-            discountVal: val,
-            maxDiscount: formattedMax,
-            minOrder: formattedMin,
-            usedCount: 0,
-            totalLimit: limit,
-            limitPerUser: perUser,
-            startDate: startDate,
-            endDate: endDate,
-            status: status,
-            statusText: statusText,
-            targetAudience: audienceText,
-            region: regionText,
-            description: desc,
-            stats: {
-                totalSubsidized: '0đ',
-                totalGmv: '0đ',
-                conversionRate: '0%'
-            },
-            redemptions: []
-        };
-        vouchersList.unshift(newVoucher);
-        showToast(`Đã tạo mới thành công mã giảm giá ${code}`, 'success');
+        customArea.style.display = 'none';
+    }
+}
+
+function submitRejectVoucher() {
+    if (!selectedRejectId) return;
+
+    const item = vouchersList.find(x => x.id === selectedRejectId);
+    if (!item) return;
+
+    const select = document.getElementById('rejectPresetReason');
+    const customArea = document.getElementById('rejectCustomReason');
+
+    let reasonText = select.value;
+    if (select.value === 'custom') {
+        reasonText = customArea.value.trim();
+        if (!reasonText) {
+            alert('Vui lòng nhập lý do từ chối cụ thể!');
+            return;
+        }
     }
 
-    closeModal('voucherFormModal');
+    item.status = 'rejected';
+    item.statusText = 'Đã từ chối';
+    item.adminNote = reasonText;
+
+    showToast(`Đã từ chối yêu cầu phát hành mã ${item.code}!`, 'info');
+    closeModal('voucherRejectModal');
+
+    if (document.getElementById('voucherDetailModal').classList.contains('open')) {
+        closeModal('voucherDetailModal');
+    }
+
     renderVouchersTable();
     updateStatCards();
 }
 
 // -------------------------------------------------------------
-// 3. CHI TIẾT MÃ GIẢM GIÁ (DETAIL MODAL)
+// 3. CHI TIẾT YÊU CẦU & THẨM ĐỊNH (DETAIL MODAL)
 // -------------------------------------------------------------
 function openDetailModal(id) {
     const item = vouchersList.find(x => x.id === id);
     if (!item) return;
 
-    // 1. Thẻ Voucher Ticket Visual Preview
+    // 1. Host Info
+    document.getElementById('dtHostAvatar').innerText = item.hostAvatar;
+    document.getElementById('dtHostName').innerText = `${item.hostName} (SĐT: ${item.hostPhone})`;
+    document.getElementById('dtHomestayName').innerText = item.homestayName;
+    document.getElementById('dtRegion').innerText = item.region;
+    document.getElementById('dtCreatedDate').innerText = `Gửi yêu cầu lúc: ${item.createdDate}`;
+
+    // 2. Ticket Visual Preview
     const discountHero = item.discountType === 'percent'
         ? `GIẢM ${item.discountVal}% (Tối đa ${item.maxDiscount})`
         : `GIẢM ${item.maxDiscount}`;
 
+    document.getElementById('dtTicketHomestay').innerText = item.homestayName.toUpperCase();
     document.getElementById('dtTicketDiscount').innerText = discountHero;
     document.getElementById('dtTicketName').innerText = item.name;
     document.getElementById('dtTicketCode').innerText = item.code;
     document.getElementById('dtTicketExpiry').innerText = `Hạn dùng: ${item.startDate} - ${item.endDate}`;
     document.getElementById('dtTicketMinOrder').innerText = `Đơn tối thiểu: ${item.minOrder}`;
-    document.getElementById('dtTicketRegion').innerText = `Áp dụng: ${item.region}`;
+    document.getElementById('dtTicketLimit').innerText = `Số lượng: ${item.totalLimit} lượt phát hành`;
 
-    // 2. Thông số thống kê KPI
-    const pctUsed = Math.min(100, Math.round((item.usedCount / item.totalLimit) * 100));
-    document.getElementById('dtQuotaNum').innerText = `${item.usedCount.toLocaleString('vi-VN')} / ${item.totalLimit.toLocaleString('vi-VN')} (${pctUsed}%)`;
-    document.getElementById('dtSubsidizedVal').innerText = item.stats.totalSubsidized;
-    document.getElementById('dtGmvVal').innerText = item.stats.totalGmv;
+    // 3. Host Note
+    document.getElementById('dtHostReason').innerText = item.hostReason || 'Không có ghi chú thêm.';
 
-    // 3. Điều kiện chi tiết
-    document.getElementById('dtDesc').innerText = item.description || 'Không có ghi chú thêm.';
-    document.getElementById('dtAudience').innerText = item.targetAudience;
-    document.getElementById('dtLimitPerUser').innerText = `${item.limitPerUser} lượt / tài khoản`;
-    document.getElementById('dtStatusChip').innerHTML = `
-        <span class="voucher-status-chip ${item.status}">
-            <span style="width: 6px; height: 6px; border-radius: 50%; background: currentColor;"></span>
-            <span>${item.statusText}</span>
-        </span>
-    `;
+    // 4. Admin Note (nếu bị từ chối hoặc đã duyệt)
+    const adminNoteSec = document.getElementById('dtAdminNoteSection');
+    const adminNoteCont = document.getElementById('dtAdminNoteContent');
 
-    // 4. Bảng 5 đơn vừa quy đổi mã này
-    const redempTbody = document.getElementById('dtRedemptionsBody');
-    redempTbody.innerHTML = '';
-
-    if (item.redemptions && item.redemptions.length > 0) {
-        item.redemptions.forEach(r => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td><strong style="color: #15803D; font-family: monospace;">${r.orderId}</strong></td>
-                <td>${r.user}</td>
-                <td>${r.homestay}</td>
-                <td>${r.total}</td>
-                <td><strong style="color: #EA580C;">-${r.discount}</strong></td>
-                <td style="color: #64748B; font-size: 11.5px;">${r.time}</td>
-            `;
-            redempTbody.appendChild(tr);
-        });
+    if (item.adminNote) {
+        adminNoteSec.style.display = 'block';
+        adminNoteCont.innerText = item.adminNote;
     } else {
-        redempTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #94A3B8; padding: 14px;">Chưa phát sinh đơn hàng nào sử dụng mã này.</td></tr>`;
+        adminNoteSec.style.display = 'none';
     }
 
-    // Nút chuyển sang sửa nhanh
-    const editBtn = document.getElementById('dtEditBtn');
-    if (editBtn) {
-        editBtn.onclick = () => {
-            closeModal('voucherDetailModal');
-            openEditModal(item.id);
-        };
+    // 5. Action Buttons Inside Modal
+    const actionWrap = document.getElementById('dtActionButtons');
+    actionWrap.innerHTML = '';
+
+    if (item.status === 'pending') {
+        actionWrap.innerHTML = `
+            <button class="btn-admin-primary" style="background-color: #15803D;" onclick="approveVoucher(${item.id})">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Phê Duyệt Phát Hành</span>
+            </button>
+            <button class="btn-admin-primary" style="background-color: #DC2626;" onclick="openRejectModal(${item.id})">
+                <span class="material-symbols-outlined">cancel</span>
+                <span>Từ Chối Yêu Cầu</span>
+            </button>
+        `;
+    } else if (item.status === 'approved') {
+        actionWrap.innerHTML = `
+            <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill font-bold" style="background: #DCFCE7; color: #15803D; font-size: 13px;">
+                <span class="material-symbols-outlined align-middle me-1">verified</span> Mã đã được phê duyệt
+            </span>
+        `;
+    } else {
+        actionWrap.innerHTML = `
+            <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill font-bold" style="background: #FEE2E2; color: #DC2626; font-size: 13px;">
+                <span class="material-symbols-outlined align-middle me-1">cancel</span> Yêu cầu đã bị từ chối
+            </span>
+        `;
     }
 
     document.getElementById('voucherDetailModal').classList.add('open');
 }
 
 // -------------------------------------------------------------
-// 4. CÁC THAO TÁC NHANH (TOGGLE, DELETE, COPY, TOAST)
+// UTILS & TOAST
 // -------------------------------------------------------------
-function toggleVoucherStatus(id) {
-    const item = vouchersList.find(x => x.id === id);
-    if (!item) return;
-
-    if (item.status === 'active') {
-        item.status = 'paused';
-        item.statusText = 'Tạm dừng';
-        showToast(`Đã tạm dừng mã giảm giá ${item.code}`, 'info');
-    } else {
-        item.status = 'active';
-        item.statusText = 'Đang hoạt động';
-        showToast(`Đã kích hoạt lại mã giảm giá ${item.code}`, 'success');
-    }
-
-    renderVouchersTable();
-    updateStatCards();
-}
-
-function deleteVoucher(id) {
-    const item = vouchersList.find(x => x.id === id);
-    if (!item) return;
-
-    if (confirm(`Bạn có chắc chắn muốn xóa mã giảm giá "${item.code}" (${item.name}) không?`)) {
-        vouchersList = vouchersList.filter(x => x.id !== id);
-        showToast(`Đã xóa thành công mã giảm giá ${item.code}`, 'info');
-        renderVouchersTable();
-        updateStatCards();
-    }
-}
-
 function copyVoucherCode(code) {
     if (navigator.clipboard) {
         navigator.clipboard.writeText(code).then(() => {
-            showToast(`Đã sao chép mã ${code} vào clipboard!`, 'success');
+            showToast(`Đã sao chép mã ${code}!`, 'success');
         });
     } else {
         showToast(`Mã: ${code}`, 'success');
@@ -736,5 +631,5 @@ function showToast(message, type = 'success') {
 
     setTimeout(() => {
         toast.classList.remove('show');
-    }, 3000);
+    }, 3200);
 }

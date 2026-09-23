@@ -108,10 +108,6 @@ function submitStep1(role) {
     const bizName = document.getElementById("hostBizName")?.value.trim();
     const taxCode = document.getElementById("hostTaxCode")?.value.trim();
     const bizCode = document.getElementById("hostBizCode")?.value.trim();
-    const hsName = document.getElementById("hostHsName")?.value.trim();
-    const hsType = document.getElementById("hostType")?.value;
-    const rooms = document.getElementById("hostRooms")?.value;
-    const street = document.getElementById("hostStreet")?.value.trim();
     const pwd = document.getElementById("hostPwd")?.value;
     const cpwd = document.getElementById("hostPwdConfirm")?.value;
     const terms = document.getElementById("hostTerms")?.checked;
@@ -123,10 +119,6 @@ function submitStep1(role) {
     if (!bizName) { alert("Vui lòng nhập tên cơ sở theo Giấy đăng ký kinh doanh."); return; }
     if (!taxCode) { alert("Vui lòng nhập mã số thuế (MST)."); return; }
     if (!bizCode) { alert("Vui lòng nhập số Giấy phép ĐKKD / Mã số doanh nghiệp."); return; }
-    if (!hsName) { alert("Vui lòng nhập tên cơ sở / Homestay."); return; }
-    if (!hsType) { alert("Vui lòng chọn loại hình lưu trú."); return; }
-    if (!rooms || Number(rooms) < 1) { alert("Vui lòng nhập số phòng hợp lệ."); return; }
-    if (!street) { alert("Vui lòng nhập địa chỉ cụ thể của Homestay."); return; }
     if (!pwd || pwd.length < 8) { alert("Mật khẩu phải có ít nhất 8 ký tự."); return; }
     if (pwd !== cpwd) { alert("Mật khẩu xác nhận không khớp."); return; }
     if (!terms) { alert("Vui lòng đồng ý với chính sách đối tác lưu trú."); return; }
@@ -193,7 +185,7 @@ function confirmOtp() {
 
   if (currentRole === "host") {
     if (descEl) descEl.textContent = "Hồ sơ đăng ký Chủ Homestay của bạn đã được gửi. Đội ngũ kiểm duyệt sẽ liên hệ và xác nhận trong 1-3 ngày làm việc.";
-    if (rewardEl) rewardEl.innerHTML = '<i class="bi bi-clock-history me-2"></i>Tài khoản đang chờ duyệt thông tin cơ sở lưu trú.';
+    if (rewardEl) rewardEl.innerHTML = '<i class="bi bi-clock-history me-2"></i>Tài khoản đối tác đang chờ duyệt.';
     if (btnEl) {
       btnEl.href = "personal-account.html";
       btnEl.innerHTML = '<i class="bi bi-house-gear-fill me-2"></i> Quản lý hồ sơ Homestay';

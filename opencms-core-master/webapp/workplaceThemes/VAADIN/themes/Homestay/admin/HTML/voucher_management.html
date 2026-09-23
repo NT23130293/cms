@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Mã Giảm Giá (Vouchers) - Admin YÊN</title>
+    <title>Duyệt Mã Giảm Giá Homestay - Admin YÊN</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -63,8 +63,8 @@
                 </li>
                 <li class="menu-item">
                     <a href="voucher_management.html" class="menu-link active">
-                        <span class="material-symbols-outlined menu-icon">local_offer</span>
-                        <span>Quản lý mã giảm giá</span>
+                        <span class="material-symbols-outlined menu-icon">fact_check</span>
+                        <span>Duyệt mã giảm giá Host</span>
                     </a>
                 </li>
                 <li class="menu-item">
@@ -94,7 +94,7 @@
                 <span class="material-symbols-outlined" style="color: #81b099; font-size: 16px;">unfold_more</span>
             </div>
             <div class="host-quote">
-                "Hệ thống quản trị YÊN Homestay"
+                "Hệ thống duyệt voucher YÊN Homestay"
             </div>
         </div>
     </aside>
@@ -107,7 +107,7 @@
             <div class="header-left">
                 <div class="header-search">
                     <span class="material-symbols-outlined search-icon">search</span>
-                    <input type="text" class="search-input" placeholder="Tìm kiếm tài khoản, homestay, mã giảm giá...">
+                    <input type="text" class="search-input" placeholder="Tìm mã voucher, tên homestay, chủ nhà...">
                 </div>
             </div>
 
@@ -115,7 +115,7 @@
                 <div class="header-action-btns">
                     <button class="header-icon-btn" title="Thông báo">
                         <span class="material-symbols-outlined">notifications</span>
-                        <span class="badge-dot">3</span>
+                        <span class="badge-dot">4</span>
                     </button>
                     <button class="header-icon-btn" title="Tin nhắn">
                         <span class="material-symbols-outlined">chat</span>
@@ -134,8 +134,7 @@
                             </div>
                             <span class="owner-subtext">Hệ thống YÊN</span>
                         </div>
-                        <span class="material-symbols-outlined dropdown-arrow"
-                              style="font-size: 18px; color: var(--text-muted); margin-left: 2px;">expand_more</span>
+                        <span class="material-symbols-outlined dropdown-arrow" style="font-size: 18px; color: var(--text-muted); margin-left: 2px;">expand_more</span>
                     </div>
 
                     <div class="profile-dropdown-menu" id="adminProfileDropdown">
@@ -165,49 +164,49 @@
         <!-- MAIN CONTENT AREA -->
         <main class="admin-body-content">
 
-            <!-- 1. Top Stat Cards (4 Cột Thống Kê Mã Giảm Giá) -->
+            <!-- 1. Top Stat Cards (4 Cột Thống Kê Yêu Cầu Duyệt Voucher) -->
             <div class="local-stats-grid">
-                <div class="stat-card">
+                <div class="stat-card" onclick="filterByStatus('all')" style="cursor: pointer;">
                     <div class="stat-info">
-                        <span class="stat-label">Tổng Chương Trình Voucher</span>
-                        <span class="stat-value" id="statTotalVouchers">8</span>
-                        <span class="stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">local_offer</span> Toàn hệ thống</span>
+                        <span class="stat-label">Tổng Yêu Cầu Từ Host</span>
+                        <span class="stat-value" id="statTotalRequests">10</span>
+                        <span class="stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">mark_email_unread</span> Mã giảm giá gửi Admin</span>
                     </div>
                     <div class="voucher-stat-icon-wrapper orange">
                         <span class="material-symbols-outlined">confirmation_number</span>
                     </div>
                 </div>
 
-                <div class="stat-card">
+                <div class="stat-card" onclick="filterByStatus('pending')" style="cursor: pointer; border-left: 4px solid #D97706;">
                     <div class="stat-info">
-                        <span class="stat-label">Đang Hoạt Động (Active)</span>
-                        <span class="stat-value" id="statActiveVouchers">5</span>
-                        <span class="stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">check_circle</span> Khách đang áp dụng</span>
+                        <span class="stat-label">Đang Chờ Admin Duyệt</span>
+                        <span class="stat-value" id="statPendingRequests" style="color: #D97706;">4</span>
+                        <span class="stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">hourglass_top</span> Cần xem xét phê duyệt</span>
+                    </div>
+                    <div class="voucher-stat-icon-wrapper amber">
+                        <span class="material-symbols-outlined">pending_actions</span>
+                    </div>
+                </div>
+
+                <div class="stat-card" onclick="filterByStatus('approved')" style="cursor: pointer;">
+                    <div class="stat-info">
+                        <span class="stat-label">Đã Phê Duyệt Phát Hành</span>
+                        <span class="stat-value" id="statApprovedRequests" style="color: #15803D;">5</span>
+                        <span class="stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">check_circle</span> Đã kích hoạt công khai</span>
                     </div>
                     <div class="voucher-stat-icon-wrapper green">
                         <span class="material-symbols-outlined">verified</span>
                     </div>
                 </div>
 
-                <div class="stat-card">
+                <div class="stat-card" onclick="filterByStatus('rejected')" style="cursor: pointer;">
                     <div class="stat-info">
-                        <span class="stat-label">Tổng Lượt Quy Đổi (Used)</span>
-                        <span class="stat-value" id="statTotalUsed">3.095</span>
-                        <span class="stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">redeem</span> Lượt áp dụng thành công</span>
+                        <span class="stat-label">Đã Từ Chối</span>
+                        <span class="stat-value" id="statRejectedRequests" style="color: #DC2626;">1</span>
+                        <span class="stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">cancel</span> Không đạt tiêu chuẩn</span>
                     </div>
-                    <div class="voucher-stat-icon-wrapper blue">
-                        <span class="material-symbols-outlined">shopping_cart_checkout</span>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <span class="stat-label">Ngân Sách Sàn Đã Trợ Giá</span>
-                        <span class="stat-value" style="color: #EA580C;">148.5M</span>
-                        <span class="stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span> Tạo 2.68B GMV</span>
-                    </div>
-                    <div class="voucher-stat-icon-wrapper purple">
-                        <span class="material-symbols-outlined">price_check</span>
+                    <div class="voucher-stat-icon-wrapper red">
+                        <span class="material-symbols-outlined">assignment_late</span>
                     </div>
                 </div>
             </div>
@@ -219,47 +218,60 @@
                 <div class="module-header-bar">
                     <div class="module-title-group">
                         <h2>
-                            <span class="material-symbols-outlined" style="color: #EA580C;">local_offer</span>
-                            4.8. Quản Lý Mã Giảm Giá (Vouchers & Khuyến Mãi)
+                            <span class="material-symbols-outlined" style="color: #15803D;">fact_check</span>
+                            Duyệt Mã Giảm Giá Tạo Bởi Chủ Homestay
                         </h2>
-                        <span class="module-subtitle">Thiết lập chương trình chiết khấu, giới hạn ngân sách trợ giá và theo dõi hiệu suất chuyển đổi đặt phòng</span>
+                        <span class="module-subtitle">Thẩm định điều kiện, mức giảm giá và mục đích khuyến mãi do chủ cơ sở homestay gửi yêu cầu phê duyệt</span>
                     </div>
 
-                    <div class="content-tabs">
-                        <button class="content-tab-btn active">
+                    <div class="content-tabs" id="statusTabs">
+                        <button class="content-tab-btn active" onclick="switchTab('all', this)">
                             <span class="material-symbols-outlined" style="font-size: 18px;">list_alt</span>
-                            Danh Sách Mã Giảm Giá
+                            Tất Cả Yêu Cầu (<span id="tabCntAll">10</span>)
+                        </button>
+                        <button class="content-tab-btn" onclick="switchTab('pending', this)">
+                            <span class="material-symbols-outlined text-warning" style="font-size: 18px;">hourglass_top</span>
+                            Chờ Duyệt (<span id="tabCntPending">4</span>)
+                        </button>
+                        <button class="content-tab-btn" onclick="switchTab('approved', this)">
+                            <span class="material-symbols-outlined text-success" style="font-size: 18px;">check_circle</span>
+                            Đã Duyệt (<span id="tabCntApproved">5</span>)
+                        </button>
+                        <button class="content-tab-btn" onclick="switchTab('rejected', this)">
+                            <span class="material-symbols-outlined text-danger" style="font-size: 18px;">cancel</span>
+                            Đã Từ Chối (<span id="tabCntRejected">1</span>)
                         </button>
                     </div>
                 </div>
 
-                <!-- Module Toolbar (Search & Filters & Create Button) -->
+                <!-- Module Toolbar (Search & Filters) -->
                 <div class="module-toolbar">
                     <div class="toolbar-left">
                         <div class="search-box-sm">
                             <span class="material-symbols-outlined" style="color: var(--text-muted); margin-right: 6px; font-size: 18px;">search</span>
-                            <input type="text" id="voucherSearchInput" placeholder="Tìm mã voucher, tên chương trình, khu vực...">
+                            <input type="text" id="voucherSearchInput" placeholder="Tìm mã voucher, tên homestay, tên chủ nhà...">
                         </div>
 
-                        <select class="select-filter-sm" id="voucherStatusFilter">
-                            <option value="all">Tất cả trạng thái</option>
-                            <option value="active">Đang hoạt động</option>
-                            <option value="scheduled">Đã lên lịch</option>
-                            <option value="paused">Tạm dừng</option>
-                            <option value="expired">Hết hạn / Hết lượt</option>
+                        <select class="select-filter-sm" id="voucherRegionFilter">
+                            <option value="all">Tất cả khu vực</option>
+                            <option value="Đà Lạt">Đà Lạt</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                            <option value="Sa Pa">Sa Pa</option>
+                            <option value="Pù Luông">Pù Luông</option>
+                            <option value="Hội An">Hội An</option>
                         </select>
 
                         <select class="select-filter-sm" id="voucherTypeFilter">
-                            <option value="all">Tất cả loại giảm</option>
+                            <option value="all">Tất cả hình thức giảm</option>
                             <option value="percent">Giảm theo phần trăm (%)</option>
                             <option value="fixed">Giảm số tiền cố định (VNĐ)</option>
                         </select>
                     </div>
 
-                    <button class="btn-admin-primary" style="background-color: #EA580C;" onclick="openCreateModal()">
-                        <span class="material-symbols-outlined" style="font-size: 18px;">add_circle</span>
-                        <span>Tạo Mã Giảm Giá Mới</span>
-                    </button>
+                    <div style="font-size: 12.5px; color: #64748B; font-weight: 600;">
+                        <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; color: #15803D;">info</span>
+                        Chủ Homestay tự chịu chi phí trợ giá mã
+                    </div>
                 </div>
 
                 <!-- Data Table View -->
@@ -267,13 +279,13 @@
                     <table class="admin-data-table">
                         <thead>
                         <tr>
-                            <th>Mã Voucher</th>
-                            <th>Chương trình & Điều kiện</th>
-                            <th>Mức giảm giá</th>
-                            <th>Lượt dùng / Giới hạn</th>
-                            <th>Thời gian hiệu lực</th>
-                            <th>Trạng thái</th>
-                            <th style="text-align: right; padding-right: 20px;">Thao tác</th>
+                            <th>Mã Voucher & Ngày Gửi</th>
+                            <th>Chủ Homestay & Cơ Sở</th>
+                            <th>Tên Chương Trình & Mức Giảm</th>
+                            <th>Số Lượng & Đơn Tối Thiểu</th>
+                            <th>Hạn Sử Dụng</th>
+                            <th>Trạng Thái</th>
+                            <th style="text-align: right; padding-right: 20px;">Thao Tác Duyệt</th>
                         </tr>
                         </thead>
                         <tbody id="voucherTableBody">
@@ -289,251 +301,115 @@
 </div>
 
 <!-- ==============================================================
-     MODAL 1: TẠO / CHỈNH SỬA MÃ GIẢM GIÁ
+     MODAL 1: CHI TIẾT YÊU CẦU & THẨM ĐỊNH MÃ GIẢM GIÁ
      ============================================================== -->
-<div class="modal-overlay" id="voucherFormModal">
-    <div class="modal-container" style="max-width: 680px;">
-        <div class="modal-header">
-            <h3 class="modal-title">
-                <span class="material-symbols-outlined" style="color: #EA580C;">edit_note</span>
-                <span id="modalTitleText">Tạo Mã Giảm Giá Mới</span>
+<div class="modal-overlay" id="voucherDetailModal">
+    <div class="modal-container" style="max-width: 720px;">
+        <div class="modal-header" style="background: linear-gradient(135deg, #052E16 0%, #15803D 100%); color: #FFFFFF;">
+            <h3 class="modal-title" style="color: #FFFFFF;">
+                <span class="material-symbols-outlined" style="color: #FEF08A;">fact_check</span>
+                <span>Thẩm Định Yêu Cầu Tạo Mã Giảm Giá</span>
             </h3>
-            <button class="modal-close-btn" onclick="closeModal('voucherFormModal')">
+            <button class="modal-close-btn" style="color: #FFFFFF;" onclick="closeModal('voucherDetailModal')">
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
 
         <div class="modal-body">
-            <!-- Mã voucher & Nút random -->
-            <div class="form-group-grid">
-                <div class="form-field">
-                    <label class="form-label">Mã Giảm Giá (Code) <span style="color: red;">*</span></label>
-                    <div style="display: flex; gap: 8px;">
-                        <input type="text" id="vFormCode" class="form-input" placeholder="Ví dụ: YENWELCOME" style="text-transform: uppercase; font-family: monospace; font-weight: 700;">
-                        <button type="button" class="btn-dash-action" onclick="generateRandomCode()" style="white-space: nowrap; font-size: 12px; padding: 0 10px;" title="Tự sinh mã ngẫu nhiên">
-                            <span class="material-symbols-outlined" style="font-size: 16px;">autorenew</span> Tạo mã
-                        </button>
+
+            <!-- Thông tin Chủ nhà & Homestay -->
+            <div class="host-request-banner mb-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="host-avatar-badge" id="dtHostAvatar">N</div>
+                    <div>
+                        <h4 class="mb-0 fw-bold text-dark" id="dtHostName" style="font-size: 15px;">Nguyễn Văn An (Chủ Homestay)</h4>
+                        <p class="mb-0 text-muted" style="font-size: 12.5px;">Cơ sở: <strong id="dtHomestayName" class="text-success">The Memory Valley Villa</strong> (<span id="dtRegion">Đà Lạt</span>)</p>
+                        <span class="text-xs text-muted" id="dtCreatedDate">Gửi yêu cầu lúc: 22/09/2026 14:30</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Ticket Card Preview -->
+            <div class="voucher-ticket-preview">
+                <div class="ticket-header">
+                    <div class="ticket-brand">
+                        <div class="ticket-brand-logo">H</div>
+                        <div class="ticket-brand-name" id="dtTicketHomestay">THE MEMORY VALLEY VILLA</div>
+                    </div>
+                    <div class="ticket-code-pill">
+                        <span id="dtTicketCode">DALAT200</span>
                     </div>
                 </div>
 
-                <div class="form-field">
-                    <label class="form-label">Tên Chương Trình Ưu Đãi <span style="color: red;">*</span></label>
-                    <input type="text" id="vFormName" class="form-input" placeholder="Ví dụ: Ưu đãi du khách mới đăng ký...">
+                <div class="ticket-discount-amount" id="dtTicketDiscount">GIẢM 20% (Tối đa 200.000đ)</div>
+                <div class="ticket-program-name" id="dtTicketName">Ưu đãi mùa thu thung lũng Đà Lạt</div>
+
+                <div class="ticket-meta-grid">
+                    <div><span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">event</span> <span id="dtTicketExpiry">Hạn dùng: 01/10/2026 - 31/10/2026</span></div>
+                    <div><span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">shopping_bag</span> <span id="dtTicketMinOrder">Đơn tối thiểu: 1.000.000đ</span></div>
+                    <div><span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">confirmation_number</span> <span id="dtTicketLimit">Số lượng: 50 lượt</span></div>
+                    <div><span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">person_check</span> <span>Tối đa: 1 lượt / khách</span></div>
                 </div>
             </div>
 
-            <!-- Loại giảm giá & Mức giảm -->
-            <div class="form-group-grid">
-                <div class="form-field">
-                    <label class="form-label">Hình Thức Giảm Giá <span style="color: red;">*</span></label>
-                    <select id="vFormType" class="form-select" onchange="onDiscountTypeChange()">
-                        <option value="percent">Giảm theo phần trăm (%)</option>
-                        <option value="fixed">Giảm số tiền cố định (VNĐ)</option>
-                    </select>
-                </div>
-
-                <div class="form-field">
-                    <label class="form-label" id="vFormValLabel">Mức giảm (%) <span style="color: red;">*</span></label>
-                    <input type="number" id="vFormVal" class="form-input" placeholder="15">
-                </div>
+            <!-- Lý do & Ghi chú của Chủ Homestay -->
+            <div class="host-note-box mb-3">
+                <h5 class="fw-bold text-dark fs-6 mb-1"><span class="material-symbols-outlined text-primary fs-5 align-middle me-1">description</span>Lý do tạo mã từ Chủ Homestay:</h5>
+                <p class="text-secondary text-sm mb-0" id="dtHostReason">"Chúng tôi muốn chạy chương trình ưu đãi mùa thu tri ân khách lưu trú trên 2 đêm tại Đà Lạt. Chủ homestay tự tài trợ 100% kinh phí trợ giá mã này."</p>
             </div>
 
-            <!-- Giảm tối đa & Đơn tối thiểu -->
-            <div class="form-group-grid">
-                <div class="form-field" id="vFormMaxWrap">
-                    <label class="form-label">Số Tiền Giảm Tối Đa (VNĐ)</label>
-                    <input type="number" id="vFormMax" class="form-input" placeholder="150000">
-                </div>
-
-                <div class="form-field">
-                    <label class="form-label">Giá Trị Đơn Hàng Tối Thiểu (VNĐ)</label>
-                    <input type="number" id="vFormMin" class="form-input" placeholder="500000">
-                </div>
+            <!-- Chi tiết Trạng thái & Phản hồi Admin nếu có -->
+            <div id="dtAdminNoteSection" class="admin-feedback-box" style="display: none;">
+                <h5 class="fw-bold text-dark fs-6 mb-1"><span class="material-symbols-outlined text-danger fs-5 align-middle me-1">report</span>Phản hồi từ Admin:</h5>
+                <p class="text-danger text-sm mb-0" id="dtAdminNoteContent"></p>
             </div>
 
-            <!-- Số lượng giới hạn & Lượt dùng / khách -->
-            <div class="form-group-grid">
-                <div class="form-field">
-                    <label class="form-label">Tổng Lượt Phát Hành (Số lượng mã)</label>
-                    <input type="number" id="vFormLimit" class="form-input" placeholder="500">
-                </div>
-
-                <div class="form-field">
-                    <label class="form-label">Giới Hạn Lượt Dùng / Tài Khoản</label>
-                    <input type="number" id="vFormPerUser" class="form-input" placeholder="1">
-                </div>
-            </div>
-
-            <!-- Khu vực & Đối tượng áp dụng -->
-            <div class="form-group-grid">
-                <div class="form-field">
-                    <label class="form-label">Khu Vực Áp Dụng</label>
-                    <select id="vFormRegion" class="form-select">
-                        <option value="all">Tất cả khu vực</option>
-                        <option value="Pù Luông">Pù Luông</option>
-                        <option value="Mai Châu">Mai Châu</option>
-                        <option value="Mộc Châu">Mộc Châu</option>
-                        <option value="Sa Pa">Sa Pa</option>
-                        <option value="Đà Lạt">Đà Lạt</option>
-                    </select>
-                </div>
-
-                <div class="form-field">
-                    <label class="form-label">Đối Tượng Khách Hàng</label>
-                    <select id="vFormAudience" class="form-select">
-                        <option value="all">Tất cả du khách</option>
-                        <option value="new">Khách hàng mới (Lần đầu đặt phòng)</option>
-                        <option value="vip">Thành viên VIP thân thiết</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Ngày bắt đầu - Ngày kết thúc -->
-            <div class="form-group-grid">
-                <div class="form-field">
-                    <label class="form-label">Ngày Bắt Đầu Áp Dụng</label>
-                    <input type="text" id="vFormStartDate" class="form-input" placeholder="20/09/2026">
-                </div>
-
-                <div class="form-field">
-                    <label class="form-label">Ngày Hết Hạn</label>
-                    <input type="text" id="vFormEndDate" class="form-input" placeholder="31/12/2026">
-                </div>
-            </div>
-
-            <!-- Trạng thái & Mô tả điều kiện -->
-            <div class="form-field full">
-                <label class="form-label">Trạng Thái Ban Đầu</label>
-                <select id="vFormStatus" class="form-select">
-                    <option value="active">Đang hoạt động (Kích hoạt ngay)</option>
-                    <option value="scheduled">Đã lên lịch (Chưa kích hoạt)</option>
-                    <option value="paused">Tạm dừng</option>
-                </select>
-            </div>
-
-            <div class="form-field full">
-                <label class="form-label">Mô Tả & Điều Khoản Sử Dụng</label>
-                <textarea id="vFormDesc" class="form-input" rows="2" placeholder="Nhập các ghi chú hoặc điều khoản ràng buộc khi khách áp dụng mã này..."></textarea>
-            </div>
         </div>
 
-        <div class="modal-footer">
-            <button class="btn-admin-cancel" onclick="closeModal('voucherFormModal')">Hủy bỏ</button>
-            <button class="btn-admin-primary" style="background-color: #EA580C;" onclick="saveVoucherData()">Lưu Mã Giảm Giá</button>
+        <div class="modal-footer d-flex justify-content-between">
+            <button class="btn-admin-cancel" onclick="closeModal('voucherDetailModal')">Đóng</button>
+            <div class="d-flex gap-2" id="dtActionButtons">
+                <!-- Buttons rendered dynamically -->
+            </div>
         </div>
     </div>
 </div>
 
 <!-- ==============================================================
-     MODAL 2: CHI TIẾT MÃ GIẢM GIÁ (DETAIL MODAL)
+     MODAL 2: TỪ CHỐI YÊU CẦU MÃ GIẢM GIÁ
      ============================================================== -->
-<div class="modal-overlay" id="voucherDetailModal">
-    <div class="modal-container" style="max-width: 720px;">
-        <div class="modal-header">
-            <h3 class="modal-title">
-                <span class="material-symbols-outlined" style="color: #EA580C;">loyalty</span>
-                <span>Chi Tiết Mã Giảm Giá & Thống Kê Quy Đổi</span>
+<div class="modal-overlay" id="voucherRejectModal">
+    <div class="modal-container" style="max-width: 520px;">
+        <div class="modal-header" style="background: #DC2626; color: #FFFFFF;">
+            <h3 class="modal-title" style="color: #FFFFFF;">
+                <span class="material-symbols-outlined">cancel</span>
+                <span>Từ Chối Yêu Cầu Tạo Mã</span>
             </h3>
-            <button class="modal-close-btn" onclick="closeModal('voucherDetailModal')">
+            <button class="modal-close-btn" style="color: #FFFFFF;" onclick="closeModal('voucherRejectModal')">
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
 
         <div class="modal-body">
+            <p class="text-sm text-secondary mb-3">Bạn đang từ chối yêu cầu phát hành mã <strong id="rejectCodeLabel" class="text-danger">DALAT200</strong> của Homestay <strong id="rejectHsLabel">The Memory Valley Villa</strong>.</p>
 
-            <!-- 1. Visual Ticket Card Preview -->
-            <div class="voucher-ticket-preview">
-                <div class="ticket-header">
-                    <div class="ticket-brand">
-                        <div class="ticket-brand-logo">Y</div>
-                        <div class="ticket-brand-name">YÊN HOMESTAY VOUCHER</div>
-                    </div>
-                    <div class="ticket-code-pill">
-                        <span id="dtTicketCode">YENWELCOME</span>
-                    </div>
-                </div>
+            <div class="form-field full mb-3">
+                <label class="form-label fw-bold text-dark">Lý Do Từ Chối <span class="text-danger">*</span></label>
+                <select id="rejectPresetReason" class="form-select mb-2" onchange="onRejectReasonChange()">
+                    <option value="Mức giảm giá quá cao, không phù hợp quy định sàn">Mức giảm giá quá cao, không phù hợp quy định sàn</option>
+                    <option value="Thông tin chương trình chưa rõ ràng hoặc gây hiểu nhầm">Thông tin chương trình chưa rõ ràng hoặc gây hiểu nhầm</option>
+                    <option value="Thời gian áp dụng trùng lặp chương trình khuyến mãi lớn của hệ thống">Thời gian áp dụng trùng lặp chương trình lớn của hệ thống</option>
+                    <option value="Cơ sở Homestay đang trong quá trình xử lý khiếu nại">Cơ sở Homestay đang trong quá trình xử lý khiếu nại</option>
+                    <option value="custom">Lý do khác (Nhập chi tiết bên dưới)...</option>
+                </select>
 
-                <div class="ticket-discount-amount" id="dtTicketDiscount">GIẢM 15% (Tối đa 150.000đ)</div>
-                <div class="ticket-program-name" id="dtTicketName">Chào mừng Du Khách Mới Đăng Ký</div>
-
-                <div class="ticket-meta-grid">
-                    <div><span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">event</span> <span id="dtTicketExpiry">Hạn dùng: 01/09/2026 - 31/12/2026</span></div>
-                    <div><span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">shopping_bag</span> <span id="dtTicketMinOrder">Đơn tối thiểu: 500.000đ</span></div>
-                    <div><span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">pin_drop</span> <span id="dtTicketRegion">Áp dụng: Tất cả khu vực</span></div>
-                    <div><span class="material-symbols-outlined" style="font-size: 14px; vertical-align: middle;">verified</span> <span>Phát hành bởi Hệ Thống YÊN</span></div>
-                </div>
+                <textarea id="rejectCustomReason" class="form-input" rows="3" placeholder="Nhập chi tiết phản hồi lý do từ chối gửi tới chủ homestay..."></textarea>
             </div>
-
-            <!-- 2. Thống kê KPI Lượt dùng, Ngân sách, Doanh thu mang lại -->
-            <div class="modal-kpi-grid">
-                <div class="modal-kpi-card">
-                    <span class="modal-kpi-lbl">Tiến độ quy đổi lượt dùng</span>
-                    <span class="modal-kpi-val" id="dtQuotaNum" style="color: #EA580C;">1.250 / 2.000</span>
-                </div>
-                <div class="modal-kpi-card">
-                    <span class="modal-kpi-lbl">Ngân sách sàn đã chiết khấu</span>
-                    <span class="modal-kpi-val" id="dtSubsidizedVal" style="color: #15803D;">142.500.000đ</span>
-                </div>
-                <div class="modal-kpi-card">
-                    <span class="modal-kpi-lbl">Tổng GMV mang lại từ mã</span>
-                    <span class="modal-kpi-val" id="dtGmvVal" style="color: #0284C7;">950.000.000đ</span>
-                </div>
-            </div>
-
-            <!-- 3. Điều kiện chi tiết -->
-            <div style="background: #F8FAFC; border: 1px solid var(--border-color); border-radius: 10px; padding: 14px; margin-bottom: 16px; font-size: 13px;">
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px;">
-                    <div>
-                        <span style="color: #64748B; font-size: 11.5px; display: block;">Đối tượng:</span>
-                        <strong id="dtAudience">Khách hàng mới</strong>
-                    </div>
-                    <div>
-                        <span style="color: #64748B; font-size: 11.5px; display: block;">Giới hạn / tài khoản:</span>
-                        <strong id="dtLimitPerUser">1 lượt</strong>
-                    </div>
-                    <div>
-                        <span style="color: #64748B; font-size: 11.5px; display: block;">Trạng thái:</span>
-                        <span id="dtStatusChip"></span>
-                    </div>
-                </div>
-                <div style="color: #475569; font-size: 12.5px; border-top: 1px dashed #E2E8F0; padding-top: 8px;">
-                    <strong>Điều khoản ghi chú:</strong> <span id="dtDesc">Ưu đãi dành cho thành viên mới lần đầu đặt phòng homestay trên hệ thống YÊN.</span>
-                </div>
-            </div>
-
-            <!-- 4. Lịch sử các đơn hàng vừa sử dụng mã này -->
-            <div style="margin-top: 14px;">
-                <h4 style="font-size: 13.5px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-                    <span class="material-symbols-outlined" style="font-size: 18px; color: #15803D;">receipt_long</span>
-                    <span>Đơn Đặt Phòng Vừa Áp Dụng Mã Này</span>
-                </h4>
-                <div class="redemptions-table-wrap">
-                    <table class="redemptions-table">
-                        <thead>
-                        <tr>
-                            <th>Mã Đơn</th>
-                            <th>Du Khách</th>
-                            <th>Homestay</th>
-                            <th>Tổng Đơn</th>
-                            <th>Đã Giảm</th>
-                            <th>Thời Gian</th>
-                        </tr>
-                        </thead>
-                        <tbody id="dtRedemptionsBody">
-                        <!-- Render qua JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
         </div>
 
         <div class="modal-footer">
-            <button class="btn-admin-cancel" onclick="closeModal('voucherDetailModal')">Đóng</button>
-            <button class="btn-admin-primary" style="background-color: #EA580C;" id="dtEditBtn">
-                <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>
-                <span>Chỉnh Sửa Mã Này</span>
-            </button>
+            <button class="btn-admin-cancel" onclick="closeModal('voucherRejectModal')">Hủy bỏ</button>
+            <button class="btn-admin-primary" style="background-color: #DC2626;" onclick="submitRejectVoucher()">Xác Nhận Từ Chối</button>
         </div>
     </div>
 </div>
