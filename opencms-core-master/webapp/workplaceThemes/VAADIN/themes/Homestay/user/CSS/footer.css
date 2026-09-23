@@ -12,14 +12,14 @@
     box-sizing: border-box;
 }
 
-/* Khung bọc giới hạn chiều rộng 1200px, căn giữa */
+/* Khung bọc giới hạn chiều rộng 1240px, căn giữa */
 .th-footer-container {
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
     padding: 0 24px 48px 24px;
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1.2fr; /* 4 cột cân đối */
-    gap: 40px;
+    grid-template-columns: 1.15fr 1.4fr 1.05fr 1.15fr; /* Tối ưu độ rộng cột 2 để các tiêu đề không bị rớt dòng */
+    gap: 32px;
 }
 
 /* Cột 1: Thương hiệu */
@@ -132,15 +132,17 @@
 }
 
 .th-footer-menu a {
+    display: inline-block;
     color: #e2e8f0;
     text-decoration: none;
     font-size: 13.5px;
-    transition: all 0.2s ease;
+    white-space: nowrap;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .th-footer-menu a:hover {
     color: #ffffff;
-    padding-left: 4px;
+    transform: translateX(4px);
 }
 
 /* Cột 4: Mô tả thanh toán & Tag */
@@ -188,7 +190,7 @@
 }
 
 .th-footer-bottom-inner {
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -219,11 +221,23 @@
     color: #ffffff;
 }
 
+/* Responsive cho máy tính bảng / màn hình vừa */
+@media (max-width: 1024px) {
+    .th-footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 32px;
+    }
+}
+
 /* Responsive khi xem trên điện thoại (màn hình nhỏ) */
-@media (max-width: 768px) {
+@media (max-width: 680px) {
     .th-footer-container {
         grid-template-columns: 1fr;
         gap: 32px;
+    }
+
+    .th-footer-menu a {
+        white-space: normal;
     }
 
     .th-footer-bottom-inner {
