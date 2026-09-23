@@ -215,8 +215,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 phone: $('#accPhone').value.trim(),
                 email: accEmail.value.trim(),
                 birthday: $('#accBirthday').value,
+                cccd: $('#accCccd').value.trim(),
+                nationality: $('#accNationality').value,
                 address: $('#accAddress').value.trim()
             };
+
+            if (!/^[0-9]{9,12}$/.test(payload.cccd)) {
+                showToast('Số CCCD/CMND không hợp lệ (9-12 chữ số).', 'error');
+                return;
+            }
 
             console.log('Cập nhật tài khoản:', payload);
 
@@ -226,6 +233,39 @@ document.addEventListener('DOMContentLoaded', () => {
              */
 
             showToast('Đã lưu thông tin tài khoản.');
+        });
+    }
+
+    const legalForm = $('#legalForm');
+
+    if (legalForm) {
+
+        legalForm.addEventListener('submit', event => {
+
+            event.preventDefault();
+
+            const payload = {
+                bizType: $('#accBizType').value,
+                bizName: $('#accBizName').value.trim(),
+                taxCode: $('#accTaxCode').value.trim(),
+                bizCode: $('#accBizCode').value.trim(),
+                bizDate: $('#accBizDate').value,
+                bizIssuer: $('#accBizIssuer').value.trim()
+            };
+
+            if (payload.taxCode && !/^[0-9]{10}([0-9]{3})?$/.test(payload.taxCode)) {
+                showToast('Mã số thuế phải gồm 10 hoặc 13 chữ số.', 'error');
+                return;
+            }
+
+            console.log('Cập nhật thông tin pháp lý & ĐKKD:', payload);
+
+            /*
+             * Kết nối backend tại đây, ví dụ:
+             * fetch('/api/account/legal', { method: 'PUT', body: JSON.stringify(payload) });
+             */
+
+            showToast('Đã lưu thông tin pháp lý & đăng ký kinh doanh.');
         });
     }
 

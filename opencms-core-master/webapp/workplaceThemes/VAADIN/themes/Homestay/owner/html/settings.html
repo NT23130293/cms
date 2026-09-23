@@ -131,8 +131,26 @@
                                 <input id="accBirthday" class="room-form-input" type="date" value="1990-05-20">
                             </div>
 
+                            <div class="room-form-group">
+                                <label class="room-form-label" for="accCccd">Số CCCD / CMND</label>
+                                <input id="accCccd" class="room-form-input" type="text" maxlength="12"
+                                       placeholder="VD: 079204012345" value="079090012345" required>
+                            </div>
+
+                            <div class="room-form-group">
+                                <label class="room-form-label" for="accNationality">Quốc tịch</label>
+                                <select id="accNationality" class="room-form-select">
+                                    <option value="VN" selected>Việt Nam</option>
+                                    <option value="US">Hoa Kỳ</option>
+                                    <option value="KR">Hàn Quốc</option>
+                                    <option value="JP">Nhật Bản</option>
+                                    <option value="FR">Pháp</option>
+                                    <option value="OTHER">Khác</option>
+                                </select>
+                            </div>
+
                             <div class="room-form-group full">
-                                <label class="room-form-label" for="accAddress">Địa chỉ</label>
+                                <label class="room-form-label" for="accAddress">Địa chỉ liên hệ</label>
                                 <input id="accAddress" class="room-form-input" type="text"
                                        value="Bản Lác, Chiềng Châu, Mai Châu, Hòa Bình">
                             </div>
@@ -141,6 +159,63 @@
                                 <button type="submit" class="room-btn room-btn-save">
                                     <span class="material-symbols-outlined text-[17px]">save</span>
                                     Lưu thông tin
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_2px_10px_rgba(21,67,50,0.05)]">
+                        <div class="flex items-center gap-space-xs mb-space-md">
+                            <span class="material-symbols-outlined text-secondary text-[22px]">description</span>
+                            <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Thông tin pháp lý &amp; Đăng ký kinh doanh</h2>
+                        </div>
+
+                        <form id="legalForm" class="room-form-grid" style="padding:0;">
+
+                            <div class="room-form-group">
+                                <label class="room-form-label" for="accBizType">Mô hình kinh doanh</label>
+                                <select id="accBizType" class="room-form-select">
+                                    <option value="ho-kinh-doanh" selected>Hộ kinh doanh cá thể</option>
+                                    <option value="doanh-nghiep">Doanh nghiệp / Công ty</option>
+                                    <option value="hop-tac-xa">Hợp tác xã du lịch cộng đồng</option>
+                                    <option value="ca-nhan">Cá nhân kinh doanh</option>
+                                </select>
+                            </div>
+
+                            <div class="room-form-group">
+                                <label class="room-form-label" for="accBizName">Tên cơ sở theo ĐKKD</label>
+                                <input id="accBizName" class="room-form-input" type="text"
+                                       placeholder="VD: Hộ kinh doanh Nhà Sàn Mộc" value="Hộ kinh doanh Nhà Sàn Mộc">
+                            </div>
+
+                            <div class="room-form-group">
+                                <label class="room-form-label" for="accTaxCode">Mã số thuế (MST)</label>
+                                <input id="accTaxCode" class="room-form-input" type="text" maxlength="14"
+                                       placeholder="Nhập 10 hoặc 13 chữ số" value="8801234567">
+                            </div>
+
+                            <div class="room-form-group">
+                                <label class="room-form-label" for="accBizCode">Mã số ĐKKD / Số Giấy phép</label>
+                                <input id="accBizCode" class="room-form-input" type="text"
+                                       placeholder="Số GCN đăng ký kinh doanh" value="34A8012345">
+                            </div>
+
+                            <div class="room-form-group">
+                                <label class="room-form-label" for="accBizDate">Ngày cấp giấy phép</label>
+                                <input id="accBizDate" class="room-form-input" type="date" value="2024-01-15">
+                            </div>
+
+                            <div class="room-form-group">
+                                <label class="room-form-label" for="accBizIssuer">Cơ quan / Nơi cấp</label>
+                                <input id="accBizIssuer" class="room-form-input" type="text"
+                                       placeholder="VD: UBND Huyện Mai Châu" value="UBND Huyện Mai Châu">
+                            </div>
+
+                            <div class="room-form-group full flex-row" style="display:flex; justify-content:flex-end;">
+                                <button type="submit" class="room-btn room-btn-save">
+                                    <span class="material-symbols-outlined text-[17px]">save</span>
+                                    Lưu thông tin pháp lý
                                 </button>
                             </div>
 
