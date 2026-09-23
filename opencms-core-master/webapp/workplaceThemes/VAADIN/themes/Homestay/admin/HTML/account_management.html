@@ -59,7 +59,7 @@
                 <li class="menu-item">
                     <a href="ads_management.html" class="menu-link">
                         <span class="material-symbols-outlined menu-icon">campaign</span>
-                        <span>Quản lý quảng cáo</span>
+                        <span>Bán & Dịch vụ quảng cáo</span>
                     </a>
                 </li>
                 <li class="menu-item">
@@ -107,7 +107,7 @@
             <div class="header-left">
                 <div class="header-search">
                     <span class="material-symbols-outlined search-icon">search</span>
-                    <input type="text" class="search-input" placeholder="Tìm kiếm tài khoản, email, số điện thoại, CCCD...">
+                    <input type="text" class="search-input" placeholder="Tìm kiếm tài khoản, email, số điện thoại...">
                 </div>
             </div>
 
@@ -183,7 +183,7 @@
                     <div class="user-stat-info">
                         <span class="user-stat-label">Chủ Homestay (Hosts)</span>
                         <span class="user-stat-value" id="statTotalHosts">2</span>
-                        <span class="user-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">verified</span> Đã xác minh KYC & CCCD</span>
+                        <span class="user-stat-subtext"><span class="material-symbols-outlined" style="font-size: 14px;">verified</span> Đã xác minh KYC</span>
                     </div>
                     <div class="user-stat-icon-wrapper green">
                         <span class="material-symbols-outlined">cottage</span>
@@ -210,9 +210,9 @@
                     <div class="module-title-group">
                         <h2>
                             <span class="material-symbols-outlined" style="color: #0284C7;">group</span>
-                            Quản Lý Tài Khoản & Phân Quyền Hệ Thống
+                            Quản Lý Tài Khoản Người Dùng & Phân Quyền
                         </h2>
-                        <span class="module-subtitle">Quản lý Du khách, Đối tác Chủ Homestay (Hosts), Cập nhật CCCD/Mật khẩu & Phân quyền Quản trị viên</span>
+                        <span class="module-subtitle">Quản lý Du khách lưu trú, Đối tác Chủ Homestay (Hosts) & Phân quyền Quản trị viên</span>
                     </div>
 
                     <!-- Sub-module Navigation Tabs -->
@@ -236,12 +236,12 @@
                     </div>
                 </div>
 
-                <!-- Module Toolbar (Search & Filter & Nút Thêm Mới) -->
+                <!-- Module Toolbar (Search & Filter) -->
                 <div class="module-toolbar">
                     <div class="toolbar-left">
                         <div class="search-box-sm">
                             <span class="material-symbols-outlined" style="color: var(--text-muted); margin-right: 6px; font-size: 18px;">search</span>
-                            <input type="text" id="userSearchInput" placeholder="Tìm tên, email, SĐT, số CCCD...">
+                            <input type="text" id="userSearchInput" placeholder="Tìm tên, email, số điện thoại...">
                         </div>
 
                         <select class="select-filter-sm" id="userStatusFilter">
@@ -249,13 +249,6 @@
                             <option value="active">Đang hoạt động</option>
                             <option value="blocked">Bị khóa</option>
                         </select>
-                    </div>
-
-                    <div class="toolbar-right">
-                        <button class="btn-primary-sm" onclick="openAddUserModal()" style="background: #15803D; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.2s;">
-                            <span class="material-symbols-outlined" style="font-size: 18px;">person_add</span>
-                            Thêm Tài Khoản Mới
-                        </button>
                     </div>
                 </div>
 
@@ -277,9 +270,9 @@
     </div>
 </div>
 
-<!-- 3. Modal THÊM / CHỈNH SỬA TÀI KHOẢN & PHÂN QUYỀN ĐẦY ĐỦ (Đổi CCCD, Mật khẩu, Thuế, Ngân hàng, Phân quyền) -->
+<!-- 3. Modal Chỉnh Sửa Tài Khoản & Phân Quyền -->
 <div class="modal-overlay" id="userModalOverlay">
-    <div class="modal-container" style="width: 780px;">
+    <div class="modal-container">
         <div class="modal-header">
             <h3 class="modal-title">
                 <span class="material-symbols-outlined" style="color: #0284C7;">manage_accounts</span>
@@ -291,251 +284,57 @@
         </div>
 
         <div class="modal-body">
-            <!-- Modal Sub-Tabs -->
-            <div class="form-modal-tabs">
-                <button type="button" class="form-modal-tab-btn active" data-formtab="tab-personal" onclick="switchFormTab('tab-personal')">
-                    <span class="material-symbols-outlined">person</span> Cá Nhân & Đăng Nhập
-                </button>
-                <button type="button" class="form-modal-tab-btn" data-formtab="tab-legal" onclick="switchFormTab('tab-legal')">
-                    <span class="material-symbols-outlined">badge</span> CCCD & Pháp Lý Kinh Doanh
-                </button>
-                <button type="button" class="form-modal-tab-btn" data-formtab="tab-bank" onclick="switchFormTab('tab-bank')">
-                    <span class="material-symbols-outlined">account_balance</span> Ngân Hàng & Payout
-                </button>
-                <button type="button" class="form-modal-tab-btn" data-formtab="tab-permission" onclick="switchFormTab('tab-permission')">
-                    <span class="material-symbols-outlined">admin_panel_settings</span> Phân Quyền & Trạng Thái
-                </button>
+            <div class="form-field full">
+                <label class="form-label">Họ và Tên <span style="color: red;">*</span></label>
+                <input type="text" id="userNameInput" class="form-input" placeholder="Ví dụ: Nguyễn Văn An...">
             </div>
 
-            <!-- Form Tab 1: Thông tin cá nhân & Đăng nhập -->
-            <div class="form-tab-panel" id="tab-personal">
-                <div class="form-group-grid">
-                    <div class="form-field">
-                        <label class="form-label">Họ và Tên <span style="color: red;">*</span></label>
-                        <input type="text" id="userNameInput" class="form-input" placeholder="Ví dụ: Nguyễn Văn An...">
-                    </div>
-
-                    <div class="form-field">
-                        <label class="form-label">Tên hiển thị / Nickname</label>
-                        <input type="text" id="userNicknameInput" class="form-input" placeholder="Ví dụ: An Homestay...">
-                    </div>
+            <div class="form-group-grid">
+                <div class="form-field">
+                    <label class="form-label">Địa chỉ Email <span style="color: red;">*</span></label>
+                    <input type="email" id="userEmailInput" class="form-input" placeholder="an.nguyen@gmail.com">
                 </div>
 
-                <div class="form-group-grid">
-                    <div class="form-field">
-                        <label class="form-label">Địa chỉ Email <span style="color: red;">*</span></label>
-                        <input type="email" id="userEmailInput" class="form-input" placeholder="an.nguyen@gmail.com">
-                    </div>
-
-                    <div class="form-field">
-                        <label class="form-label">Số điện thoại <span style="color: red;">*</span></label>
-                        <input type="text" id="userPhoneInput" class="form-input" placeholder="0905 123 456">
-                    </div>
-                </div>
-
-                <!-- Ô ĐỔI / ĐẶT MẬT KHẨU CHO NGƯỜI DÙNG -->
-                <div class="form-field full" style="margin-top: 10px; background: #F8FAFC; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
-                    <label class="form-label d-flex align-items-center justify-content-between">
-                        <span style="display: flex; align-items: center; gap: 6px; font-weight: 700; color: #0284C7;">
-                            <span class="material-symbols-outlined" style="font-size: 18px;">key</span>
-                            Mật khẩu Đăng nhập (Admin có thể Đổi / Đặt lại Mật khẩu)
-                        </span>
-                    </label>
-                    <div class="password-input-box">
-                        <input type="password" id="userPasswordInput" class="form-input" placeholder="Nhập mật khẩu mới (Hoặc để trống nếu không muốn đổi)">
-                        <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility('userPasswordInput', this)">
-                            <span class="material-symbols-outlined">visibility</span>
-                        </button>
-                        <button type="button" class="btn-gen-pwd" onclick="generateRandomPassword('userPasswordInput')">
-                            ⚡ Tạo ngẫu nhiên
-                        </button>
-                    </div>
-                    <small style="color: var(--text-muted); font-size: 11.5px; margin-top: 4px; display: block;">Mật khẩu tối thiểu 6 ký tự. Người dùng có thể đăng nhập bằng mật khẩu này sau khi lưu.</small>
-                </div>
-
-                <div class="form-group-grid" style="margin-top: 12px;">
-                    <div class="form-field">
-                        <label class="form-label">Giới tính</label>
-                        <select id="userGenderSelect" class="form-select">
-                            <option value="Nam">Nam</option>
-                            <option value="Nữ">Nữ</option>
-                            <option value="Khác">Khác</option>
-                        </select>
-                    </div>
-
-                    <div class="form-field">
-                        <label class="form-label">Ngày sinh</label>
-                        <input type="date" id="userDobInput" class="form-input">
-                    </div>
+                <div class="form-field">
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="text" id="userPhoneInput" class="form-input" placeholder="0905 123 456">
                 </div>
             </div>
 
-            <!-- Form Tab 2: CCCD & Pháp lý kinh doanh -->
-            <div class="form-tab-panel d-none" id="tab-legal">
-                <!-- KHU VỰC CẬP NHẬT CCCD / CMND -->
-                <div class="form-field full" style="background: #F0FDF4; padding: 14px; border-radius: 10px; border: 1px solid #BBF7D0; margin-bottom: 14px;">
-                    <label class="form-label" style="font-weight: 800; color: #15803D; display: flex; align-items: center; gap: 6px;">
-                        <span class="material-symbols-outlined">badge</span>
-                        Số CCCD / CMND Định Danh (Chủ Homestay / Du Khách) <span style="color: red;">*</span>
-                    </label>
-                    <input type="text" id="userCccdInput" class="form-input" placeholder="Nhập 12 số CCCD (Ví dụ: 048095001234...)" style="font-weight: 700; letter-spacing: 0.5px;">
-                    <small style="color: #166534; font-size: 11.5px; margin-top: 4px; display: block;">Admin hệ thống được cấp quyền chỉnh sửa và xác minh số CCCD cho tài khoản đối tác chủ homestay.</small>
+            <div class="form-group-grid">
+                <div class="form-field">
+                    <label class="form-label">Vai trò / Phân quyền <span style="color: red;">*</span></label>
+                    <select id="userRoleSelect" class="form-select">
+                        <option value="guest">Khách lưu trú (Guest)</option>
+                        <option value="host">Chủ Homestay (Host Owner)</option>
+                        <option value="admin">Quản trị viên (System Admin)</option>
+                    </select>
                 </div>
 
-                <div class="form-group-grid">
-                    <div class="form-field">
-                        <label class="form-label">Ngày cấp CCCD</label>
-                        <input type="text" id="userCccdDateInput" class="form-input" placeholder="Ví dụ: 15/04/2021">
-                    </div>
-
-                    <div class="form-field">
-                        <label class="form-label">Nơi cấp CCCD</label>
-                        <input type="text" id="userCccdPlaceInput" class="form-input" placeholder="Cục Cảnh sát QLHC về trật tự xã hội">
-                    </div>
-                </div>
-
-                <div class="form-field full" style="margin-top: 10px;">
-                    <label class="form-label">Địa chỉ đăng ký thường trú / Cơ sở</label>
-                    <input type="text" id="userAddressInput" class="form-input" placeholder="Số nhà, tên đường, Phường/Xã, Quận/Huyện, Tỉnh/Thành...">
-                </div>
-
-                <!-- THÔNG TIN PHÁP LÝ DÀNH CHO CHỦ HOMESTAY -->
-                <div style="margin-top: 16px; border-top: 1px dashed #CBD5E1; padding-top: 12px;">
-                    <h4 style="font-size: 13px; font-weight: 800; color: #0F172A; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
-                        <span class="material-symbols-outlined" style="color: #D97706; font-size: 18px;">gavel</span>
-                        Thông Tin Đăng Ký Kinh Doanh Homestay (Tùy chọn)
-                    </h4>
-                    
-                    <div class="form-group-grid">
-                        <div class="form-field">
-                            <label class="form-label">Mã số thuế cá nhân / Doanh nghiệp (MST)</label>
-                            <input type="text" id="userTaxCodeInput" class="form-input" placeholder="0312345678">
-                        </div>
-
-                        <div class="form-field">
-                            <label class="form-label">Số Giấy phép ĐKKD Homestay</label>
-                            <input type="text" id="userBizCodeInput" class="form-input" placeholder="41A8012345">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Form Tab 3: Ngân hàng & Payout (Nhận Doanh Thu / Hoàn tiền) -->
-            <div class="form-tab-panel d-none" id="tab-bank">
-                <div class="form-field full" style="background: #EFF6FF; padding: 14px; border-radius: 10px; border: 1px solid #BFDBFE; margin-bottom: 14px;">
-                    <label class="form-label" style="font-weight: 800; color: #1E40AF; display: flex; align-items: center; gap: 6px;">
-                        <span class="material-symbols-outlined">account_balance</span>
-                        Tài Khoản Ngân Hàng Nhận Doanh Thu / Hoàn Tiền
-                    </label>
-                    <p style="font-size: 12px; color: #1E3A8A; margin: 0;">Thông tin tài khoản ngân hàng chính chủ của Chủ Homestay dùng để nhận chi trả tiền đặt phòng định kỳ từ hệ thống YÊN.</p>
-                </div>
-
-                <div class="form-group-grid">
-                    <div class="form-field">
-                        <label class="form-label">Tên Ngân Hàng</label>
-                        <select id="userBankNameSelect" class="form-select">
-                            <option value="Vietcombank (VCB)">Vietcombank (Ngân hàng TMCP Ngoại thương)</option>
-                            <option value="MBBank (MB)">MBBank (Ngân hàng Quân Đội)</option>
-                            <option value="Techcombank (TCB)">Techcombank (Ngân hàng Kỹ thương)</option>
-                            <option value="VPBank">VPBank (Ngân hàng Việt Nam Thịnh Vượng)</option>
-                            <option value="ACB">ACB (Ngân hàng Á Châu)</option>
-                            <option value="VietinBank">VietinBank (Ngân hàng Công thương)</option>
-                            <option value="BIDV">BIDV (Ngân hàng ĐT & PT Việt Nam)</option>
-                            <option value="Agribank">Agribank (Ngân hàng Nông nghiệp)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-field">
-                        <label class="form-label">Số Tài Khoản (STK) Ngân Hàng</label>
-                        <input type="text" id="userBankAccountInput" class="form-input" placeholder="Ví dụ: 1012998877..." style="font-weight: 700;">
-                    </div>
-                </div>
-
-                <div class="form-field full" style="margin-top: 10px;">
-                    <label class="form-label">Tên Chủ Tài Khoản Ngân Hàng (Viết hoa không dấu)</label>
-                    <input type="text" id="userBankHolderInput" class="form-input" placeholder="NGUYEN VAN AN" style="font-weight: 700; text-transform: uppercase;">
-                </div>
-            </div>
-
-            <!-- Form Tab 4: Phân quyền & Trạng thái -->
-            <div class="form-tab-panel d-none" id="tab-permission">
-                <div class="form-group-grid">
-                    <div class="form-field">
-                        <label class="form-label">Vai Trò Hệ Thống <span style="color: red;">*</span></label>
-                        <select id="userRoleSelect" class="form-select" onchange="onRoleSelectChange(this.value)">
-                            <option value="guest">Khách lưu trú (Guest User)</option>
-                            <option value="host">Chủ Homestay (Host Owner)</option>
-                            <option value="admin">Quản trị viên (System Admin)</option>
-                            <option value="staff">Nhân viên hỗ trợ (Support Staff)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-field">
-                        <label class="form-label">Trạng Thái Tài Khoản <span style="color: red;">*</span></label>
-                        <select id="userStatusSelect" class="form-select">
-                            <option value="active">Đang hoạt động (Active)</option>
-                            <option value="blocked">Tạm khóa tài khoản (Blocked)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group-grid" style="margin-top: 12px;">
-                    <div class="form-field">
-                        <label class="form-label">Trạng Thái Xác Minh KYC & Định Danh</label>
-                        <select id="userKycSelect" class="form-select">
-                            <option value="verified">Đã xác minh KYC & CCCD</option>
-                            <option value="unverified">Chưa xác minh KYC</option>
-                            <option value="pending">Đang chờ Admin duyệt KYC</option>
-                        </select>
-                    </div>
-
-                    <div class="form-field">
-                        <label class="form-label">Cấp Độ Phân Quyền Chi Tiết</label>
-                        <select id="userPermissionSelect" class="form-select">
-                            <option value="Toàn Quyền Hệ Thống (Super Admin)">Toàn Quyền Hệ Thống (Super Admin)</option>
-                            <option value="Đối Tác Kinh Doanh Homestay">Đối Tác Kinh Doanh Homestay</option>
-                            <option value="Quản Lý Kiểm Duyệt & Nội Dung">Quản Lý Kiểm Duyệt & Nội Dung</option>
-                            <option value="Người Dùng Phổ Thông">Người Dùng Phổ Thông</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- CHECKBOX PHÂN QUYỀN NÂNG CAO DÀNH CHO ADMIN / STAFF -->
-                <div id="advancedPermissionBox" style="margin-top: 16px; background: #F8FAFC; padding: 14px; border-radius: 10px; border: 1px solid #E2E8F0;">
-                    <label class="form-label" style="font-weight: 800; color: #0F172A; margin-bottom: 8px;">Chi tiết Quyền Hạn Quản Trị Hệ Thống (Module Permissions):</label>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 13px;">
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" id="permManageUsers" checked> Quản lý tài khoản & Phân quyền
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" id="permManageHomestays" checked> Duyệt & Quản lý Homestay
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" id="permManageTxn" checked> Đối soát Giao dịch & Rút tiền
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" id="permManagePromos" checked> Quản lý Voucher & Quảng cáo
-                        </label>
-                    </div>
+                <div class="form-field">
+                    <label class="form-label">Trạng thái tài khoản</label>
+                    <select id="userStatusSelect" class="form-select">
+                        <option value="active">Đang hoạt động (Active)</option>
+                        <option value="blocked">Khóa tài khoản (Blocked)</option>
+                    </select>
                 </div>
             </div>
         </div>
 
         <div class="modal-footer">
             <button class="btn-admin-cancel" onclick="closeUserModal()">Hủy bỏ</button>
-            <button class="btn-admin-primary" style="background-color: #0284C7; font-weight: 800;" onclick="saveUserData()">💾 Lưu Thông Tin & Phân Quyền</button>
+            <button class="btn-admin-primary" style="background-color: #0284C7;" onclick="saveUserData()">Lưu Tài Khoản</button>
         </div>
     </div>
 </div>
 
-<!-- 4. Modal CHI TIẾT TÀI KHOẢN KÈM CCCD, ĐKKD & NGÂN HÀNG (User Detail View) -->
+<!-- 4. Modal CHI TIẾT TÀI KHOẢN (User Detail View) -->
 <div class="modal-overlay" id="userDetailModalOverlay">
-    <div class="modal-container" style="width: 720px;">
+    <div class="modal-container" style="width: 680px;">
         <div class="modal-header">
             <h3 class="modal-title">
                 <span class="material-symbols-outlined" style="color: #0284C7;">account_box</span>
-                Hồ Sơ Chi Tiết Tài Khoản & Định Danh CCCD
+                Chi Tiết Tài Khoản Người Dùng
             </h3>
             <button class="modal-close-btn" onclick="closeUserDetailModal()">
                 <span class="material-symbols-outlined">close</span>
@@ -552,45 +351,7 @@
     </div>
 </div>
 
-<!-- 5. Modal ĐẶT LẠI MẬT KHẨU NHANH -->
-<div class="modal-overlay" id="resetPasswordModalOverlay">
-    <div class="modal-container" style="width: 520px;">
-        <div class="modal-header" style="background: #F0F9FF;">
-            <h3 class="modal-title" style="color: #0284C7;">
-                <span class="material-symbols-outlined" style="color: #0284C7;">key</span>
-                Đặt Lai Mật Khẩu Cho Tài Khoản
-            </h3>
-            <button class="modal-close-btn" onclick="closeResetPasswordModal()">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-
-        <div class="modal-body">
-            <p style="font-size: 14px; font-weight: 600; color: #1E293B;">Đổi mật khẩu cho tài khoản: <strong id="resetPwdTargetUser" style="color: #0284C7;">-</strong></p>
-
-            <div class="form-field full" style="margin-top: 12px;">
-                <label class="form-label">Nhập mật khẩu mới <span style="color: red;">*</span></label>
-                <div class="password-input-box">
-                    <input type="text" id="quickResetPwdInput" class="form-input" style="font-weight: 700; letter-spacing: 1px;" value="Yen@2026!Secured">
-                    <button type="button" class="btn-gen-pwd" onclick="generateRandomPassword('quickResetPwdInput')">⚡ Tạo mới</button>
-                </div>
-            </div>
-
-            <div class="form-field full" style="margin-top: 12px;">
-                <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #475569; cursor: pointer;">
-                    <input type="checkbox" id="sendEmailNoticeCheck" checked> Gửi thông báo mật khẩu mới qua Email người dùng
-                </label>
-            </div>
-        </div>
-
-        <div class="modal-footer">
-            <button class="btn-admin-cancel" onclick="closeResetPasswordModal()">Hủy</button>
-            <button class="btn-admin-primary" style="background-color: #0284C7;" onclick="confirmResetPassword()">🔑 Lưu Mật Khẩu Mới</button>
-        </div>
-    </div>
-</div>
-
-<!-- 6. Modal KHÓA TÀI KHOẢN KÈM LÝ DO -->
+<!-- 5. Modal KHÓA TÀI KHOẢN KÈM LÝ DO -->
 <div class="modal-overlay" id="lockModalOverlay">
     <div class="modal-container" style="width: 500px;">
         <div class="modal-header" style="background: #FEF2F2;">

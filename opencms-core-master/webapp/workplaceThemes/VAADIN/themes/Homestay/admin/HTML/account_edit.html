@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YÊN - Admin System | Chỉnh Sửa Chi Tiết Tài Khoản</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link rel="stylesheet" href="../CSS/admin_sidebar.css">
+    <link rel="stylesheet" href="../CSS/local_content.css">
+    <link rel="stylesheet" href="../CSS/account_management.css">
+    <link rel="stylesheet" href="../CSS/account_edit.css">
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+    <!-- ADMIN SIDEBAR -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <a href="admin.html">
+                <img src="../images/logo_white.png" alt="YÊN Logo" class="sidebar-logo-img">
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu" id="adminMenu">
+                <li class="menu-item">
+                    <a href="admin.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">dashboard</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="account_management.html" class="menu-link active">
+                        <span class="material-symbols-outlined menu-icon">group</span>
+                        <span>Quản lý tài khoản</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage_homestay.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">cottage</span>
+                        <span>Quản lý Homestay</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="local_content.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">map</span>
+                        <span>Quản lý nội dung địa phương</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="manage_transactions.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">receipt_long</span>
+                        <span>Quản lý giao dịch</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="ads_management.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">campaign</span>
+                        <span>Bán & Dịch vụ quảng cáo</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="voucher_management.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">local_offer</span>
+                        <span>Quản lý mã giảm giá</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="reports_statistics.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">bar_chart</span>
+                        <span>Báo cáo & Thống kê</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="complaints_management.html" class="menu-link">
+                        <span class="material-symbols-outlined menu-icon">report_problem</span>
+                        <span>Quản lý báo cáo & Khiếu nại</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="host-profile">
+                <div class="host-icon">
+                    <span class="material-symbols-outlined" style="font-size: 20px;">admin_panel_settings</span>
+                </div>
+                <div class="host-info">
+                    <h4>Admin System</h4>
+                    <p>Quản trị hệ thống</p>
+                </div>
+                <span class="material-symbols-outlined" style="color: #81b099; font-size: 16px;">unfold_more</span>
+            </div>
+            <div class="host-quote">
+                "Hệ thống quản trị YÊN Homestay"
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN ADMIN AREA -->
+    <div class="admin-main">
+
+        <!-- HEADER -->
+        <header class="admin-header">
+            <div class="header-left">
+                <div class="header-search">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" class="search-input" placeholder="Tìm kiếm nhanh tài khoản, email, homestay...">
+                </div>
+            </div>
+
+            <div class="admin-header-right">
+                <div class="header-action-btns">
+                    <button class="header-icon-btn" title="Thông báo">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="badge-dot">3</span>
+                    </button>
+                    <button class="header-icon-btn" title="Tin nhắn">
+                        <span class="material-symbols-outlined">chat</span>
+                    </button>
+                </div>
+
+                <div class="header-divider"></div>
+                
+                <div class="owner-header-profile-wrapper">
+                    <div class="owner-header-profile" id="adminProfileBtn">
+                        <div class="owner-avatar">A</div>
+                        <div class="owner-info">
+                            <div class="owner-info-top">
+                                <span class="owner-name">Admin System</span>
+                                <span class="owner-role-badge">Quản trị viên</span>
+                            </div>
+                            <span class="owner-subtext">Hệ thống YÊN</span>
+                        </div>
+                        <span class="material-symbols-outlined dropdown-arrow" style="font-size: 18px; color: var(--text-muted); margin-left: 2px;">expand_more</span>
+                    </div>
+
+                    <div class="profile-dropdown-menu" id="adminProfileDropdown">
+                        <div class="dropdown-header">
+                            <strong class="dropdown-user-name">Admin System</strong>
+                            <span class="dropdown-user-email">admin@yenhomestay.com</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="../../user/HTML/login.html" class="dropdown-item text-danger" id="dropdownLogoutBtn">
+                            <span class="material-symbols-outlined">logout</span>
+                            <span>Đăng xuất</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- NỘI DUNG CHỈNH SỬA CHI TIẾT TÀI KHOẢN -->
+        <main class="admin-body-content">
+            <div class="account-edit-wrapper">
+
+                <!-- 1. Breadcrumb Navigation -->
+                <div class="breadcrumb-nav">
+                    <a href="admin.html">Dashboard</a>
+                    <span class="separator">/</span>
+                    <a href="account_management.html">Quản lý tài khoản</a>
+                    <span class="separator">/</span>
+                    <span class="current" id="breadcrumbUserName">Chỉnh sửa thông tin tài khoản</span>
+                </div>
+
+                <!-- 2. Header Bar with Actions -->
+                <div class="edit-header-bar">
+                    <div class="edit-header-left">
+                        <a href="account_management.html" class="btn-back-link" title="Quay lại danh sách">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </a>
+                        <div class="edit-title-group">
+                            <h1 id="headerUserTitle">
+                                Chỉnh Sửa Tài Khoản: <span id="headerUserNameTitle">Đang tải...</span>
+                            </h1>
+                            <p>Cập nhật đầy đủ hồ sơ định danh cá nhân, pháp lý kinh doanh, bảo mật & phân quyền hệ thống</p>
+                        </div>
+                    </div>
+
+                    <div class="edit-header-right">
+                        <a href="account_management.html" class="btn-admin-cancel" style="text-decoration: none;">Hủy bỏ</a>
+                        <button type="button" class="btn-admin-primary" onclick="saveUserEditForm()">
+                            <span class="material-symbols-outlined">save</span>
+                            <span>Lưu Thay Đổi</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Layout Grid: 2 Cột -->
+                <div class="edit-layout-grid">
+
+                    <!-- CỘT TRÁI (360px): Tóm tắt hồ sơ, Avatar, Trạng thái xác thực KYC -->
+                    <aside class="edit-left-column">
+
+                        <!-- Card 1: Avatar & Định danh -->
+                        <div class="profile-card">
+                            <div class="avatar-center-wrapper">
+                                <div class="avatar-large-container">
+                                    <img id="editAvatarImg" src="" alt="Avatar" class="avatar-large-img" style="display: none;">
+                                    <div id="editAvatarFallback" class="avatar-large-fallback">A</div>
+                                    <button type="button" class="btn-avatar-camera" title="Đổi ảnh đại diện" onclick="triggerAvatarUpload()">
+                                        <span class="material-symbols-outlined" style="font-size: 18px;">photo_camera</span>
+                                    </button>
+                                    <input type="file" id="editAvatarFileInput" accept="image/*" style="display: none;">
+                                </div>
+
+                                <div class="user-display-name" id="displayFullName">Nguyễn Văn An</div>
+                                <div class="user-display-nickname" id="displayNickname">@an.nguyen</div>
+                                <span class="tier-badge" id="displayMemberTier">
+                                    <span class="material-symbols-outlined" style="font-size: 16px;">verified</span>
+                                    <span id="tierBadgeText">Host Uy Tín (SuperHost)</span>
+                                </span>
+                            </div>
+
+                            <div class="meta-info-list">
+                                <div class="meta-info-item">
+                                    <span class="label">Mã tài khoản ID:</span>
+                                    <span class="val" id="metaUserId">usr-1</span>
+                                </div>
+                                <div class="meta-info-item">
+                                    <span class="label">Ngày tham gia:</span>
+                                    <span class="val" id="metaJoinDate">12/01/2025</span>
+                                </div>
+                                <div class="meta-info-item">
+                                    <span class="label">Lần đăng nhập cuối:</span>
+                                    <span class="val" id="metaLastLogin">Hôm nay 14:20</span>
+                                </div>
+                                <div class="meta-info-item">
+                                    <span class="label">Trạng thái:</span>
+                                    <span class="val" id="metaStatusBadge">
+                                        <span class="user-status-badge active">Đang hoạt động</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Trạng thái Xác Thực & KYC -->
+                        <div class="profile-card">
+                            <div class="card-title-bar">
+                                <h3>
+                                    <span class="material-symbols-outlined">verified_user</span>
+                                    Trạng Thái Xác Thực (KYC)
+                                </h3>
+                            </div>
+
+                            <div class="kyc-verification-box">
+                                <div class="kyc-item">
+                                    <div class="kyc-item-left">
+                                        <span class="material-symbols-outlined icon">phone_iphone</span>
+                                        <div>
+                                            <div class="kyc-item-name">Số điện thoại</div>
+                                            <div class="kyc-item-sub" id="kycPhoneSub">0905 123 456</div>
+                                        </div>
+                                    </div>
+                                    <div id="kycPhoneStatus">
+                                        <span class="verified-pill">✓ Đã xác minh</span>
+                                    </div>
+                                </div>
+
+                                <div class="kyc-item">
+                                    <div class="kyc-item-left">
+                                        <span class="material-symbols-outlined icon">mail</span>
+                                        <div>
+                                            <div class="kyc-item-name">Địa chỉ Email</div>
+                                            <div class="kyc-item-sub" id="kycEmailSub">an@gmail.com</div>
+                                        </div>
+                                    </div>
+                                    <div id="kycEmailStatus">
+                                        <span class="verified-pill">✓ Đã xác minh</span>
+                                    </div>
+                                </div>
+
+                                <div class="kyc-item">
+                                    <div class="kyc-item-left">
+                                        <span class="material-symbols-outlined icon">badge</span>
+                                        <div>
+                                            <div class="kyc-item-name">CCCD / CMND</div>
+                                            <div class="kyc-item-sub" id="kycCccdSub">048092001234</div>
+                                        </div>
+                                    </div>
+                                    <div id="kycCccdStatus">
+                                        <span class="verified-pill">✓ Đã xác thực KYC</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Ghi chú nội bộ Quản trị viên -->
+                        <div class="profile-card">
+                            <div class="card-title-bar">
+                                <h3>
+                                    <span class="material-symbols-outlined">notes</span>
+                                    Ghi Chú Quản Trị Viên (Admin)
+                                </h3>
+                            </div>
+                            <div class="form-row-full">
+                                <label class="form-field-label">Ghi chú lưu hành nội bộ:</label>
+                                <textarea id="editAdminNotes" class="form-field-control" rows="4" placeholder="Ghi chú về lịch sử đặt phòng, độ tin cậy, thỏa thuận đối tác..."></textarea>
+                                <small style="font-size: 11.5px; color: var(--text-muted); display: block; margin-top: 4px;">* Chỉ Admin mới nhìn thấy ghi chú này.</small>
+                            </div>
+                        </div>
+
+                    </aside>
+
+                    <!-- CỘT PHẢI: FORM CHỈNH SỬA CHI TIẾT (Giống Trang Cá Nhân) -->
+                    <section class="edit-right-column">
+
+                        <!-- KHỐI 1: THÔNG TIN CÁ NHÂN CƠ BẢN -->
+                        <div class="profile-card">
+                            <div class="card-title-bar">
+                                <h3>
+                                    <span class="material-symbols-outlined">person</span>
+                                    1. Thông Tin Cá Nhân Cơ Bản
+                                </h3>
+                                <span style="font-size: 12px; color: var(--text-muted);">* Dữ liệu định danh cá nhân</span>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div>
+                                    <label class="form-field-label">Họ và Tên <span class="required">*</span></label>
+                                    <input type="text" id="editFullName" class="form-field-control" placeholder="Ví dụ: Lê Hoàng Mai Chi">
+                                </div>
+
+                                <div>
+                                    <label class="form-field-label">Nickname / Tên hiển thị</label>
+                                    <input type="text" id="editNickname" class="form-field-control" placeholder="Ví dụ: Mai Chi Homestay">
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div>
+                                    <label class="form-field-label">Số CCCD / CMND (12 chữ số) <span class="required">*</span></label>
+                                    <input type="text" id="editCccd" class="form-field-control" placeholder="Nhập 12 số CCCD" maxlength="12">
+                                </div>
+
+                                <div>
+                                    <label class="form-field-label">Quốc tịch</label>
+                                    <select id="editNationality" class="form-field-control">
+                                        <option value="Việt Nam" selected>🇻🇳 Việt Nam</option>
+                                        <option value="Anh Quốc">🇬🇧 Anh Quốc</option>
+                                        <option value="Hoa Kỳ">🇺🇸 Hoa Kỳ</option>
+                                        <option value="Pháp">🇫🇷 Pháp</option>
+                                        <option value="Nhật Bản">🇯🇵 Nhật Bản</option>
+                                        <option value="Hàn Quốc">🇰🇷 Hàn Quốc</option>
+                                        <option value="Khác">🌐 Quốc tế khác</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <!-- Ngày sinh (3 ô dropdown) -->
+                                <div>
+                                    <label class="form-field-label">Ngày sinh</label>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 8px;">
+                                        <select id="editDobDay" class="form-field-control">
+                                            <!-- JS sinh từ 1 - 31 -->
+                                        </select>
+                                        <select id="editDobMonth" class="form-field-control">
+                                            <!-- JS sinh từ Tháng 01 - 12 -->
+                                        </select>
+                                        <select id="editDobYear" class="form-field-control">
+                                            <!-- JS sinh từ 1950 - 2010 -->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Giới tính -->
+                                <div>
+                                    <label class="form-field-label">Giới tính</label>
+                                    <div class="gender-radio-group">
+                                        <label class="gender-radio-label">
+                                            <input type="radio" name="editGender" value="nam"> Nam
+                                        </label>
+                                        <label class="gender-radio-label">
+                                            <input type="radio" name="editGender" value="nu"> Nữ
+                                        </label>
+                                        <label class="gender-radio-label">
+                                            <input type="radio" name="editGender" value="khac"> Khác
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row-full" style="margin-top: 6px;">
+                                <label class="form-field-label">Đường dẫn ảnh đại diện (Avatar URL)</label>
+                                <input type="text" id="editAvatarUrl" class="form-field-control" placeholder="https://images.unsplash.com/photo-..." onchange="handleAvatarUrlChange()">
+                            </div>
+                        </div>
+
+                        <!-- KHỐI 2: ĐỊA CHỈ LIÊN HỆ & CƯ TRÚ -->
+                        <div class="profile-card">
+                            <div class="card-title-bar">
+                                <h3>
+                                    <span class="material-symbols-outlined">home_pin</span>
+                                    2. Địa Chỉ Cư Trú & Thường Trú
+                                </h3>
+                                <span style="font-size: 12px; color: var(--text-muted);">Địa chỉ đăng ký</span>
+                            </div>
+
+                            <div class="form-row-full">
+                                <label class="form-field-label">Số nhà, Tên đường / Thôn bản</label>
+                                <input type="text" id="editStreet" class="form-field-control" placeholder="Ví dụ: 123 Đường Lê Lợi, Bản Lác...">
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div>
+                                    <label class="form-field-label">Tỉnh / Thành phố</label>
+                                    <select id="editProvince" class="form-field-control" onchange="handleProvinceChange()">
+                                        <option value="">-- Chọn Tỉnh / Thành phố --</option>
+                                        <option value="Thành phố Đà Nẵng">Thành phố Đà Nẵng</option>
+                                        <option value="Thành phố Hà Nội">Thành phố Hà Nội</option>
+                                        <option value="Thành phố Hồ Chí Minh">Thành phố Hồ Chí Minh</option>
+                                        <option value="Tỉnh Lâm Đồng">Tỉnh Lâm Đồng (Đà Lạt)</option>
+                                        <option value="Tỉnh Lào Cai">Tỉnh Lào Cai (Sa Pa)</option>
+                                        <option value="Tỉnh Hòa Bình">Tỉnh Hòa Bình (Mai Châu)</option>
+                                        <option value="Tỉnh Hà Giang">Tỉnh Hà Giang</option>
+                                        <option value="Tỉnh Quảng Nam">Tỉnh Quảng Nam (Hội An)</option>
+                                        <option value="Tỉnh Thừa Thiên Huế">Tỉnh Thừa Thiên Huế</option>
+                                        <option value="Tỉnh Ninh Bình">Tỉnh Ninh Bình</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="form-field-label">Phường / Xã / Thị trấn</label>
+                                    <input type="text" id="editWard" class="form-field-control" placeholder="Ví dụ: Phường Hải Châu 1, Xã Chiềng Châu...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KHỐI 3: THÔNG TIN LIÊN HỆ & XÁC MINH SĐT / EMAIL -->
+                        <div class="profile-card">
+                            <div class="card-title-bar">
+                                <h3>
+                                    <span class="material-symbols-outlined">contact_phone</span>
+                                    3. Thông Tin Liên Hệ & Trạng Thái Xác Minh
+                                </h3>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div>
+                                    <label class="form-field-label">Địa chỉ Email <span class="required">*</span></label>
+                                    <input type="email" id="editEmail" class="form-field-control" placeholder="nguyen@example.com">
+                                    <div style="margin-top: 8px; display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" id="editEmailVerified" style="accent-color: var(--primary-color); width: 16px; height: 16px;">
+                                        <label for="editEmailVerified" style="font-size: 13px; font-weight: 600; color: #166534; cursor: pointer;">Đã xác minh địa chỉ Email</label>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="form-field-label">Số điện thoại <span class="required">*</span></label>
+                                    <input type="text" id="editPhone" class="form-field-control" placeholder="0905 123 456">
+                                    <div style="margin-top: 8px; display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" id="editPhoneVerified" style="accent-color: var(--primary-color); width: 16px; height: 16px;">
+                                        <label for="editPhoneVerified" style="font-size: 13px; font-weight: 600; color: #166534; cursor: pointer;">Đã xác minh Số điện thoại</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row-full" style="margin-top: 10px;">
+                                <label class="form-field-label">Trạng thái xác thực KYC tổng quan:</label>
+                                <select id="editKycStatus" class="form-field-control">
+                                    <option value="verified">✓ Đã xác minh đầy đủ (Verified KYC)</option>
+                                    <option value="pending">⏳ Chờ duyệt hồ sơ CCCD / ĐKKD (Pending)</option>
+                                    <option value="unverified">⚠️ Chưa xác thực (Unverified)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- KHỐI 4: THUẾ & ĐĂNG KÝ KINH DOANH (DÀNH CHO CHỦ HOMESTAY / DOANH NGHIỆP) -->
+                        <div class="profile-card">
+                            <div class="card-title-bar">
+                                <h3>
+                                    <span class="material-symbols-outlined">receipt_long</span>
+                                    4. Pháp Lý, Thuế & Đăng Ký Kinh Doanh
+                                </h3>
+                                <span style="font-size: 12px; color: #15803D; font-weight: 700;">Hồ sơ đối tác Homestay</span>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div>
+                                    <label class="form-field-label">Mã số thuế (MST Cá nhân / Doanh nghiệp)</label>
+                                    <input type="text" id="editTaxCode" class="form-field-control" placeholder="Ví dụ: 0312345678">
+                                </div>
+
+                                <div>
+                                    <label class="form-field-label">Số Giấy phép ĐKKD</label>
+                                    <input type="text" id="editBizCode" class="form-field-control" placeholder="Ví dụ: 41A8012345">
+                                </div>
+                            </div>
+
+                            <div class="form-row-full">
+                                <label class="form-field-label">Danh sách Homestay trực thuộc quyền quản lý:</label>
+                                <input type="text" id="editHomestaysInput" class="form-field-control" placeholder="Nhập tên các homestay, phân cách bởi dấu phẩy">
+                                <div class="homestay-chip-list" id="editHomestayChipList">
+                                    <!-- Render chip động -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KHỐI 5: PHÂN QUYỀN HỆ THỐNG & TRẠNG THÁI TÀI KHOẢN (ADMIN CONTROL) -->
+                        <div class="profile-card">
+                            <div class="card-title-bar">
+                                <h3>
+                                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                                    5. Phân Quyền Quản Trị & Trạng Thái Hệ Thống
+                                </h3>
+                                <span style="font-size: 12px; color: #DC2626; font-weight: 700;">Dành riêng Quản trị viên</span>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div>
+                                    <label class="form-field-label">Vai trò tài khoản <span class="required">*</span></label>
+                                    <select id="editRoleSelect" class="form-field-control" onchange="handleRoleChange()">
+                                        <option value="guest">Khách lưu trú (Guest)</option>
+                                        <option value="host">Chủ Homestay (Host Owner)</option>
+                                        <option value="admin">Quản trị viên Hệ thống (System Admin)</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="form-field-label">Cấp bậc / Phân quyền chức năng</label>
+                                    <input type="text" id="editPermission" class="form-field-control" placeholder="Đối Tác Kinh Doanh">
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div>
+                                    <label class="form-field-label">Trạng thái tài khoản <span class="required">*</span></label>
+                                    <select id="editStatusSelect" class="form-field-control" onchange="handleStatusChange()">
+                                        <option value="active">Đang hoạt động bình thường (Active)</option>
+                                        <option value="blocked">Khóa tài khoản (Blocked / Suspended)</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="form-field-label">Huy hiệu thành viên</label>
+                                    <input type="text" id="editMemberTier" class="form-field-control" placeholder="Thành viên thân thiết, Host Tiêu Biểu...">
+                                </div>
+                            </div>
+
+                            <div class="form-row-full" id="lockReasonGroup" style="display: none;">
+                                <label class="form-field-label" style="color: #DC2626;">Lý do khóa tài khoản <span class="required">*</span></label>
+                                <input type="text" id="editLockReason" class="form-field-control" style="border-color: #F87171; background: #FEF2F2;" placeholder="Ví dụ: Spammer / Đặt phòng ảo không đến (Vĩnh viễn)">
+                            </div>
+                        </div>
+
+                        <!-- 6. Sticky Save Bar -->
+                        <div class="sticky-save-bar">
+                            <div class="info-text">
+                                <span class="material-symbols-outlined" style="color: var(--primary-color);">info</span>
+                                <span>Mọi thay đổi sẽ được cập nhật ngay lập tức vào cơ sở dữ liệu hệ thống YÊN.</span>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <a href="account_management.html" class="btn-admin-cancel" style="text-decoration: none;">Hủy bỏ</a>
+                                <button type="button" class="btn-admin-primary" onclick="saveUserEditForm()">
+                                    <span class="material-symbols-outlined">save</span>
+                                    <span>Lưu Thay Đổi</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Toast Thông Báo -->
+<div class="admin-toast" id="adminToast">
+    <span class="material-symbols-outlined" style="font-size: 22px;">check_circle</span>
+    <span id="toastMsg">Cập nhật thông tin tài khoản thành công!</span>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const profileBtn = document.getElementById('adminProfileBtn');
+        const profileDropdown = document.getElementById('adminProfileDropdown');
+
+        if (profileBtn && profileDropdown) {
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                profileBtn.classList.toggle('active');
+                profileDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                    profileBtn.classList.remove('active');
+                    profileDropdown.classList.remove('show');
+                }
+            });
+        }
+    });
+</script>
+<script src="../JS/account_edit.js"></script>
+</body>
+</html>

@@ -24,6 +24,13 @@
 
 .guest-service-card {
     animation: fadeInScale 0.3s ease-out;
+    min-height: 350px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.guest-service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(9, 73, 44, .13);
 }
 
 /* 3. Giới hạn 2 dòng cho đoạn mô tả dịch vụ để layout luôn đều đặn */
@@ -37,4 +44,17 @@
 /* Hiệu ứng ấn nút đặt hàng */
 .book-btn:active {
     transform: scale(0.95);
+}
+
+/* Material Design 3 details */
+.guest-service-card img { transition: transform .45s ease; }
+.guest-service-card:hover img { transform: scale(1.06); }
+.guest-tab-btn { border: 1px solid transparent; }
+.guest-tab-btn:not(.active) { border-color: #dce5de; }
+#guest-booking-list { box-shadow: 0 4px 18px rgba(9, 73, 44, .06); }
+.cancel-booking { border-radius: 8px; padding: 7px 10px; }
+.cancel-booking:hover { background: #ffdad6; }
+@media (max-width: 640px) {
+    main { padding-top: 1.25rem !important; }
+    .guest-service-card { min-height: auto; }
 }

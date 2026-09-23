@@ -16,7 +16,7 @@
 <body class="bg-surface font-body-md text-on-surface antialiased pb-20">
     <div id="header-placeholder"></div>
     <!-- Main Content cho Khách (Guest View) -->
-    <main class="max-w-3xl mx-auto pt-4 px-4 min-h-screen">
+    <main class="max-w-6xl mx-auto pt-8 px-4 min-h-screen">
 
         <!-- Lời chào & Nhiệm vụ / Lịch trình sắp tới -->
         <section class="mb-8">
@@ -70,7 +70,7 @@
             </div>
 
             <!-- Danh sách Dịch vụ (Grid) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div id="guest-services-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
 
                 <!-- Card 1: Ẩm thực -->
                 <div class="guest-service-card flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-surface-variant" data-category="food">
@@ -149,6 +149,10 @@
 
             </div>
         </section>
+        <section class="mt-10 mb-6">
+            <div class="flex items-center justify-between mb-3"><h2 class="font-headline-sm text-xl text-primary font-bold">Yêu cầu dịch vụ của bạn</h2><span id="booking-count" class="text-xs px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container">0 yêu cầu</span></div>
+            <div id="guest-booking-list" class="rounded-xl border border-surface-variant bg-surface-container-lowest divide-y"></div>
+        </section>
     </main>
 
     <!-- Toast Notification (Hiển thị khi khách bấm Đặt ngay) -->
@@ -157,10 +161,17 @@
         <span id="toast-message">Đã thêm vào giỏ hàng</span>
     </div>
 
+    <div id="booking-modal" class="hidden fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm p-4 items-center justify-center">
+        <div class="w-full max-w-md rounded-xl bg-white shadow-xl overflow-hidden">
+            <div class="flex items-center justify-between p-4 border-b"><h2 class="font-bold text-lg">Đặt dịch vụ</h2><button class="close-booking text-2xl" aria-label="Đóng">×</button></div>
+            <form id="booking-form" class="p-4 space-y-4"><input id="booking-service-id" type="hidden"><p id="booking-service-name" class="font-semibold text-primary"></p><label class="block text-sm font-medium">Ngày sử dụng<input id="booking-date" type="date" required class="mt-1 w-full rounded-lg border p-2"></label><label class="block text-sm font-medium">Số lượng<input id="booking-quantity" type="number" value="1" min="1" required class="mt-1 w-full rounded-lg border p-2"></label><label class="block text-sm font-medium">Ghi chú<textarea id="booking-note" rows="2" class="mt-1 w-full rounded-lg border p-2" placeholder="Yêu cầu của bạn (nếu có)"></textarea></label><div class="flex justify-end gap-2"><button type="button" class="close-booking px-4 py-2">Hủy</button><button class="px-4 py-2 bg-secondary text-white rounded-lg font-semibold">Xác nhận đặt</button></div></form>
+        </div>
+    </div>
+
     <!-- Script riêng biệt -->
-    <script src="guestExperience.js"></script>
+    <script src="../JS/userDb.js"></script>
+    <script src="../JS/service.js"></script>
     <div id="footer-placeholder"></div>
-    <script src="../JS/searchResult.js"></script>
     <script src="../JS/homepage.js"></script>
 </body>
 

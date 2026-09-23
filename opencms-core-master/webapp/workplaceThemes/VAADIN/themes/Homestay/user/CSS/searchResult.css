@@ -73,6 +73,66 @@ body {
     background-color: #f5f5f5;
 }
 
+.btn-sort select {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    outline: 0;
+}
+
+.hotel-list.compact-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.hotel-list.compact-view .hotel-card { flex-direction: column; margin: 0; }
+.hotel-list.compact-view .hotel-image { width: 100%; height: 180px; }
+.hotel-list.compact-view .hotel-info { flex-direction: column; }
+.hotel-list.compact-view .info-action { align-items: flex-start; gap: 10px; }
+.hotel-list.compact-view .rating-text, .hotel-list.compact-view .location-score { text-align: left; }
+
+#result-toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    max-width: 330px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: #123b2b;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: .2s ease;
+    z-index: 100;
+}
+#result-toast.show { transform: translateY(0); opacity: 1; }
+
+.hotel-image-placeholder { height: 100%; min-height: 220px; display: grid; place-items: center; background: #e7f0e8; color: #176b42; }
+.hotel-image-placeholder .material-symbols-outlined { font-size: 54px; }
+.empty-results { border: 1px dashed #b9cbbc; border-radius: 16px; padding: 56px 24px; text-align: center; color: #52645a; background: #f8fbf8; }
+.empty-results .material-symbols-outlined { font-size: 52px; color: #176b42; margin-bottom: 10px; }
+.empty-results h3 { color: #123d2a; font-size: 18px; margin-bottom: 8px; }
+
+/* Material Design 3 visual layer */
+main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+.search-results-container { max-width: 1000px; margin: auto; padding: 28px; border-radius: 24px; box-shadow: 0 12px 36px rgba(23, 65, 49, .09); }
+.results-header h2 { font-size: 26px; color: #123d2a; }
+.view-toggle { border-color: #cbd6ce; border-radius: 12px; background: #f3f7f3; }
+.btn-view.active { background: #176b42; color: #fff; border-radius: 10px; }
+.btn-sort { border-color: #cbd6ce; border-radius: 12px; background: #f8fbf8; }
+.hotel-card { border-color: #e0e8e1; border-radius: 16px; margin-bottom: 18px; }
+.hotel-card:focus-within { outline: 3px solid rgba(27,109,36,.2); }
+.hotel-title, .hotel-location a, .location-score { color: #176b42; }
+.rating-score, .btn-primary.mui-btn { background-color: #176b42; }
+.btn-primary.mui-btn:hover { background-color: #0e5130; }
+
 /* Material UI Box Shadow & Card Design */
 .mui-shadow {
     box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),

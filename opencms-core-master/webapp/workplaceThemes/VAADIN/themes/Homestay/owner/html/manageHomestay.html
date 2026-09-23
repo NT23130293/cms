@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="../css/manageMission.css">
     <!-- Script nạp Sidebar & Header động -->
     <script src="../js/sidebarJs.js"></script>
+    <script src="../js/manageHomestayJs.js"></script>
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased">
 
@@ -49,38 +50,7 @@
     <main class="w-full pt-16 bg-surface px-space-lg py-space-lg min-h-screen">
         <div class="flex flex-col w-full">
 
-            <!-- Top Command & Action Bar -->
-            <div class="flex flex-col gap-space-md mb-space-xl">
-                <div class="flex flex-wrap items-center justify-between gap-y-space-xs">
-                    <div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
-                        <span class="text-secondary font-label-lg text-label-lg">Hệ thống</span>
-                        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-                        <span>Mục 3.2 • Quản lý Homestay &amp; Chuỗi cơ sở</span>
-                        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-                        <span class="text-on-surface font-semibold">Chuỗi Homestay Nguyễn Văn An</span>
-                    </div>
-                    <div class="flex items-center gap-space-xs bg-secondary-container/40 text-on-secondary-container px-space-sm py-0.5 rounded-full font-label-sm text-label-sm">
-                        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-                        <span>Hệ sinh thái: Tây Bắc Retreats • 4 Điểm đến</span>
-                    </div>
-                </div>
 
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
-                    <div>
-                        <h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">Danh sách Homestay của tôi <span class="font-headline-md text-headline-md text-on-surface-variant font-normal">(04 cơ sở)</span></h1>
-                    </div>
-                    <div class="flex items-center gap-space-sm shrink-0">
-                        <button onclick="openModal('reportModal')" class="flex items-center gap-space-xs bg-surface-container-lowest text-primary-container px-space-md py-2.5 rounded-lg font-label-lg text-label-lg hover:bg-surface-container-high transition-all shadow-sm" type="button">
-                            <span class="material-symbols-outlined text-[18px]">query_stats</span>
-                            <span>Báo cáo tổng hợp chuỗi</span>
-                        </button>
-                        <button onclick="openModal('addHomestayModal')" class="flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2.5 rounded-lg font-label-lg text-label-lg shadow-md hover:shadow-lg transition-all" style="background-color: rgb(17, 94, 67);" type="button">
-                            <span class="material-symbols-outlined text-[20px]">add_business</span>
-                            <span>+ Thêm Homestay mới</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
 
             <!-- KPI Fleet Summary Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter mb-space-xl">
@@ -151,9 +121,7 @@
                 </div>
             </div>
 
-            <!-- Danh sách Homestay -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter mb-space-xl">
-                <!-- PROPERTY 1 -->
                 <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                     <div>
                         <div class="relative h-56 w-full overflow-hidden bg-surface-dim">
@@ -191,8 +159,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- PROPERTY 2: MỘC RETREAT PÙ LUÔNG -->
                 <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                     <div>
                         <div class="relative h-56 w-full overflow-hidden bg-surface-dim">
@@ -233,16 +199,14 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- PROPERTY 3: BẢN MỘC SAPA ECOLODGE -->
-                <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group opacity-95">
+                <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group opacity-90" data-locked="1" data-lock-type="Bảo trì / nâng cấp cơ sở" data-lock-note="Nâng cấp hệ thống sưởi mùa đông" data-lock-until="2026-11-01">
                     <div>
                         <div class="relative h-56 w-full overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDERh_gPlOt5_9heNTjgHPPaOckJ6ze0300GjAY1eXRwuAvnGBI85cEpscqL3hrk1KQUXbvchYGtxpt4YqKDdOenfYbw8-R9LtdUq2nPYBCGy1OKB3LbJzP2QDfGWkgEgzPaAt8kfWSYCeWjmTwoF-JNElxTBtZvqH3eL8Da3QU-mXOO0wtTt5jhBqeGhA4xQkoepUUYG2-CW9gcntgu7YbBehCqMaPEGZeSYDQXSrLqvT_luFruAU" alt="Bản Mộc Sapa Ecolodge">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20"></div>
                             <div class="absolute top-space-sm left-space-sm right-space-sm flex items-center justify-between">
-                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm shadow-sm backdrop-blur-sm font-semibold">
-                                    <span class="material-symbols-outlined text-[14px] text-tertiary-container">construction</span> Đang nâng cấp mùa đông
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error text-on-error font-label-sm text-label-sm shadow-sm backdrop-blur-sm font-semibold">
+                                    <span class="material-symbols-outlined text-[14px]">lock</span> Ngưng hoạt động
                                 </span>
                             </div>
                             <div class="absolute bottom-space-sm left-space-sm right-space-sm text-on-primary">
@@ -255,8 +219,8 @@
                         <div class="p-space-md">
                             <div class="grid grid-cols-3 gap-space-xs bg-surface-container-low rounded-lg p-space-sm mb-space-md">
                                 <div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant">Doanh thu T09</span><span class="font-headline-sm text-headline-sm text-on-surface-variant mt-0.5">0 đ</span></div>
-                                <div class="flex flex-col text-left pl-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant">Tiến độ thi công</span><span class="font-headline-sm text-headline-sm text-secondary mt-0.5">90%</span></div>
-                                <div class="flex flex-col text-left pl-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant">Đặt cọc mùa đông</span><span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">16 đơn</span></div>
+                                <div class="flex flex-col text-left pl-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant">Trạng thái</span><span class="font-headline-sm text-headline-sm text-error mt-0.5">Tạm khóa</span></div>
+                                <div class="flex flex-col text-left pl-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant">Lịch hẹn mở</span><span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Tháng 11</span></div>
                             </div>
                         </div>
                     </div>
@@ -265,6 +229,11 @@
                             <span class="material-symbols-outlined text-[18px]">build</span> Quản lý tiến độ nâng cấp
                         </button>
                         <div class="flex items-center gap-space-xs">
+                            <!-- Nút Xem lý do khóa (chỉ xuất hiện khi homestay bị khóa) -->
+                            <button onclick="openLockReasonModal(this)" class="flex items-center gap-1 px-3 py-2 rounded-lg bg-error-container/40 text-error hover:bg-error-container transition-colors font-label-md text-label-md shadow-sm lock-reason-btn" type="button" title="Xem lý do khóa">
+                                <span class="material-symbols-outlined text-[18px]">info</span>
+                                <span>Lý do khóa</span>
+                            </button>
                             <button onclick="openEditHomestay(this)" class="flex items-center gap-1 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md shadow-sm" type="button" title="Chỉnh sửa thông tin">
                                 <span class="material-symbols-outlined text-[18px] text-outline">edit</span>
                                 <span>Chỉnh sửa</span>
@@ -275,16 +244,14 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- PROPERTY 4: NHÀ BÊN SUỐI MỘC CHÂU -->
                 <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
                     <div>
                         <div class="relative h-56 w-full overflow-hidden bg-surface-dim">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_egshJIKTXnjUPIqqRx6ADSxcVFL-LoCf8ElKI3eAFRLYoNEnEsLNhUiDhYfBxCe2GLIDX5VndszRBOhvMJO4URv5hrpPpVMp6pyoZviTSCpG9b8DxXLgICoJ13KygZ6-JViV1PIRjpLfM8Zf_-wAYMVNSBin0JQREbZzLQDGAPpWH5IEpqqLYT8NQfLi58Fu4S4s-442vGBhFE97dIfGeZ8KVH1aOqKYXpb9HwOul9ZG49gAAwU" alt="Nhà Bên Suối Mộc Châu">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
                             <div class="absolute top-space-sm left-space-sm right-space-sm flex items-center justify-between">
-                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm shadow-sm backdrop-blur-sm font-semibold">
-                                    <span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span> Chờ sàn phê duyệt hồ sơ
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm shadow-sm backdrop-blur-sm">
+                                    <span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span> Đang hoạt động
                                 </span>
                             </div>
                             <div class="absolute bottom-space-sm left-space-sm right-space-sm text-on-primary">
@@ -295,22 +262,16 @@
                             </div>
                         </div>
                         <div class="p-space-md">
-                            <div class="bg-surface-container-low p-space-sm rounded-lg mb-space-md">
-                                <div class="flex items-center justify-between mb-1.5">
-                                    <span class="font-label-sm text-label-sm text-on-surface font-semibold flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-[15px] text-secondary">verified_user</span> Xác thực hồ sơ pháp lý du lịch
-                                    </span>
-                                    <span class="font-label-sm text-label-sm text-secondary font-bold">Bước 3/4 (75%)</span>
-                                </div>
-                                <div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
-                                    <div class="h-full bg-secondary w-3/4 rounded-full"></div>
-                                </div>
+                            <div class="grid grid-cols-3 gap-space-xs bg-surface-container-low rounded-lg p-space-sm mb-space-md">
+                                <div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant">Doanh thu T09</span><span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">94.0M đ</span></div>
+                                <div class="flex flex-col text-left pl-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant">Tỷ lệ lấp đầy</span><span class="font-headline-sm text-headline-sm text-secondary mt-0.5">76.0%</span></div>
+                                <div class="flex flex-col text-left pl-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant">Booking tuần</span><span class="font-headline-sm text-headline-sm text-primary-container mt-0.5">19 đơn</span></div>
                             </div>
                         </div>
                     </div>
                     <div class="px-space-md py-space-sm bg-surface-container-low/60 flex items-center justify-between gap-space-sm">
                         <button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors shadow-sm" type="button">
-                            <span class="material-symbols-outlined text-[18px]">edit_document</span> Bổ sung hồ sơ
+                            <span class="material-symbols-outlined text-[18px]">sync_alt</span> Chuyển sang cơ sở này
                         </button>
                         <div class="flex items-center gap-space-xs">
                             <button onclick="openEditHomestay(this)" class="flex items-center gap-1 px-3 py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md shadow-sm" type="button" title="Chỉnh sửa thông tin">
@@ -334,7 +295,7 @@
                             Quản lý người chịu trách nhiệm vận hành tại chỗ, lễ tân tiếp đón và kiểm soát quyền truy cập tài chính của từng homestay.
                         </p>
                     </div>
-                    <button class="flex items-center gap-1 text-secondary font-label-lg text-label-lg hover:underline" type="button">
+                    <button onclick="openAddStaff()" class="flex items-center gap-1 text-secondary font-label-lg text-label-lg hover:underline" type="button">
                         <span>+ Phân quyền nhân viên mới</span>
                         <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
                     </button>
@@ -350,8 +311,8 @@
                             <th class="py-2.5 px-space-md text-right rounded-r-lg">Thao tác</th>
                         </tr>
                         </thead>
-                        <tbody class="divide-y-0 font-body-md text-body-md text-on-surface">
-                        <tr class="hover:bg-surface-container-low/50 transition-colors">
+                        <tbody id="staffTableBody" class="divide-y-0 font-body-md text-body-md text-on-surface">
+                        <tr class="hover:bg-surface-container-low/50 transition-colors" data-homestay="Nhà Sàn Mộc - Mai Châu">
                             <td class="py-space-md px-space-md font-semibold">Nhà Sàn Mộc (Mai Châu)</td>
                             <td class="py-space-md px-space-md">Hà Thị Mai (0984.***.219)</td>
                             <td class="py-space-md px-space-md"><span class="px-2 py-0.5 rounded bg-surface-container font-label-sm">3 Nhân sự</span></td>
@@ -371,7 +332,7 @@
 
 <!-- 1. Popup Thêm Homestay Mới -->
 <div id="addHomestayModal" class="mission-modal" hidden>
-    <div class="mission-modal-content" role="dialog" aria-modal="true">
+    <div class="mission-modal-content" role="dialog" aria-modal="true" style="max-width: 680px; max-height: 90vh; overflow-y: auto;">
         <div class="mission-modal-header">
             <div>
                 <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Khởi tạo cơ sở Homestay mới</h2>
@@ -379,26 +340,87 @@
             </div>
             <button type="button" class="mission-modal-close" onclick="closeModal('addHomestayModal')"><span class="material-symbols-outlined">close</span></button>
         </div>
-        <form class="mission-form" onsubmit="event.preventDefault(); alert('Đã khởi tạo cơ sở mới thành công!'); closeModal('addHomestayModal');">
+        <form id="addHomestayForm" class="mission-form" onsubmit="submitAddHomestay(event)">
             <div class="mission-form-grid">
+                <!-- Tên cơ sở -->
                 <div class="mission-form-group full">
-                    <label class="mission-form-label">Tên cơ sở Homestay</label>
-                    <input class="mission-form-input" type="text" required placeholder="Ví dụ: Mộc Bản Lác...">
+                    <label class="mission-form-label">Tên cơ sở Homestay <span class="text-error">*</span></label>
+                    <input id="newHomestayName" class="mission-form-input" type="text" required placeholder="Ví dụ: Mộc Bản Lác...">
                 </div>
+
+                <!-- Tỉnh / Thành phố (Mô hình mới 34 tỉnh) -->
                 <div class="mission-form-group">
-                    <label class="mission-form-label">Khu vực / Tỉnh thành</label>
-                    <select class="mission-form-select">
-                        <option>Hòa Bình (Mai Châu)</option>
-                        <option>Thanh Hóa (Pù Luông)</option>
-                        <option>Lào Cai (Sa Pa)</option>
-                        <option>Sơn La (Mộc Châu)</option>
+                    <label class="mission-form-label">Tỉnh / Thành phố <span class="text-error">*</span></label>
+                    <select id="newProvinceSelect" class="mission-form-select" onchange="loadNewWardsByProvince(this.value)" required>
+                        <option value="">-- Chọn Tỉnh/Thành --</option>
                     </select>
                 </div>
+
+                <!-- Phường / Xã -->
                 <div class="mission-form-group">
-                    <label class="mission-form-label">Quy mô phòng ban đầu</label>
-                    <input class="mission-form-input" type="number" min="1" value="8" required>
+                    <label class="mission-form-label">Phường / Xã <span class="text-error">*</span></label>
+                    <select id="newWardSelect" class="mission-form-select" required>
+                        <option value="">-- Chọn Phường/Xã --</option>
+                    </select>
+                </div>
+
+                <!-- Địa chỉ cụ thể -->
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Địa chỉ cụ thể (Thôn/Bản, Số nhà) <span class="text-error">*</span></label>
+                    <input id="newHomestaySpecificAddress" class="mission-form-input" type="text" required placeholder="Ví dụ: Bản Lác 2, số nhà 15">
+                </div>
+
+                <!-- Quy mô phòng ban đầu -->
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Quy mô phòng ban đầu <span class="text-error">*</span></label>
+                    <input id="newHomestayRooms" class="mission-form-input" type="number" min="1" value="8" required>
+                </div>
+
+                <!-- Hình ảnh homestay -->
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Hình ảnh cơ sở (Có thể chọn nhiều ảnh)</label>
+                    <input id="newHomestayImagesInput" type="file" accept="image/*" multiple
+                           class="mission-form-input" onchange="handleAddHomestayImages(this)">
+                    <div id="newHomestayImagePreview" class="grid grid-cols-4 gap-2 mt-2"></div>
+                </div>
+
+                <!-- Trải nghiệm đặc biệt & Dịch vụ đi kèm -->
+                <div class="mission-form-group full">
+                    <label class="mission-form-label mb-1">Trải nghiệm đặc biệt &amp; Dịch vụ đi kèm</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 bg-surface-container-low p-3 rounded-lg mb-2">
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="homestayService" value="WiFi miễn phí"> WiFi tốc độ cao
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="homestayService" value="Bể bơi vô cực"> Bể bơi vô cực
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="homestayService" value="Bữa sáng miễn phí"> Bữa sáng miễn phí
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="homestayService" value="Khu vực BBQ"> Khu vực BBQ ngoài trời
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="homestayService" value="Đốt lửa trại"> Đốt lửa trại / Giao lưu
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="homestayService" value="Thuê xe máy"> Cho thuê xe máy
+                        </label>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <input id="customServiceInput" class="mission-form-input" type="text" placeholder="Nhập trải nghiệm đặc biệt (VD: Trekking rừng, hái chè...)">
+                        <button type="button" onclick="addCustomService()" class="px-4 py-2 bg-surface-container-high hover:bg-surface-dim text-on-surface rounded-lg font-label-md text-label-md shrink-0 transition-colors">
+                            + Thêm trải nghiệm
+                        </button>
+                    </div>
+                    <div id="customServiceList" class="flex flex-wrap gap-1.5 mt-2"></div>
                 </div>
             </div>
+
+            <p id="addHomestayError" role="alert" hidden
+               class="mt-3 flex items-center gap-1.5 bg-error-container/60 text-error rounded-lg px-3 py-2 font-label-lg text-label-lg"></p>
+
             <div class="mission-modal-footer">
                 <button type="button" class="mission-btn mission-btn-cancel" onclick="closeModal('addHomestayModal')">Hủy</button>
                 <button type="submit" class="mission-btn mission-btn-save">Xác nhận tạo cơ sở</button>
@@ -459,29 +481,79 @@
 
 <!-- 4. Popup Chỉnh sửa thông tin Homestay -->
 <div id="editHomestayModal" class="mission-modal" hidden>
-    <div class="mission-modal-content" role="dialog" aria-modal="true" style="max-height:90vh;overflow-y:auto;">
+    <div class="mission-modal-content" role="dialog" aria-modal="true" style="max-width:720px;max-height:90vh;overflow-y:auto;">
         <div class="mission-modal-header">
             <div>
                 <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Chỉnh sửa thông tin cơ sở</h2>
-                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Cập nhật thông tin, hình ảnh và trạng thái hoạt động.</p>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Cập nhật thông tin, địa chỉ, hình ảnh và dịch vụ trải nghiệm.</p>
             </div>
             <button type="button" class="mission-modal-close" onclick="closeModal('editHomestayModal')"><span class="material-symbols-outlined">close</span></button>
         </div>
 
         <form id="editHomestayForm" class="mission-form" onsubmit="submitEditHomestay(event)">
             <div class="mission-form-grid">
+                <!-- Tên cơ sở -->
                 <div class="mission-form-group full">
-                    <label class="mission-form-label">Tên cơ sở Homestay</label>
+                    <label class="mission-form-label">Tên cơ sở Homestay <span class="text-error">*</span></label>
                     <input id="editHomestayName" class="mission-form-input" type="text" required>
                 </div>
 
-                <div class="mission-form-group full">
-                    <label class="mission-form-label">Địa chỉ</label>
-                    <input id="editHomestayAddress" class="mission-form-input" type="text" required
-                           placeholder="Thôn/bản, xã, huyện, tỉnh">
+                <!-- Tỉnh / Thành phố (34 Tỉnh mới) -->
+                <div class="mission-form-group">
+                    <label class="mission-form-label">Tỉnh / Thành phố <span class="text-error">*</span></label>
+                    <select id="editProvinceSelect" class="mission-form-select" onchange="loadEditWardsByProvince(this.value)" required>
+                        <option value="">-- Chọn Tỉnh/Thành --</option>
+                    </select>
                 </div>
 
-                <!-- Hình ảnh -->
+                <!-- Phường / Xã -->
+                <div class="mission-form-group">
+                    <label class="mission-form-label">Phường / Xã <span class="text-error">*</span></label>
+                    <select id="editWardSelect" class="mission-form-select" required>
+                        <option value="">-- Chọn Phường/Xã --</option>
+                    </select>
+                </div>
+
+                <!-- Địa chỉ cụ thể -->
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Địa chỉ cụ thể (Thôn/Bản, Số nhà) <span class="text-error">*</span></label>
+                    <input id="editSpecificAddress" class="mission-form-input" type="text" required placeholder="Ví dụ: Bản Lác 2, số nhà 15">
+                </div>
+
+                <!-- Dịch vụ & Trải nghiệm đặc biệt -->
+                <div class="mission-form-group full">
+                    <label class="mission-form-label mb-1">Dịch vụ & Trải nghiệm đặc biệt</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 bg-surface-container-low p-3 rounded-lg mb-2">
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="editHomestayService" value="WiFi miễn phí"> WiFi tốc độ cao
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="editHomestayService" value="Bể bơi vô cực"> Bể bơi vô cực
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="editHomestayService" value="Bữa sáng miễn phí"> Bữa sáng miễn phí
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="editHomestayService" value="Khu vực BBQ"> Khu vực BBQ ngoài trời
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="editHomestayService" value="Đốt lửa trại"> Đốt lửa trại / Giao lưu
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                            <input type="checkbox" name="editHomestayService" value="Thuê xe máy"> Cho thuê xe máy
+                        </label>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <input id="editCustomServiceInput" class="mission-form-input" type="text" placeholder="Thêm trải nghiệm độc quyền (VD: Trekking rừng, hái chè...)">
+                        <button type="button" onclick="addEditCustomService()" class="px-4 py-2 bg-surface-container-high hover:bg-surface-dim text-on-surface rounded-lg font-label-md text-label-md shrink-0 transition-colors">
+                            + Thêm
+                        </button>
+                    </div>
+                    <div id="editCustomServiceList" class="flex flex-wrap gap-1.5 mt-2"></div>
+                </div>
+
+                <!-- Hình ảnh cơ sở -->
                 <div class="mission-form-group full">
                     <label class="mission-form-label">Hình ảnh cơ sở</label>
                     <input id="editHomestayImages" type="file" accept="image/*" multiple
@@ -513,9 +585,6 @@
                                   placeholder="Ghi rõ chi tiết lý do khóa (tối thiểu 10 ký tự)..."></textarea>
                         <label class="mission-form-label">Khóa đến ngày (không bắt buộc)</label>
                         <input id="editLockUntil" class="mission-form-input" type="date">
-                        <p class="font-label-sm text-label-sm text-on-surface-variant">
-                            Lưu ý: khi khóa, cơ sở sẽ không hiển thị và không nhận booking mới. Các đơn đã đặt cần xử lý riêng.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -551,7 +620,118 @@
     </div>
 </div>
 
-<!-- Nạp file JavaScript quản lý riêng -->
-<script src="../js/manageHomestayJs.js"></script>
+<!-- 6. Popup Phân quyền nhân viên mới -->
+<div id="addStaffModal" class="mission-modal" hidden>
+    <div class="mission-modal-content" role="dialog" aria-modal="true" style="max-width:720px;max-height:90vh;overflow-y:auto;">
+        <div class="mission-modal-header">
+            <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Phân quyền nhân viên mới</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Tạo tài khoản, chọn cơ sở phụ trách và cấp quyền truy cập.</p>
+            </div>
+            <button type="button" class="mission-modal-close" onclick="closeModal('addStaffModal')"><span class="material-symbols-outlined">close</span></button>
+        </div>
+
+        <form id="addStaffForm" class="mission-form" onsubmit="submitAddStaff(event)">
+            <div class="mission-form-grid">
+                <!-- Thông tin nhân viên -->
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Họ và tên nhân viên <span class="text-error">*</span></label>
+                    <input id="staffName" class="mission-form-input" type="text" required placeholder="Ví dụ: Nguyễn Thị Lan">
+                </div>
+                <div class="mission-form-group">
+                    <label class="mission-form-label">Số điện thoại <span class="text-error">*</span></label>
+                    <input id="staffPhone" class="mission-form-input" type="tel" required placeholder="0984 123 219">
+                </div>
+                <div class="mission-form-group">
+                    <label class="mission-form-label">Email đăng nhập <span class="text-error">*</span></label>
+                    <input id="staffEmail" class="mission-form-input" type="email" required placeholder="lan.nguyen@example.com">
+                </div>
+
+                <!-- Chức vụ + mẫu phân quyền -->
+                <div class="mission-form-group">
+                    <label class="mission-form-label">Chức vụ</label>
+                    <select id="staffRole" class="mission-form-select" onchange="onStaffRoleChange(this)">
+                        <option value="manager">Quản lý cơ sở</option>
+                        <option value="receptionist" selected>Lễ tân</option>
+                        <option value="accountant">Kế toán thu chi</option>
+                        <option value="housekeeping">Buồng phòng / Tạp vụ</option>
+                    </select>
+                </div>
+                <div class="mission-form-group">
+                    <label class="mission-form-label">Mẫu phân quyền</label>
+                    <select id="staffPreset" class="mission-form-select" onchange="applyStaffPreset(this.value)"></select>
+                </div>
+
+                <!-- Cơ sở phụ trách -->
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Cơ sở phụ trách <span class="text-error">*</span></label>
+                    <div id="staffHomestayList" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+                </div>
+
+                <!-- Chi tiết quyền -->
+                <div class="mission-form-group full">
+                    <label class="mission-form-label">Chi tiết quyền truy cập</label>
+                    <div id="staffPermGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-2"></div>
+                    <p class="font-label-sm text-label-sm text-on-surface-variant">
+                        Chọn mẫu phân quyền để điền nhanh, sau đó bật/tắt từng quyền nếu cần. Quyền cao sẽ tự kèm quyền xem tương ứng.
+                    </p>
+                </div>
+
+                <!-- Lời mời -->
+                <div class="mission-form-group full">
+                    <label class="flex items-center gap-2 cursor-pointer font-body-md text-body-md">
+                        <input id="staffInvite" type="checkbox" checked>
+                        Gửi lời mời kích hoạt tài khoản qua email
+                    </label>
+                </div>
+            </div>
+
+            <p id="addStaffError" role="alert" hidden
+               class="mt-3 flex items-center gap-1.5 bg-error-container/60 text-error rounded-lg px-3 py-2 font-label-lg text-label-lg"></p>
+
+            <div class="mission-modal-footer">
+                <button type="button" class="mission-btn mission-btn-cancel" onclick="closeModal('addStaffModal')">Hủy</button>
+                <button type="submit" class="mission-btn mission-btn-save">Tạo &amp; phân quyền</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 7. Popup Xem Lý Do Khóa Homestay -->
+<div id="lockReasonModal" class="mission-modal" hidden>
+    <div class="mission-modal-content" role="dialog" aria-modal="true" style="max-width: 520px;">
+        <div class="mission-modal-header">
+            <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface font-bold flex items-center gap-2">
+                    Chi tiết lý do ngưng hoạt động
+                </h2>
+                <p id="lockModalHomestayName" class="font-body-sm text-body-sm text-on-surface-variant mt-1">Cơ sở: --</p>
+            </div>
+            <button type="button" class="mission-modal-close" onclick="closeModal('lockReasonModal')"><span class="material-symbols-outlined">close</span></button>
+        </div>
+
+        <div class="mission-form">
+            <div class="bg-error-container/30 p-space-md rounded-lg flex flex-col gap-space-sm border border-error/20">
+                <div class="mission-form-group full">
+                    <label class="mission-form-label text-on-surface-variant uppercase tracking-wider">Loại sự cố / Lý do:</label>
+                    <p id="lockModalType" class="font-headline-sm text-headline-sm text-on-surface mt-0.5">--</p>
+                </div>
+                <div class="mission-form-group full">
+                    <label class="mission-form-label text-on-surface-variant uppercase tracking-wider">Ghi chú chi tiết:</label>
+                    <p id="lockModalNote" class="font-body-md text-body-md text-on-surface mt-0.5 bg-surface-container-lowest p-3 rounded-lg border border-outline-variant">--</p>
+                </div>
+                <div class="mission-form-group full">
+                    <label class="mission-form-label text-on-surface-variant uppercase tracking-wider">Thời hạn khóa dự kiến:</label>
+                    <p id="lockModalUntil" class="font-body-md text-body-md text-on-surface font-semibold mt-0.5">--</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mission-modal-footer">
+            <button type="button" class="mission-btn mission-btn-cancel" onclick="closeModal('lockReasonModal')">Đóng</button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
