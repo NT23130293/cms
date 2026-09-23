@@ -1,247 +1,566 @@
 .th-footer {
-    background-color: #15803D; /* Màu nền chủ đạo theo yêu cầu */
+    background-color: #15803D;
     color: #f1f5f9;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    font-family: 'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
     font-size: 15px;
     line-height: 1.6;
+
     padding-top: 60px;
+
     box-sizing: border-box;
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 .th-footer * {
     box-sizing: border-box;
 }
 
-/* Khung bọc giới hạn chiều rộng 1240px, căn giữa */
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
 .th-footer-container {
     max-width: 1240px;
+
     margin: 0 auto;
+
     padding: 0 24px 48px 24px;
+
     display: grid;
-    grid-template-columns: 1.15fr 1.4fr 1.05fr 1.15fr; /* Tối ưu độ rộng cột 2 để các tiêu đề không bị rớt dòng */
+
+    grid-template-columns:
+        1.15fr
+        1.4fr
+        1.05fr
+        1.15fr;
+
     gap: 32px;
 }
 
-/* Cột 1: Thương hiệu */
+
+/* =========================================================
+   CỘT 1 - BRAND
+========================================================= */
+
 .th-col-brand .th-brand-logo {
     display: flex;
+
     align-items: center;
+
     gap: 12px;
+
     margin-bottom: 16px;
 }
+
 
 .th-footer-logo-img {
     height: 52px;
+
     width: auto;
+
     max-width: 240px;
+
     object-fit: contain;
+
     display: block;
 }
 
+
+/* Tên thương hiệu nếu cần dùng */
 .th-brand-name {
     font-size: 22px;
+
     font-weight: 800;
+
     color: #ffffff;
+
     letter-spacing: -0.5px;
 }
 
+
 .th-brand-name span {
-    color: #fef08a; /* Điểm nhấn vàng kem dịu mắt trên nền xanh 15803d */
+    color: #fef08a;
 }
+
+
+/* Mô tả */
 
 .th-brand-desc {
     color: #e2e8f0;
+
     font-size: 13.5px;
+
     margin: 0 0 20px 0;
+
+    line-height: 1.7;
 }
 
-/* Khung Hotline */
+
+/* =========================================================
+   HOTLINE
+========================================================= */
+
 .th-hotline-box {
-    background: rgba(0, 0, 0, 0.15); /* Làm tối nhẹ để tạo chiều sâu và nổi bật */
+    background: rgba(0, 0, 0, 0.15);
+
     border: 1px solid rgba(255, 255, 255, 0.2);
+
     padding: 10px 14px;
+
     border-radius: 8px;
+
     margin-bottom: 16px;
+
     display: inline-block;
 }
 
+
 .th-hotline-label {
     display: block;
+
     font-size: 12px;
+
     color: #d1d5db;
 }
 
+
 .th-hotline-number {
     font-size: 18px;
+
     font-weight: 700;
-    color: #fef08a; /* Màu vàng sáng sang trọng, dễ đọc trên nền xanh đậm */
+
+    color: #fef08a;
+
     text-decoration: none;
 }
+
 
 .th-hotline-number:hover {
     text-decoration: underline;
 }
 
-/* Mạng xã hội */
+
+/* =========================================================
+   SOCIAL
+========================================================= */
+
 .th-social-links {
     display: flex;
+
     gap: 14px;
 }
 
+
 .th-social-links a {
     color: #e2e8f0;
+
     font-size: 13px;
+
     font-weight: 600;
+
     text-decoration: none;
+
     transition: color 0.2s ease;
 }
+
 
 .th-social-links a:hover {
     color: #fef08a;
 }
 
-/* Tiêu đề mỗi cột */
+
+/* =========================================================
+   TITLE
+========================================================= */
+
 .th-footer-title {
     color: #ffffff;
+
     font-size: 16px;
+
     font-weight: 700;
+
     margin: 0 0 20px 0;
+
     position: relative;
+
     padding-bottom: 10px;
 }
 
+
 .th-footer-title::after {
     content: '';
+
     position: absolute;
+
     bottom: 0;
+
     left: 0;
+
     width: 32px;
+
     height: 2px;
-    background-color: #fef08a; /* Đường gạch chân đổi sang màu vàng dịu tạo điểm nhấn hài hòa */
+
+    background-color: #fef08a;
 }
 
-/* Danh sách liên kết */
+
+/* =========================================================
+   MENU
+========================================================= */
+
 .th-footer-menu {
     list-style: none;
+
     padding: 0;
+
     margin: 0;
 }
+
 
 .th-footer-menu li {
     margin-bottom: 10px;
 }
 
+
 .th-footer-menu a {
     display: inline-block;
+
     color: #e2e8f0;
+
     text-decoration: none;
+
     font-size: 13.5px;
+
     white-space: nowrap;
-    transition: color 0.2s ease, transform 0.2s ease;
+
+    transition: color 0.2s ease,
+    transform 0.2s ease;
 }
+
 
 .th-footer-menu a:hover {
     color: #ffffff;
+
     transform: translateX(4px);
 }
 
-/* Cột 4: Mô tả thanh toán & Tag */
+
+/* =========================================================
+   CỘT THANH TOÁN
+========================================================= */
+
 .th-pay-desc {
     color: #e2e8f0;
+
     font-size: 13.5px;
+
     margin: 0 0 16px 0;
+
+    line-height: 1.65;
 }
 
+
+/* =========================================================
+   PAYMENT LOGOS
+========================================================= */
+
 .th-payment-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
     margin-bottom: 20px;
+
+    max-width: 250px;
 }
-.th-pay-icon {
-    width: 60px;
-    height: auto;
-    vertical-align: middle;
-}
+
+
+/* Ô chứa logo */
+
 .th-badge {
-    background: rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: #ffffff;
-    padding: 5px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
+    width: 100%;
+
+    height: 48px;
+
+    padding: 7px 12px;
+
+    background-color: #ffffff;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    border-radius: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+
+    transition: transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
+
+
+/* Hover logo */
+
+.th-badge:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+}
+
+
+/* Logo mặc định */
+
+.th-pay-icon {
+    display: block;
+
+    width: auto;
+
+    height: 28px;
+
+    max-width: 85px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   TÙY CHỈNH TỪNG LOGO
+========================================================= */
+
+/* VNPAY */
+
+.th-badge:nth-child(1) .th-pay-icon {
+    height: 27px;
+
+    max-width: 82px;
+}
+
+
+/* MoMo */
+
+.th-badge:nth-child(2) .th-pay-icon {
+    height: 30px;
+
+    max-width: 38px;
+}
+
+
+/* NAPAS */
+
+.th-badge:nth-child(3) .th-pay-icon {
+    height: 27px;
+
+    max-width: 82px;
+}
+
+
+/* Visa / Mastercard */
+
+.th-badge:nth-child(4) .th-pay-icon {
+    height: 25px;
+
+    max-width: 82px;
+}
+
+
+/* =========================================================
+   CAM KẾT
+========================================================= */
 
 .th-commitment-box {
     display: flex;
+
     align-items: center;
+
     gap: 8px;
+
     color: #fef08a;
+
     font-size: 12.5px;
+
     font-weight: 500;
+
+    line-height: 1.5;
 }
 
-/* Dải bản quyền dưới cùng */
+
+.th-leaf-icon {
+    font-size: 18px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
 .th-footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
+
     padding: 20px 24px;
-    background-color: #0d5c2e; /* Sắc xanh đậm hơn một chút ở footer bottom để phân tách bố cục */
+
+    background-color: #0d5c2e;
 }
+
 
 .th-footer-bottom-inner {
     max-width: 1240px;
+
     margin: 0 auto;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     flex-wrap: wrap;
+
     gap: 16px;
 }
 
+
+/* Copyright */
+
 .th-copyright {
     margin: 0;
+
     font-size: 12.5px;
+
     color: #cbd5e1;
 }
+
+
+/* Legal */
 
 .th-legal-links {
     display: flex;
+
     gap: 20px;
 }
 
+
 .th-legal-links a {
     color: #cbd5e1;
+
     text-decoration: none;
+
     font-size: 12.5px;
-    transition: color 0.2s;
+
+    transition: color 0.2s ease;
 }
+
 
 .th-legal-links a:hover {
     color: #ffffff;
 }
 
-/* Responsive cho máy tính bảng / màn hình vừa */
+
+/* =========================================================
+   TABLET
+========================================================= */
+
 @media (max-width: 1024px) {
+
     .th-footer-container {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
+
         gap: 36px 32px;
     }
+
 }
 
-/* Responsive khi xem trên điện thoại (màn hình nhỏ) */
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 680px) {
+
+    .th-footer {
+        padding-top: 40px;
+    }
+
+
     .th-footer-container {
         grid-template-columns: 1fr;
+
         gap: 32px;
+
+        padding: 0 20px 40px 20px;
     }
+
 
     .th-footer-menu a {
         white-space: normal;
     }
 
+
+    .th-payment-tags {
+        max-width: 260px;
+    }
+
+
+    .th-footer-bottom {
+        padding: 18px 20px;
+    }
+
+
     .th-footer-bottom-inner {
         flex-direction: column;
+
         align-items: flex-start;
     }
+
+
+    .th-legal-links {
+        flex-wrap: wrap;
+
+        gap: 10px 18px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE NHỎ
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .th-payment-tags {
+        max-width: 100%;
+    }
+
+
+    .th-badge {
+        height: 46px;
+    }
+
+
+    .th-pay-icon {
+        max-width: 75px;
+    }
+
 }
