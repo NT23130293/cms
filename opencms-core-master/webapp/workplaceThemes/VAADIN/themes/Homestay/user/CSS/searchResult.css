@@ -122,7 +122,8 @@ body {
 
 /* Material Design 3 visual layer */
 main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
-.search-results-container { max-width: 1000px; margin: auto; padding: 28px; border-radius: 24px; box-shadow: 0 12px 36px rgba(23, 65, 49, .09); }
+.search-page-layout { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 24px; align-items: start; }
+.search-results-container { width: 100%; max-width: 1000px; margin: 0; padding: 28px; border-radius: 24px; box-shadow: 0 12px 36px rgba(23, 65, 49, .09); }
 .results-header h2 { font-size: 26px; color: #123d2a; }
 .view-toggle { border-color: #cbd6ce; border-radius: 12px; background: #f3f7f3; }
 .btn-view.active { background: #176b42; color: #fff; border-radius: 10px; }
@@ -132,6 +133,19 @@ main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
 .hotel-title, .hotel-location a, .location-score { color: #176b42; }
 .rating-score, .btn-primary.mui-btn { background-color: #176b42; }
 .btn-primary.mui-btn:hover { background-color: #0e5130; }
+
+/* Material filter sidebar */
+.search-filter-sidebar { position: sticky; top: 18px; border: 1px solid #dce5de; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 8px 22px rgba(9,73,44,.08); }
+.filter-heading { padding: 18px; display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #e5ece6; background: linear-gradient(135deg, #f0f8f1, #fff); }
+.filter-heading > .material-symbols-outlined { color: #176b42; padding: 8px; border-radius: 10px; background: #d7efda; }
+.filter-heading h2 { font-size: 17px; color: #123d2a; margin: 1px 0 4px; }.filter-heading p { font-size: 12px; color: #64756a; }
+.filter-clear { margin-left: auto; border: 0; color: #176b42; font: inherit; font-size: 12px; font-weight: 700; background: transparent; cursor: pointer; padding: 6px 0; }.filter-clear:hover { text-decoration: underline; }
+.filter-groups {
+    /*max-height: calc(100vh - 155px); */
+    overflow: auto; }.filter-group { padding: 18px; border-bottom: 1px solid #e5ece6; }.filter-group:last-child { border: 0; }
+.filter-group h3 { margin: 0 0 12px; font-size: 15px; color: #173c2a; }.filter-option { display: flex; gap: 9px; align-items: center; margin: 10px 0; cursor: pointer; font-size: 14px; color: #33453a; }.filter-option input { width: 18px; height: 18px; accent-color: #176b42; cursor: pointer; }.filter-option span:nth-child(2) { flex: 1; }.filter-option small { color: #68796e; font-size: 12px; }.price-range { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }.price-range input { min-width: 0; border: 1px solid #bdcbbf; border-radius: 9px; padding: 10px; outline-color: #176b42; }.active-filter-summary { margin: 12px 18px 0; padding: 9px 11px; border-radius: 9px; background: #e6f4e8; color: #176b42; font-size: 12px; font-weight: 600; }
+@media (max-width: 900px) { .search-page-layout { grid-template-columns: 1fr; }.search-filter-sidebar { position: static; }.filter-groups { max-height: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }.filter-group { border-bottom: 1px solid #e5ece6; }.search-results-container { width: 100%; } }
+@media (max-width: 560px) { main { padding: 18px 12px; }.search-results-container { padding: 18px; border-radius: 16px; }.filter-groups { display: block; }.results-header { align-items: flex-start; gap: 12px; flex-direction: column; } }
 
 /* Material UI Box Shadow & Card Design */
 .mui-shadow {
@@ -212,7 +226,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
 
 .hotel-title {
     font-size: 20px;
-    color: #006ce4;
+    color: #176b42;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -243,13 +257,13 @@ main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
 }
 
 .hotel-location a {
-    color: #006ce4;
+    color: #176b42;
     text-decoration: underline;
     cursor: pointer;
 }
 
 .hotel-location a:hover {
-    color: #004cb8;
+    color: #176b42;
 }
 
 .hotel-distance {
@@ -293,7 +307,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
 }
 
 .rating-score {
-    background-color: #003b95;
+    background-color: #176b42;
     color: #fff;
     width: 32px;
     height: 32px;
@@ -308,14 +322,14 @@ main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
 .location-score {
     font-size: 12px;
     font-weight: 500;
-    color: #006ce4;
+    color: #176b42;
     margin-top: 4px;
     text-align: right;
     width: 100%;
 }
 
 .btn-primary.mui-btn {
-    background-color: #006ce4;
+    background-color: #176b42;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -329,7 +343,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
 }
 
 .btn-primary.mui-btn:hover {
-    background-color: #004cb8;
+    background-color: #176b42;
 }
 
 /* Responsive cơ bản */
@@ -359,4 +373,85 @@ main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
     .location-score {
         text-align: left;
     }
+}
+.sort-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-sort.custom-select {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1.5px solid #cbd6ce;
+    padding: 8px 18px;
+    border-radius: 24px;
+    font-size: 14px;
+    color: #123d2a;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.btn-sort.custom-select:hover {
+    border-color: #176b42;
+    background-color: #f4f9f5;
+}
+
+.selected-option {
+    font-weight: 700;
+    color: #176b42;
+}
+
+.arrow-icon {
+    font-size: 12px;
+    color: #176b42;
+    transition: transform 0.2s ease;
+}
+
+.btn-sort.custom-select.open .arrow-icon {
+    transform: rotate(180deg);
+}
+
+/* Khung menu chứa các lựa chọn */
+.select-items {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    left: auto;
+    width: 100%;
+    min-width: 200px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    z-index: 99;
+}
+
+.select-items.hide {
+    display: none;
+}
+
+/* Padding 10px cho từng lựa chọn */
+.select-option {
+    padding: 10px 16px; /* Padding top/bottom 10px đúng yêu cầu */
+    font-size: 14px;
+    color: #222222;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.select-option:hover {
+    background-color: #f0f7f2;
+    color: #176b42;
+}
+
+.select-option.active {
+    background-color: #176b42;
+    color: #ffffff;
+    font-weight: 500;
 }

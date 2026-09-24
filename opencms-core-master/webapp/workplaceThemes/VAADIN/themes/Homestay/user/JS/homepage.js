@@ -887,22 +887,14 @@ function handleSearch() {
         return;
     }
 
-    // Ghép thông báo tìm kiếm đầy đủ chi tiết
-    let searchMsg = `Đang tìm kiếm "${dest}" · ${guests} khách · ${rooms} phòng`;
-
-    if (checkIn && checkOut) {
-        const fmt = (d) => new Date(d).toLocaleDateString('vi-VN');
-        searchMsg += ` · ${fmt(checkIn)} → ${fmt(checkOut)}`;
-    }
-
-    showToast(searchMsg + '...');
-
-    setTimeout(() => {
-        const targetSection = document.getElementById('favoritesSection');
-        if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    }, 600);
+    const query = new URLSearchParams({
+        destination: dest,
+        checkIn,
+        checkOut,
+        guests: String(guests),
+        rooms: String(rooms)
+    });
+    window.location.href = `searchResult.html?${query.toString()}`;
 }
 
 function filterByCategory(categoryName) {

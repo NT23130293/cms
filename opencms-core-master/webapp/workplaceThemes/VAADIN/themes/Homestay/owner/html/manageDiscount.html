@@ -6,13 +6,18 @@
     <title>Quản lý Mã giảm giá & Voucher - Homestay Nhà Sàn Mộc</title>
 
     <!-- Google Fonts & Material Symbols -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#002115","secondary-fixed-dim":"#88d982","tertiary-fixed-dim":"#ffb77d","on-secondary-fixed":"#002204","tertiary-container":"#5d2f00","primary":"#002c1e","outline":"#717974","outline-variant":"#c0c8c2","on-primary-fixed-variant":"#224f3d","surface-dim":"#cbdbf5","inverse-surface":"#213145","surface-variant":"#d3e4fe","error-container":"#ffdad6","surface-container-low":"#eff4ff","secondary":"#1b6d24","primary-fixed":"#bdedd5","surface-container":"#e5eeff","on-surface-variant":"#414944","surface":"#f8f9ff","on-primary-container":"#81b099","background":"#f8f9ff","on-tertiary-fixed-variant":"#6e3900","on-tertiary-container":"#f38b23","tertiary-fixed":"#ffdcc3","on-surface":"#0b1c30","surface-tint":"#3b6754","tertiary":"#3d1d00","on-tertiary-fixed":"#2f1500","surface-container-highest":"#d3e4fe","on-primary":"#ffffff","inverse-primary":"#a1d1ba","on-secondary-fixed-variant":"#005312","secondary-container":"#a0f399","error":"#ba1a1a","on-error-container":"#93000a","on-secondary":"#ffffff","secondary-fixed":"#a3f69c","surface-container-high":"#dce9ff","surface-container-lowest":"#ffffff","on-secondary-container":"#217128","surface-bright":"#f8f9ff","on-error":"#ffffff","primary-container":"#154332","on-background":"#0b1c30","inverse-on-surface":"#eaf1ff","on-tertiary":"#ffffff","primary-fixed-dim":"#a1d1ba"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xs":"0.25rem","margin":"1.75rem","space-md":"0.875rem","space-sm":"0.5rem","space-xl":"1.75rem","gutter-sm":"0.75rem","margin-mobile":"1rem","gutter":"1.25rem","space-lg":"1.25rem"},fontFamily:{"headline-sm":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"label-md":["Inter"],"body-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"body-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-lg":["Inter"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"]},fontSize:{"headline-sm":["16px",{"lineHeight":"24px","fontWeight":"600"}],"display-lg":["30px",{"lineHeight":"38px","fontWeight":"700"}],"label-md":["11.5px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"body-md":["13.5px",{"lineHeight":"20px","fontWeight":"400"}],"label-sm":["10.5px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}],"headline-lg":["22px",{"lineHeight":"30px","fontWeight":"700"}],"headline-lg-mobile":["19px",{"lineHeight":"26px","fontWeight":"700"}],"label-lg":["13px",{"lineHeight":"18px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"26px","fontWeight":"600"}],"body-lg":["15px",{"lineHeight":"22px","fontWeight":"400"}]}}}};</script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/manageDiscount.css">
+
+    <!-- Tailwind config + page JS (config must load right after Tailwind CDN, before body renders) -->
+    <script src="../js/manageDiscount.js"></script>
 
     <!-- File JS điều khiển chung để nạp Sidebar & Header động -->
     <script src="../js/sidebarJs.js"></script>
@@ -46,11 +51,11 @@
                     </p>
                 </div>
                 <div class="flex flex-wrap items-center gap-space-sm relative z-10 shrink-0">
-                    <button class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-colors shadow-sm" type="button">
+                    <button id="btnVoucherHistory" class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-colors shadow-sm" type="button">
                         <span class="material-symbols-outlined text-[18px]">history</span>
                         Lịch sử phát hành
                     </button>
-                    <button class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-all shadow-md active:scale-95" type="button">
+                    <button id="btnAddVoucher" class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-all shadow-md active:scale-95" type="button">
                         <span class="material-symbols-outlined text-[18px]">add_circle</span>
                         + Tạo mã giảm giá mới
                     </button>
@@ -152,15 +157,15 @@
                     <!-- Filter Bar -->
                     <div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm">
                         <div class="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0">
-                            <button class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-label-lg text-label-lg shrink-0 transition-colors" type="button">Tất cả (8)</button>
-                            <button class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container font-label-lg text-label-lg shrink-0 transition-colors" type="button">Đang chạy (5)</button>
-                            <button class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container font-label-lg text-label-lg shrink-0 transition-colors" type="button">Sắp diễn ra (1)</button>
-                            <button class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container font-label-lg text-label-lg shrink-0 transition-colors" type="button">Đã kết thúc (2)</button>
+                            <button class="voucher-filter-tab px-space-md py-space-xs rounded-lg font-label-lg text-label-lg shrink-0" type="button" data-filter="all" aria-pressed="true">Tất cả (8)</button>
+                            <button class="voucher-filter-tab px-space-md py-space-xs rounded-lg font-label-lg text-label-lg shrink-0" type="button" data-filter="active" aria-pressed="false">Đang chạy (5)</button>
+                            <button class="voucher-filter-tab px-space-md py-space-xs rounded-lg font-label-lg text-label-lg shrink-0" type="button" data-filter="upcoming" aria-pressed="false">Sắp diễn ra (1)</button>
+                            <button class="voucher-filter-tab px-space-md py-space-xs rounded-lg font-label-lg text-label-lg shrink-0" type="button" data-filter="ended" aria-pressed="false">Đã kết thúc (2)</button>
                         </div>
                         <div class="flex items-center gap-space-xs">
                             <div class="relative flex-1 sm:w-56">
                                 <span class="material-symbols-outlined text-[18px] text-outline absolute left-2.5 top-1/2 -translate-y-1/2">search</span>
-                                <input class="w-full bg-surface-container-low rounded-lg pl-8 pr-3 py-1.5 text-body-sm font-body-sm text-on-surface placeholder:text-outline outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary-container transition-all" placeholder="Tìm theo mã hoặc tên..." type="text">
+                                <input id="voucherSearchInput" class="w-full bg-surface-container-low rounded-lg pl-8 pr-3 py-1.5 text-body-sm font-body-sm text-on-surface placeholder:text-outline outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary-container transition-all" placeholder="Tìm theo mã hoặc tên..." type="text">
                             </div>
                             <button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md flex items-center gap-1 shrink-0" type="button">
                                 <span class="material-symbols-outlined text-[16px]">filter_list</span>
@@ -172,17 +177,17 @@
                     <!-- Voucher Tickets Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
                         <!-- CARD 1 -->
-                        <div class="relative bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden">
+                        <div class="voucher-card relative bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden">
                             <div class="p-space-md bg-gradient-to-r from-primary-container/10 via-surface-container-low to-surface-container-lowest flex items-center justify-between">
                                 <div class="flex items-center gap-space-xs">
-                                        <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[11px] font-bold flex items-center gap-1">
+                                        <span class="voucher-status-badge px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[11px] font-bold flex items-center gap-1">
                                             <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
                                             Đang hoạt động
                                         </span>
                                     <span class="text-label-sm font-label-sm text-outline">Công khai</span>
                                 </div>
                                 <label class="relative inline-flex items-center cursor-pointer">
-                                    <input checked class="sr-only peer" type="checkbox">
+                                    <input checked class="js-toggle-voucher sr-only peer" type="checkbox" data-voucher-code="MAICHAU15" data-voucher-name="Ưu đãi Mountain View &amp; Garden View">
                                     <div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
                                 </label>
                             </div>
@@ -207,7 +212,7 @@
                                         <span class="material-symbols-outlined text-[18px] text-secondary">sell</span>
                                         <span class="font-headline-sm text-headline-sm tracking-widest text-on-surface select-all">MAICHAU15</span>
                                     </div>
-                                    <button class="px-space-xs py-1 rounded text-primary hover:bg-surface-container font-label-md text-label-md flex items-center gap-0.5" onclick="navigator.clipboard.writeText('MAICHAU15')" type="button">
+                                    <button class="px-space-xs py-1 rounded text-primary hover:bg-surface-container font-label-md text-label-md flex items-center gap-0.5 js-copy-code" data-code="MAICHAU15" type="button">
                                         <span class="material-symbols-outlined text-[16px]">content_copy</span> Sao chép
                                     </button>
                                 </div>
@@ -232,8 +237,57 @@
                                     <span>15/09 - 30/10/2024</span>
                                 </div>
                                 <div class="flex items-center gap-1">
-                                    <button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container text-on-surface-variant" type="button"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-                                    <button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container text-on-surface-variant" type="button"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+                                    <button
+                                            type="button"
+                                            class="btn-voucher-detail w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container text-on-surface-variant"
+                                            title="Xem chi tiết"
+                                            data-voucher-code="MAICHAU15"
+                                            data-voucher-name="Ưu đãi Mountain View &amp; Garden View"
+                                            data-voucher-type="percent"
+                                            data-voucher-value="15"
+                                            data-voucher-max-discount="300000"
+                                            data-voucher-min-order="0"
+                                            data-voucher-usage-limit="100"
+                                            data-voucher-used="42"
+                                            data-voucher-per-user="1"
+                                            data-voucher-start="2024-09-15"
+                                            data-voucher-end="2024-10-30"
+                                            data-voucher-audience="Công khai toàn sàn"
+                                            data-voucher-status="active"
+                                            data-voucher-description="Áp dụng độc quyền cho khách đặt phòng từ 2 đêm trở lên để trải nghiệm trọn vẹn văn hoá Tây Bắc."
+                                            data-voucher-image="https://lh3.googleusercontent.com/aida-public/AB6AXuATitriPluMWzKnSDf3xYwu_rMAVFtrFYCo6luj6aCyr8YLT5vK0b8TR2s2V7MhPbrYanb-6bz52bIX6B2lq4EoANdsW-weQxN2-cTjAgpHBM6LVMlI9sHpCXecp3uhLemHLzV3jU6jWEw5y4XabQ0v2iQPJHUFQbhKDLQ9xbpAs7gbwH2GzfnZRIJ7DGHCU9Yxe8S_jivajbosecaNj1Qh525Pklqf_1KZ_9XsMwu7-H79FBdAkcs">
+                                        <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                    </button>
+                                    <button
+                                            type="button"
+                                            class="btn-edit-voucher w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container text-on-surface-variant"
+                                            title="Chỉnh sửa"
+                                            data-voucher-code="MAICHAU15"
+                                            data-voucher-name="Ưu đãi Mountain View &amp; Garden View"
+                                            data-voucher-type="percent"
+                                            data-voucher-value="15"
+                                            data-voucher-max-discount="300000"
+                                            data-voucher-min-order="0"
+                                            data-voucher-usage-limit="100"
+                                            data-voucher-used="42"
+                                            data-voucher-per-user="1"
+                                            data-voucher-start="2024-09-15"
+                                            data-voucher-end="2024-10-30"
+                                            data-voucher-audience="Công khai toàn sàn"
+                                            data-voucher-status="active"
+                                            data-voucher-description="Áp dụng độc quyền cho khách đặt phòng từ 2 đêm trở lên để trải nghiệm trọn vẹn văn hoá Tây Bắc."
+                                            data-voucher-image="https://lh3.googleusercontent.com/aida-public/AB6AXuATitriPluMWzKnSDf3xYwu_rMAVFtrFYCo6luj6aCyr8YLT5vK0b8TR2s2V7MhPbrYanb-6bz52bIX6B2lq4EoANdsW-weQxN2-cTjAgpHBM6LVMlI9sHpCXecp3uhLemHLzV3jU6jWEw5y4XabQ0v2iQPJHUFQbhKDLQ9xbpAs7gbwH2GzfnZRIJ7DGHCU9Yxe8S_jivajbosecaNj1Qh525Pklqf_1KZ_9XsMwu7-H79FBdAkcs">
+                                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                                    </button>
+                                    <button
+                                            type="button"
+                                            class="btn-delete-voucher w-8 h-8 rounded-lg flex items-center justify-center hover:bg-error-container hover:text-error text-on-surface-variant"
+                                            title="Xoá mã"
+                                            data-voucher-code="MAICHAU15"
+                                            data-voucher-name="Ưu đãi Mountain View &amp; Garden View"
+                                            data-voucher-used="42">
+                                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -277,6 +331,299 @@
             </div>
         </div>
     </main>
+</div>
+
+<!-- =====================================================
+     POPUP THÊM / CHỈNH SỬA MÃ GIẢM GIÁ
+     ===================================================== -->
+
+<div id="voucherModal" class="voucher-modal" hidden>
+    <div class="voucher-modal-content" role="dialog" aria-modal="true" aria-labelledby="voucherModalTitle">
+
+        <div class="voucher-modal-header">
+            <div>
+                <h2 id="voucherModalTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Tạo mã giảm giá mới</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Thiết lập chương trình khuyến mãi, voucher hoặc gói kích cầu.</p>
+            </div>
+            <button id="btnCloseVoucherModal" type="button" class="voucher-modal-close" aria-label="Đóng">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <form id="voucherForm" class="voucher-form">
+            <div class="voucher-form-grid">
+
+                <div class="voucher-form-group full">
+                    <label class="voucher-form-label" for="voucherName">Tên chương trình</label>
+                    <input id="voucherName" name="voucherName" class="voucher-form-input" type="text" placeholder="Ví dụ: Ưu đãi Mountain View &amp; Garden View" required>
+                </div>
+
+                <div class="voucher-form-group">
+                    <label class="voucher-form-label" for="voucherCode">Mã giảm giá</label>
+                    <input id="voucherCode" name="voucherCode" class="voucher-form-input" type="text" placeholder="Ví dụ: MAICHAU15" style="text-transform:uppercase" required>
+                </div>
+
+                <div class="voucher-form-group">
+                    <label class="voucher-form-label" for="voucherType">Loại giảm giá</label>
+                    <select id="voucherType" name="voucherType" class="voucher-form-select">
+                        <option value="percent">Giảm theo % đơn hàng</option>
+                        <option value="amount">Giảm số tiền cố định</option>
+                    </select>
+                </div>
+
+                <div class="voucher-form-group">
+                    <label class="voucher-form-label" for="voucherValue">Giá trị giảm</label>
+                    <input id="voucherValue" name="voucherValue" class="voucher-form-input" type="number" min="0" placeholder="Ví dụ: 15" required>
+                </div>
+
+                <div class="voucher-form-group">
+                    <label class="voucher-form-label" for="voucherMaxDiscount">Giảm tối đa (₫)</label>
+                    <input id="voucherMaxDiscount" name="voucherMaxDiscount" class="voucher-form-input" type="number" min="0" step="10000" placeholder="Ví dụ: 300000">
+                    <span class="voucher-form-hint">Chỉ áp dụng cho loại giảm theo %.</span>
+                </div>
+
+                <div class="voucher-form-group">
+                    <label class="voucher-form-label" for="voucherMinOrder">Giá trị đơn tối thiểu (₫)</label>
+                    <input id="voucherMinOrder" name="voucherMinOrder" class="voucher-form-input" type="number" min="0" step="10000" placeholder="Ví dụ: 500000">
+                </div>
+
+                <div class="voucher-form-group">
+                    <label class="voucher-form-label" for="voucherUsageLimit">Tổng lượt sử dụng</label>
+                    <input id="voucherUsageLimit" name="voucherUsageLimit" class="voucher-form-input" type="number" min="1" placeholder="Ví dụ: 100" required>
+                </div>
+
+                <div class="voucher-form-group">
+                    <label class="voucher-form-label" for="voucherPerUser">Giới hạn mỗi khách</label>
+                    <input id="voucherPerUser" name="voucherPerUser" class="voucher-form-input" type="number" min="1" placeholder="Ví dụ: 1" value="1">
+                </div>
+
+                <div class="voucher-form-group">
+                    <label class="voucher-form-label" for="voucherStart">Ngày bắt đầu</label>
+                    <input id="voucherStart" name="voucherStart" class="voucher-form-input" type="date" required>
+                </div>
+
+                <div class="voucher-form-group">
+                    <label class="voucher-form-label" for="voucherEnd">Ngày kết thúc</label>
+                    <input id="voucherEnd" name="voucherEnd" class="voucher-form-input" type="date" required>
+                </div>
+
+                <div class="voucher-form-group full">
+                    <label class="voucher-form-label" for="voucherAudience">Đối tượng áp dụng</label>
+                    <select id="voucherAudience" name="voucherAudience" class="voucher-form-select">
+                        <option value="Công khai toàn sàn">Công khai toàn sàn</option>
+                        <option value="Nhiệm vụ văn hoá bản địa">Hoàn thành nhiệm vụ văn hoá bản địa</option>
+                        <option value="Khách hàng thân thiết">Khách hàng thân thiết</option>
+                        <option value="Khách đặt lần đầu">Khách đặt phòng lần đầu</option>
+                    </select>
+                </div>
+
+                <div class="voucher-form-group full">
+                    <label class="voucher-form-label" for="voucherDescription">Mô tả</label>
+                    <textarea id="voucherDescription" name="voucherDescription" class="voucher-form-textarea" placeholder="Điều kiện áp dụng, trải nghiệm đi kèm..."></textarea>
+                </div>
+
+                \
+
+                <div class="voucher-form-group full">
+                    <label class="voucher-check">
+                        <input type="checkbox" id="voucherActive" checked>
+                        <span>Kích hoạt mã ngay sau khi lưu</span>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="voucher-modal-footer">
+                <button id="btnCancelVoucher" type="button" class="voucher-btn voucher-btn-cancel">Hủy</button>
+                <button type="submit" class="voucher-btn voucher-btn-save">
+                    <span class="material-symbols-outlined text-[17px]">save</span>
+                    Lưu mã giảm giá
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- =====================================================
+     POPUP CHI TIẾT MÃ GIẢM GIÁ
+     ===================================================== -->
+
+<div id="voucherDetailModal" class="voucher-modal" hidden>
+    <div class="voucher-modal-content" role="dialog" aria-modal="true" aria-labelledby="voucherDetailTitle">
+
+        <div class="voucher-modal-header">
+            <div>
+                <h2 id="voucherDetailTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Chi tiết mã giảm giá</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Toàn bộ thông tin, điều kiện và hiệu quả sử dụng mã.</p>
+            </div>
+            <button type="button" class="voucher-modal-close" data-close-modal="voucherDetailModal" aria-label="Đóng">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="voucher-detail-body">
+
+            <div class="voucher-detail-hero">
+                <img id="voucherDetailImage" src="" alt="Ảnh voucher">
+                <span id="voucherDetailStatus" class="voucher-detail-status">Đang hoạt động</span>
+            </div>
+
+            <div class="voucher-detail-code-row">
+                <div class="flex items-center gap-space-xs">
+                    <span class="material-symbols-outlined text-[18px] text-secondary">sell</span>
+                    <span class="voucher-detail-code select-all" id="voucherDetailCode">—</span>
+                </div>
+                <button type="button" id="btnCopyDetailCode" class="px-space-xs py-1 rounded text-primary hover:bg-surface-container font-label-md text-label-md flex items-center gap-0.5">
+                    <span class="material-symbols-outlined text-[16px]">content_copy</span> Sao chép
+                </button>
+            </div>
+
+            <div class="voucher-detail-grid">
+                <div class="voucher-detail-item">
+                    <span class="voucher-detail-label">Giá trị giảm</span>
+                    <span class="voucher-detail-value accent" id="voucherDetailValue">—</span>
+                </div>
+                <div class="voucher-detail-item">
+                    <span class="voucher-detail-label">Giảm tối đa</span>
+                    <span class="voucher-detail-value" id="voucherDetailMaxDiscount">—</span>
+                </div>
+                <div class="voucher-detail-item">
+                    <span class="voucher-detail-label">Đơn tối thiểu</span>
+                    <span class="voucher-detail-value" id="voucherDetailMinOrder">—</span>
+                </div>
+                <div class="voucher-detail-item">
+                    <span class="voucher-detail-label">Giới hạn / khách</span>
+                    <span class="voucher-detail-value" id="voucherDetailPerUser">—</span>
+                </div>
+                <div class="voucher-detail-item">
+                    <span class="voucher-detail-label">Thời gian áp dụng</span>
+                    <span class="voucher-detail-value" id="voucherDetailPeriod">—</span>
+                </div>
+                <div class="voucher-detail-item">
+                    <span class="voucher-detail-label">Đối tượng áp dụng</span>
+                    <span class="voucher-detail-value" id="voucherDetailAudience">—</span>
+                </div>
+            </div>
+
+            <div class="voucher-detail-progress-box">
+                <div class="voucher-detail-progress-row">
+                    <span>Đã sử dụng: <strong class="text-on-surface" id="voucherDetailUsedText">0/0 lượt</strong></span>
+                    <span id="voucherDetailUsedPercent">0%</span>
+                </div>
+                <div class="voucher-detail-progress-track">
+                    <div class="voucher-detail-progress-fill" id="voucherDetailUsedBar" style="width:0%"></div>
+                </div>
+            </div>
+
+            <div>
+                <span class="voucher-detail-label">Mô tả</span>
+                <p class="voucher-detail-desc" id="voucherDetailDescription">—</p>
+            </div>
+
+        </div>
+
+        <div class="voucher-modal-footer">
+            <button type="button" class="voucher-btn voucher-btn-cancel" data-close-modal="voucherDetailModal">Đóng</button>
+            <button type="button" id="btnDetailToHistory" class="voucher-btn voucher-btn-ghost">
+                <span class="material-symbols-outlined text-[17px]">history</span>
+                Lịch sử phát hành
+            </button>
+            <button type="button" id="btnDetailToEditVoucher" class="voucher-btn voucher-btn-save">
+                <span class="material-symbols-outlined text-[17px]">edit</span>
+                Chỉnh sửa mã
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =====================================================
+     POPUP LỊCH SỬ PHÁT HÀNH
+     ===================================================== -->
+
+<div id="voucherHistoryModal" class="voucher-modal" hidden>
+    <div class="voucher-modal-content voucher-modal-lg" role="dialog" aria-modal="true" aria-labelledby="voucherHistoryTitle">
+
+        <div class="voucher-modal-header">
+            <div>
+                <h2 id="voucherHistoryTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Lịch sử phát hành</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Toàn bộ chương trình mã giảm giá đã tạo, đang chạy và đã kết thúc.</p>
+            </div>
+            <button type="button" class="voucher-modal-close" data-close-modal="voucherHistoryModal" aria-label="Đóng">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="voucher-history-body">
+            <div class="voucher-history-list" id="voucherHistoryList"></div>
+        </div>
+
+        <div class="voucher-modal-footer">
+            <button type="button" class="voucher-btn voucher-btn-cancel" data-close-modal="voucherHistoryModal">Đóng</button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =====================================================
+     POPUP XÁC NHẬN XOÁ MÃ GIẢM GIÁ
+     ===================================================== -->
+
+<div id="voucherDeleteModal" class="voucher-modal" hidden>
+    <div class="voucher-modal-content" role="dialog" aria-modal="true" aria-labelledby="voucherDeleteTitle">
+
+        <div class="voucher-modal-header">
+            <div>
+                <h2 id="voucherDeleteTitle" class="font-headline-md text-headline-md text-on-surface font-bold">Xoá mã giảm giá</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1" id="voucherDeleteSubtitle">Dừng và gỡ mã khỏi hệ thống.</p>
+            </div>
+            <button type="button" class="voucher-modal-close" data-close-modal="voucherDeleteModal" aria-label="Đóng">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <form id="voucherDeleteForm" class="voucher-form">
+
+            <div class="voucher-delete-current" id="voucherDeleteCurrent"></div>
+
+            <div class="voucher-delete-warning">
+                <span class="material-symbols-outlined text-[18px]">warning</span>
+                <span>Hành động này sẽ ngừng áp dụng mã ngay lập tức và không thể hoàn tác.</span>
+            </div>
+
+            <div class="voucher-form-grid">
+                <div class="voucher-form-group full">
+                    <label class="voucher-form-label" for="voucherDeleteReason">Lý do xoá</label>
+                    <select id="voucherDeleteReason" name="voucherDeleteReason" class="voucher-form-select">
+                        <option value="Hết ngân sách khuyến mãi">Hết ngân sách khuyến mãi</option>
+                        <option value="Trùng chương trình khác">Trùng chương trình khác</option>
+                        <option value="Phát hiện gian lận">Phát hiện gian lận / lạm dụng mã</option>
+                        <option value="Kết thúc theo kế hoạch">Kết thúc theo kế hoạch</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                </div>
+
+                <div class="voucher-form-group full">
+                    <label class="voucher-check">
+                        <input type="checkbox" id="voucherDeleteNotify" checked>
+                        <span>Thông báo dừng áp dụng tới khách đã lưu mã</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="voucher-modal-footer">
+                <button type="button" class="voucher-btn voucher-btn-cancel" data-close-modal="voucherDeleteModal">Đóng</button>
+                <button type="submit" class="voucher-btn voucher-btn-danger">
+                    <span class="material-symbols-outlined text-[17px]">delete</span>
+                    Xác nhận xoá mã
+                </button>
+            </div>
+
+        </form>
+    </div>
 </div>
 
 </body>
