@@ -44,3 +44,12 @@ function highlightActiveMenu() {
         }
     });
 }
+
+function toggleProfileMenu() {
+    const menu = document.getElementById('profileMenu');
+    menu.classList.toggle('hidden');
+}
+
+function logout() {
+    window.location.href = '../../user/html/login.html';
+}
