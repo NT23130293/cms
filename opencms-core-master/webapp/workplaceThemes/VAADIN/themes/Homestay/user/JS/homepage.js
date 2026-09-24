@@ -687,27 +687,7 @@ function showToast(message) {
 const modal = document.getElementById('quickModal');
 
 function showQuickDetail(name, customImg, customPrice, customTag, customDesc, customLocation) {
-    if (!modal) return;
-
-    document.getElementById('modalTitle').textContent = name;
-    document.getElementById('modalTag').textContent = customTag || "Chủ nhà tận tâm";
-    document.getElementById('modalPrice').textContent = customPrice || "1.200.000đ / đêm";
-    document.getElementById('modalImg').src = customImg || "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80";
-
-    if (customLocation) {
-        document.getElementById('modalLocation').innerHTML = `<i class="bi bi-geo-alt-fill text-success"></i> <span>${customLocation}</span>`;
-    } else {
-        document.getElementById('modalLocation').innerHTML = `<i class="bi bi-geo-alt-fill text-success"></i> <span>Đà Lạt, Lâm Đồng · Cách trung tâm 1.2km</span>`;
-    }
-
-    const amenities = ['Wifi tốc độ cao', 'BBQ ngoài trời', 'Bồn tắm view núi', 'Bếp nấu đầy đủ dụng cụ', 'Chỗ đậu xe hơi', 'Phục vụ bữa sáng', 'Check-in tự động'];
-    const amenContainer = document.getElementById('modalAmenities');
-    amenContainer.innerHTML = amenities.map(am => `
-    <div class="modal-amenity-chip"><i class="bi bi-check-circle-fill"></i> ${am}</div>
-  `).join('');
-
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    window.location.href = 'homestayDetail.html';
 }
 
 function closeModal() {
@@ -923,4 +903,18 @@ function scrollExperience(direction) {
         const scrollStep = grid.clientWidth * 0.75 || 320;
         grid.scrollBy({ left: direction * scrollStep, behavior: 'smooth' });
     }
+}
+
+// --- 8. CAROUSEL SCROLLING ---
+function scrollCarousel(button, direction) {
+    const container = button.closest('.carousel-container');
+    if (!container) return;
+    const track = container.querySelector('.carousel-track');
+    if (!track) return;
+    // Calculate scroll amount (one item width plus gap roughly)
+    const scrollAmount = track.clientWidth * 0.5;
+    track.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
 }
